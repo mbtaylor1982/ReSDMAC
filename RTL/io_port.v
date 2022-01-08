@@ -1,0 +1,48 @@
+/*
+
+AMIGA SDMAC Replacement Project  A3000
+Copyright 2022 Mike Taylor
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+*/
+
+module io_port(ENA,
+                RW,
+                DATA_IN,
+                SIZ1,
+                P_DATA,
+                IOR,
+                IOW,
+                DATA_OUT);
+
+input ENA;                  // Port Enable
+input RW;                   // Read Write Control
+input [31:0] DATA_IN;       // CPU data input
+input SIZ1;                 // Indicates a 16 bit transfer if true. 
+
+inout [15:0] P_DATA;        //Peripheral Data bus
+
+output IOR;                 //False on Read
+output IOW;                 //False on Write
+
+output [31:0] DATA_OUT;     // CPU data output.
+
+assign IOR = !RW;
+assign IOW = RW;
+
+assign P_DATA = ENA ? 16'hz : DATA_IN[15:0];
+assign DATA_OUT = {16'h0, P_DATA};
+endmodule
+
