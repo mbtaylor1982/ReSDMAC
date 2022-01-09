@@ -43,6 +43,6 @@ assign IOR = !RW;
 assign IOW = RW;
 
 assign P_DATA = ENA ? 16'hz : DATA_IN[15:0];
-assign DATA_OUT = {16'h0, P_DATA};
+assign DATA_OUT = {P_DATA, P_DATA};
 endmodule
 
