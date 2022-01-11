@@ -22,69 +22,96 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 `include "io_port.v"
 
 module main_top(
-    input SCLK,         //CPUCLKB
-    input AS,
-    input DS,
-    input RW,
-    input RST, 
-    input CS,
-    input SIZ1,         // Indicates a 16 bit transfer is true. 
+    output _INT,        //Connected to INT2 needs to be Open Collector output.
 
-    input [6:2] ADDR,   //CPU address Bus
+    inout SIZ1,         //Indicates a 16 bit transfer is true. 
+    inout R_W,          //Read Write from CPU
+    inout _AS,          //Address Strobe
+    inout _DS,          //Data Strobe 
+    inout [1:0] _DSACK, //Dynamic size and DATA ack.
     
     inout [31:0] DATA,   // CPU side data bus 32bit wide
 
-    output [1:0] DSACK,
+    input _STERM,       //static/synchronous data ack.
+    input SCLK,         //CPUCLKB
+    input _CS           //_SCSI from Fat Garry
+    input _RST,         //System Reset
+    input _BERR,        //Bus Errpr 
 
-    output DMAEN,
+    input [6:2] ADDR,   //CPU address Bus
     
-    input DREQ,
-    input IORDY,
-    input SINTREQ,
+    // Bus Mastering/Arbitration.
 
-    output IOR,
-    output IOW,
+    output  _BR,        //Bus Request
+    input   _BG,        //Bus Grant
+    output  _BGACK,     //Bus Grant Acknoledge
+  
 
-    output CSS,
-    output CSX0,
-    output CSX1,
+    output _DMAEN,      //Low =  Enable Address Generator in Ramsey
     
-    output DACK,
+    // Peripheral port Control signals
+    input _DREQ,
+    output _DACK,
+    input _IORDY,
 
-    inout [15:0] PD_PORT//Peripheral Device port
+    input INTA,         //Interupt from WD33c93A (SCSI)
+    input INTB,         //Spare Interupt pin.
+
+    output _IOR,        //Active Low read strobe
+    output _IOW,        //Ative Low Write strobe
+
+    output _CSS,        //Port 0 CS      
+    output _CSX0,       //Port 1A & Port1B CS 
+    output _CSX1,       //Port2 CS 
+
+    // Peripheral Device port
+    inout [15:0] PD_PORT
     
 );
 reg [31:0] DATA_OUT;
 wire [31:0] DATA_IN;
 
-assign DATA = CS ? 32'hz : DATA_OUT;
-assign DATA_IN = DATA;
+//Registers
+reg [1:0] DAWR;     //Data Acknowledge Width
+reg [23:0] WTC;     //Word Transfer Count
+reg [7:0] CNTR;     //Control Register
+reg ST_DMA;         //Start DMA 
+reg FLUSH;          //Flush FIFO
+reg CLR_INT;        //Clear Interrupts
+reg [31:0] ISTR;    //Interrupt Status Register
+reg SP_DMS;         //Stop DMA 
+
 
 wire [7:0] int_addr;
 assign int_addr = {1'b0, ADDR[6:2], 2'b00};
 
 addr_decoder DECODER(
     .ADDR (int_addr),
-    .CS (CS),
-    .CSS (CSS),
-    .CSX0 (CSX0),
-    .CSX1 (CSX1)
+    ._CS (_CS),
+    ._CSS (_CSS),
+    ._CSX0 (_CSX0),
+    ._CSX1 (_CSX1)
 );
 
 wire DATA_PORT_ACTIVE;
-assign DATA_PORT_ACTIVE = CSS & CSX0 & CSX1;
+assign DATA_PORT_ACTIVE = _CSS & _CSX0 & _CSX1;
+
 
 // 16/8 bit port for SCSI WD33C93A IC.
 io_port D_PORT(
     .ENA (DATA_PORT_ACTIVE),
-    .RW (RW),
+    .R_W (R_W),
     .SIZ1 (SIZ1),
     .DATA_IN (DATA_IN),
-    .IOR (IOR), 
-    .IOW (IOW),
+    ._IOR (_IOR), 
+    ._IOW (_IOW),
     .DATA_OUT (DATA_OUT),
     .P_DATA (PD_PORT)
 );
+
+//assign DATA_OUT = DATA_PORT_ACTIVE ? 32'hz,   
+assign DATA = CS ? 32'hz : DATA_OUT;
+assign DATA_IN = DATA;
 
 endmodule
 

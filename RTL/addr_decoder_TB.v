@@ -26,19 +26,19 @@ module addr_decoder_tb;
 
 //inputs
 reg [7:0] ADDR; 
-reg CS; 
+reg _CS; 
 
 //Outputs
-wire CSS;
-wire CSX0;
-wire CSX1;
+wire _CSS;
+wire _CSX0;
+wire _CSX1;
 
 addr_decoder dut(
     .ADDR (ADDR),
-    .CS (CS),
-    .CSS (CSS),
-    .CSX0 (CSX0),
-    .CSX1 (CSX1)
+    ._CS (_CS),
+    ._CSS (_CSS),
+    ._CSX0 (_CSX0),
+    ._CSX1 (_CSX1)
 );
      
     initial begin
@@ -46,41 +46,41 @@ addr_decoder dut(
         $dumpvars(0, addr_decoder_tb);
         
         //initial condistions
-        CS = 1; ADDR = 8'h00;           #20
+        _CS = 1; ADDR = 8'h00;           #20
 
         //SASR Register (Long Word)
-        CS = 1;                         #20
+        _CS = 1;                         #20
         ADDR = 8'h40;                   #20
-        CS = 0;                         #20
+        _CS = 0;                         #20
         //SASR Register (Byte)
-        CS = 1;                         #20
+        _CS = 1;                         #20
         ADDR = 8'h41;                   #20
-        CS = 0;                         #20
+        _CS = 0;                         #20
         //SCMD Register (Byte)
-        CS = 1;                         #20
+        _CS = 1;                         #20
         ADDR = 8'h43;                   #20
-        CS = 0;                         #20
+        _CS = 0;                         #20
 
         //
-        CS = 1;                         #20
+        _CS = 1;                         #20
         ADDR = 8'h4C;                   #20
-        CS = 0;                         #20
+        _CS = 0;                         #20
 
         //port1a
-        CS = 1;                         #20
+        _CS = 1;                         #20
         ADDR = 8'h50;                   #20
-        CS = 0;                         #20
+        _CS = 0;                         #20
 
         //port2
-        CS = 1;                         #20
+        _CS = 1;                         #20
         ADDR = 8'h60;                   #20
-        CS = 0;                         #20
+        _CS = 0;                         #20
 
         //port1b
-        CS = 1;                         #20
+        _CS = 1;                         #20
         ADDR = 8'h70;                   #20
-        CS = 0;                         #20
-        CS = 1;                         #20
+        _CS = 0;                         #20
+        _CS = 1;                         #20
 
         #40000 $finish;
     end
