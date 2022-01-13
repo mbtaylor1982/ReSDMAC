@@ -18,19 +18,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-module io_port(ENA,
+module io_port(_ENA,
                 R_W,
                 DATA_IN,
-                SIZ1,
                 P_DATA,
                 _IOR,
                 _IOW,
                 DATA_OUT);
 
-input ENA;                  // Port Enable
+input _ENA;                  // Port Enable
 input R_W;                   // Read Write Control
 input [31:0] DATA_IN;       // CPU data input
-input SIZ1;                 // Indicates a 16 bit transfer if true. 
 
 inout [15:0] P_DATA;        //Peripheral Data bus
 
@@ -42,7 +40,7 @@ output [31:0] DATA_OUT;     // CPU data output.
 assign _IOR = !R_W;
 assign _IOW = R_W;
 
-assign P_DATA = ENA ? 16'hz : DATA_IN[15:0];
+assign P_DATA = _ENA ? 16'hzzzz : DATA_IN[15:0]; 
 assign DATA_OUT = {P_DATA, P_DATA};
 endmodule
 

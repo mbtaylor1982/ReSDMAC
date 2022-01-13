@@ -25,10 +25,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 module io_port_tb; 
 
 //inputs
-reg ENA;                  
+reg _ENA;                  
 reg R_W;                   
 reg [31:0] DATA_IN;       
-reg SIZ1;    
+ 
 
 reg [15:0] P_DATA_TX;
 wire [15:0] P_DATA_RX;
@@ -41,13 +41,12 @@ wire [31:0] DATA_OUT;     // CPU data output.
 //DATA PORT
 wire  [15:0] P_DATA;        //Peripheral Data bus
 
-assign P_DATA = R_W ? P_DATA_TX : 16'hz;
+assign P_DATA = R_W ? P_DATA_TX : 16'hzzzz;
 assign P_DATA_RX = P_DATA;
 
 io_port dut(
-    .ENA (ENA),
+    ._ENA (_ENA),
     .R_W (R_W),
-    .SIZ1 (SIZ1),
     .DATA_IN (DATA_IN),
     ._IOR (_IOR), 
     ._IOW (_IOW),
@@ -60,32 +59,34 @@ io_port dut(
         $dumpvars(0, io_port_tb);
         
         //initial condistions
-        SIZ1 = 0; R_W = 1; ENA = 1; DATA_IN = 32'h00;      #20
+        R_W = 1; _ENA = 1; DATA_IN = 32'h0000_0000;      #20
 
         // test P_DATA output 8 bit
-        SIZ1 = 0;                       #20      
-        ENA = 1;                        #20
-        DATA_IN = 8'hAA;                #20
-        ENA = 0;                        #20
+        R_W = 0 ;                       #20
+        _ENA = 1;                       #20
+        DATA_IN = 32'h0000_00AA;        #20
+        _ENA = 0;                       #20
 
         // test P_DATA output 16 bit
-        SIZ1 = 1; R_W = 0;               #20      
-        ENA = 1;                        #20
-        DATA_IN = 8'hAA;                #20
-        DATA_IN = 8'h00;                #20
+                 
+        R_W = 0;                        #20
+        _ENA = 1;                       #20
+        DATA_IN = 32'h0000_AAAA;        #20
+        DATA_IN = 32'h0000_0000;        #20
+        _ENA = 0;                       #20
    
         
         // test P_DATA input 8 bit
-        ENA = 0;  SIZ1 = 0; R_W = 1;     #20      
-        ENA = 1;                        #20
-        P_DATA_TX = 16'h55;             #20
-        ENA = 0;                        #20
+        _ENA = 0;  R_W = 1;             #20      
+        _ENA = 1;                       #20
+        P_DATA_TX = 16'h0055;           #20
+        _ENA = 0;                       #20
        
        // test P_DATA input 16 bit
-        SIZ1 = 1; R_W = 1;               #20      
-        ENA = 1;                        #20
-        P_DATA_TX = 16'h55;             #20
-        ENA = 0;                        #20
+        R_W = 1;                        #20      
+        _ENA = 1;                       #20
+        P_DATA_TX = 16'h5555;           #20
+        _ENA = 0;                       #20
 
       
         #40000 $finish;

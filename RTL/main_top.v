@@ -34,7 +34,7 @@ module main_top(
 
     input _STERM,       //static/synchronous data ack.
     input SCLK,         //CPUCLKB
-    input _CS           //_SCSI from Fat Garry
+    input _CS,           //_SCSI from Fat Garry
     input _RST,         //System Reset
     input _BERR,        //Bus Errpr 
 
@@ -68,8 +68,8 @@ module main_top(
     inout [15:0] PD_PORT
     
 );
-reg [31:0] DATA_OUT;
-wire [31:0] DATA_IN;
+wire [31:0] DATA_OUT;
+reg [31:0] DATA_IN;
 
 //Registers
 reg [1:0] DAWR;     //Data Acknowledge Width
@@ -86,22 +86,21 @@ wire [7:0] int_addr;
 assign int_addr = {1'b0, ADDR[6:2], 2'b00};
 
 addr_decoder DECODER(
-    .ADDR (int_addr),
+    .ADDR (ADDR),
     ._CS (_CS),
     ._CSS (_CSS),
     ._CSX0 (_CSX0),
     ._CSX1 (_CSX1)
 );
 
-wire DATA_PORT_ACTIVE;
-assign DATA_PORT_ACTIVE = _CSS & _CSX0 & _CSX1;
+wire _DATA_PORT_ACTIVE;
+assign _DATA_PORT_ACTIVE = _CSS & _CSX0 & _CSX1;
 
 
 // 16/8 bit port for SCSI WD33C93A IC.
 io_port D_PORT(
-    .ENA (DATA_PORT_ACTIVE),
+    ._ENA (_DATA_PORT_ACTIVE),
     .R_W (R_W),
-    .SIZ1 (SIZ1),
     .DATA_IN (DATA_IN),
     ._IOR (_IOR), 
     ._IOW (_IOW),
@@ -110,8 +109,8 @@ io_port D_PORT(
 );
 
 //assign DATA_OUT = DATA_PORT_ACTIVE ? 32'hz,   
-assign DATA = CS ? 32'hz : DATA_OUT;
-assign DATA_IN = DATA;
+assign DATA = _CS ? 32'hz : DATA_OUT;
+//assign DATA_IN = DATA;
 
 endmodule
 

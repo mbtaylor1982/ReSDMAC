@@ -27,6 +27,7 @@ module addr_decoder_tb;
 //inputs
 reg [7:0] ADDR; 
 reg _CS; 
+reg _AS;
 
 //Outputs
 wire _CSS;
@@ -34,8 +35,9 @@ wire _CSX0;
 wire _CSX1;
 
 addr_decoder dut(
-    .ADDR (ADDR),
+    .ADDR (ADDR[6:2]),
     ._CS (_CS),
+    ._AS (_AS),
     ._CSS (_CSS),
     ._CSX0 (_CSX0),
     ._CSX1 (_CSX1)
@@ -46,7 +48,7 @@ addr_decoder dut(
         $dumpvars(0, addr_decoder_tb);
         
         //initial condistions
-        _CS = 1; ADDR = 8'h00;           #20
+        _CS = 1; _AS=0; ADDR = 8'h00;           #20
 
         //SASR Register (Long Word)
         _CS = 1;                         #20
@@ -79,6 +81,13 @@ addr_decoder dut(
         //port1b
         _CS = 1;                         #20
         ADDR = 8'h70;                   #20
+        _CS = 0;                         #20
+        _CS = 1;                         #20
+
+        //$1C ISTR
+
+        _CS = 1;                         #20
+        ADDR = 8'h1C;                   #20
         _CS = 0;                         #20
         _CS = 1;                         #20
 
