@@ -91,7 +91,51 @@ addr_decoder dut(
         _CS = 0;                         #20
         _CS = 1;                         #20
 
-        #40000 $finish;
+        //_AS n=1
+        _CS = 1; _AS=1; ADDR = 8'h00;           #20
+
+        //SASR Register (Long Word)
+        _CS = 1;                         #20
+        ADDR = 8'h40;                   #20
+        _CS = 0;                         #20
+        //SASR Register (Byte)
+        _CS = 1;                         #20
+        ADDR = 8'h41;                   #20
+        _CS = 0;                         #20
+        //SCMD Register (Byte)
+        _CS = 1;                         #20
+        ADDR = 8'h43;                   #20
+        _CS = 0;                         #20
+
+        //
+        _CS = 1;                         #20
+        ADDR = 8'h4C;                   #20
+        _CS = 0;                         #20
+
+        //port1a
+        _CS = 1;                         #20
+        ADDR = 8'h50;                   #20
+        _CS = 0;                         #20
+
+        //port2
+        _CS = 1;                         #20
+        ADDR = 8'h60;                   #20
+        _CS = 0;                         #20
+
+        //port1b
+        _CS = 1;                         #20
+        ADDR = 8'h70;                   #20
+        _CS = 0;                         #20
+        _CS = 1;                         #20
+
+        //$1C ISTR
+
+        _CS = 1;                         #20
+        ADDR = 8'h1C;                   #20
+        _CS = 0;                         #20
+        _CS = 1;                         #20
+
+        #1200 $finish;
     end
     
     

@@ -40,6 +40,8 @@ input _AS;           // CPU Address Strobe.
 output _CSS;         // Port 0 chip select (SCSI WD33C93A)
 output _CSX0;        // Port 1A and 1B chip select (XT/ ATA)
 output _CSX1;        // Port 2 chip select (XT)
+
+//Select Signals for internal registers.
 output _DAWR;
 output _WTC;
 output _CNTR;
@@ -53,7 +55,7 @@ reg [11:0] SELECT;
 wire _ADDR_VALID;
 
 always @(ADDR) begin
-    casex (ADDR)
+    case (ADDR)
       5'b00000 : SELECT = 12'b011111111111; // $00 DAWR
       5'b00001 : SELECT = 12'b101111111111; // $04 WTC
       5'b00010 : SELECT = 12'b110111111111; // $08 CNTR
@@ -62,10 +64,22 @@ always @(ADDR) begin
       5'b00110 : SELECT = 12'b111110111111; // $18 CLR_INT
       5'b00111 : SELECT = 12'b111111011111; // $1C ISTR
       5'b01111 : SELECT = 12'b111111101111; // $3C SP_DMA
-      5'b100xx : SELECT = 12'b111111110111; // $4x PORT0
-      5'b101xx : SELECT = 12'b111111111011; // $5x PORT1A
-      5'b110xx : SELECT = 12'b111111111101; // $6x PORT2
-      5'b111xx : SELECT = 12'b111111111110; // $7x PORT1B
+      5'b10000 : SELECT = 12'b111111110111; // $40 PORT0
+      5'b10001 : SELECT = 12'b111111110111; // $44 PORT0
+      5'b10010 : SELECT = 12'b111111110111; // $48 PORT0
+      5'b10011 : SELECT = 12'b111111110111; // $4C PORT0
+      5'b10100 : SELECT = 12'b111111111011; // $50 PORT1A
+      5'b10101 : SELECT = 12'b111111111011; // $54 PORT1A
+      5'b10110 : SELECT = 12'b111111111011; // $58 PORT1A
+      5'b10111 : SELECT = 12'b111111111011; // $5C PORT1A
+      5'b11000 : SELECT = 12'b111111111101; // $60 PORT2
+      5'b11001 : SELECT = 12'b111111111101; // $64 PORT2
+      5'b11010 : SELECT = 12'b111111111101; // $68 PORT2
+      5'b11011 : SELECT = 12'b111111111101; // $6C PORT2
+      5'b11100 : SELECT = 12'b111111111110; // $70 PORT1B
+      5'b11101 : SELECT = 12'b111111111110; // $74 PORT1B
+      5'b11110 : SELECT = 12'b111111111110; // $78 PORT1B
+      5'b11111 : SELECT = 12'b111111111110; // $7C PORT1B
       default  : SELECT = 12'b111111111111; 
     endcase
 end

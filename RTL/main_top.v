@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 `include "addr_decoder.v"
 `include "io_port.v"
+`include "ctrl_reg.v"
 
 module main_top(
     output _INT,        //Connected to INT2 needs to be Open Collector output.
@@ -74,7 +75,7 @@ reg [31:0] DATA_IN;
 //Registers
 reg [1:0] DAWR;     //Data Acknowledge Width
 reg [23:0] WTC;     //Word Transfer Count
-reg [7:0] CNTR;     //Control Register
+//reg [7:0] CNTR;     //Control Register (See ctrl_reg.v)
 reg ST_DMA;         //Start DMA 
 reg FLUSH;          //Flush FIFO
 reg CLR_INT;        //Clear Interrupts
@@ -85,16 +86,34 @@ reg SP_DMS;         //Stop DMA
 wire [7:0] int_addr;
 assign int_addr = {1'b0, ADDR[6:2], 2'b00};
 
+
+wire _DAWR_EN;
+wire _WTC_EN;
+wire _CTR_EN;
+wire _ST_DMA_EN;
+wire _FLUSH_EN;
+wire _CLR_INT_EN;
+wire _ISTR_EN;
+wire _SP_DMA_EN;
+
 addr_decoder DECODER(
-    .ADDR (ADDR),
+    .ADDR (ADDR[6:2]),
     ._CS (_CS),
     ._CSS (_CSS),
     ._CSX0 (_CSX0),
-    ._CSX1 (_CSX1)
+    ._CSX1 (_CSX1),
+    ._DAWR (_DAWR_EN),
+    ._WTC (_WTC_EN),
+    ._CNTR (_CTR_EN),
+    ._ST_DMA (_ST_DMA_EN),
+    ._FLUSH  (_FLUSH_EN),
+    ._CLR_INT (_CLR_INT_EN),
+    ._ISTR (_ISTR_EN),
+    ._SP_DMA (_SP_DMA_EN)
 );
 
 wire _DATA_PORT_ACTIVE;
-assign _DATA_PORT_ACTIVE = _CSS & _CSX0 & _CSX1;
+assign _DATA_PORT_ACTIVE = _CSS && _CSX0 && _CSX1;
 
 
 // 16/8 bit port for SCSI WD33C93A IC.
@@ -107,6 +126,17 @@ io_port D_PORT(
     .DATA_OUT (DATA_OUT),
     .P_DATA (PD_PORT)
 );
+
+ctrl_reg CNTR(
+    .DIN (DATA[5:0]),
+    ._ENA (_CTR_EN),
+    ._DS (_DS),
+    .R_W (R_W),
+    ._RST (_RST),
+    .DOUT (DOUT[5:0])
+);
+
+wire [5:0] DOUT;
 
 //assign DATA_OUT = DATA_PORT_ACTIVE ? 32'hz,   
 assign DATA = _CS ? 32'hz : DATA_OUT;
