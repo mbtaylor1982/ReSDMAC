@@ -70,10 +70,12 @@ ctrl_reg dut(
         $dumpvars(0, ctrl_reg_tb);
     end 
      
+    /*
     initial  begin
         $display("\ttime,\t_DS,\t_RST,\t_ENA"); 
         $monitor("\t%d,\t%b,\t%b,\t%b",$time, _DS,_RST,_ENA); 
     end 
+    */
      
     initial begin
         #10 _RST = 0;

@@ -6421,7 +6421,7 @@ DMAC</text>
 </instance>
 </instances>
 <busses>
-<bus name="MASTERBUS:TCK,TDI,TDO,TMS">
+<bus name="MASTERBUS:GND,TCK,TDI,TDO,TMS,VCC3.3,VCC5">
 <segment>
 <wire x1="15.24" y1="-147.32" x2="15.24" y2="109.22" width="0.762" layer="92"/>
 <wire x1="15.24" y1="109.22" x2="160.02" y2="109.22" width="0.762" layer="92"/>
@@ -6478,6 +6478,114 @@ DMAC</text>
 <label x="142.24" y="60.96" size="1.778" layer="95"/>
 </segment>
 </net>
+<net name="VCC3.3" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="VCCIO2.5V/3.3V_3"/>
+<wire x1="134.62" y1="-5.08" x2="160.02" y2="-5.08" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="B" pin="VCCIO2.5V/3.3V_2"/>
+<wire x1="38.1" y1="-25.4" x2="15.24" y2="-25.4" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="B" pin="VCCINT3.3V_2"/>
+<wire x1="38.1" y1="-53.34" x2="15.24" y2="-53.34" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="B" pin="VCCINT3.3V"/>
+<wire x1="134.62" y1="-33.02" x2="160.02" y2="-33.02" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="B" pin="VCCIO2.5V/3.3V"/>
+<wire x1="134.62" y1="-68.58" x2="160.02" y2="-68.58" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="B" pin="VCCIO2.5V/3.3V_3"/>
+<wire x1="134.62" y1="-114.3" x2="160.02" y2="-114.3" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="A" pin="VCCINT3.3V"/>
+<wire x1="134.62" y1="7.62" x2="160.02" y2="7.62" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="A" pin="VCCIO2.5V/3.3V"/>
+<wire x1="134.62" y1="40.64" x2="160.02" y2="40.64" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="A" pin="VCCIO2.5V/3.3V_2"/>
+<wire x1="38.1" y1="83.82" x2="15.24" y2="83.82" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="A" pin="VCCINT3.3V_2"/>
+<wire x1="38.1" y1="66.04" x2="15.24" y2="66.04" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="J1" gate="G$1" pin="VCC"/>
+<wire x1="68.58" y1="-134.62" x2="15.24" y2="-134.62" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="GND" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="GND_4"/>
+<wire x1="38.1" y1="-5.08" x2="15.24" y2="-5.08" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="B" pin="GND"/>
+<wire x1="134.62" y1="-25.4" x2="160.02" y2="-25.4" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="B" pin="GND_7"/>
+<wire x1="134.62" y1="-78.74" x2="160.02" y2="-78.74" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="B" pin="GND_6"/>
+<wire x1="134.62" y1="-101.6" x2="160.02" y2="-101.6" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="B" pin="GND_2"/>
+<wire x1="38.1" y1="-66.04" x2="15.24" y2="-66.04" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="B" pin="GND_3"/>
+<wire x1="38.1" y1="-68.58" x2="15.24" y2="-68.58" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="B" pin="GND_4"/>
+<wire x1="38.1" y1="-91.44" x2="15.24" y2="-91.44" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="B" pin="GND_5"/>
+<wire x1="38.1" y1="-114.3" x2="15.24" y2="-114.3" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="A" pin="GND_3"/>
+<wire x1="38.1" y1="12.7" x2="15.24" y2="12.7" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="A" pin="GND_2"/>
+<wire x1="38.1" y1="40.64" x2="15.24" y2="40.64" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="A" pin="GND"/>
+<wire x1="134.62" y1="83.82" x2="160.02" y2="83.82" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="A" pin="GND_6"/>
+<wire x1="134.62" y1="58.42" x2="160.02" y2="58.42" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="A" pin="GND_5"/>
+<wire x1="134.62" y1="20.32" x2="160.02" y2="20.32" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="J1" gate="G$1" pin="GND@3"/>
+<wire x1="68.58" y1="-137.16" x2="15.24" y2="-137.16" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="J1" gate="G$1" pin="GND@5"/>
+<wire x1="68.58" y1="-139.7" x2="15.24" y2="-139.7" width="0.1524" layer="91"/>
+</segment>
+</net>
 </nets>
 </sheet>
 <sheet>
@@ -6489,8 +6597,35 @@ DMAC</text>
 </instance>
 </instances>
 <busses>
+<bus name="GND,VCC5">
+<segment>
+<wire x1="2.54" y1="-15.24" x2="2.54" y2="137.16" width="0.762" layer="92"/>
+<wire x1="2.54" y1="137.16" x2="96.52" y2="137.16" width="0.762" layer="92"/>
+<wire x1="96.52" y1="137.16" x2="96.52" y2="-15.24" width="0.762" layer="92"/>
+</segment>
+</bus>
 </busses>
 <nets>
+<net name="VCC5" class="0">
+<segment>
+<pinref part="IC1" gate="G$1" pin="VCC1"/>
+<wire x1="63.5" y1="-7.62" x2="96.52" y2="-7.62" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="IC1" gate="G$1" pin="VCC2"/>
+<wire x1="63.5" y1="-10.16" x2="96.52" y2="-10.16" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="GND" class="0">
+<segment>
+<pinref part="IC1" gate="G$1" pin="VSS1"/>
+<wire x1="63.5" y1="-12.7" x2="96.52" y2="-12.7" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="IC1" gate="G$1" pin="VSS2"/>
+<wire x1="63.5" y1="-15.24" x2="96.52" y2="-15.24" width="0.1524" layer="91"/>
+</segment>
+</net>
 </nets>
 </sheet>
 <sheet>

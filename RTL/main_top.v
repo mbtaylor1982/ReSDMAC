@@ -37,7 +37,7 @@ module main_top(
     input SCLK,         //CPUCLKB
     input _CS,           //_SCSI from Fat Garry
     input _RST,         //System Reset
-    input _BERR,        //Bus Errpr 
+    input _BERR,        //Bus Error 
 
     input [6:2] ADDR,   //CPU address Bus
     
@@ -68,6 +68,7 @@ module main_top(
     // Peripheral Device port
     inout [15:0] PD_PORT
     
+    
 );
 wire [31:0] DATA_OUT;
 reg [31:0] DATA_IN;
@@ -83,8 +84,8 @@ reg [31:0] ISTR;    //Interrupt Status Register
 reg SP_DMS;         //Stop DMA 
 
 
-wire [7:0] int_addr;
-assign int_addr = {1'b0, ADDR[6:2], 2'b00};
+//wire [7:0] int_addr;
+//assign int_addr = {1'b0, ADDR[6:2], 2'b00};
 
 
 wire _DAWR_EN;
@@ -99,6 +100,7 @@ wire _SP_DMA_EN;
 addr_decoder DECODER(
     .ADDR (ADDR[6:2]),
     ._CS (_CS),
+    ._AS (_AS),
     ._CSS (_CSS),
     ._CSX0 (_CSX0),
     ._CSX1 (_CSX1),
