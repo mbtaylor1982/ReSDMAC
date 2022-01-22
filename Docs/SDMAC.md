@@ -28,7 +28,7 @@ The SDMAC thus significantly reduces external hardware and manufacturing cost.
 
 The SDMAC is packaged as PLCC (Plastic Leaded Chip Carrier) with 84 Pins
 
-![PLCC84 SDMAC Package](images/SDMAC_PACKAGE.png)
+![PLCC84 SDMAC Package](/Docs/Images/SDMAC_PACKAGE.png)
 
 | Pin | Rev2 | Rev4 | AA3000 | Description |
 |-|-|-|-|-|
