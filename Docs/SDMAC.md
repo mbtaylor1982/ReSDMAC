@@ -206,7 +206,7 @@ The IO__DX bit is used to define the polarity of the SDMAC pins CSX1 (pin 71) an
 
 ### ACR (Address: $0C) — read/write {#ACR}
 
-:warning: **This register is in the RAMSEY gate array NOT the SDMAC. Please see the RAMSEY chip specification for more information**.
+:warning: **This register is in the RAMSEY gate array NOT the SDMAC.**.
 
 The **ADDRESS COUNT REGISTER** provides a 32 bit address counter for determining the starting address of a DMA transfer and is written as a single 32-bit longword. The counter must be initialized prior to the transfer of data and is incremented by 4 if the SDMAC is transferring to/from a 32-bit memory area or by 2 if the SDMAC is transferring data to/from a 16 bit memory area. 
 This continues until the terminal count (enabled in the CNTR register) or an external END-OF-PROCESS is reached (INTA active). 
@@ -358,15 +358,11 @@ I/O definitions within this address range is application dependent and depends o
 
 In the A3000 machine the programmer should access (read/write) the SCSI registers  
 
-| Register | Access   | Address | DBUS byte lane    |
-| -------- | -------- | ------- | ----------------- |
-| SASR     | longword | $40     | D7-D0             |
-| SASR     | byte     | $41     | D23-D16 and D7-D0 |
-| SCMD     | byte     | $43     | D7-D0             |
-| SCMD     | byte     | $47     | D7-D0             |
-| SASR     | byte     | $49     | D23-D16 and D7-D0 |
-
-
+| Register | Access   | Address            | DBUS byte lane    |
+| -------- | -------- | ------------------ | ----------------- |
+| SASR     | longword | $40                | D7-D0             |
+| SASR     | byte     | $41, $45, $49, $4D | D23-D16 and D7-D0 |
+| SCMD     | byte     | $43, $47, $48, $4F | D23-D16 and D7-D0 |
 
 ### PORT1A (Address range: $50 - $5C) — read/write {#PORT1A}
 
