@@ -358,11 +358,11 @@ I/O definitions within this address range is application dependent and depends o
 
 In the A3000 machine the programmer should access (read/write) the SCSI registers  
 
-| Register | Access   | Address            | DBUS byte lane    |
-| -------- | -------- | ------------------ | ----------------- |
-| SASR     | longword | $40                | D7-D0             |
-| SASR     | byte     | $41, $45, $49, $4D | D23-D16 and D7-D0 |
-| SCMD     | byte     | $43, $47, $48, $4F | D23-D16 and D7-D0 |
+| Register | R/W   | Access   | Address            | DBUS byte lane    |
+| -------- | ----- | -------- | ------------------ | ----------------- |
+| SASR     | Write | longword | $40                | D7-D0             |
+| SASR     | Read  | byte     | $41, $45, $49, $4D | D23-D16 and D7-D0 |
+| SCMD     | Read  | byte     | $43, $47, $48, $4F | D23-D16 and D7-D0 |
 
 ### PORT1A (Address range: $50 - $5C) — read/write {#PORT1A}
 
