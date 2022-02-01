@@ -110,7 +110,7 @@ All registers respond as 32-bits wide (DSACK1 and DSACK0) except [PORT1B](#PORT1
 
 ## REGISTER AND COMMAND DESCRIPTIONS {#REG}
 
-### DAWR (Address: $00) — write only {#DAWR}
+### DAWR (Address: ```$00```) — write only {#DAWR}
 
 The **DATA ACKNOWLEDGE WIDTH REGISTER** is used to determine the pulse width of _DACK, _DACK IS the SCSI signal. The pulse width of the signals is specified by the external device manufacturer and determines the data transfer rate to and from the SDMAC to the peripheral device. At reset [DAWR](#DAWR) is initialized to zero. This pulse width is affected by the system clock rate as detailed below.
 
@@ -133,7 +133,7 @@ _DACK (pin 66) pulse width is determined as follows:
 
 > :memo: **NOTE:** For A3000 machines, set [DAWR](#DAWR) to 3.
 
-### WTC (Address: $04) — read/write {#WTC}
+### WTC (Address: ```$04```) — read/write {#WTC}
 
 The **WORD TRANSFER COUNTER** provides a 24-bit counter addressed as a 32-bit longword for determining the
 number of data words (16 bits) to be transferred by the SDMAC. A minimum of one to a maximum of 16 million
@@ -147,7 +147,7 @@ data words can be transferred with a single command. The counter must be initial
 
 > :memo: **NOTE:** **X** Denotes don’t care.
 
-### CNTR (Address: $08) — read/write {#CNTR}
+### CNTR (Address: ```$08```) — read/write {#CNTR}
 
 The **CONTROL REGISTER** is an 8 bit register used to set mode and operating parameters of the SDMAC. An external reset will set all register bits to a low state.
 
@@ -204,7 +204,7 @@ DDIR is used to define the direction of data transfers to and from peripheral de
 
 The IO__DX bit is used to define the polarity of the SDMAC pins CSX1 (pin 71) and IORDY (pin 72). If set high, the CSX1 output and IORDY input pin are inverted from their default polarities imposed when the SDMAC is reset.
 
-### ACR (Address: $0C) — read/write {#ACR}
+### ACR (Address: ```$0C```) — read/write {#ACR}
 
 :warning: **This register is in the RAMSEY gate array NOT the SDMAC.**.
 
@@ -242,11 +242,11 @@ The address counters are preset before DMA is done by writing to the 32 bit regi
 
 > :memo: **Ramsey Rev 07:** The counter can only be preset to an even word boundary **(bit 0 is always written as 0)**. If **A1** is high when a cycle terminates, then address is always incremented by **2** regardless of how the cycle terminates. 
 
-### ST_DMA (Address: $10) — read/write strobe {#ST_DMA}
+### ST_DMA (Address: ```$10```) — read/write strobe {#ST_DMA}
 
 Any write/read to the START DMA location will cause the SDMAC to begin execution. Execution will continue until either a terminal count is reached or an external EOP is generated, as well as, an error condition occurs, or a SP_DMA command.
 
-### FLUSH (Address: $14) — read/write strobe {#FLUSH}
+### FLUSH (Address: ```$14```) — read/write strobe {#FLUSH}
 
 A write/read to this location will cause the SDMAC to flush what remains in the internal 4 longword FIFO onto the host bus. 
 
@@ -259,13 +259,13 @@ After an external EOP is generated, a FLUSH command followed by a SP_DMA command
 
 > :memo: **NOTE:** This location should **NOT** be strobed if no DMA transfer was started. FLUSH need only be used when reading from the peripheral device.
 
-### CINT (Address: $18) — read/write strobe {#CINT}
+### CINT (Address: ```$18```) — read/write strobe {#CINT}
 
 Any write/read to the CLEAR INTERRUPT location will clear all internally or externally generated interrupts and the system interrupt signal, INT__2, if it was generated internally. 
 
 > :memo: **NOTE:** CLR_INT has no effect on externally generated interrupts connected to the SDMAC INT2 pin.
 
-### ISTR (Address: $1C) — read only {#ISTR}
+### ISTR (Address: ```$1C```) — read only {#ISTR}
 
 The **Interrupt Status Register** is a 9 bit register used to inform the host of interrupt activity and of internal static conditions.
 
@@ -338,17 +338,17 @@ FE__FLG is used to indicate the status of the SDMAC internal FIFO.
 
 Whenever the internal FIFO reaches a longword count of 0, the FE__FLG will go to an active state and remain there until at least one word is entered into the FIFO.
 
-### RESERVED (Address: $20,24,28,2C,30,34,38) {#RESERVED}
+### RESERVED (Address: ```$20,$24,$28,$2C,$30,$34,$38```) {#RESERVED}
 
 These longword addresses are reserved for future expansion.
 
-### SP_DMA (Address: $3C) — read/write strobe {#SP_DMA}
+### SP_DMA (Address: ```$3C```) — read/write strobe {#SP_DMA}
 
 Any write/read to the STOP DMA location will cause the SDMAC to abort execution. 
 
 Register contents are unaffected by this operation and no interrupts will be generated.
 
-### PORT0 (Address range: $40 - $4C) — read/write {#PORT0}
+### PORT0 (Address range: ```$40 - $4C```) — read/write {#PORT0}
 
 PORT0 address range is an internally decoded address range for selecting an external SCSI controller device. 
 
@@ -356,22 +356,30 @@ Addressing the SDMAC within this range will cause the SDMAC to generate the appr
 
 I/O definitions within this address range is application dependent and depends on how the user has connected the SCSI controller device to the host bus address logic for register selection of internal SCSI controller registers. 
 
-In the A3000 machine the programmer should access (read/write) the SCSI registers  
+> In the A3000 machine the programmer should access (read/write) the 33C93 SCSI registers  as follows:
 
-| Register | R/W   | Access   | Address            | DBUS byte lane    |
-| -------- | ----- | -------- | ------------------ | ----------------- |
-| SASR     | Write | longword | $40                | D7-D0             |
-| SASR     | Read  | byte     | $41, $45, $49, $4D | D23-D16 and D7-D0 |
-| SCMD     | R/W   | byte     | $43, $47, $48, $4F | D23-D16 and D7-D0 |
+| Register                        | R/W        | Access   | Address                  | DBUS byte lane    |
+| ------------------------------- | ---------- | -------- | ------------------------ | ----------------- |
+| 33C93 Address Register          | Write only | longword | ```$40```                | D7-D0             |
+| 33C93 Auxiliary Status Register | Read only  | byte     | ```$41, $45, $49, $4D``` | D23-D16 and D7-D0 |
+| 33C93 Register Data             | R/W        | byte     | ```$43, $47, $48, $4F``` | D23-D16 and D7-D0 |
 
-### PORT1A (Address range: $50 - $5C) — read/write {#PORT1A}
+In the A3000 the **33C93** is accessed via indirect addressing mode. This mode is enabled by Connecting **ALE** on the **33C93** to GND.
+
+To access the data registers of the **33C93** first load the **Address Register ```$40```** with the address of the register you wish to access, then the **Register Data ```$43```** can be accessed (read or write). Following every access of the register data, the address register will automatically increment to point to the next register, with exception of the following registers:
+
+- Auxiliary Status Register
+- Data Register
+- Command Register
+
+### PORT1A (Address range: ```$50 - $5C```) — read/write {#PORT1A}
 
 PORTIA address range is an internally decoded address range for selecting one of two external 8-bit ‘XT’ compatible devices. 
 
 Addressing the SDMAC within this range will cause the SDMAC to generate the appropriate interface signals (i.e. chip select, read, write, etc.) to allow communication with an external device. I/O definitions within this address
 range is application dependent.
 
-### PORT2 (Address range: $60 - $6C) — read/write {#PORT2}
+### PORT2 (Address range: ```$60 - $6C```) — read/write {#PORT2}
 
 PORT2 address range is an internally decoded address range for selecting a second external 8-bit ‘XT’ compatible device. 
 
@@ -381,7 +389,7 @@ range is application dependent.
 To support a second ‘XT’ device, the IO__DX bit in the CNTR register must be set
 to a low state.
 
-### PORT1B (Address range: $70 - $7C) — read/write {#PORT1B}
+### PORT1B (Address range: ```$70 - $7C```) — read/write {#PORT1B}
 
 PORT1B address range is an internally decoded address range for selecting an external 16-bit ‘AT’ compatible device.
 
