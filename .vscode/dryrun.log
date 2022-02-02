@@ -1,0 +1,11 @@
+make clean -C /home/mike/EAGLE/projects/SDMAC-Replacement/RTL --dry-run --keep-going --print-directory
+make: Entering directory '/home/mike/EAGLE/projects/SDMAC-Replacement/RTL'
+ 
+rm -rvf tmp
+ 
+rm *.jed
+ 
+rm *.prj
+ 
+make: Leaving directory '/home/mike/EAGLE/projects/SDMAC-Replacement/RTL'
+ 

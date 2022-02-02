@@ -1,3 +1,5 @@
 
-build/ctrl_reg_tb.v.out
-build/ctrl_reg_tb.vcd
+*.v.out
+*.vcd
+/Eagle/SDMAC.s#*
+/Eagle/SDMAC.b#*

@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 `include "io_port.v"
 `include "ctrl_reg.v"
 
-module main_top(
+module RESDMAC(
     output _INT,        //Connected to INT2 needs to be Open Collector output.
 
     inout SIZ1,         //Indicates a 16 bit transfer is true. 

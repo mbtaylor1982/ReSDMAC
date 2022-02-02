@@ -1,0 +1,4 @@
+{
+    "makefile.extensionOutputFolder": "./.vscode",
+    "makefile.makeDirectory": "./RTL"
+}
