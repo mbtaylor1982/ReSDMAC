@@ -1,41 +1,77 @@
 make all -C /home/mike/EAGLE/projects/SDMAC-Replacement/RTL --print-data-base --no-builtin-variables --no-builtin-rules --question
 # GNU Make 4.3
+ 
 # Built for x86_64-pc-linux-gnu
+ 
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
+ 
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+ 
 # This is free software: you are free to change and redistribute it.
+ 
 # There is NO WARRANTY, to the extent permitted by law.
+ 
 
-# Make data base, printed on Wed Feb  2 22:03:27 2022
+ 
+# Make data base, printed on Wed Feb  2 23:14:06 2022
+ 
 
 # Variables
+ 
 
+ 
 # environment
+ 
 GDK_BACKEND = x11
+ 
 # environment
+ 
 LC_ALL = C
+ 
 # environment
+ 
 GNOME_SHELL_SESSION_MODE = ubuntu
+ 
 # environment
+ 
 SSH_AGENT_LAUNCHER = gnome-keyring
+ 
 # environment
+ 
 SNAP_INSTANCE_KEY = 
+ 
 # environment
+ 
 GJS_DEBUG_OUTPUT = stderr
+ 
 # environment
+ 
 VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-a706398c-7bc4-40db-b4f6-57be04fe8e1e.sock
+ 
 # environment
+ 
 VSCODE_CWD = /home/mike
+ 
 # environment
+ 
 XILINX_DSP = /opt/Xilinx/14.7/ISE_DS/ISE
+ 
 # default
+ 
 MAKE_COMMAND := make
+ 
 # environment
+ 
 XILINX = /opt/Xilinx/14.7/ISE_DS/ISE
+ 
 # environment
+ 
 QT_ACCESSIBILITY = 1
+ 
 # makefile (from 'Makefile', line 5)
+ 
 CABLE = usb21
+ 
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
 # environment
@@ -276,13 +312,12 @@ SNAP_COMMON = /var/snap/code/common
 SNAP_USER_DATA = /home/mike/snap/code/85
 # environment
 XDG_MENU_PREFIX = gnome-
- 
 # environment
 GDMSESSION = ubuntu
 # environment
 SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
 # variable set hash-table stats:
-# Load=135/1024=13%, Rehash=0, Collisions=6/195=3%
+# Load=135/1024=13%, Rehash=0, Collisions=6/192=3%
 
 # Pattern-specific Variable Values
 
@@ -290,10 +325,10 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 
 # Directories
 
-# . (device 2051, inode 10357292): 15 files, no impossibilities.
-# tmp (device 2051, inode 10492105): 3 files, no impossibilities.
+# . (device 2051, inode 10357292): 17 files, no impossibilities.
+# tmp (device 2051, inode 10881910): 24 files, no impossibilities.
 
-# 18 files, no impossibilities in 2 directories.
+# 41 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
@@ -314,39 +349,40 @@ tmp/%.vm6: tmp/%.ngd %.ucf
 # Files
 
 tmp/RESDMAC_rev_a.ngd: tmp/RESDMAC_rev_a.ngc RESDMAC_rev_a.ucf
+ 
 #  Implicit rule search has not been done.
-#  File does not exist.
+ 
+#  Implicit/static pattern stem: ''
+ 
+#  Last modified 2022-02-02 22:56:25.211065017
 #  File has been updated.
 #  Needs to be updated (-q is set).
+# automatic
+# @ := tmp/RESDMAC_rev_a.ngd
+# automatic
+# * := 
+# automatic
+# < := tmp/RESDMAC_rev_a.ngc
+# automatic
+# + := tmp/RESDMAC_rev_a.ngc RESDMAC_rev_a.ucf
+# automatic
+# % := 
+# automatic
+# ^ := tmp/RESDMAC_rev_a.ngc RESDMAC_rev_a.ucf
+# automatic
+# ? := RESDMAC_rev_a.ucf
+# automatic
+# | := 
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/9=0%
+# Load=8/32=25%, Rehash=0, Collisions=1/16=6%
 #  recipe to execute (from 'Makefile', line 22):
 	cd $(WORKDIR) && ngdbuild -p $(PART) -uc ../$(PROJECT)_rev_a.ucf ../$< ../$@
 
 tmp/RESDMAC_rev_a.ngc: RESDMAC.v RESDMAC.prj
 #  Implicit rule search has not been done.
-#  Implicit/static pattern stem: ''
-#  File does not exist.
+#  Last modified 2022-02-02 22:52:07
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := tmp/RESDMAC_rev_a.ngc
-# automatic
-# * := 
-# automatic
-# < := RESDMAC.v
-# automatic
-# + := RESDMAC.v RESDMAC.prj
-# automatic
-# % := 
-# automatic
-# ^ := RESDMAC.v RESDMAC.prj
-# automatic
-# ? := RESDMAC.v RESDMAC.prj
-# automatic
-# | := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/20=5%
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 17):
 	@mkdir $(WORKDIR) || true
 	@sed -r "s#^(-top).*#\1 $(PROJECT)#g;s#^(-ofn).*#\1 ..\/$@#g;s#^(-ifn).*#\1 ../$(PROJECT).prj#g;s#^(-define).*#\1 {$(REV_A_DEFINES)}#g" template.xst > $@.xst
@@ -360,26 +396,26 @@ tmp/RESDMAC_rev_a.tim:
 
 # Not a target:
 RESDMAC_rev_a.ucf:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-02-02 23:14:03.109490894
+#  File has been updated.
+#  Successfully updated.
 
 tmp/RESDMAC_rev_a.vm6: tmp/RESDMAC_rev_a.ngd RESDMAC_rev_a.ucf
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'RESDMAC_rev_a'
 #  File is an intermediate prerequisite.
 #  File does not exist.
-#  File has been updated.
-#  Needs to be updated (-q is set).
+#  File has not been updated.
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/9=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/6=0%
 #  recipe to execute (from 'Makefile', line 28):
 	cd $(WORKDIR) && cpldfit $(CPLDFITFLAGS) -p $(PART) ../$<
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-02-02 22:03:14.743141081
+#  Last modified 2022-02-02 23:00:01.709694873
 #  File has been updated.
 #  Successfully updated.
 
@@ -419,7 +455,7 @@ clean:
 # Not a target:
 RESDMAC.v:
 #  Implicit rule search has been done.
-#  Last modified 2022-02-02 21:27:33.121537722
+#  Last modified 2022-02-02 22:51:53.655373903
 #  File has been updated.
 #  Successfully updated.
 
@@ -437,16 +473,16 @@ all: RESDMAC_rev_a.jed tmp/RESDMAC_rev_a.tim
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/9=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/6=0%
 
 RESDMAC_rev_a.jed: tmp/RESDMAC_rev_a.vm6
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'RESDMAC_rev_a'
-#  File does not exist.
+#  Last modified 2022-02-02 22:56:29.914922524
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/9=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/6=0%
 #  recipe to execute (from 'Makefile', line 31):
 	hprep6 -i $<
 	cp $@ ../Binary/
@@ -476,12 +512,12 @@ timing: tmp/RESDMAC_rev_a.tim
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 37 / storage = 474 B / avg = 12 B
-# current buf: size = 8162 B / used = 474 B / count = 37 / avg = 12 B
+# strcache buffers: 1 (0) / strings = 58 / storage = 834 B / avg = 14 B
+# current buf: size = 8162 B / used = 834 B / count = 58 / avg = 14 B
 
-# strcache performance: lookups = 73 / hit rate = 49%
+# strcache performance: lookups = 96 / hit rate = 39%
 # hash-table stats:
-# Load=37/8192=0%, Rehash=0, Collisions=1/73=1%
-# Finished Make data base on Wed Feb  2 22:03:27 2022
+# Load=58/8192=1%, Rehash=0, Collisions=1/96=1%
+# Finished Make data base on Wed Feb  2 23:14:06 2022
 
  

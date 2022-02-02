@@ -134,8 +134,8 @@ ctrl_reg CNTR(
     ._ENA (_CTR_EN),
     ._DS (_DS),
     .R_W (R_W),
-    ._RST (_RST),
-    .DOUT (DOUT[5:0])
+    ._RST (_RST)
+    //.DOUT (DOUT[5:0])
 );
 
 wire [5:0] DOUT;
