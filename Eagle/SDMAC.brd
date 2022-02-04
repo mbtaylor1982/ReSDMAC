@@ -3,7 +3,7 @@
 <eagle version="9.6.2">
 <drawing>
 <settings>
-<setting alwaysvectorfont="yes"/>
+<setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="50" unitdist="mil" unit="mil" style="lines" multiple="1" display="no" altdistance="5" altunitdist="mil" altunit="mil"/>
@@ -2599,7 +2599,6 @@ einem neuen Namen ab.</description>
 <signal name="TCK">
 <contactref element="J1" pad="4"/>
 <contactref element="U1" pad="67"/>
-<wire x1="43.053" y1="26.12865" x2="43.08" y2="26.15565" width="0.1524" layer="1"/>
 <wire x1="43.08" y1="26.15565" x2="43.08" y2="27.532" width="0.1524" layer="1"/>
 <wire x1="43.08" y1="27.532" x2="38.1" y2="32.512" width="0.1524" layer="1"/>
 <wire x1="38.1" y1="32.512" x2="34.671" y2="32.512" width="0.1524" layer="1"/>
@@ -2618,7 +2617,6 @@ einem neuen Namen ab.</description>
 <signal name="TDI">
 <contactref element="J1" pad="8"/>
 <contactref element="U1" pad="63"/>
-<wire x1="41.021" y1="26.09665" x2="41.08" y2="26.15565" width="0.1524" layer="1"/>
 <wire x1="41.08" y1="26.15565" x2="41.08" y2="27.5" width="0.1524" layer="1"/>
 <wire x1="38.608" y1="29.972" x2="34.671" y2="29.972" width="0.1524" layer="1"/>
 <via x="34.671" y="29.972" extent="1-16" drill="0.35"/>
@@ -3254,7 +3252,6 @@ einem neuen Namen ab.</description>
 <contactref element="U1" pad="112"/>
 </signal>
 <signal name="P_DATA6">
-<wire x1="62.23" y1="48.26" x2="62.20129375" y2="48.23129375" width="0.1524" layer="1"/>
 <wire x1="45.593" y1="50.927" x2="45.08" y2="50.414" width="0.1524" layer="1"/>
 <wire x1="45.08" y1="47.50435" x2="45.08" y2="50.414" width="0.1524" layer="1"/>
 <wire x1="45.593" y1="50.927" x2="61.214" y2="50.927" width="0.1524" layer="1"/>
@@ -3576,7 +3573,6 @@ einem neuen Namen ab.</description>
 <wire x1="34.925" y1="49.53" x2="33.147" y2="51.308" width="0.1524" layer="16"/>
 <wire x1="88.9" y1="49.53" x2="34.925" y2="49.53" width="0.1524" layer="16"/>
 <via x="33.147" y="51.308" extent="1-16" drill="0.35"/>
-<wire x1="33.08" y1="47.50435" x2="33.02" y2="47.56435" width="0.1524" layer="1"/>
 <wire x1="33.08" y1="47.50435" x2="33.08" y2="51.308" width="0.1524" layer="1"/>
 <wire x1="33.08" y1="51.308" x2="33.147" y2="51.308" width="0.1524" layer="1"/>
 </signal>
