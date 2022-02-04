@@ -1,0 +1,301 @@
+Netlist
+
+Exported from SDMAC.brd at 04/02/2022 12:21
+
+EAGLE Version 9.6.2 Copyright (c) 1988-2020 Autodesk, Inc.
+
+Net         Part     Pad
+
+!AS         IC1      38
+            U1       130
+
+!BERR       IC1      47
+            U1       119
+
+!BG         IC1      82
+            U1       79
+
+!BGACK      IC1      83
+            U1       77
+
+!BR         IC1      81
+            U1       78
+
+!CS         IC1      45
+            U1       121
+
+!CSS        IC1      67
+            U1       97
+
+!CSX0       IC1      70
+            U1       92
+
+!CSX1       IC1      71
+            U1       93
+
+!DACK       IC1      66
+            U1       96
+
+!DMAEN      IC1      75
+            U1       85
+
+!DREQ       IC1      65
+            U1       100
+
+!DS         IC1      39
+            U1       129
+
+!DSACK0     IC1      41
+            U1       126
+
+!DSACK1     IC1      40
+            U1       128
+
+!INT2       IC1      35
+            U1       133
+
+!IOR        IC1      69
+            U1       95
+
+!IORDY      IC1      72
+            U1       88
+
+!IOW        IC1      68
+            U1       94
+
+!RST        IC1      46
+            U1       120
+
+!STERM      IC1      43
+            U1       125
+
+CLK         IC1      44
+            U1       124
+
+CPU_ADDR2   IC1      76
+            U1       87
+
+CPU_ADDR3   IC1      77
+            U1       83
+
+CPU_ADDR4   IC1      78
+            U1       82
+
+CPU_ADDR5   IC1      79
+            U1       81
+
+CPU_ADDR6   IC1      80
+            U1       80
+
+CPU_DATAD0  IC1      1
+            U1       75
+
+CPU_DATAD1  IC1      2
+            U1       76
+
+CPU_DATAD2  IC1      3
+            U1       70
+
+CPU_DATAD3  IC1      4
+            U1       74
+
+CPU_DATAD4  IC1      5
+            U1       68
+
+CPU_DATAD5  IC1      6
+            U1       69
+
+CPU_DATAD6  IC1      7
+            U1       64
+
+CPU_DATAD7  IC1      8
+            U1       66
+
+CPU_DATAD8  IC1      9
+            U1       60
+
+CPU_DATAD9  IC1      10
+            U1       61
+
+CPU_DATAD10 IC1      11
+            U1       58
+
+CPU_DATAD11 IC1      12
+            U1       57
+
+CPU_DATAD12 IC1      13
+            U1       59
+
+CPU_DATAD13 IC1      14
+            U1       54
+
+CPU_DATAD14 IC1      15
+            U1       56
+
+CPU_DATAD15 IC1      16
+            U1       53
+
+CPU_DATAD16 IC1      17
+            U1       11
+
+CPU_DATAD17 IC1      18
+            U1       10
+
+CPU_DATAD18 IC1      19
+            U1       9
+
+CPU_DATAD19 IC1      20
+            U1       7
+
+CPU_DATAD20 IC1      22
+            U1       6
+
+CPU_DATAD21 IC1      23
+            U1       5
+
+CPU_DATAD22 IC1      24
+            U1       4
+
+CPU_DATAD23 IC1      25
+            U1       3
+
+CPU_DATAD24 IC1      26
+            U1       2
+
+CPU_DATAD25 IC1      27
+            U1       143
+
+CPU_DATAD26 IC1      28
+            U1       140
+
+CPU_DATAD27 IC1      29
+            U1       139
+
+CPU_DATAD28 IC1      30
+            U1       138
+
+CPU_DATAD29 IC1      31
+            U1       137
+
+CPU_DATAD30 IC1      32
+            U1       136
+
+CPU_DATAD31 IC1      33
+            U1       135
+
+GND         C1       2
+            C2       2
+            IC1      42
+            IC1      84
+            J1       3
+            J1       5
+            U1       108
+            U1       114
+            U1       123
+            U1       144
+            U1       18
+            U1       29
+            U1       36
+            U1       47
+            U1       62
+            U1       72
+            U1       89
+            U1       90
+            U1       99
+            U2       1
+
+INC_ADD     IC1      74
+            U1       86
+
+INTA        IC1      73
+            U1       91
+
+INTB        IC1      34
+            U1       134
+
+P_DATA0     IC1      48
+            U1       118
+
+P_DATA1     IC1      49
+            U1       117
+
+P_DATA2     IC1      50
+            U1       116
+
+P_DATA3     IC1      51
+            U1       115
+
+P_DATA4     IC1      52
+            U1       113
+
+P_DATA5     IC1      53
+            U1       112
+
+P_DATA6     IC1      54
+            U1       110
+
+P_DATA7     IC1      55
+            U1       111
+
+P_DATA8     IC1      56
+            U1       106
+
+P_DATA9     IC1      57
+            U1       107
+
+P_DATA10    IC1      58
+            U1       104
+
+P_DATA11    IC1      59
+            U1       105
+
+P_DATA12    IC1      60
+            U1       102
+
+P_DATA13    IC1      61
+            U1       103
+
+P_DATA14    IC1      62
+            U1       101
+
+P_DATA15    IC1      64
+            U1       98
+
+R!W         IC1      37
+            U1       131
+
+SIZ1        IC1      36
+            U1       132
+
+TCK         J1       4
+            U1       67
+
+TDI         J1       8
+            U1       63
+
+TDO         J1       6
+            U1       122
+
+TMS         J1       2
+            U1       65
+
+VCC3.3      C2       1
+            J1       1
+            U1       1
+            U1       109
+            U1       127
+            U1       141
+            U1       37
+            U1       42
+            U1       55
+            U1       73
+            U1       8
+            U1       84
+            U2       2
+            U2       4
+
+VCC5        C1       1
+            IC1      21
+            IC1      63
+            U2       3
+

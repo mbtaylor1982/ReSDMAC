@@ -1,0 +1,262 @@
+Pinlist
+
+Exported from SDMAC.brd at 04/02/2022 12:22
+
+EAGLE Version 9.6.2 Copyright (c) 1988-2020 Autodesk, Inc.
+
+Part     Pad      Net
+
+C1       1        VCC5
+         2        GND
+
+C2       1        VCC3.3
+         2        GND
+
+IC1      1        CPU_DATAD0
+         2        CPU_DATAD1
+         3        CPU_DATAD2
+         4        CPU_DATAD3
+         5        CPU_DATAD4
+         6        CPU_DATAD5
+         7        CPU_DATAD6
+         8        CPU_DATAD7
+         9        CPU_DATAD8
+         10       CPU_DATAD9
+         11       CPU_DATAD10
+         12       CPU_DATAD11
+         13       CPU_DATAD12
+         14       CPU_DATAD13
+         15       CPU_DATAD14
+         16       CPU_DATAD15
+         17       CPU_DATAD16
+         18       CPU_DATAD17
+         19       CPU_DATAD18
+         20       CPU_DATAD19
+         21       VCC5
+         22       CPU_DATAD20
+         23       CPU_DATAD21
+         24       CPU_DATAD22
+         25       CPU_DATAD23
+         26       CPU_DATAD24
+         27       CPU_DATAD25
+         28       CPU_DATAD26
+         29       CPU_DATAD27
+         30       CPU_DATAD28
+         31       CPU_DATAD29
+         32       CPU_DATAD30
+         33       CPU_DATAD31
+         34       INTB
+         35       !INT2
+         36       SIZ1
+         37       R!W
+         38       !AS
+         39       !DS
+         40       !DSACK1
+         41       !DSACK0
+         42       GND
+         43       !STERM
+         44       CLK
+         45       !CS
+         46       !RST
+         47       !BERR
+         48       P_DATA0
+         49       P_DATA1
+         50       P_DATA2
+         51       P_DATA3
+         52       P_DATA4
+         53       P_DATA5
+         54       P_DATA6
+         55       P_DATA7
+         56       P_DATA8
+         57       P_DATA9
+         58       P_DATA10
+         59       P_DATA11
+         60       P_DATA12
+         61       P_DATA13
+         62       P_DATA14
+         63       VCC5
+         64       P_DATA15
+         65       !DREQ
+         66       !DACK
+         67       !CSS
+         68       !IOW
+         69       !IOR
+         70       !CSX0
+         71       !CSX1
+         72       !IORDY
+         73       INTA
+         74       INC_ADD
+         75       !DMAEN
+         76       CPU_ADDR2
+         77       CPU_ADDR3
+         78       CPU_ADDR4
+         79       CPU_ADDR5
+         80       CPU_ADDR6
+         81       !BR
+         82       !BG
+         83       !BGACK
+         84       GND
+
+J1       1        VCC3.3
+         2        TMS
+         3        GND
+         4        TCK
+         5        GND
+         6        TDO
+         7                 *** unconnected ***
+         8        TDI
+         9                 *** unconnected ***
+         10                *** unconnected ***
+
+U$1     
+U$2     
+U1       1        VCC3.3
+         2        CPU_DATAD24
+         3        CPU_DATAD23
+         4        CPU_DATAD22
+         5        CPU_DATAD21
+         6        CPU_DATAD20
+         7        CPU_DATAD19
+         8        VCC3.3
+         9        CPU_DATAD18
+         10       CPU_DATAD17
+         11       CPU_DATAD16
+         12                *** unconnected ***
+         13                *** unconnected ***
+         14                *** unconnected ***
+         15                *** unconnected ***
+         16                *** unconnected ***
+         17                *** unconnected ***
+         18       GND
+         19                *** unconnected ***
+         20                *** unconnected ***
+         21                *** unconnected ***
+         22                *** unconnected ***
+         23                *** unconnected ***
+         24                *** unconnected ***
+         25                *** unconnected ***
+         26                *** unconnected ***
+         27                *** unconnected ***
+         28                *** unconnected ***
+         29       GND
+         30                *** unconnected ***
+         31                *** unconnected ***
+         32                *** unconnected ***
+         33                *** unconnected ***
+         34                *** unconnected ***
+         35                *** unconnected ***
+         36       GND
+         37       VCC3.3
+         38                *** unconnected ***
+         39                *** unconnected ***
+         40                *** unconnected ***
+         41                *** unconnected ***
+         42       VCC3.3
+         43                *** unconnected ***
+         44                *** unconnected ***
+         45                *** unconnected ***
+         46                *** unconnected ***
+         47       GND
+         48                *** unconnected ***
+         49                *** unconnected ***
+         50                *** unconnected ***
+         51                *** unconnected ***
+         52                *** unconnected ***
+         53       CPU_DATAD15
+         54       CPU_DATAD13
+         55       VCC3.3
+         56       CPU_DATAD14
+         57       CPU_DATAD11
+         58       CPU_DATAD10
+         59       CPU_DATAD12
+         60       CPU_DATAD8
+         61       CPU_DATAD9
+         62       GND
+         63       TDI
+         64       CPU_DATAD6
+         65       TMS
+         66       CPU_DATAD7
+         67       TCK
+         68       CPU_DATAD4
+         69       CPU_DATAD5
+         70       CPU_DATAD2
+         71                *** unconnected ***
+         72       GND
+         73       VCC3.3
+         74       CPU_DATAD3
+         75       CPU_DATAD0
+         76       CPU_DATAD1
+         77       !BGACK
+         78       !BR
+         79       !BG
+         80       CPU_ADDR6
+         81       CPU_ADDR5
+         82       CPU_ADDR4
+         83       CPU_ADDR3
+         84       VCC3.3
+         85       !DMAEN
+         86       INC_ADD
+         87       CPU_ADDR2
+         88       !IORDY
+         89       GND
+         90       GND
+         91       INTA
+         92       !CSX0
+         93       !CSX1
+         94       !IOW
+         95       !IOR
+         96       !DACK
+         97       !CSS
+         98       P_DATA15
+         99       GND
+         100      !DREQ
+         101      P_DATA14
+         102      P_DATA12
+         103      P_DATA13
+         104      P_DATA10
+         105      P_DATA11
+         106      P_DATA8
+         107      P_DATA9
+         108      GND
+         109      VCC3.3
+         110      P_DATA6
+         111      P_DATA7
+         112      P_DATA5
+         113      P_DATA4
+         114      GND
+         115      P_DATA3
+         116      P_DATA2
+         117      P_DATA1
+         118      P_DATA0
+         119      !BERR
+         120      !RST
+         121      !CS
+         122      TDO
+         123      GND
+         124      CLK
+         125      !STERM
+         126      !DSACK0
+         127      VCC3.3
+         128      !DSACK1
+         129      !DS
+         130      !AS
+         131      R!W
+         132      SIZ1
+         133      !INT2
+         134      INTB
+         135      CPU_DATAD31
+         136      CPU_DATAD30
+         137      CPU_DATAD29
+         138      CPU_DATAD28
+         139      CPU_DATAD27
+         140      CPU_DATAD26
+         141      VCC3.3
+         142               *** unconnected ***
+         143      CPU_DATAD25
+         144      GND
+
+U2       1        GND
+         2        VCC3.3
+         3        VCC5
+         4        VCC3.3
+

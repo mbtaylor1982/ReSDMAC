@@ -7286,6 +7286,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <segment>
 <pinref part="J1" gate="G$1" pin="VCC"/>
 <wire x1="68.58" y1="-134.62" x2="15.24" y2="-134.62" width="0.1524" layer="91"/>
+<label x="35.56" y="-134.62" size="1.016" layer="95"/>
 </segment>
 </net>
 <net name="GND" class="0">
@@ -7357,17 +7358,12 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <segment>
 <pinref part="J1" gate="G$1" pin="GND@3"/>
 <wire x1="68.58" y1="-137.16" x2="15.24" y2="-137.16" width="0.1524" layer="91"/>
+<label x="35.56" y="-137.16" size="1.016" layer="95"/>
 </segment>
 <segment>
 <pinref part="J1" gate="G$1" pin="GND@5"/>
 <wire x1="68.58" y1="-139.7" x2="15.24" y2="-139.7" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="P_DATA15" class="0">
-<segment>
-<pinref part="U1" gate="B" pin="NC_24"/>
-<wire x1="38.1" y1="-93.98" x2="15.24" y2="-93.98" width="0.1524" layer="91"/>
-<label x="25.4" y="-93.98" size="1.016" layer="95"/>
+<label x="35.56" y="-139.7" size="1.016" layer="95"/>
 </segment>
 </net>
 <net name="P_DATA14" class="0">
@@ -7557,6 +7553,377 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <pinref part="U1" gate="B" pin="NC_51"/>
 <wire x1="134.62" y1="-53.34" x2="160.02" y2="-53.34" width="0.1524" layer="91"/>
 <label x="144.78" y="-53.34" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="P_DATA15" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_23"/>
+<wire x1="38.1" y1="-88.9" x2="15.24" y2="-88.9" width="0.1524" layer="91"/>
+<label x="25.4" y="-88.9" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="!DREQ" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_24"/>
+<wire x1="38.1" y1="-93.98" x2="15.24" y2="-93.98" width="0.1524" layer="91"/>
+<label x="25.4" y="-93.98" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="!CSS" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_22"/>
+<wire x1="38.1" y1="-86.36" x2="15.24" y2="-86.36" width="0.1524" layer="91"/>
+<label x="25.4" y="-86.36" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="!DACK" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_21"/>
+<wire x1="38.1" y1="-83.82" x2="15.24" y2="-83.82" width="0.1524" layer="91"/>
+<label x="25.4" y="-83.82" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="!IOR" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_20"/>
+<wire x1="38.1" y1="-81.28" x2="15.24" y2="-81.28" width="0.1524" layer="91"/>
+<label x="25.4" y="-81.28" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="!IOW" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_19"/>
+<wire x1="38.1" y1="-78.74" x2="15.24" y2="-78.74" width="0.1524" layer="91"/>
+<label x="25.4" y="-78.74" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="!CSX1" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_18"/>
+<wire x1="38.1" y1="-76.2" x2="15.24" y2="-76.2" width="0.1524" layer="91"/>
+<label x="25.4" y="-76.2" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="!CSX0" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_17"/>
+<wire x1="38.1" y1="-73.66" x2="15.24" y2="-73.66" width="0.1524" layer="91"/>
+<label x="25.4" y="-73.66" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="INTA" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_16"/>
+<wire x1="38.1" y1="-71.12" x2="15.24" y2="-71.12" width="0.1524" layer="91"/>
+<label x="25.4" y="-71.12" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="!IORDY" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_15"/>
+<wire x1="38.1" y1="-63.5" x2="15.24" y2="-63.5" width="0.1524" layer="91"/>
+<label x="25.4" y="-63.5" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_ADDR2" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_14"/>
+<wire x1="38.1" y1="-60.96" x2="15.24" y2="-60.96" width="0.1524" layer="91"/>
+<label x="25.4" y="-60.96" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="INC_ADD" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_13"/>
+<wire x1="38.1" y1="-58.42" x2="15.24" y2="-58.42" width="0.1524" layer="91"/>
+<label x="25.4" y="-58.42" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="!DMAEN" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_12"/>
+<wire x1="38.1" y1="-55.88" x2="15.24" y2="-55.88" width="0.1524" layer="91"/>
+<label x="25.4" y="-55.88" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_ADDR3" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_11"/>
+<wire x1="38.1" y1="-50.8" x2="15.24" y2="-50.8" width="0.1524" layer="91"/>
+<label x="25.4" y="-50.8" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_ADDR4" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_10"/>
+<wire x1="38.1" y1="-48.26" x2="15.24" y2="-48.26" width="0.1524" layer="91"/>
+<label x="25.4" y="-48.26" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_ADDR5" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_9"/>
+<wire x1="38.1" y1="-45.72" x2="15.24" y2="-45.72" width="0.1524" layer="91"/>
+<label x="25.4" y="-45.72" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_ADDR6" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_8"/>
+<wire x1="38.1" y1="-43.18" x2="15.24" y2="-43.18" width="0.1524" layer="91"/>
+<label x="25.4" y="-43.18" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="!BG" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_7"/>
+<wire x1="38.1" y1="-40.64" x2="15.24" y2="-40.64" width="0.1524" layer="91"/>
+<label x="25.4" y="-40.64" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="!BR" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_6"/>
+<wire x1="38.1" y1="-38.1" x2="15.24" y2="-38.1" width="0.1524" layer="91"/>
+<label x="25.4" y="-38.1" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="!BGACK" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_5"/>
+<wire x1="38.1" y1="-35.56" x2="15.24" y2="-35.56" width="0.1524" layer="91"/>
+<label x="25.4" y="-35.56" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="INTB" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_52"/>
+<wire x1="134.62" y1="-50.8" x2="160.02" y2="-50.8" width="0.1524" layer="91"/>
+<label x="144.78" y="-50.8" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD3" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_2"/>
+<wire x1="38.1" y1="-27.94" x2="15.24" y2="-27.94" width="0.1524" layer="91"/>
+<label x="25.4" y="-27.94" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD31" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_53"/>
+<wire x1="134.62" y1="-48.26" x2="160.02" y2="-48.26" width="0.1524" layer="91"/>
+<label x="144.78" y="-48.26" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD30" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_54"/>
+<wire x1="134.62" y1="-45.72" x2="160.02" y2="-45.72" width="0.1524" layer="91"/>
+<label x="144.78" y="-45.72" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD29" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_55"/>
+<wire x1="134.62" y1="-43.18" x2="160.02" y2="-43.18" width="0.1524" layer="91"/>
+<label x="144.78" y="-43.18" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD28" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_56"/>
+<wire x1="134.62" y1="-40.64" x2="160.02" y2="-40.64" width="0.1524" layer="91"/>
+<label x="144.78" y="-40.64" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD27" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_57"/>
+<wire x1="134.62" y1="-38.1" x2="160.02" y2="-38.1" width="0.1524" layer="91"/>
+<label x="144.78" y="-38.1" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD26" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_58"/>
+<wire x1="134.62" y1="-35.56" x2="160.02" y2="-35.56" width="0.1524" layer="91"/>
+<label x="144.78" y="-35.56" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD25" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="I/O/GSR"/>
+<wire x1="134.62" y1="-27.94" x2="160.02" y2="-27.94" width="0.1524" layer="91"/>
+<label x="144.78" y="-27.94" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD24" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="I/O/GTS3"/>
+<wire x1="38.1" y1="81.28" x2="15.24" y2="81.28" width="0.1524" layer="91"/>
+<label x="25.4" y="81.28" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD23" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="I/O/GTS4"/>
+<wire x1="38.1" y1="78.74" x2="15.24" y2="78.74" width="0.1524" layer="91"/>
+<label x="25.4" y="78.74" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD22" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="NC_2"/>
+<wire x1="38.1" y1="76.2" x2="15.24" y2="76.2" width="0.1524" layer="91"/>
+<label x="25.4" y="76.2" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD21" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="I/O/GTS1"/>
+<wire x1="38.1" y1="73.66" x2="15.24" y2="73.66" width="0.1524" layer="91"/>
+<label x="25.4" y="73.66" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD20" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="I/O/GTS2"/>
+<wire x1="38.1" y1="71.12" x2="15.24" y2="71.12" width="0.1524" layer="91"/>
+<label x="25.4" y="71.12" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD19" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="NC_3"/>
+<wire x1="38.1" y1="68.58" x2="15.24" y2="68.58" width="0.1524" layer="91"/>
+<label x="25.4" y="68.58" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD18" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="NC_4"/>
+<wire x1="38.1" y1="63.5" x2="15.24" y2="63.5" width="0.1524" layer="91"/>
+<label x="25.4" y="63.5" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD17" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="NC_5"/>
+<wire x1="38.1" y1="60.96" x2="15.24" y2="60.96" width="0.1524" layer="91"/>
+<label x="25.4" y="60.96" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD16" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="NC_6"/>
+<wire x1="38.1" y1="58.42" x2="15.24" y2="58.42" width="0.1524" layer="91"/>
+<label x="25.4" y="58.42" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD0" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_3"/>
+<wire x1="38.1" y1="-30.48" x2="15.24" y2="-30.48" width="0.1524" layer="91"/>
+<label x="25.4" y="-30.48" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD1" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="NC_4"/>
+<wire x1="38.1" y1="-33.02" x2="15.24" y2="-33.02" width="0.1524" layer="91"/>
+<label x="25.4" y="-33.02" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD2" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="NC_51"/>
+<wire x1="134.62" y1="78.74" x2="160.02" y2="78.74" width="0.1524" layer="91"/>
+<label x="142.24" y="78.74" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD5" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="NC_50"/>
+<wire x1="134.62" y1="76.2" x2="160.02" y2="76.2" width="0.1524" layer="91"/>
+<label x="142.24" y="76.2" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD4" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="NC_49"/>
+<wire x1="134.62" y1="73.66" x2="160.02" y2="73.66" width="0.1524" layer="91"/>
+<label x="142.24" y="73.66" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD7" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="NC_48"/>
+<wire x1="134.62" y1="68.58" x2="160.02" y2="68.58" width="0.1524" layer="91"/>
+<label x="142.24" y="68.58" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD6" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="NC_47"/>
+<wire x1="134.62" y1="63.5" x2="160.02" y2="63.5" width="0.1524" layer="91"/>
+<label x="142.24" y="63.5" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD9" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="NC_46"/>
+<wire x1="134.62" y1="55.88" x2="160.02" y2="55.88" width="0.1524" layer="91"/>
+<label x="142.24" y="55.88" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD8" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="NC_45"/>
+<wire x1="134.62" y1="53.34" x2="160.02" y2="53.34" width="0.1524" layer="91"/>
+<label x="142.24" y="53.34" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD10" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="NC_43"/>
+<wire x1="134.62" y1="48.26" x2="160.02" y2="48.26" width="0.1524" layer="91"/>
+<label x="142.24" y="48.26" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD14" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="NC_41"/>
+<wire x1="134.62" y1="43.18" x2="160.02" y2="43.18" width="0.1524" layer="91"/>
+<label x="142.24" y="43.18" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD12" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="NC_44"/>
+<wire x1="134.62" y1="50.8" x2="160.02" y2="50.8" width="0.1524" layer="91"/>
+<label x="142.24" y="50.8" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD11" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="NC_42"/>
+<wire x1="134.62" y1="45.72" x2="160.02" y2="45.72" width="0.1524" layer="91"/>
+<label x="142.24" y="45.72" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD13" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="NC_40"/>
+<wire x1="134.62" y1="38.1" x2="160.02" y2="38.1" width="0.1524" layer="91"/>
+<label x="142.24" y="38.1" size="1.016" layer="95"/>
+</segment>
+</net>
+<net name="CPU_DATAD15" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="NC_39"/>
+<wire x1="134.62" y1="35.56" x2="160.02" y2="35.56" width="0.1524" layer="91"/>
+<label x="142.24" y="35.56" size="1.016" layer="95"/>
 </segment>
 </net>
 </nets>
