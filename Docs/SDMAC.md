@@ -84,8 +84,14 @@ The following I/O addresses refer only to offset locations.
 
 > **SDMAC Base Address: ```$00DD0000```**
 
-Note that the address decoding for the SDMAC base address is done by the FAT GARY gate array and generates the signal selecting the SCSI (pin 45) chip select pin on the SDMAC for addresses from ```$00DD0000 to $00DD3fff```
+Note that the address decoding for the SDMAC base address is performed by the FAT GARY gate array, Fat Gary generates the chip select signal _CS (pin 45) for addresses in the range ```$00DD0000 to $00DD3fff```
 
+equation for chip select signal:
+
+```!CS = !FC1 & FC0 & !A31 & !A30 & !A29 & !A28 & !A27 & !A26 & !A25 & !A24 & A23 & A22 & !A21 & A20 & A19 & A18 & !A17 & A16 ```
+> :memo: **Note:**  In order to get the chip select signal out to the SDMAC as quickly as possible, it is **NOT** qualified with the address strobe **_AS**
+
+This means the SDMAC is located betweeen addresses ```$00DD0000-$00DD007F``` with access repeated every ```$80``` untill ```$00DD3FFF``` 
 | HEX Offset  | Symbolic Name         | Definition                   | Type           |
 | ----------- | --------------------- | ---------------------------- | -------------- |
 | 00          | [DAWR](#DAWR)         | DACK Width Register          | (write only)   |
