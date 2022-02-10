@@ -1,7 +1,47 @@
+- [1. SDMAC 390537 (Super Direct Memory Access Controller)](#1-sdmac-390537-super-direct-memory-access-controller)
+  - [1.1. INTRODUCTION](#11-introduction)
+  - [1.2. SDMAC DESCRIPTION](#12-sdmac-description)
+  - [1.3. Package and pin-out {#PINOUT}](#13-package-and-pin-out-pinout)
+  - [1.4. I/O DEFINITIONS AND LOCATIONS {#IO}](#14-io-definitions-and-locations-io)
+    - [1.4.1. SDMAC PERIPHERAL I/O MEMORY MAP](#141-sdmac-peripheral-io-memory-map)
+  - [1.5. REGISTER AND COMMAND DESCRIPTIONS {#REG}](#15-register-and-command-descriptions-reg)
+    - [1.5.1. DAWR (Address: ```$00```) — write only {#DAWR}](#151-dawr-address-00--write-only-dawr)
+    - [1.5.2. WTC (Address: ```$04```) — read/write {#WTC}](#152-wtc-address-04--readwrite-wtc)
+    - [1.5.3. CNTR (Address: ```$08```) — read/write {#CNTR}](#153-cntr-address-08--readwrite-cntr)
+      - [1.5.3.1. TCEN — Terminal Count Enable, Active High {#TCEN}](#1531-tcen--terminal-count-enable-active-high-tcen)
+      - [1.5.3.2. PREST — Peripheral Reset, Active High {#PREST}](#1532-prest--peripheral-reset-active-high-prest)
+      - [1.5.3.3. PDMD — Peripheral Device Mode Select {#PDMD}](#1533-pdmd--peripheral-device-mode-select-pdmd)
+      - [1.5.3.4. INTEN — Interrupt Enable, Active High {#INTEN}](#1534-inten--interrupt-enable-active-high-inten)
+      - [1.5.3.5. DDIR — Device Direction {#DDIR}](#1535-ddir--device-direction-ddir)
+      - [1.5.3.6. IO_DX — IORDY and CSX1 Polarity Select {#IO_DX}](#1536-io_dx--iordy-and-csx1-polarity-select-io_dx)
+    - [1.5.4. ACR (Address: ```$0C```) — read/write {#ACR}](#154-acr-address-0c--readwrite-acr)
+      - [1.5.4.1. RAMSEY DMAC SUPPORT](#1541-ramsey-dmac-support)
+    - [1.5.5. ST_DMA (Address: ```$10```) — read/write strobe {#ST_DMA}](#155-st_dma-address-10--readwrite-strobe-st_dma)
+    - [1.5.6. FLUSH (Address: ```$14```) — read/write strobe {#FLUSH}](#156-flush-address-14--readwrite-strobe-flush)
+    - [1.5.7. CINT (Address: ```$18```) — read/write strobe {#CINT}](#157-cint-address-18--readwrite-strobe-cint)
+    - [1.5.8. ISTR (Address: ```$1C```) — read only {#ISTR}](#158-istr-address-1c--read-only-istr)
+      - [1.5.8.1. INTX — XT/AT Interrupt pending, Active High {#INTX}](#1581-intx--xtat-interrupt-pending-active-high-intx)
+      - [1.5.8.2. INT_F — Interrupt Follow, Active High {#INT_F}](#1582-int_f--interrupt-follow-active-high-int_f)
+      - [1.5.8.3. INTS — SCSI Peripheral Interrupt, Active High {#INTS}](#1583-ints--scsi-peripheral-interrupt-active-high-ints)
+      - [1.5.8.4. E_INT — End-Of-Process Interrupt, Active High {#E_INT}](#1584-e_int--end-of-process-interrupt-active-high-e_int)
+      - [1.5.8.5. INT_P — Interrupt Pending, Active High {#INT_P}](#1585-int_p--interrupt-pending-active-high-int_p)
+      - [1.5.8.6. UE_INT — Under-Run FIFO Error Interrupt, Active High {#UE_INT}](#1586-ue_int--under-run-fifo-error-interrupt-active-high-ue_int)
+      - [1.5.8.7. OE_INT — Over-Run FIFO Error Interrupt, Active High {#OE_INT}](#1587-oe_int--over-run-fifo-error-interrupt-active-high-oe_int)
+      - [1.5.8.8. FF_FLG — FIFO Full Flag, Active High {#FF_FLG}](#1588-ff_flg--fifo-full-flag-active-high-ff_flg)
+      - [1.5.8.9. FE_FLG — FIFO Empty Flag, Active High {#FE_FLG}](#1589-fe_flg--fifo-empty-flag-active-high-fe_flg)
+    - [1.5.9. RESERVED (Address: ```$20,$24,$28,$2C,$30,$34,$38```) {#RESERVED}](#159-reserved-address-2024282c303438-reserved)
+    - [1.5.10. SP_DMA (Address: ```$3C```) — read/write strobe {#SP_DMA}](#1510-sp_dma-address-3c--readwrite-strobe-sp_dma)
+    - [1.5.11. PORT0 (Address range: ```$40 - $4C```) — read/write {#PORT0}](#1511-port0-address-range-40---4c--readwrite-port0)
+    - [1.5.12. PORT1A (Address range: ```$50 - $5C```) — read/write {#PORT1A}](#1512-port1a-address-range-50---5c--readwrite-port1a)
+    - [1.5.13. PORT2 (Address range: ```$60 - $6C```) — read/write {#PORT2}](#1513-port2-address-range-60---6c--readwrite-port2)
+    - [1.5.14. PORT1B (Address range: ```$70 - $7C```) — read/write {#PORT1B}](#1514-port1b-address-range-70---7c--readwrite-port1b)
+  - [1.6. SDMAC TIMING DATA](#16-sdmac-timing-data)
+    - [1.6.1. Example timing diagram](#161-example-timing-diagram)
 
-# SDMAC 390537 (Super Direct Memory Access Controller)
 
-## INTRODUCTION
+# 1. SDMAC 390537 (Super Direct Memory Access Controller)
+
+## 1.1. INTRODUCTION
 
 The purpose of this specification is to provide a description of Commodore’s 390537 SDMAC,
 
@@ -11,7 +51,7 @@ This includes a description of:
 - [I/O locations](#IO)
 - [SDMAC Registers & Commands](#REG)
 
-## SDMAC DESCRIPTION
+## 1.2. SDMAC DESCRIPTION
 
 The SDMAC is an 84 pin (PLCC), 2 micron CMOS gate-array designed to enhance the performance of the Amiga A3000 computer and to reduce the cost of adding peripheral devices (i.e. SCSI and XT/AT devices) to the Amiga A3000.
 
@@ -24,7 +64,7 @@ and byte or word (8 or 16 bit peripheral data) to word or longword (16 or 32 bit
 
 The SDMAC thus significantly reduces external hardware and manufacturing cost.
 
-## Package and pin-out {#PINOUT}
+## 1.3. Package and pin-out {#PINOUT}
 
 The SDMAC is packaged as PLCC (Plastic Leaded Chip Carrier) with 84 Pins
 
@@ -76,11 +116,11 @@ The SDMAC is packaged as PLCC (Plastic Leaded Chip Carrier) with 84 Pins
 | 83     | Out (o.c) | _BGACK   | _BGACK   | _BGACK   | Bus Grant Acknowledge                                    |
 | 84     | -         | VSS      | VSS      | VSS      | GND                                                      |
 
-## I/O DEFINITIONS AND LOCATIONS {#IO}
+## 1.4. I/O DEFINITIONS AND LOCATIONS {#IO}
 
 The following I/O addresses refer only to offset locations.
 
-### SDMAC PERIPHERAL I/O MEMORY MAP
+### 1.4.1. SDMAC PERIPHERAL I/O MEMORY MAP
 
 > **SDMAC Base Address: ```$00DD0000```**
 
@@ -114,9 +154,9 @@ This means the SDMAC is located betweeen addresses ```$00DD0000-$00DD007F``` wit
 
 All registers respond as 32-bits wide (DSACK1 and DSACK0) except [PORT1B](#PORT1B) which responds as 16-bits wide (DSACK0) and [ACR](#ACR) which is in the RAMSEY gate array and requires external cycle termination performed by RAMSEY.
 
-## REGISTER AND COMMAND DESCRIPTIONS {#REG}
+## 1.5. REGISTER AND COMMAND DESCRIPTIONS {#REG}
 
-### DAWR (Address: ```$00```) — write only {#DAWR}
+### 1.5.1. DAWR (Address: ```$00```) — write only {#DAWR}
 
 The **DATA ACKNOWLEDGE WIDTH REGISTER** is used to determine the pulse width of _DACK,_DACK IS the SCSI signal. The pulse width of the signals is specified by the external device manufacturer and determines the data transfer rate to and from the SDMAC to the peripheral device. At reset [DAWR](#DAWR) is initialized to zero. This pulse width is affected by the system clock rate as detailed below.
 
@@ -139,7 +179,7 @@ _DACK (pin 66) pulse width is determined as follows:
 
 > :memo: **NOTE:** For A3000 machines, set [DAWR](#DAWR) to 3.
 
-### WTC (Address: ```$04```) — read/write {#WTC}
+### 1.5.2. WTC (Address: ```$04```) — read/write {#WTC}
 
 The **WORD TRANSFER COUNTER** provides a 24-bit counter addressed as a 32-bit longword for determining the
 number of data words (16 bits) to be transferred by the SDMAC. A minimum of one to a maximum of 16 million
@@ -153,7 +193,7 @@ data words can be transferred with a single command. The counter must be initial
 
 > :memo: **NOTE:** **X** Denotes don’t care.
 
-### CNTR (Address: ```$08```) — read/write {#CNTR}
+### 1.5.3. CNTR (Address: ```$08```) — read/write {#CNTR}
 
 The **CONTROL REGISTER** is an 8 bit register used to set mode and operating parameters of the SDMAC. An external reset will set all register bits to a low state.
 
@@ -165,7 +205,7 @@ The **CONTROL REGISTER** is an 8 bit register used to set mode and operating par
 
 > :memo: **NOTE:** **X** Denotes don’t care.
 
-#### TCEN — Terminal Count Enable, Active High {#TCEN}
+#### 1.5.3.1. TCEN — Terminal Count Enable, Active High {#TCEN}
 
 Setting the Terminal Count Enable will enable terminal count hardware.
 
@@ -178,7 +218,7 @@ If this bit is set, upon reaching a terminal count of zero the SDMAC will:
 - If interrupts are enabled, [INT__P](#INT_P) will also be set high in the [INTERRUPT STATUS REGISTER](#ISTR)
 - The external host interrupt pin, INT__2, will go to an active low state
 
-#### PREST — Peripheral Reset, Active High {#PREST}
+#### 1.5.3.2. PREST — Peripheral Reset, Active High {#PREST}
 
 PREST is intended to be used to control a reset signal for external peripheral devices. Setting PREST high will cause the SDMAC output pins,**_IOW** and **_IOR** to go low.
 
@@ -188,17 +228,17 @@ An active low external reset for peripheral devices can then be derived from **_
 
 > :memo: **NOTE:** The external reset can thus be implemented with one ‘AND’ gate)
 
-#### PDMD — Peripheral Device Mode Select {#PDMD}
+#### 1.5.3.3. PDMD — Peripheral Device Mode Select {#PDMD}
 
 The SDMAC is capable of controlling two separate types of peripheral interfaces. These two interfaces are mutually exclusive, only one interface can be active at any given time. When PDMD is set high the interface mode is intended for SCSI controller type devices. When set low the interface mode is intended for direct connect to IBM ‘AT/XT’ type devices.
 
 > ```Thus for PDMD, 1 = SCSI, 0 = XT/AT.```
 
-#### INTEN — Interrupt Enable, Active High {#INTEN}
+#### 1.5.3.4. INTEN — Interrupt Enable, Active High {#INTEN}
 
 Setting INTEN will enable the SDMAC to generate external interrupts. If set any internally generated interrupt or an external interrupt on INTA (pin 73) or INTB (pin 34), will set [INT__P](#INT_P) high in the [INTERRUPT STATUS REGISTER](#ISTR) and will force the external host interrupt, INT__2 (pin 35), to an active low state.
 
-#### DDIR — Device Direction {#DDIR}
+#### 1.5.3.5. DDIR — Device Direction {#DDIR}
 
 DDIR is used to define the direction of data transfers to and from peripheral devices. Direction is determined as follows:
 
@@ -206,11 +246,11 @@ DDIR is used to define the direction of data transfers to and from peripheral de
 1 = Read from host, write to peripheral.
 0 = Write to host, read from peripheral.
 
-#### IO_DX — IORDY and CSX1 Polarity Select {#IO_DX}
+#### 1.5.3.6. IO_DX — IORDY and CSX1 Polarity Select {#IO_DX}
 
 The IO__DX bit is used to define the polarity of the SDMAC pins CSX1 (pin 71) and IORDY (pin 72). If set high, the CSX1 output and IORDY input pin are inverted from their default polarities imposed when the SDMAC is reset.
 
-### ACR (Address: ```$0C```) — read/write {#ACR}
+### 1.5.4. ACR (Address: ```$0C```) — read/write {#ACR}
 
 :warning: **This register is in the RAMSEY gate array NOT the SDMAC.**.
 
@@ -227,7 +267,7 @@ This register is actually in the RAMSEY gate array and thus must be used with th
 | ------------ | --- | --- | --- |
 | **Function** | MSB | ..  | LSB |
 
-#### RAMSEY DMAC SUPPORT
+#### 1.5.4.1. RAMSEY DMAC SUPPORT
 
 **RAMSEY** contains the address counters used during DMA via the onboard controller. When **_DMAEN** becomes low, the address lines become outputs and provide the DMA addresses.
 
@@ -247,11 +287,11 @@ The address counters are preset before DMA is done by writing to the 32 bit regi
 
 > :memo: **Ramsey Rev 07:** The counter can only be preset to an even word boundary **(bit 0 is always written as 0)**. If **A1** is high when a cycle terminates, then address is always incremented by **2** regardless of how the cycle terminates.
 
-### ST_DMA (Address: ```$10```) — read/write strobe {#ST_DMA}
+### 1.5.5. ST_DMA (Address: ```$10```) — read/write strobe {#ST_DMA}
 
 Any write/read to the START DMA location will cause the SDMAC to begin execution. Execution will continue until either a terminal count is reached or an external EOP is generated, as well as, an error condition occurs, or a SP_DMA command.
 
-### FLUSH (Address: ```$14```) — read/write strobe {#FLUSH}
+### 1.5.6. FLUSH (Address: ```$14```) — read/write strobe {#FLUSH}
 
 A write/read to this location will cause the SDMAC to flush what remains in the internal 4 longword FIFO onto the host bus.
 
@@ -264,13 +304,13 @@ After an external EOP is generated, a FLUSH command followed by a SP_DMA command
 
 > :memo: **NOTE:** This location should **NOT** be strobed if no DMA transfer was started. FLUSH need only be used when reading from the peripheral device.
 
-### CINT (Address: ```$18```) — read/write strobe {#CINT}
+### 1.5.7. CINT (Address: ```$18```) — read/write strobe {#CINT}
 
 Any write/read to the CLEAR INTERRUPT location will clear all internally or externally generated interrupts and the system interrupt signal, INT__2, if it was generated internally.
 
 > :memo: **NOTE:** CLR_INT has no effect on externally generated interrupts connected to the SDMAC INT2 pin.
 
-### ISTR (Address: ```$1C```) — read only {#ISTR}
+### 1.5.8. ISTR (Address: ```$1C```) — read only {#ISTR}
 
 The **Interrupt Status Register** is a 9 bit register used to inform the host of interrupt activity and of internal static conditions.
 
@@ -282,39 +322,39 @@ All internally generated interrupts are set in-active by a hardware reset.
 | ------------ | ------------- | --------------- | ------------- | --------------- | --------------- | ----------------- | ----------------- | ----------------- | ----------------- |
 | **Function** | [INTX](#INTX) | [INT_F](#INT_F) | [INTS](#INTS) | [E_INT](#E_INT) | [INT_P](#INT_P) | [UE_INT](#UE_INT) | [OE_INT](#OE_INT) | [FF_FLG](#FF_FLG) | [FE_FLG](#FE_FLG) |
 
-#### INTX — XT/AT Interrupt pending, Active High {#INTX}
+#### 1.5.8.1. INTX — XT/AT Interrupt pending, Active High {#INTX}
 
 This bit is set high whenever the INTB pin (pin 34) is forced low by an XT/AT peripheral device.
 
 If the Interrupt Enable Bit is set high (interrupts enabled) in the CNTR register, INTX will also activate INT__P and cause the external
 interrupt signal, INT__2, to go to an active low state on the host bus.
 
-#### INT_F — Interrupt Follow, Active High {#INT_F}
+#### 1.5.8.2. INT_F — Interrupt Follow, Active High {#INT_F}
 
 INT__F is used to indicate a pending interrupt condition from the SDMAC or external peripheral device.
 
 It is activated by any of the following interrupt signals: INTX, INTS, E__INT, UE__INT, or OE__INT. INT__F is not effected
 by the Interrupt Enable Bit in the CNTR register.
 
-#### INTS — SCSI Peripheral Interrupt, Active High {#INTS}
+#### 1.5.8.3. INTS — SCSI Peripheral Interrupt, Active High {#INTS}
 
 INTS is used to indicate that an external SCSI peripheral device connected to the INTA pin (pin 73) is attempting to interrupt the host.
 
 An active INTS will activate INT__F. If the Interrupt Enable Bit is set high (interrupts enabled) in the CNTR register, INTS will also activate INT__P and cause the external interrupt signal, INT__2, to go to an active low state on the host bus.
 
-#### E_INT — End-Of-Process Interrupt, Active High {#E_INT}
+#### 1.5.8.4. E_INT — End-Of-Process Interrupt, Active High {#E_INT}
 
 E__INT is used to indicate that either the SDMAC has reached its Terminal Count or a FLUSH command has completed.
 
 An active E_INT will activate INT__F. If the Interrupt Enable Bit is set high, E__INT will also activate INT__P and cause the external interrupt signal, INT__2, to go to an active low state.
 
-#### INT_P — Interrupt Pending, Active High {#INT_P}
+#### 1.5.8.5. INT_P — Interrupt Pending, Active High {#INT_P}
 
 INT__P is used to indicate a pending interrupt condition from the SDMAC or external peripheral device only when interrupts are enabled.
 
 It is activated by any of the following interrupt signals: INTX, INTS, E__INT, UE__INT, or OE__INT. INT__P is only active when the Interrupt Enable Bit is set high.
 
-#### UE_INT — Under-Run FIFO Error Interrupt, Active High {#UE_INT}
+#### 1.5.8.6. UE_INT — Under-Run FIFO Error Interrupt, Active High {#UE_INT}
 
 UE__INT is used to indicate that the SDMAC internal FIFO has an under-run error.
 
@@ -322,7 +362,7 @@ An active UE__INT will activate INT__F.
 
 If the Interrupt Enable Bit is set high, UE__INT will also activate INT__P and cause the external interrupt signal, INT__2, to go to an active low state.
 
-#### OE_INT — Over-Run FIFO Error Interrupt, Active High {#OE_INT}
+#### 1.5.8.7. OE_INT — Over-Run FIFO Error Interrupt, Active High {#OE_INT}
 
 OE_INT is used to indicate that the SDMAC internal FIFO has an over-run error.
 
@@ -330,30 +370,30 @@ An active OE__INT will activate
 
 INT__F. If the Interrupt Enable Bit is set high, OE__INT will also activate INT__P and cause the external interrupt signal, INT_2, to go to an active low state.
 
-#### FF_FLG — FIFO Full Flag, Active High {#FF_FLG}
+#### 1.5.8.8. FF_FLG — FIFO Full Flag, Active High {#FF_FLG}
 
 FF__FLG is used to indicate the status of the SDMAC internal FIFO.
 
 Whenever the internal FIFO reaches its full longword count of 4,
 FF__FLG will go to an active high state and remain there until at least one longword (32-bits) is removed from the FIFO.
 
-#### FE_FLG — FIFO Empty Flag, Active High {#FE_FLG}
+#### 1.5.8.9. FE_FLG — FIFO Empty Flag, Active High {#FE_FLG}
 
 FE__FLG is used to indicate the status of the SDMAC internal FIFO.
 
 Whenever the internal FIFO reaches a longword count of 0, the FE__FLG will go to an active state and remain there until at least one word is entered into the FIFO.
 
-### RESERVED (Address: ```$20,$24,$28,$2C,$30,$34,$38```) {#RESERVED}
+### 1.5.9. RESERVED (Address: ```$20,$24,$28,$2C,$30,$34,$38```) {#RESERVED}
 
 These longword addresses are reserved for future expansion.
 
-### SP_DMA (Address: ```$3C```) — read/write strobe {#SP_DMA}
+### 1.5.10. SP_DMA (Address: ```$3C```) — read/write strobe {#SP_DMA}
 
 Any write/read to the STOP DMA location will cause the SDMAC to abort execution.
 
 Register contents are unaffected by this operation and no interrupts will be generated.
 
-### PORT0 (Address range: ```$40 - $4C```) — read/write {#PORT0}
+### 1.5.11. PORT0 (Address range: ```$40 - $4C```) — read/write {#PORT0}
 
 PORT0 address range is an internally decoded address range for selecting an external SCSI controller device.
 
@@ -363,11 +403,11 @@ I/O definitions within this address range is application dependent and depends o
 
 > In the A3000 machine the programmer should access (read/write) the 33C93 SCSI registers  as follows:
 
-| Register                        | R/W        | Access   | Address                  | DBUS byte lane    |
-| ------------------------------- | ---------- | -------- | ------------------------ | ----------------- |
-| 33C93 Address Register          | Write only | longword | ```$40```                | D7-D0             |
-| 33C93 Auxiliary Status Register (SASR)| Read only  | byte     | ```$41, $45, $49, $4D``` | D23-D16 and D7-D0 |
-| 33C93 Register Data (SCMD)            | R/W        | byte     | ```$43, $47, $48, $4F``` | D23-D16 and D7-D0 |
+| Register                               | R/W        | Access   | Address                  | DBUS byte lane    |
+| -------------------------------------- | ---------- | -------- | ------------------------ | ----------------- |
+| 33C93 Address Register                 | Write only | longword | ```$40```                | D7-D0             |
+| 33C93 Auxiliary Status Register (SASR) | Read only  | byte     | ```$41, $45, $49, $4D``` | D23-D16 and D7-D0 |
+| 33C93 Register Data (SCMD)             | R/W        | byte     | ```$43, $47, $48, $4F``` | D23-D16 and D7-D0 |
 
 In the A3000 the **33C93** is accessed via indirect addressing mode. This mode is enabled by Connecting **ALE** on the **33C93** to GND.
 
@@ -377,14 +417,14 @@ To access the data registers of the **33C93** first load the **Address Register 
 - Data Register
 - Command Register
 
-### PORT1A (Address range: ```$50 - $5C```) — read/write {#PORT1A}
+### 1.5.12. PORT1A (Address range: ```$50 - $5C```) — read/write {#PORT1A}
 
 PORTIA address range is an internally decoded address range for selecting one of two external 8-bit ‘XT’ compatible devices.
 
 Addressing the SDMAC within this range will cause the SDMAC to generate the appropriate interface signals (i.e. chip select, read, write, etc.) to allow communication with an external device. I/O definitions within this address
 range is application dependent.
 
-### PORT2 (Address range: ```$60 - $6C```) — read/write {#PORT2}
+### 1.5.13. PORT2 (Address range: ```$60 - $6C```) — read/write {#PORT2}
 
 PORT2 address range is an internally decoded address range for selecting a second external 8-bit ‘XT’ compatible device.
 
@@ -394,7 +434,7 @@ range is application dependent.
 To support a second ‘XT’ device, the IO__DX bit in the CNTR register must be set
 to a low state.
 
-### PORT1B (Address range: ```$70 - $7C```) — read/write {#PORT1B}
+### 1.5.14. PORT1B (Address range: ```$70 - $7C```) — read/write {#PORT1B}
 
 PORT1B address range is an internally decoded address range for selecting an external 16-bit ‘AT’ compatible device.
 
@@ -403,14 +443,14 @@ is application dependent.
 
 The IO__DX bit in the CNTR register should be set to a high state.
 
-## SDMAC TIMING DATA
+## 1.6. SDMAC TIMING DATA
 
 This device is intended to run synchronously with the 68030 CPU clock. In the A3000 computer the device runs at either 16 MHz or 25 MHz.
 The maximum clock rate for SCLK is 25 MHz.
 
 The SDMAC runs asynchronously with the SCSI peripheral device (in A3000 the WD33C93A runs at 14.3 MHz).
 
-### Example timing diagram
+### 1.6.1. Example timing diagram
 
 ```wavedrom
 { signal: [
