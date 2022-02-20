@@ -18,28 +18,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-`include "addr_decoder.v"
-`include "io_port.v"
-`include "ctrl_reg.v"
-
 module RESDMAC(
     output _INT,        //Connected to INT2 needs to be Open Collector output.
 
-    inout SIZ1,         //Indicates a 16 bit transfer is true. 
+    output SIZ1,         //Indicates a 16 bit transfer is true. 
+
     inout R_W,          //Read Write from CPU
     inout _AS,          //Address Strobe
     inout _DS,          //Data Strobe 
-    inout [1:0] _DSACK, //Dynamic size and DATA ack.
+
+    output [1:0] _DSACK, //Dynamic size and DATA ack.
     
     inout [31:0] DATA,   // CPU side data bus 32bit wide
 
-    input _STERM,       //static/synchronous data ack.
+    output _STERM,       //static/synchronous data ack.
+    
     input SCLK,         //CPUCLKB
     input _CS,           //_SCSI from Fat Garry
     input _RST,         //System Reset
     input _BERR,        //Bus Error 
 
     input [6:2] ADDR,   //CPU address Bus
+    input A12,          // additional address input to allow this to co-exist with A4000 IDE card.
     
     // Bus Mastering/Arbitration.
 
@@ -66,8 +66,12 @@ module RESDMAC(
     output _CSX1,       //Port2 CS 
 
     // Peripheral Device port
-    inout [15:0] PD_PORT
+    inout [15:0] PD_PORT,
     
+    //Diagnostic LEDS
+    output _LED_RD, //Indicated read from SDMAC or peripherial port.
+    output _LED_WR, //Indicate write to SDMAC or peripherial port.
+    output _LED_DMA  //Indicate DMA cycle/ busmaster.
     
 );
 wire [31:0] DATA_OUT;

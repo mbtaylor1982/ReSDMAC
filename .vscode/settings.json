@@ -1,4 +1,5 @@
 {
     "makefile.extensionOutputFolder": "./.vscode",
-    "makefile.makeDirectory": "./RTL"
+    "makefile.makeDirectory": "./RTL",
+    "git.showPushSuccessNotification": true,
 }

@@ -1,6 +1,6 @@
 Pinlist
 
-Exported from SDMAC.sch at 10/02/2022 21:31
+Exported from SDMAC.sch at 20/02/2022 16:39
 
 EAGLE Version 9.6.2 Copyright (c) 1988-2020 Autodesk, Inc.
 
@@ -159,8 +159,8 @@ SV1      1        1          pas      TMS
          6        6          pas      VCC3.3
 
 U1       1        VCCIO2.5V/3.3V_2 pwr      VCC3.3
-         2        I/O/GTS3   io       CPU_DATAD24
-         3        I/O/GTS4   io       CPU_DATAD23
+         2        I/O/GTS3   io       R!W
+         3        I/O/GTS4   io       !CS
          4        NC_2       pas      CPU_DATAD22
          5        I/O/GTS1   io       CPU_DATAD21
          6        I/O/GTS2   io       CPU_DATAD20
@@ -173,8 +173,8 @@ U1       1        VCCIO2.5V/3.3V_2 pwr      VCC3.3
          13       NC_8       pas      RD_LED
          14       NC_9       pas      DMA_LED
          15       NC_10      pas      A12
-         16       NC_11      pas               *** unconnected ***
-         17       NC_12      pas               *** unconnected ***
+         16       NC_11      pas      CPU_DATAD24
+         17       NC_12      pas      CPU_DATAD23
          18       GND_2      pwr      GND
          19       NC_13      pas               *** unconnected ***
          20       NC_14      pas               *** unconnected ***
@@ -187,15 +187,15 @@ U1       1        VCCIO2.5V/3.3V_2 pwr      VCC3.3
          27       NC_21      pas               *** unconnected ***
          28       NC_22      pas               *** unconnected ***
          29       GND_3      pwr      GND
-         30       I/O/GCK1   io                *** unconnected ***
+         30       I/O/GCK1   io       CLK
          31       NC_23      pas               *** unconnected ***
-         32       I/O/GCK2   io                *** unconnected ***
+         32       I/O/GCK2   io       !AS
          33       NC_24      pas               *** unconnected ***
          34       NC_25      pas               *** unconnected ***
          35       NC_26      pas               *** unconnected ***
          36       GND_4      pwr      GND
          37       VCCIO2.5V/3.3V_3 pwr      VCC3.3
-         38       I/O/GCK3   io                *** unconnected ***
+         38       I/O/GCK3   io       !DS
          39       NC_27      pas               *** unconnected ***
          40       NC_28      pas               *** unconnected ***
          41       NC_29      pas               *** unconnected ***
@@ -277,18 +277,18 @@ U1       1        VCCIO2.5V/3.3V_2 pwr      VCC3.3
          117      NC_38      pas      P_DATA1
          118      NC_39      pas      P_DATA0
          119      NC_40      pas      !BERR
-         120      NC_41      pas      !RST
-         121      NC_42      pas      !CS
+         120      NC_41      pas               *** unconnected ***
+         121      NC_42      pas               *** unconnected ***
          122      TDO        pas      TDO
          123      GND_7      pwr      GND
-         124      NC_43      pas      CLK
+         124      NC_43      pas               *** unconnected ***
          125      NC_44      pas      !STERM
          126      NC_45      pas      !DSACK0
          127      VCCIO2.5V/3.3V pwr      VCC3.3
          128      NC_46      pas      !DSACK1
-         129      NC_47      pas      !DS
-         130      NC_48      pas      !AS
-         131      NC_49      pas      R!W
+         129      NC_47      pas               *** unconnected ***
+         130      NC_48      pas               *** unconnected ***
+         131      NC_49      pas               *** unconnected ***
          132      NC_50      pas      SIZ1
          133      NC_51      pas      !INT2
          134      NC_52      pas      INTB
@@ -299,8 +299,8 @@ U1       1        VCCIO2.5V/3.3V_2 pwr      VCC3.3
          139      NC_57      pas      CPU_DATAD27
          140      NC_58      pas      CPU_DATAD26
          141      VCCINT3.3V pwr      VCC3.3
-         142      NC         pas               *** unconnected ***
-         143      I/O/GSR    io       CPU_DATAD25
+         142      NC         pas      CPU_DATAD25
+         143      I/O/GSR    io       !RST
          144      GND        pwr      GND
 
 U2       1        ADJ/GND    pwr      GND

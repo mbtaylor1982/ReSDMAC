@@ -13,7 +13,7 @@ make all -C /home/mike/EAGLE/projects/SDMAC-Replacement/RTL --print-data-base --
  
 
  
-# Make data base, printed on Wed Feb  2 23:14:06 2022
+# Make data base, printed on Sun Feb 20 18:43:11 2022
  
 
 # Variables
@@ -46,40 +46,30 @@ GJS_DEBUG_OUTPUT = stderr
  
 # environment
  
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-a706398c-7bc4-40db-b4f6-57be04fe8e1e.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-3d9de5a2-1b2b-475a-a304-eb6efb045290.sock
  
 # environment
  
 VSCODE_CWD = /home/mike
  
-# environment
- 
-XILINX_DSP = /opt/Xilinx/14.7/ISE_DS/ISE
- 
 # default
- 
 MAKE_COMMAND := make
- 
+# makefile (from 'project.cfg', line 2)
+XILINX = /opt/Xilinx/14.7/ISE_DS/ISE/
 # environment
- 
-XILINX = /opt/Xilinx/14.7/ISE_DS/ISE
- 
-# environment
- 
 QT_ACCESSIBILITY = 1
- 
-# makefile (from 'Makefile', line 5)
- 
-CABLE = usb21
- 
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
 # environment
 SNAP_INSTANCE_NAME = code
 # environment
-GDK_PIXBUF_MODULEDIR = /snap/code/85/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+GDK_PIXBUF_MODULEDIR = /snap/code/88/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+# makefile (from 'Makefile', line 36)
+XC3SPROG_CABLE = JTAGHS2
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# makefile (from 'Makefile', line 37)
+XC3SPROG_OPTS = -v -e -J 150000 -p 0
 # default
 .VARIABLES := 
 # environment
@@ -95,29 +85,27 @@ VSCODE_LOG_STACK = false
 # automatic
 %F = $(notdir $%)
 # environment
-VSCODE_CODE_CACHE_PATH = /home/mike/.config/Code/CachedData/899d46d82c4c95423fb7e10e68eba52050e30ba3
+VSCODE_CODE_CACHE_PATH = /home/mike/.config/Code/CachedData/f80445acd5a3dadef24aa209168452a3d97cc326
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.A4HQG1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.WQNVH1
 # default
 .LOADED := 
 # default
 .INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
 # makefile
 MAKEFLAGS = pqrRw
-# makefile (from 'Makefile', line 3)
-WORKDIR = tmp
-# makefile (from 'Makefile', line 1)
+# makefile (from 'project.cfg', line 4)
 PROJECT = RESDMAC
 # makefile
 CURDIR := /home/mike/EAGLE/projects/SDMAC-Replacement/RTL
-# makefile (from 'Makefile', line 7)
-CPLDFITFLAGS = -loc on -slew slow -init low -terminate keeper -nogclkopt -nogtsopt -nogsropt -power std -ignoretspec -optimize speed -keepio -inputs 54 -pterms 25
 # environment
 VSCODE_PIPE_LOGGING = true
+# makefile (from 'Makefile', line 56)
+VHDTEST = $(foreach file,$(wildcard *$(TEST_POSTFIX).vhd),$(file))
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # automatic
@@ -134,12 +122,14 @@ WAYLAND_DISPLAY = wayland-0
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
+# makefile (from 'project.cfg', line 1)
+XILINX_PLATFORM = lin64
 # environment
 VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=a01c772f-c3a3-463f-91d3-b1f803e8dc50&iid=a01c772f-c3a3-463f-91d3-b1f803e8dc50&sid=a01c772f-c3a3-463f-91d3-b1f803e8dc50","uploadToServer":true}
 # environment
 XDG_SESSION_DESKTOP = ubuntu
-# makefile (from 'Makefile', line 1)
-MAKEFILE_LIST := Makefile
+# makefile (from 'project.cfg', line 1)
+MAKEFILE_LIST := Makefile project.cfg
 # environment
 SNAP_REEXEC = 
 # automatic
@@ -147,17 +137,17 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 34115
+VSCODE_PID = 21607
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
-# environment
-XILINX_PLANAHEAD = /opt/Xilinx/14.7/ISE_DS/PlanAhead
+# makefile (from 'project.cfg', line 5)
+TARGET_PART = XC95288XL-10-TQ144
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # environment
-SESSION_MANAGER = local/mike-VirtualBox:@/tmp/.ICE-unix/1472,unix/mike-VirtualBox:/tmp/.ICE-unix/1472
+SESSION_MANAGER = local/mike-VirtualBox:@/tmp/.ICE-unix/1330,unix/mike-VirtualBox:/tmp/.ICE-unix/1330
 # automatic
 *F = $(notdir $*)
 # environment
@@ -181,8 +171,6 @@ MAKECMDGOALS := all
 # environment
 XMODIFIERS = @im=ibus
 # environment
-LD_LIBRARY_PATH = /opt/Xilinx/14.7/ISE_DS/ISE/lib/lin64:/opt/Xilinx/14.7/ISE_DS/EDK/lib/lin64:/opt/Xilinx/14.7/ISE_DS/common/lib/lin64
-# environment
 GJS_DEBUG_TOPICS = JS ERROR;JS LOG
 # environment
 SHLVL = 0
@@ -194,8 +182,8 @@ IM_CONFIG_CHECK_ENV = 1
 MAKE = $(MAKE_COMMAND)
 # environment
 SNAP_COOKIE = ML1n8HmBcPKlnwZ8SPEjdvrY-2Fasi_qXieKAtRe1c7w28i1kPev
-# environment
-PATH = /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64:/opt/Xilinx/14.7/ISE_DS/ISE/sysgen/util:/opt/Xilinx/14.7/ISE_DS/ISE/../../../DocNav:/opt/Xilinx/14.7/ISE_DS/PlanAhead/bin:/opt/Xilinx/14.7/ISE_DS/EDK/bin/lin64:/opt/Xilinx/14.7/ISE_DS/EDK/gnu/microblaze/lin/bin:/opt/Xilinx/14.7/ISE_DS/EDK/gnu/powerpc-eabi/lin/bin:/opt/Xilinx/14.7/ISE_DS/EDK/gnu/arm/lin/bin:/opt/Xilinx/14.7/ISE_DS/EDK/gnu/microblaze/linux_toolchain/lin64_be/bin:/opt/Xilinx/14.7/ISE_DS/EDK/gnu/microblaze/linux_toolchain/lin64_le/bin:/opt/Xilinx/14.7/ISE_DS/common/bin/lin64:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/opt/Xilinx/13.2/ISE_DS/ISE/bin/lin64/
+# makefile (from 'Makefile', line 52)
+PATH := /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/opt/Xilinx/13.2/ISE_DS/ISE/bin/lin64/:/opt/Xilinx/14.7/ISE_DS/ISE//bin/lin64
 # default
 MAKEFILES := 
 # environment
@@ -204,14 +192,12 @@ LANGUAGE = en_GB:en
 ^F = $(notdir $^)
 # environment
 SNAP_USER_COMMON = /home/mike/snap/code/common
-# makefile (from 'Makefile', line 2)
-PART = XC95288XL-10-TQ144
 # environment
-SNAP = /snap/code/85
+SNAP = /snap/code/88
 # environment
-INVOCATION_ID = ca5814b2b8f24337a2ed816370357666
+INVOCATION_ID = d7eccf02d798485ea45f4a43b5ca80a2
 # environment
-SNAP_REVISION = 85
+SNAP_REVISION = 88
 # environment
 SNAP_REAL_HOME = /home/mike
 # environment
@@ -224,6 +210,8 @@ GNOME_SETUP_DISPLAY = :1
 LESSCLOSE = /usr/bin/lesspipe %s %s
 # automatic
 ?F = $(notdir $?)
+# makefile (from 'project.cfg', line 8)
+CONSTRAINTS = RESDMAC_rev_a.ucf
 # environment
 XDG_CURRENT_DESKTOP = Unity
 # environment
@@ -240,12 +228,18 @@ GNUMAKEFLAGS :=
 LOGNAME = mike
 # environment
 GIO_LAUNCHED_DESKTOP_FILE = /var/lib/snapd/desktop/applications/code_code.desktop
+# makefile (from 'Makefile', line 50)
+EXE := 
+# makefile (from 'project.cfg', line 10)
+VSOURCE = RESDMAC.v addr_decoder.v io_port.v ctrl_reg.v 
 # environment
 SNAP_ARCH = amd64
+# makefile (from 'Makefile', line 57)
+TEST_NAMES = $(foreach file,$(VTEST) $(VHDTEST),$(basename $(file)))
 # makefile
-.DEFAULT_GOAL := all
+.DEFAULT_GOAL := default
 # environment
-SYSTEMD_EXEC_PID = 1492
+SYSTEMD_EXEC_PID = 1351
 # environment
 DISPLAY = :0
 # environment
@@ -254,42 +248,54 @@ USER = mike
 GTK_MODULES = gail:atk-bridge
 # default
 MAKE_VERSION := 4.3
+# makefile (from 'project.cfg', line 7)
+TOPLEVEL = RESDMAC
 # environment
 DISABLE_WAYLAND = 1
 # environment
-SNAP_DATA = /var/snap/code/85
+SNAP_DATA = /var/snap/code/88
+# makefile (from 'Makefile', line 32)
+XST_OPTS = 
 # environment
 SNAP_CONTEXT = ML1n8HmBcPKlnwZ8SPEjdvrY-2Fasi_qXieKAtRe1c7w28i1kPev
 # environment
-MANAGERPID = 1379
+MANAGERPID = 1238
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 34077
+GIO_LAUNCHED_DESKTOP_FILE_PID = 21565
 # environment
-_ = /snap/code/85/usr/share/code/code
+_ = /snap/code/88/usr/share/code/code
+# makefile (from 'Makefile', line 35)
+XC3SPROG_EXE = xc3sprog
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
 GDK_PIXBUF_MODULE_FILE = /home/mike/snap/code/common/.cache/gdk-pixbuf-loaders.cache
+# makefile (from 'Makefile', line 55)
+VTEST = $(foreach file,$(wildcard *$(TEST_POSTFIX).v),$(file))
+# makefile (from 'Makefile', line 58)
+TEST_EXES = $(foreach test,$(TEST_NAMES),build/isim_$(test)$(EXE))
 # environment
-JOURNAL_STREAM = 8:23630
+JOURNAL_STREAM = 8:22604
 # environment
 XDG_SESSION_CLASS = user
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
 # environment
-XILINX_EDK = /opt/Xilinx/14.7/ISE_DS/EDK
-# environment
 HOME = /home/mike
 # environment
 QT_IM_MODULE = ibus
+# makefile (from 'Makefile', line 31)
+COMMON_OPTS = -intstyle xflow
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-5c3936e9-1.63.2-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-5c3936e9-1.64.2-main.sock
 # environment
 SNAP_NAME = code
+# makefile (from 'Makefile', line 33)
+NGDBUILD_OPTS = 
 # environment
-GSETTINGS_SCHEMA_DIR = /snap/code/85/usr/share/glib-2.0/schemas
+GSETTINGS_SCHEMA_DIR = /snap/code/88/usr/share/glib-2.0/schemas
 # environment
 IM_CONFIG_PHASE = 1
 # default
@@ -297,11 +303,13 @@ IM_CONFIG_PHASE = 1
 # automatic
 <F = $(notdir $<)
 # environment
-SNAP_VERSION = 899d46d8
+SNAP_VERSION = f80445ac
 # default
 SUFFIXES := 
 # environment
 VSCODE_CLI = 1
+# makefile (from 'Makefile', line 60)
+RUN = @echo "\n\e[1;33m$(shell date +"%Y-%m-%d %T"): ======== $(1) ========\e[m\n"; cd build && $(XILINX)/bin/$(XILINX_PLATFORM)/$(1)
 # environment
 ELECTRON_NO_ATTACH_CONSOLE = 1
 # environment
@@ -309,7 +317,7 @@ SNAP_COMMON = /var/snap/code/common
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
 # environment
-SNAP_USER_DATA = /home/mike/snap/code/85
+SNAP_USER_DATA = /home/mike/snap/code/88
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
@@ -317,147 +325,134 @@ GDMSESSION = ubuntu
 # environment
 SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
 # variable set hash-table stats:
-# Load=135/1024=13%, Rehash=0, Collisions=6/192=3%
+# Load=144/1024=14%, Rehash=0, Collisions=9/203=4%
 
 # Pattern-specific Variable Values
+ 
 
 # No pattern-specific variable values.
 
 # Directories
 
-# . (device 2051, inode 10357292): 17 files, no impossibilities.
-# tmp (device 2051, inode 10881910): 24 files, no impossibilities.
+# . (device 2051, inode 10357292): 12 files, no impossibilities.
 
-# 41 files, no impossibilities in 2 directories.
+# 12 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
-tmp/%.tim: tmp/%.vm6
-#  recipe to execute (from 'Makefile', line 25):
-	cd $(WORKDIR) && taengine -l ../$@ -f $(PROJECT)_rev_a
+# No implicit rules.
 
-tmp/%.vm6: tmp/%.ngd %.ucf
-#  recipe to execute (from 'Makefile', line 28):
-	cd $(WORKDIR) && cpldfit $(CPLDFITFLAGS) -p $(PART) ../$<
-
-%.jed: tmp/%.vm6
-#  recipe to execute (from 'Makefile', line 31):
-	hprep6 -i $<
-	cp $@ ../Binary/
-
-# 3 implicit rules, 0 (0.0%) terminal.
 # Files
 
-tmp/RESDMAC_rev_a.ngd: tmp/RESDMAC_rev_a.ngc RESDMAC_rev_a.ucf
- 
+prog:
 #  Implicit rule search has not been done.
- 
-#  Implicit/static pattern stem: ''
- 
-#  Last modified 2022-02-02 22:56:25.211065017
-#  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := tmp/RESDMAC_rev_a.ngd
-# automatic
-# * := 
-# automatic
-# < := tmp/RESDMAC_rev_a.ngc
-# automatic
-# + := tmp/RESDMAC_rev_a.ngc RESDMAC_rev_a.ucf
-# automatic
-# % := 
-# automatic
-# ^ := tmp/RESDMAC_rev_a.ngc RESDMAC_rev_a.ucf
-# automatic
-# ? := RESDMAC_rev_a.ucf
-# automatic
-# | := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/16=6%
-#  recipe to execute (from 'Makefile', line 22):
-	cd $(WORKDIR) && ngdbuild -p $(PART) -uc ../$(PROJECT)_rev_a.ucf ../$< ../$@
-
-tmp/RESDMAC_rev_a.ngc: RESDMAC.v RESDMAC.prj
-#  Implicit rule search has not been done.
-#  Last modified 2022-02-02 22:52:07
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 17):
-	@mkdir $(WORKDIR) || true
-	@sed -r "s#^(-top).*#\1 $(PROJECT)#g;s#^(-ofn).*#\1 ..\/$@#g;s#^(-ifn).*#\1 ../$(PROJECT).prj#g;s#^(-define).*#\1 {$(REV_A_DEFINES)}#g" template.xst > $@.xst
-	cd $(WORKDIR) && xst -ifn ../$@.xst -ofn $(PROJECT)-xst.log
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 137):
+	$(XC3SPROG_EXE) -c $(XC3SPROG_CABLE) $(XC3SPROG_OPTS) ./build/$(PROJECT).jed 
 
 # Not a target:
-tmp/RESDMAC_rev_a.tim:
+RESDMAC_rev_a.ucf:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+default: clean cpld
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
 # Not a target:
-RESDMAC_rev_a.ucf:
+project.cfg:
 #  Implicit rule search has been done.
-#  Last modified 2022-02-02 23:14:03.109490894
+#  Last modified 2022-02-20 17:33:42.207995243
 #  File has been updated.
 #  Successfully updated.
-
-tmp/RESDMAC_rev_a.vm6: tmp/RESDMAC_rev_a.ngd RESDMAC_rev_a.ucf
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'RESDMAC_rev_a'
-#  File is an intermediate prerequisite.
-#  File does not exist.
-#  File has not been updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/6=0%
-#  recipe to execute (from 'Makefile', line 28):
-	cd $(WORKDIR) && cpldfit $(CPLDFITFLAGS) -p $(PART) ../$<
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-02-02 23:00:01.709694873
+#  Last modified 2022-02-20 17:36:00.15209307
 #  File has been updated.
 #  Successfully updated.
 
-RESDMAC.prj:
-#  Implicit rule search has not been done.
-#  Last modified 2022-02-02 21:45:07.382696276
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 14):
-	@echo verilog work $(PROJECT).v > $@
-
-flash: RESDMAC_rev_a.jed
+cpld: project.cfg RESDMAC.v addr_decoder.v io_port.v ctrl_reg.v RESDMAC_rev_a.ucf build/RESDMAC.prj build/RESDMAC.scr
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 42):
-	@echo "setMode -bs\n"\
-	"setCable -p $(CABLE)\n"\
-	"identify\n"\
-	"assignfile -p 1 -file $<\n"\
-	"erase -p 1\n"\
-	"program -p 1\n"\
-	"verify -p 1\n"\
-	"exit" > batch
-	LD_PRELOAD=/opt/Xilinx/usb-driver/libusb-driver.so impact -batch batch
+#  recipe to execute (from 'Makefile', line 102):
+	@mkdir -p  build/  build/xst/  build/ngdbuild/  build/cpldfit/  build/hprep6/
+	$(call RUN,xst) $(COMMON_OPTS) $(XST_OPTS) \
+	    -ifn $(PROJECT).scr
+	@find build/ -maxdepth 1 -type f -print0 | xargs -0 mv -t build/xst/
+	$(call RUN,ngdbuild) $(COMMON_OPTS) $(NGDBUILD_OPTS) -p $(TARGET_PART) \
+		-uc ../$(CONSTRAINTS) \
+	    xst/$(PROJECT).ngc \
+		ngdbuild/$(PROJECT).ngd
+	@find build/ -maxdepth 1 -type f -print0 | xargs -0 mv -t build/ngdbuild/
+	@mv -f build/xlnx_auto_0_xdb/ build/ngdbuild/
+	$(call RUN,cpldfit) $(COMMON_OPTS) \
+	    -p $(TARGET_PART) \
+	    ngdbuild/$(PROJECT).ngd
+	
+	@find build/ -maxdepth 1 -type f -print0 | xargs -0 mv -t build/cpldfit/
+	$(call RUN,hprep6) -i cpldfit/$(PROJECT).vm6
+	@find build/ -maxdepth 1 -type f -print0 | xargs -0 mv -t build/hprep6/
+	@cp build/hprep6/$(PROJECT).jed ./build/$(PROJECT).jed
+	@echo "\n\e[1;32m$(shell date +"%Y-%m-%d %T"): ======== OK ========\e[m"
+	@echo "CPLD build output at ./build/$(PROJECT).jed \n"
+
+build/RESDMAC.scr: project.cfg
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 86):
+	@echo "Updating $@"
+	@mkdir -p build
+	@rm -f $@
+	@echo "run" \
+	    "-ifn $(PROJECT).prj" \
+	    "-ofn $(PROJECT).ngc" \
+	    "-ifmt mixed" \
+	    "$(XST_OPTS)" \
+	    "-top $(TOPLEVEL)" \
+	    "-ofmt NGC" \
+	    "-p $(TARGET_PART)" \
+	    > build/$(PROJECT).scr
+	
 
 clean:
-#  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
+#  Implicit/static pattern stem: ''
 #  File does not exist.
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 37):
-	rm -rvf tmp
-	rm *.jed
-	rm *.prj
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := clean
+# automatic
+# * := 
+# automatic
+# < := 
+# automatic
+# + := 
+# automatic
+# % := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/11=9%
+#  recipe to execute (from 'Makefile', line 76):
+	rm -rf build
 
 # Not a target:
 RESDMAC.v:
-#  Implicit rule search has been done.
-#  Last modified 2022-02-02 22:51:53.655373903
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 .DEFAULT:
@@ -465,27 +460,43 @@ RESDMAC.v:
 #  Modification time never checked.
 #  File has not been updated.
 
-all: RESDMAC_rev_a.jed tmp/RESDMAC_rev_a.tim
-#  Phony target (prerequisite of .PHONY).
+all: clean cpld prog
 #  Command line target.
-#  Implicit rule search has not been done.
+#  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/6=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/3=0%
 
-RESDMAC_rev_a.jed: tmp/RESDMAC_rev_a.vm6
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'RESDMAC_rev_a'
-#  Last modified 2022-02-02 22:56:29.914922524
-#  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/6=0%
-#  recipe to execute (from 'Makefile', line 31):
-	hprep6 -i $<
-	cp $@ ../Binary/
+# Not a target:
+addr_decoder.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+io_port.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+ctrl_reg.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+build/RESDMAC.prj: project.cfg
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 79):
+	@echo "Updating $@"
+	@mkdir -p build
+	@rm -f $@
+	@$(foreach file,$(VSOURCE),echo "verilog work \"../$(file)\"" >> $@;)
+	@$(foreach file,$(VHDSOURCE),echo "vhdl work \"../$(file)\"" >> $@;)
 
 # Not a target:
 .SUFFIXES:
@@ -493,31 +504,20 @@ RESDMAC_rev_a.jed: tmp/RESDMAC_rev_a.vm6
 #  Modification time never checked.
 #  File has not been updated.
 
-.PHONY: all clean timing
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-timing: tmp/RESDMAC_rev_a.tim
-#  Phony target (prerequisite of .PHONY).
-#  Implicit rule search has not been done.
-#  File does not exist.
-#  File has not been updated.
-
 # files hash-table stats:
-# Load=16/1024=2%, Rehash=0, Collisions=0/52=0%
+# Load=16/1024=2%, Rehash=0, Collisions=0/47=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 58 / storage = 834 B / avg = 14 B
-# current buf: size = 8162 B / used = 834 B / count = 58 / avg = 14 B
+# strcache buffers: 1 (0) / strings = 24 / storage = 294 B / avg = 12 B
+# current buf: size = 8162 B / used = 294 B / count = 24 / avg = 12 B
 
-# strcache performance: lookups = 96 / hit rate = 39%
+# strcache performance: lookups = 54 / hit rate = 55%
 # hash-table stats:
-# Load=58/8192=1%, Rehash=0, Collisions=1/96=1%
-# Finished Make data base on Wed Feb  2 23:14:06 2022
+# Load=24/8192=0%, Rehash=0, Collisions=0/54=0%
+# Finished Make data base on Sun Feb 20 18:43:11 2022
 
  

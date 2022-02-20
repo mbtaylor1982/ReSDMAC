@@ -1,1 +1,1 @@
-{"buildTargets":["RESDMAC.prj","RESDMAC_rev_a.jed","all","clean","flash","timing","tmp/RESDMAC_rev_a.ngc","tmp/RESDMAC_rev_a.ngd","tmp/RESDMAC_rev_a.vm6"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}
+{"buildTargets":["all","build/RESDMAC.prj","build/RESDMAC.scr","clean","cpld","default","prog"],"launchTargets":["/home/mike/EAGLE/projects/SDMAC-Replacement/RTL>a.out()"],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}

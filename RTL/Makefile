@@ -1,50 +1,141 @@
-PROJECT=RESDMAC
-PART=XC95288XL-10-TQ144
-WORKDIR=tmp
+###########################################################################
+## Xilinx ISE Makefile
+##
+## To the extent possible under law, the author(s) have dedicated all copyright
+## and related and neighboring rights to this software to the public domain
+## worldwide. This software is distributed without any warranty.
+###########################################################################
 
-CABLE=usb21
+include project.cfg
 
-CPLDFITFLAGS=-loc on -slew slow -init low -terminate keeper -nogclkopt -nogtsopt -nogsropt -power std -ignoretspec -optimize speed -keepio -inputs 54 -pterms 25
 
-.PHONY:	all clean timing
+###########################################################################
+# Default values
+###########################################################################
 
-all:	$(PROJECT)_rev_a.jed $(WORKDIR)/$(PROJECT)_rev_a.tim
+ifndef XILINX
+    $(error XILINX must be defined)
+endif
 
-$(PROJECT).prj:
-	@echo verilog work $(PROJECT).v > $@
+ifndef PROJECT
+    $(error PROJECT must be defined)
+endif
 
-$(WORKDIR)/$(PROJECT)_rev_a.ngc:	$(PROJECT).v $(PROJECT).prj
-	@mkdir $(WORKDIR) || true
-	@sed -r "s#^(-top).*#\1 $(PROJECT)#g;s#^(-ofn).*#\1 ..\/$@#g;s#^(-ifn).*#\1 ../$(PROJECT).prj#g;s#^(-define).*#\1 {$(REV_A_DEFINES)}#g" template.xst > $@.xst
-	cd $(WORKDIR) && xst -ifn ../$@.xst -ofn $(PROJECT)-xst.log
+ifndef TARGET_PART
+    $(error TARGET_PART must be defined)
+endif
 
-$(WORKDIR)/$(PROJECT)_rev_a.ngd:	$(WORKDIR)/$(PROJECT)_rev_a.ngc $(PROJECT)_rev_a.ucf
-	cd $(WORKDIR) && ngdbuild -p $(PART) -uc ../$(PROJECT)_rev_a.ucf ../$< ../$@
+TOPLEVEL        ?= $(PROJECT)
+CONSTRAINTS     ?= $(PROJECT).ucf
 
-$(WORKDIR)/%.tim:	$(WORKDIR)/%.vm6
-	cd $(WORKDIR) && taengine -l ../$@ -f $(PROJECT)_rev_a
+COMMON_OPTS     ?= -intstyle xflow
+XST_OPTS        ?=
+NGDBUILD_OPTS   ?=
 
-$(WORKDIR)/%.vm6:	$(WORKDIR)/%.ngd %.ucf
-	cd $(WORKDIR) && cpldfit $(CPLDFITFLAGS) -p $(PART) ../$<
+XC3SPROG_EXE    ?= xc3sprog
+XC3SPROG_CABLE  ?= JTAGHS2
+XC3SPROG_OPTS   ?= -v -e -J 150000 -p 0
 
-%.jed:	$(WORKDIR)/%.vm6
-	hprep6 -i $<
-	cp $@ ../Binary/
+###########################################################################
+# Internal variables, platform-specific definitions, and macros
+###########################################################################
 
-timing:	$(WORKDIR)/$(PROJECT)_rev_a.tim
+ifeq ($(OS),Windows_NT)
+    XILINX := $(shell cygpath -m $(XILINX))
+    CYG_XILINX := $(shell cygpath $(XILINX))
+    EXE := .exe
+    XILINX_PLATFORM ?= nt64
+    PATH := $(PATH):$(CYG_XILINX)/bin/$(XILINX_PLATFORM)
+else
+    EXE :=
+    XILINX_PLATFORM ?= lin64
+    PATH := $(PATH):$(XILINX)/bin/$(XILINX_PLATFORM)
+endif
+
+VTEST = $(foreach file,$(wildcard *$(TEST_POSTFIX).v),$(file))
+VHDTEST = $(foreach file,$(wildcard *$(TEST_POSTFIX).vhd),$(file))
+TEST_NAMES = $(foreach file,$(VTEST) $(VHDTEST),$(basename $(file)))
+TEST_EXES = $(foreach test,$(TEST_NAMES),build/isim_$(test)$(EXE))
+
+RUN = @echo "\n\e[1;33m$(shell date +"%Y-%m-%d %T"): ======== $(1) ========\e[m\n"; \
+	cd build && $(XILINX)/bin/$(XILINX_PLATFORM)/$(1)
+
+# isim executables don't work without this
+export XILINX
+
+
+###########################################################################
+# Default build
+###########################################################################
+
+default: clean cpld
+
+all: clean cpld prog
 
 clean:
-	rm -rvf tmp
-	rm *.jed
-	rm *.prj
+	rm -rf build
 
-flash:	$(PROJECT)_rev_a.jed
-	@echo "setMode -bs\n"\
-	"setCable -p $(CABLE)\n"\
-	"identify\n"\
-	"assignfile -p 1 -file $<\n"\
-	"erase -p 1\n"\
-	"program -p 1\n"\
-	"verify -p 1\n"\
-	"exit" > batch
-	LD_PRELOAD=/opt/Xilinx/usb-driver/libusb-driver.so impact -batch batch
+build/$(PROJECT).prj: project.cfg
+	@echo "Updating $@"
+	@mkdir -p build
+	@rm -f $@
+	@$(foreach file,$(VSOURCE),echo "verilog work \"../$(file)\"" >> $@;)
+	@$(foreach file,$(VHDSOURCE),echo "vhdl work \"../$(file)\"" >> $@;)
+
+build/$(PROJECT).scr: project.cfg
+	@echo "Updating $@"
+	@mkdir -p build
+	@rm -f $@
+	@echo "run" \
+	    "-ifn $(PROJECT).prj" \
+	    "-ofn $(PROJECT).ngc" \
+	    "-ifmt mixed" \
+	    "$(XST_OPTS)" \
+	    "-top $(TOPLEVEL)" \
+	    "-ofmt NGC" \
+	    "-p $(TARGET_PART)" \
+	    > build/$(PROJECT).scr
+
+	
+# make CPLD: xst -> ngdbuild -> cpldfit -> hprep6
+cpld: project.cfg $(VSOURCE) $(CONSTRAINTS) build/$(PROJECT).prj build/$(PROJECT).scr
+	@mkdir -p  build/  build/xst/  build/ngdbuild/  build/cpldfit/  build/hprep6/
+
+# input the HDL sources, output an NGC; move all files to xst/
+	$(call RUN,xst) $(COMMON_OPTS) $(XST_OPTS) \
+	    -ifn $(PROJECT).scr
+	@find build/ -maxdepth 1 -type f -print0 | xargs -0 mv -t build/xst/
+
+# input the NGC and the UCF, output a NGD
+	$(call RUN,ngdbuild) $(COMMON_OPTS) $(NGDBUILD_OPTS) -p $(TARGET_PART) \
+		-uc ../$(CONSTRAINTS) \
+	    xst/$(PROJECT).ngc \
+		ngdbuild/$(PROJECT).ngd
+	@find build/ -maxdepth 1 -type f -print0 | xargs -0 mv -t build/ngdbuild/
+	@mv -f build/xlnx_auto_0_xdb/ build/ngdbuild/
+
+# input the NGD, output a VM6 (UG628 p.277)
+	$(call RUN,cpldfit) $(COMMON_OPTS) \
+	    -p $(TARGET_PART) \
+	    ngdbuild/$(PROJECT).ngd
+	
+	@find build/ -maxdepth 1 -type f -print0 | xargs -0 mv -t build/cpldfit/
+
+# input the VM6, output a JED (UG628 p.291)
+	$(call RUN,hprep6) -i cpldfit/$(PROJECT).vm6
+	@find build/ -maxdepth 1 -type f -print0 | xargs -0 mv -t build/hprep6/
+#	@echo "\e[1;32m======== OK ========\e[m\n"
+	@cp build/hprep6/$(PROJECT).jed ./build/$(PROJECT).jed
+	@echo "\n\e[1;32m$(shell date +"%Y-%m-%d %T"): ======== OK ========\e[m"
+	@echo "CPLD build output at ./build/$(PROJECT).jed \n"
+
+###########################################################################
+# Programming
+###########################################################################
+
+prog:
+	$(XC3SPROG_EXE) -c $(XC3SPROG_CABLE) $(XC3SPROG_OPTS) ./build/$(PROJECT).jed 
+
+###########################################################################
+
+# vim: set filetype=make: #

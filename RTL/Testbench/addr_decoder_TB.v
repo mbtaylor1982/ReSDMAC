@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-`include "addr_decoder.v"
+`include "../addr_decoder.v"
 
 module addr_decoder_tb; 
 

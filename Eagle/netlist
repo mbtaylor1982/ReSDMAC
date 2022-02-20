@@ -1,13 +1,13 @@
 Netlist
 
-Exported from SDMAC.sch at 10/02/2022 21:31
+Exported from SDMAC.sch at 20/02/2022 16:39
 
 EAGLE Version 9.6.2 Copyright (c) 1988-2020 Autodesk, Inc.
 
 Net         Part     Pad      Pin        Sheet
 
 !AS         IC1      38       !AS        2
-            U1       130      NC_48      1
+            U1       32       I/O/GCK2   1
 
 !BERR       IC1      47       !BERR      2
             U1       119      NC_40      1
@@ -22,7 +22,7 @@ Net         Part     Pad      Pin        Sheet
             U1       78       NC_6       1
 
 !CS         IC1      45       !CS        2
-            U1       121      NC_42      1
+            U1       3        I/O/GTS4   1
 
 !CSS        IC1      67       !CSS       2
             U1       97       NC_22      1
@@ -43,7 +43,7 @@ Net         Part     Pad      Pin        Sheet
             U1       100      NC_24      1
 
 !DS         IC1      39       !DS        2
-            U1       129      NC_47      1
+            U1       38       I/O/GCK3   1
 
 !DSACK0     IC1      41       !DSACK0    2
             U1       126      NC_45      1
@@ -64,7 +64,7 @@ Net         Part     Pad      Pin        Sheet
             U1       94       NC_19      1
 
 !RST        IC1      46       !RESET     2
-            U1       120      NC_41      1
+            U1       143      I/O/GSR    1
 
 !STERM      IC1      43       !STERM     2
             U1       125      NC_44      1
@@ -73,7 +73,7 @@ A12         A12      2        2          3
             U1       15       NC_10      1
 
 CLK         IC1      44       SCLK       2
-            U1       124      NC_43      1
+            U1       30       I/O/GCK1   1
 
 CPU_ADDR2   IC1      76       A2         2
             U1       87       NC_14      1
@@ -160,13 +160,13 @@ CPU_DATAD22 IC1      24       D22        2
             U1       4        NC_2       1
 
 CPU_DATAD23 IC1      25       D23        2
-            U1       3        I/O/GTS4   1
+            U1       17       NC_12      1
 
 CPU_DATAD24 IC1      26       D24        2
-            U1       2        I/O/GTS3   1
+            U1       16       NC_11      1
 
 CPU_DATAD25 IC1      27       D25        2
-            U1       143      I/O/GSR    1
+            U1       142      NC         1
 
 CPU_DATAD26 IC1      28       D26        2
             U1       140      NC_58      1
@@ -291,7 +291,7 @@ P_DATA15    IC1      64       NC7        2
             U1       98       NC_23      1
 
 R!W         IC1      37       R/!W!      2
-            U1       131      NC_49      1
+            U1       2        I/O/GTS3   1
 
 RD_LED      RD       C        C          3
             U1       13       NC_8       1
