@@ -20,8 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-`include "../addr_decoder.v"
-
 module addr_decoder_tb; 
 
 //inputs
@@ -34,13 +32,30 @@ wire _CSS;
 wire _CSX0;
 wire _CSX1;
 
+wire _DAWR;
+wire _WTC;
+wire _CNTR;
+wire _ST_DMA;
+wire _FLUSH;
+wire _CLR_INT;
+wire _ISTR;
+wire _SP_DMA;
+
 addr_decoder dut(
     .ADDR (ADDR[6:2]),
     ._CS (_CS),
     ._AS (_AS),
     ._CSS (_CSS),
     ._CSX0 (_CSX0),
-    ._CSX1 (_CSX1)
+    ._CSX1 (_CSX1),
+    ._DAWR (_DAWR),
+    ._WTC (_WTC),
+    ._CNTR (_CNTR),
+    ._ST_DMA (_ST_DMA),
+    ._FLUSH (_FLUSH),
+    ._CLR_INT (_CLR_INT),
+    ._ISTR (_ISTR),
+    ._SP_DMA (_SP_DMA)
 );
      
     initial begin

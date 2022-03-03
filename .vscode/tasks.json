@@ -31,6 +31,28 @@
             "args": [
                 "all"
             ]           
+        },
+        {
+            "label": "Test (Simulate)",
+            "type": "shell",
+            "options": {"cwd": "./RTL"},
+            "command": "make",
+            "args": [
+                "test"
+            ], 
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }          
+        },
+        {
+            "label": "Clean Build",
+            "type": "shell",
+            "options": {"cwd": "./RTL"},
+            "command": "make",
+            "args": [
+                "clean"
+            ]
         }
     ],
     "problemMatcher" : "$lessCompile"

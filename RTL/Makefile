@@ -32,6 +32,8 @@ COMMON_OPTS     ?= -intstyle xflow
 XST_OPTS        ?=
 NGDBUILD_OPTS   ?=
 
+TEST_POSTFIX	?= _tb
+
 XC3SPROG_EXE    ?= xc3sprog
 XC3SPROG_CABLE  ?= JTAGHS2
 XC3SPROG_OPTS   ?= -v -e -J 150000 -p 0
@@ -52,10 +54,12 @@ else
     PATH := $(PATH):$(XILINX)/bin/$(XILINX_PLATFORM)
 endif
 
+
 VTEST = $(foreach file,$(wildcard *$(TEST_POSTFIX).v),$(file))
 VHDTEST = $(foreach file,$(wildcard *$(TEST_POSTFIX).vhd),$(file))
 TEST_NAMES = $(foreach file,$(VTEST) $(VHDTEST),$(basename $(file)))
 TEST_EXES = $(foreach test,$(TEST_NAMES),build/isim_$(test)$(EXE))
+
 
 RUN = @echo "\n\e[1;33m$(shell date +"%Y-%m-%d %T"): ======== $(1) ========\e[m\n"; \
 	cd build && $(XILINX)/bin/$(XILINX_PLATFORM)/$(1)
@@ -96,6 +100,11 @@ build/$(PROJECT).scr: project.cfg
 	    "-p $(TARGET_PART)" \
 	    > build/$(PROJECT).scr
 
+build/$(PROJECT)_sim.prj: build/$(PROJECT).prj
+	@cp build/$(PROJECT).prj $@
+	@$(foreach file,$(VTEST),echo "verilog work \"../$(file)\"" >> $@;)
+	@$(foreach file,$(VHDTEST),echo "vhdl work \"../$(file)\"" >> $@;)
+	@echo "verilog work $(XILINX)/verilog/src/glbl.v" >> $@
 	
 # make CPLD: xst -> ngdbuild -> cpldfit -> hprep6
 cpld: project.cfg $(VSOURCE) $(CONSTRAINTS) build/$(PROJECT).prj build/$(PROJECT).scr
@@ -128,6 +137,33 @@ cpld: project.cfg $(VSOURCE) $(CONSTRAINTS) build/$(PROJECT).prj build/$(PROJECT
 	@cp build/hprep6/$(PROJECT).jed ./build/$(PROJECT).jed
 	@echo "\n\e[1;32m$(shell date +"%Y-%m-%d %T"): ======== OK ========\e[m"
 	@echo "CPLD build output at ./build/$(PROJECT).jed \n"
+
+##########################################################################
+# Testing (work in progress)
+###########################################################################
+
+trace: project.cfg $(BITFILE)
+	$(call RUN,trce) $(COMMON_OPTS) $(TRACE_OPTS) \
+	    $(PROJECT).ncd $(PROJECT).pcf
+
+test: buildtest runtest
+
+runtest: ${TEST_NAMES}
+
+${TEST_NAMES}:
+	@grep --no-filename --no-messages 'ISIM:' $@.{v,vhd} | cut -d: -f2 > build/isim_$@.cmd
+	@echo "run all" >> build/isim_$@.cmd
+	cd build ; ./isim_$@$(EXE) -tclbatch isim_$@.cmd ;
+	if grep -q ERROR build/$@.error; then vcd build/$@.vcd ; exit 1; fi
+
+buildtest: ${TEST_EXES}
+
+build/isim_%$(EXE): build/$(PROJECT)_sim.prj $(VSOURCE) $(VHDSOURCE) ${VTEST} $(VHDTEST)
+	$(call RUN,fuse) $(COMMON_OPTS) $(FUSE_OPTS) \
+	    -prj $(PROJECT)_sim.prj \
+	    -d test=$* -d vcd=$*.vcd \
+	    -o isim_$*$(EXE) \
+	    work.$* work.glbl
 
 ###########################################################################
 # Programming
