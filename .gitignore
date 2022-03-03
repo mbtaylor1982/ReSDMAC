@@ -3,3 +3,4 @@
 *.vcd
 /Eagle/SDMAC.s#*
 /Eagle/SDMAC.b#*
+/RTL/build
