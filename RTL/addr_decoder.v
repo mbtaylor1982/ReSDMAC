@@ -23,17 +23,9 @@ module addr_decoder(ADDR,
                     _AS,
                     _CSS,
                     _CSX0,
-                    _CSX1,
-                    _DAWR,
-                    _WTC,
-                    _CNTR,
-                    _ST_DMA,
-                    _FLUSH,
-                    _CLR_INT,
-                    _ISTR,
-                    _SP_DMA);
+                    _CSX1);
 
-input [6:2] ADDR;    // CPU address Bus
+input [7:0] ADDR;    // CPU address Bus
 input _CS;           // SDMAC Chip Select !SCSI from Fat Garry.
 input _AS;           // CPU Address Strobe.
 
@@ -41,69 +33,40 @@ output _CSS;         // Port 0 chip select (SCSI WD33C93A)
 output _CSX0;        // Port 1A and 1B chip select (XT/ ATA)
 output _CSX1;        // Port 2 chip select (XT)
 
-//Select Signals for internal registers.
-output _DAWR;
-output _WTC;
-output _CNTR;
-output _ST_DMA;
-output _FLUSH;
-output _CLR_INT;
-output _ISTR;
-output _SP_DMA;
-
-reg [11:0] SELECT;
+reg [3:0] SELECT;
 
 always @(ADDR) begin
-    case (ADDR)
-      5'b00000 : SELECT = 12'b011111111111; // $00 DAWR
-      5'b00001 : SELECT = 12'b101111111111; // $04 WTC
-      5'b00010 : SELECT = 12'b110111111111; // $08 CNTR
-      //Address Conuter Register in Ramsey     $0C ACR
-      5'b00100 : SELECT = 12'b111011111111; // $10 ST_DMA
-      5'b00101 : SELECT = 12'b111101111111; // $14 FLUSH
-      5'b00110 : SELECT = 12'b111110111111; // $18 CLR_INT
-      5'b00111 : SELECT = 12'b111111011111; // $1C ISTR
-      5'b01111 : SELECT = 12'b111111101111; // $3C SP_DMA
-      
+    case (ADDR)     
       //PORT 0
-      5'b10000 : SELECT = 12'b111111110111; // $40
-      5'b10001 : SELECT = 12'b111111110111; // $44
-      5'b10010 : SELECT = 12'b111111110111; // $48
-      5'b10011 : SELECT = 12'b111111110111; // $4C
+      8'h40 : SELECT <= 4'b0111; // $40
+      8'h44 : SELECT <= 4'b0111; // $44
+      8'h48 : SELECT <= 4'b0111; // $48
+      8'h4C : SELECT <= 4'b0111; // $4C
       
       //PORT 1A
-      5'b10100 : SELECT = 12'b111111111011; // $50
-      5'b10101 : SELECT = 12'b111111111011; // $54
-      5'b10110 : SELECT = 12'b111111111011; // $58
-      5'b10111 : SELECT = 12'b111111111011; // $5C
+      8'h50 : SELECT <= 4'b1011; // $50
+      8'h54 : SELECT <= 4'b1011; // $54
+      8'h58 : SELECT <= 4'b1011; // $58
+      8'h53 : SELECT <= 4'b1011; // $5C
       
       //PORT 2
-      5'b11000 : SELECT = 12'b111111111101; // $60
-      5'b11001 : SELECT = 12'b111111111101; // $64
-      5'b11010 : SELECT = 12'b111111111101; // $68
-      5'b11011 : SELECT = 12'b111111111101; // $6C
+      8'h60 : SELECT <= 4'b1101; // $60
+      8'h64 : SELECT <= 4'b1101; // $64
+      8'h68 : SELECT <= 4'b1101; // $68
+      8'h6C : SELECT <= 4'b1101; // $6C
 
       //PORT 1B
-      5'b11100 : SELECT = 12'b111111111110; // $70
-      5'b11101 : SELECT = 12'b111111111110; // $74
-      5'b11110 : SELECT = 12'b111111111110; // $78
-      5'b11111 : SELECT = 12'b111111111110; // $7C
+      8'h70 : SELECT <= 4'b1110; // $70
+      8'h74 : SELECT <= 4'b1110; // $74
+      8'h78 : SELECT <= 4'b1110; // $78
+      8'h7C : SELECT <= 4'b1110; // $7C
       
-      default  : SELECT = 12'b111111111111; 
+      default  : SELECT <= 4'b1111; 
     endcase
 end
 
 wire _ADDR_VALID;
 assign _ADDR_VALID = _CS || _AS;
-
-assign _DAWR    = SELECT[11] || _ADDR_VALID;
-assign _WTC     = SELECT[10] || _ADDR_VALID;
-assign _CNTR    = SELECT[9]  || _ADDR_VALID;
-assign _ST_DMA  = SELECT[8]  || _ADDR_VALID;
-assign _FLUSH   = SELECT[7]  || _ADDR_VALID;
-assign _CLR_INT = SELECT[6]  || _ADDR_VALID;
-assign _ISTR    = SELECT[5]  || _ADDR_VALID;
-assign _SP_DMA  = SELECT[4]  || _ADDR_VALID;
 
 assign _CSS     = SELECT[3]  || _ADDR_VALID;
 assign _CSX0    = (SELECT[0] && SELECT[2])  || _ADDR_VALID; 

@@ -73,49 +73,24 @@ module RESDMAC(
     output _LED_WR, //Indicate write to SDMAC or peripherial port.
     output _LED_DMA  //Indicate DMA cycle/ busmaster.
     
+
 );
 wire [31:0] DATA_OUT;
-reg [31:0] DATA_IN;
-
-//Registers
-reg [1:0] DAWR;     //Data Acknowledge Width
-reg [23:0] WTC;     //Word Transfer Count
-//reg [7:0] CNTR;     //Control Register (See ctrl_reg.v)
-reg ST_DMA;         //Start DMA 
-reg FLUSH;          //Flush FIFO
-reg CLR_INT;        //Clear Interrupts
-reg [31:0] ISTR;    //Interrupt Status Register
-reg SP_DMS;         //Stop DMA 
-
+wire [31:0] PDATA_OUT;
+wire [31:0] RDATA_OUT;
+wire [31:0] DATA_IN;
 
 //wire [7:0] int_addr;
 //assign int_addr = {1'b0, ADDR[6:2], 2'b00};
 
 
-wire _DAWR_EN;
-wire _WTC_EN;
-wire _CTR_EN;
-wire _ST_DMA_EN;
-wire _FLUSH_EN;
-wire _CLR_INT_EN;
-wire _ISTR_EN;
-wire _SP_DMA_EN;
-
 addr_decoder DECODER(
-    .ADDR (ADDR[6:2]),
+    .ADDR ({1'b0,ADDR,2'b0}),
     ._CS (_CS),
     ._AS (_AS),
     ._CSS (_CSS),
     ._CSX0 (_CSX0),
-    ._CSX1 (_CSX1),
-    ._DAWR (_DAWR_EN),
-    ._WTC (_WTC_EN),
-    ._CNTR (_CTR_EN),
-    ._ST_DMA (_ST_DMA_EN),
-    ._FLUSH  (_FLUSH_EN),
-    ._CLR_INT (_CLR_INT_EN),
-    ._ISTR (_ISTR_EN),
-    ._SP_DMA (_SP_DMA_EN)
+    ._CSX1 (_CSX1)
 );
 
 wire _DATA_PORT_ACTIVE;
@@ -129,24 +104,24 @@ io_port D_PORT(
     .DATA_IN (DATA_IN),
     ._IOR (_IOR), 
     ._IOW (_IOW),
-    .DATA_OUT (DATA_OUT),
+    .DATA_OUT (PDATA_OUT),
     .P_DATA (PD_PORT)
 );
 
-ctrl_reg CNTR(
-    .DIN (DATA[5:0]),
-    ._ENA (_CTR_EN),
+registers int_reg(
+    .ADDR ({1'b0,ADDR,2'b0}),
+    ._CS (_CS),
+    ._AS (_AS),
     ._DS (_DS),
+    ._RST (_RST),
     .R_W (R_W),
-    ._RST (_RST)
-    //.DOUT (DOUT[5:0])
+    .DIN (DATA_IN),
+    .DOUT (RDATA_OUT)
 );
 
-wire [5:0] DOUT;
-
-//assign DATA_OUT = DATA_PORT_ACTIVE ? 32'hz,   
+assign DATA_OUT = _DATA_PORT_ACTIVE ? RDATA_OUT : PDATA_OUT;
 assign DATA = _CS ? 32'hz : DATA_OUT;
-//assign DATA_IN = DATA;
+assign DATA_IN = DATA;
 
 endmodule
 

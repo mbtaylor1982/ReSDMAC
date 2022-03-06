@@ -89,7 +89,7 @@ io_port dut(
         _ENA = 0;                       #20
 
       
-        #40000 $finish;
+        $finish;
     end
     
     

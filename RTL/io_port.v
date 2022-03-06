@@ -37,10 +37,11 @@ output _IOW;                 //False on Write
 
 output [31:0] DATA_OUT;     // CPU data output.
 
+
 assign _IOR = !R_W;
 assign _IOW = R_W;
 
-assign P_DATA = _ENA ? 16'hzzzz : DATA_IN[15:0]; 
-assign DATA_OUT = {P_DATA, P_DATA};
+assign P_DATA =  DATA_IN[15:0]; 
+assign DATA_OUT = _ENA ? 32'hz : {P_DATA, P_DATA};
 endmodule
 
