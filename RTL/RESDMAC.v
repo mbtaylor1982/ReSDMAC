@@ -80,6 +80,8 @@ wire [31:0] PDATA_OUT;
 wire [31:0] RDATA_OUT;
 wire [31:0] DATA_IN;
 
+wire REG_TERM;
+
 //wire [7:0] int_addr;
 //assign int_addr = {1'b0, ADDR[6:2], 2'b00};
 
@@ -109,6 +111,7 @@ io_port D_PORT(
 );
 
 registers int_reg(
+    .CLK (CLK)
     .ADDR ({1'b0,ADDR,2'b0}),
     ._CS (_CS),
     ._AS (_AS),
@@ -116,12 +119,15 @@ registers int_reg(
     ._RST (_RST),
     .R_W (R_W),
     .DIN (DATA_IN),
-    .DOUT (RDATA_OUT)
+    .DOUT (RDATA_OUT),
+    .STERM (REG_TERM)
 );
 
 assign DATA_OUT = _DATA_PORT_ACTIVE ? RDATA_OUT : PDATA_OUT;
 assign DATA = _CS ? 32'hz : DATA_OUT;
 assign DATA_IN = DATA;
+
+assign STERM = _CS ? 1'bz : REG_TERM;
 
 endmodule
 

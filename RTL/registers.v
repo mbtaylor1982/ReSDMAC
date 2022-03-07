@@ -1,13 +1,16 @@
-module registers(ADDR,
+module registers(CLK,
+                ADDR,
                 _CS,
                 _AS,
                 _DS, 
                 _RST, 
                 R_W,
                 DIN, 
-                DOUT);
+                DOUT,
+                STERM);
 
 
+input CLK;
 input [7:0] ADDR;   // CPU Address Bus
 input _CS;          // SDMAC Chip Select !SCSI from Fat Garry.
 input _AS;          // CPU Address Strobe.
@@ -17,9 +20,11 @@ input [31:0] DIN;   // CPU Data Bus
 input R_W;          // CPU read write signal
 
 output [31:0] DOUT;
+output STERM;
 
 reg [31:0] DOUT;
 reg [7:0] addr_int; // address latched on neg edge _AS
+reg STERM;
 
 
 //Registers
@@ -116,6 +121,15 @@ always @ (negedge _DS, negedge _RST) begin
 
     end
         
+end
+
+always @(posedge CLK or posedge _AS) begin
+    
+    if (_AS == 1'b1) begin
+        STERM <= 1'b1;
+    end else begin
+        STERM <= ADDR[6];
+    end
 end
 
 endmodule
