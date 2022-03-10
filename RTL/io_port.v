@@ -18,7 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-module io_port(ADDR,
+module io_port(CLK,
+                ADDR,
                 _CS,
                 _AS,
                 _DS,
@@ -28,11 +29,12 @@ module io_port(ADDR,
                 DATA_OUT,
                 _CSS,
                 _CSX0,
-                _CSX1
+                _CSX1,
                 P_DATA,
                 _IOR,
                 _IOW);
 
+input CLK;           // CPU CLK
 input [4:0] ADDR;    // CPU address Bus
 input _CS;           // SDMAC Chip Select !SCSI from Fat Garry.
 input _AS;           // CPU Address Strobe.
@@ -54,6 +56,7 @@ output _CSX1;        // Port 2 chip select (XT)
 wire [15:0] PDATA_IN;
 reg [31:0] DATA_OUT;
 reg [15:0] PDATA_OUT;
+reg TERM;
 
 //Port0 $00DD0040-4F 
 localparam PORT0_RD = {3'h4,1'b1,1'b0};
@@ -64,12 +67,12 @@ localparam PORT1A_RD = {3'h5,1'b1,1'b0};
 localparam PORT1A_WR = {3'h5,1'b0,1'b0};
 
 //Port2 $00DD0060-6F 
-localparam PORT1A_RD = {3'h6,1'b1,1'b0};
-localparam PORT1A_WR = {3'h6,1'b0,1'b0};
+localparam PORT2_RD = {3'h6,1'b1,1'b0};
+localparam PORT2_WR = {3'h6,1'b0,1'b0};
 
 //Port1B $00DD0070-7F
-localparam PORT1A_RD = {3'h7,1'b1,1'b0};
-localparam PORT1A_WR = {3'h7,1'b0,1'b0};
+localparam PORT1B_RD = {3'h7,1'b1,1'b0};
+localparam PORT1B_WR = {3'h7,1'b0,1'b0};
 
 always @ (negedge _DS, negedge _RST) begin
         
@@ -100,7 +103,7 @@ always @(posedge CLK or posedge _AS) begin
     if (_AS == 1'b1) begin
         TERM <= 1'b1;
     end else begin
-        TERM <= !ADDR[6];
+        TERM <= !ADDR[4];
     end
 end
 

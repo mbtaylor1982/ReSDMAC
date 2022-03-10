@@ -38,7 +38,7 @@ module RESDMAC(
     input _RST,         //System Reset
     input _BERR,        //Bus Error 
 
-    input [4:0] ADDR,   //CPU address Bus, bits are actually [6:2]
+    input [6:2] ADDR,   //CPU address Bus, bits are actually [6:2]
     input A12,          // additional address input to allow this to co-exist with A4000 IDE card.
     
     // Bus Mastering/Arbitration.
@@ -86,7 +86,8 @@ wire DATA_PORT_ACTIVE;
 assign DATA_PORT_ACTIVE = ADDR[4];
 
 // 16/8 bit port for SCSI WD33C93A IC.
-io_port PD_PORT(
+io_port D_PORT(
+    .CLK (CLK),
     .ADDR (ADDR),
     ._CS (_CS),
     ._AS (_AS),
@@ -94,7 +95,7 @@ io_port PD_PORT(
     .R_W (R_W),
     ._RST (_RST),
     .DATA_IN (DATA_IN),
-    .DATA_OUT (PDATA_OUT)
+    .DATA_OUT (PDATA_OUT),
     ._CSS (_CSS),
     ._CSX0 (_CSX0),
     ._CSX1 (_CSX1),
@@ -104,7 +105,7 @@ io_port PD_PORT(
 );
 
 registers int_reg(
-    .CLK (CLK)
+    .CLK (CLK),
     .ADDR (ADDR),
     ._CS (_CS),
     ._AS (_AS),

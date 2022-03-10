@@ -110,7 +110,7 @@ always @ (negedge _DS, negedge _RST) begin
             //ISTR_WR : ISTR      <= DIN[8:0];
 
             TEST_RD   : DOUT    <= TEST;
-            TESR_WR   : TEST    <= DIN;
+            TEST_WR   : TEST    <= DIN;
             
             SP_DMA_RD : SP_DMA    <= ~SP_DMA;
             SP_DMA_WR : SP_DMA    <= ~SP_DMA;
@@ -125,7 +125,7 @@ always @(posedge CLK or posedge _AS) begin
     if (_AS == 1'b1) begin
         TERM <= 1'b1;
     end else begin
-        TERM <= ADDR[6];
+        TERM <= ADDR[4];
     end
 end
 
