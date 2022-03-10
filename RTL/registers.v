@@ -7,11 +7,11 @@ module registers(CLK,
                 R_W,
                 DIN, 
                 DOUT,
-                STERM);
+                TERM);
 
 
 input CLK;
-input [7:0] ADDR;   // CPU Address Bus
+input [4:0] ADDR;   // CPU Address Bus, bits are actually [6:2]
 input _CS;          // SDMAC Chip Select !SCSI from Fat Garry.
 input _AS;          // CPU Address Strobe.
 input _DS;          // CPU Data Strobe.
@@ -20,11 +20,10 @@ input [31:0] DIN;   // CPU Data Bus
 input R_W;          // CPU read write signal
 
 output [31:0] DOUT;
-output STERM;
+output TERM;
 
 reg [31:0] DOUT;
-reg [7:0] addr_int; // address latched on neg edge _AS
-reg STERM;
+reg TERM;
 
 
 //Registers
@@ -37,47 +36,43 @@ reg CLR_INT;        //Clear Interrupts
 reg [8:0] ISTR;     //Interrupt Status Register
 reg SP_DMA;         //Stop DMA 
 
+reg [31:0] TEST;
+
 //DAWR $00DD0000 (WRITE ONLY)
-//localparam DAWR_RD = {8'h00,1'b1};
-localparam DAWR_WR = {8'h00,1'b0};
+//localparam DAWR_RD = {'h0,1'b1,1'b0};
+localparam DAWR_WR = {5'h0,1'b0,1'b0};
 
 //WTC $00DD0004
-localparam WTC_RD = {8'h04,1'b1};
-localparam WTC_WR = {8'h04,1'b0};
+localparam WTC_RD = {5'h1,1'b1,1'b0};
+localparam WTC_WR = {5'h1,1'b0,1'b0};
 
 //CNTR $00DD0008
-localparam CNTR_RD = {8'h08,1'b1};
-localparam CNTR_WR = {8'h08,1'b0};
+localparam CNTR_RD = {5'h2,1'b1,1'b0};
+localparam CNTR_WR = {5'h2,1'b0,1'b0};
 
 //ST_DMA $00DD0010
-localparam ST_DMA_RD = {8'h10,1'b1};
-localparam ST_DMA_WR = {8'h10,1'b0};
+localparam ST_DMA_RD = {5'h4,1'b1,1'b0};
+localparam ST_DMA_WR = {5'h4,1'b0,1'b0};
 
 //FLUSH $00DD0014
-localparam FLUSH_RD = {8'h14,1'b1};
-localparam FLUSH_WR = {8'h14,1'b0};
+localparam FLUSH_RD = {5'h5,1'b1,1'b0};
+localparam FLUSH_WR = {5'h5,1'b0,1'b0};
 
 //CINT $00DD0018
-localparam CINT_RD = {8'h18,1'b1};
-localparam CINT_WR = {8'h18,1'b0};
+localparam CINT_RD = {5'h6,1'b1,1'b0};
+localparam CINT_WR = {5'h6,1'b0,1'b0};
 
 //ISTR $00DD001C (READ ONLY)
-localparam ISTR_RD = {8'h1C,1'b1};
-//localparam ISTR_WR = {8'h1C,1'b0};
+localparam ISTR_RD = {5'h7,1'b1,1'b0};
+//localparam ISTR_WR = {5'h7,1'b0,1'b0};
+
+//TEST $00DD0020
+localparam TEST_RD = {5'h8,1'b1,1'b0};
+localparam TEST_WR = {5'h8,1'b0,1'b0};
 
 //SP_DMA $00DD003C
-localparam SP_DMA_RD = {8'h3C,1'b1};
-localparam SP_DMA_WR = {8'h3C,1'b0};
-
-always @ (negedge _AS, negedge _RST) begin
-    if (_RST  == 1'b0) begin
-        addr_int <= 8'hff; 
-    end else begin
-        if ((_AS || _CS) == 1'b0) begin
-            addr_int <= ADDR;  
-        end
-    end
-end
+localparam SP_DMA_RD = {5'hf,1'b1,1'b0};
+localparam SP_DMA_WR = {5'hf,1'b0,1'b0};
 
 always @ (negedge _DS, negedge _RST) begin
         
@@ -92,7 +87,7 @@ always @ (negedge _DS, negedge _RST) begin
         SP_DMA  <= 1'h0;
     end else begin
 
-        case ({addr_int, R_W})
+        case ({ADDR, R_W, _CS})
             //DAWR_RD : DOUT      <= {30'b0,DAWR};
             DAWR_WR : DAWR      <= DIN[1:0];
             
@@ -113,10 +108,12 @@ always @ (negedge _DS, negedge _RST) begin
             
             ISTR_RD : DOUT      <= {23'b0,ISTR};
             //ISTR_WR : ISTR      <= DIN[8:0];
+
+            TEST_RD   : DOUT    <= TEST;
+            TESR_WR   : TEST    <= DIN;
             
             SP_DMA_RD : SP_DMA    <= ~SP_DMA;
             SP_DMA_WR : SP_DMA    <= ~SP_DMA;
-            default   : DOUT      <= 'b0;
         endcase
 
     end
@@ -126,9 +123,9 @@ end
 always @(posedge CLK or posedge _AS) begin
     
     if (_AS == 1'b1) begin
-        STERM <= 1'b1;
+        TERM <= 1'b1;
     end else begin
-        STERM <= ADDR[6];
+        TERM <= ADDR[6];
     end
 end
 

@@ -15,7 +15,7 @@ Assembly variant:
 | Part | Value               | Device                   | Package      | Library       | Sheet |
 | ---- | ------------------- | ------------------------ | ------------ | ------------- | ----- |
 | A12  |                     | JP1E                     | JP1          | jumper        | 3     |
-| C1   | 10uF                | C_CHIP-0805(2012-METRIC) | CAPC2012X110 | Capacitor     | 3     |  
+| C1   | 10uF                | C_CHIP-0805(2012-METRIC) | CAPC2012X110 | Capacitor     | 3     |
 | C10  | 0.1uF               | C_CHIP-0805(2012-METRIC) | CAPC2012X110 | Capacitor     | 3     |
 | C11  | 0.1uF               | C_CHIP-0805(2012-METRIC) | CAPC2012X110 | Capacitor     | 3     |
 | C12  | 0.1uF               | C_CHIP-0805(2012-METRIC) | CAPC2012X110 | Capacitor     | 3     |

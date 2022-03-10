@@ -38,7 +38,7 @@ module RESDMAC(
     input _RST,         //System Reset
     input _BERR,        //Bus Error 
 
-    input [6:2] ADDR,   //CPU address Bus
+    input [4:0] ADDR,   //CPU address Bus, bits are actually [6:2]
     input A12,          // additional address input to allow this to co-exist with A4000 IDE card.
     
     // Bus Mastering/Arbitration.
@@ -82,37 +82,30 @@ wire [31:0] DATA_IN;
 
 wire REG_TERM;
 
-//wire [7:0] int_addr;
-//assign int_addr = {1'b0, ADDR[6:2], 2'b00};
-
-
-addr_decoder DECODER(
-    .ADDR ({1'b0,ADDR,2'b0}),
-    ._CS (_CS),
-    ._AS (_AS),
-    ._CSS (_CSS),
-    ._CSX0 (_CSX0),
-    ._CSX1 (_CSX1)
-);
-
-wire _DATA_PORT_ACTIVE;
-assign _DATA_PORT_ACTIVE = _CSS && _CSX0 && _CSX1;
-
+wire DATA_PORT_ACTIVE;
+assign DATA_PORT_ACTIVE = ADDR[4];
 
 // 16/8 bit port for SCSI WD33C93A IC.
-io_port D_PORT(
-    ._ENA (_DATA_PORT_ACTIVE),
+io_port PD_PORT(
+    .ADDR (ADDR),
+    ._CS (_CS),
+    ._AS (_AS),
+    ._DS (_DS),
     .R_W (R_W),
+    ._RST (_RST),
     .DATA_IN (DATA_IN),
+    .DATA_OUT (PDATA_OUT)
+    ._CSS (_CSS),
+    ._CSX0 (_CSX0),
+    ._CSX1 (_CSX1),
+    .P_DATA (PD_PORT),
     ._IOR (_IOR), 
-    ._IOW (_IOW),
-    .DATA_OUT (PDATA_OUT),
-    .P_DATA (PD_PORT)
+    ._IOW (_IOW)
 );
 
 registers int_reg(
     .CLK (CLK)
-    .ADDR ({1'b0,ADDR,2'b0}),
+    .ADDR (ADDR),
     ._CS (_CS),
     ._AS (_AS),
     ._DS (_DS),
@@ -120,14 +113,26 @@ registers int_reg(
     .R_W (R_W),
     .DIN (DATA_IN),
     .DOUT (RDATA_OUT),
-    .STERM (REG_TERM)
+    .TERM (REG_TERM)
 );
 
-assign DATA_OUT = _DATA_PORT_ACTIVE ? RDATA_OUT : PDATA_OUT;
+assign DATA_OUT = DATA_PORT_ACTIVE ?  PDATA_OUT: RDATA_OUT;
 assign DATA = _CS ? 32'hz : DATA_OUT;
 assign DATA_IN = DATA;
 
-assign STERM = _CS ? 1'bz : REG_TERM;
+assign _DSACK = REG_TERM ? 2'bzz : 2'b00;
+
+assign _DMAEN = 1'b1;
+assign _INT = 1'bz;
+assign SIZ1 = 1'bz;
+assign _STERM = 1'bz;
+
+assign _BR = 1'bz;
+assign _BGACK = 1'bz;
+
+assign _LED_WR = (R_W || _CS);
+assign _LED_RD = (!R_W || _CS);
+
 
 endmodule
 
