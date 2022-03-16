@@ -2,4 +2,7 @@
     "git.showPushSuccessNotification": true,
     "verilog.clearPreviousOutput": true,
     "verilog.runInTerminal": true,
+    "verilog.icarusPersistentBuild": true,
+    "verilog.icarusTestbenchIncludePwd": true,
+    "verilog.icarusBuildDirectory": "RTL/build/",
 }

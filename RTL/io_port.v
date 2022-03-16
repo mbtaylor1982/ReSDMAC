@@ -32,7 +32,8 @@ module io_port(CLK,
                 _CSX1,
                 P_DATA,
                 _IOR,
-                _IOW);
+                _IOW,
+                _DSACK);
 
 input CLK;           // CPU CLK
 input [4:0] ADDR;    // CPU address Bus
@@ -52,11 +53,12 @@ output _IOW;         // False on Write
 output _CSS;         // Port 0 chip select (SCSI WD33C93A)
 output _CSX0;        // Port 1A and 1B chip select (XT/ ATA)
 output _CSX1;        // Port 2 chip select (XT)
+output [1:0] _DSACK;
 
 wire [15:0] PDATA_IN;
 reg [31:0] DATA_OUT;
 reg [15:0] PDATA_OUT;
-reg TERM;
+reg [1:0] _DSACK;
 
 //Port0 $00DD0040-4F 
 localparam PORT0_RD = {3'h4,1'b1,1'b0};
@@ -74,10 +76,10 @@ localparam PORT2_WR = {3'h6,1'b0,1'b0};
 localparam PORT1B_RD = {3'h7,1'b1,1'b0};
 localparam PORT1B_WR = {3'h7,1'b0,1'b0};
 
-always @ (negedge _DS, negedge _RST) begin
+always @ (negedge _DS or negedge _RST) begin
         
-    if (_RST == 1'b0) begin
-        PDATA_OUT <= 16'h0;
+    if (!_RST) begin
+        PDATA_OUT <= 16'hzzzz;
     end else begin
 
         case ({ADDR[4:2], R_W, _CS})
@@ -100,14 +102,19 @@ end
 
 always @(posedge CLK or posedge _AS) begin
     
-    if (_AS == 1'b1) begin
-        TERM <= 1'b1;
+    if (_AS) begin
+        _DSACK <= 2'b11;
     end else begin
-        TERM <= !ADDR[4];
+        case (ADDR[4:2])
+         3'h4 : _DSACK <= 2'b00;
+         3'h5 : _DSACK <= 2'b00;
+         3'h6 : _DSACK <= 2'b00;
+         3'h7 : _DSACK <= 2'b01;    
+        endcase
     end
 end
 
-assign _CSS  = !({ADDR[4:2],_CS}  ==  {3'h4,1'b0});
+assign _CSS  = !({ADDR[4:2], _CS}  ==  {3'h4, 1'b0});
 assign _CSX0 = !({ADDR[4],ADDR[2],_CS}  ==  {1'b1,1'b1,1'b0});
 assign _CSX1 = !({ADDR[4:2],_CS}  ==  {3'h6,1'b0});
 

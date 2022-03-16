@@ -17,6 +17,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
+//`include "RTL/registers.v"
+//`include "RTL/io_port.v"
 
 module RESDMAC(
     output _INT,        //Connected to INT2 needs to be Open Collector output.
@@ -80,14 +82,16 @@ wire [31:0] PDATA_OUT;
 wire [31:0] RDATA_OUT;
 wire [31:0] DATA_IN;
 
-wire REG_TERM;
+wire [1:0] _DSACK_IO;
+wire [1:0] _DSACK_REG;
+
 
 wire DATA_PORT_ACTIVE;
 assign DATA_PORT_ACTIVE = ADDR[4];
 
 // 16/8 bit port for SCSI WD33C93A IC.
 io_port D_PORT(
-    .CLK (CLK),
+    .CLK (SCLK),
     .ADDR (ADDR),
     ._CS (_CS),
     ._AS (_AS),
@@ -101,11 +105,12 @@ io_port D_PORT(
     ._CSX1 (_CSX1),
     .P_DATA (PD_PORT),
     ._IOR (_IOR), 
-    ._IOW (_IOW)
+    ._IOW (_IOW),
+    ._DSACK(_DSACK_IO)
 );
 
 registers int_reg(
-    .CLK (CLK),
+    .CLK (SCLK),
     .ADDR (ADDR),
     ._CS (_CS),
     ._AS (_AS),
@@ -114,14 +119,15 @@ registers int_reg(
     .R_W (R_W),
     .DIN (DATA_IN),
     .DOUT (RDATA_OUT),
-    .TERM (REG_TERM)
+    ._DSACK(_DSACK_REG)
 );
+
 
 assign DATA_OUT = DATA_PORT_ACTIVE ?  PDATA_OUT: RDATA_OUT;
 assign DATA = _CS ? 32'hz : DATA_OUT;
 assign DATA_IN = DATA;
 
-assign _DSACK = REG_TERM ? 2'bzz : 2'b00;
+assign _DSACK = _CS ? 2'bzz : _DSACK_IO & _DSACK_REG;
 
 assign _DMAEN = 1'b1;
 assign _INT = 1'bz;
@@ -133,6 +139,7 @@ assign _BGACK = 1'bz;
 
 assign _LED_WR = (R_W || _CS);
 assign _LED_RD = (!R_W || _CS);
+assign _LED_DMA = 1'b0; // harcode led to on for now.
 
 
 endmodule

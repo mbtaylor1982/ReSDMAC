@@ -7,7 +7,7 @@ module registers(CLK,
                 R_W,
                 DIN, 
                 DOUT,
-                TERM);
+                _DSACK);
 
 
 input CLK;
@@ -20,11 +20,10 @@ input [31:0] DIN;   // CPU Data Bus
 input R_W;          // CPU read write signal
 
 output [31:0] DOUT;
-output TERM;
+output [1:0] _DSACK;
 
 reg [31:0] DOUT;
-reg TERM;
-
+reg [1:0] _DSACK;
 
 //Registers
 reg [1:0] DAWR;     //Data Acknowledge Width
@@ -36,7 +35,7 @@ reg CLR_INT;        //Clear Interrupts
 reg [8:0] ISTR;     //Interrupt Status Register
 reg SP_DMA;         //Stop DMA 
 
-reg [31:0] TEST;
+//reg [31:0] TEST;
 
 //DAWR $00DD0000 (WRITE ONLY)
 //localparam DAWR_RD = {'h0,1'b1,1'b0};
@@ -67,8 +66,8 @@ localparam ISTR_RD = {5'h7,1'b1,1'b0};
 //localparam ISTR_WR = {5'h7,1'b0,1'b0};
 
 //TEST $00DD0020
-localparam TEST_RD = {5'h8,1'b1,1'b0};
-localparam TEST_WR = {5'h8,1'b0,1'b0};
+//localparam TEST_RD = {5'h8,1'b1,1'b0};
+//localparam TEST_WR = {5'h8,1'b0,1'b0};
 
 //SP_DMA $00DD003C
 localparam SP_DMA_RD = {5'hf,1'b1,1'b0};
@@ -85,6 +84,7 @@ always @ (negedge _DS, negedge _RST) begin
         CLR_INT <= 1'h0;
         ISTR    <= 9'h0;
         SP_DMA  <= 1'h0;
+        //TEST    <= 32'h0;
     end else begin
 
         case ({ADDR, R_W, _CS})
@@ -109,8 +109,8 @@ always @ (negedge _DS, negedge _RST) begin
             ISTR_RD : DOUT      <= {23'b0,ISTR};
             //ISTR_WR : ISTR      <= DIN[8:0];
 
-            TEST_RD   : DOUT    <= TEST;
-            TEST_WR   : TEST    <= DIN;
+            //TEST_RD   : DOUT    <= TEST;
+            //TEST_WR   : TEST    <= DIN;
             
             SP_DMA_RD : SP_DMA    <= ~SP_DMA;
             SP_DMA_WR : SP_DMA    <= ~SP_DMA;
@@ -122,10 +122,10 @@ end
 
 always @(posedge CLK or posedge _AS) begin
     
-    if (_AS == 1'b1) begin
-        TERM <= 1'b1;
+    if (_AS) begin
+        _DSACK <= 2'b11;
     end else begin
-        TERM <= ADDR[4];
+        _DSACK <= 2'b00;
     end
 end
 
