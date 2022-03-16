@@ -31,10 +31,10 @@ reg _AS;
 reg _DS;
 reg R_W;                   
 reg _RST;
-reg [31:0] DATA_IN;       
-reg [15:0] P_DATA_TX;
+reg [31:0] DATA_IN;  
 
-
+wire [31:0] DATA_OUT;
+wire [1:0] _DSACK_REG;
 
 registers dut(
     .CLK (CLK),
@@ -42,23 +42,19 @@ registers dut(
     ._CS (_CS),
     ._AS (_AS),
     ._DS (_DS),
-    .R_W (R_W),
     ._RST (_RST),
-    .DATA_IN (DATA_IN),
-    .DATA_OUT (DATA_OUT),
-    ._CSS (_CSS),
-    ._CSX0 (_CSX0),
-    ._CSX1 (_CSX1),
-    .P_DATA (P_DATA),
-    ._IOR (_IOR),
-    ._IOW (_IOW)
+    .R_W (R_W),
+    .DIN (DATA_IN),
+    .DOUT (DATA_OUT),
+    ._DSACK(_DSACK_REG)
 );
+    
     initial CLK = 1'b0;
-    always #10 CLK = ~CLK;
+    always #20 CLK = ~CLK;
 
     initial begin
-        $dumpfile("io_port_tb.vcd");
-        $dumpvars(0, io_port_tb);
+        $dumpfile("registers_tb.vcd");
+        $dumpvars(0, registers_tb);
         
         //initial condistions s0
         _RST = 1'b1;
@@ -73,13 +69,13 @@ registers dut(
         #10;
         _RST = 1'b1;
         #10
-        ADDR = 8'h40;   
+        ADDR = 8'h04;   
         _CS = 1'b0;
         R_W = 1'b0;
         #10;//s1
         _AS = 1'b0;
         #10; //s2
-        DATA_IN = 32'h18;
+        DATA_IN = 32'h00AAAAAA;
         #10; //s3
         _DS = 1'b0;
         #10; //s4
