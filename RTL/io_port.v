@@ -79,18 +79,20 @@ localparam PORT1B_WR = {3'h7,1'b0,1'b0};
 always @ (negedge _DS or negedge _RST) begin
         
     if (!_RST) begin
-        PDATA_OUT <= 16'hzzzz;
+        PDATA_OUT <= 16'hz;
+        DATA_OUT <= 32'hz;
+        _DSACK <= 2'bzz;
     end else begin
 
         case ({ADDR[4:2], R_W, _CS})
-            PORT0_RD: DATA_OUT <= {PDATA_IN, PDATA_IN};
-            PORT0_WR: PDATA_OUT <= DATA_IN[15:0];
+            PORT0_RD: DATA_OUT <= {PDATA_IN[7:0], PDATA_IN[7:0], PDATA_IN[7:0], PDATA_IN[7:0]};
+            PORT0_WR: PDATA_OUT <= {DATA_IN[7:0], DATA_IN[7:0]};
 
-            PORT1A_RD: DATA_OUT <= {PDATA_IN, PDATA_IN};
-            PORT1A_WR: PDATA_OUT <= DATA_IN[15:0];
+            PORT1A_RD: DATA_OUT <= {PDATA_IN[7:0], PDATA_IN[7:0], PDATA_IN[7:0], PDATA_IN[7:0]};
+            PORT1A_WR: PDATA_OUT <= {DATA_IN[7:0], DATA_IN[7:0]};
 
-            PORT2_RD: DATA_OUT <= {PDATA_IN, PDATA_IN};
-            PORT2_WR: PDATA_OUT <= DATA_IN[15:0];
+            PORT2_RD: DATA_OUT <= {PDATA_IN[7:0], PDATA_IN[7:0], PDATA_IN[7:0], PDATA_IN[7:0]};
+            PORT2_WR: PDATA_OUT <= {DATA_IN[7:0], DATA_IN[7:0]};
 
             PORT1B_RD: DATA_OUT <= {PDATA_IN, PDATA_IN};
             PORT1B_WR: PDATA_OUT <= DATA_IN[31:16];
@@ -103,13 +105,14 @@ end
 always @(posedge CLK or posedge _AS) begin
     
     if (_AS) begin
-        _DSACK <= 2'b11;
+        _DSACK <= 2'bzz;
+        DATA_OUT <= 32'hz;   
     end else begin
-        case (ADDR[4:2])
-         3'h4 : _DSACK <= 2'b00;
-         3'h5 : _DSACK <= 2'b00;
-         3'h6 : _DSACK <= 2'b00;
-         3'h7 : _DSACK <= 2'b01;    
+        case ({ADDR[4:2], _CS})
+         {3'h4, 1'b0} : _DSACK <= 2'b00;
+         {3'h5, 1'b0} : _DSACK <= 2'b00;
+         {3'h6, 1'b0} : _DSACK <= 2'b00;
+         {3'h7, 1'b0} : _DSACK <= 2'b01;    
         endcase
     end
 end

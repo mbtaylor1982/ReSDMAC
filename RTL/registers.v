@@ -28,14 +28,14 @@ reg [1:0] _DSACK;
 //Registers
 reg [1:0] DAWR;     //Data Acknowledge Width
 reg [23:0] WTC;     //Word Transfer Count
-reg [5:0] CNTR;     //Control Register (See ctrl_reg.v)
+reg [5:0] CNTR;     //Control Register
 reg ST_DMA;         //Start DMA 
 reg FLUSH;          //Flush FIFO
 reg CLR_INT;        //Clear Interrupts
 reg [8:0] ISTR;     //Interrupt Status Register
 reg SP_DMA;         //Stop DMA 
 
-//reg [31:0] TEST;
+reg [31:0] TEST;
 
 //DAWR $00DD0000 (WRITE ONLY)
 //localparam DAWR_RD = {'h0,1'b1,1'b0};
@@ -66,17 +66,17 @@ localparam ISTR_RD = {5'h7,1'b1,1'b0};
 //localparam ISTR_WR = {5'h7,1'b0,1'b0};
 
 //TEST $00DD0020
-//localparam TEST_RD = {5'h8,1'b1,1'b0};
-//localparam TEST_WR = {5'h8,1'b0,1'b0};
+localparam TEST_RD = {5'h8,1'b1,1'b0};
+localparam TEST_WR = {5'h8,1'b0,1'b0};
 
 //SP_DMA $00DD003C
 localparam SP_DMA_RD = {5'hf,1'b1,1'b0};
 localparam SP_DMA_WR = {5'hf,1'b0,1'b0};
 
-always @ (negedge _DS, negedge _RST) begin
+always @ (negedge _DS or negedge _RST) begin
         
-    if (_RST == 1'b0) begin
-        DAWR    <= 2'b0;
+    if (!_RST) begin
+        DAWR    <= 2'b00;
         WTC     <= 24'h0;
         CNTR    <= 6'h0;
         ST_DMA  <= 1'h0;
@@ -84,7 +84,9 @@ always @ (negedge _DS, negedge _RST) begin
         CLR_INT <= 1'h0;
         ISTR    <= 9'h0;
         SP_DMA  <= 1'h0;
-        //TEST    <= 32'h0;
+        TEST    <= 32'h55555555;
+        DOUT    <= 32'hz;
+        _DSACK  <= 2'bzz;
     end else begin
 
         case ({ADDR, R_W, _CS})
@@ -109,8 +111,8 @@ always @ (negedge _DS, negedge _RST) begin
             ISTR_RD : DOUT      <= {23'b0,ISTR};
             //ISTR_WR : ISTR      <= DIN[8:0];
 
-            //TEST_RD   : DOUT    <= TEST;
-            //TEST_WR   : TEST    <= DIN;
+            TEST_RD   : DOUT    <= TEST;
+            TEST_WR   : TEST    <= DIN;
             
             SP_DMA_RD : SP_DMA    <= ~SP_DMA;
             SP_DMA_WR : SP_DMA    <= ~SP_DMA;
@@ -123,9 +125,13 @@ end
 always @(posedge CLK or posedge _AS) begin
     
     if (_AS) begin
-        _DSACK <= 2'b11;
+        _DSACK <= 2'bzz;
+        DOUT    <= 32'hz;
     end else begin
-        _DSACK <= 2'b00;
+        if ({ADDR[4], _CS} == {1'b0, 1'b0})
+        begin
+            if (ADDR[3:0] != 4'b0011) _DSACK  <= 2'b00;    
+        end 
     end
 end
 

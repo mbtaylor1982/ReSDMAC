@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-`include "RTL/registers.v"
+//`include "RTL/registers.v"
 module registers_tb; 
 
 //inputs

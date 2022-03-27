@@ -36,7 +36,7 @@ TEST_POSTFIX	?= _tb
 
 XC3SPROG_EXE    ?= xc3sprog
 XC3SPROG_CABLE  ?= JTAGHS2
-XC3SPROG_OPTS   ?= -v -e -J 150000 -p 0
+XC3SPROG_OPTS   ?= -v -e -p 0 #-J 150000
 
 ###########################################################################
 # Internal variables, platform-specific definitions, and macros

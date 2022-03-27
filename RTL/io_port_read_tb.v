@@ -20,8 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-`include "RTL/io_port.v"
-module io_port_tb; 
+//`include "RTL/io_port.v"
+module io_port_r_tb; 
 
 //inputs
 reg CLK;

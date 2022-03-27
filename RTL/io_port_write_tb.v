@@ -20,8 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-`include "RTL/io_port.v"
-module io_port_tb; 
+//`include "RTL/io_port.v"
+module io_port_w_tb; 
 
 //inputs
 reg CLK;
@@ -92,7 +92,7 @@ io_port dut(
         #20;//s1
         _AS <= 1'b0;
         #20; //s2
-        DATA_IN <= 32'haa55ff00;
+        DATA_IN <= 32'haa55ff40;
         #20; //s3
         _DS <= 1'b0;
         #20; //s4
@@ -125,7 +125,7 @@ io_port dut(
         #20;//s1
         _AS <= 1'b0;
         #20; //s2
-        DATA_IN <= 32'haa55ff00;
+        DATA_IN <= 32'haa55ff50;
         #20; //s3
         _DS <= 1'b0;
         #20; //s4
@@ -158,7 +158,7 @@ io_port dut(
         #20;//s1
         _AS <= 1'b0;
         #20; //s2
-        DATA_IN <= 32'haa55ff00;
+        DATA_IN <= 32'haa55ff60;
         #20; //s3
         _DS <= 1'b0;
         #20; //s4
@@ -191,7 +191,7 @@ io_port dut(
         #20;//s1
         _AS <= 1'b0;
         #20; //s2
-        DATA_IN <= 32'haa55ff00;
+        DATA_IN <= 32'haa55ff70;
         #20; //s3
         _DS <= 1'b0;
         #20; //s4

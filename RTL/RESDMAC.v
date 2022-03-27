@@ -25,9 +25,9 @@ module RESDMAC(
 
     output SIZ1,         //Indicates a 16 bit transfer is true. 
 
-    inout R_W,          //Read Write from CPU
-    inout _AS,          //Address Strobe
-    inout _DS,          //Data Strobe 
+    input R_W,          //Read Write from CPU
+    input _AS,          //Address Strobe
+    input _DS,          //Data Strobe 
 
     output [1:0] _DSACK, //Dynamic size and DATA ack.
     
@@ -84,10 +84,7 @@ wire [31:0] DATA_IN;
 
 wire [1:0] _DSACK_IO;
 wire [1:0] _DSACK_REG;
-
-
-wire DATA_PORT_ACTIVE;
-assign DATA_PORT_ACTIVE = ADDR[4];
+wire [1:0] _DSACK_OUT;
 
 // 16/8 bit port for SCSI WD33C93A IC.
 io_port D_PORT(
@@ -122,12 +119,14 @@ registers int_reg(
     ._DSACK(_DSACK_REG)
 );
 
+assign DATA_OUT =  (ADDR[6] == 1'b1)  ?  PDATA_OUT : RDATA_OUT;
+assign _DSACK_OUT =  (ADDR[6] == 1'b1)  ? _DSACK_IO : _DSACK_REG;
 
-assign DATA_OUT = DATA_PORT_ACTIVE ?  PDATA_OUT: RDATA_OUT;
-assign DATA = _CS ? 32'hz : DATA_OUT;
+
 assign DATA_IN = DATA;
 
-assign _DSACK = _CS ? 2'bzz : _DSACK_IO & _DSACK_REG;
+assign DATA = (_CS || ~R_W) ? 32'hzzzzzzzz : DATA_OUT;
+assign _DSACK = _CS ? 2'bzz : _DSACK_OUT;
 
 assign _DMAEN = 1'b1;
 assign _INT = 1'bz;
@@ -139,7 +138,7 @@ assign _BGACK = 1'bz;
 
 assign _LED_WR = (R_W || _CS);
 assign _LED_RD = (!R_W || _CS);
-assign _LED_DMA = 1'b0; // harcode led to on for now.
+assign _LED_DMA = 1'b1; 
 
 
 endmodule
