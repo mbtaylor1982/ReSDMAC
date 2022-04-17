@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-//`include "RTL/RESDMAC.v"
+`include "RTL/RESDMAC.v"
 module RESDMAC_tb; 
 
 //inputs
@@ -48,12 +48,18 @@ wire [31:0] DATA_PINS;     // CPU data output.
 
 //DATA PORT
 wire  [15:0] PD_PORT;        //Peripheral Data bus
+reg [15:0] PD_PORT_OUT;
+wire [15:0] PD_PORT_IN;
 
 assign _AS_WIRE = _AS_REG;
 assign _DS_WIRE = _DS_REG;
 assign R_W_WIRE = R_W_REG;
 assign DATA_IN = DATA_PINS;
+
+assign PD_PORT_IN = PD_PORT; 
 assign DATA_PINS =  (R_W_REG == 1'b0) ? DATA_OUT : 32'hZZZZZZZZ;
+
+assign PD_PORT = R_W_REG ? PD_PORT_OUT : 16'hZZZZ;
 
 RESDMAC dut(
     .SCLK (CLK),
@@ -84,8 +90,8 @@ RESDMAC dut(
         _DS_REG <= 1'b1;
         _CS <= 1'b1;
         R_W_REG <= 1'b1;
-        ADDR <= 8'h0; 
-        DATA_OUT <= 32'h0;
+        ADDR <= 8'hz; 
+        DATA_OUT <= 32'hz;
         #20;
         _RST <= 1'b0;
         #20;
@@ -100,14 +106,18 @@ RESDMAC dut(
         DATA_OUT <= 32'haa55ff40;
         #20; //s3
         _DS_REG <= 1'b0;
+        #20 //W1
+        #20 //W2
+        #20 //W3
+        #20 //W4
         #20; //s4
         #20 //s5
         _AS_REG <= 1'b1;
         _DS_REG <= 1'b1;
         #20
-        ADDR <= 8'h0;
-        DATA_OUT <= 32'h0;
+        ADDR <= 8'hz;
         _CS <= 1'b1;
+        DATA_OUT <= 32'hz;
         R_W_REG <= 1'b1;
         #20;
 
@@ -116,23 +126,33 @@ RESDMAC dut(
         _AS_REG <= 1'b1;
         _DS_REG <= 1'b1;
         _CS <= 1'b1;
-        R_W_REG <= 1'b1;
+        R_W_REG <= 1'b0;
         ADDR <= 8'h0; 
-        DATA_OUT <= 32'h0;
+        PD_PORT_OUT <= 16'hzz;
         #20;
         _RST <= 1'b0;
         #20;
         _RST <= 1'b1;
         #20
-        ADDR <= 8'h50;   
+        ADDR <= 8'h40;   
         _CS <= 1'b0;
-        R_W_REG <= 1'b0;
+        R_W_REG <= 1'b1;
         #20;//s1
         _AS_REG <= 1'b0;
-        #20; //s2
-        DATA_OUT <= 32'haa55ff50;
-        #20; //s3
         _DS_REG <= 1'b0;
+        #20; //s2
+        #20; //s3        
+        #20 //W1
+        #20 //W2
+        #20 //W3
+        #20 //W4
+        #20 //W5
+        #20 //W6
+        #20 //W7
+        PD_PORT_OUT <= 16'h41;
+        #20 //W8
+        #20 //W9
+        #20 //W10
         #20; //s4
         #20 //s5
         _AS_REG <= 1'b1;
@@ -140,42 +160,11 @@ RESDMAC dut(
         #20
         ADDR <= 8'h0;
         _CS <= 1'b1;
-        DATA_OUT <= 32'h0;
-        R_W_REG <= 1'b1;
-        #20;
-
-        //initial condistions s0
-        _RST <= 1'b1;
-        _AS_REG <= 1'b1;
-        _DS_REG <= 1'b1;
-        _CS <= 1'b1;
-        R_W_REG <= 1'b1;
-        ADDR <= 8'h0; 
-        DATA_OUT <= 32'h0;
-        #20;
-        _RST <= 1'b0;
-        #20;
-        _RST <= 1'b1;
-        #20
-        ADDR <= 8'h60;   
-        _CS <= 1'b0;
         R_W_REG <= 1'b0;
-        #20;//s1
-        _AS_REG <= 1'b0;
-        #20; //s2
-        DATA_OUT <= 32'haa55ff60;
-        #20; //s3
-        _DS_REG <= 1'b0;
-        #20; //s4
-        #20 //s5
-        _AS_REG <= 1'b1;
-        _DS_REG <= 1'b1;
-        #20
-        ADDR <= 8'h0;
-        _CS <= 1'b1;
-        DATA_OUT <= 32'h0;
-        R_W_REG <= 1'b1;
-        #20;
+        #20;       
+        PD_PORT_OUT <= 16'hzz;
+        #20; 
+      
 
         //initial condistions s0
         _RST <= 1'b1;
@@ -190,7 +179,7 @@ RESDMAC dut(
         #20;
         _RST <= 1'b1;
         #20
-        ADDR <= 8'h70;   
+        ADDR <= 8'h04;   
         _CS <= 1'b0;
         R_W_REG <= 1'b0;
         #20;//s1
@@ -208,7 +197,7 @@ RESDMAC dut(
         _CS <= 1'b1;
         DATA_OUT <= 32'h0;
         R_W_REG <= 1'b1;
-        #20;
+        #20;        
 
         //initial condistions s0
         _RST <= 1'b1;
@@ -219,46 +208,11 @@ RESDMAC dut(
         ADDR <= 8'h0; 
         DATA_OUT <= 32'h0;
         #20;
-        _RST <= 1'b0;
+        _RST <= 1'b1;
         #20;
         _RST <= 1'b1;
         #20
-        ADDR <= 8'h20;   
-        _CS <= 1'b0;
-        R_W_REG <= 1'b0;
-        #20;//s1
-        _AS_REG <= 1'b0;
-        #20; //s2
-        DATA_OUT <= 32'haa55ff70;
-        #20; //s3
-        _DS_REG <= 1'b0;
-        #20; //s4
-        #20 //s5
-        _AS_REG <= 1'b1;
-        _DS_REG <= 1'b1;
-        #20
-        ADDR <= 8'h0;
-        _CS <= 1'b1;
-        DATA_OUT <= 32'h0;
-        R_W_REG <= 1'b1;
-        #20;
-
-        
-
-        //initial condistions s0
-        _RST <= 1'b1;
-        _AS_REG <= 1'b1;
-        _DS_REG <= 1'b1;
-        _CS <= 1'b1;
-        R_W_REG <= 1'b1;
-        ADDR <= 8'h0; 
-        DATA_OUT <= 32'h0;
-        #20;
-        _RST <= 1'b0;
-        #20;
-        _RST <= 1'b1;
-        #20
-        ADDR <= 8'h20;   
+        ADDR <= 8'h04;   
         _CS <= 1'b0;
         R_W_REG <= 1'b1;
         #20;//s1
@@ -271,7 +225,7 @@ RESDMAC dut(
         #20 //s5
         _AS_REG <= 1'b1;
         _DS_REG <= 1'b1;
-        #20
+        #20;
         ADDR <= 8'h0;
         _CS <= 1'b1;
         //DATA_OUT <= 32'h0;

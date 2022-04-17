@@ -84,13 +84,16 @@ wire [31:0] DATA_IN;
 
 wire [1:0] _DSACK_IO;
 wire [1:0] _DSACK_REG;
-wire [1:0] _DSACK_OUT;
+
+wire _REGEN;
+wire _PORTEN;
+
 
 // 16/8 bit port for SCSI WD33C93A IC.
 io_port D_PORT(
     .CLK (SCLK),
     .ADDR (ADDR),
-    ._CS (_CS),
+    ._CS (_PORTEN),
     ._AS (_AS),
     ._DS (_DS),
     .R_W (R_W),
@@ -106,10 +109,11 @@ io_port D_PORT(
     ._DSACK(_DSACK_IO)
 );
 
+
 registers int_reg(
     .CLK (SCLK),
     .ADDR (ADDR),
-    ._CS (_CS),
+    ._CS (_REGEN),
     ._AS (_AS),
     ._DS (_DS),
     ._RST (_RST),
@@ -119,14 +123,17 @@ registers int_reg(
     ._DSACK(_DSACK_REG)
 );
 
-assign DATA_OUT =  (ADDR[6] == 1'b1)  ?  PDATA_OUT : RDATA_OUT;
-assign _DSACK_OUT =  (ADDR[6] == 1'b1)  ? _DSACK_IO : _DSACK_REG;
 
+assign _REGEN = (_CS || (ADDR[5:2] == 4'b0011) || ADDR[6]);
+assign _PORTEN = (_CS || !ADDR[6]);
+
+assign DATA_OUT =  _REGEN ?  32'hzzzzzzzz : RDATA_OUT;
+assign DATA_OUT =  _PORTEN ? 32'hzzzzzzzz : PDATA_OUT;
 
 assign DATA_IN = DATA;
 
-assign DATA = (_CS || ~R_W) ? 32'hzzzzzzzz : DATA_OUT;
-assign _DSACK = _CS ? 2'bzz : _DSACK_OUT;
+assign DATA = ((_REGEN & _PORTEN) | !R_W) ? 32'hzzzzzzzz : DATA_OUT;
+assign _DSACK = (_REGEN & _PORTEN) ? 2'bzz : (_DSACK_REG & _DSACK_IO);
 
 assign _DMAEN = 1'b1;
 assign _INT = 1'bz;
@@ -136,10 +143,11 @@ assign _STERM = 1'bz;
 assign _BR = 1'bz;
 assign _BGACK = 1'bz;
 
-assign _LED_WR = (R_W || _CS);
-assign _LED_RD = (!R_W || _CS);
-assign _LED_DMA = 1'b1; 
+//assign _LED_WR = (R_W | _REGEN | _PORTEN);
+//assign _LED_RD = (!R_W | _REGEN | _PORTEN);
+//assign _LED_DMA = (_DS | _REGEN | _PORTEN);
 
+assign _DACK = 1'bz;
 
 endmodule
 

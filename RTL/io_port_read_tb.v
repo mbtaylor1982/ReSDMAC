@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-//`include "RTL/io_port.v"
+`include "RTL/io_port.v"
 module io_port_r_tb; 
 
 //inputs
@@ -71,7 +71,7 @@ io_port dut(
 
     initial begin
         $dumpfile("io_port_read_tb.vcd");
-        $dumpvars(0, io_port_tb);
+        $dumpvars(0, io_port_r_tb);
         
         //initial condistions s0
         _RST <= 1'b1;
@@ -80,21 +80,28 @@ io_port dut(
         _CS <= 1'b1;
         R_W <= 1'b0;
         ADDR <= 8'h0; 
-        P_DATA_TX <= 16'h40;
-        #20;
-        _RST <= 1'b0;
-        #20;
-        _RST <= 1'b1;
-        #20
+        P_DATA_TX <= 16'hz;
+        #20 //s0
         ADDR <= 8'h40;   
         _CS <= 1'b0;
         R_W <= 1'b1;
         #20;//s1
         _AS <= 1'b0;
+        _DS <= 1'b0;
         #20; //s2
+        #20; //s3        
+        #20 //W1
+        #20 //W2
+        #20 //W3
+        #20 //W4
+        #20 //W5
+        #20 //W6
+        #20 //W7
         P_DATA_TX <= 16'h40;
-        #20; //s3
-        _DS <= 1'b0;
+        #20 //W8
+        #20 //W9
+        #20 //W10
+        P_DATA_TX <= 16'hz;
         #20; //s4
         #20 //s5
         _AS <= 1'b1;
@@ -102,108 +109,9 @@ io_port dut(
         #20
         ADDR <= 8'h0;
         _CS <= 1'b1;
-        DATA_IN <= 32'h0;
         R_W <= 1'b0;
-        #20;
-
-        //initial condistions s0
-        _RST <= 1'b1;
-        _AS <= 1'b1;
-        _DS <= 1'b1;
-        _CS <= 1'b1;
-        R_W <= 1'b0;
-        ADDR <= 8'h0; 
-        P_DATA_TX <= 16'h50;
-        #20;
-        _RST <= 1'b0;
-        #20;
-        _RST <= 1'b1;
-        #20
-        ADDR <= 8'h50;   
-        _CS <= 1'b0;
-        R_W <= 1'b1;
-        #20;//s1
-        _AS <= 1'b0;
-        #20; //s2
-        P_DATA_TX <= 16'h50;
-        #20; //s3
-        _DS <= 1'b0;
-        #20; //s4
-        #20 //s5
-        _AS <= 1'b1;
-        _DS <= 1'b1;
-        #20
-        ADDR <= 8'h0;
-        _CS <= 1'b1;
-        P_DATA_TX <= 16'h0;
-        R_W <= 1'b0;
-        #20;
-
-        //initial condistions s0
-        _RST <= 1'b1;
-        _AS <= 1'b1;
-        _DS <= 1'b1;
-        _CS <= 1'b1;
-        R_W <= 1'b0;
-        ADDR <= 8'h0; 
-        P_DATA_TX <= 16'h60;
-        #20;
-        _RST <= 1'b0;
-        #20;
-        _RST <= 1'b1;
-        #20
-        ADDR <= 8'h60;   
-        _CS <= 1'b0;
-        R_W <= 1'b1;
-        #20;//s1
-        _AS <= 1'b0;
-        #20; //s2
-        P_DATA_TX <= 16'h60;
-        #20; //s3
-        _DS <= 1'b0;
-        #20; //s4
-        #20 //s5
-        _AS <= 1'b1;
-        _DS <= 1'b1;
-        #20
-        ADDR <= 8'h0;
-        _CS <= 1'b1;
-        P_DATA_TX <= 16'h0;
-        R_W <= 1'b0;
-        #20;
-
-        //initial condistions s0
-        _RST <= 1'b1;
-        _AS <= 1'b1;
-        _DS <= 1'b1;
-        _CS <= 1'b1;
-        R_W <= 1'b0;
-        ADDR <= 8'h0; 
-        P_DATA_TX <= 16'h70;
-        #20;
-        _RST <= 1'b0;
-        #20;
-        _RST <= 1'b1;
-        #20
-        ADDR <= 8'h70;   
-        _CS <= 1'b0;
-        R_W <= 1'b1;
-        #20;//s1
-        _AS <= 1'b0;
-        #20; //s2
-        P_DATA_TX <= 16'h7070;
-        #20; //s3
-        _DS <= 1'b0;
-        #20; //s4
-        #20 //s5
-        _AS <= 1'b1;
-        _DS <= 1'b1;
-        #20
-        ADDR <= 8'h0;
-        _CS <= 1'b1;
-        P_DATA_TX <= 16'h0;
-        R_W <= 1'b0;
-        #20;
+        #20;       
+        P_DATA_TX <= 16'hzz;
         $finish;
     end
     
