@@ -72,51 +72,51 @@ The SDMAC is packaged as PLCC (Plastic Leaded Chip Carrier) with 84 Pins
 
 ![PLCC84 SDMAC Package](/Docs/Images/SDMAC_PACKAGE.png)
 
-| Pin    | Direction               | Rev2     | Rev4     | AA3000   | Description                                              |
-| ------ | ----------------------- | -------- | -------- | -------- | -------------------------------------------------------- |
-| 1..20  | :left_right_arrow:      | D0..D19  | D0..D19  | D0..D19  | Processor Data Bus                                       |
-| 21     | -                       | VCC      | VCC      | VCC      | +5V DC                                                   |
-| 22..33 | :left_right_arrow:      | D20..D31 | D20..D31 | D20..D31 | Processor Data Bus                                       |
-| 34     | :arrow_right:           | INTB     | INTB     | INTB     | Pulled up to VCC via 1k. not connected to anything else. |
-| 35     | :arrow_left:(o.c)       | _INT     | _INT     | _INT     | Interrupt output (_INT2)                                 |
-| 36     | :arrow_left:(o.c)       | SIZ1     | SIZ1     | SIZ1     | Transfer Size                                            |
-| 37     | :left_right_arrow:(o.c) | R_W      | R_W      | R_W      | Read/Write                                               |
-| 38     | :left_right_arrow:(o.c) | _AS      | _AS      | _AS      | Address Strobe                                           |
-| 39     | :left_right_arrow:(o.c) | _DS      | _DS      | _DS      | Data Strobe                                              |
-| 40     | :arrow_left:(o.c)       | _DSACK1  | _DSACK1  | _DSACK1  | Data transfer and size acknowledge                       |
-| 41     | :arrow_left:(o.c)       | _DSACK0  | _DSACK0  | _DSACK0  | Data transfer and size acknowledge                       |
-| 42     | -                       | VSS      | VSS      | VSS      | GND                                                      |
-| 43     | :arrow_left:(o.c)       | _STERM   | _STERM   | _STERM   | Synchronous Termination (bus cycle)                      |
-| 44     | :arrow_right:           | SCLK     | SCLK     | SCLK     | Clk input (CPUCLKB) 16/25MHz                             |
-| 45     | :arrow_right:           | _CS      | _CS      | _CS      | Chip select (_SCSI)                                      |
-| 46     | :arrow_right:           | _RESET   | _RESET   | _RESET   | Reset chip (connected to _IORST)                         |
-| 47     | :arrow_right:           | _BERR    | _BERR    | _BERR    | Bus Error                                                |
-| 48..55 | :left_right_arrow:(o.c) | PD0..PD7 | PD0..PD7 | PD0..PD7 | Peripheral device data port (SCSI)                       |
-| 56     | :left_right_arrow:(o.c) | NC       | PD8      | CNT      | Peripheral device data port (AA3000/+ i2c)               |
-| 57     | :left_right_arrow:(o.c) | NC       | PD9      | SP       | Peripheral device data port (AA3000/+ i2c)               |
-| 58     | :left_right_arrow:(o.c) | NC       | PD10     | AP_0     | Peripheral device data port (AA3000/+DSP)                |
-| 59     | :left_right_arrow:(o.c) | NC       | PD11     | AP_1     | Peripheral device data port (AA3000/+DSP)                |
-| 60     | :left_right_arrow:(o.c) | NC       | PD12     | AP-2     | Peripheral device data port (AA3000/+DSP)                |
-| 61     | :left_right_arrow:(o.c) | NC       | PD13     | VSS      | Peripheral device data port (AA3000/+ GND)               |
-| 62     | :left_right_arrow:(o.c) | NC       | PD14     | AP_3     | Peripheral device data port (AA3000/+DSP)                |
-| 63     | -                       | VCC      | VCC      | VCC      | +5V DC                                                   |
-| 64     | :left_right_arrow:(o.c) | NC       | PD15     | AP_4     | Peripheral device data port (AA3000/+DSP)                |
-| 65     | :arrow_right:           | _DREQ    | _DREQ    | _DREQ    | Peripheral Port Data Request                             |
-| 66     | :arrow_left:            | _DACK    | _DACK    | _DACK    | Peripheral Port Data Acknowledge                         |
-| 67     | :arrow_left:            | _CSS     | _CSS     | _CSS     | Peripheral Port 0 chip select (SCSI)                     |
-| 68     | :arrow_left:            | _IOW     | _IOW     | _IOW     | Peripheral Port Write                                    |
-| 69     | :arrow_left:            | _IOR     | _IOR     | _IOR     | Peripheral Port Read                                     |
-| 70     | :arrow_left:            | _CSX0    | _CSX0    | AP_5     | Peripheral Port 1A chip select (AA3000/+DSP)             |
-| 71     | :arrow_left:            | _CSX1    | _CSX1    | AP_6     | Peripheral Port 2 chip select (AA3000/+DSP)              |
-| 72     | :arrow_right:           | _IORDY   | _IORDY   | _IORDY   | IORDY FOR PATA/IDE drives (not used in A3000)            |
-| 73     | :arrow_right:           | INTA     | INTA     | INTA     | Peripheral Port 0 interrupt request (SCSI)               |
-| 74     | :arrow_left:            | INC_ADD  | INC_ADD  | AP_7     | A3000 not connected, (AA3000/+ DSP)                      |
-| 75     | :arrow_left:            | _DMAEN   | _DMAEN   | _DMAEN   | Enable Ramsey as address generator for DMA cycle         |
-| 76..80 | :arrow_right:           | A2..A6   | A2..A6   | A2..A6   | Processor Address Bus                                    |
-| 81     | :arrow_left:(o.c)       | _BR      | _BR      | _BR      | Bus Request                                              |
-| 82     | :arrow_right:           | _BG      | _BG      | _BG      | Bus Grant                                                |
-| 83     | :arrow_left:(o.c)       | _BGACK   | _BGACK   | _BGACK   | Bus Grant Acknowledge                                    |
-| 84     | -                       | VSS      | VSS      | VSS      | GND                                                      |
+| Pin    | Direction    | Rev2     | Rev4     | AA3000   | Description                                              |
+| ------ | ------------ | -------- | -------- | -------- | -------------------------------------------------------- |
+| 1..20  | In/Out (o.c) | D0..D19  | D0..D19  | D0..D19  | Processor Data Bus                                       |
+| 21     | -            | VCC      | VCC      | VCC      | +5V DC                                                   |
+| 22..33 | In/Out (o.c) | D20..D31 | D20..D31 | D20..D31 | Processor Data Bus                                       |
+| 34     | In           | INTB     | INTB     | INTB     | Pulled up to VCC via 1k. not connected to anything else. |
+| 35     | Out (o.c)    | _INT     | _INT     | _INT     | Interrupt output (_INT2)                                 |
+| 36     | In/Out (o.c) | SIZ1     | SIZ1     | SIZ1     | Transfer Size                                            |
+| 37     | In/Out (o.c) | R_W      | R_W      | R_W      | Read/Write                                               |
+| 38     | In/Out (o.c) | _AS      | _AS      | _AS      | Address Strobe                                           |
+| 39     | In/Out (o.c) | _DS      | _DS      | _DS      | Data Strobe                                              |
+| 40     | In/Out (o.c) | _DSACK1  | _DSACK1  | _DSACK1  | Data transfer and size acknowledge                       |
+| 41     | In/Out (o.c) | _DSACK0  | _DSACK0  | _DSACK0  | Data transfer and size acknowledge                       |
+| 42     | -            | VSS      | VSS      | VSS      | GND                                                      |
+| 43     | In           | _STERM   | _STERM   | _STERM   | Synchronous Termination (bus cycle)                      |
+| 44     | In           | SCLK     | SCLK     | SCLK     | Clk input (CPUCLKB) 16/25MHz                             |
+| 45     | In           | _CS      | _CS      | _CS      | Chip select (_SCSI)                                      |
+| 46     | In           | _RESET   | _RESET   | _RESET   | Reset (connected to _IORST)                         |
+| 47     | In           | _BERR    | _BERR    | _BERR    | Bus Error                                                |
+| 48..55 | In/Out (o.c) | PD0..PD7 | PD0..PD7 | PD0..PD7 | Peripheral device data port (SCSI)                       |
+| 56     | In/Out (o.c) | NC       | PD8      | CNT      | Peripheral device data port (AA3000/+ i2c)               |
+| 57     | In/Out (o.c) | NC       | PD9      | SP       | Peripheral device data port (AA3000/+ i2c)               |
+| 58     | In/Out (o.c) | NC       | PD10     | AP_0     | Peripheral device data port (AA3000/+DSP)                |
+| 59     | In/Out (o.c) | NC       | PD11     | AP_1     | Peripheral device data port (AA3000/+DSP)                |
+| 60     | In/Out (o.c) | NC       | PD12     | AP-2     | Peripheral device data port (AA3000/+DSP)                |
+| 61     | In/Out (o.c) | NC       | PD13     | VSS      | Peripheral device data port (AA3000/+ GND)               |
+| 62     | In/Out (o.c) | NC       | PD14     | AP_3     | Peripheral device data port (AA3000/+DSP)                |
+| 63     | -            | VCC      | VCC      | VCC      | +5V DC                                                   |
+| 64     | In/Out (o.c) | NC       | PD15     | AP_4     | Peripheral device data port (AA3000/+DSP)                |
+| 65     | In           | _DREQ    | _DREQ    | _DREQ    | Peripheral Port Data Request                             |
+| 66     | Out          | _DACK    | _DACK    | _DACK    | Peripheral Port Data Acknowledge                         |
+| 67     | Out          | _CSS     | _CSS     | _CSS     | Peripheral Port 0 chip select (SCSI)                     |
+| 68     | Out          | _IOW     | _IOW     | _IOW     | Peripheral Port Write                                    |
+| 69     | Out          | _IOR     | _IOR     | _IOR     | Peripheral Port Read                                     |
+| 70     | Out          | _CSX0    | _CSX0    | AP_5     | Peripheral Port 1A chip select (AA3000/+DSP)             |
+| 71     | Out          | _CSX1    | _CSX1    | AP_6     | Peripheral Port 2 chip select (AA3000/+DSP)              |
+| 72     | In           | _IORDY   | _IORDY   | _IORDY   | IORDY FOR PATA/IDE drives (not used in A3000)            |
+| 73     | In           | INTA     | INTA     | INTA     | Peripheral Port 0 interrupt request (SCSI)               |
+| 74     | Out          | INC_ADD  | INC_ADD  | AP_7     | A3000 not connected, (AA3000/+ DSP)                      |
+| 75     | Out          | _DMAEN   | _DMAEN   | _DMAEN   | Enable Ramsey as address generator for DMA cycle         |
+| 76..80 | In           | A2..A6   | A2..A6   | A2..A6   | Processor Address Bus                                    |
+| 81     | Out (o.c)    | _BR      | _BR      | _BR      | Bus Request                                              |
+| 82     | In           | _BG      | _BG      | _BG      | Bus Grant                                                |
+| 83     | In/Out (o.c) | _BGACK   | _BGACK   | _BGACK   | Bus Grant Acknowledge                                    |
+| 84     | -            | VSS      | VSS      | VSS      | GND                                                      |
 
 ## 1.4. I/O DEFINITIONS AND LOCATIONS {#IO}
 

@@ -5,4 +5,15 @@
     "verilog.icarusPersistentBuild": true,
     "verilog.icarusTestbenchIncludePwd": true,
     "verilog.icarusBuildDirectory": "RTL/build/",
+    "licenseInjector.owner": "Mike Taylor",
+    "license.author": "Mike Taylor",
+    "license-header-manager.additionalCommentStyles": [{
+            "extension": ".v",
+            "commentStart": " /*",
+            "commentMiddle": "//",
+            "commentEnd": " */"
+        }
+    ],
+    "license.default": "gpl-3.0",
 }
+
