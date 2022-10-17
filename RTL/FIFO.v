@@ -16,62 +16,85 @@
 // You should have received a copy of the GNU General Public License
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 module FIFO(
-    input LLWORD,
-    input LHWORD,
-    input LBYTE_,
-    input h_0C,
-    input ACR_WR,
-    input RST_FIFO_,
-    input MID25,
-    input [31:0] ID,
+    
+    input LLWORD,       //Load Lower Word strobe from CPU sm
+    input LHWORD,       //Load Higher Word strobe from CPU sm
+    
+    input LBYTE_,       //Load Byte strobe from SCSI SM = !(DACK.o & RE.o)
 
-    output FIFOFULL,
-    output FIFOEMPTY,
-    input INCFIFO,
-    input DECFIFO,
-    input INCBO,
-    output BOEQ0,
-    output BOEQ3,
-    output BO0,
-    output BO1,
-    input INCNO,
-    input INCNI,
+    input h_0C,         //Address Decode for $0C ACR register?
+    input ACR_WR,       //indicate write to ACR?
+    input RST_FIFO_,    //Reset FIFO
+    input MID25,        //Somthing to do with the address in the ACR and controling the byte pointer.
 
-    output [31:0] OD
+    input [31:0] ID,    //FIFO Data Input
+
+    output FIFOFULL,    //Signal FIFO is FULL
+    output FIFOEMPTY,   //Signal FIFO is Empty
+
+    input INCFIFO,      //Inc FIFO from CPU sm
+    input DECFIFO,      //Dec FIFO from CPU sm
+
+    input INCBO,        //Inc Byte Pointer from SCSI SM.
+
+    output BOEQ0,       //True when BytePtr indicates 1st Byte
+    output BOEQ3,       //True when BytePtr indicates 4th Byte
+
+    output BO0,         //BytePtr Bit 0
+    output BO1,         //BytePtr Bit 1
+
+    input INCNO,        //Inc Next Out (Write Pointer)
+    input INCNI,        //Inc Next In (Read Pointer)
+
+    output [31:0] OD    //FIFO Data Output
 );
 
-reg [2:0] NextOutPtr  = 3'b000;
-reg [2:0] NextInPtr  = 3'b000;
-reg [1:0] BytePrt  = 2'b00;
+reg [31:0] buffer [7:0]; //32 byte FIFO buffer (8 x 32 bit long words)
 
-wire [7:0] NI;
-wire [7:0] NO;
+reg [2:0] ReadPtr  = 3'b000;
+reg [2:0] WritePtr = 3'b000;
+reg [1:0] BytePtr  = 2'b00;
 
+wire UUWS;
+wire UMWS;
+wire LMWS;
+wire LLWS;
 
+//NEXT IN POINTER
 always @(posedge INCNI, negedge RST_FIFO_) begin
     if (! RST_FIFO_)
-        NextInPtr <= 3'b000;
+        WritePtr <= 3'b000;
     else
-        NextInPtr <= NextInPtr + 1;     
+        WritePtr <= WritePtr + 1;     
 end
 
+//NEXT OUT POINTER
 always @(posedge INCNO, negedge RST_FIFO_) begin
     if (! RST_FIFO_)
-        NextOutPtr <= 3'b000;
+        ReadPtr <= 3'b000;
     else
-        NextOutPtr <= NextOutPtr + 1;     
+        ReadPtr <= ReadPtr + 1;     
 end
 
-decoder3to8 nid(
-    .Data_in  (NextInPtr),
-    .Data_out (NI)
-);
+//BYTE POINTER
+always @(posedge INCBO, posedge ACR_WR, negedge RST_FIFO_) begin
+    if (! RST_FIFO_)
+        BytePtr <= 2'b00;
+    else
+        BytePtr <= BytePtr + 1;     
+end
 
-decoder3to8 nod(
-    .Data_in  (NextOutPtr),
-    .Data_out (NO)
-);
+assign BO0 = BytePtr[0];
+assign BO1 = BytePtr[1];
+
+assign BOEQ0 = (BytePtr == 2'b00);
+assign BOEQ3 = (BytePtr == 2'b11);
+
+//BYTE WRITE STROBES
+assign UUWS = !(!(!(BO0|BO1|LBYTE_)|LHWORD));
+assign UMWS = !(!(!(!BO0|BO1|LBYTE_)|LHWORD));
+assign LMWS = !(!(!(BO0|!BO1|LBYTE_)|LLWORD));
+assign LLWS = !(!(!(!BO0|!BO1|LBYTE_)|LLWORD));
 
 endmodule
