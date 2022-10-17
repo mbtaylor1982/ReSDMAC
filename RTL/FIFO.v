@@ -52,9 +52,9 @@ module FIFO(
 
 reg [31:0] buffer [7:0]; //32 byte FIFO buffer (8 x 32 bit long words)
 
-reg [2:0] ReadPtr  = 3'b000;
-reg [2:0] WritePtr = 3'b000;
-reg [1:0] BytePtr  = 2'b00;
+reg [2:0] ReadPtr;
+reg [2:0] WritePtr;
+reg [1:0] BytePtr;
 
 wire UUWS;
 wire UMWS;
@@ -63,7 +63,7 @@ wire LLWS;
 
 //NEXT IN POINTER
 always @(posedge INCNI, negedge RST_FIFO_) begin
-    if (! RST_FIFO_)
+    if (!RST_FIFO_)
         WritePtr <= 3'b000;
     else
         WritePtr <= WritePtr + 1;     
@@ -71,15 +71,15 @@ end
 
 //NEXT OUT POINTER
 always @(posedge INCNO, negedge RST_FIFO_) begin
-    if (! RST_FIFO_)
+    if (!RST_FIFO_)
         ReadPtr <= 3'b000;
     else
         ReadPtr <= ReadPtr + 1;     
 end
 
 //BYTE POINTER
-always @(posedge INCBO, posedge ACR_WR, negedge RST_FIFO_) begin
-    if (! RST_FIFO_)
+always @(posedge INCBO, negedge RST_FIFO_) begin
+    if (!RST_FIFO_)
         BytePtr <= 2'b00;
     else
         BytePtr <= BytePtr + 1;     
