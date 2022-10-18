@@ -23,10 +23,10 @@ module FIFO(
     
     input LBYTE_,       //Load Byte strobe from SCSI SM = !(DACK.o & RE.o)
 
-    input h_0C,         //Address Decode for $0C ACR register?
-    input ACR_WR,       //indicate write to ACR?
+    input h_0C,         //Address Decode for $0C ACR register
+    input ACR_WR,       //indicate write to ACR
     input RST_FIFO_,    //Reset FIFO
-    input MID25,        //Somthing to do with the address in the ACR and controling the byte pointer.
+    input MID25,        //think this may be checking A1 in the ACR to see if this was a 16 or 32 bit transfer
 
     input [31:0] ID,    //FIFO Data Input
 
