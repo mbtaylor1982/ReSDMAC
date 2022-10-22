@@ -24,7 +24,7 @@ module FIFO(
     input LBYTE_,       //Load Byte strobe from SCSI SM = !(DACK.o & RE.o)
 
     input h_0C,         //Address Decode for $0C ACR register
-    input ACR_WR,       //indicate write to ACR
+    input ACR_WR,       //indicate write to ACR?
     input RST_FIFO_,    //Reset FIFO
     input MID25,        //think this may be checking A1 in the ACR to see if this was a 16 or 32 bit transfer
 
@@ -54,7 +54,7 @@ reg [31:0] buffer [7:0]; //32 byte FIFO buffer (8 x 32 bit long words)
 
 reg [2:0] ReadPtr;
 reg [2:0] WritePtr;
-reg [1:0] BytePtr;
+reg [1:0] BytePtr = 2'b11;
 
 wire UUWS;
 wire UMWS;
@@ -78,11 +78,14 @@ always @(posedge INCNO, negedge RST_FIFO_) begin
 end
 
 //BYTE POINTER
-always @(posedge INCBO, negedge RST_FIFO_) begin
+always @(posedge ACR_WR, posedge INCBO, negedge RST_FIFO_) begin
     if (!RST_FIFO_)
-        BytePtr <= 2'b00;
-    else
-        BytePtr <= BytePtr + 1;     
+        BytePtr <= 2'b11;
+    else 
+        if (h_0C) 
+            BytePtr <=  {!MID25, !BO0};
+        else
+            BytePtr <= BytePtr -1;
 end
 
 assign BO0 = BytePtr[0];
@@ -92,6 +95,7 @@ assign BOEQ0 = (BytePtr == 2'b00);
 assign BOEQ3 = (BytePtr == 2'b11);
 
 //BYTE WRITE STROBES
+
 assign UUWS = !(!(!(BO0|BO1|LBYTE_)|LHWORD));
 assign UMWS = !(!(!(!BO0|BO1|LBYTE_)|LHWORD));
 assign LMWS = !(!(!(BO0|!BO1|LBYTE_)|LLWORD));
