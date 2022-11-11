@@ -21,11 +21,11 @@ module FIFO(
     input LLWORD,       //Load Lower Word strobe from CPU sm
     input LHWORD,       //Load Higher Word strobe from CPU sm
     
-    input LBYTE_,       //Load Byte strobe from SCSI SM = !(DACK.o & RE.o)
+    input nLBYTE,       //Load Byte strobe from SCSI SM = !(DACK.o & RE.o)
 
     input h_0C,         //Address Decode for $0C ACR register
     input ACR_WR,       //indicate write to ACR?
-    input _RST_FIFO,    //Reset FIFO
+    input nRST_FIFO,    //Reset FIFO
     input MID25,        //think this may be checking A1 in the ACR to see if this was a 16 or 32 bit transfer
 
     input [31:0] ID,    //FIFO Data Input
@@ -63,24 +63,24 @@ wire LMWS;
 wire LLWS;
 
 //NEXT IN POINTER
-always @(posedge INCNI, negedge _RST_FIFO) begin
-    if (_RST_FIFO == 1'b0)
+always @(posedge INCNI, negedge nRST_FIFO) begin
+    if (nRST_FIFO == 1'b0)
         WritePtr <= 3'b000;
     else
         WritePtr <= WritePtr + 1;     
 end
 
 //NEXT OUT POINTER
-always @(posedge INCNO, negedge _RST_FIFO) begin
-    if (_RST_FIFO == 1'b0)
+always @(posedge INCNO, negedge nRST_FIFO) begin
+    if (nRST_FIFO == 1'b0)
         ReadPtr <= 3'b000;
     else
         ReadPtr <= ReadPtr + 1;     
 end
 
 //FULL EMPTY COUNTER
-always @(posedge INCFIFO or posedge DECFIFO or negedge _RST_FIFO) begin
-    if (_RST_FIFO == 1'b0)
+always @(posedge INCFIFO or posedge DECFIFO or negedge nRST_FIFO) begin
+    if (nRST_FIFO == 1'b0)
         FullEmptyCounter <= 3'b000;
     else begin
         if (INCFIFO) FullEmptyCounter <=  FullEmptyCounter +1;
@@ -90,9 +90,9 @@ end
 
 //BYTE POINTER
 //TODO: BEHAVIOUR HERE IS WRONG RIGHT NOW.
-always @(posedge ACR_WR or posedge INCBO or negedge _RST_FIFO) begin
-    if (_RST_FIFO == 1'b0) 
-        BytePtr <= 2'b11;
+always @(posedge ACR_WR or posedge INCBO or negedge nRST_FIFO) begin
+    if (nRST_FIFO == 1'b0) 
+        BytePtr[0] <= 1'b0;
     else begin
         if (ACR_WR) BytePtr <= BytePtr -1;
         if (INCBO) BytePtr <= BytePtr -1;
@@ -126,10 +126,10 @@ assign BOEQ3 = (BytePtr == 2'b11);
 
 //BYTE WRITE STROBES
 
-assign UUWS = !(!(!(BO0|BO1|LBYTE_)|LHWORD));
-assign UMWS = !(!(!(!BO0|BO1|LBYTE_)|LHWORD));
-assign LMWS = !(!(!(BO0|!BO1|LBYTE_)|LLWORD));
-assign LLWS = !(!(!(!BO0|!BO1|LBYTE_)|LLWORD));
+assign UUWS = !(!(!(BO0|BO1|nLBYTE)|LHWORD));
+assign UMWS = !(!(!(!BO0|BO1|nLBYTE)|LHWORD));
+assign LMWS = !(!(!(BO0|!BO1|nLBYTE)|LLWORD));
+assign LLWS = !(!(!(!BO0|!BO1|nLBYTE)|LLWORD));
 
 //FIFO STATE FLAGS
 assign FIFOEMPTY = (FullEmptyCounter == 3'b000);
