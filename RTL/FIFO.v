@@ -25,7 +25,7 @@ module FIFO(
 
     input h_0C,         //Address Decode for $0C ACR register
     input ACR_WR,       //indicate write to ACR?
-    input RST_FIFO_,    //Reset FIFO
+    input _RST_FIFO,    //Reset FIFO
     input MID25,        //think this may be checking A1 in the ACR to see if this was a 16 or 32 bit transfer
 
     input [31:0] ID,    //FIFO Data Input
@@ -52,8 +52,9 @@ module FIFO(
 
 reg [31:0] buffer [7:0]; //32 byte FIFO buffer (8 x 32 bit long words)
 
-reg [2:0] ReadPtr;
-reg [2:0] WritePtr;
+reg [2:0] FullEmptyCounter = 3'b000;
+reg [2:0] ReadPtr = 3'b000;
+reg [2:0] WritePtr = 3'b000;
 reg [1:0] BytePtr = 2'b11;
 
 wire UUWS;
@@ -62,31 +63,60 @@ wire LMWS;
 wire LLWS;
 
 //NEXT IN POINTER
-always @(posedge INCNI, negedge RST_FIFO_) begin
-    if (!RST_FIFO_)
+always @(posedge INCNI, negedge _RST_FIFO) begin
+    if (_RST_FIFO == 1'b0)
         WritePtr <= 3'b000;
     else
         WritePtr <= WritePtr + 1;     
 end
 
 //NEXT OUT POINTER
-always @(posedge INCNO, negedge RST_FIFO_) begin
-    if (!RST_FIFO_)
+always @(posedge INCNO, negedge _RST_FIFO) begin
+    if (_RST_FIFO == 1'b0)
         ReadPtr <= 3'b000;
     else
         ReadPtr <= ReadPtr + 1;     
 end
 
-//BYTE POINTER
-always @(posedge ACR_WR, posedge INCBO, negedge RST_FIFO_) begin
-    if (!RST_FIFO_)
-        BytePtr <= 2'b11;
-    else 
-        if (h_0C) 
-            BytePtr <=  {!MID25, !BO0};
-        else
-            BytePtr <= BytePtr -1;
+//FULL EMPTY COUNTER
+always @(posedge INCFIFO or posedge DECFIFO or negedge _RST_FIFO) begin
+    if (_RST_FIFO == 1'b0)
+        FullEmptyCounter <= 3'b000;
+    else begin
+        if (INCFIFO) FullEmptyCounter <=  FullEmptyCounter +1;
+        if (DECFIFO) FullEmptyCounter <=  FullEmptyCounter -1;
+    end
 end
+
+//BYTE POINTER
+//TODO: BEHAVIOUR HERE IS WRONG RIGHT NOW.
+always @(posedge ACR_WR or posedge INCBO or negedge _RST_FIFO) begin
+    if (_RST_FIFO == 1'b0) 
+        BytePtr <= 2'b11;
+    else begin
+        if (ACR_WR) BytePtr <= BytePtr -1;
+        if (INCBO) BytePtr <= BytePtr -1;
+    end    
+end
+
+//WRITE DATA TO FIFO BUFFER
+always @(posedge UUWS) begin
+  buffer[WritePtr][31:24] <= ID[31:24];
+end
+
+always @(posedge UMWS) begin
+  buffer[WritePtr][23:16] <= ID[23:16];
+end
+
+always @(posedge LMWS) begin
+  buffer[WritePtr][15:8] <= ID[15:8];
+end
+
+always @(posedge LLWS) begin
+  buffer[WritePtr][7:0] <= ID[7:0];
+end
+
+//BYTE COUNTER FLAGS
 
 assign BO0 = BytePtr[0];
 assign BO1 = BytePtr[1];
@@ -100,5 +130,12 @@ assign UUWS = !(!(!(BO0|BO1|LBYTE_)|LHWORD));
 assign UMWS = !(!(!(!BO0|BO1|LBYTE_)|LHWORD));
 assign LMWS = !(!(!(BO0|!BO1|LBYTE_)|LLWORD));
 assign LLWS = !(!(!(!BO0|!BO1|LBYTE_)|LLWORD));
+
+//FIFO STATE FLAGS
+assign FIFOEMPTY = (FullEmptyCounter == 3'b000);
+assign FIFOFULL = (FullEmptyCounter == 3'b111);
+
+//ASYNCH READ ACCESS TO FIFO DATA BUFFER
+assign OD = (buffer[ReadPtr]);
 
 endmodule
