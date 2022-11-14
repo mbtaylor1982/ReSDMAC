@@ -60,8 +60,6 @@ module scsi_sm_outputs  (
   output WE,
   output SCSI_CS,
   output SET_DSACK,
-  output RIFIFO_d,
-  output RDFIFO_d,
   output S2F,
   output F2S,
   output S2CPU,
@@ -85,6 +83,5 @@ module scsi_sm_outputs  (
   assign F2S = ~ (E11_ & E13_ & E16_ & E9_);
   assign S2CPU = ~ (E12_ & E17_ & E19_ & E23_ & E25_ & E26_ & E27_);
   assign CPU2S = ~ (E18_ & E22_ & E24_ & E8_);
-  assign RIFIFO_d = E4_;
-  assign RDFIFO_d = E3_;
+
 endmodule
