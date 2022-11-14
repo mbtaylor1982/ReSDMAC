@@ -248,8 +248,8 @@ always @(posedge BCLK) begin
     F2S_o <= F2S;
     S2CPU_o <= S2CPU;
     CPU2S_o <= CPU2S;   
-    RDFIFO_d <= ~ E3_;
-    RIFIFO_d <=  ~ E4_;
+    RDFIFO_d <= ~E3_;
+    RIFIFO_d <=  ~E4_;
 end
 
 //State Machine

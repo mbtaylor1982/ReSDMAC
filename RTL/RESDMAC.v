@@ -84,6 +84,10 @@ wire [1:0] _DSACK_REG;
 wire _REGEN;
 wire _PORTEN;
 
+wire LBYTE_;
+wire RE_o;
+wire DACK_o;
+wire BOEQ3;
 
 // 16/8 bit port for SCSI WD33C93A IC.
 io_port D_PORT(
@@ -130,12 +134,12 @@ SCSI_SM ssm(
     //.RIFIFO_o  (RIFIFO_o  ),
     //.RIFIFO_d  (RIFIFO_d  ),
     .RESET_    (_RST),
-    //.BOEQ3     (BOEQ3     ),
-    .CPUCLK    (SCLK)//,
-    //.RE_o      (RE_o      ),
+    .BOEQ3     (BOEQ3     ),
+    .CPUCLK    (SCLK),
+    .RE_o      (RE_o      ),
     //.WE_o      (WE_o      ),
     //.SCSI_CS_o (SCSI_CS_o ),
-    //.DACK_o    (DACK_o    ),
+    .DACK_o    (DACK_o    )//,
     //.DREQ_     (DREQ_     ),
     //.INCBO_o   (INCBO_o   ),
     //.INCNO_o   (INCNO_o   ),
@@ -191,7 +195,7 @@ CPU_SM csm(
 FIFO int_fifo(
     //.LLWORD    (LLWORD    ),
     //.LHWORD    (LHWORD    ),
-    //.LBYTE_    (LBYTE_    ),
+    .LBYTE_    (LBYTE_    ),
     //.h_0C      (h_0C      ),
     //.ACR_WR    (ACR_WR    ),
     //.RST_FIFO_ (RST_FIFO_ ),
@@ -203,7 +207,7 @@ FIFO int_fifo(
     //.DECFIFO   (DECFIFO   ),
     //.INCBO     (INCBO     ),
     //.BOEQ0     (BOEQ0     ),
-    //.BOEQ3     (BOEQ3     ),
+    .BOEQ3     (BOEQ3     )//,
     //.BO0       (BO0       ),
     //.BO1       (BO1       ),
     //.INCNO     (INCNO     ),
@@ -235,6 +239,8 @@ assign _BGACK = 1'bz;
 //assign _LED_DMA = (_DS | _REGEN | _PORTEN);
 
 assign _DACK = 1'bz;
+
+assign LBYTE_ = ~(RE_o & DACK_o);
 
 endmodule
 
