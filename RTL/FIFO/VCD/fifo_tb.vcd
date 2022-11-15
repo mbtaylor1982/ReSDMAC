@@ -1,0 +1,467 @@
+$date
+	Tue Nov 15 22:57:15 2022
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	100ps
+$end
+$scope module fifo_tb $end
+$var wire 32 ! OD [31:0] $end
+$var wire 1 " FIFOFULL $end
+$var wire 1 # FIFOEMPTY $end
+$var wire 1 $ BOEQ3 $end
+$var wire 1 % BOEQ0 $end
+$var wire 1 & BO1 $end
+$var wire 1 ' BO0 $end
+$var reg 1 ( ACR_WR $end
+$var reg 1 ) DECFIFO $end
+$var reg 32 * ID [31:0] $end
+$var reg 1 + INCBO $end
+$var reg 1 , INCFIFO $end
+$var reg 1 - INCNI $end
+$var reg 1 . INCNO $end
+$var reg 1 / LBYTE_ $end
+$var reg 1 0 LHWORD $end
+$var reg 1 1 LLWORD $end
+$var reg 1 2 MID25 $end
+$var reg 1 3 RST_FIFO_ $end
+$var reg 1 4 h_0C $end
+$scope module dut_fifo $end
+$var wire 1 ( ACR_WR $end
+$var wire 1 ) DECFIFO $end
+$var wire 32 5 ID [31:0] $end
+$var wire 1 + INCBO $end
+$var wire 1 , INCFIFO $end
+$var wire 1 - INCNI $end
+$var wire 1 . INCNO $end
+$var wire 1 / LBYTE_ $end
+$var wire 1 0 LHWORD $end
+$var wire 1 1 LLWORD $end
+$var wire 1 2 MID25 $end
+$var wire 32 6 OD [31:0] $end
+$var wire 1 3 RST_FIFO_ $end
+$var wire 1 4 h_0C $end
+$var wire 1 7 UUWS $end
+$var wire 1 8 UMWS $end
+$var wire 1 9 MUXZ $end
+$var wire 1 : LMWS $end
+$var wire 1 ; LLWS $end
+$var wire 1 " FIFOFULL $end
+$var wire 1 # FIFOEMPTY $end
+$var wire 1 $ BOEQ3 $end
+$var wire 1 % BOEQ0 $end
+$var wire 1 & BO1 $end
+$var wire 1 ' BO0 $end
+$var reg 2 < BytePtr [1:0] $end
+$var reg 3 = ReadPtr [2:0] $end
+$var reg 3 > WritePtr [2:0] $end
+$scope module u_fifo__full_empty_ctr $end
+$var wire 1 ) DECFIFO $end
+$var wire 1 , INCFIFO $end
+$var wire 1 3 RST_FIFO_ $end
+$var wire 1 ? a $end
+$var wire 1 @ b $end
+$var reg 3 A Count [2:0] $end
+$var reg 1 # FIFOEMPTY $end
+$var reg 1 " FIFOFULL $end
+$upscope $end
+$scope module u_fifo_write_strobes $end
+$var wire 1 ' BO0 $end
+$var wire 1 & BO1 $end
+$var wire 1 / LBYTE_ $end
+$var wire 1 0 LHWORD $end
+$var wire 1 1 LLWORD $end
+$var wire 1 ; LLWS $end
+$var wire 1 : LMWS $end
+$var wire 1 8 UMWS $end
+$var wire 1 7 UUWS $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 A
+0@
+0?
+b0 >
+b0 =
+b0 <
+x;
+x:
+x9
+x8
+x7
+bx 6
+bx 5
+x4
+03
+x2
+x1
+x0
+x/
+x.
+x-
+0,
+x+
+bx *
+0)
+x(
+0'
+0&
+1%
+0$
+1#
+0"
+bx !
+$end
+#100
+13
+#200
+0#
+b1 A
+0@
+1,
+#300
+0,
+#400
+b10 A
+1,
+#500
+0,
+#600
+b11 A
+1,
+#700
+0,
+#800
+b100 A
+1,
+#900
+0,
+#1000
+b101 A
+1,
+#1100
+0,
+#1200
+b110 A
+1,
+#1300
+0,
+#1400
+b111 A
+1,
+#1500
+0,
+#1600
+1"
+1,
+#1700
+0,
+#1800
+0"
+b110 A
+0?
+1)
+#1900
+0)
+#2000
+b101 A
+1)
+#2100
+0)
+#2200
+b100 A
+1)
+#2300
+0)
+#2400
+b11 A
+1)
+#2500
+0)
+#2600
+b10 A
+1)
+#2700
+0)
+#2800
+b1 A
+1)
+#2900
+0)
+#3000
+b0 A
+1)
+#3100
+0)
+#3200
+1#
+1)
+#3300
+0)
+#3400
+0-
+03
+1)
+#3500
+13
+#3600
+b1 >
+1-
+#3700
+0-
+#3800
+b10 >
+1-
+#3900
+0-
+#4000
+b11 >
+1-
+#4100
+0-
+#4200
+b100 >
+1-
+#4300
+0-
+#4400
+b101 >
+1-
+#4500
+0-
+#4600
+b110 >
+1-
+#4700
+0-
+#4800
+b111 >
+1-
+#4900
+0-
+#5000
+b0 >
+1-
+#5100
+0.
+03
+0-
+#5200
+13
+#5300
+b1 =
+1.
+#5400
+0.
+#5500
+b10 =
+1.
+#5600
+0.
+#5700
+b11 =
+1.
+#5800
+0.
+#5900
+b100 =
+1.
+#6000
+0.
+#6100
+b101 =
+1.
+#6200
+0.
+#6300
+b110 =
+1.
+#6400
+0.
+#6500
+b111 =
+1.
+#6600
+0.
+#6700
+b0 =
+1.
+#6800
+b1010101xxxxxxxxxxxxxxxxxxxxxxxx !
+b1010101xxxxxxxxxxxxxxxxxxxxxxxx 6
+19
+0:
+0;
+17
+08
+02
+0(
+04
+01
+00
+0/
+0+
+03
+b1010101010101010101010101010101 *
+b1010101010101010101010101010101 5
+0.
+#6900
+13
+#7000
+b1010101xxxxxxxxxxxxxxxx01010101 !
+b1010101xxxxxxxxxxxxxxxx01010101 6
+1;
+07
+1'
+1&
+0%
+1$
+b11 <
+1+
+#7100
+0+
+#7200
+b1010101xxxxxxxx0101010101010101 !
+b1010101xxxxxxxx0101010101010101 6
+0;
+1:
+09
+0'
+0$
+b10 <
+1+
+#7300
+0+
+#7400
+b1010101010101010101010101010101 !
+b1010101010101010101010101010101 6
+0:
+18
+1'
+0&
+b1 <
+1+
+#7500
+0+
+#7600
+08
+17
+19
+0'
+1%
+b0 <
+1+
+#7700
+0+
+#7800
+14
+03
+0+
+#7900
+13
+#8000
+1;
+07
+1'
+1&
+0%
+1$
+b11 <
+1+
+#8100
+0+
+#8200
+0;
+1:
+0'
+0$
+b10 <
+1+
+#8300
+0+
+#8400
+0:
+17
+0&
+1%
+b0 <
+09
+12
+03
+0+
+#8500
+13
+#8600
+18
+07
+1'
+0%
+b1 <
+1+
+#8700
+0+
+#8800
+08
+17
+0'
+1%
+b0 <
+1+
+#8900
+0+
+#9000
+18
+07
+1'
+0%
+b1 <
+1+
+#9100
+bx !
+bx 6
+b1 =
+1.
+#9200
+0.
+#9300
+b10 =
+1.
+#9400
+0.
+#9500
+b11 =
+1.
+#9600
+0.
+#9700
+b100 =
+1.
+#9800
+0.
+#9900
+b101 =
+1.
+#10000
+0.
+#10100
+b110 =
+1.
+#10200
+0.
+#10300
+b111 =
+1.
+#10400
+0.
+#10500
+b1010101010101010101010101010101 !
+b1010101010101010101010101010101 6
+b0 =
+1.
+#10600
+0.

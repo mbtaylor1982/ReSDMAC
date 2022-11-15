@@ -16,7 +16,10 @@
 // You should have received a copy of the GNU General Public License
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
-module FIFO(
+`include "RTL/FIFO/fifo_write_strobes.v"
+`include "RTL/FIFO/fifo_full_empty_ctr.v"
+
+module fifo(
     
     input LLWORD,       //Load Lower Word strobe from CPU sm
     input LHWORD,       //Load Higher Word strobe from CPU sm
@@ -50,9 +53,28 @@ module FIFO(
     output [31:0] OD    //FIFO Data Output
 );
 
+fifo_write_strobes u_fifo_write_strobes(
+    .BO0    (BO0    ),
+    .BO1    (BO1    ),
+    .LHWORD (LHWORD ),
+    .LLWORD (LLWORD ),
+    .LBYTE_ (LBYTE_ ),
+    .UUWS   (UUWS   ),
+    .UMWS   (UMWS   ),
+    .LMWS   (LMWS   ),
+    .LLWS   (LLWS   )
+);
+
+fifo__full_empty_ctr u_fifo__full_empty_ctr(
+    .INCFIFO   (INCFIFO   ),
+    .DECFIFO   (DECFIFO   ),
+    .RST_FIFO_ (RST_FIFO_ ),
+    .FIFOEMPTY (FIFOEMPTY ),
+    .FIFOFULL  (FIFOFULL  )
+);
+
 reg [31:0] buffer [7:0]; //32 byte FIFO buffer (8 x 32 bit long words)
 
-reg [2:0] FullEmptyCounter;
 reg [2:0] ReadPtr;
 reg [2:0] WritePtr;
 reg [1:0] BytePtr;
@@ -79,23 +101,13 @@ always @(posedge INCNO, negedge RST_FIFO_) begin
         ReadPtr <= ReadPtr + 1;     
 end
 
-//FULL EMPTY COUNTER
-always @(posedge INCFIFO or posedge DECFIFO or negedge RST_FIFO_) begin
-    if (RST_FIFO_ == 1'b0)
-        FullEmptyCounter <= 3'b000;
-    else begin
-        if (INCFIFO) FullEmptyCounter <=  FullEmptyCounter +1;
-        if (DECFIFO) FullEmptyCounter <=  FullEmptyCounter -1;
-    end
-end
-
 //BYTE POINTER
 
 always @(posedge ACR_WR or posedge INCBO or negedge RST_FIFO_) begin
     if (RST_FIFO_ == 1'b0) 
-        BytePtr[0] <= 1'b0;
+        BytePtr <= 2'b00;
     else begin
-        if (INCBO) BytePtr <= {MUXZ, BytePtr[0]};
+        if (INCBO) BytePtr <= {MUXZ, ~BytePtr[0]};
         if (ACR_WR) BytePtr[1] <= MUXZ;        
     end    
 end
@@ -124,17 +136,6 @@ assign BO1 = BytePtr[1];
 
 assign BOEQ0 = (BytePtr == 2'b00);
 assign BOEQ3 = (BytePtr == 2'b11);
-
-//BYTE WRITE STROBES
-
-assign UUWS = !(!(!(BO0|BO1|LBYTE_)|LHWORD));
-assign UMWS = !(!(!(!BO0|BO1|LBYTE_)|LHWORD));
-assign LMWS = !(!(!(BO0|!BO1|LBYTE_)|LLWORD));
-assign LLWS = !(!(!(!BO0|!BO1|LBYTE_)|LLWORD));
-
-//FIFO STATE FLAGS
-assign FIFOEMPTY = (FullEmptyCounter == 3'b000);
-assign FIFOFULL = (FullEmptyCounter == 3'b111);
 
 //ASYNCH READ ACCESS TO FIFO DATA BUFFER
 assign OD = (buffer[ReadPtr]);

@@ -1,0 +1,234 @@
+$date
+	Tue Nov 15 21:52:45 2022
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	100ps
+$end
+$scope module fifo_write_strobes_tb $end
+$var wire 1 ! UUWS $end
+$var wire 1 " UMWS $end
+$var wire 1 # LMWS $end
+$var wire 1 $ LLWS $end
+$var reg 1 % BO0 $end
+$var reg 1 & BO1 $end
+$var reg 1 ' LBYTE_ $end
+$var reg 1 ( LHWORD $end
+$var reg 1 ) LLWORD $end
+$var reg 1 * TV_LLWS $end
+$var reg 1 + TV_LMWS $end
+$var reg 1 , TV_UMWS $end
+$var reg 1 - TV_UUWS $end
+$var integer 32 . i [31:0] $end
+$scope module dut_fifo_write_strobes $end
+$var wire 1 % BO0 $end
+$var wire 1 & BO1 $end
+$var wire 1 ' LBYTE_ $end
+$var wire 1 ( LHWORD $end
+$var wire 1 ) LLWORD $end
+$var wire 1 $ LLWS $end
+$var wire 1 # LMWS $end
+$var wire 1 " UMWS $end
+$var wire 1 ! UUWS $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 .
+1-
+0,
+0+
+0*
+0)
+0(
+0'
+0&
+0%
+0$
+0#
+0"
+1!
+$end
+#100
+1"
+0!
+1%
+0-
+1,
+b1 .
+#200
+0"
+1#
+1&
+0%
+0,
+1+
+b10 .
+#300
+1$
+0#
+1%
+0+
+1*
+b11 .
+#400
+1!
+1#
+1)
+0&
+0%
+1-
+1+
+b100 .
+#500
+1"
+0!
+1%
+0-
+1,
+b101 .
+#600
+0"
+1&
+0%
+0,
+b110 .
+#700
+1%
+b111 .
+#800
+0$
+1!
+1"
+0#
+1(
+0)
+0&
+0%
+1-
+1,
+0+
+0*
+b1000 .
+#900
+1%
+b1001 .
+#1000
+1#
+1&
+0%
+1+
+b1010 .
+#1100
+1$
+0#
+1%
+0+
+1*
+b1011 .
+#1200
+1#
+1)
+0&
+0%
+1+
+b1100 .
+#1300
+1%
+b1101 .
+#1400
+1&
+0%
+b1110 .
+#1500
+1%
+b1111 .
+#1600
+0$
+0!
+0"
+0#
+1'
+0(
+0)
+0&
+0%
+0-
+0,
+0+
+0*
+b10000 .
+#1700
+1%
+b10001 .
+#1800
+1&
+0%
+b10010 .
+#1900
+1%
+b10011 .
+#2000
+1#
+1$
+1)
+0&
+0%
+1+
+1*
+b10100 .
+#2100
+1%
+b10101 .
+#2200
+1&
+0%
+b10110 .
+#2300
+1%
+b10111 .
+#2400
+1!
+1"
+0#
+0$
+1(
+0)
+0&
+0%
+1-
+1,
+0+
+0*
+b11000 .
+#2500
+1%
+b11001 .
+#2600
+1&
+0%
+b11010 .
+#2700
+1%
+b11011 .
+#2800
+1#
+1$
+1)
+0&
+0%
+1+
+1*
+b11100 .
+#2900
+1%
+b11101 .
+#3000
+1&
+0%
+b11110 .
+#3100
+b11111 .
