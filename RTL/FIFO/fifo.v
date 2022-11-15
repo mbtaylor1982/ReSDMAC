@@ -16,8 +16,8 @@
 // You should have received a copy of the GNU General Public License
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
-`include "RTL/FIFO/fifo_write_strobes.v"
-`include "RTL/FIFO/fifo_full_empty_ctr.v"
+//`include "RTL/FIFO/fifo_write_strobes.v"
+//`include "RTL/FIFO/fifo_full_empty_ctr.v"
 
 module fifo(
     
@@ -79,10 +79,6 @@ reg [2:0] ReadPtr;
 reg [2:0] WritePtr;
 reg [1:0] BytePtr;
 
-wire UUWS;
-wire UMWS;
-wire LMWS;
-wire LLWS;
 wire MUXZ;
 
 //NEXT IN POINTER

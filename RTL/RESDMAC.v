@@ -192,7 +192,7 @@ CPU_SM csm(
     //.PLHW        (PLHW        )
 );
 
-FIFO int_fifo(
+fifo int_fifo(
     //.LLWORD    (LLWORD    ),
     //.LHWORD    (LHWORD    ),
     .LBYTE_    (LBYTE_    ),
