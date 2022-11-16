@@ -16,44 +16,27 @@
 // You should have received a copy of the GNU General Public License
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
-module fifo__full_empty_ctr(
-    input INCFIFO,
-    input DECFIFO,
+module fifo_byte_ptr(
+    input INCBO,
+    input MID25,
+    input ACR_WR,
+    input H_0C,
     input RST_FIFO_,    
 
-    output reg FIFOEMPTY,
-    output reg FIFOFULL
+    output reg [1:0] PTR    
 );
 
-reg [2:0] COUNT;
+wire MUXZ;
 
-always @(posedge INCFIFO or posedge DECFIFO or negedge RST_FIFO_) begin
-    if (RST_FIFO_ == 1'b0)
-    begin
-        COUNT <= 3'b000;
-        FIFOEMPTY <= 1'b1;
-        FIFOFULL <= 1'b0;
-    end
-    else if (INCFIFO)
-    begin
-      if (COUNT == 3'b111) 
-        FIFOFULL <= 1'b1;
-      else
-      begin
-        COUNT <=  COUNT +1;
-        FIFOEMPTY <= 1'b0;
-      end
-    end 
-    else if (DECFIFO)
-    begin
-        if (COUNT == 3'b000) 
-            FIFOEMPTY <= 1'b1;
-        else
-        begin
-            COUNT <=  COUNT -1;
-            FIFOFULL <= 1'b0;
-        end
-    end 
+always @(posedge ACR_WR or posedge INCBO or negedge RST_FIFO_) begin
+    if (RST_FIFO_ == 1'b0) 
+        PTR <= 2'b00;
+    else begin
+        if (INCBO) PTR <= {MUXZ, ~PTR[0]};
+        if (ACR_WR) PTR[1] <= MUXZ;        
+    end    
 end
+
+assign MUXZ = (H_0C)? ~MID25:(PTR[0]^~PTR[1]);
 
 endmodule

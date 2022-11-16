@@ -15,5 +15,8 @@
         }
     ],
     "license.default": "gpl-3.0",
+    "verilog.icarusTestbenchIncludes": ["RTL/fifo/", "RTL/SCSI-SM/"
+    
+    ],
 }
 

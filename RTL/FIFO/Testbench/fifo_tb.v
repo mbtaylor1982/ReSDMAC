@@ -27,7 +27,7 @@ module fifo_tb;
 reg LLWORD;
 reg LHWORD;
 reg LBYTE_;
-reg h_0C;
+reg H_0C;
 reg ACR_WR;
 reg RST_FIFO_;
 reg MID25; 
@@ -51,7 +51,7 @@ fifo dut_fifo(
     .LLWORD    (LLWORD    ),
     .LHWORD    (LHWORD    ),
     .LBYTE_    (LBYTE_    ),
-    .h_0C      (h_0C      ),
+    .H_0C      (H_0C      ),
     .ACR_WR    (ACR_WR    ),
     .RST_FIFO_ (RST_FIFO_ ),
     .MID25     (MID25     ),
@@ -124,7 +124,7 @@ fifo dut_fifo(
         LBYTE_ = 1'b0;
         LHWORD = 1'b0;
         LLWORD = 1'b0;
-        h_0C = 1'b0;
+        H_0C = 1'b0;
         ACR_WR = 1'b0;
         MID25 = 1'b0;
         repeat(1) #10
@@ -137,7 +137,7 @@ fifo dut_fifo(
         LBYTE_ =1'b0;
         LHWORD = 1'b0;
         LLWORD = 1'b0;
-        h_0C = 1'b1;
+        H_0C = 1'b1;
         ACR_WR = 1'b0;
         MID25 = 1'b0;
         repeat(1) #10
@@ -150,7 +150,7 @@ fifo dut_fifo(
         LBYTE_ =1'b0;
         LHWORD = 1'b0;
         LLWORD = 1'b0;
-        h_0C = 1'b1;
+        H_0C = 1'b1;
         ACR_WR = 1'b0;
         MID25 = 1'b1;
         repeat(1) #10

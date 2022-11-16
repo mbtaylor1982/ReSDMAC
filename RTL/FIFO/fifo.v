@@ -18,6 +18,8 @@
  */
 //`include "RTL/FIFO/fifo_write_strobes.v"
 //`include "RTL/FIFO/fifo_full_empty_ctr.v"
+//`include "RTL/FIFO/fifo_3bit_cntr.v"
+//`include "RTL/FIFO/fifo_byte_ptr.v"
 
 module fifo(
     
@@ -26,7 +28,7 @@ module fifo(
     
     input LBYTE_,       //Load Byte strobe from SCSI SM = !(DACK.o & RE.o)
 
-    input h_0C,         //Address Decode for $0C ACR register
+    input H_0C,         //Address Decode for $0C ACR register
     input ACR_WR,       //indicate write to ACR?
     input RST_FIFO_,    //Reset FIFO
     input MID25,        //think this may be checking A1 in the ACR to see if this was a 16 or 32 bit transfer
@@ -53,7 +55,11 @@ module fifo(
     output [31:0] OD    //FIFO Data Output
 );
 
-fifo_write_strobes u_fifo_write_strobes(
+wire [2:0] WRITE_PTR;
+wire [2:0] READ_PTR;
+wire [1:0] BYTE_PTR;
+
+fifo_write_strobes u_write_strobes(
     .BO0    (BO0    ),
     .BO1    (BO1    ),
     .LHWORD (LHWORD ),
@@ -65,7 +71,7 @@ fifo_write_strobes u_fifo_write_strobes(
     .LLWS   (LLWS   )
 );
 
-fifo__full_empty_ctr u_fifo__full_empty_ctr(
+fifo__full_empty_ctr u_full_empty_ctr(
     .INCFIFO   (INCFIFO   ),
     .DECFIFO   (DECFIFO   ),
     .RST_FIFO_ (RST_FIFO_ ),
@@ -73,69 +79,59 @@ fifo__full_empty_ctr u_fifo__full_empty_ctr(
     .FIFOFULL  (FIFOFULL  )
 );
 
-reg [31:0] buffer [7:0]; //32 byte FIFO buffer (8 x 32 bit long words)
+//Next In Write Counter
+fifo_3bit_cntr u_next_in_cntr(
+    .CLK       (INCNI     ),
+    .RST_FIFO_ (RST_FIFO_ ),
+    .COUNT     (WRITE_PTR )
+);
 
-reg [2:0] ReadPtr;
-reg [2:0] WritePtr;
-reg [1:0] BytePtr;
-
-wire MUXZ;
-
-//NEXT IN POINTER
-always @(posedge INCNI, negedge RST_FIFO_) begin
-    if (RST_FIFO_ == 1'b0)
-        WritePtr <= 3'b000;
-    else
-        WritePtr <= WritePtr + 1;     
-end
-
-//NEXT OUT POINTER
-always @(posedge INCNO, negedge RST_FIFO_) begin
-    if (RST_FIFO_ == 1'b0)
-        ReadPtr <= 3'b000;
-    else
-        ReadPtr <= ReadPtr + 1;     
-end
-
+//Next Out Read Counter
+fifo_3bit_cntr u_next_out_cntr(
+    .CLK       (INCNO     ),
+    .RST_FIFO_ (RST_FIFO_ ),
+    .COUNT     (READ_PTR  )
+);
 //BYTE POINTER
+fifo_byte_ptr u_byte_ptr(
+  .INCBO     (INCBO     ),
+  .MID25     (MID25     ),
+  .ACR_WR    (ACR_WR    ),
+  .H_0C      (H_0C      ),
+  .RST_FIFO_ (RST_FIFO_ ),
+  .PTR       (BYTE_PTR   )
+);
 
-always @(posedge ACR_WR or posedge INCBO or negedge RST_FIFO_) begin
-    if (RST_FIFO_ == 1'b0) 
-        BytePtr <= 2'b00;
-    else begin
-        if (INCBO) BytePtr <= {MUXZ, ~BytePtr[0]};
-        if (ACR_WR) BytePtr[1] <= MUXZ;        
-    end    
-end
+//32 byte FIFO buffer (8 x 32 bit long words)
+reg [31:0] BUFFER [7:0]; 
+
 
 //WRITE DATA TO FIFO BUFFER
 always @(posedge UUWS) begin
-  buffer[WritePtr][31:24] <= ID[31:24];
+  BUFFER[WRITE_PTR][31:24] <= ID[31:24];
 end
 
 always @(posedge UMWS) begin
-  buffer[WritePtr][23:16] <= ID[23:16];
+  BUFFER[WRITE_PTR][23:16] <= ID[23:16];
 end
 
 always @(posedge LMWS) begin
-  buffer[WritePtr][15:8] <= ID[15:8];
+  BUFFER[WRITE_PTR][15:8] <= ID[15:8];
 end
 
 always @(posedge LLWS) begin
-  buffer[WritePtr][7:0] <= ID[7:0];
+  BUFFER[WRITE_PTR][7:0] <= ID[7:0];
 end
 
 //BYTE COUNTER FLAGS
 
-assign BO0 = BytePtr[0];
-assign BO1 = BytePtr[1];
+assign BO0 = BYTE_PTR[0];
+assign BO1 = BYTE_PTR[1];
 
-assign BOEQ0 = (BytePtr == 2'b00);
-assign BOEQ3 = (BytePtr == 2'b11);
+assign BOEQ0 = (BYTE_PTR == 2'b00);
+assign BOEQ3 = (BYTE_PTR == 2'b11);
 
 //ASYNCH READ ACCESS TO FIFO DATA BUFFER
-assign OD = (buffer[ReadPtr]);
-
-assign MUXZ = (h_0C)? ~MID25:(BO0^~BO1);
+assign OD = (BUFFER[READ_PTR]);
 
 endmodule
