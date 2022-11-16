@@ -1,3 +1,5 @@
+
+`timescale 1ns/100ps
  /*
 // 
 // Copyright (C) 2022  Mike Taylor
@@ -16,10 +18,6 @@
 // You should have received a copy of the GNU General Public License
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-`timescale 1ns/100ps
-
-`include "RTL/FIFO/fifo_write_strobes.v"
 
 module fifo_write_strobes_tb; 
 

@@ -19,7 +19,7 @@
 
 `timescale 1ns/100ps
 
-`include "RTL/registers.v"
+//`include "RTL/registers.v"
 module registers_tb; 
 
 //inputs

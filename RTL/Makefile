@@ -55,8 +55,8 @@ else
 endif
 
 
-VTEST = $(foreach file,$(wildcard *$(TEST_POSTFIX).v),$(file))
-VHDTEST = $(foreach file,$(wildcard *$(TEST_POSTFIX).vhd),$(file))
+#VTEST = $(foreach file,$(wildcard *$(TEST_POSTFIX).v),$(file))
+#VHDTEST = $(foreach file,$(wildcard *$(TEST_POSTFIX).vhd),$(file))
 TEST_NAMES = $(foreach file,$(VTEST) $(VHDTEST),$(basename $(file)))
 TEST_EXES = $(foreach test,$(TEST_NAMES),build/isim_$(test)$(EXE))
 
