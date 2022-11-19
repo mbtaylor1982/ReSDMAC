@@ -17,6 +17,9 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+ `include "RTL/SCSI_SM/scsi_sm_inputs.v"
+ `include "RTL/SCSI_SM/scsi_sm_outputs.v"
+
 module SCSI_SM(
     input DSACK_,
     input CPUREQ,
@@ -47,7 +50,7 @@ module SCSI_SM(
     output reg CPU2S_o
 );
 
-reg [5:0] state;
+reg [4:0] state;
 
 //Clocked inputs
 reg CCPUREQ;
@@ -255,8 +258,7 @@ end
 //State Machine
 always @(posedge BCLK or negedge CRESET_) begin
     if (CRESET_ == 1'b0) 
-        state <= 5'b00000; 
-        //state <= 5'b11110;  Not sure on the inital state here as the schmatics appear to contain conflicting Information.
+        state <= 5'b11110;
     else
         state <= {scsidff5_d, scsidff4_d, scsidff3_d, scsidff2_d, scsidff1_d};
 end
