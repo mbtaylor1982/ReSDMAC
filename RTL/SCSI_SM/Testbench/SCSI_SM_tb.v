@@ -104,7 +104,7 @@ SCSI_SM u_SCSI_SM(
         FIFOEMPTY = 1'b1;
         repeat(2) #10 CPUCLK = ~CPUCLK;
         RESET_ = 1'b0;
-        repeat(2) #10 CPUCLK = ~CPUCLK;
+        repeat(4) #10 CPUCLK = ~CPUCLK;
         RESET_ = 1'b1;
         repeat(32) #10 CPUCLK = ~CPUCLK;
         $finish;

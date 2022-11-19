@@ -18,11 +18,7 @@
  */
 
 module scsi_sm_inputs(
-  input scsidff1_q,
-  input scsidff2_q,
-  input scsidff3_q,
-  input scsidff4_q,
-  input scsidff5_q,  
+  input [4:0] STATE,   
   input BOEQ3,
   input CCPUREQ,
   input CDREQ_,
@@ -34,46 +30,60 @@ module scsi_sm_inputs(
   input RIFIFO_o,
   input RW,
 
-  output E0_,
-  output E1_,
-  output E2_,
-  output E3_,
-  output E4_,
-  output E5_,
-  output E6_,
-  output E7_,
-  output E8_,
-  output E9_,
-  output E10_,
-  output E11_,
-  output E12_,
-  output E13_,
-  output E14_,
-  output E15_,
-  output E16_,
-  output E17_,
-  output E18_,
-  output E19_,
-  output E20_,
-  output E21_,
-  output E22_,
-  output E23_,
-  output E24_,
-  output E25_,
-  output E26_,
-  output E27_
+  output [27:0] E_
 );
   wire nCDSACK_;
   wire nDMADIR;
+
+  wire scsidff1_q;
+  wire scsidff2_q;
+  wire scsidff3_q;
+  wire scsidff4_q;
+  wire scsidff5_q; 
   
   wire nscsidff1_q;
   wire nscsidff2_q;
   wire nscsidff3_q;
   wire nscsidff4_q;
   wire nscsidff5_q;
+
+  wire E0_;
+  wire E1_;
+  wire E2_;
+  wire E3_;
+  wire E4_;
+  wire E5_;
+  wire E6_;
+  wire E7_;
+  wire E8_;
+  wire E9_;
+  wire E10_;
+  wire E11_;
+  wire E12_;
+  wire E13_;
+  wire E14_;
+  wire E15_;
+  wire E16_;
+  wire E17_;
+  wire E18_;
+  wire E19_;
+  wire E20_;
+  wire E21_;
+  wire E22_;
+  wire E23_;
+  wire E24_;
+  wire E25_;
+  wire E26_;
+  wire E27_;
     
   assign nCDSACK_ = ~ CDSACK_;
   assign nDMADIR = ~ DMADIR;
+
+  assign scsidff1_q = STATE[0];
+  assign scsidff2_q = STATE[1];
+  assign scsidff3_q = STATE[2];
+  assign scsidff4_q = STATE[3];
+  assign scsidff5_q = STATE[4];
 
   assign nscsidff1_q = ~ scsidff1_q;
   assign nscsidff2_q = ~ scsidff2_q;
@@ -109,5 +119,7 @@ module scsi_sm_inputs(
   assign E25_ = ~ (scsidff1_q & scsidff2_q & scsidff5_q);
   assign E26_ = ~ (scsidff1_q & scsidff2_q & nscsidff5_q);
   assign E27_ = ~ (scsidff2_q & nscsidff3_q & scsidff4_q & nscsidff5_q);
+
+  assign E_[27:0] = {E27_,E26_,E25_,E24_,E23_,E22_,E21_,E20_,E19_,E18_,E17_,E16_,E15_,E14_,E13_,E12_,E11_,E10_,E9_,E8_,E7_,E6_,E5_,E4_,E3_,E2_,E1_,E0_};
   
 endmodule
