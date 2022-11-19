@@ -31,7 +31,7 @@ module fifo(
     input H_0C,         //Address Decode for $0C ACR register
     input ACR_WR,       //indicate write to ACR?
     input RST_FIFO_,    //Reset FIFO
-    input MID25,        //think this may be checking A1 in the ACR to see if this was a 16 or 32 bit transfer
+    input MID25,        //think this may be checking A1 in the ACR to make sure BYTE PTR is initialised to the correct value.
 
     input [31:0] ID,    //FIFO Data Input
 
