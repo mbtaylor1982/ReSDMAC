@@ -239,7 +239,7 @@ end
 always @(posedge BCLK) begin
     RE_o <= RE;
     WE_o <= WE;
-    SCSI_CS_o <= SCSI_CS;
+    SCSI_CS_o <= ~SCSI_CS;
     DACK_o <= DACK;
     INCBO_o <= INCBO;
     INCNO_o <= INCNO;
