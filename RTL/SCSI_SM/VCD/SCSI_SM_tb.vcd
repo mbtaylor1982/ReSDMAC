@@ -1,5 +1,5 @@
 $date
-	Sat Nov 19 17:32:56 2022
+	Sun Nov 20 00:22:59 2022
 $end
 $version
 	Icarus Verilog
@@ -8,62 +8,62 @@ $timescale
 	100ps
 $end
 $scope module scsi_sm_tb $end
-$var wire 1 ! RDFIFO_o $end
-$var wire 1 " RIFIFO_o $end
-$var wire 1 # WE_o $end
-$var wire 1 $ SET_DSACK $end
-$var wire 1 % SCSI_CS_o $end
-$var wire 1 & S2F_o $end
-$var wire 1 ' S2CPU_o $end
-$var wire 1 ( RIFIFO_d $end
-$var wire 1 ) RE_o $end
-$var wire 1 * RDFIFO_d $end
-$var wire 1 + INCNO_o $end
-$var wire 1 , INCNI_o $end
-$var wire 1 - INCBO_o $end
-$var wire 1 . F2S_o $end
-$var wire 1 / DACK_o $end
-$var wire 1 0 CPU2S_o $end
-$var reg 1 1 BOEQ3 $end
-$var reg 1 2 CPUCLK $end
-$var reg 1 3 CPUREQ $end
-$var reg 1 4 DMADIR $end
-$var reg 1 5 DREQ_ $end
-$var reg 1 6 DSACK_ $end
-$var reg 1 7 FIFOEMPTY $end
-$var reg 1 8 FIFOFULL $end
-$var reg 1 9 RDFIFO $end
-$var reg 1 : RESET_ $end
-$var reg 1 ; RIFIFO $end
-$var reg 1 < RW $end
+$var wire 1 ! WE_o $end
+$var wire 1 " SET_DSACK $end
+$var wire 1 # SCSI_CS_o $end
+$var wire 1 $ S2F_o $end
+$var wire 1 % S2CPU_o $end
+$var wire 1 & RIFIFO_d $end
+$var wire 1 ' RE_o $end
+$var wire 1 ( RDFIFO_d $end
+$var wire 1 ) INCNO_o $end
+$var wire 1 * INCNI_o $end
+$var wire 1 + INCBO_o $end
+$var wire 1 , F2S_o $end
+$var wire 1 - DACK_o $end
+$var wire 1 . CPU2S_o $end
+$var reg 1 / BOEQ3 $end
+$var reg 1 0 CPUCLK $end
+$var reg 1 1 CPUREQ $end
+$var reg 1 2 DECFIFO $end
+$var reg 1 3 DMADIR $end
+$var reg 1 4 DREQ_ $end
+$var reg 1 5 DSACK_ $end
+$var reg 1 6 FIFOEMPTY $end
+$var reg 1 7 FIFOFULL $end
+$var reg 1 8 INCFIFO $end
+$var reg 1 9 RESET_ $end
+$var reg 1 : RW $end
 $scope module u_SCSI_SM $end
-$var wire 1 = BBCLK $end
-$var wire 1 > BCLK $end
-$var wire 1 1 BOEQ3 $end
-$var wire 1 2 CPUCLK $end
-$var wire 1 3 CPUREQ $end
-$var wire 1 4 DMADIR $end
-$var wire 1 5 DREQ_ $end
-$var wire 1 6 DSACK_ $end
-$var wire 1 7 FIFOEMPTY $end
-$var wire 1 8 FIFOFULL $end
-$var wire 1 ! RDFIFO_o $end
-$var wire 1 : RESET_ $end
-$var wire 1 " RIFIFO_o $end
-$var wire 1 < RW $end
-$var wire 1 ? nCCPUREQ $end
-$var wire 1 @ nCDREQ_ $end
-$var wire 1 A nCDSACK_ $end
-$var wire 1 B nCLK $end
-$var wire 1 C nDMADIR $end
-$var wire 1 D nFIFOFULL $end
-$var wire 1 E nRW $end
-$var wire 1 F WE $end
-$var wire 1 $ SET_DSACK $end
-$var wire 1 G SCSI_CS $end
-$var wire 1 H S2F $end
-$var wire 1 I S2CPU $end
-$var wire 1 J RE $end
+$var wire 1 ; BBCLK $end
+$var wire 1 < BCLK $end
+$var wire 1 / BOEQ3 $end
+$var wire 1 0 CPUCLK $end
+$var wire 1 1 CPUREQ $end
+$var wire 1 2 DECFIFO $end
+$var wire 1 3 DMADIR $end
+$var wire 1 4 DREQ_ $end
+$var wire 1 5 DSACK_ $end
+$var wire 1 6 FIFOEMPTY $end
+$var wire 1 7 FIFOFULL $end
+$var wire 1 8 INCFIFO $end
+$var wire 1 9 RESET_ $end
+$var wire 1 : RW $end
+$var wire 1 = nCCPUREQ $end
+$var wire 1 > nCDREQ_ $end
+$var wire 1 ? nCDSACK_ $end
+$var wire 1 @ nCLK $end
+$var wire 1 A nDMADIR $end
+$var wire 1 B nFIFOFULL $end
+$var wire 1 C nRW $end
+$var wire 1 D WE $end
+$var wire 1 " SET_DSACK $end
+$var wire 1 E SCSI_CS $end
+$var wire 1 F S2F $end
+$var wire 1 G S2CPU $end
+$var wire 1 H RIRST_ $end
+$var wire 1 I RE $end
+$var wire 1 J RDRST_ $end
 $var wire 5 K NEXT_STATE [4:0] $end
 $var wire 1 L INCNO $end
 $var wire 1 M INCNI $end
@@ -75,130 +75,134 @@ $var wire 1 R CPU2S $end
 $var reg 1 S CCPUREQ $end
 $var reg 1 T CDREQ_ $end
 $var reg 1 U CDSACK_ $end
-$var reg 1 0 CPU2S_o $end
+$var reg 1 . CPU2S_o $end
 $var reg 1 V CRESET_ $end
-$var reg 1 / DACK_o $end
-$var reg 1 . F2S_o $end
-$var reg 1 - INCBO_o $end
-$var reg 1 , INCNI_o $end
-$var reg 1 + INCNO_o $end
-$var reg 1 * RDFIFO_d $end
-$var reg 1 ) RE_o $end
-$var reg 1 ( RIFIFO_d $end
-$var reg 1 ' S2CPU_o $end
-$var reg 1 & S2F_o $end
-$var reg 1 % SCSI_CS_o $end
-$var reg 5 W STATE [4:0] $end
-$var reg 1 # WE_o $end
+$var reg 1 - DACK_o $end
+$var reg 1 , F2S_o $end
+$var reg 1 + INCBO_o $end
+$var reg 1 * INCNI_o $end
+$var reg 1 ) INCNO_o $end
+$var reg 1 ( RDFIFO_d $end
+$var reg 1 W RDFIFO_o $end
+$var reg 1 ' RE_o $end
+$var reg 1 & RIFIFO_d $end
+$var reg 1 X RIFIFO_o $end
+$var reg 1 % S2CPU_o $end
+$var reg 1 $ S2F_o $end
+$var reg 1 # SCSI_CS_o $end
+$var reg 5 Y STATE [4:0] $end
+$var reg 1 ! WE_o $end
 $scope module u_scsi_sm_inputs $end
-$var wire 1 1 BOEQ3 $end
+$var wire 1 / BOEQ3 $end
 $var wire 1 S CCPUREQ $end
 $var wire 1 T CDREQ_ $end
 $var wire 1 U CDSACK_ $end
-$var wire 1 4 DMADIR $end
-$var wire 1 X E0_ $end
-$var wire 1 Y E10_ $end
-$var wire 1 Z E11_ $end
-$var wire 1 [ E12_ $end
-$var wire 1 \ E13_ $end
-$var wire 1 ] E14_ $end
-$var wire 1 ^ E15_ $end
-$var wire 1 _ E16_ $end
-$var wire 1 ` E17_ $end
-$var wire 1 a E18_ $end
-$var wire 1 b E19_ $end
-$var wire 1 c E1_ $end
-$var wire 1 d E20_ $end
-$var wire 1 e E21_ $end
-$var wire 1 f E22_ $end
-$var wire 1 g E23_ $end
-$var wire 1 h E24_ $end
-$var wire 1 i E25_ $end
-$var wire 1 j E26_ $end
-$var wire 1 k E27_ $end
-$var wire 1 l E2_ $end
-$var wire 1 m E3_ $end
-$var wire 1 n E4_ $end
-$var wire 1 o E5_ $end
-$var wire 1 p E6_ $end
-$var wire 1 q E7_ $end
-$var wire 1 r E8_ $end
-$var wire 1 s E9_ $end
-$var wire 1 7 FIFOEMPTY $end
-$var wire 1 8 FIFOFULL $end
-$var wire 1 ! RDFIFO_o $end
-$var wire 1 " RIFIFO_o $end
-$var wire 1 < RW $end
-$var wire 5 t STATE [4:0] $end
-$var wire 1 u nCDSACK_ $end
-$var wire 1 v nDMADIR $end
-$var wire 1 w nscsidff1_q $end
-$var wire 1 x nscsidff2_q $end
-$var wire 1 y nscsidff3_q $end
-$var wire 1 z nscsidff4_q $end
-$var wire 1 { nscsidff5_q $end
-$var wire 1 | scsidff5_q $end
-$var wire 1 } scsidff4_q $end
-$var wire 1 ~ scsidff3_q $end
-$var wire 1 !" scsidff2_q $end
-$var wire 1 "" scsidff1_q $end
-$var wire 28 #" E_ [27:0] $end
+$var wire 1 3 DMADIR $end
+$var wire 1 Z E0_ $end
+$var wire 1 [ E10_ $end
+$var wire 1 \ E11_ $end
+$var wire 1 ] E12_ $end
+$var wire 1 ^ E13_ $end
+$var wire 1 _ E14_ $end
+$var wire 1 ` E15_ $end
+$var wire 1 a E16_ $end
+$var wire 1 b E17_ $end
+$var wire 1 c E18_ $end
+$var wire 1 d E19_ $end
+$var wire 1 e E1_ $end
+$var wire 1 f E20_ $end
+$var wire 1 g E21_ $end
+$var wire 1 h E22_ $end
+$var wire 1 i E23_ $end
+$var wire 1 j E24_ $end
+$var wire 1 k E25_ $end
+$var wire 1 l E26_ $end
+$var wire 1 m E27_ $end
+$var wire 1 n E2_ $end
+$var wire 1 o E3_ $end
+$var wire 1 p E4_ $end
+$var wire 1 q E5_ $end
+$var wire 1 r E6_ $end
+$var wire 1 s E7_ $end
+$var wire 1 t E8_ $end
+$var wire 1 u E9_ $end
+$var wire 1 6 FIFOEMPTY $end
+$var wire 1 7 FIFOFULL $end
+$var wire 1 W RDFIFO_o $end
+$var wire 1 X RIFIFO_o $end
+$var wire 1 : RW $end
+$var wire 5 v STATE [4:0] $end
+$var wire 1 w nCDSACK_ $end
+$var wire 1 x nDMADIR $end
+$var wire 1 y nscsidff1_q $end
+$var wire 1 z nscsidff2_q $end
+$var wire 1 { nscsidff3_q $end
+$var wire 1 | nscsidff4_q $end
+$var wire 1 } nscsidff5_q $end
+$var wire 1 ~ scsidff5_q $end
+$var wire 1 !" scsidff4_q $end
+$var wire 1 "" scsidff3_q $end
+$var wire 1 #" scsidff2_q $end
+$var wire 1 $" scsidff1_q $end
+$var wire 28 %" E_ [27:0] $end
 $upscope $end
 $scope module u_scsi_sm_outputs $end
 $var wire 1 R CPU2S $end
 $var wire 1 Q DACK $end
-$var wire 28 $" E_ [27:0] $end
+$var wire 28 &" E_ [27:0] $end
 $var wire 1 O F2S $end
 $var wire 1 N INCBO $end
 $var wire 1 M INCNI $end
 $var wire 1 L INCNO $end
-$var wire 1 J RE $end
-$var wire 1 I S2CPU $end
-$var wire 1 H S2F $end
-$var wire 1 G SCSI_CS $end
-$var wire 1 $ SET_DSACK $end
-$var wire 1 F WE $end
-$var wire 1 %" scsidff1_d $end
-$var wire 1 &" scsidff2_d $end
-$var wire 1 '" scsidff3_d $end
-$var wire 1 (" scsidff4_d $end
-$var wire 1 )" scsidff5_d $end
-$var wire 5 *" NEXT_STATE [4:0] $end
-$var wire 1 +" E9_ $end
-$var wire 1 ," E8_ $end
-$var wire 1 -" E7_ $end
-$var wire 1 ." E6_ $end
-$var wire 1 /" E5_ $end
-$var wire 1 0" E4_ $end
-$var wire 1 1" E3_ $end
-$var wire 1 2" E2_ $end
-$var wire 1 3" E27_ $end
-$var wire 1 4" E26_ $end
-$var wire 1 5" E25_ $end
-$var wire 1 6" E24_ $end
-$var wire 1 7" E23_ $end
-$var wire 1 8" E22_ $end
-$var wire 1 9" E21_ $end
-$var wire 1 :" E20_ $end
-$var wire 1 ;" E1_ $end
-$var wire 1 <" E19_ $end
-$var wire 1 =" E18_ $end
-$var wire 1 >" E17_ $end
-$var wire 1 ?" E16_ $end
-$var wire 1 @" E15_ $end
-$var wire 1 A" E14_ $end
-$var wire 1 B" E13_ $end
-$var wire 1 C" E12_ $end
-$var wire 1 D" E11_ $end
-$var wire 1 E" E10_ $end
-$var wire 1 F" E0_ $end
+$var wire 1 I RE $end
+$var wire 1 G S2CPU $end
+$var wire 1 F S2F $end
+$var wire 1 E SCSI_CS $end
+$var wire 1 " SET_DSACK $end
+$var wire 1 D WE $end
+$var wire 1 '" scsidff1_d $end
+$var wire 1 (" scsidff2_d $end
+$var wire 1 )" scsidff3_d $end
+$var wire 1 *" scsidff4_d $end
+$var wire 1 +" scsidff5_d $end
+$var wire 5 ," NEXT_STATE [4:0] $end
+$var wire 1 -" E9_ $end
+$var wire 1 ." E8_ $end
+$var wire 1 /" E7_ $end
+$var wire 1 0" E6_ $end
+$var wire 1 1" E5_ $end
+$var wire 1 2" E4_ $end
+$var wire 1 3" E3_ $end
+$var wire 1 4" E2_ $end
+$var wire 1 5" E27_ $end
+$var wire 1 6" E26_ $end
+$var wire 1 7" E25_ $end
+$var wire 1 8" E24_ $end
+$var wire 1 9" E23_ $end
+$var wire 1 :" E22_ $end
+$var wire 1 ;" E21_ $end
+$var wire 1 <" E20_ $end
+$var wire 1 =" E1_ $end
+$var wire 1 >" E19_ $end
+$var wire 1 ?" E18_ $end
+$var wire 1 @" E17_ $end
+$var wire 1 A" E16_ $end
+$var wire 1 B" E15_ $end
+$var wire 1 C" E14_ $end
+$var wire 1 D" E13_ $end
+$var wire 1 E" E12_ $end
+$var wire 1 F" E11_ $end
+$var wire 1 G" E10_ $end
+$var wire 1 H" E0_ $end
 $upscope $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
-1F"
+1H"
+xG"
+xF"
 xE"
 xD"
 xC"
@@ -207,33 +211,33 @@ xA"
 x@"
 x?"
 x>"
-x="
+1="
 x<"
-1;"
+x;"
 x:"
 x9"
 x8"
 x7"
 x6"
 x5"
-x4"
-x3"
+14"
+13"
 12"
 11"
-10"
-1/"
-x."
-x-"
-1,"
-1+"
-bx *"
+x0"
+x/"
+1."
+1-"
+bx ,"
+x+"
+x*"
 x)"
 x("
 x'"
-x&"
-x%"
-bx1xx111111 $"
-bx1xx111111 #"
+bx1xx111111 &"
+bx1xx111111 %"
+x$"
+x#"
 x""
 x!"
 x~
@@ -242,28 +246,28 @@ x|
 x{
 xz
 xy
-xx
-xw
-1v
-1u
-bx t
+1x
+1w
+bx v
+xu
+1t
 xs
-1r
-xq
-xp
+xr
+1q
+1p
 1o
 1n
-1m
-1l
+xm
+xl
 xk
 xj
 xi
 xh
 xg
 xf
-xe
+1e
 xd
-1c
+xc
 xb
 xa
 x`
@@ -272,10 +276,10 @@ x^
 x]
 x\
 x[
-xZ
-xY
-1X
-bx W
+1Z
+bx Y
+0X
+0W
 xV
 0U
 1T
@@ -288,34 +292,34 @@ xN
 0M
 0L
 bx K
-xJ
+0J
 xI
-xH
+0H
 xG
 xF
-0E
-1D
-1C
-0B
+xE
+xD
+0C
+1B
 1A
 0@
-0?
-1>
-1=
+1?
+0>
+0=
 1<
-0;
+1;
 1:
-09
+19
 08
-17
-06
-15
-04
-13
-12
-01
-x0
-x/
+07
+16
+05
+14
+03
+02
+11
+10
+0/
 x.
 x-
 x,
@@ -328,671 +332,675 @@ x&
 x%
 x$
 x#
-z"
-z!
+x"
+x!
 $end
 #100
 1V
-1B
-0>
-0=
-02
+1@
+0<
+0;
+00
 #200
+0&
 0(
 0*
-0,
-0+
-0B
-0:
-1>
-1=
-12
+0)
+1J
+1H
+0@
+09
+1<
+1;
+10
 #300
 0Q
-1J
-1'"
-1("
-0F
 1I
-1%"
 1)"
-0G
+1*"
+0D
+1G
+1'"
+1+"
+0E
 0R
 0O
 b11101 K
-b11101 *"
-0&"
-0H
-1?"
-1-"
+b11101 ,"
+0("
+0F
+1A"
+1/"
 0N
-0$
-1="
-1_
-0>"
-1q
-1@"
-1:"
-16"
-1<"
-15"
+0"
+1?"
 1a
-0`
-1."
+0@"
 1s
-1^
-1d
-1h
+1B"
+1<"
+18"
+1>"
+17"
+1c
+0b
+10"
+1u
+1`
+1f
+1j
+1G"
+1F"
 1E"
 1D"
 1C"
-1B"
-1A"
+1;"
+1:"
 19"
-18"
-17"
-14"
-13"
-1b
-1i
-1p
-1Y
-1Z
+16"
+15"
+1d
+1k
+1r
 1[
 1\
 1]
-1e
-1f
+1^
+1_
 1g
-1j
+1h
+1i
+1l
 b1111111111011111111111111111 P
-b1111111111011111111111111111 #"
-b1111111111011111111111111111 $"
-1k
-1w
-0x
-0y
+b1111111111011111111111111111 %"
+b1111111111011111111111111111 &"
+1m
+1y
 0z
 0{
-0""
+0|
+0}
+0$"
+1#"
+1""
 1!"
 1~
-1}
-1|
-b11110 W
-b11110 t
+b11110 Y
+b11110 v
 0V
-1B
-0>
-0=
-02
-#400
+1@
+0<
+0;
 00
-1'
+#400
 0.
-0&
-0-
-0/
 1%
-0#
-1)
-0B
-1>
-1=
-12
+0,
+0$
+0+
+0-
+1#
+0!
+1'
+0@
+1<
+1;
+10
 #500
-1B
-0>
-0=
-02
+1@
+0<
+0;
+00
 #600
-0B
-1:
-1>
-1=
-12
+0J
+0H
+0@
+19
+1<
+1;
+10
 #700
 1V
-1B
-0>
-0=
-02
+1@
+0<
+0;
+00
 #800
-0J
-1Q
-0("
-1F
-0)"
-1G
-b101 K
-b101 *"
-0&"
-1O
-0?"
-1>"
-0_
-0<"
-1`
-b1111111101101111111111111111 P
-b1111111101101111111111111111 #"
-b1111111101101111111111111111 $"
-0b
-0w
-1x
-1""
-0!"
-b11101 W
-b11101 t
-0B
-1>
-1=
-12
-#900
-1B
-0>
-0=
-02
-#1000
-1("
-1J
-0'"
-0)"
-0%"
 0I
-0F
-1H
+1Q
+0*"
+1D
+0+"
+1E
+b101 K
+b101 ,"
+0("
+1O
+0A"
+1@"
+0a
+0>"
+1b
+b1111111101101111111111111111 P
+b1111111101101111111111111111 %"
+b1111111101101111111111111111 &"
+0d
+0y
+1z
+1$"
+0#"
+b11101 Y
+b11101 v
+0@
+1<
+1;
+10
+#900
+1@
+0<
+0;
+00
+#1000
+1*"
+1I
+0)"
+0+"
+0'"
+0G
+0D
+1F
 b1010 K
-b1010 *"
-1&"
+b1010 ,"
+1("
 1N
 1O
-0D"
-09"
-0Z
-0e
-1<"
-1?"
-1b
+0F"
+0;"
+0\
+0g
+1>"
+1A"
+1d
 b1111110111111111011111111111 P
-b1111110111111111011111111111 #"
-b1111110111111111011111111111 $"
-1_
-1z
-1{
-0}
-0|
-b101 W
-b101 t
-1.
-1/
-0%
-1#
-0)
-0B
-1>
-1=
-12
-#1100
-1B
-0>
-0=
-02
-#1200
-0%"
-0G
-0("
-b0 K
-b0 *"
-0&"
-0H
-0O
-0Q
-0C"
-1I
-0N
-0[
-03"
-0A"
-1D"
-19"
-0k
-0]
-1E"
-1Z
-1e
-1<"
-1Y
-b111111111111010111111111111 P
-b111111111111010111111111111 #"
-b111111111111010111111111111 $"
-1b
-1w
-0x
-1y
-0z
-0""
-1!"
-0~
+b1111110111111111011111111111 %"
+b1111110111111111011111111111 &"
+1a
+1|
 1}
-b1010 W
-b1010 t
-0'
-1&
+0!"
+0~
+b101 Y
+b101 v
+1,
 1-
 0#
-1)
-0B
-1>
-1=
-12
-#1300
-1B
-0>
-0=
-02
-#1400
-1&"
-0Q
-0J
-0I
+1!
+0'
+0@
+1<
+1;
+10
+#1100
+1@
+0<
+0;
+00
+#1200
+0'"
+0E
+0*"
+b0 K
+b0 ,"
+0("
 0F
-1'"
+0O
+0Q
+0E"
 1G
+0N
+0]
+05"
+0C"
+1F"
+1;"
+0m
+0_
+1G"
+1\
+1g
+1>"
+1[
+b111111111111010111111111111 P
+b111111111111010111111111111 %"
+b111111111111010111111111111 &"
+1d
+1y
+0z
+1{
+0|
+0$"
+1#"
+0""
+1!"
+b1010 Y
+b1010 v
+0%
+1$
+1+
+0!
+1'
+0@
+1<
+1;
+10
+#1300
+1@
+0<
+0;
+00
+#1400
+1("
+0Q
+0I
+0G
+0D
+1)"
+1E
 0O
 b10110 K
-b10110 *"
-1)"
-0."
-0p
-1B"
-13"
-1A"
+b10110 ,"
+1+"
+00"
+0r
+1D"
+15"
 1C"
-1\
-1k
+1E"
+1^
+1m
+1_
+b1111111111111111111110111111 P
+b1111111111111111111110111111 %"
+b1111111111111111111110111111 &"
 1]
-b1111111111111111111110111111 P
-b1111111111111111111110111111 #"
-b1111111111111111111110111111 $"
-1[
-1x
 1z
-0!"
-0}
-b0 W
-b0 t
-1'
-0.
-0&
-0-
-0/
-1%
-0B
-1>
-1=
-12
-#1500
-1B
-0>
-0=
-02
-#1600
-0J
-0'"
-0&"
-0Q
-0H
-b10000 K
-b10000 *"
-0("
-1:"
-0@"
-1."
-1d
-0^
-b1111111111110111111111111111 P
-b1111111111110111111111111111 #"
-b1111111111110111111111111111 $"
-1p
-0x
-0y
-0{
-1!"
-1~
 1|
-b10110 W
-b10110 t
-0'
+0#"
+0!"
+b0 Y
+b0 v
+1%
+0,
+0$
+0+
+0-
+1#
+0@
+1<
+1;
+10
+#1500
+1@
+0<
+0;
+00
+#1600
+0I
+0)"
+0("
+0Q
+0F
+b10000 K
+b10000 ,"
+0*"
+1<"
+0B"
+10"
+1f
+0`
+b1111111111110111111111111111 P
+b1111111111110111111111111111 %"
+b1111111111110111111111111111 &"
+1r
+0z
+0{
+0}
+1#"
+1""
+1~
+b10110 Y
+b10110 v
 0%
-0)
-0B
-1>
-1=
-12
+0#
+0'
+0@
+1<
+1;
+10
 #1700
-1B
-0>
-0=
-02
+1@
+0<
+0;
+00
 #1800
-1'"
+1)"
 b10110 K
-b10110 *"
-1&"
-0."
-0p
-1@"
+b10110 ,"
+1("
+00"
+0r
+1B"
 b1111111111111111111110111111 P
-b1111111111111111111110111111 #"
-b1111111111111111111110111111 $"
-1^
-1x
-1y
-0!"
-0~
-b10000 W
-b10000 t
-0B
-1>
-1=
-12
+b1111111111111111111110111111 %"
+b1111111111111111111110111111 &"
+1`
+1z
+1{
+0#"
+0""
+b10000 Y
+b10000 v
+0@
+1<
+1;
+10
 #1900
-1B
-0>
-0=
-02
+1@
+0<
+0;
+00
 #2000
-0J
-0'"
-0&"
-0Q
-0H
-b10000 K
-b10000 *"
+0I
+0)"
 0("
-1:"
-0@"
-1."
-1d
-0^
+0Q
+0F
+b10000 K
+b10000 ,"
+0*"
+1<"
+0B"
+10"
+1f
+0`
 b1111111111110111111111111111 P
-b1111111111110111111111111111 #"
-b1111111111110111111111111111 $"
-1p
-0x
-0y
-1!"
-1~
-b10110 W
-b10110 t
-0B
-1>
-1=
-12
+b1111111111110111111111111111 %"
+b1111111111110111111111111111 &"
+1r
+0z
+0{
+1#"
+1""
+b10110 Y
+b10110 v
+0@
+1<
+1;
+10
 #2100
-1B
-0>
-0=
-02
+1@
+0<
+0;
+00
 #2200
-1'"
+1)"
 b10110 K
-b10110 *"
-1&"
-0."
-0p
-1@"
+b10110 ,"
+1("
+00"
+0r
+1B"
 b1111111111111111111110111111 P
-b1111111111111111111110111111 #"
-b1111111111111111111110111111 $"
-1^
-1x
-1y
-0!"
-0~
-b10000 W
-b10000 t
-0B
-1>
-1=
-12
+b1111111111111111111110111111 %"
+b1111111111111111111110111111 &"
+1`
+1z
+1{
+0#"
+0""
+b10000 Y
+b10000 v
+0@
+1<
+1;
+10
 #2300
-1B
-0>
-0=
-02
+1@
+0<
+0;
+00
 #2400
-0J
-0'"
-0&"
-0Q
-0H
-b10000 K
-b10000 *"
+0I
+0)"
 0("
-1:"
-0@"
-1."
-1d
-0^
+0Q
+0F
+b10000 K
+b10000 ,"
+0*"
+1<"
+0B"
+10"
+1f
+0`
 b1111111111110111111111111111 P
-b1111111111110111111111111111 #"
-b1111111111110111111111111111 $"
-1p
-0x
-0y
-1!"
-1~
-b10110 W
-b10110 t
-0B
-1>
-1=
-12
+b1111111111110111111111111111 %"
+b1111111111110111111111111111 &"
+1r
+0z
+0{
+1#"
+1""
+b10110 Y
+b10110 v
+0@
+1<
+1;
+10
 #2500
-1B
-0>
-0=
-02
+1@
+0<
+0;
+00
 #2600
-1'"
+1)"
 b10110 K
-b10110 *"
-1&"
-0."
-0p
-1@"
+b10110 ,"
+1("
+00"
+0r
+1B"
 b1111111111111111111110111111 P
-b1111111111111111111110111111 #"
-b1111111111111111111110111111 $"
-1^
-1x
-1y
-0!"
-0~
-b10000 W
-b10000 t
-0B
-1>
-1=
-12
+b1111111111111111111110111111 %"
+b1111111111111111111110111111 &"
+1`
+1z
+1{
+0#"
+0""
+b10000 Y
+b10000 v
+0@
+1<
+1;
+10
 #2700
-1B
-0>
-0=
-02
+1@
+0<
+0;
+00
 #2800
-0J
-0'"
-0&"
-0Q
-0H
-b10000 K
-b10000 *"
+0I
+0)"
 0("
-1:"
-0@"
-1."
-1d
-0^
+0Q
+0F
+b10000 K
+b10000 ,"
+0*"
+1<"
+0B"
+10"
+1f
+0`
 b1111111111110111111111111111 P
-b1111111111110111111111111111 #"
-b1111111111110111111111111111 $"
-1p
-0x
-0y
-1!"
-1~
-b10110 W
-b10110 t
-0B
-1>
-1=
-12
+b1111111111110111111111111111 %"
+b1111111111110111111111111111 &"
+1r
+0z
+0{
+1#"
+1""
+b10110 Y
+b10110 v
+0@
+1<
+1;
+10
 #2900
-1B
-0>
-0=
-02
+1@
+0<
+0;
+00
 #3000
-1'"
+1)"
 b10110 K
-b10110 *"
-1&"
-0."
-0p
-1@"
+b10110 ,"
+1("
+00"
+0r
+1B"
 b1111111111111111111110111111 P
-b1111111111111111111110111111 #"
-b1111111111111111111110111111 $"
-1^
-1x
-1y
-0!"
-0~
-b10000 W
-b10000 t
-0B
-1>
-1=
-12
+b1111111111111111111110111111 %"
+b1111111111111111111110111111 &"
+1`
+1z
+1{
+0#"
+0""
+b10000 Y
+b10000 v
+0@
+1<
+1;
+10
 #3100
-1B
-0>
-0=
-02
+1@
+0<
+0;
+00
 #3200
-0J
-0'"
-0&"
-0Q
-0H
-b10000 K
-b10000 *"
+0I
+0)"
 0("
-1:"
-0@"
-1."
-1d
-0^
+0Q
+0F
+b10000 K
+b10000 ,"
+0*"
+1<"
+0B"
+10"
+1f
+0`
 b1111111111110111111111111111 P
-b1111111111110111111111111111 #"
-b1111111111110111111111111111 $"
-1p
-0x
-0y
-1!"
-1~
-b10110 W
-b10110 t
-0B
-1>
-1=
-12
+b1111111111110111111111111111 %"
+b1111111111110111111111111111 &"
+1r
+0z
+0{
+1#"
+1""
+b10110 Y
+b10110 v
+0@
+1<
+1;
+10
 #3300
-1B
-0>
-0=
-02
+1@
+0<
+0;
+00
 #3400
-1'"
+1)"
 b10110 K
-b10110 *"
-1&"
-0."
-0p
-1@"
+b10110 ,"
+1("
+00"
+0r
+1B"
 b1111111111111111111110111111 P
-b1111111111111111111110111111 #"
-b1111111111111111111110111111 $"
-1^
-1x
-1y
-0!"
-0~
-b10000 W
-b10000 t
-0B
-1>
-1=
-12
+b1111111111111111111110111111 %"
+b1111111111111111111110111111 &"
+1`
+1z
+1{
+0#"
+0""
+b10000 Y
+b10000 v
+0@
+1<
+1;
+10
 #3500
-1B
-0>
-0=
-02
+1@
+0<
+0;
+00
 #3600
-0J
-0'"
-0&"
-0Q
-0H
-b10000 K
-b10000 *"
+0I
+0)"
 0("
-1:"
-0@"
-1."
-1d
-0^
+0Q
+0F
+b10000 K
+b10000 ,"
+0*"
+1<"
+0B"
+10"
+1f
+0`
 b1111111111110111111111111111 P
-b1111111111110111111111111111 #"
-b1111111111110111111111111111 $"
-1p
-0x
-0y
-1!"
-1~
-b10110 W
-b10110 t
-0B
-1>
-1=
-12
+b1111111111110111111111111111 %"
+b1111111111110111111111111111 &"
+1r
+0z
+0{
+1#"
+1""
+b10110 Y
+b10110 v
+0@
+1<
+1;
+10
 #3700
-1B
-0>
-0=
-02
+1@
+0<
+0;
+00
 #3800
-1'"
+1)"
 b10110 K
-b10110 *"
-1&"
-0."
-0p
-1@"
+b10110 ,"
+1("
+00"
+0r
+1B"
 b1111111111111111111110111111 P
-b1111111111111111111110111111 #"
-b1111111111111111111110111111 $"
-1^
-1x
-1y
-0!"
-0~
-b10000 W
-b10000 t
-0B
-1>
-1=
-12
+b1111111111111111111110111111 %"
+b1111111111111111111110111111 &"
+1`
+1z
+1{
+0#"
+0""
+b10000 Y
+b10000 v
+0@
+1<
+1;
+10

@@ -24,9 +24,9 @@ module SCSI_SM(
     input DSACK_,
     input CPUREQ,
     input RW,
-    input DMADIR,    
-    input RDFIFO_o,
-    input RIFIFO_o,
+    input DMADIR,   
+    input INCFIFO,
+    input DECFIFO, 
     input RESET_,
     input BOEQ3,
     input CPUCLK,
@@ -71,6 +71,12 @@ wire S2F;
 wire F2S;
 wire S2CPU;
 wire CPU2S;
+
+reg RDFIFO_o;
+reg RIFIFO_o;
+
+wire RDRST_;
+wire RIRST_;
 
 wire nRW;
 wire nDMADIR;
@@ -164,6 +170,22 @@ always @(posedge BCLK or negedge CRESET_) begin
         STATE <= NEXT_STATE;
 end
 
+
+always @(posedge RDFIFO_d or negedge RDRST_) begin
+    if (RDRST_ == 1'b0) 
+        RDFIFO_o <= 0;
+    else
+        RDFIFO_o <= 1;
+end
+
+
+always @(posedge RIFIFO_d or negedge RIRST_) begin
+    if (RIRST_ == 1'b0) 
+        RIFIFO_o <= 0;
+    else
+        RIFIFO_o <= 1;
+end
+
 assign nCLK = ~CPUCLK;
 assign BCLK = CPUCLK; // may need to change this to add delays
 assign BBCLK = CPUCLK; // may need to change this to add delays
@@ -174,6 +196,9 @@ assign nFIFOFULL = ~FIFOFULL;
 assign nCCPUREQ = ~CCPUREQ;
 assign nCDREQ_ = ~CDREQ_;
 assign nCDSACK_ = ~CDSACK_;
+
+assign RDRST_ = !(RESET_ | DECFIFO);
+assign RIRST_ = !(RESET_ | INCFIFO);
 
 
 endmodule
