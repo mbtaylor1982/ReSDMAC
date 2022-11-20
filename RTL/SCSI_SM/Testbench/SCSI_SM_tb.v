@@ -23,7 +23,7 @@
 
 module scsi_sm_tb; 
 //inputs
-reg DSACK_;
+reg nAS_;
 reg CPUREQ;
 reg RW;
 reg DMADIR;
@@ -37,7 +37,7 @@ reg FIFOFULL;
 reg FIFOEMPTY;
 
 //Outputs
-wire SET_DSACK;
+wire LS2CPU;
 wire RDFIFO_d;
 wire RIFIFO_d;
 wire RE_o;
@@ -54,7 +54,7 @@ wire CPU2S_o;
 
 
 SCSI_SM u_SCSI_SM(
-    .DSACK_    (DSACK_    ),
+    .nAS_      (nAS_      ),
     .CPUREQ    (CPUREQ    ),
     .RW        (RW        ),
     .DMADIR    (DMADIR    ),
@@ -66,7 +66,7 @@ SCSI_SM u_SCSI_SM(
     .DREQ_     (DREQ_     ),
     .FIFOFULL  (FIFOFULL  ),
     .FIFOEMPTY (FIFOEMPTY ),
-    .SET_DSACK (SET_DSACK ),
+    .LS2CPU    (LS2CPU ),
     .RDFIFO_d  (RDFIFO_d  ),
     .RIFIFO_d  (RIFIFO_d  ),
     .RE_o      (RE_o      ),
@@ -93,7 +93,7 @@ SCSI_SM u_SCSI_SM(
         CPUCLK = 1'b1;
         CPUREQ = 1'b1;
         RESET_ = 1'b1;
-        DSACK_ = 1'b0;
+        nAS_ = 1'b0;
         RW = 1'b0;
         DMADIR = 1'b0;
         INCFIFO = 1'b0;
@@ -106,7 +106,11 @@ SCSI_SM u_SCSI_SM(
         RESET_ = 1'b0;
         repeat(4) #10 CPUCLK = ~CPUCLK;
         RESET_ = 1'b1;
+        nAS_ = 1'b1;
         repeat(32) #10 CPUCLK = ~CPUCLK;
+        nAS_ = 1'b0;
+        CPUREQ = 1'b0;
+        repeat(16) #10 CPUCLK = ~CPUCLK;
         $finish;
     end 
 

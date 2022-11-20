@@ -21,7 +21,6 @@
  `include "RTL/SCSI_SM/scsi_sm_outputs.v"
 
 module SCSI_SM(
-    input DSACK_,
     input CPUREQ,
     input RW,
     input DMADIR,   
@@ -33,6 +32,7 @@ module SCSI_SM(
     input DREQ_,
     input FIFOFULL,
     input FIFOEMPTY,
+    input nAS_,
 
     output SET_DSACK,
     output reg RDFIFO_d,
@@ -47,7 +47,9 @@ module SCSI_SM(
     output reg S2F_o,
     output reg F2S_o,
     output reg S2CPU_o,
-    output reg CPU2S_o
+    output reg CPU2S_o,
+    output wire LS2CPU,
+    output wire LBYTE_
 );
 
 localparam INITIAL_STATE = 5'b11110;
@@ -60,6 +62,7 @@ reg CDREQ_;
 reg CDSACK_;
 reg CRESET_;
 
+wire DSACK_;
 wire RE;
 wire WE;
 wire SCSI_CS;
@@ -74,6 +77,7 @@ wire CPU2S;
 
 reg RDFIFO_o;
 reg RIFIFO_o;
+reg LS2CPU_;
 
 wire RDRST_;
 wire RIRST_;
@@ -173,17 +177,24 @@ end
 
 always @(posedge RDFIFO_d or negedge RDRST_) begin
     if (RDRST_ == 1'b0) 
-        RDFIFO_o <= 0;
+        RDFIFO_o <= 1'b0;
     else
-        RDFIFO_o <= 1;
+        RDFIFO_o <= 1'b1;
 end
 
 
 always @(posedge RIFIFO_d or negedge RIRST_) begin
     if (RIRST_ == 1'b0) 
-        RIFIFO_o <= 0;
+        RIFIFO_o <= 1'b0;
     else
-        RIFIFO_o <= 1;
+        RIFIFO_o <= 1'b1;
+end
+
+always @(posedge SET_DSACK or negedge nAS_) begin
+    if (nAS_ == 1'b0)
+        LS2CPU_ <= 1'b0;
+    else
+        LS2CPU_ <= 1'b1;
 end
 
 assign nCLK = ~CPUCLK;
@@ -196,9 +207,12 @@ assign nFIFOFULL = ~FIFOFULL;
 assign nCCPUREQ = ~CCPUREQ;
 assign nCDREQ_ = ~CDREQ_;
 assign nCDSACK_ = ~CDSACK_;
+assign LS2CPU = ~LS2CPU_;
+assign DSACK_ = LS2CPU;
+assign LBYTE_ = ~(DACK_o & RE_o);
 
-assign RDRST_ = !(RESET_ | DECFIFO);
-assign RIRST_ = !(RESET_ | INCFIFO);
+assign RDRST_ = ~(RESET_ | DECFIFO);
+assign RIRST_ = ~(RESET_ | INCFIFO);
 
 
 endmodule
