@@ -18,6 +18,7 @@
 // You should have received a copy of the GNU General Public License
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
+ `include "RTL/FIFO/fifo_write_strobes.v"
 
 module fifo_write_strobes_tb; 
 
