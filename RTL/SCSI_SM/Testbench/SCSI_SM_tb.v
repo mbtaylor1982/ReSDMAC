@@ -27,8 +27,8 @@ reg DSACK_;
 reg CPUREQ;
 reg RW;
 reg DMADIR;
-reg RDFIFO;
-reg RIFIFO;
+reg INCFIFO;
+reg DECFIFO;
 reg RESET_;
 reg BOEQ3;
 reg CPUCLK;
@@ -58,8 +58,8 @@ SCSI_SM u_SCSI_SM(
     .CPUREQ    (CPUREQ    ),
     .RW        (RW        ),
     .DMADIR    (DMADIR    ),
-    .RDFIFO_o  (RDFIFO_o  ),
-    .RIFIFO_o  (RIFIFO_o  ),
+    .INCFIFO   (INCFIFO   ),
+    .DECFIFO   (DECFIFO   ),
     .RESET_    (RESET_    ),
     .BOEQ3     (BOEQ3     ),
     .CPUCLK    (CPUCLK    ),
@@ -96,15 +96,15 @@ SCSI_SM u_SCSI_SM(
         DSACK_ = 1'b0;
         RW = 1'b1;
         DMADIR = 1'b0;
-        RDFIFO = 1'b0;
-        RIFIFO = 1'b0;
+        INCFIFO = 1'b0;
+        DECFIFO = 1'b0;
         BOEQ3 = 1'b0;
         DREQ_ = 1'b1;
         FIFOFULL = 1'b0;
         FIFOEMPTY = 1'b1;
         repeat(2) #10 CPUCLK = ~CPUCLK;
         RESET_ = 1'b0;
-        repeat(2) #10 CPUCLK = ~CPUCLK;
+        repeat(4) #10 CPUCLK = ~CPUCLK;
         RESET_ = 1'b1;
         repeat(32) #10 CPUCLK = ~CPUCLK;
         $finish;
