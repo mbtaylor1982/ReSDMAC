@@ -94,7 +94,7 @@ SCSI_SM u_SCSI_SM(
         CPUREQ = 1'b1;
         RESET_ = 1'b1;
         nAS_ = 1'b0;
-        RW = 1'b0;
+        RW = 1'b1;
         DMADIR = 1'b0;
         INCFIFO = 1'b0;
         DECFIFO = 1'b0;

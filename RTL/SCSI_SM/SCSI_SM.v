@@ -52,7 +52,8 @@ module SCSI_SM(
     output wire LBYTE_
 );
 
-localparam INITIAL_STATE = 5'b11110;
+//localparam INITIAL_STATE = 5'b11110;
+localparam INITIAL_STATE = 5'b00000;
 
 reg [4:0] STATE;
 
