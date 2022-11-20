@@ -102,15 +102,15 @@ SCSI_SM u_SCSI_SM(
         DREQ_ = 1'b1;
         FIFOFULL = 1'b0;
         FIFOEMPTY = 1'b1;
-        repeat(2) #10 CPUCLK = ~CPUCLK;
+        repeat(2) #20 CPUCLK = ~CPUCLK;
         RESET_ = 1'b0;
-        repeat(4) #10 CPUCLK = ~CPUCLK;
+        repeat(4) #20 CPUCLK = ~CPUCLK;
         RESET_ = 1'b1;
         nAS_ = 1'b1;
-        repeat(32) #10 CPUCLK = ~CPUCLK;
+        repeat(32) #20 CPUCLK = ~CPUCLK;
         nAS_ = 1'b0;
         CPUREQ = 1'b0;
-        repeat(16) #10 CPUCLK = ~CPUCLK;
+        repeat(16) #20 CPUCLK = ~CPUCLK;
         $finish;
     end 
 

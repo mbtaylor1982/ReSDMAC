@@ -80,20 +80,20 @@ fifo dut_fifo(
         RST_FIFO_ = 1'b0;
         INCFIFO = 1'b0;
         DECFIFO = 1'b0;
-        repeat(1) #10
+        repeat(1) #20
         RST_FIFO_ = 1'b1;
         if (!FIFOEMPTY) 
             $display("Test Failed: FIFO Not Empty after reset");
         else
             $display("Test Passed: FIFO Empty After reset");
         
-        repeat(16) #10 INCFIFO = ~INCFIFO;
+        repeat(16) #20 INCFIFO = ~INCFIFO;
         if (!FIFOFULL) 
             $display("Test Failed: FIFO Not Full After 8 INCFIFO pulses");
         else
             $display("Test Passed: FIFO Full After 8 INCFIFO pulses");
 
-        repeat(17) #10 DECFIFO = ~DECFIFO;
+        repeat(17) #20 DECFIFO = ~DECFIFO;
         if (!FIFOEMPTY) 
             $display("Test Failed: FIFO Not Empty After 8 DECFIFO pulses");
         else
@@ -103,17 +103,17 @@ fifo dut_fifo(
         //test next In Counter
         RST_FIFO_ = 1'b0;
         INCNI = 1'b0;
-        repeat(1) #10
+        repeat(1) #20
         RST_FIFO_ = 1'b1;
-        repeat(16) #10 INCNI = ~INCNI;
+        repeat(16) #20 INCNI = ~INCNI;
         
         
         //test nexr Out Counter
         RST_FIFO_ = 1'b0;
         INCNO = 1'b0;
-        repeat(1) #10
+        repeat(1) #20
         RST_FIFO_ = 1'b1;
-        repeat(16) #10 INCNO = ~INCNO;
+        repeat(16) #20 INCNO = ~INCNO;
 
 
         ID = 32'h55555555;
@@ -127,9 +127,9 @@ fifo dut_fifo(
         H_0C = 1'b0;
         ACR_WR = 1'b0;
         MID25 = 1'b0;
-        repeat(1) #10
+        repeat(1) #20
         RST_FIFO_ = 1'b1;
-        repeat(9) #10 INCBO = ~INCBO;
+        repeat(9) #20 INCBO = ~INCBO;
 
         //Byte Counter Test 2
         RST_FIFO_ = 1'b0;
@@ -140,9 +140,9 @@ fifo dut_fifo(
         H_0C = 1'b1;
         ACR_WR = 1'b0;
         MID25 = 1'b0;
-        repeat(1) #10
+        repeat(1) #20
         RST_FIFO_ = 1'b1;
-        repeat(5) #10 INCBO = ~INCBO;
+        repeat(5) #20 INCBO = ~INCBO;
 
         //Byte Counter Test 3
         RST_FIFO_ = 1'b0;
@@ -153,10 +153,10 @@ fifo dut_fifo(
         H_0C = 1'b1;
         ACR_WR = 1'b0;
         MID25 = 1'b1;
-        repeat(1) #10
+        repeat(1) #12
         RST_FIFO_ = 1'b1;
-        repeat(5) #10 INCBO = ~INCBO;
-        repeat(16) #10 INCNO = ~INCNO;
+        repeat(5) #20 INCBO = ~INCBO;
+        repeat(16) #20 INCNO = ~INCNO;
 
 
         $finish;
