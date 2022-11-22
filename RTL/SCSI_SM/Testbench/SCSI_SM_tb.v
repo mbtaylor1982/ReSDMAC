@@ -19,7 +19,10 @@
 
 `timescale 1ns/100ps
 
-`include "RTL/SCSI_SM/SCSI_SM.v"
+`ifdef __ICARUS__ 
+    `include "RTL/SCSI_SM/SCSI_SM.v"
+`endif 
+
 
 module scsi_sm_tb; 
 //inputs
@@ -91,7 +94,7 @@ SCSI_SM u_SCSI_SM(
         $display("Testing SCSI State Machine RESET");
         //set initial state
         CPUCLK = 1'b1;
-        CPUREQ = 1'b1;
+        CPUREQ = 1'b0;
         RESET_ = 1'b1;
         nAS_ = 1'b0;
         RW = 1'b1;
@@ -106,10 +109,12 @@ SCSI_SM u_SCSI_SM(
         RESET_ = 1'b0;
         repeat(4) #20 CPUCLK = ~CPUCLK;
         RESET_ = 1'b1;
-        nAS_ = 1'b1;
-        repeat(32) #20 CPUCLK = ~CPUCLK;
+        repeat(2) #20 CPUCLK = ~CPUCLK;
         nAS_ = 1'b0;
-        CPUREQ = 1'b0;
+        repeat(4) #20 CPUCLK = ~CPUCLK;
+        nAS_ = 1'b0;
+        repeat(32) #20 CPUCLK = ~CPUCLK;
+        CPUREQ = 1'b1;
         repeat(16) #20 CPUCLK = ~CPUCLK;
         $finish;
     end 

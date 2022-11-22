@@ -16,9 +16,10 @@
 // You should have received a copy of the GNU General Public License
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
-
- `include "RTL/SCSI_SM/scsi_sm_inputs.v"
- `include "RTL/SCSI_SM/scsi_sm_outputs.v"
+`ifdef __ICARUS__ 
+    `include "RTL/SCSI_SM/scsi_sm_inputs.v"
+    `include "RTL/SCSI_SM/scsi_sm_outputs.v"
+`endif
 
 module SCSI_SM(
     input CPUREQ,
@@ -52,8 +53,21 @@ module SCSI_SM(
     output wire LBYTE_
 );
 
-//localparam INITIAL_STATE = 5'b11110;
-localparam INITIAL_STATE = 5'b00000;
+/*
+    SCSIAUTO
+    --------
+    in the schematics the initial state of this FSM is set differently in the two schmatics blocks,
+    One is labeled SCSI = Auto and the other SCSI <> Auto defineing the SCSIAUTO macro will cause the
+    SCSI_SM to behave in accordance with the coresponding schematic.
+*/
+
+`define SCSIAUTO
+
+`ifdef SCSIAUTO
+    localparam INITIAL_STATE = 5'b00000;
+`else
+   localparam INITIAL_STATE = 5'b11110; 
+`endif
 
 reg [4:0] STATE;
 
