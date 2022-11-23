@@ -26,8 +26,9 @@ module fifo__full_empty_ctr(
 );
 
 reg [2:0] COUNT;
+wire clk;
 
-always @(posedge INCFIFO or posedge DECFIFO or negedge RST_FIFO_) begin
+always @(posedge clk or negedge RST_FIFO_) begin
     if (RST_FIFO_ == 1'b0)
     begin
         COUNT <= 3'b000;
@@ -55,5 +56,7 @@ always @(posedge INCFIFO or posedge DECFIFO or negedge RST_FIFO_) begin
         end
     end 
 end
+
+assign clk = (INCFIFO | DECFIFO);
 
 endmodule

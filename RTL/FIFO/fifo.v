@@ -16,10 +16,12 @@
 // You should have received a copy of the GNU General Public License
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
-`include "RTL/FIFO/fifo_write_strobes.v"
-`include "RTL/FIFO/fifo_full_empty_ctr.v"
-`include "RTL/FIFO/fifo_3bit_cntr.v"
-`include "RTL/FIFO/fifo_byte_ptr.v"
+ `ifdef __ICARUS__ 
+  `include "RTL/FIFO/fifo_write_strobes.v"
+  `include "RTL/FIFO/fifo_full_empty_ctr.v"
+  `include "RTL/FIFO/fifo_3bit_cntr.v"
+  `include "RTL/FIFO/fifo_byte_ptr.v"
+`endif
 
 module fifo(
     

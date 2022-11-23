@@ -23,20 +23,26 @@ module fifo_byte_ptr(
     input H_0C,
     input RST_FIFO_,    
 
-    output reg [1:0] PTR    
+    output wire [1:0] PTR    
 );
 
 wire MUXZ;
+wire BO1_CLK;
+reg BO0, BO1;
 
-always @(posedge ACR_WR or posedge INCBO or negedge RST_FIFO_) begin
-    if (RST_FIFO_ == 1'b0) 
-        PTR <= 2'b00;
-    else begin
-        if (INCBO) PTR <= {MUXZ, ~PTR[0]};
-        if (ACR_WR) PTR[1] <= MUXZ;        
-    end    
+always @(posedge INCBO or negedge RST_FIFO_) begin
+    if (RST_FIFO_ == 1'b0)
+        BO0 <= 1'b0;
+    else
+        BO0 <= ~BO0;    
+end
+
+always @(posedge BO1_CLK) begin
+    BO1 <= MUXZ;
 end
 
 assign MUXZ = (H_0C)? ~MID25:(PTR[0]^~PTR[1]);
+assign BO1_CLK = (INCBO | ACR_WR);
+assign PTR = {BO1, BO0};
 
 endmodule
