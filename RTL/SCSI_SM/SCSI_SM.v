@@ -21,8 +21,17 @@
     `include "RTL/SCSI_SM/scsi_sm_outputs.v"
 `endif
 
-module SCSI_SM(
-    input CPUREQ,
+/*
+    SCSIAUTO
+    --------
+    in the schematics the initial state of this FSM is set differently in the two schmatics blocks,
+    One is labeled SCSI = Auto and the other SCSI <> Auto. The SCSIAUTO parameter is provided to cause the
+    SCSI_SM to behave in accordance with the coresponding schematic.
+*/   
+
+module SCSI_SM
+#(  parameter SCSIAUTO=1)
+(   input CPUREQ,
     input RW,
     input DMADIR,   
     input INCFIFO,
@@ -35,7 +44,6 @@ module SCSI_SM(
     input FIFOEMPTY,
     input nAS_,
 
-    output SET_DSACK,
     output reg RDFIFO_d,
     output reg RIFIFO_d,
     output reg RE_o,
@@ -53,21 +61,8 @@ module SCSI_SM(
     output wire LBYTE_
 );
 
-/*
-    SCSIAUTO
-    --------
-    in the schematics the initial state of this FSM is set differently in the two schmatics blocks,
-    One is labeled SCSI = Auto and the other SCSI <> Auto defineing the SCSIAUTO macro will cause the
-    SCSI_SM to behave in accordance with the coresponding schematic.
-*/
-
-`define SCSIAUTO
-
-`ifdef SCSIAUTO
-    localparam INITIAL_STATE = 5'b00000;
-`else
-   localparam INITIAL_STATE = 5'b11110; 
-`endif
+localparam INITIAL_STATE_0 = 5'b00000;
+localparam INITIAL_STATE_30 = 5'b11110; 
 
 reg [4:0] STATE;
 
@@ -146,10 +141,6 @@ scsi_sm_outputs u_scsi_sm_outputs(
 //clocked reset
 always @(posedge  nCLK) begin
     CRESET_ <= RESET_;
-
-    if(RESET_ == 1'b0) begin     
-        CDSACK_ <= 1'b0;
-    end
 end
 
 //clocked inputs.
@@ -184,7 +175,10 @@ end
 //State Machine
 always @(posedge BCLK or negedge CRESET_) begin
     if (CRESET_ == 1'b0) 
-        STATE <= INITIAL_STATE;
+        if (SCSIAUTO)
+            STATE <= INITIAL_STATE_0;
+        else
+            STATE <= INITIAL_STATE_30;
     else
         STATE <= NEXT_STATE;
 end
