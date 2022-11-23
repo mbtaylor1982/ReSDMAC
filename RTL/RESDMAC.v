@@ -16,6 +16,12 @@
 // You should have received a copy of the GNU General Public License
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
+ `ifdef __ICARUS__ 
+    `include "RTL/SCSI_SM/SCSI_SM.v"
+    `include "RTL/FIFO/fifo.v"
+    `include "RTL/CPU_SM/CPU_SM.v"
+`endif
+
 module RESDMAC(
     output _INT,        //Connected to INT2 needs to be Open Collector output.
 
@@ -88,26 +94,14 @@ wire LBYTE_;
 wire RE_o;
 wire DACK_o;
 wire BOEQ3;
-
-// 16/8 bit port for SCSI WD33C93A IC.
-io_port D_PORT(
-    .CLK (SCLK),
-    .ADDR (ADDR),
-    ._CS (_PORTEN),
-    ._AS (_AS),
-    ._DS (_DS),
-    .R_W (R_W),
-    ._RST (_RST),
-    .DATA_IN (DATA_IN),
-    .DATA_OUT (PDATA_OUT),
-    ._CSS (_CSS),
-    ._CSX0 (_CSX0),
-    ._CSX1 (_CSX1),
-    .P_DATA (PD_PORT),
-    ._IOR (_IOR), 
-    ._IOW (_IOW),
-    ._DSACK(_DSACK_IO)
-);
+wire PRESET; // Peripherial Reset Sets IOR_ and IOW_ active to reset SCSI IC
+wire WE;
+wire RE;
+wire SCSI_CS;
+wire nREG_DSK_;
+wire LS2CPU;
+wire DREQ_;
+wire nDMAENA;
 
 
 registers int_reg(
@@ -121,35 +115,6 @@ registers int_reg(
     .DIN (DATA_IN),
     .DOUT (RDATA_OUT),
     ._DSACK(_DSACK_REG)
-);
-
-SCSI_SM ssm(
-    //.DSACK_    (DSACK_    ),
-    //.SET_DSACK (SET_DSACK ),
-    .CPUREQ    (CPUREQ    ),
-    .RW        (R_W),
-    //.DMADIR    (DMADIR    ),
-    //.RDFIFO_o  (RDFIFO_o  ),
-    //.RDFIFO_d  (RDFIFO_d  ),
-    //.RIFIFO_o  (RIFIFO_o  ),
-    //.RIFIFO_d  (RIFIFO_d  ),
-    .RESET_    (_RST),
-    .BOEQ3     (BOEQ3     ),
-    .CPUCLK    (SCLK),
-    .RE_o      (RE_o      ),
-    //.WE_o      (WE_o      ),
-    //.SCSI_CS_o (SCSI_CS_o ),
-    .DACK_o    (DACK_o    )//,
-    //.DREQ_     (DREQ_     ),
-    //.INCBO_o   (INCBO_o   ),
-    //.INCNO_o   (INCNO_o   ),
-    //.INCNI_o   (INCNI_o   ),
-    //.FIFOFULL  (FIFOFULL  ),
-    //.FIFOEMPTY (FIFOEMPTY ),
-    //.S2F_o     (S2F_o     ),
-    //.F2S_o     (F2S_o     ),
-    //.S2CPU_o   (S2CPU_o   ),
-    //.PU2S_o    (PU2S_o    )
 );
 
 CPU_SM csm(
@@ -192,26 +157,60 @@ CPU_SM csm(
     //.PLHW        (PLHW        )
 );
 
+SCSI_SM 
+#(
+    .SCSIAUTO         (1)
+)
+u_SCSI_SM(
+    //.CPUREQ    (CPUREQ    ),
+    .RW        (R_W        ),
+    //.DMADIR    (DMADIR    ),
+    .INCFIFO   (INCFIFO   ),
+    .DECFIFO   (DECFIFO   ),
+    .RESET_    (_RST    ),
+    .BOEQ3     (BOEQ3     ),
+    .CPUCLK    (SCLK    ),
+    .DREQ_     (DREQ_     ),
+    .FIFOFULL  (FIFOFULL  ),
+    .FIFOEMPTY (FIFOEMPTY ),
+    .nAS_      (~_AS      ),
+    //.RDFIFO_d  (RDFIFO_d  ),
+    //.RIFIFO_d  (RIFIFO_d  ),
+    .RE_o      (RE     ),
+    .WE_o      (WE     ),
+    .SCSI_CS_o (SCSI_CS ),
+    .DACK_o    (DACK_o    ),
+    .INCBO_o   (INCBO   ),
+    .INCNO_o   (INCNO   ),
+    .INCNI_o   (INCNI   ),
+    //.S2F_o     (S2F_o     ),
+    //.F2S_o     (F2S_o     ),
+    //.S2CPU_o   (S2CPU_o   ),
+    //.CPU2S_o   (CPU2S_o   ),
+    .LS2CPU    (LS2CPU    ),
+    .LBYTE_    (LBYTE_    )
+);
+
 fifo int_fifo(
     //.LLWORD    (LLWORD    ),
     //.LHWORD    (LHWORD    ),
-    .LBYTE_    (LBYTE_    ),
+    .LBYTE_      (LBYTE_    ),
     //.h_0C      (h_0C      ),
     //.ACR_WR    (ACR_WR    ),
-    //.RST_FIFO_ (RST_FIFO_ ),
+    .RST_FIFO_   (_RST      ),
     //.MID25     (MID25     ),
     //.ID        (ID        ),
-    //.FIFOFULL  (FIFOFULL  ),
-    //.FIFOEMPTY (FIFOEMPTY ),
-    //.INCFIFO   (INCFIFO   ),
-    //.DECFIFO   (DECFIFO   ),
-    //.INCBO     (INCBO     ),
+    .FIFOFULL  (FIFOFULL  ),
+    .FIFOEMPTY (FIFOEMPTY ),
+    .INCFIFO   (INCFIFO   ),
+    .DECFIFO   (DECFIFO   ),
+    .INCBO     (INCBO     ),
     //.BOEQ0     (BOEQ0     ),
-    .BOEQ3     (BOEQ3     )//,
+    .BOEQ3       (BOEQ3     ),
     //.BO0       (BO0       ),
     //.BO1       (BO1       ),
-    //.INCNO     (INCNO     ),
-    //.INCNI     (INCNI     ),
+    .INCNO     (INCNO     ),
+    .INCNI     (INCNI     )//,
     //.OD        (OD        )
 );
 
@@ -224,7 +223,7 @@ assign DATA_OUT =  _PORTEN ? 32'hzzzzzzzz : PDATA_OUT;
 assign DATA_IN = DATA;
 
 assign DATA = ((_REGEN & _PORTEN) | !R_W) ? 32'hzzzzzzzz : DATA_OUT;
-assign _DSACK = (_REGEN & _PORTEN) ? 2'bzz : (_DSACK_REG & _DSACK_IO);
+//assign _DSACK = (_REGEN & _PORTEN) ? 2'bzz : (_DSACK_REG & _DSACK_IO);
 
 assign _DMAEN = 1'b1;
 assign _INT = 1'bz;
@@ -238,9 +237,14 @@ assign _BGACK = 1'bz;
 //assign _LED_RD = (!R_W | _REGEN | _PORTEN);
 //assign _LED_DMA = (_DS | _REGEN | _PORTEN);
 
-assign _DACK = 1'bz;
+assign PRESET = 1'b0;
+assign _IOR = ~(PRESET | RE);
+assign _IOW = ~(PRESET | WE);
+assign _CSS = ~ SCSI_CS;
+assign _DACK = ~ DACK_o;
 
-assign LBYTE_ = ~(RE_o & DACK_o);
+assign _DSACK = ~(nREG_DSK_|~LS2CPU) ? 2'bzz : 2'b00;
+assign DREQ_ = (nDMAENA| _DREQ);
 
 endmodule
 
