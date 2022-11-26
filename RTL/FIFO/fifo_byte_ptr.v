@@ -41,7 +41,7 @@ always @(posedge BO1_CLK) begin
     BO1 <= MUXZ;
 end
 
-assign MUXZ = (H_0C)? ~MID25:(PTR[0]^~PTR[1]);
+assign MUXZ = (H_0C) ? ~MID25 : (BO0 ^ ~BO1);
 assign BO1_CLK = (INCBO | ACR_WR);
 assign PTR = {BO1, BO0};
 

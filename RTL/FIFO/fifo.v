@@ -62,15 +62,14 @@ wire [2:0] READ_PTR;
 wire [1:0] BYTE_PTR;
 
 fifo_write_strobes u_write_strobes(
-    .BO0    (BO0    ),
-    .BO1    (BO1    ),
-    .LHWORD (LHWORD ),
-    .LLWORD (LLWORD ),
-    .LBYTE_ (LBYTE_ ),
-    .UUWS   (UUWS   ),
-    .UMWS   (UMWS   ),
-    .LMWS   (LMWS   ),
-    .LLWS   (LLWS   )
+    .PTR    (BYTE_PTR ),
+    .LHWORD (LHWORD   ),
+    .LLWORD (LLWORD   ),
+    .LBYTE_ (LBYTE_   ),
+    .UUWS   (UUWS     ),
+    .UMWS   (UMWS     ),
+    .LMWS   (LMWS     ),
+    .LLWS   (LLWS     )
 );
 
 fifo__full_empty_ctr u_full_empty_ctr(
@@ -94,6 +93,7 @@ fifo_3bit_cntr u_next_out_cntr(
     .RST_FIFO_ (RST_FIFO_ ),
     .COUNT     (READ_PTR  )
 );
+
 //BYTE POINTER
 fifo_byte_ptr u_byte_ptr(
   .INCBO     (INCBO     ),
@@ -104,9 +104,14 @@ fifo_byte_ptr u_byte_ptr(
   .PTR       (BYTE_PTR   )
 );
 
+assign BO0 = BYTE_PTR[0];
+assign BO1 = BYTE_PTR[1];
+
+assign BOEQ0 = (BYTE_PTR == 2'b00);
+assign BOEQ3 = (BYTE_PTR == 2'b11);
+
 //32 byte FIFO buffer (8 x 32 bit long words)
 reg [31:0] BUFFER [7:0]; 
-
 
 //WRITE DATA TO FIFO BUFFER
 always @(posedge UUWS) begin
@@ -124,14 +129,6 @@ end
 always @(posedge LLWS) begin
   BUFFER[WRITE_PTR][7:0] <= ID[7:0];
 end
-
-//BYTE COUNTER FLAGS
-
-assign BO0 = BYTE_PTR[0];
-assign BO1 = BYTE_PTR[1];
-
-assign BOEQ0 = (BYTE_PTR == 2'b00);
-assign BOEQ3 = (BYTE_PTR == 2'b11);
 
 //ASYNCH READ ACCESS TO FIFO DATA BUFFER
 assign OD = (BUFFER[READ_PTR]);

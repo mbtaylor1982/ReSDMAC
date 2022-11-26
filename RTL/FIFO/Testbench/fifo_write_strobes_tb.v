@@ -23,8 +23,7 @@
 module fifo_write_strobes_tb; 
 
 //inputs
-reg BO0;
-reg BO1;
+reg [1:0] PTR;
 reg LHWORD;
 reg LLWORD;
 reg LBYTE_;
@@ -46,8 +45,7 @@ reg TV_LLWS;
 
 //Module Under Test
 fifo_write_strobes dut_fifo_write_strobes(
-    .BO0    (BO0    ),
-    .BO1    (BO1    ),
+    .PTR    (PTR),
     .LHWORD (LHWORD ),
     .LLWORD (LLWORD ),
     .LBYTE_ (LBYTE_ ),
@@ -66,7 +64,7 @@ fifo_write_strobes dut_fifo_write_strobes(
 
         for (i = 0; i < 31; i = i + 1)
         begin
-            {LBYTE_, LHWORD, LLWORD, BO1, BO0, TV_UUWS, TV_UMWS, TV_LMWS, TV_LLWS} = test_data[i];
+            {LBYTE_, LHWORD, LLWORD, PTR, TV_UUWS, TV_UMWS, TV_LMWS, TV_LLWS} = test_data[i];
             #10
             if (LLWS != TV_LLWS) $display("Test case %0d Failed on LLWS", i);
             if (LMWS != TV_LMWS) $display("Test case %0d Failed on LMWS", i);
