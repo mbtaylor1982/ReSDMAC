@@ -1,10 +1,27 @@
- 
+ /*
+// 
+// Copyright (C) 2022  Mike Taylor
+// This file is part of RE-SDMAC <https://github.com/mbtaylor1982/RE-SDMAC>.
+// 
+// RE-SDMAC is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// RE-SDMAC is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
+ */ 
 module addr_decoder(
   input [7:0] ADDR, // CPU address Bus
   input DMAC_,      // SDMAC Chip Select !SCSI from Fat Garry.
   input AS_,        // CPU Address Strobe.
-  input RW,
-  input DMADIR,
+  input RW,         // CPU Read Write Control Line.
+  input DMADIR,     // DMADIR from bit from Control Register.
   
   output h_00,
   output h_04,
@@ -32,7 +49,7 @@ module addr_decoder(
 wire ADDR_VALID;
 assign ADDR_VALID = ~(DMAC_ | AS_);
 
-//assign h_00 = ADDR_VALID & (ADDR == 8'h00);
+assign h_00 = ADDR_VALID & (ADDR == 8'h00);
 assign h_04 = ADDR_VALID & (ADDR == 8'h04);
 assign h_08 = ADDR_VALID & (ADDR == 8'h08);
 assign h_0C = ADDR_VALID & (ADDR == 8'h0C);
@@ -44,16 +61,18 @@ assign h_3C = ADDR_VALID & (ADDR == 8'h3C);
 
 assign WDREGREQ = ADDR_VALID & (ADDR >= 8'h40);
 
-assign CONTR_RD_  = h_08 & RW;
-assign CONTR_WR   =  h_08 & ~RW;
-assign ISTR_RD_   = h_1C & RW;
-assign ACR_WR     = h_0C & ~RW;
-assign WTC_RD_    = h_04 & RW;
-//assign DAWR_WR = h_00 & ~RW;
+//Register Read and Write Strobes
+assign DAWR_WR    = ~(h_00 & RW);
+assign WTC_RD_    = ~(h_04 & RW);
+assign CONTR_RD_  = ~(h_08 & RW);
+assign CONTR_WR   =  (h_08 & RW);
+assign ACR_WR     =  (h_0C & RW);
+assign ISTR_RD_   = ~(h_1C & RW);
 
-assign ST_DMA = h_10;
-assign SP_DMA = h_3C;
-assign CLR_INT = h_18;
-assign FLUSH_ = ~(DMADIR & h_14);
+//action strobes
+assign ST_DMA   = h_10;
+assign SP_DMA   = h_3C;
+assign CLR_INT  = h_18;
+assign FLUSH_   = ~(DMADIR & h_14);
 
 endmodule
