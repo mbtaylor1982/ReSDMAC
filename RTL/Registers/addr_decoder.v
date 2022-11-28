@@ -23,33 +23,36 @@ module addr_decoder(
   input RW,         // CPU Read Write Control Line.
   input DMADIR,     // DMADIR from bit from Control Register.
   
-  output h_00,
-  output h_04,
-  output h_08,
   output h_0C,
-  output h_10,
-  output h_14,
-  output h_18,
-  output h_1C,
-  output h_3C,
   output WDREGREQ,
 
   output CONTR_RD_,
   output CONTR_WR,
   output ISTR_RD_,
   output ACR_WR, 
+  //output DAWR_WR,
   output WTC_RD_,
-
+  
   output ST_DMA,
   output SP_DMA,
   output CLR_INT,
   output FLUSH_
 );
 
+wire h_00;
+wire h_04;
+wire h_08;
+wire h_0C;
+wire h_10;
+wire h_14;
+wire h_18;
+wire h_1C;
+wire h_3C;
+
 wire ADDR_VALID;
 assign ADDR_VALID = ~(DMAC_ | AS_);
 
-assign h_00 = ADDR_VALID & (ADDR == 8'h00);
+//assign h_00 = ADDR_VALID & (ADDR == 8'h00);
 assign h_04 = ADDR_VALID & (ADDR == 8'h04);
 assign h_08 = ADDR_VALID & (ADDR == 8'h08);
 assign h_0C = ADDR_VALID & (ADDR == 8'h0C);
@@ -62,7 +65,7 @@ assign h_3C = ADDR_VALID & (ADDR == 8'h3C);
 assign WDREGREQ = ADDR_VALID & (ADDR >= 8'h40);
 
 //Register Read and Write Strobes
-assign DAWR_WR    = ~(h_00 & RW);
+//assign DAWR_WR    = ~(h_00 & RW);
 assign WTC_RD_    = ~(h_04 & RW);
 assign CONTR_RD_  = ~(h_08 & RW);
 assign CONTR_WR   =  (h_08 & RW);
