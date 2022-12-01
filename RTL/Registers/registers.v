@@ -21,6 +21,7 @@
     `include "RTL/Registers/addr_decoder.v"
     `include "RTL/Registers/registers_istr.v"
     `include "RTL/Registers/registers_cntr.v"
+    `include "RTL/Registers/registers_term.v"
 `endif
 
 module registers(
@@ -65,6 +66,7 @@ wire FLUSH_;    //Flush FIFO
 wire [8:0] ISTR_O;  //Interrupt Status Register
 wire [8:0] CNTR_O;  //Control Register
 
+//Address Decoding and Strobes
 addr_decoder u_addr_decoder(
     .ADDR      (ADDR      ),
     .DMAC_     (DMAC_     ),
@@ -84,6 +86,7 @@ addr_decoder u_addr_decoder(
     .FLUSH_    (FLUSH_    )
 );
 
+//Interupt Status Register
 registers_istr u_registers_istr(
     .RESET_    (RST_      ),
     .FIFOEMPTY (FIFOEMPTY ),
@@ -96,6 +99,7 @@ registers_istr u_registers_istr(
     .INT_O_    (INT_O_    )
 );
 
+//Control Register
 registers_cntr u_registers_cntr(
     .RESET_    (RST_      ),
     .CONTR_WR  (CONTR_WR  ),
@@ -107,6 +111,16 @@ registers_cntr u_registers_cntr(
     .PRESET    (PRESET    ),
     .DMADIR    (DMADIR    ),
     .DMAENA    (DMAENA    )
+);
+
+//DSACK timing.
+registers_term u_registers_term(
+    .nCPUCLK  (nCPUCLK  ),
+    .AS_      (AS_      ),
+    .DMAC_    (DMAC_    ),
+    .WDREGREQ (WDREGREQ ),
+    .h_0C     (h_0C     ),
+    .REG_DSK_ (REG_DSK_ )
 );
 
 //FIFOFLUSH control
