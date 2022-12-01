@@ -19,6 +19,8 @@
 
 `ifdef __ICARUS__ 
     `include "RTL/Registers/addr_decoder.v"
+    `include "RTL/Registers/registers_istr.v"
+    `include "RTL/Registers/registers_cntr.v"
 `endif
 
 module registers(
@@ -32,17 +34,36 @@ module registers(
   input RST_,
   input FIFOEMPTY,
   input FIFOFULL,
+  input INTA_I,
   
 
   output [31:0] MOD,    //DATA OUT.
   output PRESET,        //Peripheral Reset.
   output reg FLUSHFIFO, //Flush FIFO.
-  output reg DMAENA,    //DMA Enabled.
   output ACR_WR,        //input to FIFO_byte_ptr.
   output h_0C,          //input to FIFO_byte_ptr.
-  output reg A1         //Store value of A1 written to ACR.  
-    
+  output reg A1,        //Store value of A1 written to ACR.  
+  output INT_O_,        //INT_2 Output.
+  output DMADIR,        //DMA Direction
+  output DMAENA         //DMA Enabled.  
 );
+
+wire WDREGREQ;
+wire CONTR_RD_;
+wire CONTR_WR;
+wire ISTR_RD_;
+wire WTC_RD_;
+wire INTENA;
+
+//Action strobes
+wire ST_DMA;    //Start DMA 
+wire SP_DMA;    //Stop DMA 
+wire CLR_INT;   //Clear Interrupts
+wire FLUSH_;    //Flush FIFO
+
+//Registers
+wire [8:0] ISTR_O;  //Interrupt Status Register
+wire [8:0] CNTR_O;  //Control Register
 
 addr_decoder u_addr_decoder(
     .ADDR      (ADDR      ),
@@ -63,34 +84,30 @@ addr_decoder u_addr_decoder(
     .FLUSH_    (FLUSH_    )
 );
 
-wire WDREGREQ;
-wire CONTR_RD_;
-wire CONTR_WR;
-wire ISTR_RD_;
-wire WTC_RD_;
+registers_istr u_registers_istr(
+    .RESET_    (RST_      ),
+    .FIFOEMPTY (FIFOEMPTY ),
+    .FIFOFULL  (FIFOFULL  ),
+    .CLR_INT   (CLR_INT   ),
+    .ISTR_RD_  (ISTR_RD_  ),
+    .INTENA    (INTENA    ),
+    .INTA_I    (INTA_I    ),
+    .ISTR_O    (ISTR_O    ),
+    .INT_O_    (INT_O_    )
+);
 
-//Action strobes
-wire ST_DMA;    //Start DMA 
-wire SP_DMA;    //Stop DMA 
-wire CLR_INT;   //Clear Interrupts
-wire FLUSH_;    //Flush FIFO
-
-//Registers
-//reg [1:0] DAWR;       //Data Acknowledge Width
-reg [5:0] CNTR;         //Control Register
-reg [8:0] ISTR;         //Interrupt Status Register
-
-//DMA Enable Control
-wire CLR_DMAENA;
-assign CLR_DMAENA = (SP_DMA & RST_);
-
-always @(negedge ST_DMA or negedge CLR_DMAENA) begin
-    if (ST_DMA == 1'b0) begin
-        DMAENA <= 1'b1;    
-    end else if(CLR_DMAENA == 1'b0) begin
-        DMAENA <= 1'b0;
-    end
-end
+registers_cntr u_registers_cntr(
+    .RESET_    (RST_      ),
+    .CONTR_WR  (CONTR_WR  ),
+    .ST_DMA    (ST_DMA    ),
+    .SP_DMA    (SP_DMA    ),
+    .MID       (MID[8:0]  ),
+    .CNTR_O    (CNTR_O    ),
+    .INTENA    (INTENA    ),
+    .PRESET    (PRESET    ),
+    .DMADIR    (DMADIR    ),
+    .DMAENA    (DMAENA    )
+);
 
 //FIFOFLUSH control
 wire CLR_FLUSHFIFO;
@@ -104,16 +121,6 @@ always @(negedge FLUSH_ or negedge CLR_FLUSHFIFO) begin
     end
 end
 
-//Write to Control Register
-always @(posedge CONTR_WR or negedge RST_) begin
-    if (RST_ == 1'b0) begin
-        CNTR <= 6'b000000;
-    end
-    else if (CONTR_WR == 1'b1) begin
-      CNTR <= MID[5:0];
-    end   
-end
-
 //Store value of A1 loaded into ACR
 always @(posedge ACR_WR or negedge RST_) begin
     if (RST_ == 1'b0) begin
@@ -124,24 +131,9 @@ always @(posedge ACR_WR or negedge RST_) begin
     end   
 end
 
-/*drive output data onto bus.
-always @(*) begin
-    if (CONTR_RD_ == 1'b0) begin
-        MOD[31:0]  = {24'hzzzzzz, 2'bzz, CNTR};
-    end else if (ISTR_RD_ == 1'b0) begin
-        MOD[31:0]  = {16'hzzzz, 7'bzzzzzzz, ISTR};    
-    end else if (WTC_RD_ == 1'b0) begin
-        MOD[31:0]  = {24'hzzzzzz, 8'bzzzz0zz};
-    end else begin
-        MOD[31:0]  = 32'hzzzzzzzz;
-    end
-end
-*/
-
 //drive output data onto bus.
-assign MOD[31:0] = CONTR_RD_    ? 32'hzzzzzzzz : {24'hzzzzzz, 2'bzz, CNTR};
-assign MOD[31:0] = ISTR_RD_     ? 32'hzzzzzzzz : {16'hzzzz, 7'bzzzzzzz, ISTR};
+assign MOD[31:0] = CONTR_RD_    ? 32'hzzzzzzzz : {16'hzzzz, 7'bzzzzzzz, CNTR_O};
+assign MOD[31:0] = ISTR_RD_     ? 32'hzzzzzzzz : {16'hzzzz, 7'bzzzzzzz, ISTR_O};
 assign MOD[31:0] = WTC_RD_      ? 32'hzzzzzzzz : {24'hzzzzzz, 8'bzzzz0zz};
-
 
 endmodule
