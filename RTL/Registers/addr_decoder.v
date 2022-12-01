@@ -42,7 +42,7 @@ module addr_decoder(
 wire h_00;
 wire h_04;
 wire h_08;
-wire h_0C;
+//wire h_0C;
 wire h_10;
 wire h_14;
 wire h_18;
