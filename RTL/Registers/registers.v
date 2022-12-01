@@ -17,27 +17,30 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */ 
 
- `ifdef __ICARUS__ 
+`ifdef __ICARUS__ 
     `include "RTL/Registers/addr_decoder.v"
 `endif
 
 module registers(
-  input [7:0] ADDR, // CPU address Bus
-  input DMAC_,      // SDMAC Chip Select !SCSI from Fat Garry.
-  input AS_,        // CPU Address Strobe.
-  input RW,         // CPU Read Write Control Line.
+  input [7:0] ADDR,     // CPU address Bus
+  input DMAC_,          // SDMAC Chip Select !SCSI from Fat Garry.
+  input AS_,            // CPU Address Strobe.
+  input RW,             // CPU Read Write Control Line.
   input nCPUCLK,
-  input [31:0] MID, //DATA IN
+  input [31:0] MID,     //DATA IN
   input STOPFLUSH,
   input RST_,
+  input FIFOEMPTY,
+  input FIFOFULL,
+  
 
-  output reg [31:0] MOD,    //DATA OUT.
-  output PRESET,            //Peripheral Reset.
-  output reg FLUSHFIFO,     //Flush FIFO.
-  output reg DMAENA,        //DMA Enabled.
-  output ACR_WR,            //input to FIFO_byte_ptr.
-  output h_0C,              //input to FIFO_byte_ptr.
-  output reg A1             //Store value of A1 written to ACR.  
+  output [31:0] MOD,    //DATA OUT.
+  output PRESET,        //Peripheral Reset.
+  output reg FLUSHFIFO, //Flush FIFO.
+  output reg DMAENA,    //DMA Enabled.
+  output ACR_WR,        //input to FIFO_byte_ptr.
+  output h_0C,          //input to FIFO_byte_ptr.
+  output reg A1         //Store value of A1 written to ACR.  
     
 );
 
@@ -121,23 +124,24 @@ always @(posedge ACR_WR or negedge RST_) begin
     end   
 end
 
-//drive output data onto bus.
+/*drive output data onto bus.
 always @(*) begin
     if (CONTR_RD_ == 1'b0) begin
-        MOD[31:0]  <= {24'hzzzzzz, 2'bzz, CNTR};
+        MOD[31:0]  = {24'hzzzzzz, 2'bzz, CNTR};
     end else if (ISTR_RD_ == 1'b0) begin
-        MOD[31:0]  <= {16'hzzzz, 7'bzzzzzzz, ISTR};    
+        MOD[31:0]  = {16'hzzzz, 7'bzzzzzzz, ISTR};    
     end else if (WTC_RD_ == 1'b0) begin
-        MOD[31:0]  <= {24'hzzzzzz, 8'bzzzz0zz};
+        MOD[31:0]  = {24'hzzzzzz, 8'bzzzz0zz};
     end else begin
-        MOD[31:0]  <= 32'hzzzzzzzz;
+        MOD[31:0]  = 32'hzzzzzzzz;
     end
 end
+*/
 
 //drive output data onto bus.
-//assign MOD[31:0] = CONTR_RD_ ? 32'hzzzzzzzz : {24'hzzzzzz, 2'bzz, CNTR};
-//assign MOD[31:0] = ISTR_RD_ ? 32'hzzzzzzzz : {16'hzzzz, 7'bzzzzzzz, ISTR};
-//assign MOD[31:0] = WTC_RD_ ? 32'hzzzzzzzz : {24'hzzzzzz, 8'bzzzz0zz};
+assign MOD[31:0] = CONTR_RD_    ? 32'hzzzzzzzz : {24'hzzzzzz, 2'bzz, CNTR};
+assign MOD[31:0] = ISTR_RD_     ? 32'hzzzzzzzz : {16'hzzzz, 7'bzzzzzzz, ISTR};
+assign MOD[31:0] = WTC_RD_      ? 32'hzzzzzzzz : {24'hzzzzzz, 8'bzzzz0zz};
 
 
 endmodule

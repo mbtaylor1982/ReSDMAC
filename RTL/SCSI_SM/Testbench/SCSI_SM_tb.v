@@ -56,7 +56,10 @@ wire S2CPU_o;
 wire CPU2S_o;
 
 
-SCSI_SM u_SCSI_SM(
+SCSI_SM 
+#(
+    .SCSIAUTO         (1)
+)u_SCSI_SM(
     .nAS_      (nAS_      ),
     .CPUREQ    (CPUREQ    ),
     .RW        (RW        ),
@@ -98,6 +101,31 @@ SCSI_SM u_SCSI_SM(
         RESET_ = 1'b1;
         nAS_ = 1'b0;
         RW = 1'b1;
+        DMADIR = 1'b0;
+        INCFIFO = 1'b0;
+        DECFIFO = 1'b0;
+        BOEQ3 = 1'b0;
+        DREQ_ = 1'b1;
+        FIFOFULL = 1'b0;
+        FIFOEMPTY = 1'b1;
+        repeat(2) #20 CPUCLK = ~CPUCLK;
+        RESET_ = 1'b0;
+        repeat(4) #20 CPUCLK = ~CPUCLK;
+        RESET_ = 1'b1;
+        repeat(2) #20 CPUCLK = ~CPUCLK;
+        nAS_ = 1'b0;
+        repeat(4) #20 CPUCLK = ~CPUCLK;
+        nAS_ = 1'b0;
+        repeat(32) #20 CPUCLK = ~CPUCLK;
+        CPUREQ = 1'b1;
+        repeat(16) #20 CPUCLK = ~CPUCLK;
+
+
+        CPUCLK = 1'b1;
+        CPUREQ = 1'b0;
+        RESET_ = 1'b1;
+        nAS_ = 1'b0;
+        RW = 1'b0;
         DMADIR = 1'b0;
         INCFIFO = 1'b0;
         DECFIFO = 1'b0;

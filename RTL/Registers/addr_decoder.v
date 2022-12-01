@@ -52,7 +52,7 @@ wire h_3C;
 wire ADDR_VALID;
 assign ADDR_VALID = ~(DMAC_ | AS_);
 
-//assign h_00 = ADDR_VALID & (ADDR == 8'h00);
+assign h_00 = ADDR_VALID & (ADDR == 8'h00);
 assign h_04 = ADDR_VALID & (ADDR == 8'h04);
 assign h_08 = ADDR_VALID & (ADDR == 8'h08);
 assign h_0C = ADDR_VALID & (ADDR == 8'h0C);

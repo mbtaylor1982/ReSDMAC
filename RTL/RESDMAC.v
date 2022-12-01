@@ -104,19 +104,6 @@ wire DREQ_;
 wire nDMAENA;
 
 
-registers int_reg(
-    .CLK (SCLK),
-    .ADDR (ADDR),
-    ._CS (_REGEN),
-    ._AS (_AS),
-    ._DS (_DS),
-    ._RST (_RST),
-    .R_W (R_W),
-    .DIN (DATA_IN),
-    .DOUT (RDATA_OUT),
-    ._DSACK(_DSACK_REG)
-);
-
 CPU_SM csm(
     //.PAS         (PAS         ),
     //.PDS         (PDS         ),
@@ -213,25 +200,6 @@ fifo int_fifo(
     .INCNI     (INCNI     )//,
     //.OD        (OD        )
 );
-
-assign _REGEN = (_CS || (ADDR[5:2] == 4'b0011) || ADDR[6]);
-assign _PORTEN = (_CS || !ADDR[6]);
-
-assign DATA_OUT =  _REGEN ?  32'hzzzzzzzz : RDATA_OUT;
-assign DATA_OUT =  _PORTEN ? 32'hzzzzzzzz : PDATA_OUT;
-
-assign DATA_IN = DATA;
-
-assign DATA = ((_REGEN & _PORTEN) | !R_W) ? 32'hzzzzzzzz : DATA_OUT;
-//assign _DSACK = (_REGEN & _PORTEN) ? 2'bzz : (_DSACK_REG & _DSACK_IO);
-
-assign _DMAEN = 1'b1;
-assign _INT = 1'bz;
-assign SIZ1 = 1'bz;
-
-
-assign _BR = 1'bz;
-assign _BGACK = 1'bz;
 
 //assign _LED_WR = (R_W | _REGEN | _PORTEN);
 //assign _LED_RD = (!R_W | _REGEN | _PORTEN);
