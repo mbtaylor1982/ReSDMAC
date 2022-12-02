@@ -46,10 +46,11 @@ module registers(
   output reg A1,        //Store value of A1 written to ACR.  
   output INT_O_,        //INT_2 Output.
   output DMADIR,        //DMA Direction
-  output DMAENA         //DMA Enabled.  
+  output DMAENA,         //DMA Enabled.  
+  output REG_DSK_,
+  output WDREGREQ
 );
 
-wire WDREGREQ;
 wire CONTR_RD_;
 wire CONTR_WR;
 wire ISTR_RD_;

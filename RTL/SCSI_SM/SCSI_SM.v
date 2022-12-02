@@ -44,8 +44,8 @@ module SCSI_SM
     input FIFOEMPTY,
     input nAS_,
 
-    output reg RDFIFO_d,
-    output reg RIFIFO_d,
+    output reg RDFIFO_o,
+    output reg RIFIFO_o,
     output reg RE_o,
     output reg WE_o,
     output reg SCSI_CS_o,
@@ -85,8 +85,8 @@ wire F2S;
 wire S2CPU;
 wire CPU2S;
 
-reg RDFIFO_o;
-reg RIFIFO_o;
+reg RDFIFO_d;
+reg RIFIFO_d;
 reg LS2CPU_;
 
 wire RDRST_;
