@@ -87,7 +87,7 @@ wire CPU2S;
 
 reg RDFIFO_d;
 reg RIFIFO_d;
-reg LS2CPU_;
+reg nLS2CPU;
 
 wire RDRST_;
 wire RIRST_;
@@ -175,7 +175,7 @@ end
 //State Machine
 always @(posedge BCLK or negedge CRESET_) begin
     if (CRESET_ == 1'b0) 
-        if (SCSIAUTO)
+        if (SCSIAUTO == 1)
             STATE <= INITIAL_STATE_0;
         else
             STATE <= INITIAL_STATE_30;
@@ -201,9 +201,9 @@ end
 
 always @(posedge SET_DSACK or negedge nAS_) begin
     if (nAS_ == 1'b0)
-        LS2CPU_ <= 1'b0;
+        nLS2CPU <= 1'b0;
     else
-        LS2CPU_ <= 1'b1;
+        nLS2CPU <= 1'b1;
 end
 
 assign nCLK = ~CPUCLK;
@@ -216,12 +216,12 @@ assign nFIFOFULL = ~FIFOFULL;
 assign nCCPUREQ = ~CCPUREQ;
 assign nCDREQ_ = ~CDREQ_;
 assign nCDSACK_ = ~CDSACK_;
-assign LS2CPU = ~LS2CPU_;
+assign LS2CPU = ~nLS2CPU;
 assign DSACK_ = LS2CPU;
 assign LBYTE_ = ~(DACK_o & RE_o);
 
-assign RDRST_ = ~(RESET_ | DECFIFO);
-assign RIRST_ = ~(RESET_ | INCFIFO);
+assign RDRST_ = ~(~RESET_ | DECFIFO);
+assign RIRST_ = ~(~RESET_ | INCFIFO);
 
 
 endmodule

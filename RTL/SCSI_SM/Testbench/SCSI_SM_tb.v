@@ -41,8 +41,8 @@ reg FIFOEMPTY;
 
 //Outputs
 wire LS2CPU;
-wire RDFIFO_d;
-wire RIFIFO_d;
+wire RDFIFO_o;
+wire RIFIFO_o;
 wire RE_o;
 wire WE_o;
 wire SCSI_CS_o;
@@ -72,9 +72,9 @@ SCSI_SM
     .DREQ_     (DREQ_     ),
     .FIFOFULL  (FIFOFULL  ),
     .FIFOEMPTY (FIFOEMPTY ),
-    .LS2CPU    (LS2CPU ),
-    .RDFIFO_d  (RDFIFO_d  ),
-    .RIFIFO_d  (RIFIFO_d  ),
+    .LS2CPU    (LS2CPU    ),
+    .RDFIFO_o  (RDFIFO_o  ),
+    .RIFIFO_o  (RIFIFO_o  ),
     .RE_o      (RE_o      ),
     .WE_o      (WE_o      ),
     .SCSI_CS_o (SCSI_CS_o ),
@@ -113,20 +113,21 @@ SCSI_SM
         repeat(4) #20 CPUCLK = ~CPUCLK;
         RESET_ = 1'b1;
         repeat(2) #20 CPUCLK = ~CPUCLK;
-        nAS_ = 1'b0;
-        repeat(4) #20 CPUCLK = ~CPUCLK;
-        nAS_ = 1'b0;
-        repeat(32) #20 CPUCLK = ~CPUCLK;
         CPUREQ = 1'b1;
+        repeat(4) #20 CPUCLK = ~CPUCLK;
+        nAS_ = 1'b1;
+        repeat(32) #20 CPUCLK = ~CPUCLK;
+        CPUREQ = 1'b0;
+        nAS_ = 1'b0;
         repeat(16) #20 CPUCLK = ~CPUCLK;
 
 
         CPUCLK = 1'b1;
-        CPUREQ = 1'b0;
+        CPUREQ = 1'b1;
         RESET_ = 1'b1;
         nAS_ = 1'b0;
         RW = 1'b0;
-        DMADIR = 1'b0;
+        DMADIR = 1'b1;
         INCFIFO = 1'b0;
         DECFIFO = 1'b0;
         BOEQ3 = 1'b0;
@@ -138,11 +139,11 @@ SCSI_SM
         repeat(4) #20 CPUCLK = ~CPUCLK;
         RESET_ = 1'b1;
         repeat(2) #20 CPUCLK = ~CPUCLK;
-        nAS_ = 1'b0;
+        nAS_ = 1'b1;
         repeat(4) #20 CPUCLK = ~CPUCLK;
         nAS_ = 1'b0;
         repeat(32) #20 CPUCLK = ~CPUCLK;
-        CPUREQ = 1'b1;
+        CPUREQ = 1'b0;
         repeat(16) #20 CPUCLK = ~CPUCLK;
         $finish;
     end 

@@ -106,19 +106,19 @@ module scsi_sm_outputs  (
   assign scsidff4_d = ~ (~ (E0_ & E1_ & E6_ & E12_ & E14_ & E15_) | ~ (E19_ & E20_ & E23_ & E24_ & E25_ & E27_)); //checked MT 
   assign scsidff5_d = ~ (~ (E1_ & E5_ & E8_ & E11_ & E13_ & E19_) | ~ (E21_ & E22_ & E23_ & E24_ & E26_ & E27_)); //checked MT
 
-  assign NEXT_STATE = {scsidff5_d, scsidff4_d, scsidff3_d, scsidff2_d, scsidff1_d};
+  assign NEXT_STATE = {scsidff5_d, scsidff4_d, scsidff3_d, scsidff2_d, ~scsidff1_d};
   
   assign DACK = ~ (E0_ & E1_ & E7_ & E9_ & E13_ & E16_ & E20_ & E21_); //checked MT
-  assign INCBO = ~ (E10_ & E11_); //checked MT
-  assign INCNI = ~ (E2_ & E4_); //checked MT
-  assign INCNO = ~ (E2_ & E3_); //checked MT
+  assign INCBO = ~ (E10_ & E11_); //checked MT s12 s13 s1 s5
+  assign INCNI = ~ (E2_ & E4_); //checked MT s24 s12 s13
+  assign INCNO = ~ (E2_ & E3_); //checked MT s24 s1 s5
   assign RE = ~ (E7_ & E12_ & E17_ & E20_ & E21_ & E25_ & E26_ & E27_); //checked MT
   assign WE = ~ (E8_ & E9_ & E13_ & E16_ & E18_ & E24_); //checked MT
   assign SCSI_CS = ~ (~ (E8_ & E12_ & E17_ & E18_) | ~ (E22_ & E24_ & E25_ & E26_ & E27_)); //checked MT
-  assign SET_DSACK = ~ (E22_ & E25_); //checked MT
-  assign S2F = ~ (E7_ & E10_ & E20_ & E21_); //checked MT
-  assign F2S = ~ (E9_ & E11_ & E13_ & E16_); //checked MT
-  assign S2CPU = ~ (E12_ & E17_ & E19_ & E23_ & E25_ & E26_ & E27_); //checked MT
-  assign CPU2S = ~ (E8_ & E18_ & E22_ & E24_); //checked MT
+  assign SET_DSACK = ~ (E22_ & E25_); //checked MT s6 s7 s19 s23 s17 s31
+  assign S2F = ~ (E7_ & E10_ & E20_ & E21_); //checked MT s24 s12 s13 s20 s21 s4 s5
+  assign F2S = ~ (E9_ & E11_ & E13_ & E16_); //checked MT s18 s1 s5 s2 s28 s29 
+  assign S2CPU = ~ (E12_ & E17_ & E19_ & E23_ & E25_ & E26_ & E27_); //checked MT s3 s7 s8 s9 s10 s11 s13 s15 s19 s23 s25 s27 s29 s30 s31   
+  assign CPU2S = ~ (E8_ & E18_ & E22_ & E24_); //checked MT s8 s26 s27 s6 s7 s27 s21
 
 endmodule
