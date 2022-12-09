@@ -90,37 +90,10 @@ SCSI_SM
 
     initial begin
         $display("*Testing SDMAC SCSI_SM.v Module*");
-        $dumpfile("../SCSI_SM/VCD/SCSI_SM_tb.vcd");
+        $dumpfile("../SCSI_SM/VCD/SCSI_SM_DMA_tb.vcd");
         $dumpvars(0, scsi_sm_tb);
         
-        $display("Testing SCSI State Machine WD33C93 Read Cycle");
-        CPUCLK = 1'b1;
-        CPUREQ = 1'b0;
-        RESET_ = 1'b1;
-        nAS_ = 1'b0;
-        RW = 1'b1;
-        DMADIR = 1'b0;
-        INCFIFO = 1'b0;
-        DECFIFO = 1'b0;
-        BOEQ3 = 1'b0;
-        DREQ_ = 1'b1;
-        FIFOFULL = 1'b0;
-        FIFOEMPTY = 1'b1;
-        repeat(2) #20 CPUCLK = ~CPUCLK;
-        RESET_ = 1'b0;
-        repeat(4) #20 CPUCLK = ~CPUCLK;
-        RESET_ = 1'b1;
-        repeat(2) #20 CPUCLK = ~CPUCLK;
-        CPUREQ = 1'b1;
-        repeat(2) #20 CPUCLK = ~CPUCLK;
-        nAS_ = 1'b1;
-        repeat(12) #20 CPUCLK = ~CPUCLK;
-        nAS_ = 1'b0;
-        repeat(2) #20 CPUCLK = ~CPUCLK;
-        CPUREQ = 1'b0;
-        repeat(4) #20 CPUCLK = ~CPUCLK;
-        
-        $display("Testing SCSI State Machine WD33C93 write Cycle");
+        $display("Testing SCSI State Machine DMA Cycle");
         CPUCLK = 1'b1;
         CPUREQ = 1'b0;
         RESET_ = 1'b1;
@@ -138,14 +111,10 @@ SCSI_SM
         repeat(4) #20 CPUCLK = ~CPUCLK;
         RESET_ = 1'b1;
         repeat(2) #20 CPUCLK = ~CPUCLK;
-        CPUREQ = 1'b1;
-        repeat(2) #20 CPUCLK = ~CPUCLK;
-        nAS_ = 1'b1;
+        DREQ_ = 1'b0;
+        repeat(4) #20 CPUCLK = ~CPUCLK;
+        DREQ_ = 1'b1;
         repeat(10) #20 CPUCLK = ~CPUCLK;
-        nAS_ = 1'b0;
-        repeat(2) #20 CPUCLK = ~CPUCLK;
-        CPUREQ = 1'b0;
-        repeat(2) #20 CPUCLK = ~CPUCLK;
         $finish;
     end 
 
