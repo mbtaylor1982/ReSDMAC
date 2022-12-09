@@ -114,12 +114,13 @@ SCSI_SM
         RESET_ = 1'b1;
         repeat(2) #20 CPUCLK = ~CPUCLK;
         CPUREQ = 1'b1;
-        repeat(4) #20 CPUCLK = ~CPUCLK;
+        repeat(2) #20 CPUCLK = ~CPUCLK;
         nAS_ = 1'b1;
-        repeat(32) #20 CPUCLK = ~CPUCLK;
-        CPUREQ = 1'b0;
+        repeat(12) #20 CPUCLK = ~CPUCLK;
         nAS_ = 1'b0;
-        repeat(16) #20 CPUCLK = ~CPUCLK;
+        repeat(2) #20 CPUCLK = ~CPUCLK;
+        CPUREQ = 1'b0;
+        repeat(8) #20 CPUCLK = ~CPUCLK;
 
 
         CPUCLK = 1'b1;
@@ -140,12 +141,14 @@ SCSI_SM
         RESET_ = 1'b1;
         repeat(2) #20 CPUCLK = ~CPUCLK;
         CPUREQ = 1'b1;
-        repeat(4) #20 CPUCLK = ~CPUCLK;
+        repeat(2) #20 CPUCLK = ~CPUCLK;
         nAS_ = 1'b1;
-        repeat(32) #20 CPUCLK = ~CPUCLK;
-        CPUREQ = 1'b0;
+        repeat(12) #20 CPUCLK = ~CPUCLK;
         nAS_ = 1'b0;
-        repeat(16) #20 CPUCLK = ~CPUCLK;
+        repeat(2) #20 CPUCLK = ~CPUCLK;
+        CPUREQ = 1'b0;
+        repeat(8) #20 CPUCLK = ~CPUCLK;
+        
         $finish;
     end 
 
