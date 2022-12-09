@@ -106,7 +106,7 @@ module scsi_sm_outputs  (
   assign scsidff4_d = ~ (~ (E0_ & E1_ & E6_ & E12_ & E14_ & E15_) | ~ (E19_ & E20_ & E23_ & E24_ & E25_ & E27_)); //checked MT 
   assign scsidff5_d = ~ (~ (E1_ & E5_ & E8_ & E11_ & E13_ & E19_) | ~ (E21_ & E22_ & E23_ & E24_ & E26_ & E27_)); //checked MT
 
-  assign NEXT_STATE = {scsidff5_d, scsidff4_d, scsidff3_d, scsidff2_d, ~scsidff1_d};
+  assign NEXT_STATE = {~scsidff5_d, ~scsidff4_d, ~scsidff3_d, ~scsidff2_d, scsidff1_d};
   
   assign DACK = ~ (E0_ & E1_ & E7_ & E9_ & E13_ & E16_ & E20_ & E21_); //checked MT
   assign INCBO = ~ (E10_ & E11_); //checked MT s12 s13 s1 s5
