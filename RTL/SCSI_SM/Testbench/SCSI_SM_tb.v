@@ -56,10 +56,7 @@ wire S2CPU_o;
 wire CPU2S_o;
 
 
-SCSI_SM 
-#(
-    .SCSIAUTO         (1)
-)u_SCSI_SM(
+SCSI_SM u_SCSI_SM(
     .nAS_      (nAS_      ),
     .CPUREQ    (CPUREQ    ),
     .RW        (RW        ),
@@ -123,7 +120,7 @@ SCSI_SM
         $display("Testing SCSI State Machine WD33C93 write Cycle");
         CPUCLK = 1'b1;
         CPUREQ = 1'b0;
-        RESET_ = 1'b1;
+        RESET_ = 1'b0;
         nAS_ = 1'b0;
         RW = 1'b0;
         DMADIR = 1'b0;
@@ -145,7 +142,7 @@ SCSI_SM
         nAS_ = 1'b0;
         repeat(2) #20 CPUCLK = ~CPUCLK;
         CPUREQ = 1'b0;
-        repeat(2) #20 CPUCLK = ~CPUCLK;
+        repeat(4) #20 CPUCLK = ~CPUCLK;
         $finish;
     end 
 

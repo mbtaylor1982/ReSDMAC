@@ -21,16 +21,7 @@
     `include "RTL/SCSI_SM/scsi_sm_outputs.v"
 `endif
 
-/*
-    SCSIAUTO
-    --------
-    in the schematics the initial state of this FSM is set differently in the two schmatics blocks,
-    One is labeled SCSI = Auto and the other SCSI <> Auto. The SCSIAUTO parameter is provided to cause the
-    SCSI_SM to behave in accordance with the coresponding schematic.
-*/   
-
 module SCSI_SM
-#(  parameter SCSIAUTO=1)
 (   input CPUREQ,
     input RW,
     input DMADIR,   
@@ -61,8 +52,7 @@ module SCSI_SM
     output wire LBYTE_
 );
 
-localparam INITIAL_STATE_0 = 5'b00000;
-localparam INITIAL_STATE_30 = 5'b11110; 
+localparam INITIAL_STATE = 5'b00000;
 
 reg [4:0] STATE;
 
@@ -174,15 +164,11 @@ end
 
 //State Machine
 always @(posedge BCLK or negedge CRESET_) begin
-    if (CRESET_ == 1'b0) 
-        if (SCSIAUTO == 1)
-            STATE <= INITIAL_STATE_0;
-        else
-            STATE <= INITIAL_STATE_30;
+    if (CRESET_ == 1'b0)
+        STATE <= INITIAL_STATE;
     else
         STATE <= NEXT_STATE;
 end
-
 
 always @(posedge RDFIFO_d or negedge RDRST_) begin
     if (RDRST_ == 1'b0) 
@@ -190,7 +176,6 @@ always @(posedge RDFIFO_d or negedge RDRST_) begin
     else
         RDFIFO_o <= 1'b1;
 end
-
 
 always @(posedge RIFIFO_d or negedge RIRST_) begin
     if (RIRST_ == 1'b0) 
@@ -222,7 +207,6 @@ assign LBYTE_ = ~(DACK_o & RE_o);
 
 assign RDRST_ = ~(~RESET_ | DECFIFO);
 assign RIRST_ = ~(~RESET_ | INCFIFO);
-
 
 endmodule
 

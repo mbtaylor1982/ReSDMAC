@@ -167,11 +167,7 @@ CPU_SM csm(
     //.PLHW        (PLHW        )
 );
 
-SCSI_SM 
-#(
-    .SCSIAUTO         (1)
-)
-u_SCSI_SM(
+SCSI_SM u_SCSI_SM(
     .CPUREQ    (WDREGREQ  ),
     .RW        (R_W       ),
     .DMADIR    (DMADIR    ),
