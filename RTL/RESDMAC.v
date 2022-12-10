@@ -101,6 +101,7 @@ wire DREQ_;
 wire nDMAENA;
 wire INCNO;
 wire INCNI;
+wire OWN_, nOWN_;
 
 registers u_registers(
     .ADDR      ({1'b0, ADDR, 2'b00}),
@@ -130,12 +131,12 @@ registers u_registers(
 CPU_SM csm(
     //.PAS         (PAS         ),
     //.PDS         (PDS         ),
-    //.BGACK       (BGACK       ),
-    //.BREQ        (BREQ        ),
-    //.aBGRANT_    (aBGRANT_    ),
+    .BGACK         (BGACK       ),
+    .BREQ          (BREQ        ),
+    .aBGRANT_      (_BG         ),
     //.SIZE1       (SIZE1       ),
     .aRESET_       (_RST        ),
-    //.STERM_      (STERM_      ),
+    .STERM_        (_STERM      ),
     //.DSACK0_     (DSACK0_     ),
     //.DSACK1_     (DSACK1_     ),
     //.DSACK       (DSACK       ),
@@ -159,7 +160,7 @@ CPU_SM csm(
     .INCFIFO       (INCFIFO     ),
     .INCNO         (INCNO_CPU   ),
     .INCNI         (INCNI_CPU   ),
-    //.aDREQ_      (aDREQ_      ),
+    .aDREQ_        (DREQ_       ),
     .aFLUSHFIFO    (FLUSHFIFO   ),
     .STOPFLUSH     (STOPFLUSH   ),
     .aDMAENA       (DMAENA      )//,
@@ -189,12 +190,12 @@ SCSI_SM u_SCSI_SM(
     .INCBO_o   (INCBO     ),
     .INCNO_o   (INCNO_SCSI  ),
     .INCNI_o   (INCNI_SCSI  ),
-    //.S2F_o     (S2F_o     ),
-    //.F2S_o     (F2S_o     ),
-    //.S2CPU_o   (S2CPU_o   ),
-    //.CPU2S_o   (CPU2S_o   ),
-    .LS2CPU    (LS2CPU    ),
-    .LBYTE_    (LBYTE_    )
+    .S2F_o     (S2F         ),
+    .F2S_o     (F2S         ),
+    .S2CPU_o   (S2CPU       ),
+    .CPU2S_o   (CPU2S       ),
+    .LS2CPU    (LS2CPU      ),
+    .LBYTE_    (LBYTE_      )
 );
 
 fifo int_fifo(
@@ -220,6 +221,34 @@ fifo int_fifo(
     .OD          (OD        )
 );
 
+datapath u_datapath(
+    .DATA_IO   (DATA        ),
+    .PD        (PD_PORT[7:0]),
+    .OD        (OD          ),
+    .MOD       (MOD         ),
+    .PAS       (PAS         ),
+    .nDS_      (~_DS        ),
+    .nDMAC_    (~_CS        ),
+    .RW        (RW          ),
+    .nOWN_     (nOWN_       ),
+    .DMADIR    (DMADIR      ),
+    .BRIDGEIN  (BRIDGEIN    ),
+    .BRIDGEOUT (BRIDGEOUT   ),
+    .DIEH      (DIEH        ),
+    .DIEL      (DIEL        ),
+    .LS2CPU    (LS2CPU      ),
+    .S2CPU     (S2CPU       ),
+    .S2F       (S2F         ),
+    .F2S       (F2S         ),
+    .CPU2S     (CPU2S       ),
+    .BO0       (BO0         ),
+    .BO1       (BO1         ),
+    .A3        (A3          ),
+    .MID       (MID         ),
+    .ID        (ID          )
+);
+
+
 assign INCNO = (INCNO_CPU | INCNO_SCSI);
 assign INCNI = (INCNI_CPU | INCNI_SCSI);
 
@@ -232,8 +261,15 @@ assign _IOW = ~(PRESET | WE);
 assign _CSS = ~ SCSI_CS;
 assign _DACK = ~ DACK_o;
 
+assign OWN_ = ~BGACK;
+assign nOWN_ = ~OWN_;
+
 assign _DSACK = (REG_DSK_ & LS2CPU) ? 2'bzz : 2'b00;
 assign DREQ_ = (~DMAENA | _DREQ);
+assign _DMAEN = ~BGACK;
+
+assign _BGACK = BGACK ? 1'b0 : 1'bz;
+assign _BR = BREQ ?  1'b0 : 1'bz;
 
 endmodule
 
