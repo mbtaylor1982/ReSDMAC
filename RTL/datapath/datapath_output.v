@@ -17,7 +17,10 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 module datapath_output (
+    inout [31:0] DATA,  
+    
     input [31:0] OD,
+    input [31:0] MOD,
     input BRIDGEOUT,
     input DOEH_,
     input DOEL_,
@@ -25,10 +28,7 @@ module datapath_output (
     input F2CPUH,
     input LOD1_F2CPU,
     input LOD2_F2CPU,  
-    input S2CPU,
-    
-    inout [31:0] DATA,
-    inout [31:0] MOD
+    input S2CPU      
 );
 
 wire [15:0] LOWER_INPUT_DATA;
@@ -54,15 +54,12 @@ end
 assign LOWER_INPUT_DATA = OD[15:0];
 assign UPPDER_INPUT_DATA = OD[31:16];
 
-assign LOWER_OUTPUT_DATA = F2CPUL ? LD_LATCH : 16'hzzzz;
-assign UPPER_OUTPUT_DATA = F2CPUH ? UD_LATCH : 16'hzzzz;
-assign UPPER_OUTPUT_DATA = BRIDGEOUT ? LD_LATCH : 16'hzzzz;
-
-assign MOD = {UPPER_OUTPUT_DATA, LOWER_OUTPUT_DATA};
+assign LOWER_OUTPUT_DATA = F2CPUL ? LD_LATCH : MOD[15:0];
+assign UPPER_OUTPUT_DATA = F2CPUH ? (BRIDGEOUT ? 16'hzzzz : LD_LATCH) : (BRIDGEOUT ? LD_LATCH : MOD[31:16]); 
 
 assign DATA[15:0] = DOEL_ ? 16'hzzzz : LOWER_OUTPUT_DATA;
 assign DATA[31:16] = DOEH_ ? 16'hzzzz : UPPER_OUTPUT_DATA;
-assign DATA = S2CPU ? MOD : 16'hzzzz;
+assign DATA = S2CPU ? MOD : 32'hzzzzzzzz;
 
 
 endmodule

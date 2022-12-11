@@ -28,7 +28,7 @@ module datapath (
     inout [7:0] PD,
 
     input [31:0] OD,    
-    inout [31:0] MOD,
+    input [31:0] MOD,
 
     input PAS,
     input nDS_,
@@ -90,7 +90,7 @@ datapath_output u_datapath_output(
     .LOD2_F2CPU (LOD2_F2CPU ),
     .S2CPU      (S2CPU      ),
     .DATA       (DATA_IO    ),
-    .MOD        (MOD        )
+    .MOD        (MOD_TX     )
 );
 
 datapath_scsi u_datapath_scsi(
@@ -105,7 +105,7 @@ datapath_scsi u_datapath_scsi(
     .BO0       (BO0       ),
     .BO1       (BO1       ),
     .LS2CPU    (LS2CPU    ),
-    .MOD       (MOD       )
+    .MOD       (MOD_SCSI  )
 );
 
 assign LOD1_F2CPU = PAS;
@@ -116,5 +116,6 @@ assign DOEH_ = DOEL_;
 
 assign bBRIDGEIN = BRIDGEIN;
 assign bDIEL = ~(DIEL|CPU2S);
+assign MOD_TX = S2CPU ? MOD_SCSI : MOD;
 
 endmodule

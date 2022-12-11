@@ -18,6 +18,7 @@
  */
 module datapath_input (
     inout [31:0] DATA,
+    
     input bBRIDGEIN,
     input bDIEH,
     input bDIEL,
