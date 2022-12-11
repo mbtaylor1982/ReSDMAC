@@ -55,14 +55,16 @@ module datapath (
     input BO0,
     input BO1,
     input A3,
-  
 
+    input F2CPUL,
+    input F2CPUH,
+
+    input BnDS_O_,
+  
     output [31:0] MID,
     output [31:0] ID
 );
 
-wire LOD1_F2CPU;
-wire LOD2_F2CPU;
 wire DOEL_;
 wire DOEH_;
 wire bBRIDGEIN;
@@ -80,17 +82,16 @@ datapath_input u_datapath_input(
 );
 
 datapath_output u_datapath_output(
+    .DATA       (DATA_IO    ),
     .OD         (OD         ),
+    .MOD        (MOD_TX     ),
     .BRIDGEOUT  (BRIDGEOUT  ),
     .DOEH_      (DOEH_      ),
     .DOEL_      (DOEL_      ),
     .F2CPUL     (F2CPUL     ),
     .F2CPUH     (F2CPUH     ),
-    .LOD1_F2CPU (LOD1_F2CPU ),
-    .LOD2_F2CPU (LOD2_F2CPU ),
     .S2CPU      (S2CPU      ),
-    .DATA       (DATA_IO    ),
-    .MOD        (MOD_TX     )
+    .PAS        (PAS        )    
 );
 
 datapath_scsi u_datapath_scsi(
@@ -108,14 +109,14 @@ datapath_scsi u_datapath_scsi(
     .MOD       (MOD_SCSI  )
 );
 
-assign LOD1_F2CPU = PAS;
-assign LOD2_F2CPU = PAS;
-
 assign DOEL_ = ~((nDS_ & nDMAC_ & RW) | (nOWN_ & DMADIR));
 assign DOEH_ = DOEL_;
 
 assign bBRIDGEIN = BRIDGEIN;
+assign bDIEH = DIEH;
+
 assign bDIEL = ~(DIEL|CPU2S);
+
 assign MOD_TX = S2CPU ? MOD_SCSI : MOD;
 
 endmodule

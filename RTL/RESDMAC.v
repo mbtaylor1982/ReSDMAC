@@ -21,6 +21,7 @@
     `include "RTL/FIFO/fifo.v"
     `include "RTL/CPU_SM/CPU_SM.v"
     `include "RTL/Registers/registers.v"
+    `include "RTL/datapath/datapath.v"
 `endif
 
 module RESDMAC(
@@ -81,6 +82,11 @@ module RESDMAC(
 
 );
 
+reg AS_O_;
+reg DS_O_;
+reg LLW;
+reg LHW;
+
 wire [31:0] MID;
 wire [31:0] MOD;
 
@@ -101,7 +107,9 @@ wire DREQ_;
 wire nDMAENA;
 wire INCNO;
 wire INCNI;
-wire OWN_, nOWN_;
+wire OWN_;
+wire LEFTOVERS;
+wire nSCLK;
 
 registers u_registers(
     .ADDR      ({1'b0, ADDR, 2'b00}),
@@ -129,12 +137,12 @@ registers u_registers(
 );
 
 CPU_SM csm(
-    //.PAS         (PAS         ),
-    //.PDS         (PDS         ),
+    .PAS           (PAS         ),
+    .PDS           (PDS         ),
     .BGACK         (BGACK       ),
     .BREQ          (BREQ        ),
     .aBGRANT_      (_BG         ),
-    //.SIZE1       (SIZE1       ),
+    .SIZE1         (SIZE1_CPUSM ),
     .aRESET_       (_RST        ),
     .STERM_        (_STERM      ),
     //.DSACK0_     (DSACK0_     ),
@@ -144,13 +152,13 @@ CPU_SM csm(
     .CLK           (SCLK        ),
     .DMADIR        (DMADIR      ),
     .A1            (A1          ),
-    //.F2CPUL      (F2CPUL      ),
-    //.F2CPUH      (F2CPUH      ),
-    //.BRIDGEIN    (BRIDGEIN    ),
-    //.BRIDGEOUT   (BRIDGEOUT   ),
-    //.DIEH        (DIEH        ),
-    //.DIEL        (DIEL        ),
-    //.LASTWORD    (LASTWORD    ),
+    .F2CPUL        (F2CPUL      ),
+    .F2CPUH        (F2CPUH      ),
+    .BRIDGEIN      (BRIDGEIN    ),
+    .BRIDGEOUT     (BRIDGEOUT   ),
+    .DIEH          (DIEH        ),
+    .DIEL          (DIEL        ),
+    .LASTWORD      (LEFTOVERS   ),
     .BOEQ3         (BOEQ3       ),
     .FIFOFULL      (FIFOFULL    ),
     .FIFOEMPTY     (FIFOEMPTY   ),
@@ -163,31 +171,31 @@ CPU_SM csm(
     .aDREQ_        (DREQ_       ),
     .aFLUSHFIFO    (FLUSHFIFO   ),
     .STOPFLUSH     (STOPFLUSH   ),
-    .aDMAENA       (DMAENA      )//,
-    //.PLLW        (PLLW        ),
-    //.PLHW        (PLHW        )
+    .aDMAENA       (DMAENA      ),
+    .PLLW          (PLLW        ),
+    .PLHW          (PLHW        )
 );
 
 SCSI_SM u_SCSI_SM(
-    .CPUREQ    (WDREGREQ  ),
-    .RW        (R_W       ),
-    .DMADIR    (DMADIR    ),
-    .INCFIFO   (INCFIFO   ),
-    .DECFIFO   (DECFIFO   ),
-    .RESET_    (_RST      ),
-    .BOEQ3     (BOEQ3     ),
-    .CPUCLK    (SCLK      ),
-    .DREQ_     (DREQ_     ),
-    .FIFOFULL  (FIFOFULL  ),
-    .FIFOEMPTY (FIFOEMPTY ),
-    .nAS_      (~_AS      ),
-    .RDFIFO_o  (RDFIFO_o  ),
-    .RIFIFO_o  (RIFIFO_o  ),
-    .RE_o      (RE        ),
-    .WE_o      (WE        ),
-    .SCSI_CS_o (SCSI_CS   ),
-    .DACK_o    (DACK_o    ),
-    .INCBO_o   (INCBO     ),
+    .CPUREQ    (WDREGREQ    ),
+    .RW        (R_W         ),
+    .DMADIR    (DMADIR      ),
+    .INCFIFO   (INCFIFO     ),
+    .DECFIFO   (DECFIFO     ),
+    .RESET_    (_RST        ),
+    .BOEQ3     (BOEQ3       ),
+    .CPUCLK    (SCLK        ),
+    .DREQ_     (DREQ_       ),
+    .FIFOFULL  (FIFOFULL    ),
+    .FIFOEMPTY (FIFOEMPTY   ),
+    .nAS_      (~_AS        ),
+    .RDFIFO_o  (RDFIFO_o    ),
+    .RIFIFO_o  (RIFIFO_o    ),
+    .RE_o      (RE          ),
+    .WE_o      (WE          ),
+    .SCSI_CS_o (SCSI_CS     ),
+    .DACK_o    (DACK_o      ),
+    .INCBO_o   (INCBO       ),
     .INCNO_o   (INCNO_SCSI  ),
     .INCNI_o   (INCNI_SCSI  ),
     .S2F_o     (S2F         ),
@@ -199,8 +207,8 @@ SCSI_SM u_SCSI_SM(
 );
 
 fifo int_fifo(
-    //.LLWORD    (LLWORD    ),
-    //.LHWORD    (LHWORD    ),
+    .LLWORD      (LLW       ),
+    .LHWORD      (LHW       ),
     .LBYTE_      (LBYTE_    ),
     .H_0C        (H_0C      ),
     .ACR_WR      (ACR_WR    ),
@@ -212,10 +220,10 @@ fifo int_fifo(
     .INCFIFO     (INCFIFO   ),
     .DECFIFO     (DECFIFO   ),
     .INCBO       (INCBO     ),
-    //.BOEQ0     (BOEQ0     ),
+    .BOEQ0       (BOEQ0     ),
     .BOEQ3       (BOEQ3     ),
-    //.BO0       (BO0       ),
-    //.BO1       (BO1       ),
+    .BO0         (BO0       ),
+    .BO1         (BO1       ),
     .INCNO       (INCNO     ),
     .INCNI       (INCNI     ),
     .OD          (OD        )
@@ -230,7 +238,7 @@ datapath u_datapath(
     .nDS_      (~_DS        ),
     .nDMAC_    (~_CS        ),
     .RW        (RW          ),
-    .nOWN_     (nOWN_       ),
+    .nOWN_     (~OWN_       ),
     .DMADIR    (DMADIR      ),
     .BRIDGEIN  (BRIDGEIN    ),
     .BRIDGEOUT (BRIDGEOUT   ),
@@ -245,31 +253,62 @@ datapath u_datapath(
     .BO1       (BO1         ),
     .A3        (A3          ),
     .MID       (MID         ),
-    .ID        (ID          )
+    .ID        (ID          ),
+    .F2CPUL    (F2CPUL      ),
+    .F2CPUH    (F2CPUH      ),
+    .BnDS_O_   (~PDS        )
 );
 
+always @(posedge nSCLK) begin
+    if (nSCLK == 1'b1)
+        AS_O_ <= PAS;    
+end
 
-assign INCNO = (INCNO_CPU | INCNO_SCSI);
-assign INCNI = (INCNI_CPU | INCNI_SCSI);
+always @(posedge nSCLK) begin
+    if (nSCLK == 1'b1)
+        DS_O_ <= PDS;    
+end
 
-assign _LED_WR = (R_W | _AS | _CS);
-assign _LED_RD = (~R_W | _AS | _CS);
-assign _LED_DMA = DMAENA;
+always @(posedge nSCLK) begin
+    if (nSCLK == 1'b1)
+        LLW <= PLLW;    
+end
 
+always @(posedge nSCLK) begin
+    if (nSCLK == 1'b1)
+        LHW <= PLHW;    
+end
+
+assign nSCLK  = ~SCLK;
+assign OWN_ = ~BGACK;
+
+//System Outputs
+assign R_W = OWN_ ? 1'bz : ~DMADIR;
+assign _AS = OWN_ ? 1'bz : AS_O_;
+assign _DS = OWN_ ? 1'bz : DS_O_;
+assign _DMAEN = OWN_;
+assign _BGACK = OWN_ ? 1'bz : 1'b0;
+assign _BR = BREQ ?  1'b0 : 1'bz;
+assign SIZ1 = OWN_ ? 1'bz : SIZE1_CPUSM;
+assign _DSACK = (REG_DSK_ & LS2CPU) ? 2'bzz : 2'b00;
+
+//SCSI outputs
 assign _IOR = ~(PRESET | RE);
 assign _IOW = ~(PRESET | WE);
 assign _CSS = ~ SCSI_CS;
 assign _DACK = ~ DACK_o;
 
-assign OWN_ = ~BGACK;
-assign nOWN_ = ~OWN_;
+//Diagnostic LEDs
+assign _LED_WR = OWN_ ? (R_W | _AS | _CS) : DMADIR;
+assign _LED_RD = OWN_ ? (~R_W | _AS | _CS): ~DMADIR;
+assign _LED_DMA = OWN_; 
 
-assign _DSACK = (REG_DSK_ & LS2CPU) ? 2'bzz : 2'b00;
+//internal connections
 assign DREQ_ = (~DMAENA | _DREQ);
-assign _DMAEN = ~BGACK;
+assign LEFTOVERS = (~BOEQ0 & FLUSHFIFO & FIFOEMPTY);
+assign INCNO = (INCNO_CPU | INCNO_SCSI);
+assign INCNI = (INCNI_CPU | INCNI_SCSI);
 
-assign _BGACK = BGACK ? 1'b0 : 1'bz;
-assign _BR = BREQ ?  1'b0 : 1'bz;
 
 endmodule
 

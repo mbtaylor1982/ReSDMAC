@@ -26,10 +26,12 @@ module datapath_output (
     input DOEL_,
     input F2CPUL,
     input F2CPUH,
-    input LOD1_F2CPU,
-    input LOD2_F2CPU,  
-    input S2CPU      
+    input S2CPU,
+    input PAS     
 );
+
+wire LOD1_F2CPU;
+wire LOD2_F2CPU;
 
 wire [15:0] LOWER_INPUT_DATA;
 wire [15:0] UPPDER_INPUT_DATA;
@@ -50,6 +52,9 @@ always @(posedge LOD2_F2CPU) begin
     if (LOD2_F2CPU == 1'b1)
         UD_LATCH <= UPPDER_INPUT_DATA;
 end
+
+assign LOD1_F2CPU = PAS;
+assign LOD3_F2CPU = PAS;
 
 assign LOWER_INPUT_DATA = OD[15:0];
 assign UPPDER_INPUT_DATA = OD[31:16];
