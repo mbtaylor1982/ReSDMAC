@@ -20,7 +20,7 @@
 `ifdef __ICARUS__ 
     `include "RTL/datapath/datapath_scsi.v"
     `include "RTL/datapath/datapath_input.v"
-    `include "RTL/datapath/datapath_output .v"
+    `include "RTL/datapath/datapath_output.v"
 `endif
 
 module datapath (
@@ -64,6 +64,9 @@ module datapath (
     output [31:0] MID,
     output [31:0] ID
 );
+wire [31:0] MOD_SCSI;
+wire [31:0] MOD_TX;
+
 
 wire DOEL_;
 wire DOEH_;
@@ -95,7 +98,7 @@ datapath_output u_datapath_output(
 );
 
 datapath_scsi u_datapath_scsi(
-    .SCSI_DATA (SCSI_DATA ),
+    .SCSI_DATA (PD        ),
     .ID        (ID        ),
     .OD        (OD        ),
     .CPU2S     (CPU2S     ),

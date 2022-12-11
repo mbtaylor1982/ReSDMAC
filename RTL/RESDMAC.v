@@ -86,6 +86,7 @@ reg AS_O_;
 reg DS_O_;
 reg LLW;
 reg LHW;
+reg [1:0] DSACK_LATCHED_;
 
 wire [31:0] MID;
 wire [31:0] MOD;
@@ -110,6 +111,9 @@ wire INCNI;
 wire OWN_;
 wire LEFTOVERS;
 wire nSCLK;
+wire aCYCLEDONE_;
+wire nAS_;
+wire DSACK_CPU_SM;
 
 registers u_registers(
     .ADDR      ({1'b0, ADDR, 2'b00}),
@@ -145,10 +149,10 @@ CPU_SM csm(
     .SIZE1         (SIZE1_CPUSM ),
     .aRESET_       (_RST        ),
     .STERM_        (_STERM      ),
-    //.DSACK0_     (DSACK0_     ),
-    //.DSACK1_     (DSACK1_     ),
-    //.DSACK       (DSACK       ),
-    //.aCYCLEDONE_ (aCYCLEDONE_ ),
+    .DSACK0_       (_DSACK[0]   ),
+    .DSACK1_       (_DSACK[1]   ),
+    .DSACK         (DSACK_CPU_SM),
+    .aCYCLEDONE_   (aCYCLEDONE_ ),
     .CLK           (SCLK        ),
     .DMADIR        (DMADIR      ),
     .A1            (A1          ),
@@ -188,7 +192,7 @@ SCSI_SM u_SCSI_SM(
     .DREQ_     (DREQ_       ),
     .FIFOFULL  (FIFOFULL    ),
     .FIFOEMPTY (FIFOEMPTY   ),
-    .nAS_      (~_AS        ),
+    .nAS_      (nAS_        ),
     .RDFIFO_o  (RDFIFO_o    ),
     .RIFIFO_o  (RIFIFO_o    ),
     .RE_o      (RE          ),
@@ -279,7 +283,15 @@ always @(posedge nSCLK) begin
         LHW <= PLHW;    
 end
 
+always @(posedge nSCLK or negedge nAS_) begin
+    if (nSCLK == 1'b1)
+        DSACK_LATCHED_ <= _DSACK;
+    else if (nAS_ == 1'b0)
+        DSACK_LATCHED_ <= 2'b11;
+end
+
 assign nSCLK  = ~SCLK;
+assign nAS_ = ~_AS;
 assign OWN_ = ~BGACK;
 
 //System Outputs
@@ -308,7 +320,8 @@ assign DREQ_ = (~DMAENA | _DREQ);
 assign LEFTOVERS = (~BOEQ0 & FLUSHFIFO & FIFOEMPTY);
 assign INCNO = (INCNO_CPU | INCNO_SCSI);
 assign INCNI = (INCNI_CPU | INCNI_SCSI);
-
+assign aCYCLEDONE_ = ~(_BGACK & _AS & _DSACK[0] & _DSACK[1] & _STERM);
+assign DSACK_CPU_SM = ~(DSACK_LATCHED_[0] & DSACK_LATCHED_[1]);
 
 endmodule
 
