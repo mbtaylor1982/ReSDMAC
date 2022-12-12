@@ -62,6 +62,7 @@ assign p1c = ~ ((~ (~ (DSACKb & E23_sd) & ~ (~ DSACKb & (E24_sd | E29_sd | E33_s
 assign cpudff1_d = (~(p1a & p1b & p1c));
 assign cpudff1 = ~cpudff1_q;
 
+
 always @(posedge BCLK or negedge CCRESET_) begin
     if (CCRESET_ == 1'b0) begin
         cpudff1_q <= 1'b0;

@@ -27,8 +27,8 @@ reg cpudff3_q;
 wire cpudff3_d;
 
 assign p3a = ;
-assign p3b = ;
-assign p3c = ;
+assign p3b = (~(~STERM1_ & ~(~E36_s_E47_s & ~E33_sd_E38_s & ~E39_s & ~E40_s_E41_s & ~E42_s & ~E37_s_E44_s)));
+assign p3c = (~(STERM1_ & ( TODO: | (E36_s_E47_s | E46_s-E59_s))));
 
 assign cpudff3_d = (~(p3a & p3b & p3c));
 assign cpudff32 = ~cpudff3_q;

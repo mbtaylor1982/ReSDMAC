@@ -57,39 +57,6 @@ module CPU_SM(
     output PLHW
 );
 
-localparam S0 = 5'b00000;
-localparam S1 = 5'b00001;
-localparam S2 = 5'b00010;
-localparam S3 = 5'b00011;
-localparam S4 = 5'b00100;
-localparam S5 = 5'b00101;
-localparam S6 = 5'b00110;
-localparam S7 = 5'b00111;
-localparam S8 = 5'b01000;
-localparam S9 = 5'b01001;
-localparam S10 = 5'b01010;
-localparam S11 = 5'b01011;
-localparam S12 = 5'b01100;
-localparam S13 = 5'b01101;
-localparam S14 = 5'b01110;
-localparam S15 = 5'b01111;
-localparam S16 = 5'b10000;
-localparam S17 = 5'b10001;
-localparam S18 = 5'b10010;
-localparam S19 = 5'b10011;
-localparam S20 = 5'b10100;
-localparam S21 = 5'b10101;
-localparam S22 = 5'b10110;
-localparam S23 = 5'b10111;
-localparam S24 = 5'b11000;
-localparam S25 = 5'b11001;
-localparam S26 = 5'b11010;
-localparam S27 = 5'b11011;
-localparam S28 = 5'b11100;
-localparam S29 = 5'b11101;
-localparam S30 = 5'b11110;
-localparam S31 = 5'b11111;
-
 reg [5:0] state = S0;
 reg CCRESET_ = 1'b1;
 
