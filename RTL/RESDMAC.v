@@ -140,7 +140,7 @@ registers u_registers(
     .WDREGREQ  (WDREGREQ  )
 );
 
-CPU_SM csm(
+CPU_SM u_CPU_SM(
     .PAS           (PAS         ),
     .PDS           (PDS         ),
     .BGACK         (BGACK       ),

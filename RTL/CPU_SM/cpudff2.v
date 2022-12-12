@@ -17,42 +17,25 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 module cpudff2 (
-  input BCLK,
-  input CCRESET_,
   input E1, E11, E16, E17,
   input E26, E27, E31, E32,
   input E35, E55, E58, E61,
   input E25_d,E50_d_E52_d,
-  input DSACKa,
-  input STERM1_,
+  input DSACK,
+  input STERM_,
   input E43_s_E49_sd, E46_s_E59_s, E51_s_E54_sd,
-  input E23_sd, DSACKb,
+  input E23_sd, 
   input E33_sd_E38_s, E29_sd,
   input E36_s_E47_s, E57_s, E40_s_E41_s,
-  input STERM2_,
-  
-  output cpudff2
+    
+  output cpudff2_d
 );
+wire p2a, p2b, p2c;
 
-reg cpudff2_q;
-wire cpudff2_d;
-
-assign p2a = (!( !(!E1 & !E11 & !E16 & !E17) | !(!E26 & !E27 & !E31 & !E32) | !(!E35 & !E55 & !E58 & !E61) ) & !(!E25_d & !E50_d_E52_d & DSACKa));
-assign p2b = !(!STERM1_ & !(!E43_s_E49_sd & !E46_s_E59_s & !E51_s_E54_sd));
-assign p2c = !((!(!(E23_sd & DSACKb) & !(!DSACKb & (E33_sd_E38_s|E43_s_E49_sd|E51_s_E54_sd|E29_sd)))|(E36_s_E47_s|E57_s|E46_s_E59_s|E40_s_E41_s)) & STERM2_);
+assign p2a = (~( ~(~E1 & ~E11 & ~E16 & ~E17) | ~(~E26 & ~E27 & ~E31 & ~E32) | ~(~E35 & ~E55 & ~E58 & ~E61) ) & ~(~E25_d & ~E50_d_E52_d & DSACK));
+assign p2b = ~(~STERM_ & ~(~E43_s_E49_sd & ~E46_s_E59_s & ~E51_s_E54_sd));
+assign p2c = ~((~(~(E23_sd & DSACK) & ~(~DSACK & (E33_sd_E38_s|E43_s_E49_sd|E51_s_E54_sd|E29_sd)))|(E36_s_E47_s|E57_s|E46_s_E59_s|E40_s_E41_s)) & STERM_);
 
 assign cpudff2_d = (~(p2a & p2b & p2c));
-assign cpudff2 = ~cpudff2_q;
-
-always @(posedge BCLK or negedge CCRESET_) begin
-    if (CCRESET_ == 1'b0) begin
-        cpudff2_q <= 1'b0;
-    end
-    else begin
-        if (BCLK == 1'b1) begin
-            cpudff2_q <= cpudff2_d;
-        end
-    end
-end
 
 endmodule
