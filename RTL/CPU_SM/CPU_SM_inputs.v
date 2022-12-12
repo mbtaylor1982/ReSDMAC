@@ -108,6 +108,8 @@ module CPU_SM_inputs (
   assign s2 = ~ cpudff3_q;
   assign s5 = ~ cpudff4_q;
   assign s6 = ~ cpudff5_q;
+
+  
   assign E0 = ~ (~ (DMADIR & FIFOEMPTY & s0 & FLUSHFIFO) | ~ (DMAENA & s1 & s2 & 1'b1) | ~ (s3 & s4 & s5 & s6));
   assign E1 = (s7 & DMAENA & ~ DREQ_ & FIFOEMPTY & s3 & s4 & s5 & cpudff5_q);
   assign E2 = ~ (~ (DMADIR & DMAENA & s8 & FLUSHFIFO) | ~ (s3 & s4 & s5 & cpudff5_q) | cpudff3_q);

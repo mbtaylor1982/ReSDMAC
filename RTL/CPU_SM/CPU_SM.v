@@ -57,7 +57,7 @@ module CPU_SM(
     output PLHW
 );
 
-reg [5:0] state = S0;
+reg [5:0] state = 6'b000000;
 reg CCRESET_ = 1'b1;
 
 wire nCLK; // CPUCLK Inverted
