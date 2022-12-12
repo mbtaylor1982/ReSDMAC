@@ -66,8 +66,22 @@ let E62 = (cpudff1_q & cpudff4_q & !cpudff2_q & !cpudff5_q),
 
 State machine output terms.
 ```text
-let p1a = (!( !(!E56& !E62 & !E60 & !E58) | !(!E48 & !E55  & !E27 & !E32) | !(!E12 & !E53 & !E26) )&!( !(!E50_d-E52_d & !E25_d & !E6_d) & DSACKa)&!(E50_d-E52_d & !DSACKa)),
-let p1b = !(!STERM1_ & !(!E43_s-E49_sd & !E46_s-E59_s & !E51_s-E54_sd)),
-let p1c = !( (!(!(E23_sd & DSACKb) & !(!DSACKb & (E24_sd|E29_sd|E33_sd-E38_s|E43_s-E49_sd|E51_s-E54_sd)))| (E46_s-E59_s|E57_s|E36_s-E47_s|E40_s-E41_s|E37_s-E44_s)) & STERM1_),
+
+let p1a = (!( !(!E56& !E62 & !E60 & !E58) | !(!E48 & !E55  & !E27 & !E32) | !(!E12 & !E53 & !E26) )&!( !(!E50_d_E52_d & !E25_d & !E6_d) & DSACKa)&!(E50_d_E52_d & !DSACKa)),
+let p1b = !(!STERM1_ & !(!E43_s_E49_sd & !E46_s_E59_s & !E51_s_E54_sd)),
+let p1c = !( (!(!(E23_sd & DSACKb) & !(!DSACKb & (E24_sd|E29_sd|E33_sd_E38_s|E43_s_E49_sd|E51_s_E54_sd)))| (E46_s_E59_s|E57_s|E36_s_E47_s|E40_s_E41_s|E37_s_E44_s)) & STERM1_),
 let cpudff1_d = !(p1a & p1b & p1c),
+
+let p2a = (!( !(!E1 & !E11 & !E16 & !E17) | !(!E26 & !E27 & !E31 & !E32) | !(!E35 & !E55 & !E58 & !E61) ) & !(!E25_d & !E50_d_E52_d & DSACKa)),
+let p2b = !(!STERM1_ & !(!E43_s_E49_sd & !E46_s_E59_s & !E51_s_E54_sd)),
+let p2c = !((!(!(E23_sd & DSACKb) & !(!DSACKb & (E33_sd_E38_s|E43_s_E49_sd|E51_s_E54_sd|E29_sd)))|(E36_s_E47_s|E57_s|E46_s_E59_s|E40_s_E41_s)) & STERM2_),
+let cpudff2_d = !(p2a & p2b & p2c),
+
+
+
+
+
+
+
+
 ```
