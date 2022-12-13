@@ -17,9 +17,6 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 module cpudff1 (
-    //input BCLK,
-    //input CCRESET_,
-
     input DSACK,
     input E12,
     input E25_d,
