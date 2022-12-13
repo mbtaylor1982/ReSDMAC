@@ -25,6 +25,7 @@
   `include "RTL/CPU_SM/cpudff4.v"
   `include "RTL/CPU_SM/cpudff5.v"
   `include "RTL/CPU_SM/CPU_SM_inputs.v"  
+  `include "RTL/CPU_SM/CPU_SM_output.v"  
 `endif
 
 module CPU_SM(
@@ -158,7 +159,6 @@ CPU_SM_inputs u_CPU_SM_inputs(
     .E61          (E61          ),
     .E62          (E62          )
 );
-
 cpudff1 u_cpudff1(
     .DSACK        (DSACK        ),
     .E12          (E12          ),
@@ -189,7 +189,6 @@ cpudff1 u_cpudff1(
     .E57_s        (E57_s        ),
     .cpudff1_d    (cpudff1_d    )
 );
-
 cpudff2 u_cpudff2(
     .E1           (E1           ),
     .E11          (E11          ),
@@ -218,7 +217,6 @@ cpudff2 u_cpudff2(
     .E40_s_E41_s  (E40_s_E41_s  ),
     .cpudff2_d    (cpudff2_d    )
 );
-
 cpudff3 u_cpudff3(
     .E4           (E4           ),
     .E10          (E10          ),
@@ -247,7 +245,6 @@ cpudff3 u_cpudff3(
     .E46_s_E59_s  (E46_s_E59_s  ),
     .cpudff3_d    (cpudff3_d    )
 );
-
 cpudff4 u_cpudff4(
     .E61          (E61          ),
     .E60          (E60          ),
@@ -285,7 +282,6 @@ cpudff4 u_cpudff4(
     .E57_s        (E57_s        ),
     .cpudff4_d    (cpudff4_d    )
 );
-
 cpudff5 u_cpudff5(
     .E26          (E26          ),
     .E5           (E5           ),
@@ -319,6 +315,77 @@ cpudff5 u_cpudff5(
     .E43_s_E49_sd (E43_s_E49_sd ),
     .E57_s        (E57_s        ),
     .cpudff5_d    (cpudff5_d    )
+);
+CPU_SM_outputs u_CPU_SM_outputs(
+    .E32          (E32          ),
+    .E48          (E48          ),
+    .E2           (E2           ),
+    .E3           (E3           ),
+    .E4           (E4           ),
+    .E5           (E5           ),
+    .E7           (E7           ),
+    .E8           (E8           ),
+    .E10          (E10          ),
+    .E11          (E11          ),
+    .E12          (E12          ),
+    .E16          (E16          ),
+    .E17          (E17          ),
+    .E18          (E18          ),
+    .E19          (E19          ),
+    .E0           (E0           ),
+    .E21          (E21          ),
+    .E26          (E26          ),
+    .E27          (E27          ),
+    .E56          (E56          ),
+    .E55          (E55          ),
+    .E35          (E35          ),
+    .E61          (E61          ),
+    .E50_d_E52_d  (E50_d_E52_d  ),
+    .E60          (E60          ),
+    .DSACK        (DSACK        ),
+    .E43_s_E49_sd (E43_s_E49_sd ),
+    .E57_s        (E57_s        ),
+    .STERM_       (STERM_       ),
+    .E36_s_E47_s  (E36_s_E47_s  ),
+    .E33_sd_E38_s (E33_sd_E38_s ),
+    .E40_s_E41_s  (E40_s_E41_s  ),
+    .E42_s        (E42_s        ),
+    .E46_s_E59_s  (E46_s_E59_s  ),
+    .E51_s_E54_sd (E51_s_E54_sd ),
+    .E62          (E62          ),
+    .E58          (E58          ),
+    .E53          (E53          ),
+    .E25_d        (E25_d        ),
+    .E28_d        (E28_d        ),
+    .E30_d        (E30_d        ),
+    .E23_sd       (E23_sd       ),
+    .E29_sd       (E29_sd       ),
+    .E45          (E45          ),
+    .E34          (E34          ),
+    .E24_sd       (E24_sd       ),
+    .E37_s        (E37_s        ),
+    .E44_s        (E44_s        ),
+    .E20_d        (E20_d        ),
+    .E39_s        (E39_s        ),
+    .E37_s_E44_s  (E37_s_E44_s  ),
+    .nINCNI_d     (nINCNI_d     ),
+    .nBREQ_d      (nBREQ_d      ),
+    .SIZE1_d      (SIZE1_d      ),
+    .PAS_d        (PAS_d        ),
+    .PDS_d        (PDS_d        ),
+    .F2CPUL_d     (F2CPUL_d     ),
+    .F2CPUH_d     (F2CPUH_d     ),
+    .BRIDGEOUT_d  (BRIDGEOUT_d  ),
+    .PLLW_d       (PLLW_d       ),
+    .PLHW_d       (PLHW_d       ),
+    .INCFIFO_d    (INCFIFO_d    ),
+    .DECFIFO_d    (DECFIFO_d    ),
+    .INCNO_d      (INCNO_d      ),
+    .nSTOPFLUSH_d (nSTOPFLUSH_d ),
+    .DIEH_d       (DIEH_d       ),
+    .DIEL_d       (DIEL_d       ),
+    .nBRIDGEIN_d  (nBRIDGEIN_d  ),
+    .BGACK_d      (BGACK_d      )
 );
 
 //clocked reset
