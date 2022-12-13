@@ -24,7 +24,10 @@ module CPU_SM_outputs (
     input E0, E21, E26, E27,
     input E56, E55, E35, E61, E50_d_E52_d,
     input E60, DSACK, E43_s_E49_sd, E57_s, STERM_,
-
+    input E36_s_E47_s, E33_sd_E38_s, E40_s_E41_s, E42_s, E46_s_E59_s, E51_s_E54_sd,
+    input E62, E58, E53, E25_d, E28_d, E30_d,
+    input E23_sd, E29_sd,
+    input E45, E34, E24_sd, E37_s, E44_s,
 
     output nINCNI_d,
     output nBREQ_d,
@@ -47,12 +50,29 @@ module CPU_SM_outputs (
     output BGACK_d
 );
 
+
 assign nINCNI_d = (~(E32 | E48)); 
 //assign INCNI_d = (E32 | E48);
 assign nBREQ_d = (~((E2 | E3 | E4 | E5 | E7 | E8) | (E10 | E11 | E12 | E16 | E17 | E18) | E19)); 
 //assign BREQ_d = ((E2 | E3 | E4 | E5 | E7 | E8) | (E10 | E11 | E12 | E16 | E17 | E18) | E19);
-//assign SIZE1_d = ;
-//assign PAS_d =  ;
+
+
+//SIZE1
+wire SIZE1_X, SIZE1_Y, SIZE1_Z;
+
+assign SIZE1_X = (~((~E62 & ~E61 & ~E58 & ~E56 & ~E53 & ~E26) & ~(~(~E25_d & ~E28_d & ~E30_d & ~E50_d_E52_d) & DSACK) & ~(E50_d_E52_d & ~DSACK)));
+assign SIZE1_Y = (~(~STERM_ & ~(~E36_s_E47_s & ~E33_sd_E38_s & ~E40_s_E41_s & ~E42_s & ~E46_s_E59_s & ~E51_s_E54_sd)));
+assign SIZE1_Z = (~((~(~(E23_sd & DSACK) & ~(~DSACK & (E29_sd | E33_sd_E38_s | E51_s_E54_sd))) |(E40_s_E41_s | E36_s_E47_s | E46_s_E59_s)) & STERM_));
+
+assign SIZE1_d = (~(SIZE1_X & SIZE1_Y & SIZE1_Z));
+
+//PAS
+wire PAS_X, PAS_Y;
+assign PAS_X = (~(~(~E62 & ~E61 & ~E60 & ~E58) |~(~E56 & ~E53 & ~E48 & ~E45) | ~(~E34 & ~E26 & ~E21)) & ~(E50_d_E52_d & ~DSACK));
+assign PAS_Y = (~(((~DSACK & (E24_sd | E29_sd | E33_sd_E38_s | E43_s_E49_sd | E51_s_E54_sd))|(E37_s-E44_s | E40_s_E41_s | E36_s_E47_s | E57_s | E46_s_E59_s)) & STERM_));
+
+assign PAS_d = (~(PAS_X & PAS_Y));
+
 //assign PDS_d = ;
 //assign F2CPUL_d = ; 
 //assign F2CPUH_d = ;
