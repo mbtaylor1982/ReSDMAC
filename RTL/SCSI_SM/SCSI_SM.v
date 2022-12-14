@@ -93,7 +93,7 @@ wire nCLK; // CPUCLK Inverted
 wire BCLK; // CPUCLK Inverted 4 times for delay.
 wire BBCLK; // CPUCLK Inverted 6 time for delay.
 
-wire [27:0] E_;
+wire [27:0] E;
 wire [4:0] NEXT_STATE;
 
 scsi_sm_inputs u_scsi_sm_inputs(
@@ -108,11 +108,11 @@ scsi_sm_inputs u_scsi_sm_inputs(
     .RDFIFO_o   (RDFIFO_o   ),
     .RIFIFO_o   (RIFIFO_o   ),
     .RW         (RW         ),
-    .E_         (E_         )
+    .E          (E          )
 );
 
 scsi_sm_outputs u_scsi_sm_outputs(
-    .E_         (E_         ),
+    .E          (E          ),
     .NEXT_STATE (NEXT_STATE ), 
     .DACK       (DACK       ),
     .INCBO      (INCBO      ),
@@ -158,8 +158,8 @@ always @(posedge BCLK) begin
     F2S_o <= F2S;
     S2CPU_o <= S2CPU;
     CPU2S_o <= CPU2S;   
-    RDFIFO_d <= ~E_[3];
-    RIFIFO_d <=  ~E_[4];
+    RDFIFO_d <= E[3];
+    RIFIFO_d <=  E[4];
 end
 
 //State Machine

@@ -30,7 +30,7 @@ module scsi_sm_inputs(
   input RIFIFO_o,
   input RW,
 
-  output [27:0] E_
+  output [27:0] E
 );
   wire nCDSACK_;
   wire nDMADIR;
@@ -47,34 +47,34 @@ module scsi_sm_inputs(
   wire nscsidff4_q;
   wire nscsidff5_q;
 
-  wire E0_;
-  wire E1_;
-  wire E2_;
-  wire E3_;
-  wire E4_;
-  wire E5_;
-  wire E6_;
-  wire E7_;
-  wire E8_;
-  wire E9_;
-  wire E10_;
-  wire E11_;
-  wire E12_;
-  wire E13_;
-  wire E14_;
-  wire E15_;
-  wire E16_;
-  wire E17_;
-  wire E18_;
-  wire E19_;
-  wire E20_;
-  wire E21_;
-  wire E22_;
-  wire E23_;
-  wire E24_;
-  wire E25_;
-  wire E26_;
-  wire E27_;
+  wire E0;
+  wire E1;
+  wire E2;
+  wire E3;
+  wire E4;
+  wire E5;
+  wire E6;
+  wire E7;
+  wire E8;
+  wire E9;
+  wire E10;
+  wire E11;
+  wire E12;
+  wire E13;
+  wire E14;
+  wire E15;
+  wire E16;
+  wire E17;
+  wire E18;
+  wire E19;
+  wire E20;
+  wire E21;
+  wire E22;
+  wire E23;
+  wire E24;
+  wire E25;
+  wire E26;
+  wire E27;
     
   assign nCDSACK_ = ~ CDSACK_;
   assign nDMADIR = ~ DMADIR;
@@ -124,39 +124,39 @@ module scsi_sm_inputs(
 
   //assign E0_ = ~ (~ (CDREQ_ | FIFOEMPTY | DMADIR | CCPUREQ | RDFIFO_o | scsidff1_q | scsidff2_q | scsidff4_q) & scsidff5_q); //checked MT Original
   //assign E0_ = ~ (~CDREQ_ & ~FIFOEMPTY & ~DMADIR & ~CCPUREQ & ~RDFIFO_o & nscsidff1_q & nscsidff2_q & nscsidff4_q & scsidff5_q); //NAND
-  assign E0_  = (CDREQ_ | FIFOEMPTY | DMADIR | CCPUREQ | RDFIFO_o | scsidff1_q | scsidff2_q | scsidff4_q | nscsidff5_q); //OR Only
+  assign E0  = ~ (CDREQ_ | FIFOEMPTY | DMADIR | CCPUREQ | RDFIFO_o | scsidff1_q | scsidff2_q | scsidff4_q | nscsidff5_q); //OR Only
   
   //assign E1_ = ~ (~ (CDREQ_ | FIFOFULL | nDMADIR | CCPUREQ | RIFIFO_o | scsidff1_q | scsidff2_q | scsidff4_q) & nscsidff3_q & nscsidff5_q); //checked MT Original
   //assign E1_ = ~ (~CDREQ_ & ~FIFOFULL & ~nDMADIR & ~CCPUREQ & ~RIFIFO_o & nscsidff1_q & nscsidff2_q & nscsidff3_q & nscsidff4_q & nscsidff5_q); //NAND
-  assign E1_  = (CDREQ_ | FIFOFULL | nDMADIR | CCPUREQ | RIFIFO_o | scsidff1_q | scsidff2_q | scsidff4_q | scsidff3_q | scsidff5_q); //OR Only
+  assign E1  = ~ (CDREQ_ | FIFOFULL | nDMADIR | CCPUREQ | RIFIFO_o | scsidff1_q | scsidff2_q | scsidff4_q | scsidff3_q | scsidff5_q); //OR Only
   
-  assign E2_  = ~ (FIFOFULL & nscsidff1_q & nscsidff2_q & nscsidff3_q & scsidff4_q & scsidff5_q); //checked MT
-  assign E3_  = ~ (BOEQ3 & scsidff1_q & nscsidff2_q & nscsidff4_q & nscsidff5_q); //checked MT
-  assign E4_  = ~ (BOEQ3 & nscsidff2_q & scsidff3_q & scsidff4_q & nscsidff5_q); //checked MT
-  assign E5_  = ~ (nDMADIR & ~ CCPUREQ & nscsidff2_q & nscsidff3_q & nscsidff4_q); //checked MT
-  assign E6_  = ~ (CCPUREQ & nscsidff1_q & nscsidff2_q & nscsidff3_q & nscsidff4_q); //checked MT
-  assign E7_  = ~ (~ FIFOFULL & nscsidff1_q & nscsidff2_q & nscsidff3_q & scsidff4_q & scsidff5_q); //checked MT
-  assign E8_  = ~ (~ RW & nscsidff1_q & nscsidff2_q & nscsidff3_q & scsidff4_q & nscsidff5_q); //checked MT
-  assign E9_  = ~ (nscsidff1_q & scsidff2_q & nscsidff3_q & nscsidff4_q & scsidff5_q); //checked MT
-  assign E10_ = ~ (nscsidff2_q & scsidff3_q & scsidff4_q & nscsidff5_q); //checked MT
-  assign E11_ = ~ (scsidff1_q & nscsidff2_q & nscsidff4_q & nscsidff5_q); //checked MT
-  assign E12_ = ~ (RW & nscsidff1_q & nscsidff3_q & scsidff4_q & nscsidff5_q); //checked MT
-  assign E13_ = ~ (nscsidff1_q & scsidff2_q & nscsidff3_q & nscsidff4_q & nscsidff5_q); //checked MT
-  assign E14_ = ~ (nCDSACK_ & scsidff2_q & scsidff4_q & nscsidff5_q); //checked MT
-  assign E15_ = ~ (scsidff2_q & scsidff3_q & nscsidff4_q & scsidff5_q); //checked MT
-  assign E16_ = ~ (nscsidff2_q & scsidff3_q & scsidff4_q & scsidff5_q); //checked MT
-  assign E17_ = ~ (scsidff2_q & scsidff3_q & scsidff4_q & scsidff5_q); //checked MT
-  assign E18_ = ~ (scsidff2_q & nscsidff3_q & scsidff4_q & scsidff5_q); //checked MT
-  assign E19_ = ~ (nCDSACK_ & scsidff1_q & scsidff4_q); //checked MT
-  assign E20_ = ~ (nscsidff2_q & scsidff3_q & nscsidff4_q & scsidff5_q); //checked MT
-  assign E21_ = ~ (nscsidff2_q & scsidff3_q & nscsidff4_q & nscsidff5_q); //checked MT
-  assign E22_ = ~ (scsidff2_q & scsidff3_q & nscsidff4_q & nscsidff5_q); //checked MT
-  assign E23_ = ~ (scsidff1_q & scsidff4_q & nscsidff5_q); //checked MT
-  assign E24_ = ~ (scsidff1_q & nscsidff2_q & nscsidff4_q & scsidff5_q); //checked MT
-  assign E25_ = ~ (scsidff1_q & scsidff2_q & scsidff5_q); //checked MT
-  assign E26_ = ~ (scsidff1_q & scsidff2_q & nscsidff5_q); //checked MT
-  assign E27_ = ~ (scsidff2_q & nscsidff3_q & scsidff4_q & nscsidff5_q); //checked MT
+  assign E2  = (FIFOFULL & nscsidff1_q & nscsidff2_q & nscsidff3_q & scsidff4_q & scsidff5_q); //checked MT
+  assign E3  = (BOEQ3 & scsidff1_q & nscsidff2_q & nscsidff4_q & nscsidff5_q); //checked MT
+  assign E4  = (BOEQ3 & nscsidff2_q & scsidff3_q & scsidff4_q & nscsidff5_q); //checked MT
+  assign E5  = (nDMADIR & ~ CCPUREQ & nscsidff2_q & nscsidff3_q & nscsidff4_q); //checked MT
+  assign E6  = (CCPUREQ & nscsidff1_q & nscsidff2_q & nscsidff3_q & nscsidff4_q); //checked MT
+  assign E7  = (~ FIFOFULL & nscsidff1_q & nscsidff2_q & nscsidff3_q & scsidff4_q & scsidff5_q); //checked MT
+  assign E8  = (~ RW & nscsidff1_q & nscsidff2_q & nscsidff3_q & scsidff4_q & nscsidff5_q); //checked MT
+  assign E9  = (nscsidff1_q & scsidff2_q & nscsidff3_q & nscsidff4_q & scsidff5_q); //checked MT
+  assign E10 = (nscsidff2_q & scsidff3_q & scsidff4_q & nscsidff5_q); //checked MT
+  assign E11 = (scsidff1_q & nscsidff2_q & nscsidff4_q & nscsidff5_q); //checked MT
+  assign E12 = (RW & nscsidff1_q & nscsidff3_q & scsidff4_q & nscsidff5_q); //checked MT
+  assign E13 = (nscsidff1_q & scsidff2_q & nscsidff3_q & nscsidff4_q & nscsidff5_q); //checked MT
+  assign E14 = (nCDSACK_ & scsidff2_q & scsidff4_q & nscsidff5_q); //checked MT
+  assign E15 = (scsidff2_q & scsidff3_q & nscsidff4_q & scsidff5_q); //checked MT
+  assign E16 = (nscsidff2_q & scsidff3_q & scsidff4_q & scsidff5_q); //checked MT
+  assign E17 = (scsidff2_q & scsidff3_q & scsidff4_q & scsidff5_q); //checked MT
+  assign E18 = (scsidff2_q & nscsidff3_q & scsidff4_q & scsidff5_q); //checked MT
+  assign E19 = (nCDSACK_ & scsidff1_q & scsidff4_q); //checked MT
+  assign E20 = (nscsidff2_q & scsidff3_q & nscsidff4_q & scsidff5_q); //checked MT
+  assign E21 = (nscsidff2_q & scsidff3_q & nscsidff4_q & nscsidff5_q); //checked MT
+  assign E22 = (scsidff2_q & scsidff3_q & nscsidff4_q & nscsidff5_q); //checked MT
+  assign E23 = (scsidff1_q & scsidff4_q & nscsidff5_q); //checked MT
+  assign E24 = (scsidff1_q & nscsidff2_q & nscsidff4_q & scsidff5_q); //checked MT
+  assign E25 = (scsidff1_q & scsidff2_q & scsidff5_q); //checked MT
+  assign E26 = (scsidff1_q & scsidff2_q & nscsidff5_q); //checked MT
+  assign E27 = (scsidff2_q & nscsidff3_q & scsidff4_q & nscsidff5_q); //checked MT
 
-  assign E_[27:0] = {E27_,E26_,E25_,E24_,E23_,E22_,E21_,E20_,E19_,E18_,E17_,E16_,E15_,E14_,E13_,E12_,E11_,E10_,E9_,E8_,E7_,E6_,E5_,E4_,E3_,E2_,E1_,E0_};
+  assign E[27:0] = {E27,E26,E25,E24,E23,E22,E21,E20,E19,E18,E17,E16,E15,E14,E13,E12,E11,E10,E9,E8,E7,E6,E5,E4,E3,E2,E1,E0};
   
 endmodule
