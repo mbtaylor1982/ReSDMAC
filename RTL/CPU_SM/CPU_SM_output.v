@@ -29,6 +29,8 @@ module CPU_SM_outputs (
     input E23_sd, E29_sd,
     input E45, E34, E24_sd, E37_s, E44_s,
     input E20_d, E39_s, E37_s_E44_s,
+    input E6_d, E9_d, RDFIFO_, RIFIFO_, BGRANT_, CYCLEDONE,
+    input E31, cpudff1, cpudff2, cpudff3, cpudff4, cpudff5,
 
     output nINCNI_d,
     output nBREQ_d,
@@ -122,16 +124,54 @@ assign PLLW_d = (~(PLLW_X & PLLW_Y));
 
 assign PLHW_d = ~(~(E48 | E60) & (~(((~DSACK & E43_s_E49_sd) | E57_s) & STERM_)));
 
-//assign INCFIFO_d = ;
-//assign DECFIFO_d = ;
-//assign INCNO_d = ;
+
+//FIFO COUNTER STROBES
+wire A,B,C,D,E,F;
+
+assign A = (~(~(~E51_s_E54_sd & ~E46_s_E59_s & ~E43_s_E49_sd) & ~STERM_));
+assign B = (~(DSACK & ~(~E50_d_E52_d & ~E25_d & ~E6_d)) & ~E55);
+assign C = (~(~(~E9_d  & ~E30_d) & DSACK));
+assign D = (~(~STERM_ & ~(~E39_s & ~E40_s_E41_s& ~E37_s_E44_s& ~E42_s)));
+assign E = (~(A & B & ~RDFIFO_));
+assign F = (~(C & D & ~RIFIFO_));
+
+assign INCFIFO_d = (~(A & B & F));
+assign DECFIFO_d = (~(C & D & E));
+assign INCNO_d = (~(C & D));
+
 assign nSTOPFLUSH_d = (~E0 & ~E4 & ~E5 & ~E21 & ~E26 & ~E27); 
 //assign STOPFLUSH_d = (E0 | E4 | E5 | E21 | E26 | E27);
 
-//assign DIEH_d = ;
-//assign DIEL_d = ;
+//DIEH
+wire DIEH_X, DIEH_Y, DIEH_Z;
+
+assign DIEH_X = ((~E61 & ~E60 & ~E62 & ~E31 & ~E56 & ~E48) & ~(~(~E25_d & ~E50_d_E52_d) & DSACK) & ~(E50_d_E52_d & ~DSACK));
+assign DIEH_Y = (~(~STERM_ & ~(~E43_s_E49_sd & ~E46_s_E59_s & ~E51_s_E54_sd)));
+assign DIEH_Z = (~(((~DSACK & (E51_s_E54_sd | E43_s_E49_sd)) |(E46_s_E59_s | E57_s)) & STERM_));
+
+assign DIEH_d = (~(DIEH_X & DIEH_Y & DIEH_Z));
+
+//DIEL
+wire DIEL_X, DIEL_Y, DIEL_Z;
+
+assign DIEH_X = ((~E62 & ~E60 & ~E48) & ~(~(~E25_d & ~E6_d) & DSACK));
+assign DIEL_Y = (~(~STERM_ & ~(~E43_s_E49_sd & ~E46_s_E59_s & ~E51_s_E54_sd)));
+assign DIEL_Z = (~(((~DSACK & (E51_s_E54_sd | E43_s_E49_sd)) |(E46_s_E59_s | E57_s)) & STERM_));
+
+assign DIEL_d = (~(DIEL_X & DIEL_Y & DIEL_Z));
+
 assign nBRIDGEIN_d = (~(~E56 & ~E55 & ~E35 & ~E61 & ~E50_d_E52_d));
 //assign BRIDGEIN_d = ~(E56 | E55 | E35 | E61 | E50_d_E52_d);
-//assign BGACK_d = ;
+
+//BGACK
+wire BGACK_V, BGACK_W, BGACK_X, BGACK_Y, BGACK_Z;
+
+assign BGACK_V = (~(cpudff5 | cpudff3 | cpudff1) & (cpudff4 ^ cpudff2));
+assign BGACK_W = (~(CYCLEDONE | BGRANT_) & BGACK_V);
+assign BGACK_X = (BGRANT_ & BGACK_V);
+assign BGACK_Y = (~(cpudff1 | cpudff2 | cpudff3 | cpudff4));
+assign BGACK_Z = (~cpudff1 & cpudff2 & cpudff3 & cpudff4 & cpudff5);
+
+assign BGACK_d = (~(BGACK_W | BGACK_X | BGACK_Y | BGACK_Z));
 
 endmodule

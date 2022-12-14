@@ -29,12 +29,12 @@
 `endif
 
 module CPU_SM(
-    output PAS,
-    output PDS,
-    output BGACK,
-    output BREQ,
+    output reg PAS,
+    output reg PDS,
+    output reg BGACK,
+    output reg BREQ,
     input aBGRANT_,
-    output SIZE1,
+    output reg SIZE1,
     input aRESET_,
     input STERM_,
     input DSACK0_,
@@ -44,28 +44,28 @@ module CPU_SM(
     input CLK,
     input DMADIR,
     input A1,
-    output F2CPUL,
-    output F2CPUH,
-    output BRIDGEIN,
-    output BRIDGEOUT,
-    output DIEH,
-    output DIEL,
+    output reg F2CPUL,
+    output reg F2CPUH,
+    output reg BRIDGEIN,
+    output reg BRIDGEOUT,
+    output reg DIEH,
+    output reg DIEL,
     input LASTWORD,
     input BOEQ3,
     input FIFOFULL,
     input FIFOEMPTY,
     input RDFIFO_,
-    output DECFIFO,
+    output reg DECFIFO,
     input RIFIFO_,
-    output INCFIFO,
-    output INCNO,
-    output INCNI,
+    output reg INCFIFO,
+    output reg INCNO,
+    output reg INCNI,
     input aDREQ_,
     input aFLUSHFIFO,
-    output STOPFLUSH,
+    output reg STOPFLUSH,
     input aDMAENA,
-    output PLLW,
-    output PLHW
+    output reg PLLW,
+    output reg PLHW
 );
 
 reg [4:0] STATE;
@@ -368,6 +368,19 @@ CPU_SM_outputs u_CPU_SM_outputs(
     .E20_d        (E20_d        ),
     .E39_s        (E39_s        ),
     .E37_s_E44_s  (E37_s_E44_s  ),
+    .E6_d         (E6_d         ),
+    .E9_d         (E9_d         ),
+    .RDFIFO_      (RDFIFO_      ),
+    .RIFIFO_      (RIFIFO_      ),
+    .BGRANT_      (BGRANT_      ),
+    .CYCLEDONE    (CYCLEDONE    ),
+    .E31          (E31          ),
+    .cpudff1      (cpudff1_d    ),
+    .cpudff2      (cpudff2_d    ),
+    .cpudff3      (cpudff3_d    ),
+    .cpudff4      (cpudff4_d    ),
+    .cpudff5      (cpudff5_d    ),
+    
     .nINCNI_d     (nINCNI_d     ),
     .nBREQ_d      (nBREQ_d      ),
     .SIZE1_d      (SIZE1_d      ),
@@ -388,6 +401,7 @@ CPU_SM_outputs u_CPU_SM_outputs(
     .BGACK_d      (BGACK_d      )
 );
 
+
 //clocked reset
 always @(posedge nCLK) begin
     CCRESET_ <= aRESET_;   
@@ -400,6 +414,28 @@ always @(posedge  BBCLK) begin
     nCYCLEDONE <= aCYCLEDONE_;
     FLUSHFIFO <= aFLUSHFIFO;
     DMAENA <= aDMAENA;
+end
+
+//clocked outputs
+always @(posedge BCLK) begin
+    INCNI <= nINCNI_d;
+    BREQ <= ~nBREQ_d;
+    SIZE1 <= SIZE1_d;
+    PAS <= PAS_d;
+    PDS <= PDS_d;
+    F2CPUL <= F2CPUL_d;
+    F2CPUH <= F2CPUH_d;
+    BRIDGEOUT <= BRIDGEOUT_d;
+    PLLW <= PLLW_d;
+    PLHW <= PLHW_d;
+    INCFIFO <= INCFIFO_d;
+    DECFIFO <= DECFIFO_d;
+    INCNO <= INCNO_d;
+    STOPFLUSH <= ~nSTOPFLUSH_d;
+    DIEH <= DIEH_d;
+    DIEL <= DIEL_d;
+    BRIDGEIN <= ~nBRIDGEIN_d;
+    BGACK <= BGACK_d;
 end
 
 always @(posedge BCLK or negedge CCRESET_) begin

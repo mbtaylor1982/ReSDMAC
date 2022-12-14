@@ -323,6 +323,8 @@ assign INCNI = (INCNI_CPU | INCNI_SCSI);
 assign aCYCLEDONE_ = ~(_BGACK & _AS & _DSACK[0] & _DSACK[1] & _STERM);
 assign DSACK_CPU_SM = ~(DSACK_LATCHED_[0] & DSACK_LATCHED_[1]);
 
+assign PD_PORT[15:8]  = 8'bzzzzzzzz;
+
 endmodule
 
 
