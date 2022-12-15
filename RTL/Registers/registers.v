@@ -129,21 +129,18 @@ wire CLR_FLUSHFIFO;
 assign CLR_FLUSHFIFO = ~(STOPFLUSH | ~RST_);
 
 always @(negedge FLUSH_ or negedge CLR_FLUSHFIFO) begin
-    if (FLUSH_ == 1'b0) begin
-        FLUSHFIFO <= 1'b1;    
-    end else if(CLR_FLUSHFIFO == 1'b0) begin
+    if (CLR_FLUSHFIFO == 1'b0)
         FLUSHFIFO <= 1'b0;
-    end
+    else
+        FLUSHFIFO <= 1'b1;    
 end
 
 //Store value of A1 loaded into ACR
 always @(posedge ACR_WR or negedge RST_) begin
-    if (RST_ == 1'b0) begin
+    if (RST_ == 1'b0)
         A1 <= 1'b0;
-    end
-    else if (ACR_WR == 1'b1) begin
-      A1 <= MID[25];
-    end   
+    else 
+        A1 <= MID[25];
 end
 
 //drive output data onto bus.

@@ -264,30 +264,26 @@ datapath u_datapath(
 );
 
 always @(posedge nSCLK) begin
-    if (nSCLK == 1'b1)
-        AS_O_ <= PAS;    
+    AS_O_ <= PAS;    
 end
 
 always @(posedge nSCLK) begin
-    if (nSCLK == 1'b1)
-        DS_O_ <= PDS;    
+    DS_O_ <= PDS;    
 end
 
 always @(posedge nSCLK) begin
-    if (nSCLK == 1'b1)
-        LLW <= PLLW;    
+    LLW <= PLLW;    
 end
 
 always @(posedge nSCLK) begin
-    if (nSCLK == 1'b1)
-        LHW <= PLHW;    
+    LHW <= PLHW;    
 end
 
 always @(posedge nSCLK or negedge nAS_) begin
-    if (nSCLK == 1'b1)
-        DSACK_LATCHED_ <= _DSACK;
-    else if (nAS_ == 1'b0)
+    if (nAS_ == 1'b0)
         DSACK_LATCHED_ <= 2'b11;
+    else 
+        DSACK_LATCHED_ <= _DSACK;
 end
 
 assign nSCLK  = ~SCLK;

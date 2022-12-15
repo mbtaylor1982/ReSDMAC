@@ -37,8 +37,7 @@ wire [15:0] UPPDER_OUTPUT_DATA;
 reg [15:0] UD_LATCH;
 
 always @(posedge BnDS_O_) begin
-     if (BnDS_O_ == 1'b1)
-        UD_LATCH <= UPPDER_INTPUT_DATA;   
+    UD_LATCH <= UPPDER_INTPUT_DATA;   
 end
 
 assign LOWER_INPUT_DATA = DATA[15:0];

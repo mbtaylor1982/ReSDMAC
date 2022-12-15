@@ -49,7 +49,7 @@ always @(negedge ISTR_RD_ or negedge CLR_INT_) begin
   if (CLR_INT_ == 1'b0) begin
     INT_F <= 1'b0;  
   end
-  else if(ISTR_RD_ == 1'b0) begin
+  else begin
     INT_F <= INTA_I;
   end
 end
@@ -59,7 +59,7 @@ always @(negedge ISTR_RD_ or negedge CLR_INT_) begin
   if (CLR_INT_ == 1'b0) begin
     INTS <= 1'b0;  
   end
-  else if(ISTR_RD_ == 1'b0) begin
+  else begin
     INTS <= INTA_I;
   end
 end
@@ -69,7 +69,7 @@ always @(negedge ISTR_RD_ or negedge CLR_INT_) begin
   if (CLR_INT_ == 1'b0) begin
     E_INT <= 1'b0;  
   end
-  else if(ISTR_RD_ == 1'b0) begin
+  else begin
     E_INT <= INTA_I;
   end
 end
@@ -79,7 +79,7 @@ always @(negedge ISTR_RD_ or negedge CLR_INT_) begin
   if (CLR_INT_ == 1'b0) begin
     INT_P <= 1'b0;  
   end
-  else if(ISTR_RD_ == 1'b0) begin
+  else begin
     INT_P <= INT;
   end
 end
@@ -89,7 +89,7 @@ always @(negedge ISTR_RD_  or negedge RESET_) begin
     if (RESET_ == 1'b0) begin 
       FF <= 1'b0;
     end
-    else if(ISTR_RD_ == 1'b0) begin
+    else begin
       FF <= FIFOFULL;
     end
 end
@@ -99,7 +99,7 @@ always @(negedge ISTR_RD_  or negedge RESET_) begin
     if (RESET_ == 1'b0) begin 
       FE <= 1'b1;
     end
-    else if(ISTR_RD_ == 1'b0) begin
+    else begin
       FE <= FIFOEMPTY;
     end
 end

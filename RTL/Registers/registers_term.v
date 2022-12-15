@@ -38,22 +38,17 @@ assign CYCLE_TERM = (TERM_COUNTER == 3'd4);
 assign CYCLE_END = ~(AS_| WDREGREQ | h_0C);
 
 always@(posedge nCPUCLK or posedge AS_) begin
-    if (AS_ == 1'b1) begin
-      TERM_COUNTER <= 3'b000;      
-    end
-    else if (nCPUCLK == 1'b1) begin
-      if (CYCLE_ACTIVE == 1'b1) begin
-        TERM_COUNTER <=  TERM_COUNTER +1;
-      end    
-    end
+  if (AS_ == 1'b1)
+    TERM_COUNTER <= 3'b000;
+  else if (CYCLE_ACTIVE == 1'b1)
+    TERM_COUNTER <=  TERM_COUNTER +1;
 end
 
 always @(posedge CYCLE_TERM or negedge CYCLE_END) begin
-  if (CYCLE_END == 1'b0) begin
+  if (CYCLE_END == 1'b0) 
     REG_DSK_ <= 1'b1;  
-  end else if (CYCLE_TERM == 1'b1) begin
+  else
     REG_DSK_ <= 1'b0;  
-  end
 end
 
 endmodule

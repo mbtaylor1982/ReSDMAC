@@ -124,7 +124,7 @@ cpld: project.cfg $(VSOURCE) $(CONSTRAINTS) build/$(PROJECT).prj build/$(PROJECT
 	@mv -f build/xlnx_auto_0_xdb/ build/ngdbuild/
 
 # input the NGD, output a VM6 (UG628 p.277)
-	$(call RUN,cpldfit) $(COMMON_OPTS) \
+	$(call RUN,cpldfit) $(COMMON_OPTS) $(CPLDFITFLAGS) \
 	    -p $(TARGET_PART) \
 	    ngdbuild/$(PROJECT).ngd
 	

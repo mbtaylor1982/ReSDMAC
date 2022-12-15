@@ -154,7 +154,7 @@ assign DIEH_d = (~(DIEH_X & DIEH_Y & DIEH_Z));
 //DIEL
 wire DIEL_X, DIEL_Y, DIEL_Z;
 
-assign DIEH_X = ((~E62 & ~E60 & ~E48) & ~(~(~E25_d & ~E6_d) & DSACK));
+assign DIEL_X = ((~E62 & ~E60 & ~E48) & ~(~(~E25_d & ~E6_d) & DSACK));
 assign DIEL_Y = (~(~STERM_ & ~(~E43_s_E49_sd & ~E46_s_E59_s & ~E51_s_E54_sd)));
 assign DIEL_Z = (~(((~DSACK & (E51_s_E54_sd | E43_s_E49_sd)) |(E46_s_E59_s | E57_s)) & STERM_));
 

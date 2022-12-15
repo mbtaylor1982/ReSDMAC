@@ -34,33 +34,31 @@ wire LOD1_F2CPU;
 wire LOD2_F2CPU;
 
 wire [15:0] LOWER_INPUT_DATA;
-wire [15:0] UPPDER_INPUT_DATA;
+wire [15:0] UPPER_INPUT_DATA;
 
 wire [15:0] LOWER_OUTPUT_DATA;
-wire [15:0] UPPDER_OUTPUT_DATA;
+wire [15:0] UPPER_OUTPUT_DATA;
 
 reg [15:0] LD_LATCH;
 reg [15:0] UD_LATCH;
 
 
 always @(posedge LOD1_F2CPU) begin
-    if (LOD1_F2CPU == 1'b1)
-        LD_LATCH <= LOWER_INPUT_DATA;
+    LD_LATCH <= LOWER_INPUT_DATA;
 end
 
 always @(posedge LOD2_F2CPU) begin
-    if (LOD2_F2CPU == 1'b1)
-        UD_LATCH <= UPPDER_INPUT_DATA;
+    UD_LATCH <= UPPER_INPUT_DATA;
 end
 
 assign LOD1_F2CPU = PAS;
-assign LOD3_F2CPU = PAS;
+assign LOD2_F2CPU = PAS;
 
 assign LOWER_INPUT_DATA = OD[15:0];
-assign UPPDER_INPUT_DATA = OD[31:16];
+assign UPPER_INPUT_DATA = OD[31:16];
 
 assign LOWER_OUTPUT_DATA = F2CPUL ? LD_LATCH : MOD[15:0];
-assign UPPER_OUTPUT_DATA = F2CPUH ? (BRIDGEOUT ? 16'hzzzz : LD_LATCH) : (BRIDGEOUT ? LD_LATCH : MOD[31:16]); 
+assign UPPER_OUTPUT_DATA = F2CPUH ? (BRIDGEOUT ? 16'hzzzz : UD_LATCH) : (BRIDGEOUT ? LD_LATCH : MOD[31:16]); 
 
 assign DATA[15:0] = DOEL_ ? 16'hzzzz : LOWER_OUTPUT_DATA;
 assign DATA[31:16] = DOEH_ ? 16'hzzzz : UPPER_OUTPUT_DATA;

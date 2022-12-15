@@ -39,7 +39,7 @@ module addr_decoder(
   output FLUSH_
 );
 
-wire h_00;
+//wire h_00;
 wire h_04;
 wire h_08;
 //wire h_0C;
@@ -52,7 +52,7 @@ wire h_3C;
 wire ADDR_VALID;
 assign ADDR_VALID = ~(DMAC_ | AS_);
 
-assign h_00 = ADDR_VALID & (ADDR == 8'h00);
+//assign h_00 = ADDR_VALID & (ADDR == 8'h00);
 assign h_04 = ADDR_VALID & (ADDR == 8'h04);
 assign h_08 = ADDR_VALID & (ADDR == 8'h08);
 assign h_0C = ADDR_VALID & (ADDR == 8'h0C);

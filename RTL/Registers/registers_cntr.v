@@ -36,18 +36,17 @@ wire CLR_DMAENA;
 assign CLR_DMAENA = ~(~SP_DMA & RESET_);
 
 always @(posedge ST_DMA or posedge CLR_DMAENA) begin
-    if (ST_DMA == 1'b1) begin
-        DMAENA <= 1'b1;    
-    end else if(CLR_DMAENA == 1'b1) begin
+    if(CLR_DMAENA == 1'b1)
         DMAENA <= 1'b0;
-    end
+    else
+        DMAENA <= 1'b1;    
 end
 
 //PRESET
 always @(posedge CONTR_WR or negedge RESET_) begin
     if (RESET_ == 1'b0) begin
         PRESET <= 1'b0;    
-    end else if(CONTR_WR == 1'b1) begin
+    end else begin
         PRESET <= MID[4];
     end
 end
@@ -56,7 +55,7 @@ end
 always @(posedge CONTR_WR or negedge RESET_) begin
     if (RESET_ == 1'b0) begin
         INTENA <= 1'b0;    
-    end else if(CONTR_WR == 1'b1) begin
+    end else begin
         INTENA <= MID[2];
     end
 end
@@ -65,7 +64,7 @@ end
 always @(posedge CONTR_WR or negedge RESET_) begin
     if (RESET_ == 1'b0) begin
         DMADIR <= 1'b0;    
-    end else if(CONTR_WR == 1'b1) begin
+    end else begin
         DMADIR <= MID[1];
     end
 end

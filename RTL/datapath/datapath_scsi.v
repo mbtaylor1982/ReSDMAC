@@ -62,8 +62,7 @@ wire SCSI_DATA_TX;
 reg [7:0] SCSI_DATA_LATCHED;
     
 always @(posedge LS2CPU) begin
-    if (LS2CPU == 1'b1)
-        SCSI_DATA_LATCHED <= SCSI_DATA_RX;
+    SCSI_DATA_LATCHED <= SCSI_DATA_RX;
 end
 
 assign SCSI_OUT = (F2S | CPU2S);

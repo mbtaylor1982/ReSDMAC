@@ -439,14 +439,10 @@ always @(posedge BCLK) begin
 end
 
 always @(posedge BCLK or negedge CCRESET_) begin
-    if (CCRESET_ == 1'b0) begin
+    if (CCRESET_ == 1'b0) 
         STATE <= 1'b0;
-    end
-    else begin
-        if (BCLK == 1'b1) begin
-            STATE <= NEXT_STATE;
-        end
-    end
+    else 
+        STATE <= NEXT_STATE;
 end
 
 assign NEXT_STATE = {cpudff5_d, cpudff4_d, cpudff3_d, cpudff2_d, cpudff1_d};
