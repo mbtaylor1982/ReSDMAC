@@ -36,7 +36,7 @@ wire CLR_DMAENA;
 assign CLR_DMAENA = ~(~SP_DMA & RESET_);
 
 always @(posedge ST_DMA or posedge CLR_DMAENA) begin
-    if(CLR_DMAENA == 1'b1)
+    if (CLR_DMAENA == 1'b1)
         DMAENA <= 1'b0;
     else
         DMAENA <= 1'b1;    
@@ -69,6 +69,6 @@ always @(posedge CONTR_WR or negedge RESET_) begin
     end
 end
 
-assign CNTR_O = {DMAENA, 3'b000, PRESET, 1'b0, INTENA, DMADIR, 1'b0};
+assign CNTR_O = {DMAENA, 1'b0, 1'b0, 1'b0, PRESET, 1'b0, INTENA, DMADIR, 1'b0};
 
 endmodule

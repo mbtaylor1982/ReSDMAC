@@ -55,12 +55,10 @@ wire F2S_o;
 wire S2CPU_o;
 wire CPU2S_o;
 
+wire DACK_;
+wire RE_;
 
-SCSI_SM 
-#(
-    .SCSIAUTO         (1)
-)u_SCSI_SM(
-    .nAS_      (nAS_      ),
+SCSI_SM u_SCSI_SM(
     .CPUREQ    (CPUREQ    ),
     .RW        (RW        ),
     .DMADIR    (DMADIR    ),
@@ -72,7 +70,7 @@ SCSI_SM
     .DREQ_     (DREQ_     ),
     .FIFOFULL  (FIFOFULL  ),
     .FIFOEMPTY (FIFOEMPTY ),
-    .LS2CPU    (LS2CPU    ),
+    .nAS_      (nAS_      ),
     .RDFIFO_o  (RDFIFO_o  ),
     .RIFIFO_o  (RIFIFO_o  ),
     .RE_o      (RE_o      ),
@@ -85,8 +83,15 @@ SCSI_SM
     .S2F_o     (S2F_o     ),
     .F2S_o     (F2S_o     ),
     .S2CPU_o   (S2CPU_o   ),
-    .CPU2S_o   (CPU2S_o   )
+    .CPU2S_o   (CPU2S_o   ),
+    .LS2CPU    (LS2CPU    ),
+    .LBYTE_    (LBYTE_    )
 );
+
+assign DACK_ = ~DACK_o;
+assign RE_ = ~RE_o;
+
+
 
     initial begin
         $display("*Testing SDMAC SCSI_SM.v Module*");
@@ -99,7 +104,7 @@ SCSI_SM
         RESET_ = 1'b1;
         nAS_ = 1'b0;
         RW = 1'b0;
-        DMADIR = 1'b0;
+        DMADIR = 1'b1;
         INCFIFO = 1'b0;
         DECFIFO = 1'b0;
         BOEQ3 = 1'b0;
@@ -111,10 +116,12 @@ SCSI_SM
         repeat(4) #20 CPUCLK = ~CPUCLK;
         RESET_ = 1'b1;
         repeat(2) #20 CPUCLK = ~CPUCLK;
+        //DMA Read cycle
+        repeat(2) #20 CPUCLK = ~CPUCLK;
         DREQ_ = 1'b0;
-        repeat(4) #20 CPUCLK = ~CPUCLK;
+        repeat(6) #20 CPUCLK = ~CPUCLK;
         DREQ_ = 1'b1;
-        repeat(10) #20 CPUCLK = ~CPUCLK;
+        repeat(12) #20 CPUCLK = ~CPUCLK;   
         $finish;
     end 
 

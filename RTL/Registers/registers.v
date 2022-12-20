@@ -67,6 +67,10 @@ wire FLUSH_;    //Flush FIFO
 wire [8:0] ISTR_O;  //Interrupt Status Register
 wire [8:0] CNTR_O;  //Control Register
 
+wire [31:0] WTC;
+wire [31:0] CNTR;
+wire [31:0] ISTR;
+
 //Address Decoding and Strobes
 addr_decoder u_addr_decoder(
     .ADDR      (ADDR      ),
@@ -144,8 +148,10 @@ always @(posedge ACR_WR or negedge RST_) begin
 end
 
 //drive output data onto bus.
-assign MOD[31:0] = CONTR_RD_    ? 32'hzzzzzzzz : {16'hzzzz, 7'bzzzzzzz, CNTR_O};
-assign MOD[31:0] = ISTR_RD_     ? 32'hzzzzzzzz : {16'hzzzz, 7'bzzzzzzz, ISTR_O};
-assign MOD[31:0] = WTC_RD_      ? 32'hzzzzzzzz : {24'hzzzzzz, 8'bzzzz0zz};
+assign WTC  = WTC_RD_   ? 32'hz  : {32'h4};
+assign ISTR = ISTR_RD_  ? (WTC)  : {13'h0, ISTR_O};
+assign CNTR = CONTR_RD_ ? (ISTR) : {23'h0, CNTR_O};
+
+assign MOD[31:0] = CNTR;
 
 endmodule

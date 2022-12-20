@@ -68,9 +68,11 @@ assign WDREGREQ = ADDR_VALID & (ADDR >= 8'h40);
 //assign DAWR_WR    = ~(h_00 & RW);
 assign WTC_RD_    = ~(h_04 & RW);
 assign CONTR_RD_  = ~(h_08 & RW);
-assign CONTR_WR   =  (h_08 & RW);
-assign ACR_WR     =  (h_0C & RW);
 assign ISTR_RD_   = ~(h_1C & RW);
+
+assign CONTR_WR   = (h_08 & ~RW);
+assign ACR_WR     = (h_0C & ~RW);
+
 
 //action strobes
 assign ST_DMA   = h_10;

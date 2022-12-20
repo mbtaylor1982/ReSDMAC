@@ -189,12 +189,6 @@ assign nCLK = ~CPUCLK;
 assign BCLK = CPUCLK; // may need to change this to add delays
 assign BBCLK = CPUCLK; // may need to change this to add delays
 
-//assign nRW = ~RW;
-//assign nDMADIR = ~DMADIR;
-//assign nFIFOFULL = ~FIFOFULL;
-//assign nCCPUREQ = ~CCPUREQ;
-//assign nCDREQ_ = ~CDREQ_;
-//assign nCDSACK_ = ~CDSACK_;
 assign LS2CPU = ~nLS2CPU;
 assign DSACK_ = LS2CPU;
 assign LBYTE_ = ~(DACK_o & RE_o);
