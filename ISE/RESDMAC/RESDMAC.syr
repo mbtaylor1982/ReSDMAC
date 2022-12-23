@@ -1,0 +1,793 @@
+Release 14.7 - xst P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> 
+Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.02 secs
+ 
+--> 
+Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.02 secs
+ 
+--> 
+Reading design: RESDMAC.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "RESDMAC.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "RESDMAC"
+Output Format                      : NGC
+Target Device                      : CoolRunner XPLA3 CPLDs
+
+---- Source Options
+Top Module Name                    : RESDMAC
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+CASE Implementation Style          : Full-Parallel
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+
+---- Target Options
+Add IO Buffers                     : YES
+MACRO Preserve                     : YES
+XOR Preserve                       : YES
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : Yes
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Verilog 2001                       : YES
+
+---- Other Options
+Clock Enable                       : YES
+wysiwyg                            : NO
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "../../RTL/datapath/datapath_24dec.v" in library work
+Compiling verilog file "../../RTL/SCSI_SM/scsi_sm_outputs.v" in library work
+Module <datapath_24dec> compiled
+Compiling verilog file "../../RTL/SCSI_SM/scsi_sm_inputs.v" in library work
+Module <scsi_sm_outputs> compiled
+Compiling verilog file "../../RTL/Registers/registers_term.v" in library work
+Module <scsi_sm_inputs> compiled
+Compiling verilog file "../../RTL/Registers/registers_istr.v" in library work
+Module <registers_term> compiled
+Compiling verilog file "../../RTL/Registers/registers_cntr.v" in library work
+Module <registers_istr> compiled
+Compiling verilog file "../../RTL/Registers/addr_decoder.v" in library work
+Module <registers_cntr> compiled
+Compiling verilog file "../../RTL/FIFO/fifo_write_strobes.v" in library work
+Module <addr_decoder> compiled
+Compiling verilog file "../../RTL/FIFO/fifo_full_empty_ctr.v" in library work
+Module <fifo_write_strobes> compiled
+Compiling verilog file "../../RTL/FIFO/fifo_byte_ptr.v" in library work
+Module <fifo__full_empty_ctr> compiled
+Compiling verilog file "../../RTL/FIFO/fifo_3bit_cntr.v" in library work
+Module <fifo_byte_ptr> compiled
+Compiling verilog file "../../RTL/datapath/datapath_scsi.v" in library work
+Module <fifo_3bit_cntr> compiled
+Compiling verilog file "../../RTL/datapath/datapath_output.v" in library work
+Module <datapath_scsi> compiled
+Compiling verilog file "../../RTL/datapath/datapath_input.v" in library work
+Module <datapath_output> compiled
+Compiling verilog file "../../RTL/CPU_SM/CPU_SM_output.v" in library work
+Module <datapath_input> compiled
+Compiling verilog file "../../RTL/CPU_SM/CPU_SM_inputs.v" in library work
+Module <CPU_SM_outputs> compiled
+Compiling verilog file "../../RTL/CPU_SM/cpudff5.v" in library work
+Module <CPU_SM_inputs> compiled
+Compiling verilog file "../../RTL/CPU_SM/cpudff4.v" in library work
+Module <cpudff5> compiled
+Compiling verilog file "../../RTL/CPU_SM/cpudff3.v" in library work
+Module <cpudff4> compiled
+Compiling verilog file "../../RTL/CPU_SM/cpudff2.v" in library work
+Module <cpudff3> compiled
+Compiling verilog file "../../RTL/CPU_SM/cpudff1.v" in library work
+Module <cpudff2> compiled
+Compiling verilog file "../../RTL/SCSI_SM/SCSI_SM.v" in library work
+Module <cpudff1> compiled
+Compiling verilog file "../../RTL/Registers/registers.v" in library work
+Module <SCSI_SM> compiled
+Compiling verilog file "../../RTL/FIFO/fifo.v" in library work
+Module <registers> compiled
+Compiling verilog file "../../RTL/datapath/datapath.v" in library work
+Module <fifo> compiled
+Compiling verilog file "../../RTL/CPU_SM/CPU_SM.v" in library work
+Module <datapath> compiled
+Compiling verilog file "../../RTL/RESDMAC.v" in library work
+Module <CPU_SM> compiled
+Module <RESDMAC> compiled
+No errors in compilation
+Analysis of file <"RESDMAC.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <RESDMAC> in library <work>.
+
+Analyzing hierarchy for module <registers> in library <work>.
+
+Analyzing hierarchy for module <CPU_SM> in library <work>.
+
+Analyzing hierarchy for module <SCSI_SM> in library <work> with parameters.
+	INITIAL_STATE = "00000"
+
+Analyzing hierarchy for module <fifo> in library <work>.
+
+Analyzing hierarchy for module <datapath> in library <work>.
+
+Analyzing hierarchy for module <addr_decoder> in library <work>.
+
+Analyzing hierarchy for module <registers_istr> in library <work>.
+
+Analyzing hierarchy for module <registers_cntr> in library <work>.
+
+Analyzing hierarchy for module <registers_term> in library <work>.
+
+Analyzing hierarchy for module <CPU_SM_inputs> in library <work>.
+
+Analyzing hierarchy for module <cpudff1> in library <work>.
+
+Analyzing hierarchy for module <cpudff2> in library <work>.
+
+Analyzing hierarchy for module <cpudff3> in library <work>.
+
+Analyzing hierarchy for module <cpudff4> in library <work>.
+
+Analyzing hierarchy for module <cpudff5> in library <work>.
+
+Analyzing hierarchy for module <CPU_SM_outputs> in library <work>.
+
+Analyzing hierarchy for module <scsi_sm_inputs> in library <work>.
+
+Analyzing hierarchy for module <scsi_sm_outputs> in library <work>.
+
+Analyzing hierarchy for module <fifo_write_strobes> in library <work>.
+
+Analyzing hierarchy for module <fifo__full_empty_ctr> in library <work>.
+
+Analyzing hierarchy for module <fifo_3bit_cntr> in library <work>.
+
+Analyzing hierarchy for module <fifo_byte_ptr> in library <work>.
+
+Analyzing hierarchy for module <datapath_input> in library <work>.
+
+Analyzing hierarchy for module <datapath_output> in library <work>.
+
+Analyzing hierarchy for module <datapath_scsi> in library <work>.
+
+Analyzing hierarchy for module <datapath_24dec> in library <work>.
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <RESDMAC>.
+Module <RESDMAC> is correct for synthesis.
+ 
+Analyzing module <registers> in library <work>.
+Module <registers> is correct for synthesis.
+ 
+Analyzing module <addr_decoder> in library <work>.
+Module <addr_decoder> is correct for synthesis.
+ 
+Analyzing module <registers_istr> in library <work>.
+Module <registers_istr> is correct for synthesis.
+ 
+Analyzing module <registers_cntr> in library <work>.
+Module <registers_cntr> is correct for synthesis.
+ 
+Analyzing module <registers_term> in library <work>.
+Module <registers_term> is correct for synthesis.
+ 
+Analyzing module <CPU_SM> in library <work>.
+Module <CPU_SM> is correct for synthesis.
+ 
+Analyzing module <CPU_SM_inputs> in library <work>.
+Module <CPU_SM_inputs> is correct for synthesis.
+ 
+Analyzing module <cpudff1> in library <work>.
+Module <cpudff1> is correct for synthesis.
+ 
+Analyzing module <cpudff2> in library <work>.
+Module <cpudff2> is correct for synthesis.
+ 
+Analyzing module <cpudff3> in library <work>.
+Module <cpudff3> is correct for synthesis.
+ 
+Analyzing module <cpudff4> in library <work>.
+Module <cpudff4> is correct for synthesis.
+ 
+Analyzing module <cpudff5> in library <work>.
+Module <cpudff5> is correct for synthesis.
+ 
+Analyzing module <CPU_SM_outputs> in library <work>.
+Module <CPU_SM_outputs> is correct for synthesis.
+ 
+Analyzing module <SCSI_SM> in library <work>.
+	INITIAL_STATE = 5'b00000
+Module <SCSI_SM> is correct for synthesis.
+ 
+Analyzing module <scsi_sm_inputs> in library <work>.
+Module <scsi_sm_inputs> is correct for synthesis.
+ 
+Analyzing module <scsi_sm_outputs> in library <work>.
+Module <scsi_sm_outputs> is correct for synthesis.
+ 
+Analyzing module <fifo> in library <work>.
+Module <fifo> is correct for synthesis.
+ 
+Analyzing module <fifo_write_strobes> in library <work>.
+Module <fifo_write_strobes> is correct for synthesis.
+ 
+Analyzing module <fifo__full_empty_ctr> in library <work>.
+Module <fifo__full_empty_ctr> is correct for synthesis.
+ 
+Analyzing module <fifo_3bit_cntr> in library <work>.
+Module <fifo_3bit_cntr> is correct for synthesis.
+ 
+Analyzing module <fifo_byte_ptr> in library <work>.
+Module <fifo_byte_ptr> is correct for synthesis.
+ 
+Analyzing module <datapath> in library <work>.
+Module <datapath> is correct for synthesis.
+ 
+Analyzing module <datapath_input> in library <work>.
+Module <datapath_input> is correct for synthesis.
+ 
+Analyzing module <datapath_output> in library <work>.
+Module <datapath_output> is correct for synthesis.
+ 
+Analyzing module <datapath_scsi> in library <work>.
+Module <datapath_scsi> is correct for synthesis.
+ 
+Analyzing module <datapath_24dec> in library <work>.
+Module <datapath_24dec> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+INFO:Xst:2561 - Always blocking tristate driving signal <PD_PORT> in unit <RESDMAC> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <PD_PORT> in unit <RESDMAC> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <PD_PORT> in unit <RESDMAC> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <PD_PORT> in unit <RESDMAC> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <PD_PORT> in unit <RESDMAC> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <PD_PORT> in unit <RESDMAC> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <PD_PORT> in unit <RESDMAC> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <PD_PORT> in unit <RESDMAC> is removed.
+
+Synthesizing Unit <addr_decoder>.
+    Related source file is "../../RTL/Registers/addr_decoder.v".
+    Found 8-bit comparator greatequal for signal <WDREGREQ$cmp_ge0000> created at line 65.
+    Summary:
+	inferred   1 Comparator(s).
+Unit <addr_decoder> synthesized.
+
+
+Synthesizing Unit <registers_istr>.
+    Related source file is "../../RTL/Registers/registers_istr.v".
+    Register <INT_F> equivalent to <E_INT> has been removed
+    Register <INTS> equivalent to <E_INT> has been removed
+    Found 1-bit tristate buffer for signal <ISTR_O<8>>.
+    Found 2-bit tristate buffer for signal <ISTR_O<3:2>>.
+    Found 1-bit tristate buffer for signal <INT_O_>.
+    Found 1-bit register for signal <E_INT>.
+    Found 1-bit register for signal <FE>.
+    Found 1-bit register for signal <FF>.
+    Found 1-bit register for signal <INT_P>.
+    Summary:
+	inferred   4 D-type flip-flop(s).
+	inferred   4 Tristate(s).
+Unit <registers_istr> synthesized.
+
+
+Synthesizing Unit <registers_cntr>.
+    Related source file is "../../RTL/Registers/registers_cntr.v".
+WARNING:Xst:647 - Input <MID<8:5>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <MID<3>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <MID<0>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 1-bit register for signal <INTENA>.
+    Found 1-bit register for signal <PRESET>.
+    Found 1-bit register for signal <DMADIR>.
+    Found 1-bit register for signal <DMAENA>.
+    Summary:
+	inferred   4 D-type flip-flop(s).
+Unit <registers_cntr> synthesized.
+
+
+Synthesizing Unit <registers_term>.
+    Related source file is "../../RTL/Registers/registers_term.v".
+    Found 1-bit register for signal <REG_DSK_>.
+    Found 3-bit up counter for signal <TERM_COUNTER>.
+    Summary:
+	inferred   1 Counter(s).
+	inferred   1 D-type flip-flop(s).
+Unit <registers_term> synthesized.
+
+
+Synthesizing Unit <CPU_SM_inputs>.
+    Related source file is "../../RTL/CPU_SM/CPU_SM_inputs.v".
+Unit <CPU_SM_inputs> synthesized.
+
+
+Synthesizing Unit <cpudff1>.
+    Related source file is "../../RTL/CPU_SM/cpudff1.v".
+Unit <cpudff1> synthesized.
+
+
+Synthesizing Unit <cpudff2>.
+    Related source file is "../../RTL/CPU_SM/cpudff2.v".
+Unit <cpudff2> synthesized.
+
+
+Synthesizing Unit <cpudff3>.
+    Related source file is "../../RTL/CPU_SM/cpudff3.v".
+Unit <cpudff3> synthesized.
+
+
+Synthesizing Unit <cpudff4>.
+    Related source file is "../../RTL/CPU_SM/cpudff4.v".
+Unit <cpudff4> synthesized.
+
+
+Synthesizing Unit <cpudff5>.
+    Related source file is "../../RTL/CPU_SM/cpudff5.v".
+Unit <cpudff5> synthesized.
+
+
+Synthesizing Unit <CPU_SM_outputs>.
+    Related source file is "../../RTL/CPU_SM/CPU_SM_output.v".
+    Found 1-bit xor2 for signal <BGACK_V$xor0000> created at line 169.
+    Found 1-bit subtractor for signal <PAS_Y$sub0000> created at line 76.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred   1 Xor(s).
+Unit <CPU_SM_outputs> synthesized.
+
+
+Synthesizing Unit <scsi_sm_inputs>.
+    Related source file is "../../RTL/SCSI_SM/scsi_sm_inputs.v".
+Unit <scsi_sm_inputs> synthesized.
+
+
+Synthesizing Unit <scsi_sm_outputs>.
+    Related source file is "../../RTL/SCSI_SM/scsi_sm_outputs.v".
+Unit <scsi_sm_outputs> synthesized.
+
+
+Synthesizing Unit <fifo_write_strobes>.
+    Related source file is "../../RTL/FIFO/fifo_write_strobes.v".
+Unit <fifo_write_strobes> synthesized.
+
+
+Synthesizing Unit <fifo__full_empty_ctr>.
+    Related source file is "../../RTL/FIFO/fifo_full_empty_ctr.v".
+    Found 1-bit register for signal <FIFOFULL>.
+    Found 1-bit register for signal <FIFOEMPTY>.
+    Found 3-bit updown counter for signal <COUNT>.
+    Summary:
+	inferred   1 Counter(s).
+	inferred   2 D-type flip-flop(s).
+Unit <fifo__full_empty_ctr> synthesized.
+
+
+Synthesizing Unit <fifo_3bit_cntr>.
+    Related source file is "../../RTL/FIFO/fifo_3bit_cntr.v".
+    Found 3-bit up counter for signal <COUNT>.
+    Summary:
+	inferred   1 Counter(s).
+Unit <fifo_3bit_cntr> synthesized.
+
+
+Synthesizing Unit <fifo_byte_ptr>.
+    Related source file is "../../RTL/FIFO/fifo_byte_ptr.v".
+    Found 1-bit register for signal <BO0>.
+    Found 1-bit register for signal <BO1>.
+    Found 1-bit xor2 for signal <MUXZ$xor0000> created at line 44.
+    Summary:
+	inferred   2 D-type flip-flop(s).
+	inferred   1 Xor(s).
+Unit <fifo_byte_ptr> synthesized.
+
+
+Synthesizing Unit <datapath_input>.
+    Related source file is "../../RTL/datapath/datapath_input.v".
+    Found 16-bit tristate buffer for signal <LOWER_OUTPUT_DATA>.
+    Found 16-bit register for signal <UD_LATCH>.
+    Found 16-bit tristate buffer for signal <UPPDER_OUTPUT_DATA>.
+    Summary:
+	inferred  48 Tristate(s).
+Unit <datapath_input> synthesized.
+
+
+Synthesizing Unit <datapath_output>.
+    Related source file is "../../RTL/datapath/datapath_output.v".
+    Found 32-bit tristate buffer for signal <DATA>.
+    Found 16-bit register for signal <LD_LATCH>.
+    Found 16-bit register for signal <UD_LATCH>.
+    Found 16-bit tristate buffer for signal <UPPER_OUTPUT_DATA>.
+    Summary:
+	inferred  80 Tristate(s).
+Unit <datapath_output> synthesized.
+
+
+Synthesizing Unit <datapath_24dec>.
+    Related source file is "../../RTL/datapath/datapath_24dec.v".
+Unit <datapath_24dec> synthesized.
+
+
+Synthesizing Unit <registers>.
+    Related source file is "../../RTL/Registers/registers.v".
+WARNING:Xst:647 - Input <MID<31:26>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <MID<24:9>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 1-bit register for signal <FLUSHFIFO>.
+    Found 32-bit tristate buffer for signal <MOD>.
+    Found 1-bit register for signal <A1>.
+    Summary:
+	inferred   2 D-type flip-flop(s).
+	inferred  96 Tristate(s).
+Unit <registers> synthesized.
+
+
+Synthesizing Unit <CPU_SM>.
+    Related source file is "../../RTL/CPU_SM/CPU_SM.v".
+WARNING:Xst:653 - Signal <E44_s> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:653 - Signal <E37_s> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+    Found 1-bit register for signal <INCNO>.
+    Found 1-bit register for signal <PLLW>.
+    Found 1-bit register for signal <STOPFLUSH>.
+    Found 1-bit register for signal <BRIDGEOUT>.
+    Found 1-bit register for signal <BGACK>.
+    Found 1-bit register for signal <BRIDGEIN>.
+    Found 1-bit register for signal <DECFIFO>.
+    Found 1-bit register for signal <PAS>.
+    Found 1-bit register for signal <PDS>.
+    Found 1-bit register for signal <BREQ>.
+    Found 1-bit register for signal <DIEH>.
+    Found 1-bit register for signal <F2CPUH>.
+    Found 1-bit register for signal <DIEL>.
+    Found 1-bit register for signal <F2CPUL>.
+    Found 1-bit register for signal <SIZE1>.
+    Found 1-bit register for signal <INCFIFO>.
+    Found 1-bit register for signal <PLHW>.
+    Found 1-bit register for signal <INCNI>.
+    Found 1-bit register for signal <BGRANT_>.
+    Found 1-bit register for signal <CCRESET_>.
+    Found 1-bit register for signal <DMAENA>.
+    Found 1-bit register for signal <DREQ_>.
+    Found 1-bit register for signal <FLUSHFIFO>.
+    Found 1-bit register for signal <nCYCLEDONE>.
+    Found 5-bit register for signal <STATE>.
+    Summary:
+	inferred  24 D-type flip-flop(s).
+Unit <CPU_SM> synthesized.
+
+
+Synthesizing Unit <SCSI_SM>.
+    Related source file is "../../RTL/SCSI_SM/SCSI_SM.v".
+    Found 1-bit register for signal <S2F_o>.
+    Found 1-bit register for signal <WE_o>.
+    Found 1-bit register for signal <RIFIFO_o>.
+    Found 1-bit register for signal <SCSI_CS_o>.
+    Found 1-bit register for signal <RDFIFO_o>.
+    Found 1-bit register for signal <DACK_o>.
+    Found 1-bit register for signal <INCNO_o>.
+    Found 1-bit register for signal <F2S_o>.
+    Found 1-bit register for signal <INCNI_o>.
+    Found 1-bit register for signal <INCBO_o>.
+    Found 1-bit register for signal <S2CPU_o>.
+    Found 1-bit register for signal <CPU2S_o>.
+    Found 1-bit register for signal <RE_o>.
+    Found 1-bit register for signal <CCPUREQ>.
+    Found 1-bit register for signal <CDREQ_>.
+    Found 1-bit register for signal <CDSACK_>.
+    Found 1-bit register for signal <CRESET_>.
+    Found 1-bit register for signal <nLS2CPU>.
+    Found 1-bit register for signal <RDFIFO_d>.
+    Found 1-bit register for signal <RIFIFO_d>.
+    Found 5-bit register for signal <STATE>.
+    Summary:
+	inferred  20 D-type flip-flop(s).
+Unit <SCSI_SM> synthesized.
+
+
+Synthesizing Unit <fifo>.
+    Related source file is "../../RTL/FIFO/fifo.v".
+    Summary:
+	inferred 256 D-type flip-flop(s).
+Unit <fifo> synthesized.
+
+
+Synthesizing Unit <datapath_scsi>.
+    Related source file is "../../RTL/datapath/datapath_scsi.v".
+    Found 32-bit tristate buffer for signal <MOD>.
+    Found 8-bit tristate buffer for signal <$mux0000>.
+    Found 32-bit tristate buffer for signal <$mux0001>.
+    Found 8-bit register for signal <SCSI_DATA_LATCHED>.
+    Found 1-bit tristate buffer for signal <SCSI_DATA_RX>.
+    Found 1-bit tristate buffer for signal <SCSI_DATA_TX>.
+    Summary:
+	inferred  79 Tristate(s).
+Unit <datapath_scsi> synthesized.
+
+
+Synthesizing Unit <datapath>.
+    Related source file is "../../RTL/datapath/datapath.v".
+Unit <datapath> synthesized.
+
+
+Synthesizing Unit <RESDMAC>.
+    Related source file is "../../RTL/RESDMAC.v".
+WARNING:Xst:1306 - Output <_CSX0> is never assigned.
+WARNING:Xst:1306 - Output <_CSX1> is never assigned.
+WARNING:Xst:2565 - Inout <PD_PORT<10>> is never assigned.
+WARNING:Xst:2565 - Inout <PD_PORT<11>> is never assigned.
+WARNING:Xst:2565 - Inout <PD_PORT<12>> is never assigned.
+WARNING:Xst:2565 - Inout <PD_PORT<13>> is never assigned.
+WARNING:Xst:2565 - Inout <PD_PORT<14>> is never assigned.
+WARNING:Xst:2565 - Inout <PD_PORT<15>> is never assigned.
+WARNING:Xst:647 - Input <_IORDY> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2565 - Inout <PD_PORT<8>> is never assigned.
+WARNING:Xst:2565 - Inout <PD_PORT<9>> is never assigned.
+WARNING:Xst:647 - Input <_BERR> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <INTB> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <A12> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:1780 - Signal <nREG_DSK_> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <nDMAENA> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <RW> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:1780 - Signal <RE_o> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <A3> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+    Found 1-bit tristate buffer for signal <R_W>.
+    Found 1-bit tristate buffer for signal <SIZ1>.
+    Found 1-bit tristate buffer for signal <_AS>.
+    Found 1-bit tristate buffer for signal <_BGACK>.
+    Found 1-bit tristate buffer for signal <_BR>.
+    Found 1-bit tristate buffer for signal <_DS>.
+    Found 2-bit tristate buffer for signal <_DSACK>.
+    Found 1-bit register for signal <AS_O_>.
+    Found 1-bit register for signal <DS_O_>.
+    Found 2-bit register for signal <DSACK_LATCHED_>.
+    Found 1-bit register for signal <LHW>.
+    Found 1-bit register for signal <LLW>.
+    Summary:
+	inferred   4 D-type flip-flop(s).
+	inferred   8 Tristate(s).
+Unit <RESDMAC> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 1
+ 1-bit subtractor                                      : 1
+# Counters                                             : 4
+ 3-bit up counter                                      : 3
+ 3-bit updown counter                                  : 1
+# Registers                                            : 326
+ 1-bit register                                        : 319
+ 16-bit register                                       : 3
+ 2-bit register                                        : 1
+ 5-bit register                                        : 2
+ 8-bit register                                        : 1
+# Comparators                                          : 1
+ 8-bit comparator greatequal                           : 1
+# Multiplexers                                         : 1
+ 32-bit 8-to-1 multiplexer                             : 1
+# Tristates                                            : 216
+ 1-bit tristate buffer                                 : 209
+ 16-bit tristate buffer                                : 4
+ 2-bit tristate buffer                                 : 1
+ 32-bit tristate buffer                                : 1
+ 8-bit tristate buffer                                 : 1
+# Xors                                                 : 2
+ 1-bit xor2                                            : 2
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 1
+ 1-bit subtractor                                      : 1
+# Counters                                             : 4
+ 3-bit up counter                                      : 3
+ 3-bit updown counter                                  : 1
+# Registers                                            : 319
+ Flip-Flops                                            : 319
+# Multiplexers                                         : 1
+ 32-bit 8-to-1 multiplexer                             : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1710 - FF/Latch <SCSI_DATA_LATCHED_7> (without init value) has a constant value of 0 in block <datapath_scsi>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <SCSI_DATA_LATCHED_6> (without init value) has a constant value of 0 in block <datapath_scsi>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <SCSI_DATA_LATCHED_5> (without init value) has a constant value of 0 in block <datapath_scsi>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <SCSI_DATA_LATCHED_4> (without init value) has a constant value of 0 in block <datapath_scsi>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <SCSI_DATA_LATCHED_3> (without init value) has a constant value of 0 in block <datapath_scsi>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <SCSI_DATA_LATCHED_2> (without init value) has a constant value of 0 in block <datapath_scsi>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <SCSI_DATA_LATCHED_1> (without init value) has a constant value of 0 in block <datapath_scsi>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1348 - Unit datapath_scsi is merged (output interface has tristates)
+WARNING:Xst:1348 - Unit datapath is merged (output interface has tristates)
+WARNING:Xst:1348 - Unit registers_istr is merged (output interface has tristates)
+WARNING:Xst:1348 - Unit registers is merged (output interface has tristates)
+WARNING:Xst:1348 - Unit datapath_output is merged (output interface has tristates)
+WARNING:Xst:2183 - Unit RESDMAC: the following tristate(s) are NOT replaced by logic (Please refer to Answer Record 20048 for more information): DATA<0>_MLTSRCEDGE, DATA<10>_MLTSRCEDGE, DATA<11>_MLTSRCEDGE, DATA<12>_MLTSRCEDGE, DATA<13>_MLTSRCEDGE, DATA<14>_MLTSRCEDGE, DATA<15>_MLTSRCEDGE, DATA<16>_MLTSRCEDGE, DATA<17>_MLTSRCEDGE, DATA<18>_MLTSRCEDGE, DATA<19>_MLTSRCEDGE, DATA<1>_MLTSRCEDGE, DATA<20>_MLTSRCEDGE, DATA<21>_MLTSRCEDGE, DATA<22>_MLTSRCEDGE, DATA<23>_MLTSRCEDGE, DATA<24>_MLTSRCEDGE, DATA<25>_MLTSRCEDGE, DATA<26>_MLTSRCEDGE, DATA<27>_MLTSRCEDGE, DATA<28>_MLTSRCEDGE, DATA<29>_MLTSRCEDGE, DATA<2>_MLTSRCEDGE, DATA<30>_MLTSRCEDGE, DATA<31>_MLTSRCEDGE, DATA<3>_MLTSRCEDGE, DATA<4>_MLTSRCEDGE, DATA<5>_MLTSRCEDGE, DATA<6>_MLTSRCEDGE, DATA<7>_MLTSRCEDGE, DATA<8>_MLTSRCEDGE, DATA<9>_MLTSRCEDGE, ID<0>, ID<10>, ID<11>, ID<12>, ID<13>, ID<14>, ID<15>, ID<16>, ID<17>, ID<18>, ID<19>, ID<1>, ID<20>, ID<21>, ID<22>, ID<23>, ID<24>, ID<25>, ID<26>, ID<27>, ID<28>, ID<29>, ID<2>, ID<30>, ID<31>, ID<3>, ID<4>, ID<5>, ID<6>, ID<7>, ID<8>, ID<9>, MOD<0>, MOD<1>, MOD<2>, MOD<3>, MOD<4>, MOD<5>, MOD<6>, MOD<7>, MOD<8>, u_datapath/u_datapath_scsi/SCSI_DATA_TX.
+WARNING:Xst:2183 - Unit datapath_input: the following tristate(s) are NOT replaced by logic (Please refer to Answer Record 20048 for more information): LOWER_OUTPUT_DATA<0>, LOWER_OUTPUT_DATA<10>, LOWER_OUTPUT_DATA<11>, LOWER_OUTPUT_DATA<12>, LOWER_OUTPUT_DATA<13>, LOWER_OUTPUT_DATA<14>, LOWER_OUTPUT_DATA<15>, LOWER_OUTPUT_DATA<1>, LOWER_OUTPUT_DATA<2>, LOWER_OUTPUT_DATA<3>, LOWER_OUTPUT_DATA<4>, LOWER_OUTPUT_DATA<5>, LOWER_OUTPUT_DATA<6>, LOWER_OUTPUT_DATA<7>, LOWER_OUTPUT_DATA<8>, LOWER_OUTPUT_DATA<9>, UPPDER_OUTPUT_DATA<0>, UPPDER_OUTPUT_DATA<10>, UPPDER_OUTPUT_DATA<11>, UPPDER_OUTPUT_DATA<12>, UPPDER_OUTPUT_DATA<13>, UPPDER_OUTPUT_DATA<14>, UPPDER_OUTPUT_DATA<15>, UPPDER_OUTPUT_DATA<1>, UPPDER_OUTPUT_DATA<2>, UPPDER_OUTPUT_DATA<3>, UPPDER_OUTPUT_DATA<4>, UPPDER_OUTPUT_DATA<5>, UPPDER_OUTPUT_DATA<6>, UPPDER_OUTPUT_DATA<7>, UPPDER_OUTPUT_DATA<8>, UPPDER_OUTPUT_DATA<9>.
+
+Optimizing unit <RESDMAC> ...
+
+Optimizing unit <CPU_SM_inputs> ...
+
+Optimizing unit <cpudff1> ...
+
+Optimizing unit <cpudff2> ...
+
+Optimizing unit <cpudff3> ...
+
+Optimizing unit <cpudff4> ...
+
+Optimizing unit <cpudff5> ...
+
+Optimizing unit <scsi_sm_inputs> ...
+
+Optimizing unit <scsi_sm_outputs> ...
+
+Optimizing unit <fifo_write_strobes> ...
+
+Optimizing unit <datapath_24dec> ...
+
+Optimizing unit <addr_decoder> ...
+
+Optimizing unit <registers_cntr> ...
+
+Optimizing unit <fifo_byte_ptr> ...
+
+Optimizing unit <CPU_SM_outputs> ...
+
+Optimizing unit <datapath_input> ...
+
+Optimizing unit <SCSI_SM> ...
+
+Optimizing unit <registers_term> ...
+
+Optimizing unit <fifo_3bit_cntr> ...
+
+Optimizing unit <CPU_SM> ...
+
+Optimizing unit <fifo__full_empty_ctr> ...
+
+Optimizing unit <fifo> ...
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : RESDMAC.ngr
+Top Level Output File Name         : RESDMAC
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : Yes
+Target Technology                  : CoolRunner XPLA3 CPLDs
+Macro Preserve                     : YES
+XOR Preserve                       : YES
+Clock Enable                       : YES
+wysiwyg                            : NO
+
+Design Statistics
+# IOs                              : 83
+
+Cell Usage :
+# BELS                             : 1936
+#      AND2                        : 637
+#      AND3                        : 117
+#      AND4                        : 45
+#      AND5                        : 15
+#      AND6                        : 9
+#      AND7                        : 3
+#      AND8                        : 7
+#      GND                         : 5
+#      INV                         : 881
+#      OR2                         : 152
+#      OR3                         : 4
+#      OR4                         : 5
+#      OR6                         : 1
+#      OR7                         : 2
+#      OR8                         : 38
+#      VCC                         : 3
+#      XOR2                        : 12
+# FlipFlops/Latches                : 392
+#      FD                          : 92
+#      FDC                         : 30
+#      FDCE                        : 265
+#      FDP                         : 4
+#      FDPE                        : 1
+# Tri-States                       : 201
+#      BUFE                        : 201
+# IO Buffers                       : 69
+#      IBUF                        : 12
+#      IOBUFE                      : 38
+#      OBUF                        : 8
+#      OBUFE                       : 11
+=========================================================================
+
+
+Total REAL time to Xst completion: 26.00 secs
+Total CPU time to Xst completion: 3.12 secs
+ 
+--> 
+
+
+Total memory usage is 523812 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :   47 (   0 filtered)
+Number of infos    :    8 (   0 filtered)
+

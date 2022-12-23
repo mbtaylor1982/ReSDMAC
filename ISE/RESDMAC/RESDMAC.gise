@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<generated_project xmlns="http://www.xilinx.com/XMLSchema" xmlns:xil_pn="http://www.xilinx.com/XMLSchema">
+
+  <!--                                                          -->
+
+  <!--             For tool use only. Do not edit.              -->
+
+  <!--                                                          -->
+
+  <!-- ProjectNavigator created generated project file.         -->
+
+  <!-- For use in tracking generated file and other information -->
+
+  <!-- allowing preservation of process status.                 -->
+
+  <!--                                                          -->
+
+  <!-- Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved. -->
+
+  <version xmlns="http://www.xilinx.com/XMLSchema">11.1</version>
+
+  <sourceproject xmlns="http://www.xilinx.com/XMLSchema" xil_pn:fileType="FILE_XISE" xil_pn:name="RESDMAC.xise"/>
+
+  <files xmlns="http://www.xilinx.com/XMLSchema">
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_LSO" xil_pn:name=".lso"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGDBUILD_LOG" xil_pn:name="RESDMAC.bld"/>
+    <file xil_pn:fileType="FILE_CMD_LOG" xil_pn:name="RESDMAC.cmd_log"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_LSO" xil_pn:name="RESDMAC.lso"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGC" xil_pn:name="RESDMAC.ngc"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGD" xil_pn:name="RESDMAC.ngd"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGR" xil_pn:name="RESDMAC.ngr"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="RESDMAC.prj"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_STX" xil_pn:name="RESDMAC.stx"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_REPORT" xil_pn:name="RESDMAC.syr"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST" xil_pn:name="RESDMAC.xst"/>
+    <file xil_pn:fileType="FILE_HTML" xil_pn:name="RESDMAC_envsettings.html"/>
+    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="RESDMAC_ngdbuild.xrpt"/>
+    <file xil_pn:fileType="FILE_HTML" xil_pn:name="RESDMAC_summary.html"/>
+    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="RESDMAC_xst.xrpt"/>
+    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="_ngo"/>
+    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
+    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/xst.xmsgs"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="addr_decoder.prj"/>
+    <file xil_pn:fileType="FILE_XST_STX" xil_pn:name="addr_decoder.stx"/>
+    <file xil_pn:fileType="FILE_XST" xil_pn:name="addr_decoder.xst"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="fifo_write_strobes.prj"/>
+    <file xil_pn:fileType="FILE_XST_STX" xil_pn:name="fifo_write_strobes.stx"/>
+    <file xil_pn:fileType="FILE_XST" xil_pn:name="fifo_write_strobes.xst"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="registers.prj"/>
+    <file xil_pn:fileType="FILE_XST_STX" xil_pn:name="registers.stx"/>
+    <file xil_pn:fileType="FILE_XST" xil_pn:name="registers.xst"/>
+    <file xil_pn:fileType="FILE_SPL" xil_pn:name="registers_term.spl"/>
+    <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="registers_term.sym" xil_pn:origination="imported"/>
+    <file xil_pn:fileType="FILE_VERILOG_INSTTEMPLATE" xil_pn:name="registers_term.tfi"/>
+    <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="webtalk_pn.xml"/>
+    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="xlnx_auto_0_xdb"/>
+    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="xst"/>
+  </files>
+
+  <transforms xmlns="http://www.xilinx.com/XMLSchema">
+    <transform xil_pn:end_ts="1671111758" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1671111758">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1671111758" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="-1842245773112023933" xil_pn:start_ts="1671111758">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1671112233" xil_pn:in_ck="4872622172900007366" xil_pn:name="TRANEXT_xstsynthesize_xpla3" xil_pn:prop_ck="-7982632465009466902" xil_pn:start_ts="1671112193">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="WarningsGenerated"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name=".lso"/>
+      <outfile xil_pn:name="RESDMAC.lso"/>
+      <outfile xil_pn:name="RESDMAC.ngc"/>
+      <outfile xil_pn:name="RESDMAC.ngr"/>
+      <outfile xil_pn:name="RESDMAC.prj"/>
+      <outfile xil_pn:name="RESDMAC.stx"/>
+      <outfile xil_pn:name="RESDMAC.syr"/>
+      <outfile xil_pn:name="RESDMAC.xst"/>
+      <outfile xil_pn:name="RESDMAC_xst.xrpt"/>
+      <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
+      <outfile xil_pn:name="webtalk_pn.xml"/>
+      <outfile xil_pn:name="xst"/>
+    </transform>
+    <transform xil_pn:end_ts="1671112235" xil_pn:in_ck="128911601252930763" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="1262981238646810177" xil_pn:start_ts="1671112235">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1671112256" xil_pn:in_ck="7299988235746160432" xil_pn:name="TRAN_ngdbuild" xil_pn:prop_ck="1411376812083470378" xil_pn:start_ts="1671112235">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="RESDMAC.bld"/>
+      <outfile xil_pn:name="RESDMAC.ngd"/>
+      <outfile xil_pn:name="RESDMAC_ngdbuild.xrpt"/>
+      <outfile xil_pn:name="_ngo"/>
+      <outfile xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
+    </transform>
+    <transform xil_pn:name="TRAN_createTimingConstraints">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+  </transforms>
+
+</generated_project>

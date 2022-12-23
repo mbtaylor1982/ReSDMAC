@@ -1,0 +1,12 @@
+[Inputs]
+nCPUCLK
+AS_
+DMAC_
+WDREGREQ
+h_0C
+[Outputs]
+REG_DSK_
+[BiDir]
+[ATTRIBUTES]
+VeriModel registers_term
+

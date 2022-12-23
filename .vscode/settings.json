@@ -1,10 +1,5 @@
 {
     "git.showPushSuccessNotification": true,
-    "verilog.clearPreviousOutput": true,
-    "verilog.runInTerminal": true,
-    "verilog.icarusPersistentBuild": false,
-    "verilog.icarusTestbenchIncludePwd": false,
-    "verilog.icarusBuildDirectory": "RTL/build/",
     "licenseInjector.owner": "Mike Taylor",
     "license.author": "Mike Taylor",
     "license-header-manager.additionalCommentStyles": [{
@@ -15,11 +10,6 @@
         }
     ],
     "license.default": "gpl-3.0",
-    "verilog.icarusTestbenchIncludes": ["RTL/fifo/", "RTL/SCSI-SM/"
-    
-    ],
-    "verilog.ctags.path": "/usr/bin/ctags",
-    "verilog.linting.iverilog.runAtFileLocation": false,
-    "verilog.linting.linter": "iverilog",
+
 }
 

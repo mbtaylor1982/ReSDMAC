@@ -1,0 +1,3 @@
+vhdtdtfi -lang verilog -prj RESDMAC -o /home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/registers_term.tfi -lib work /home/mike/EAGLE/projects/SDMAC-Replacement/RTL/Registers//registers_term.v -module registers_term -template /opt/Xilinx/14.7/ISE_DS/ISE//data/tfi.tft -deleteonerror 
+vhdtdtfi -lib work /home/mike/EAGLE/projects/SDMAC-Replacement/RTL/Registers/registers_term.v -lang verilog -prj RESDMAC -o registers_term.spl -module registers_term -template /opt/Xilinx/14.7/ISE_DS/ISE//data/splveri.tft -deleteonerror 
+spl2sym -intstyle ise -family xc9500xl registers_term.spl /home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/registers_term.sym 

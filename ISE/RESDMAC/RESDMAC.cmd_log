@@ -1,0 +1,22 @@
+xst -intstyle ise -ifn "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/RESDMAC.xst" -ofn "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/RESDMAC.syr" 
+ngdbuild -intstyle ise -dd _ngo -i -p xc95288xl-TQ144-10 RESDMAC.ngc RESDMAC.ngd  
+cpldfit -intstyle ise -p xc95288xl-10-TQ144 -ofmt vhdl -optimize speed -loc on -slew fast -init low -inputs 54 -pterms 25 -unused float -power std -terminate keeper RESDMAC.ngd 
+xst -intstyle ise -ifn "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/RESDMAC.xst" -ofn "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/RESDMAC.syr" 
+xst -intstyle ise -ifn "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/RESDMAC.xst" -ofn "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/RESDMAC.syr" 
+ngdbuild -intstyle ise -dd _ngo -i -p xc95288xl-TQ144-10 RESDMAC.ngc RESDMAC.ngd  
+xst -intstyle ise -ifn "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/RESDMAC.xst" -ofn "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/RESDMAC.syr" 
+xst -intstyle ise -ifn "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/RESDMAC.xst" -ofn "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/RESDMAC.syr" 
+xst -intstyle ise -ifn "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/RESDMAC.xst" -ofn "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/RESDMAC.syr" 
+ngdbuild -intstyle ise -dd _ngo -i -p xc95288xl-TQ144-10 RESDMAC.ngc RESDMAC.ngd  
+xst -intstyle ise -ifn "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/RESDMAC.xst" -ofn "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/RESDMAC.syr" 
+ngdbuild -intstyle ise -dd _ngo -i -p xc9500xl RESDMAC.ngc RESDMAC.ngd  
+cpldfit -intstyle ise -p xc95*xl-*-TQ* -ofmt vhdl -optimize speed -loc on -slew fast -init low -inputs 54 -pterms 25 -unused float -power std -terminate keeper RESDMAC.ngd 
+xst -intstyle ise -ifn "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/RESDMAC.xst" -ofn "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/RESDMAC.syr" 
+ngdbuild -intstyle ise -dd _ngo -i -p xcr3512xl-PQ208-7 RESDMAC.ngc RESDMAC.ngd  
+cpldfit -intstyle ise -p xcr3512xl-7-PQ208 -ofmt vhdl -optimize density -loc on -slew fast -init low -inputs 32 -unused pullup -terminate float -pterms 28 -nofbnand RESDMAC.ngd 
+xst -intstyle ise -ifn "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/RESDMAC.xst" -ofn "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/RESDMAC.syr" 
+ngdbuild -intstyle ise -dd _ngo -i -p xpla3 RESDMAC.ngc RESDMAC.ngd  
+cpldfit -intstyle ise -p xcr3*xl-*-* -ofmt vhdl -optimize density -loc on -slew fast -init low -inputs 32 -unused pullup -terminate float -pterms 28 -nofbnand RESDMAC.ngd 
+xst -intstyle ise -ifn "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/RESDMAC.xst" -ofn "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/RESDMAC.syr" 
+xst -intstyle ise -ifn "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/RESDMAC.xst" -ofn "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/RESDMAC.syr" 
+ngdbuild -intstyle ise -dd _ngo -uc RESDMAC.ucf -p xcr3512xl-PQ208-12 RESDMAC.ngc RESDMAC.ngd  

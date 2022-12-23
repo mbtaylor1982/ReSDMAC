@@ -1,0 +1,5 @@
+set -tmpdir "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/xst/projnav.tmp"
+set -xsthdpdir "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/xst"
+elaborate
+-ifn registers.prj
+-ifmt mixed
