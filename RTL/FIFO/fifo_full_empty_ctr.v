@@ -41,7 +41,7 @@ always @(posedge clk or negedge RST_FIFO_) begin
         FIFOFULL <= 1'b1;
       else
       begin
-        COUNT <=  COUNT + 1'b1;;
+        COUNT <=  COUNT + 1'b1;
         FIFOEMPTY <= 1'b0;
       end
     end 
@@ -51,7 +51,7 @@ always @(posedge clk or negedge RST_FIFO_) begin
             FIFOEMPTY <= 1'b1;
         else
         begin
-            COUNT <=  COUNT -1'b1;;
+            COUNT <=  COUNT -1'b1;
             FIFOFULL <= 1'b0;
         end
     end 
