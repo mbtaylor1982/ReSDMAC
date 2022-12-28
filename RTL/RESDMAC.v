@@ -367,6 +367,7 @@ assign DSACK_CPU_SM = ~(DSACK_LATCHED_[0] & DSACK_LATCHED_[1]);
 assign PD_PORT[15:8]  = 8'bzzzzzzzz;
 assign _CSX0 = 1'bz;
 assign _CSX1 = 1'bz;
+assign A3 = ADDR[3];
 
 endmodule
 
