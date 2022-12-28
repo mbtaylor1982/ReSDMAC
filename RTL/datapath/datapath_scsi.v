@@ -44,6 +44,14 @@ wire F2S_UMD;
 wire F2S_LMD;
 wire F2S_LLD;
 
+wire SCSI_OUT;
+wire SCSI_IN;
+
+wire [7:0] SCSI_DATA_RX;
+wire [7:0] SCSI_DATA_TX;
+
+reg [7:0] SCSI_DATA_LATCHED;
+
 datapath_24dec u_datapath_24dec(
     .A  (BO0     ),
     .B  (BO1     ),
@@ -55,23 +63,18 @@ datapath_24dec u_datapath_24dec(
 );
 
 datapath_8b_MUX u_datapath_8b_MUX(
+    //inputs
     .A (OD[7:0]),
     .B (OD[15:8]),
     .C (OD[23:16]),
     .D (OD[31:24]),
     .E (ID[23:16]),
     .F (ID[7:0] ),
-    .S ({(CPU2S & ~A3), (CPU2S & A3),F2S_UUD, F2S_UMD,F2S_LMD, F2S_LLD}),
-    .Z (SCSI_DATA_TX)
+    //selects
+    .S ({(CPU2S & ~A3), (CPU2S & A3),F2S_UUD, F2S_UMD,F2S_LMD, F2S_LLD}), 
+    
+    .Z (SCSI_DATA_TX) //output
 );
-
-wire SCSI_OUT;
-wire SCSI_IN;
-
-wire [7:0] SCSI_DATA_RX;
-wire [7:0] SCSI_DATA_TX;
-
-reg [7:0] SCSI_DATA_LATCHED;
     
 always @(posedge LS2CPU) begin
     SCSI_DATA_LATCHED <= SCSI_DATA_RX;
