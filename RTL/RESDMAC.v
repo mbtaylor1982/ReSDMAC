@@ -115,6 +115,51 @@ wire aCYCLEDONE_;
 wire nAS_;
 wire DSACK_CPU_SM;
 
+
+wire STOPFLUSH;
+wire FIFOEMPTY;
+wire FIFOFULL;
+wire FLUSHFIFO;
+wire ACR_WR;
+wire H_0C;
+wire A1;
+wire DMADIR;
+wire DMAENA;
+wire REG_DSK_;
+wire WDREGREQ;
+wire PAS;
+wire PDS;
+wire BGACK;
+wire BREQ;
+wire SIZE1_CPUSM;
+wire F2CPUL;
+wire F2CPUH;
+wire BRIDGEIN;
+wire BRIDGEOUT;
+wire DIEH;
+wire DIEL;
+wire RDFIFO_o;
+wire DECFIFO;
+wire RIFIFO_o;
+wire INCFIFO;
+wire INCNO_CPU;
+wire INCNI_CPU;
+wire PLLW;
+wire PLHW;
+wire INCBO;
+wire INCNO_SCSI;
+wire INCNI_SCSI;
+wire S2F;
+wire F2S;
+wire S2CPU;
+wire CPU2S;
+wire BOEQ0;
+wire BO0;
+wire BO1;
+wire RW;
+wire A3;
+
+
 registers u_registers(
     .ADDR      ({1'b0, ADDR, 2'b00}),
     .DMAC_     (_CS       ),
@@ -320,6 +365,8 @@ assign aCYCLEDONE_ = ~(_BGACK & _AS & _DSACK[0] & _DSACK[1] & _STERM);
 assign DSACK_CPU_SM = ~(DSACK_LATCHED_[0] & DSACK_LATCHED_[1]);
 
 assign PD_PORT[15:8]  = 8'bzzzzzzzz;
+assign _CSX0 = 1'bz;
+assign _CSX1 = 1'bz;
 
 endmodule
 

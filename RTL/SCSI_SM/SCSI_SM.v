@@ -82,6 +82,8 @@ reg nLS2CPU;
 wire RDRST_;
 wire RIRST_;
 
+wire SET_DSACK;
+
 
 wire nCLK; // CPUCLK Inverted
 wire BCLK; // CPUCLK Inverted 4 times for delay.

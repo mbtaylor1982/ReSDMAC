@@ -41,7 +41,7 @@ always@(posedge nCPUCLK or posedge AS_) begin
   if (AS_ == 1'b1)
     TERM_COUNTER <= 3'b000;
   else if (CYCLE_ACTIVE == 1'b1)
-    TERM_COUNTER <=  TERM_COUNTER +1;
+    TERM_COUNTER <=  TERM_COUNTER + 1'b1;
 end
 
 always @(posedge CYCLE_TERM or negedge CYCLE_END) begin

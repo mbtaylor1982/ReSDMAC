@@ -27,7 +27,7 @@ always @(posedge CLK or negedge RST_FIFO_) begin
     if (RST_FIFO_ == 1'b0)
         COUNT <= 3'b000;
     else
-      COUNT <= COUNT + 1;
+      COUNT <= COUNT + 1'b1;
 end
 
 endmodule

@@ -60,6 +60,10 @@ module fifo(
 wire [2:0] WRITE_PTR;
 wire [2:0] READ_PTR;
 wire [1:0] BYTE_PTR;
+wire UUWS;
+wire UMWS;
+wire LMWS;
+wire LLWS;
 
 fifo_write_strobes u_write_strobes(
     .PTR    (BYTE_PTR ),
