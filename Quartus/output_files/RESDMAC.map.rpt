@@ -1,5 +1,5 @@
 Analysis & Synthesis report for RESDMAC
-Fri Dec 23 10:22:04 2022
+Wed Dec 28 22:11:54 2022
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -45,15 +45,15 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Dec 23 10:22:04 2022           ;
+; Analysis & Synthesis Status        ; Successful - Wed Dec 28 22:11:54 2022           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; RESDMAC                                         ;
 ; Top-level Entity Name              ; RESDMAC                                         ;
 ; Family                             ; Cyclone II                                      ;
-; Total logic elements               ; 861                                             ;
-;     Total combinational functions  ; 599                                             ;
-;     Dedicated logic registers      ; 391                                             ;
-; Total registers                    ; 391                                             ;
+; Total logic elements               ; 900                                             ;
+;     Total combinational functions  ; 638                                             ;
+;     Dedicated logic registers      ; 396                                             ;
+; Total registers                    ; 396                                             ;
 ; Total pins                         ; 83                                              ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
@@ -152,6 +152,7 @@ applicable agreement for further details.
 +-----------------------------------+-----------------+------------------------+----------------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path  ; Used in Netlist ; File Type              ; File Name with Absolute Path                                               ; Library ;
 +-----------------------------------+-----------------+------------------------+----------------------------------------------------------------------------+---------+
+; ../RTL/datapath/datapath_8b_MUX.v ; yes             ; User Verilog HDL File  ; /home/mike/EAGLE/projects/SDMAC-Replacement/RTL/datapath/datapath_8b_MUX.v ;         ;
 ; ../RTL/RESDMAC.v                  ; yes             ; User Verilog HDL File  ; /home/mike/EAGLE/projects/SDMAC-Replacement/RTL/RESDMAC.v                  ;         ;
 ; ../RTL/SCSI_SM/scsi_sm_outputs.v  ; yes             ; User Verilog HDL File  ; /home/mike/EAGLE/projects/SDMAC-Replacement/RTL/SCSI_SM/scsi_sm_outputs.v  ;         ;
 ; ../RTL/SCSI_SM/scsi_sm_inputs.v   ; yes             ; User Verilog HDL File  ; /home/mike/EAGLE/projects/SDMAC-Replacement/RTL/SCSI_SM/scsi_sm_inputs.v   ;         ;
@@ -187,79 +188,80 @@ applicable agreement for further details.
 +---------------------------------------------+-------------------------------------------------------+
 ; Resource                                    ; Usage                                                 ;
 +---------------------------------------------+-------------------------------------------------------+
-; Estimated Total logic elements              ; 861                                                   ;
+; Estimated Total logic elements              ; 900                                                   ;
 ;                                             ;                                                       ;
-; Total combinational functions               ; 599                                                   ;
+; Total combinational functions               ; 638                                                   ;
 ; Logic element usage by number of LUT inputs ;                                                       ;
-;     -- 4 input functions                    ; 400                                                   ;
-;     -- 3 input functions                    ; 119                                                   ;
-;     -- <=2 input functions                  ; 80                                                    ;
+;     -- 4 input functions                    ; 411                                                   ;
+;     -- 3 input functions                    ; 154                                                   ;
+;     -- <=2 input functions                  ; 73                                                    ;
 ;                                             ;                                                       ;
 ; Logic elements by mode                      ;                                                       ;
-;     -- normal mode                          ; 599                                                   ;
+;     -- normal mode                          ; 638                                                   ;
 ;     -- arithmetic mode                      ; 0                                                     ;
 ;                                             ;                                                       ;
-; Total registers                             ; 391                                                   ;
-;     -- Dedicated logic registers            ; 391                                                   ;
+; Total registers                             ; 396                                                   ;
+;     -- Dedicated logic registers            ; 396                                                   ;
 ;     -- I/O registers                        ; 0                                                     ;
 ;                                             ;                                                       ;
 ; I/O pins                                    ; 83                                                    ;
 ; Embedded Multiplier 9-bit elements          ; 0                                                     ;
 ; Maximum fan-out node                        ; fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[1] ;
 ; Maximum fan-out                             ; 99                                                    ;
-; Total fan-out                               ; 3284                                                  ;
-; Average fan-out                             ; 3.06                                                  ;
+; Total fan-out                               ; 3436                                                  ;
+; Average fan-out                             ; 3.08                                                  ;
 +---------------------------------------------+-------------------------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                   ;
-+-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------+--------------+
-; Compilation Hierarchy Node                    ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                        ; Library Name ;
-+-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------+--------------+
-; |RESDMAC                                      ; 599 (16)          ; 391 (6)      ; 0           ; 0            ; 0       ; 0         ; 83   ; 0            ; |RESDMAC                                                                                   ; work         ;
-;    |CPU_SM:u_CPU_SM|                          ; 185 (0)           ; 28 (28)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM                                                                   ; work         ;
-;       |CPU_SM_inputs:u_CPU_SM_inputs|         ; 38 (38)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs                                     ; work         ;
-;       |CPU_SM_outputs:u_CPU_SM_outputs|       ; 71 (71)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs                                   ; work         ;
-;       |cpudff1:u_cpudff1|                     ; 16 (16)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff1:u_cpudff1                                                 ; work         ;
-;       |cpudff2:u_cpudff2|                     ; 23 (23)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff2:u_cpudff2                                                 ; work         ;
-;       |cpudff3:u_cpudff3|                     ; 11 (11)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff3:u_cpudff3                                                 ; work         ;
-;       |cpudff4:u_cpudff4|                     ; 15 (15)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff4:u_cpudff4                                                 ; work         ;
-;       |cpudff5:u_cpudff5|                     ; 11 (11)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff5:u_cpudff5                                                 ; work         ;
-;    |SCSI_SM:u_SCSI_SM|                        ; 69 (3)            ; 25 (25)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|SCSI_SM:u_SCSI_SM                                                                 ; work         ;
-;       |scsi_sm_inputs:u_scsi_sm_inputs|       ; 20 (20)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs                                 ; work         ;
-;       |scsi_sm_outputs:u_scsi_sm_outputs|     ; 46 (46)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs                               ; work         ;
-;    |datapath:u_datapath|                      ; 110 (29)          ; 49 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath                                                               ; work         ;
-;       |datapath_input:u_datapath_input|       ; 0 (0)             ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_input:u_datapath_input                               ; work         ;
-;       |datapath_output:u_datapath_output|     ; 64 (64)           ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output                             ; work         ;
-;       |datapath_scsi:u_datapath_scsi|         ; 17 (16)           ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi                                 ; work         ;
-;          |datapath_24dec:u_datapath_24dec|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_24dec:u_datapath_24dec ; work         ;
-;    |fifo:int_fifo|                            ; 196 (168)         ; 269 (256)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo                                                                     ; work         ;
-;       |fifo_3bit_cntr:u_next_in_cntr|         ; 3 (3)             ; 3 (3)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr                                       ; work         ;
-;       |fifo_3bit_cntr:u_next_out_cntr|        ; 3 (3)             ; 3 (3)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr                                      ; work         ;
-;       |fifo__full_empty_ctr:u_full_empty_ctr| ; 14 (14)           ; 5 (5)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr                               ; work         ;
-;       |fifo_byte_ptr:u_byte_ptr|              ; 3 (3)             ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo_byte_ptr:u_byte_ptr                                            ; work         ;
-;       |fifo_write_strobes:u_write_strobes|    ; 5 (5)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo_write_strobes:u_write_strobes                                  ; work         ;
-;    |registers:u_registers|                    ; 23 (2)            ; 14 (2)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers                                                             ; work         ;
-;       |addr_decoder:u_addr_decoder|           ; 14 (14)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|addr_decoder:u_addr_decoder                                 ; work         ;
-;       |registers_cntr:u_registers_cntr|       ; 1 (1)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|registers_cntr:u_registers_cntr                             ; work         ;
-;       |registers_istr:u_registers_istr|       ; 2 (2)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|registers_istr:u_registers_istr                             ; work         ;
-;       |registers_term:u_registers_term|       ; 4 (4)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|registers_term:u_registers_term                             ; work         ;
-+-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------+--------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                     ;
++-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                    ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                          ; Library Name ;
++-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------+--------------+
+; |RESDMAC                                      ; 638 (16)          ; 396 (6)      ; 0           ; 0            ; 0       ; 0         ; 83   ; 0            ; |RESDMAC                                                                                     ; work         ;
+;    |CPU_SM:u_CPU_SM|                          ; 177 (0)           ; 26 (26)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM                                                                     ; work         ;
+;       |CPU_SM_inputs:u_CPU_SM_inputs|         ; 37 (37)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs                                       ; work         ;
+;       |CPU_SM_outputs:u_CPU_SM_outputs|       ; 64 (64)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs                                     ; work         ;
+;       |cpudff1:u_cpudff1|                     ; 16 (16)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff1:u_cpudff1                                                   ; work         ;
+;       |cpudff2:u_cpudff2|                     ; 22 (22)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff2:u_cpudff2                                                   ; work         ;
+;       |cpudff3:u_cpudff3|                     ; 11 (11)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff3:u_cpudff3                                                   ; work         ;
+;       |cpudff4:u_cpudff4|                     ; 16 (16)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff4:u_cpudff4                                                   ; work         ;
+;       |cpudff5:u_cpudff5|                     ; 11 (11)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff5:u_cpudff5                                                   ; work         ;
+;    |SCSI_SM:u_SCSI_SM|                        ; 70 (3)            ; 25 (25)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|SCSI_SM:u_SCSI_SM                                                                   ; work         ;
+;       |scsi_sm_inputs:u_scsi_sm_inputs|       ; 20 (20)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs                                   ; work         ;
+;       |scsi_sm_outputs:u_scsi_sm_outputs|     ; 47 (47)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs                                 ; work         ;
+;    |datapath:u_datapath|                      ; 158 (48)          ; 56 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath                                                                 ; work         ;
+;       |datapath_input:u_datapath_input|       ; 0 (0)             ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_input:u_datapath_input                                 ; work         ;
+;       |datapath_output:u_datapath_output|     ; 59 (59)           ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output                               ; work         ;
+;       |datapath_scsi:u_datapath_scsi|         ; 51 (8)            ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi                                   ; work         ;
+;          |datapath_8b_MUX:u_datapath_8b_MUX|  ; 43 (43)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX ; work         ;
+;    |fifo:int_fifo|                            ; 196 (168)         ; 269 (256)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo                                                                       ; work         ;
+;       |fifo_3bit_cntr:u_next_in_cntr|         ; 3 (3)             ; 3 (3)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr                                         ; work         ;
+;       |fifo_3bit_cntr:u_next_out_cntr|        ; 3 (3)             ; 3 (3)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr                                        ; work         ;
+;       |fifo__full_empty_ctr:u_full_empty_ctr| ; 14 (14)           ; 5 (5)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr                                 ; work         ;
+;       |fifo_byte_ptr:u_byte_ptr|              ; 3 (3)             ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo_byte_ptr:u_byte_ptr                                              ; work         ;
+;       |fifo_write_strobes:u_write_strobes|    ; 5 (5)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo_write_strobes:u_write_strobes                                    ; work         ;
+;    |registers:u_registers|                    ; 21 (1)            ; 14 (2)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers                                                               ; work         ;
+;       |addr_decoder:u_addr_decoder|           ; 13 (13)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|addr_decoder:u_addr_decoder                                   ; work         ;
+;       |registers_cntr:u_registers_cntr|       ; 1 (1)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|registers_cntr:u_registers_cntr                               ; work         ;
+;       |registers_istr:u_registers_istr|       ; 2 (2)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|registers_istr:u_registers_istr                               ; work         ;
+;       |registers_term:u_registers_term|       ; 4 (4)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|registers_term:u_registers_term                               ; work         ;
++-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                                                                  ;
-+---------------------------------------------------------------------------+-------------------------------------------------------------------------+
-; Register name                                                             ; Reason for Removal                                                      ;
-+---------------------------------------------------------------------------+-------------------------------------------------------------------------+
-; datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[1..7] ; Stuck at GND due to stuck port data_in                                  ;
-; CPU_SM:u_CPU_SM|CCRESET_                                                  ; Merged with SCSI_SM:u_SCSI_SM|CRESET_                                   ;
-; registers:u_registers|registers_istr:u_registers_istr|E_INT               ; Merged with registers:u_registers|registers_istr:u_registers_istr|INT_F ;
-; registers:u_registers|registers_istr:u_registers_istr|INTS                ; Merged with registers:u_registers|registers_istr:u_registers_istr|INT_F ;
-; Total Number of Removed Registers = 10                                    ;                                                                         ;
-+---------------------------------------------------------------------------+-------------------------------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                    ;
++-------------------------------------------------------------+-------------------------------------------------------------------------+
+; Register name                                               ; Reason for Removal                                                      ;
++-------------------------------------------------------------+-------------------------------------------------------------------------+
+; CPU_SM:u_CPU_SM|DIEH                                        ; Lost fanout                                                             ;
+; CPU_SM:u_CPU_SM|CCRESET_                                    ; Merged with SCSI_SM:u_SCSI_SM|CRESET_                                   ;
+; registers:u_registers|registers_istr:u_registers_istr|E_INT ; Merged with registers:u_registers|registers_istr:u_registers_istr|INT_F ;
+; registers:u_registers|registers_istr:u_registers_istr|INTS  ; Merged with registers:u_registers|registers_istr:u_registers_istr|INT_F ;
+; CPU_SM:u_CPU_SM|BRIDGEIN                                    ; Lost fanout                                                             ;
+; Total Number of Removed Registers = 5                       ;                                                                         ;
++-------------------------------------------------------------+-------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -267,7 +269,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 391   ;
+; Total registers                              ; 396   ;
 ; Number of registers using Synchronous Clear  ; 1     ;
 ; Number of registers using Synchronous Load   ; 1     ;
 ; Number of registers using Asynchronous Clear ; 42    ;
@@ -282,29 +284,31 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------------------------+---------+
 ; Inverted Register                                              ; Fan out ;
 +----------------------------------------------------------------+---------+
-; DSACK_LATCHED_[1]                                              ; 8       ;
-; DSACK_LATCHED_[0]                                              ; 8       ;
-; fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY  ; 11      ;
+; DSACK_LATCHED_[1]                                              ; 5       ;
+; DSACK_LATCHED_[0]                                              ; 5       ;
+; fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY  ; 12      ;
 ; registers:u_registers|registers_term:u_registers_term|REG_DSK_ ; 1       ;
 ; registers:u_registers|registers_istr:u_registers_istr|FE       ; 1       ;
 ; Total number of inverted registers = 5                         ;         ;
 +----------------------------------------------------------------+---------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                     ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                           ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------+
-; 8:1                ; 28 bits   ; 140 LEs       ; 140 LEs              ; 0 LEs                  ; Yes        ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[11]          ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |RESDMAC|fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|COUNT[2]                ;
-; 1:1                ; 3 bits    ; 0 LEs         ; 0 LEs                ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|MOD_TX[7]                                               ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff5:u_cpudff5|p5a                                       ;
-; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[10] ;
-; 3:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[8]  ;
-; 8:1                ; 4 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |RESDMAC|fifo:int_fifo|Mux31                                                         ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|MOD_TX[4]                                               ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------------------------+
+; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |RESDMAC|fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|COUNT[1]                                  ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff5:u_cpudff5|p5a                                                         ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[6]                                 ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[15]                                ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[17]                                ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[25]                                ;
+; 8:1                ; 32 bits   ; 160 LEs       ; 160 LEs              ; 0 LEs                  ; No         ; |RESDMAC|fifo:int_fifo|Mux23                                                                           ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|ID[2]                                                                     ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[4]                                 ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector5 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------------------------+
 
 
 +---------------------------------------------------+
@@ -332,9 +336,11 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Fri Dec 23 10:22:01 2022
+    Info: Processing started: Wed Dec 28 22:11:51 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off RESDMAC -c RESDMAC
 Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 1 design units, including 1 entities, in source file /home/mike/EAGLE/projects/SDMAC-Replacement/RTL/datapath/datapath_8b_MUX.v
+    Info (12023): Found entity 1: datapath_8b_MUX
 Info (12021): Found 1 design units, including 1 entities, in source file /home/mike/EAGLE/projects/SDMAC-Replacement/RTL/RESDMAC.v
     Info (12023): Found entity 1: RESDMAC
 Info (12021): Found 1 design units, including 1 entities, in source file /home/mike/EAGLE/projects/SDMAC-Replacement/RTL/SCSI_SM/scsi_sm_outputs.v
@@ -389,147 +395,12 @@ Info (12021): Found 1 design units, including 1 entities, in source file /home/m
     Info (12023): Found entity 1: CPU_SM_inputs
 Info (12021): Found 1 design units, including 1 entities, in source file /home/mike/EAGLE/projects/SDMAC-Replacement/RTL/CPU_SM/CPU_SM.v
     Info (12023): Found entity 1: CPU_SM
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(125): created implicit net for "STOPFLUSH"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(127): created implicit net for "FIFOEMPTY"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(128): created implicit net for "FIFOFULL"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(132): created implicit net for "FLUSHFIFO"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(133): created implicit net for "ACR_WR"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(134): created implicit net for "H_0C"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(135): created implicit net for "A1"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(137): created implicit net for "DMADIR"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(138): created implicit net for "DMAENA"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(139): created implicit net for "REG_DSK_"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(140): created implicit net for "WDREGREQ"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(144): created implicit net for "PAS"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(145): created implicit net for "PDS"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(146): created implicit net for "BGACK"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(147): created implicit net for "BREQ"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(149): created implicit net for "SIZE1_CPUSM"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(159): created implicit net for "F2CPUL"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(160): created implicit net for "F2CPUH"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(161): created implicit net for "BRIDGEIN"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(162): created implicit net for "BRIDGEOUT"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(163): created implicit net for "DIEH"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(164): created implicit net for "DIEL"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(169): created implicit net for "RDFIFO_o"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(170): created implicit net for "DECFIFO"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(171): created implicit net for "RIFIFO_o"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(172): created implicit net for "INCFIFO"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(173): created implicit net for "INCNO_CPU"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(174): created implicit net for "INCNI_CPU"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(179): created implicit net for "PLLW"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(180): created implicit net for "PLHW"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(202): created implicit net for "INCBO"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(203): created implicit net for "INCNO_SCSI"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(204): created implicit net for "INCNI_SCSI"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(205): created implicit net for "S2F"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(206): created implicit net for "F2S"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(207): created implicit net for "S2CPU"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(208): created implicit net for "CPU2S"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(227): created implicit net for "BOEQ0"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(229): created implicit net for "BO0"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(230): created implicit net for "BO1"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(244): created implicit net for "RW"
-Warning (10236): Verilog HDL Implicit Net warning at RESDMAC.v(258): created implicit net for "A3"
-Warning (10236): Verilog HDL Implicit Net warning at SCSI_SM.v(118): created implicit net for "SET_DSACK"
-Warning (10236): Verilog HDL Implicit Net warning at fifo.v(69): created implicit net for "UUWS"
-Warning (10236): Verilog HDL Implicit Net warning at fifo.v(70): created implicit net for "UMWS"
-Warning (10236): Verilog HDL Implicit Net warning at fifo.v(71): created implicit net for "LMWS"
-Warning (10236): Verilog HDL Implicit Net warning at fifo.v(72): created implicit net for "LLWS"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(101): created implicit net for "cpudff1_q"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(102): created implicit net for "cpudff2_q"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(103): created implicit net for "cpudff3_q"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(104): created implicit net for "cpudff4_q"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(105): created implicit net for "cpudff5_q"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(106): created implicit net for "E0"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(107): created implicit net for "E1"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(108): created implicit net for "E2"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(109): created implicit net for "E3"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(110): created implicit net for "E4"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(111): created implicit net for "E5"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(112): created implicit net for "E6_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(113): created implicit net for "E7"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(114): created implicit net for "E8"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(115): created implicit net for "E9_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(116): created implicit net for "E10"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(117): created implicit net for "E11"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(118): created implicit net for "E12"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(119): created implicit net for "E13"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(120): created implicit net for "E14"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(121): created implicit net for "E15"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(122): created implicit net for "E16"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(123): created implicit net for "E17"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(124): created implicit net for "E18"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(125): created implicit net for "E19"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(126): created implicit net for "E20_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(127): created implicit net for "E21"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(128): created implicit net for "E22"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(129): created implicit net for "E23_sd"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(130): created implicit net for "E24_sd"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(131): created implicit net for "E25_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(132): created implicit net for "E26"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(133): created implicit net for "E27"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(134): created implicit net for "E28_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(135): created implicit net for "E29_sd"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(136): created implicit net for "E30_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(137): created implicit net for "E31"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(138): created implicit net for "E32"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(139): created implicit net for "E33_sd_E38_s"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(140): created implicit net for "E34"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(141): created implicit net for "E35"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(142): created implicit net for "E36_s_E47_s"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(143): created implicit net for "E37_s_E44_s"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(144): created implicit net for "E39_s"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(145): created implicit net for "E40_s_E41_s"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(146): created implicit net for "E42_s"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(147): created implicit net for "E43_s_E49_sd"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(148): created implicit net for "E45"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(149): created implicit net for "E46_s_E59_s"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(150): created implicit net for "E48"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(151): created implicit net for "E50_d_E52_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(152): created implicit net for "E51_s_E54_sd"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(153): created implicit net for "E53"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(154): created implicit net for "E55"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(155): created implicit net for "E56"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(156): created implicit net for "E57_s"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(157): created implicit net for "E58"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(158): created implicit net for "E60"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(159): created implicit net for "E61"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(160): created implicit net for "E62"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(190): created implicit net for "cpudff1_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(218): created implicit net for "cpudff2_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(246): created implicit net for "cpudff3_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(283): created implicit net for "cpudff4_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(317): created implicit net for "cpudff5_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(366): created implicit net for "E37_s"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(367): created implicit net for "E44_s"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(384): created implicit net for "nINCNI_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(385): created implicit net for "nBREQ_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(386): created implicit net for "SIZE1_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(387): created implicit net for "PAS_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(388): created implicit net for "PDS_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(389): created implicit net for "F2CPUL_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(390): created implicit net for "F2CPUH_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(391): created implicit net for "BRIDGEOUT_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(392): created implicit net for "PLLW_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(393): created implicit net for "PLHW_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(394): created implicit net for "INCFIFO_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(395): created implicit net for "DECFIFO_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(396): created implicit net for "INCNO_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(397): created implicit net for "nSTOPFLUSH_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(398): created implicit net for "DIEH_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(399): created implicit net for "DIEL_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(400): created implicit net for "nBRIDGEIN_d"
-Warning (10236): Verilog HDL Implicit Net warning at CPU_SM.v(401): created implicit net for "BGACK_d"
 Info (12127): Elaborating entity "RESDMAC" for the top level hierarchy
-Warning (10034): Output port "_CSX0" at RESDMAC.v(71) has no driver
-Warning (10034): Output port "_CSX1" at RESDMAC.v(72) has no driver
 Info (12128): Elaborating entity "registers" for hierarchy "registers:u_registers"
 Info (12128): Elaborating entity "addr_decoder" for hierarchy "registers:u_registers|addr_decoder:u_addr_decoder"
 Info (12128): Elaborating entity "registers_istr" for hierarchy "registers:u_registers|registers_istr:u_registers_istr"
 Info (12128): Elaborating entity "registers_cntr" for hierarchy "registers:u_registers|registers_cntr:u_registers_cntr"
 Info (12128): Elaborating entity "registers_term" for hierarchy "registers:u_registers|registers_term:u_registers_term"
-Warning (10230): Verilog HDL assignment warning at registers_term.v(44): truncated value with size 32 to match size of target (3)
 Info (12128): Elaborating entity "CPU_SM" for hierarchy "CPU_SM:u_CPU_SM"
 Info (12128): Elaborating entity "CPU_SM_inputs" for hierarchy "CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs"
 Info (12128): Elaborating entity "cpudff1" for hierarchy "CPU_SM:u_CPU_SM|cpudff1:u_cpudff1"
@@ -544,23 +415,15 @@ Info (12128): Elaborating entity "scsi_sm_outputs" for hierarchy "SCSI_SM:u_SCSI
 Info (12128): Elaborating entity "fifo" for hierarchy "fifo:int_fifo"
 Info (12128): Elaborating entity "fifo_write_strobes" for hierarchy "fifo:int_fifo|fifo_write_strobes:u_write_strobes"
 Info (12128): Elaborating entity "fifo__full_empty_ctr" for hierarchy "fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr"
-Warning (10230): Verilog HDL assignment warning at fifo_full_empty_ctr.v(44): truncated value with size 32 to match size of target (3)
-Warning (10230): Verilog HDL assignment warning at fifo_full_empty_ctr.v(54): truncated value with size 32 to match size of target (3)
 Info (12128): Elaborating entity "fifo_3bit_cntr" for hierarchy "fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr"
-Warning (10230): Verilog HDL assignment warning at fifo_3bit_cntr.v(30): truncated value with size 32 to match size of target (3)
 Info (12128): Elaborating entity "fifo_byte_ptr" for hierarchy "fifo:int_fifo|fifo_byte_ptr:u_byte_ptr"
 Info (12128): Elaborating entity "datapath" for hierarchy "datapath:u_datapath"
 Info (12128): Elaborating entity "datapath_input" for hierarchy "datapath:u_datapath|datapath_input:u_datapath_input"
 Info (12128): Elaborating entity "datapath_output" for hierarchy "datapath:u_datapath|datapath_output:u_datapath_output"
 Info (12128): Elaborating entity "datapath_scsi" for hierarchy "datapath:u_datapath|datapath_scsi:u_datapath_scsi"
-Warning (10230): Verilog HDL assignment warning at datapath_scsi.v(71): truncated value with size 8 to match size of target (1)
-Warning (10230): Verilog HDL assignment warning at datapath_scsi.v(74): truncated value with size 8 to match size of target (1)
-Warning (10230): Verilog HDL assignment warning at datapath_scsi.v(75): truncated value with size 8 to match size of target (1)
-Warning (10230): Verilog HDL assignment warning at datapath_scsi.v(76): truncated value with size 8 to match size of target (1)
-Warning (10230): Verilog HDL assignment warning at datapath_scsi.v(77): truncated value with size 8 to match size of target (1)
-Warning (10230): Verilog HDL assignment warning at datapath_scsi.v(79): truncated value with size 8 to match size of target (1)
-Warning (10230): Verilog HDL assignment warning at datapath_scsi.v(80): truncated value with size 8 to match size of target (1)
 Info (12128): Elaborating entity "datapath_24dec" for hierarchy "datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_24dec:u_datapath_24dec"
+Info (12128): Elaborating entity "datapath_8b_MUX" for hierarchy "datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX"
+Info (10264): Verilog HDL Case Statement information at datapath_8b_MUX.v(35): all case item expressions in this case statement are onehot
 Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
     Warning (13048): Converted tri-state node "datapath:u_datapath|ID[31]" into a selector
     Warning (13048): Converted tri-state node "datapath:u_datapath|ID[30]" into a selector
@@ -577,6 +440,7 @@ Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
     Warning (13048): Converted tri-state node "datapath:u_datapath|ID[19]" into a selector
     Warning (13048): Converted tri-state node "datapath:u_datapath|ID[18]" into a selector
     Warning (13048): Converted tri-state node "datapath:u_datapath|ID[17]" into a selector
+    Warning (13048): Converted tri-state node "datapath:u_datapath|ID[16]" into a selector
     Warning (13048): Converted tri-state node "datapath:u_datapath|ID[15]" into a selector
     Warning (13048): Converted tri-state node "datapath:u_datapath|ID[14]" into a selector
     Warning (13048): Converted tri-state node "datapath:u_datapath|ID[13]" into a selector
@@ -589,6 +453,10 @@ Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
     Warning (13048): Converted tri-state node "datapath:u_datapath|ID[6]" into a selector
     Warning (13048): Converted tri-state node "datapath:u_datapath|ID[5]" into a selector
     Warning (13048): Converted tri-state node "datapath:u_datapath|ID[4]" into a selector
+    Warning (13048): Converted tri-state node "datapath:u_datapath|ID[3]" into a selector
+    Warning (13048): Converted tri-state node "datapath:u_datapath|ID[2]" into a selector
+    Warning (13048): Converted tri-state node "datapath:u_datapath|ID[1]" into a selector
+    Warning (13048): Converted tri-state node "datapath:u_datapath|ID[0]" into a selector
     Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[0]" feeding internal logic into a wire
     Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[1]" feeding internal logic into a wire
     Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[2]" feeding internal logic into a wire
@@ -621,56 +489,28 @@ Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
     Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[29]" feeding internal logic into a wire
     Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[30]" feeding internal logic into a wire
     Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[31]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[0]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[1]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[2]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[3]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[4]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[5]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[6]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[7]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[8]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[9]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[10]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[11]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[12]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[13]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[14]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[15]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[16]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[17]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[18]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[19]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[20]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[21]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[22]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[23]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[24]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[25]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[26]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[27]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[28]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[29]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[30]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[31]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[0]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[1]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[2]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[3]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[4]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[5]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[6]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[7]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[8]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[9]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[10]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[11]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[12]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[13]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[14]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[15]" feeding internal logic into a wire
 Warning (19016): Clock multiplexers are found and protected
     Warning (19017): Found clock multiplexer SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|SET_DSACK~synth
 Info (17026): Resynthesizing 0 WYSIWYG logic cells and I/Os using "area" technology mapper which leaves 0 WYSIWYG logic cells and I/Os untouched
-Warning (13027): Removed fan-outs from the following always-disabled I/O buffers
-    Warning (13028): Removed fan-out from the always-disabled I/O buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_TX" to the node "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA[0]"
-Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX" to the node "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[0]" into an OR gate
-Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|ID[0]" to the node "fifo:int_fifo|BUFFER[0][0]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|ID[1]" to the node "fifo:int_fifo|BUFFER[0][1]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|ID[2]" to the node "fifo:int_fifo|BUFFER[0][2]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|ID[3]" to the node "fifo:int_fifo|BUFFER[0][3]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|ID[16]" to the node "fifo:int_fifo|BUFFER[0][16]" into an OR gate
 Info (13000): Registers with preset signals will power-up high
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
-Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "_CSX0" is stuck at GND
-    Warning (13410): Pin "_CSX1" is stuck at GND
+Info (17049): 2 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file /home/mike/EAGLE/projects/SDMAC-Replacement/Quartus/output_files/RESDMAC.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
@@ -679,14 +519,14 @@ Warning (21074): Design contains 4 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "A12"
     Warning (15610): No output dependent on input pin "_IORDY"
     Warning (15610): No output dependent on input pin "INTB"
-Info (21057): Implemented 990 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1058 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 16 input pins
     Info (21059): Implemented 12 output pins
     Info (21060): Implemented 55 bidirectional pins
-    Info (21061): Implemented 907 logic cells
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 258 warnings
+    Info (21061): Implemented 975 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 89 warnings
     Info: Peak virtual memory: 586 megabytes
-    Info: Processing ended: Fri Dec 23 10:22:04 2022
+    Info: Processing ended: Wed Dec 28 22:11:54 2022
     Info: Elapsed time: 00:00:03
     Info: Total CPU time (on all processors): 00:00:02
 
