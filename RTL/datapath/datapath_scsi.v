@@ -56,8 +56,8 @@ datapath_24dec u_datapath_24dec(
 wire SCSI_OUT;
 wire SCSI_IN;
 
-wire SCSI_DATA_RX;
-wire SCSI_DATA_TX;
+wire [7:0] SCSI_DATA_RX;
+wire [7:0] SCSI_DATA_TX;
 
 reg [7:0] SCSI_DATA_LATCHED;
     
