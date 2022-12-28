@@ -19,6 +19,7 @@
 
 `ifdef __ICARUS__ 
   `include "RTL/datapath/datapath_24dec.v"
+  `include "RTL/datapath/datapath_8b_MUX.v"
 `endif
 
 module datapath_scsi (
@@ -53,6 +54,17 @@ datapath_24dec u_datapath_24dec(
     .Z3 (F2S_LLD )
 );
 
+datapath_8b_MUX u_datapath_8b_MUX(
+    .A (OD[7:0]),
+    .B (OD[15:8]),
+    .C (OD[23:16]),
+    .D (OD[31:24]),
+    .E (ID[23:16]),
+    .F (ID[7:0] ),
+    .S ({(CPU2S & ~A3), (CPU2S & A3),F2S_UUD, F2S_UMD,F2S_LMD, F2S_LLD}),
+    .Z (SCSI_DATA_TX)
+);
+
 wire SCSI_OUT;
 wire SCSI_IN;
 
@@ -68,18 +80,21 @@ end
 assign SCSI_OUT = (F2S | CPU2S);
 assign SCSI_IN  = (S2F | S2CPU);
 
-assign SCSI_DATA_RX = SCSI_IN ? SCSI_DATA : 8'hzz;
+assign SCSI_DATA_RX = SCSI_IN ? SCSI_DATA : 8'h00;
+
+/*
+assign SCSI_DATA_TX = F2S_LLD ? OD[7:0]         : 8'h00;
+assign SCSI_DATA_TX = F2S_LMD ? OD[15:8]        : 8'h00;
+assign SCSI_DATA_TX = F2S_UMD ? OD[23:16]       : 8'h00;
+assign SCSI_DATA_TX = F2S_UUD ? OD[31:24]       : 8'h00;
+
+assign SCSI_DATA_TX = (CPU2S & A3) ? ID[23:16]  : 8'h00;
+assign SCSI_DATA_TX = (CPU2S & ~A3) ? ID[7:0]   : 8'h00;
+*/
+
 assign SCSI_DATA = SCSI_OUT ? SCSI_DATA_TX : 8'hzz;
 
-assign SCSI_DATA_TX = F2S_LLD ? OD[7:0] : 8'hzz;
-assign SCSI_DATA_TX = F2S_LMD ? OD[15:8] : 8'hzz;
-assign SCSI_DATA_TX = F2S_UMD ? OD[23:16] : 8'hzz;
-assign SCSI_DATA_TX = F2S_UUD ? OD[31:24] : 8'hzz;
-
-assign SCSI_DATA_TX = (CPU2S & A3) ? ID[23:16] : 8'hzz;
-assign SCSI_DATA_TX = (CPU2S & ~A3) ? ID[7:0] : 8'hzz;
-
-assign MOD = S2CPU ? {SCSI_DATA_LATCHED, 8'hzz , SCSI_DATA_LATCHED, 8'hzz}: 32'hzzzzzzzz;
+assign MOD = S2CPU ? {SCSI_DATA_LATCHED, 8'h00 , SCSI_DATA_LATCHED, 8'h00}: 32'hzzzzzzzz;
 assign ID = S2F ? {SCSI_DATA_RX, SCSI_DATA_RX, SCSI_DATA_RX, SCSI_DATA_RX}: 32'hzzzzzzzz;
 
 endmodule
