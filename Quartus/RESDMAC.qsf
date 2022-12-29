@@ -18,7 +18,7 @@
 #
 # Quartus II 64-Bit
 # Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-# Date created = 09:44:09  December 23, 2022
+# Date created = 23:14:24  December 29, 2022
 #
 # -------------------------------------------------------------------------- #
 #
@@ -40,26 +40,8 @@ set_global_assignment -name FAMILY "Cyclone II"
 set_global_assignment -name DEVICE EP2C5T144C8
 set_global_assignment -name TOP_LEVEL_ENTITY RESDMAC
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "13.0 SP1"
-set_global_assignment -name PROJECT_CREATION_TIME_DATE "09:44:09  DECEMBER 23, 2022"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "23:14:24  DECEMBER 29, 2022"
 set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
-set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
-set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
-set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
-set_global_assignment -name DEVICE_FILTER_PACKAGE TQFP
-set_global_assignment -name DEVICE_FILTER_PIN_COUNT 144
-set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
-set_global_assignment -name SMART_RECOMPILE ON
-<<<<<<< Updated upstream
-set_global_assignment -name CYCLONEII_OPTIMIZATION_TECHNIQUE AREA
-set_global_assignment -name ADV_NETLIST_OPT_SYNTH_WYSIWYG_REMAP ON
-set_global_assignment -name AUTO_SHIFT_REGISTER_RECOGNITION ALWAYS
-set_global_assignment -name FITTER_EFFORT "STANDARD FIT"
-set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
-set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-=======
->>>>>>> Stashed changes
-set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath_8b_MUX.v
-set_global_assignment -name VERILOG_FILE ../RTL/RESDMAC.v
 set_global_assignment -name VERILOG_FILE ../RTL/SCSI_SM/scsi_sm_outputs.v
 set_global_assignment -name VERILOG_FILE ../RTL/SCSI_SM/scsi_sm_inputs.v
 set_global_assignment -name VERILOG_FILE ../RTL/SCSI_SM/SCSI_SM.v
@@ -77,6 +59,7 @@ set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath_scsi.v
 set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath_output.v
 set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath_input.v
 set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath_24dec.v
+set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath_8b_MUX.v
 set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath.v
 set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/cpudff5.v
 set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/cpudff4.v
@@ -86,17 +69,25 @@ set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/cpudff1.v
 set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/CPU_SM_output.v
 set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/CPU_SM_inputs.v
 set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/CPU_SM.v
-<<<<<<< Updated upstream
-=======
+set_global_assignment -name VERILOG_FILE ../RTL/RESDMAC.v
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name DEVICE_FILTER_PACKAGE TQFP
+set_global_assignment -name DEVICE_FILTER_PIN_COUNT 144
+set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 8
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 8
 set_location_assignment PIN_27 -to ADDR[6]
-set_location_assignment PIN_31 -to ADDR[5]
+set_location_assignment PIN_26 -to ADDR[5]
 set_location_assignment PIN_30 -to ADDR[4]
-set_location_assignment PIN_26 -to ADDR[3]
-set_location_assignment PIN_22 -to ADDR[2]
+set_location_assignment PIN_22 -to ADDR[3]
+set_location_assignment PIN_21 -to ADDR[2]
 set_location_assignment PIN_103 -to DATA[31]
 set_location_assignment PIN_101 -to DATA[30]
 set_location_assignment PIN_100 -to DATA[29]
@@ -130,7 +121,7 @@ set_location_assignment PIN_118 -to DATA[2]
 set_location_assignment PIN_135 -to DATA[1]
 set_location_assignment PIN_115 -to DATA[0]
 set_location_assignment PIN_69 -to DATA_OE_
-set_location_assignment PIN_32 -to INTA
+set_location_assignment PIN_31 -to INTA
 set_location_assignment PIN_45 -to OWN_
 set_location_assignment PIN_25 -to PD_PORT[7]
 set_location_assignment PIN_9 -to PD_PORT[6]
@@ -144,11 +135,11 @@ set_location_assignment PIN_129 -to R_W
 set_location_assignment PIN_17 -to SCLK
 set_location_assignment PIN_112 -to SIZ1
 set_location_assignment PIN_113 -to _AS
-set_location_assignment PIN_18 -to _BERR
+set_location_assignment PIN_32 -to _BERR
 set_location_assignment PIN_88 -to _BG
 set_location_assignment PIN_104 -to _BGACK
 set_location_assignment PIN_59 -to _BR
-set_location_assignment PIN_21 -to _CS
+set_location_assignment PIN_18 -to _CS
 set_location_assignment PIN_43 -to _CSS
 set_location_assignment PIN_60 -to _DACK
 set_location_assignment PIN_41 -to _DMAEN
@@ -164,5 +155,4 @@ set_location_assignment PIN_65 -to _LED_RD
 set_location_assignment PIN_44 -to _LED_WR
 set_location_assignment PIN_28 -to _RST
 set_location_assignment PIN_7 -to _STERM
->>>>>>> Stashed changes
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

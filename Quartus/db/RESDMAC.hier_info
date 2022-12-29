@@ -62,11 +62,6 @@ INTA => INTA.IN1
 _IOR <= _IOR.DB_MAX_OUTPUT_PORT_TYPE
 _IOW <= _IOW.DB_MAX_OUTPUT_PORT_TYPE
 _CSS <= SCSI_SM:u_SCSI_SM.SCSI_CS_o
-<<<<<<< Updated upstream
-_CSX0 <= _CSX0.DB_MAX_OUTPUT_PORT_TYPE
-_CSX1 <= _CSX1.DB_MAX_OUTPUT_PORT_TYPE
-=======
->>>>>>> Stashed changes
 PD_PORT[0] <> datapath:u_datapath.PD
 PD_PORT[1] <> datapath:u_datapath.PD
 PD_PORT[2] <> datapath:u_datapath.PD

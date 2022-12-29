@@ -3,129 +3,64 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow Model Setup 'SCLK'
-<<<<<<< Updated upstream
-Slack : -9.664
-TNS   : -277.585
-
-Type  : Slow Model Setup 'CPU_SM:u_CPU_SM|PAS'
-Slack : -4.739
-TNS   : -124.679
+Slack : -9.006
+TNS   : -271.965
 
 Type  : Slow Model Setup 'SCSI_SM:u_SCSI_SM|INCBO_o'
-Slack : -3.224
-TNS   : -3.224
-
-Type  : Slow Model Setup 'CPU_SM:u_CPU_SM|DECFIFO'
-Slack : -2.880
-TNS   : -12.964
-
-Type  : Slow Model Setup 'LLW'
-Slack : -2.649
-TNS   : -243.001
-
-Type  : Slow Model Setup 'SCSI_SM:u_SCSI_SM|nLS2CPU'
-Slack : -1.910
-TNS   : -13.369
-
-Type  : Slow Model Setup 'LHW'
-Slack : -0.514
-TNS   : -4.649
-
-Type  : Slow Model Setup 'CPU_SM:u_CPU_SM|INCNI'
-Slack : -0.501
-TNS   : -0.577
-
-Type  : Slow Model Setup 'ADDR[2]'
-Slack : -0.494
-TNS   : -0.494
-
-Type  : Slow Model Setup 'CPU_SM:u_CPU_SM|INCNO'
-Slack : -0.442
-TNS   : -0.859
-
-Type  : Slow Model Hold 'SCLK'
-Slack : -3.998
-TNS   : -31.013
-
-Type  : Slow Model Hold 'ADDR[2]'
-Slack : -2.960
-TNS   : -2.960
-
-Type  : Slow Model Hold 'LHW'
-Slack : -1.787
-TNS   : -113.686
-
-Type  : Slow Model Hold 'CPU_SM:u_CPU_SM|DECFIFO'
-Slack : -0.884
-TNS   : -0.884
-
-Type  : Slow Model Hold 'LLW'
-Slack : -0.554
-TNS   : -7.105
-=======
-Slack : -9.709
-TNS   : -269.134
-
-Type  : Slow Model Setup 'SCSI_SM:u_SCSI_SM|INCBO_o'
-Slack : -4.057
-TNS   : -4.057
+Slack : -3.790
+TNS   : -3.790
 
 Type  : Slow Model Setup 'CPU_SM:u_CPU_SM|PAS'
-Slack : -4.005
-TNS   : -110.254
+Slack : -3.685
+TNS   : -100.202
 
 Type  : Slow Model Setup 'CPU_SM:u_CPU_SM|DECFIFO'
-Slack : -3.628
-TNS   : -16.198
+Slack : -3.161
+TNS   : -13.610
 
 Type  : Slow Model Setup 'LLW'
-Slack : -2.969
-TNS   : -266.459
-
-Type  : Slow Model Setup 'SCSI_SM:u_SCSI_SM|nLS2CPU'
-Slack : -1.133
-TNS   : -7.012
+Slack : -3.148
+TNS   : -310.104
 
 Type  : Slow Model Setup 'LHW'
-Slack : -1.016
-TNS   : -44.660
+Slack : -2.372
+TNS   : -149.837
 
-Type  : Slow Model Setup 'CPU_SM:u_CPU_SM|INCNO'
-Slack : -0.510
-TNS   : -0.865
+Type  : Slow Model Setup 'SCSI_SM:u_SCSI_SM|nLS2CPU'
+Slack : -0.659
+TNS   : -2.595
 
 Type  : Slow Model Setup 'CPU_SM:u_CPU_SM|INCNI'
-Slack : -0.452
-TNS   : -0.479
+Slack : -0.543
+TNS   : -0.658
 
 Type  : Slow Model Setup 'ADDR[2]'
-Slack : -0.068
-TNS   : -0.068
+Slack : -0.531
+TNS   : -0.531
+
+Type  : Slow Model Setup 'CPU_SM:u_CPU_SM|INCNO'
+Slack : -0.461
+TNS   : -0.499
 
 Type  : Slow Model Hold 'ADDR[2]'
-Slack : -3.837
-TNS   : -6.704
+Slack : -6.908
+TNS   : -17.306
 
 Type  : Slow Model Hold 'SCLK'
-Slack : -2.991
-TNS   : -30.591
-
-Type  : Slow Model Hold 'LLW'
-Slack : -1.321
-TNS   : -51.272
-
-Type  : Slow Model Hold 'LHW'
-Slack : -0.902
-TNS   : -66.546
+Slack : -3.109
+TNS   : -27.121
 
 Type  : Slow Model Hold 'CPU_SM:u_CPU_SM|DECFIFO'
-Slack : -0.764
-TNS   : -1.113
+Slack : -0.841
+TNS   : -2.242
 
-Type  : Slow Model Hold 'SCSI_SM:u_SCSI_SM|INCBO_o'
-Slack : 0.455
-TNS   : 0.000
->>>>>>> Stashed changes
+Type  : Slow Model Hold 'LHW'
+Slack : -0.714
+TNS   : -21.884
+
+Type  : Slow Model Hold 'LLW'
+Slack : -0.464
+TNS   : -5.667
 
 Type  : Slow Model Hold 'CPU_SM:u_CPU_SM|INCNI'
 Slack : 0.499
@@ -135,100 +70,56 @@ Type  : Slow Model Hold 'CPU_SM:u_CPU_SM|INCNO'
 Slack : 0.499
 TNS   : 0.000
 
+Type  : Slow Model Hold 'SCSI_SM:u_SCSI_SM|INCBO_o'
+Slack : 0.499
+TNS   : 0.000
+
 Type  : Slow Model Hold 'SCSI_SM:u_SCSI_SM|nLS2CPU'
-Slack : 0.548
+Slack : 0.700
 TNS   : 0.000
 
 Type  : Slow Model Hold 'CPU_SM:u_CPU_SM|PAS'
-<<<<<<< Updated upstream
-Slack : 0.876
-TNS   : 0.000
-
-Type  : Slow Model Hold 'SCSI_SM:u_SCSI_SM|nLS2CPU'
-Slack : 2.030
+Slack : 1.086
 TNS   : 0.000
 
 Type  : Slow Model Recovery 'SCSI_SM:u_SCSI_SM|RIFIFO_d'
-Slack : -3.680
-TNS   : -3.680
-
-Type  : Slow Model Recovery 'registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[0]'
-Slack : -2.603
-TNS   : -2.603
+Slack : -3.782
+TNS   : -3.782
 
 Type  : Slow Model Recovery 'SCLK'
-Slack : -2.203
-TNS   : -13.432
+Slack : -1.853
+TNS   : -13.799
+
+Type  : Slow Model Recovery 'registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[0]'
+Slack : -1.759
+TNS   : -1.759
 
 Type  : Slow Model Recovery 'SCSI_SM:u_SCSI_SM|RDFIFO_d'
-Slack : -0.690
-TNS   : -0.690
+Slack : -0.304
+TNS   : -0.304
 
 Type  : Slow Model Recovery 'ADDR[2]'
-Slack : -0.246
-TNS   : -0.246
+Slack : -0.097
+TNS   : -0.097
 
 Type  : Slow Model Removal 'ADDR[2]'
-Slack : -0.521
-TNS   : -0.631
+Slack : -0.296
+TNS   : -0.406
 
 Type  : Slow Model Removal 'SCLK'
-Slack : -0.099
-TNS   : -0.396
+Slack : -0.008
+TNS   : -0.008
 
 Type  : Slow Model Removal 'SCSI_SM:u_SCSI_SM|RDFIFO_d'
-Slack : 0.924
+Slack : 0.538
 TNS   : 0.000
 
 Type  : Slow Model Removal 'registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[0]'
-Slack : 2.837
+Slack : 1.993
 TNS   : 0.000
 
 Type  : Slow Model Removal 'SCSI_SM:u_SCSI_SM|RIFIFO_d'
-Slack : 4.414
-=======
-Slack : 0.555
-TNS   : 0.000
-
-Type  : Slow Model Recovery 'SCSI_SM:u_SCSI_SM|RIFIFO_d'
-Slack : -3.364
-TNS   : -3.364
-
-Type  : Slow Model Recovery 'SCLK'
-Slack : -2.292
-TNS   : -19.651
-
-Type  : Slow Model Recovery 'registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[0]'
-Slack : -1.750
-TNS   : -1.750
-
-Type  : Slow Model Recovery 'SCSI_SM:u_SCSI_SM|RDFIFO_d'
-Slack : -0.449
-TNS   : -0.449
-
-Type  : Slow Model Recovery 'ADDR[2]'
-Slack : -0.079
-TNS   : -0.079
-
-Type  : Slow Model Removal 'ADDR[2]'
-Slack : -0.516
-TNS   : -1.032
-
-Type  : Slow Model Removal 'SCSI_SM:u_SCSI_SM|RDFIFO_d'
-Slack : 0.683
-TNS   : 0.000
-
-Type  : Slow Model Removal 'SCLK'
-Slack : 0.897
-TNS   : 0.000
-
-Type  : Slow Model Removal 'registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[0]'
-Slack : 1.984
-TNS   : 0.000
-
-Type  : Slow Model Removal 'SCSI_SM:u_SCSI_SM|RIFIFO_d'
-Slack : 4.098
->>>>>>> Stashed changes
+Slack : 4.516
 TNS   : 0.000
 
 Type  : Slow Model Minimum Pulse Width 'SCLK'
@@ -292,138 +183,66 @@ Slack : -0.742
 TNS   : -1.484
 
 Type  : Fast Model Setup 'SCLK'
-<<<<<<< Updated upstream
-Slack : -2.426
-TNS   : -57.835
-
-Type  : Fast Model Setup 'CPU_SM:u_CPU_SM|PAS'
-Slack : -0.798
-TNS   : -16.166
+Slack : -2.162
+TNS   : -53.948
 
 Type  : Fast Model Setup 'SCSI_SM:u_SCSI_SM|INCBO_o'
-Slack : -0.684
-TNS   : -0.684
-
-Type  : Fast Model Setup 'CPU_SM:u_CPU_SM|DECFIFO'
-Slack : -0.471
-TNS   : -2.042
-
-Type  : Fast Model Setup 'SCSI_SM:u_SCSI_SM|nLS2CPU'
-Slack : -0.447
-TNS   : -2.941
+Slack : -0.837
+TNS   : -0.837
 
 Type  : Fast Model Setup 'LLW'
-Slack : -0.441
-TNS   : -27.701
+Slack : -0.780
+TNS   : -62.459
 
-Type  : Fast Model Setup 'ADDR[2]'
-Slack : 0.148
-TNS   : 0.000
+Type  : Fast Model Setup 'CPU_SM:u_CPU_SM|DECFIFO'
+Slack : -0.536
+TNS   : -2.117
+
+Type  : Fast Model Setup 'CPU_SM:u_CPU_SM|PAS'
+Slack : -0.451
+TNS   : -6.612
 
 Type  : Fast Model Setup 'LHW'
-Slack : 0.368
+Slack : -0.439
+TNS   : -9.778
+
+Type  : Fast Model Setup 'SCSI_SM:u_SCSI_SM|nLS2CPU'
+Slack : -0.079
+TNS   : -0.079
+
+Type  : Fast Model Setup 'ADDR[2]'
+Slack : 0.159
 TNS   : 0.000
 
 Type  : Fast Model Setup 'CPU_SM:u_CPU_SM|INCNI'
-Slack : 0.488
+Slack : 0.468
 TNS   : 0.000
 
 Type  : Fast Model Setup 'CPU_SM:u_CPU_SM|INCNO'
-Slack : 0.501
-=======
-Slack : -2.316
-TNS   : -53.444
-
-Type  : Fast Model Setup 'SCSI_SM:u_SCSI_SM|INCBO_o'
-Slack : -0.923
-TNS   : -0.923
-
-Type  : Fast Model Setup 'CPU_SM:u_CPU_SM|DECFIFO'
-Slack : -0.718
-TNS   : -3.010
-
-Type  : Fast Model Setup 'LLW'
-Slack : -0.567
-TNS   : -37.683
-
-Type  : Fast Model Setup 'CPU_SM:u_CPU_SM|PAS'
-Slack : -0.462
-TNS   : -10.439
-
-Type  : Fast Model Setup 'SCSI_SM:u_SCSI_SM|nLS2CPU'
-Slack : -0.194
-TNS   : -1.018
-
-Type  : Fast Model Setup 'LHW'
-Slack : 0.169
+Slack : 0.512
 TNS   : 0.000
-
-Type  : Fast Model Setup 'ADDR[2]'
-Slack : 0.270
-TNS   : 0.000
-
-Type  : Fast Model Setup 'CPU_SM:u_CPU_SM|INCNO'
-Slack : 0.502
-TNS   : 0.000
-
-Type  : Fast Model Setup 'CPU_SM:u_CPU_SM|INCNI'
-Slack : 0.515
->>>>>>> Stashed changes
-TNS   : 0.000
-
-Type  : Fast Model Hold 'SCLK'
-Slack : -1.723
-TNS   : -21.550
 
 Type  : Fast Model Hold 'ADDR[2]'
-<<<<<<< Updated upstream
-Slack : -1.177
-TNS   : -1.412
-
-Type  : Fast Model Hold 'LHW'
-Slack : -0.676
-TNS   : -48.783
-
-Type  : Fast Model Hold 'CPU_SM:u_CPU_SM|DECFIFO'
-Slack : -0.466
-TNS   : -0.832
-
-Type  : Fast Model Hold 'LLW'
-Slack : -0.271
-TNS   : -6.023
-
-Type  : Fast Model Hold 'CPU_SM:u_CPU_SM|PAS'
-Slack : 0.024
-=======
-Slack : -1.413
-TNS   : -2.653
+Slack : -2.428
+TNS   : -6.127
 
 Type  : Fast Model Hold 'SCLK'
-Slack : -1.341
-TNS   : -22.002
-
-Type  : Fast Model Hold 'LLW'
-Slack : -0.508
-TNS   : -34.212
+Slack : -1.441
+TNS   : -20.468
 
 Type  : Fast Model Hold 'CPU_SM:u_CPU_SM|DECFIFO'
-Slack : -0.415
-TNS   : -1.193
+Slack : -0.443
+TNS   : -1.494
+
+Type  : Fast Model Hold 'LLW'
+Slack : -0.331
+TNS   : -15.959
 
 Type  : Fast Model Hold 'LHW'
-Slack : -0.412
-TNS   : -39.147
+Slack : -0.271
+TNS   : -11.962
 
 Type  : Fast Model Hold 'CPU_SM:u_CPU_SM|PAS'
-Slack : -0.174
-TNS   : -1.255
-
-Type  : Fast Model Hold 'SCSI_SM:u_SCSI_SM|INCBO_o'
-Slack : 0.175
->>>>>>> Stashed changes
-TNS   : 0.000
-
-Type  : Fast Model Hold 'SCSI_SM:u_SCSI_SM|INCBO_o'
 Slack : 0.172
 TNS   : 0.000
 
@@ -431,97 +250,56 @@ Type  : Fast Model Hold 'CPU_SM:u_CPU_SM|INCNI'
 Slack : 0.215
 TNS   : 0.000
 
-<<<<<<< Updated upstream
 Type  : Fast Model Hold 'CPU_SM:u_CPU_SM|INCNO'
 Slack : 0.215
 TNS   : 0.000
 
+Type  : Fast Model Hold 'SCSI_SM:u_SCSI_SM|INCBO_o'
+Slack : 0.215
+TNS   : 0.000
+
 Type  : Fast Model Hold 'SCSI_SM:u_SCSI_SM|nLS2CPU'
-Slack : 1.116
+Slack : 0.698
 TNS   : 0.000
 
 Type  : Fast Model Recovery 'SCSI_SM:u_SCSI_SM|RIFIFO_d'
-Slack : -0.886
-TNS   : -0.886
+Slack : -0.888
+TNS   : -0.888
 
 Type  : Fast Model Recovery 'registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[0]'
-Slack : -0.790
-TNS   : -0.790
+Slack : -0.454
+TNS   : -0.454
 
 Type  : Fast Model Recovery 'SCLK'
-Slack : -0.537
-TNS   : -3.117
+Slack : -0.436
+TNS   : -3.406
 
 Type  : Fast Model Recovery 'SCSI_SM:u_SCSI_SM|RDFIFO_d'
-Slack : 0.086
+Slack : 0.254
 TNS   : 0.000
 
 Type  : Fast Model Recovery 'ADDR[2]'
-Slack : 0.274
+Slack : 0.259
 TNS   : 0.000
 
 Type  : Fast Model Removal 'ADDR[2]'
-Slack : -0.039
-TNS   : -0.078
+Slack : -0.074
+TNS   : -0.148
 
 Type  : Fast Model Removal 'SCSI_SM:u_SCSI_SM|RDFIFO_d'
-Slack : 0.294
+Slack : 0.126
 TNS   : 0.000
 
 Type  : Fast Model Removal 'SCLK'
-Slack : 0.613
+Slack : 0.696
 TNS   : 0.000
 
 Type  : Fast Model Removal 'registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[0]'
-Slack : 1.170
+Slack : 0.834
 TNS   : 0.000
 
 Type  : Fast Model Removal 'SCSI_SM:u_SCSI_SM|RIFIFO_d'
-Slack : 1.766
-=======
-Type  : Fast Model Hold 'SCSI_SM:u_SCSI_SM|nLS2CPU'
-Slack : 0.673
-TNS   : 0.000
-
-Type  : Fast Model Recovery 'SCSI_SM:u_SCSI_SM|RIFIFO_d'
-Slack : -0.769
-TNS   : -0.769
-
-Type  : Fast Model Recovery 'SCLK'
-Slack : -0.692
-TNS   : -5.507
-
-Type  : Fast Model Recovery 'registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[0]'
-Slack : -0.453
-TNS   : -0.453
-
-Type  : Fast Model Recovery 'SCSI_SM:u_SCSI_SM|RDFIFO_d'
-Slack : 0.206
-TNS   : 0.000
-
-Type  : Fast Model Recovery 'ADDR[2]'
-Slack : 0.252
-TNS   : 0.000
-
-Type  : Fast Model Removal 'ADDR[2]'
-Slack : -0.181
-TNS   : -0.362
-
-Type  : Fast Model Removal 'SCSI_SM:u_SCSI_SM|RDFIFO_d'
-Slack : 0.174
-TNS   : 0.000
-
-Type  : Fast Model Removal 'registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[0]'
-Slack : 0.833
-TNS   : 0.000
-
-Type  : Fast Model Removal 'SCLK'
-Slack : 0.987
-TNS   : 0.000
-
-Type  : Fast Model Removal 'SCSI_SM:u_SCSI_SM|RIFIFO_d'
-Slack : 1.649
->>>>>>> Stashed changes
+Slack : 1.768
 TNS   : 0.000
 
 Type  : Fast Model Minimum Pulse Width 'SCLK'

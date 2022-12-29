@@ -81,21 +81,21 @@ DATA0                        : 14        : input  :                   :         
 DCLK                         : 15        :        :                   :         : 1         :                
 nCE                          : 16        :        :                   :         : 1         :                
 SCLK                         : 17        : input  : 3.3-V LVTTL       :         : 1         : Y              
-_BERR                        : 18        : input  : 3.3-V LVTTL       :         : 1         : Y              
+_CS                          : 18        : input  : 3.3-V LVTTL       :         : 1         : Y              
 GND                          : 19        : gnd    :                   :         :           :                
 nCONFIG                      : 20        :        :                   :         : 1         :                
-_CS                          : 21        : input  : 3.3-V LVTTL       :         : 1         : Y              
-ADDR[2]                      : 22        : input  : 3.3-V LVTTL       :         : 1         : Y              
+ADDR[2]                      : 21        : input  : 3.3-V LVTTL       :         : 1         : Y              
+ADDR[3]                      : 22        : input  : 3.3-V LVTTL       :         : 1         : Y              
 VCCIO1                       : 23        : power  :                   : 3.3V    : 1         :                
 PD_PORT[5]                   : 24        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
 PD_PORT[7]                   : 25        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
-ADDR[3]                      : 26        : input  : 3.3-V LVTTL       :         : 1         : Y              
+ADDR[5]                      : 26        : input  : 3.3-V LVTTL       :         : 1         : Y              
 ADDR[6]                      : 27        : input  : 3.3-V LVTTL       :         : 1         : Y              
 _RST                         : 28        : input  : 3.3-V LVTTL       :         : 1         : Y              
 VCCIO1                       : 29        : power  :                   : 3.3V    : 1         :                
 ADDR[4]                      : 30        : input  : 3.3-V LVTTL       :         : 1         : Y              
-ADDR[5]                      : 31        : input  : 3.3-V LVTTL       :         : 1         : Y              
-INTA                         : 32        : input  : 3.3-V LVTTL       :         : 1         : Y              
+INTA                         : 31        : input  : 3.3-V LVTTL       :         : 1         : Y              
+_BERR                        : 32        : input  : 3.3-V LVTTL       :         : 1         : Y              
 GND                          : 33        : gnd    :                   :         :           :                
 GND_PLL1                     : 34        : gnd    :                   :         :           :                
 VCCD_PLL1                    : 35        : power  :                   : 1.2V    :           :                
