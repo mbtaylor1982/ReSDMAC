@@ -47,139 +47,17 @@ set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name DEVICE_FILTER_PACKAGE TQFP
 set_global_assignment -name DEVICE_FILTER_PIN_COUNT 144
-set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
-set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
-set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
-set_global_assignment -name USE_CONFIGURATION_DEVICE ON
-set_location_assignment PIN_44 -to DATA[2]
-set_location_assignment PIN_135 -to DATA[25]
-set_location_assignment PIN_32 -to _LED_WR
-set_location_assignment PIN_30 -to _CSX1
-set_location_assignment PIN_81 -to PD_PORT[14]
-set_location_assignment PIN_129 -to DATA[19]
-set_location_assignment PIN_144 -to PD_PORT[5]
-set_location_assignment PIN_24 -to _DACK
-set_location_assignment PIN_92 -to PD_PORT[11]
-set_location_assignment PIN_51 -to DATA[16]
-set_location_assignment PIN_142 -to PD_PORT[2]
-set_location_assignment PIN_99 -to _BG
-set_location_assignment PIN_73 -to PD_PORT[8]
-set_location_assignment PIN_55 -to DATA[13]
-set_location_assignment PIN_103 -to ADDR[6]
-set_location_assignment PIN_97 -to _RST
-set_location_assignment PIN_52 -to DATA[10]
-set_location_assignment PIN_101 -to ADDR[3]
-set_location_assignment PIN_96 -to _STERM
-set_location_assignment PIN_70 -to DATA[7]
-set_location_assignment PIN_121 -to DATA[30]
-set_location_assignment PIN_122 -to _BGACK
-set_location_assignment PIN_45 -to DATA[4]
-set_location_assignment PIN_136 -to DATA[27]
-set_location_assignment PIN_59 -to R_W
-set_location_assignment PIN_65 -to DATA[1]
-set_location_assignment PIN_115 -to DATA[24]
-set_location_assignment PIN_25 -to _IOW
-set_location_assignment PIN_27 -to _CSX0
-set_location_assignment PIN_42 -to _DSACK[0]
-set_location_assignment PIN_133 -to DATA[21]
-set_location_assignment PIN_132 -to PD_PORT[7]
-set_location_assignment PIN_91 -to INTA
-set_location_assignment PIN_93 -to PD_PORT[13]
-set_location_assignment PIN_112 -to DATA[18]
-set_location_assignment PIN_143 -to PD_PORT[4]
-set_location_assignment PIN_18 -to _DREQ
-set_location_assignment PIN_2 -to ~nCSO~
-set_location_assignment PIN_75 -to PD_PORT[10]
-set_location_assignment PIN_58 -to DATA[15]
-set_location_assignment PIN_125 -to PD_PORT[1]
-set_location_assignment PIN_87 -to A12
-set_location_assignment PIN_53 -to DATA[12]
-set_location_assignment PIN_79 -to ADDR[5]
-set_location_assignment PIN_90 -to _CS
-set_location_assignment PIN_71 -to DATA[9]
-set_location_assignment PIN_100 -to ADDR[2]
-set_location_assignment PIN_3 -to _INT
-set_location_assignment PIN_47 -to DATA[6]
-set_location_assignment PIN_137 -to DATA[29]
-set_location_assignment PIN_4 -to _BR
-set_location_assignment PIN_67 -to DATA[3]
-set_location_assignment PIN_118 -to DATA[26]
-set_location_assignment PIN_31 -to _LED_RD
-set_location_assignment PIN_7 -to _LED_DMA
-set_location_assignment PIN_43 -to DATA[0]
-set_location_assignment PIN_134 -to DATA[23]
-set_location_assignment PIN_9 -to _IOR
-set_location_assignment PIN_26 -to _CSS
-set_location_assignment PIN_94 -to PD_PORT[15]
-set_location_assignment PIN_113 -to DATA[20]
-set_location_assignment PIN_120 -to PD_PORT[6]
-set_location_assignment PIN_88 -to _IORDY
-set_location_assignment PIN_80 -to PD_PORT[12]
-set_location_assignment PIN_63 -to DATA[17]
-set_location_assignment PIN_126 -to PD_PORT[3]
-set_location_assignment PIN_8 -to _DMAEN
-set_location_assignment PIN_1 -to ~ASDO~
-set_location_assignment PIN_74 -to PD_PORT[9]
-set_location_assignment PIN_57 -to DATA[14]
-set_location_assignment PIN_141 -to PD_PORT[0]
-set_location_assignment PIN_86 -to _BERR
-set_location_assignment PIN_72 -to DATA[11]
-set_location_assignment PIN_104 -to ADDR[4]
-set_location_assignment PIN_17 -to SCLK
-set_location_assignment PIN_48 -to DATA[8]
-set_location_assignment PIN_139 -to DATA[31]
-set_location_assignment PIN_60 -to _DS
-set_location_assignment PIN_69 -to DATA[5]
-set_location_assignment PIN_119 -to DATA[28]
-set_location_assignment PIN_40 -to SIZ1
-set_location_assignment PIN_64 -to _DSACK[1]
-set_location_assignment PIN_114 -to DATA[22]
-set_location_assignment PIN_41 -to _AS
-set_location_assignment PIN_89 -to INTB
-set_location_assignment PIN_76 -to ~LVDS41p/nCEO~
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[0] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[1] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[2] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[3] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[4] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[5] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[6] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[7] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[8] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[9] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[10] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[11] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[12] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[13] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[14] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[15] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[16] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[17] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[18] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[19] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[20] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[21] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[22] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[23] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[24] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[25] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[26] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[27] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[28] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[29] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[30] -section_id data
-set_global_assignment -name ASSIGNMENT_GROUP_MEMBER DATA[31] -section_id data
 set_global_assignment -name SMART_RECOMPILE ON
+<<<<<<< Updated upstream
 set_global_assignment -name CYCLONEII_OPTIMIZATION_TECHNIQUE AREA
 set_global_assignment -name ADV_NETLIST_OPT_SYNTH_WYSIWYG_REMAP ON
 set_global_assignment -name AUTO_SHIFT_REGISTER_RECOGNITION ALWAYS
 set_global_assignment -name FITTER_EFFORT "STANDARD FIT"
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+=======
+>>>>>>> Stashed changes
 set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath_8b_MUX.v
 set_global_assignment -name VERILOG_FILE ../RTL/RESDMAC.v
 set_global_assignment -name VERILOG_FILE ../RTL/SCSI_SM/scsi_sm_outputs.v
@@ -208,4 +86,83 @@ set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/cpudff1.v
 set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/CPU_SM_output.v
 set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/CPU_SM_inputs.v
 set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/CPU_SM.v
+<<<<<<< Updated upstream
+=======
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 8
+set_location_assignment PIN_27 -to ADDR[6]
+set_location_assignment PIN_31 -to ADDR[5]
+set_location_assignment PIN_30 -to ADDR[4]
+set_location_assignment PIN_26 -to ADDR[3]
+set_location_assignment PIN_22 -to ADDR[2]
+set_location_assignment PIN_103 -to DATA[31]
+set_location_assignment PIN_101 -to DATA[30]
+set_location_assignment PIN_100 -to DATA[29]
+set_location_assignment PIN_97 -to DATA[28]
+set_location_assignment PIN_87 -to DATA[27]
+set_location_assignment PIN_96 -to DATA[26]
+set_location_assignment PIN_86 -to DATA[25]
+set_location_assignment PIN_94 -to DATA[24]
+set_location_assignment PIN_81 -to DATA[23]
+set_location_assignment PIN_93 -to DATA[22]
+set_location_assignment PIN_80 -to DATA[21]
+set_location_assignment PIN_92 -to DATA[20]
+set_location_assignment PIN_75 -to DATA[19]
+set_location_assignment PIN_74 -to DATA[18]
+set_location_assignment PIN_73 -to DATA[17]
+set_location_assignment PIN_132 -to DATA[16]
+set_location_assignment PIN_120 -to DATA[15]
+set_location_assignment PIN_144 -to DATA[14]
+set_location_assignment PIN_143 -to DATA[13]
+set_location_assignment PIN_126 -to DATA[12]
+set_location_assignment PIN_142 -to DATA[11]
+set_location_assignment PIN_125 -to DATA[10]
+set_location_assignment PIN_141 -to DATA[9]
+set_location_assignment PIN_122 -to DATA[8]
+set_location_assignment PIN_139 -to DATA[7]
+set_location_assignment PIN_121 -to DATA[6]
+set_location_assignment PIN_137 -to DATA[5]
+set_location_assignment PIN_119 -to DATA[4]
+set_location_assignment PIN_136 -to DATA[3]
+set_location_assignment PIN_118 -to DATA[2]
+set_location_assignment PIN_135 -to DATA[1]
+set_location_assignment PIN_115 -to DATA[0]
+set_location_assignment PIN_69 -to DATA_OE_
+set_location_assignment PIN_32 -to INTA
+set_location_assignment PIN_45 -to OWN_
+set_location_assignment PIN_25 -to PD_PORT[7]
+set_location_assignment PIN_9 -to PD_PORT[6]
+set_location_assignment PIN_24 -to PD_PORT[5]
+set_location_assignment PIN_8 -to PD_PORT[4]
+set_location_assignment PIN_4 -to PD_PORT[3]
+set_location_assignment PIN_3 -to PD_PORT[2]
+set_location_assignment PIN_99 -to PD_PORT[1]
+set_location_assignment PIN_79 -to PD_PORT[0]
+set_location_assignment PIN_129 -to R_W
+set_location_assignment PIN_17 -to SCLK
+set_location_assignment PIN_112 -to SIZ1
+set_location_assignment PIN_113 -to _AS
+set_location_assignment PIN_18 -to _BERR
+set_location_assignment PIN_88 -to _BG
+set_location_assignment PIN_104 -to _BGACK
+set_location_assignment PIN_59 -to _BR
+set_location_assignment PIN_21 -to _CS
+set_location_assignment PIN_43 -to _CSS
+set_location_assignment PIN_60 -to _DACK
+set_location_assignment PIN_41 -to _DMAEN
+set_location_assignment PIN_89 -to _DREQ
+set_location_assignment PIN_133 -to _DS
+set_location_assignment PIN_134 -to _DSACK[1]
+set_location_assignment PIN_114 -to _DSACK[0]
+set_location_assignment PIN_40 -to _INT
+set_location_assignment PIN_42 -to _IOR
+set_location_assignment PIN_64 -to _IOW
+set_location_assignment PIN_67 -to _LED_DMA
+set_location_assignment PIN_65 -to _LED_RD
+set_location_assignment PIN_44 -to _LED_WR
+set_location_assignment PIN_28 -to _RST
+set_location_assignment PIN_7 -to _STERM
+>>>>>>> Stashed changes
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

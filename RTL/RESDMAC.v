@@ -45,7 +45,7 @@ module RESDMAC(
     input _BERR,        //Bus Error 
 
     input [6:2] ADDR,   //CPU address Bus, bits are actually [6:2]
-    input A12,          // additional address input to allow this to co-exist with A4000 IDE card.
+    //input A12,          // additional address input to allow this to co-exist with A4000 IDE card.
     
     // Bus Mastering/Arbitration.
 
@@ -59,27 +59,27 @@ module RESDMAC(
     // Peripheral port Control signals
     input _DREQ,
     output _DACK,
-    input _IORDY,
+    //input _IORDY,
 
     input INTA,         //Interupt from WD33c93A (SCSI)
-    input INTB,         //Spare Interupt pin.
+    //input INTB,         //Spare Interupt pin.
 
     output _IOR,        //Active Low read strobe
     output _IOW,        //Ative Low Write strobe
 
     output _CSS,        //Port 0 CS      
-    output _CSX0,       //Port 1A & Port1B CS 
-    output _CSX1,       //Port2 CS 
+    //output _CSX0,       //Port 1A & Port1B CS 
+    //output _CSX1,       //Port2 CS 
 
     // Peripheral Device port
-    inout [15:0] PD_PORT,
+    inout [7:0] PD_PORT,
     
     //Diagnostic LEDS
-    output _LED_RD, //Indicated read from SDMAC or peripherial port.
-    output _LED_WR, //Indicate write to SDMAC or peripherial port.
-    output _LED_DMA  //Indicate DMA cycle/ busmaster.
-    
-
+    output _LED_RD,     //Indicated read from SDMAC or peripherial port.
+    output _LED_WR,     //Indicate write to SDMAC or peripherial port.
+    output _LED_DMA,    //Indicate DMA cycle/busmaster.
+    output OWN_,        //Active low signal to show SDMAC is bus master, This can be used to set direction on level shifters for control signals.
+    output DATA_OE_     //Active low ouput enable for DBUS level shifters.
 );
 
 reg AS_O_;
@@ -108,7 +108,7 @@ wire DREQ_;
 wire nDMAENA;
 wire INCNO;
 wire INCNI;
-wire OWN_;
+//wire OWN_;
 wire LEFTOVERS;
 wire nSCLK;
 wire aCYCLEDONE_;
@@ -158,6 +158,8 @@ wire BO0;
 wire BO1;
 wire RW;
 wire A3;
+wire DSK0_IN_;
+wire DSK1_IN_;
 
 
 registers u_registers(
@@ -194,8 +196,8 @@ CPU_SM u_CPU_SM(
     .SIZE1         (SIZE1_CPUSM ),
     .aRESET_       (_RST        ),
     .STERM_        (_STERM      ),
-    .DSACK0_       (_DSACK[0]   ),
-    .DSACK1_       (_DSACK[1]   ),
+    .DSACK0_       (DSK0_IN_    ),
+    .DSACK1_       (DSK1_IN_    ),
     .DSACK         (DSACK_CPU_SM),
     .aCYCLEDONE_   (aCYCLEDONE_ ),
     .CLK           (SCLK        ),
@@ -280,7 +282,7 @@ fifo int_fifo(
 
 datapath u_datapath(
     .DATA_IO   (DATA        ),
-    .PD        (PD_PORT[7:0]),
+    .PD        (PD_PORT     ),
     .OD        (OD          ),
     .MOD       (MOD         ),
     .PAS       (PAS         ),
@@ -361,13 +363,16 @@ assign DREQ_ = (~DMAENA | _DREQ);
 assign LEFTOVERS = (~BOEQ0 & FLUSHFIFO & FIFOEMPTY);
 assign INCNO = (INCNO_CPU | INCNO_SCSI);
 assign INCNI = (INCNI_CPU | INCNI_SCSI);
-assign aCYCLEDONE_ = ~(_BGACK & _AS & _DSACK[0] & _DSACK[1] & _STERM);
+assign aCYCLEDONE_ = ~(_BGACK & _AS & DSK0_IN_ & DSK1_IN_ & _STERM);
 assign DSACK_CPU_SM = ~(DSACK_LATCHED_[0] & DSACK_LATCHED_[1]);
+assign DSK0_IN_ = _BERR & _DSACK[0];
+assign DSK1_IN_ = _BERR & _DSACK[1];
 
-assign PD_PORT[15:8]  = 8'bzzzzzzzz;
-assign _CSX0 = 1'bz;
-assign _CSX1 = 1'bz;
+//assign PD_PORT[15:8]  = 8'bzzzzzzzz;
+//assign _CSX0 = 1'bz;
+//assign _CSX1 = 1'bz;
 assign A3 = ADDR[3];
+assign DATA_OE_ = (_AS | _CS | H_0C);
 
 endmodule
 

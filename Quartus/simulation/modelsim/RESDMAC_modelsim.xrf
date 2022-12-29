@@ -30,6 +30,7 @@ source_file = 1, /home/mike/EAGLE/projects/SDMAC-Replacement/RTL/CPU_SM/CPU_SM.v
 source_file = 1, /home/mike/EAGLE/projects/SDMAC-Replacement/Quartus/db/RESDMAC.cbx.xml
 design_name = RESDMAC
 instance = comp, \u_SCSI_SM|INCBO_o , u_SCSI_SM|INCBO_o, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_CPU_SM|u_CPU_SM_outputs|nBREQ_d~4 , u_CPU_SM|u_CPU_SM_outputs|nBREQ_d~4, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E12~0 , u_CPU_SM|u_CPU_SM_inputs|E12~0, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E46_s_E59_s~2 , u_CPU_SM|u_CPU_SM_inputs|E46_s_E59_s~2, RESDMAC, 1
@@ -87,17 +88,48 @@ instance = comp, \int_fifo|Mux28~0 , int_fifo|Mux28~0, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[6][27] , int_fifo|BUFFER[6][27], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[6][11] , int_fifo|BUFFER[6][11], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[1][11] , int_fifo|BUFFER[1][11], RESDMAC, 1
+=======
+instance = comp, \u_CPU_SM|u_cpudff1|cpudff1_d~9 , u_CPU_SM|u_cpudff1|cpudff1_d~9, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff3|p3a~0 , u_CPU_SM|u_cpudff3|p3a~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff3|p3c~1 , u_CPU_SM|u_cpudff3|p3c~1, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff3|cpudff3_d~0 , u_CPU_SM|u_cpudff3|cpudff3_d~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff3|cpudff3_d~1 , u_CPU_SM|u_cpudff3|cpudff3_d~1, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff4|p4a~2 , u_CPU_SM|u_cpudff4|p4a~2, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff4|cpudff4_d~8 , u_CPU_SM|u_cpudff4|cpudff4_d~8, RESDMAC, 1
+instance = comp, \u_CPU_SM|DREQ_ , u_CPU_SM|DREQ_, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff5|cpudff5_d~8 , u_CPU_SM|u_cpudff5|cpudff5_d~8, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff2|cpudff2_d~3 , u_CPU_SM|u_cpudff2|cpudff2_d~3, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E16~0 , u_CPU_SM|u_CPU_SM_inputs|E16~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff2|cpudff2_d~7 , u_CPU_SM|u_cpudff2|cpudff2_d~7, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E[13]~5 , u_SCSI_SM|u_scsi_sm_inputs|E[13]~5, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E21~0 , u_SCSI_SM|u_scsi_sm_inputs|E21~0, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[4]~1 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[4]~1, RESDMAC, 1
+instance = comp, \u_SCSI_SM|RDFIFO_d , u_SCSI_SM|RDFIFO_d, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[2]~19 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[2]~19, RESDMAC, 1
+instance = comp, \u_SCSI_SM|RIFIFO_d , u_SCSI_SM|RIFIFO_d, RESDMAC, 1
+instance = comp, \u_registers|u_addr_decoder|CONTR_WR , u_registers|u_addr_decoder|CONTR_WR, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|LD_LATCH[8] , u_datapath|u_datapath_output|LD_LATCH[8], RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|UD_LATCH[2] , u_datapath|u_datapath_output|UD_LATCH[2], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][1] , int_fifo|BUFFER[2][1], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][1] , int_fifo|BUFFER[0][1], RESDMAC, 1
+instance = comp, \int_fifo|Mux30~2 , int_fifo|Mux30~2, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][25] , int_fifo|BUFFER[3][25], RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector1~0 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector1~0, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][9] , int_fifo|BUFFER[2][9], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][9] , int_fifo|BUFFER[0][9], RESDMAC, 1
+instance = comp, \int_fifo|Mux22~2 , int_fifo|Mux22~2, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][18] , int_fifo|BUFFER[6][18], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][2] , int_fifo|BUFFER[6][2], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][26] , int_fifo|BUFFER[2][26], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][26] , int_fifo|BUFFER[0][26], RESDMAC, 1
+instance = comp, \int_fifo|Mux5~2 , int_fifo|Mux5~2, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector3~0 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector3~0, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][19] , int_fifo|BUFFER[3][19], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][27] , int_fifo|BUFFER[3][27], RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|BUFFER[6][20] , int_fifo|BUFFER[6][20], RESDMAC, 1
-instance = comp, \int_fifo|BUFFER[5][20] , int_fifo|BUFFER[5][20], RESDMAC, 1
-instance = comp, \int_fifo|BUFFER[4][20] , int_fifo|BUFFER[4][20], RESDMAC, 1
-instance = comp, \int_fifo|Mux11~0 , int_fifo|Mux11~0, RESDMAC, 1
-instance = comp, \int_fifo|BUFFER[7][20] , int_fifo|BUFFER[7][20], RESDMAC, 1
-instance = comp, \int_fifo|Mux11~1 , int_fifo|Mux11~1, RESDMAC, 1
-instance = comp, \int_fifo|BUFFER[1][20] , int_fifo|BUFFER[1][20], RESDMAC, 1
-instance = comp, \int_fifo|BUFFER[2][20] , int_fifo|BUFFER[2][20], RESDMAC, 1
-instance = comp, \int_fifo|BUFFER[0][20] , int_fifo|BUFFER[0][20], RESDMAC, 1
-instance = comp, \int_fifo|Mux11~2 , int_fifo|Mux11~2, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[3][20] , int_fifo|BUFFER[3][20], RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \int_fifo|Mux11~3 , int_fifo|Mux11~3, RESDMAC, 1
 instance = comp, \int_fifo|Mux11~4 , int_fifo|Mux11~4, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[5][4] , int_fifo|BUFFER[5][4], RESDMAC, 1
@@ -137,6 +169,28 @@ instance = comp, \int_fifo|BUFFER[2][15] , int_fifo|BUFFER[2][15], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[0][15] , int_fifo|BUFFER[0][15], RESDMAC, 1
 instance = comp, \int_fifo|Mux16~2 , int_fifo|Mux16~2, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E37_s_E44_s , u_CPU_SM|u_CPU_SM_inputs|E37_s_E44_s, RESDMAC, 1
+=======
+instance = comp, \int_fifo|BUFFER[6][4] , int_fifo|BUFFER[6][4], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][4] , int_fifo|BUFFER[5][4], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][4] , int_fifo|BUFFER[4][4], RESDMAC, 1
+instance = comp, \int_fifo|Mux27~0 , int_fifo|Mux27~0, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][4] , int_fifo|BUFFER[7][4], RESDMAC, 1
+instance = comp, \int_fifo|Mux27~1 , int_fifo|Mux27~1, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][12] , int_fifo|BUFFER[6][12], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][12] , int_fifo|BUFFER[1][12], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][5] , int_fifo|BUFFER[5][5], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][5] , int_fifo|BUFFER[4][5], RESDMAC, 1
+instance = comp, \int_fifo|Mux26~0 , int_fifo|Mux26~0, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][21] , int_fifo|BUFFER[6][21], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][21] , int_fifo|BUFFER[3][21], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][29] , int_fifo|BUFFER[3][29], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][22] , int_fifo|BUFFER[6][22], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][30] , int_fifo|BUFFER[1][30], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][14] , int_fifo|BUFFER[7][14], RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector7~0 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector7~0, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][23] , int_fifo|BUFFER[6][23], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][23] , int_fifo|BUFFER[1][23], RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|u_full_empty_ctr|clk , int_fifo|u_full_empty_ctr|clk, RESDMAC, 1
 instance = comp, \u_registers|u_addr_decoder|ACR_WR , u_registers|u_addr_decoder|ACR_WR, RESDMAC, 1
 instance = comp, \int_fifo|u_byte_ptr|BO1_CLK , int_fifo|u_byte_ptr|BO1_CLK, RESDMAC, 1
@@ -146,9 +200,17 @@ instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E[3]~12 , u_SCSI_SM|u_scsi_sm_input
 instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|INCBO~1 , u_SCSI_SM|u_scsi_sm_outputs|INCBO~1, RESDMAC, 1
 instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E[4]~13 , u_SCSI_SM|u_scsi_sm_inputs|E[4]~13, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_CPU_SM_outputs|SIZE1_d~1 , u_CPU_SM|u_CPU_SM_outputs|SIZE1_d~1, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_CPU_SM|u_CPU_SM_outputs|F2CPUH_Z~0 , u_CPU_SM|u_CPU_SM_outputs|F2CPUH_Z~0, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_CPU_SM_outputs|F2CPUH_d~3 , u_CPU_SM|u_CPU_SM_outputs|F2CPUH_d~3, RESDMAC, 1
 instance = comp, \u_datapath|ID[20]~24 , u_datapath|ID[20]~24, RESDMAC, 1
+=======
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|SIZE1_d~3 , u_CPU_SM|u_CPU_SM_outputs|SIZE1_d~3, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|SIZE1_Y~2 , u_CPU_SM|u_CPU_SM_outputs|SIZE1_Y~2, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|BRIDGEOUT_d~0 , u_CPU_SM|u_CPU_SM_outputs|BRIDGEOUT_d~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|BRIDGEOUT_d~1 , u_CPU_SM|u_CPU_SM_outputs|BRIDGEOUT_d~1, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|F2CPUH_X~1 , u_CPU_SM|u_CPU_SM_outputs|F2CPUH_X~1, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \u_registers|u_addr_decoder|ST_DMA , u_registers|u_addr_decoder|ST_DMA, RESDMAC, 1
 instance = comp, \u_registers|u_registers_term|TERM_COUNTER[2] , u_registers|u_registers_term|TERM_COUNTER[2], RESDMAC, 1
 instance = comp, \u_registers|u_registers_term|TERM_COUNTER[1] , u_registers|u_registers_term|TERM_COUNTER[1], RESDMAC, 1
@@ -159,6 +221,10 @@ instance = comp, \int_fifo|u_write_strobes|LMWS~0 , int_fifo|u_write_strobes|LMW
 instance = comp, \int_fifo|u_write_strobes|UMWS , int_fifo|u_write_strobes|UMWS, RESDMAC, 1
 instance = comp, \u_CPU_SM|INCNO , u_CPU_SM|INCNO, RESDMAC, 1
 instance = comp, \u_SCSI_SM|INCNO_o , u_SCSI_SM|INCNO_o, RESDMAC, 1
+<<<<<<< Updated upstream
+=======
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|DIEL_d~1 , u_CPU_SM|u_CPU_SM_outputs|DIEL_d~1, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|u_write_strobes|UUWS , int_fifo|u_write_strobes|UUWS, RESDMAC, 1
 instance = comp, \int_fifo|u_write_strobes|LMWS , int_fifo|u_write_strobes|LMWS, RESDMAC, 1
 instance = comp, \u_registers|u_registers_term|TERM_COUNTER[2]~0 , u_registers|u_registers_term|TERM_COUNTER[2]~0, RESDMAC, 1
@@ -177,9 +243,15 @@ instance = comp, \u_CPU_SM|u_CPU_SM_outputs|PLLW_d~2 , u_CPU_SM|u_CPU_SM_outputs
 instance = comp, \u_CPU_SM|u_CPU_SM_outputs|PLLW_d~3 , u_CPU_SM|u_CPU_SM_outputs|PLLW_d~3, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_CPU_SM_outputs|PLLW_d~4 , u_CPU_SM|u_CPU_SM_outputs|PLLW_d~4, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_CPU_SM_outputs|PLLW_d~5 , u_CPU_SM|u_CPU_SM_outputs|PLLW_d~5, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_CPU_SM|u_CPU_SM_outputs|nBREQ_d~10 , u_CPU_SM|u_CPU_SM_outputs|nBREQ_d~10, RESDMAC, 1
 instance = comp, \int_fifo|u_write_strobes|LLWS , int_fifo|u_write_strobes|LLWS, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_cpudff4|cpudff4_d~17 , u_CPU_SM|u_cpudff4|cpudff4_d~17, RESDMAC, 1
+=======
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|F2CPUH_d~5 , u_CPU_SM|u_CPU_SM_outputs|F2CPUH_d~5, RESDMAC, 1
+instance = comp, \int_fifo|u_write_strobes|LLWS , int_fifo|u_write_strobes|LLWS, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|SCSI_CS~0 , u_SCSI_SM|u_scsi_sm_outputs|SCSI_CS~0, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|u_write_strobes|LMWS~clkctrl , int_fifo|u_write_strobes|LMWS~clkctrl, RESDMAC, 1
 instance = comp, \int_fifo|u_write_strobes|UMWS~clkctrl , int_fifo|u_write_strobes|UMWS~clkctrl, RESDMAC, 1
 instance = comp, \int_fifo|u_write_strobes|LLWS~clkctrl , int_fifo|u_write_strobes|LLWS~clkctrl, RESDMAC, 1
@@ -188,6 +260,7 @@ instance = comp, \u_CPU_SM|PDS~clkctrl , u_CPU_SM|PDS~clkctrl, RESDMAC, 1
 instance = comp, \u_CPU_SM|PAS~clkctrl , u_CPU_SM|PAS~clkctrl, RESDMAC, 1
 instance = comp, \int_fifo|u_write_strobes|UUWS~clkctrl , int_fifo|u_write_strobes|UUWS~clkctrl, RESDMAC, 1
 instance = comp, \u_SCSI_SM|RIFIFO_d~feeder , u_SCSI_SM|RIFIFO_d~feeder, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \int_fifo|BUFFER[7][0]~feeder , int_fifo|BUFFER[7][0]~feeder, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[6][24]~feeder , int_fifo|BUFFER[6][24]~feeder, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[3][17]~feeder , int_fifo|BUFFER[3][17]~feeder, RESDMAC, 1
@@ -211,6 +284,17 @@ instance = comp, \int_fifo|BUFFER[6][7]~feeder , int_fifo|BUFFER[6][7]~feeder, R
 instance = comp, \int_fifo|BUFFER[1][23]~feeder , int_fifo|BUFFER[1][23]~feeder, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[2][15]~feeder , int_fifo|BUFFER[2][15]~feeder, RESDMAC, 1
 instance = comp, \LLW~feeder , LLW~feeder, RESDMAC, 1
+=======
+instance = comp, \int_fifo|BUFFER[3][25]~feeder , int_fifo|BUFFER[3][25]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][18]~feeder , int_fifo|BUFFER[6][18]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][19]~feeder , int_fifo|BUFFER[3][19]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][20]~feeder , int_fifo|BUFFER[3][20]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][4]~feeder , int_fifo|BUFFER[4][4]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][12]~feeder , int_fifo|BUFFER[6][12]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][12]~feeder , int_fifo|BUFFER[1][12]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][5]~feeder , int_fifo|BUFFER[4][5]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][21]~feeder , int_fifo|BUFFER[3][21]~feeder, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \R_W~I , R_W, RESDMAC, 1
 instance = comp, \_AS~I , _AS, RESDMAC, 1
 instance = comp, \_DSACK[0]~I , _DSACK[0], RESDMAC, 1
@@ -263,22 +347,59 @@ instance = comp, \u_registers|u_registers_cntr|CNTR_O[2] , u_registers|u_registe
 instance = comp, \u_registers|u_registers_istr|INT , u_registers|u_registers_istr|INT, RESDMAC, 1
 instance = comp, \SCLK~I , SCLK, RESDMAC, 1
 instance = comp, \SCLK~clkctrl , SCLK~clkctrl, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \ADDR[5]~I , ADDR[5], RESDMAC, 1
 instance = comp, \_CS~I , _CS, RESDMAC, 1
 instance = comp, \u_registers|u_addr_decoder|SP_DMA~0 , u_registers|u_addr_decoder|SP_DMA~0, RESDMAC, 1
 instance = comp, \u_registers|u_addr_decoder|h_0C~0 , u_registers|u_addr_decoder|h_0C~0, RESDMAC, 1
 instance = comp, \ADDR[3]~I , ADDR[3], RESDMAC, 1
+=======
+instance = comp, \ADDR[3]~I , ADDR[3], RESDMAC, 1
+instance = comp, \ADDR[4]~I , ADDR[4], RESDMAC, 1
+instance = comp, \ADDR[5]~I , ADDR[5], RESDMAC, 1
+instance = comp, \ADDR[6]~I , ADDR[6], RESDMAC, 1
+instance = comp, \_CS~I , _CS, RESDMAC, 1
+instance = comp, \u_registers|u_addr_decoder|SP_DMA~0 , u_registers|u_addr_decoder|SP_DMA~0, RESDMAC, 1
+instance = comp, \u_registers|u_addr_decoder|h_0C~0 , u_registers|u_addr_decoder|h_0C~0, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \ADDR[2]~I , ADDR[2], RESDMAC, 1
 instance = comp, \u_registers|u_addr_decoder|h_0C , u_registers|u_addr_decoder|h_0C, RESDMAC, 1
+instance = comp, \int_fifo|u_byte_ptr|BO0~0 , int_fifo|u_byte_ptr|BO0~0, RESDMAC, 1
+instance = comp, \int_fifo|u_byte_ptr|BO0 , int_fifo|u_byte_ptr|BO0, RESDMAC, 1
 instance = comp, \int_fifo|u_byte_ptr|MUXZ~0 , int_fifo|u_byte_ptr|MUXZ~0, RESDMAC, 1
 instance = comp, \int_fifo|u_byte_ptr|BO1 , int_fifo|u_byte_ptr|BO1, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_registers|FLUSHFIFO~feeder , u_registers|FLUSHFIFO~feeder, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E23_sd~1 , u_CPU_SM|u_CPU_SM_inputs|E23_sd~1, RESDMAC, 1
+=======
+instance = comp, \aCYCLEDONE_~0 , aCYCLEDONE_~0, RESDMAC, 1
+instance = comp, \aCYCLEDONE_~1 , aCYCLEDONE_~1, RESDMAC, 1
+instance = comp, \u_CPU_SM|nCYCLEDONE , u_CPU_SM|nCYCLEDONE, RESDMAC, 1
+instance = comp, \_BG~I , _BG, RESDMAC, 1
+instance = comp, \u_CPU_SM|BGRANT_~feeder , u_CPU_SM|BGRANT_~feeder, RESDMAC, 1
+instance = comp, \u_CPU_SM|BGRANT_ , u_CPU_SM|BGRANT_, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff5|cpudff5_d~0 , u_CPU_SM|u_cpudff5|cpudff5_d~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E32~0 , u_CPU_SM|u_CPU_SM_inputs|E32~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E55~0 , u_CPU_SM|u_CPU_SM_inputs|E55~0, RESDMAC, 1
+instance = comp, \u_registers|A1 , u_registers|A1, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff3|p3b~0 , u_CPU_SM|u_cpudff3|p3b~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff3|p3b~1 , u_CPU_SM|u_cpudff3|p3b~1, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff3|p3b~2 , u_CPU_SM|u_cpudff3|p3b~2, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E40_s_E41_s~0 , u_CPU_SM|u_CPU_SM_inputs|E40_s_E41_s~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E37_s_E44_s~0 , u_CPU_SM|u_CPU_SM_inputs|E37_s_E44_s~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|F2CPUL_d~0 , u_CPU_SM|u_CPU_SM_outputs|F2CPUL_d~0, RESDMAC, 1
+instance = comp, \_STERM~I , _STERM, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff3|p3b~3 , u_CPU_SM|u_cpudff3|p3b~3, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff5|cpudff5_d~5 , u_CPU_SM|u_cpudff5|cpudff5_d~5, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E23_sd~1 , u_CPU_SM|u_CPU_SM_inputs|E23_sd~1, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E23_sd , u_CPU_SM|u_CPU_SM_inputs|E23_sd, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \DSACK_LATCHED_[0]~1 , DSACK_LATCHED_[0]~1, RESDMAC, 1
 instance = comp, \DSACK_LATCHED_[0] , DSACK_LATCHED_[0], RESDMAC, 1
 instance = comp, \DSACK_LATCHED_[1]~0 , DSACK_LATCHED_[1]~0, RESDMAC, 1
 instance = comp, \DSACK_LATCHED_[1] , DSACK_LATCHED_[1], RESDMAC, 1
 instance = comp, \DSACK_CPU_SM~0 , DSACK_CPU_SM~0, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_CPU_SM|u_cpudff1|cpudff1_d~4 , u_CPU_SM|u_cpudff1|cpudff1_d~4, RESDMAC, 1
 instance = comp, \_STERM~I , _STERM, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_cpudff3|p3b~2 , u_CPU_SM|u_cpudff3|p3b~2, RESDMAC, 1
@@ -391,10 +512,106 @@ instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E[4]~4 , u_SCSI_SM|u_scsi_sm_inputs
 instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E26~0 , u_CPU_SM|u_CPU_SM_inputs|E26~0, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_cpudff2|cpudff2_d~8 , u_CPU_SM|u_cpudff2|cpudff2_d~8, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_cpudff2|p2c~0 , u_CPU_SM|u_cpudff2|p2c~0, RESDMAC, 1
+=======
+instance = comp, \u_CPU_SM|u_cpudff5|cpudff5_d~6 , u_CPU_SM|u_cpudff5|cpudff5_d~6, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E23_sd~2 , u_CPU_SM|u_CPU_SM_inputs|E23_sd~2, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff4|p4a~1 , u_CPU_SM|u_cpudff4|p4a~1, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|F2CPUH_X~0 , u_CPU_SM|u_CPU_SM_outputs|F2CPUH_X~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff5|cpudff5_d~7 , u_CPU_SM|u_cpudff5|cpudff5_d~7, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff5|cpudff5_d~9 , u_CPU_SM|u_cpudff5|cpudff5_d~9, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff3|p3c~0 , u_CPU_SM|u_cpudff3|p3c~0, RESDMAC, 1
+instance = comp, \u_registers|u_registers_cntr|CNTR_O[1] , u_registers|u_registers_cntr|CNTR_O[1], RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff1|p1a~0 , u_CPU_SM|u_cpudff1|p1a~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff1|p1a~1 , u_CPU_SM|u_cpudff1|p1a~1, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E46_s_E59_s~1 , u_CPU_SM|u_CPU_SM_inputs|E46_s_E59_s~1, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E23_sd~0 , u_CPU_SM|u_CPU_SM_inputs|E23_sd~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E25_d~0 , u_CPU_SM|u_CPU_SM_inputs|E25_d~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff2|p2a~0 , u_CPU_SM|u_cpudff2|p2a~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|INCFIFO_d~0 , u_CPU_SM|u_CPU_SM_outputs|INCFIFO_d~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|INCFIFO_d~1 , u_CPU_SM|u_CPU_SM_outputs|INCFIFO_d~1, RESDMAC, 1
+instance = comp, \u_CPU_SM|INCFIFO , u_CPU_SM|INCFIFO, RESDMAC, 1
+instance = comp, \int_fifo|u_full_empty_ctr|FIFOEMPTY~0 , int_fifo|u_full_empty_ctr|FIFOEMPTY~0, RESDMAC, 1
+instance = comp, \int_fifo|u_full_empty_ctr|COUNT[2]~1 , int_fifo|u_full_empty_ctr|COUNT[2]~1, RESDMAC, 1
+instance = comp, \int_fifo|u_full_empty_ctr|COUNT[2] , int_fifo|u_full_empty_ctr|COUNT[2], RESDMAC, 1
+instance = comp, \int_fifo|u_full_empty_ctr|FIFOFULL~0 , int_fifo|u_full_empty_ctr|FIFOFULL~0, RESDMAC, 1
+instance = comp, \int_fifo|u_full_empty_ctr|COUNT[1]~2 , int_fifo|u_full_empty_ctr|COUNT[1]~2, RESDMAC, 1
+instance = comp, \int_fifo|u_full_empty_ctr|COUNT[1]~3 , int_fifo|u_full_empty_ctr|COUNT[1]~3, RESDMAC, 1
+instance = comp, \int_fifo|u_full_empty_ctr|COUNT[1] , int_fifo|u_full_empty_ctr|COUNT[1], RESDMAC, 1
+instance = comp, \int_fifo|u_full_empty_ctr|FIFOEMPTY~2 , int_fifo|u_full_empty_ctr|FIFOEMPTY~2, RESDMAC, 1
+instance = comp, \int_fifo|u_full_empty_ctr|FIFOEMPTY~1 , int_fifo|u_full_empty_ctr|FIFOEMPTY~1, RESDMAC, 1
+instance = comp, \int_fifo|u_full_empty_ctr|FIFOEMPTY~3 , int_fifo|u_full_empty_ctr|FIFOEMPTY~3, RESDMAC, 1
+instance = comp, \int_fifo|u_full_empty_ctr|FIFOEMPTY , int_fifo|u_full_empty_ctr|FIFOEMPTY, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff2|p2a~2 , u_CPU_SM|u_cpudff2|p2a~2, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff5|cpudff5_d~2 , u_CPU_SM|u_cpudff5|cpudff5_d~2, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff2|p2a~1 , u_CPU_SM|u_cpudff2|p2a~1, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff5|cpudff5_d~1 , u_CPU_SM|u_cpudff5|cpudff5_d~1, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff5|cpudff5_d~3 , u_CPU_SM|u_cpudff5|cpudff5_d~3, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff5|cpudff5_d~4 , u_CPU_SM|u_cpudff5|cpudff5_d~4, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff5|cpudff5_d~10 , u_CPU_SM|u_cpudff5|cpudff5_d~10, RESDMAC, 1
+instance = comp, \u_SCSI_SM|CRESET_ , u_SCSI_SM|CRESET_, RESDMAC, 1
+instance = comp, \u_CPU_SM|STATE[4] , u_CPU_SM|STATE[4], RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|nINCNI_d~0 , u_CPU_SM|u_CPU_SM_outputs|nINCNI_d~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff4|cpudff4_d~7 , u_CPU_SM|u_cpudff4|cpudff4_d~7, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E53~0 , u_CPU_SM|u_CPU_SM_inputs|E53~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff1|cpudff1_d~13 , u_CPU_SM|u_cpudff1|cpudff1_d~13, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E[4]~4 , u_SCSI_SM|u_scsi_sm_inputs|E[4]~4, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E26~0 , u_CPU_SM|u_CPU_SM_inputs|E26~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff1|cpudff1_d~6 , u_CPU_SM|u_cpudff1|cpudff1_d~6, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E36_s_E47_s~0 , u_CPU_SM|u_CPU_SM_inputs|E36_s_E47_s~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff1|p1c~0 , u_CPU_SM|u_cpudff1|p1c~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff1|cpudff1_d~2 , u_CPU_SM|u_cpudff1|cpudff1_d~2, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff1|cpudff1_d~3 , u_CPU_SM|u_cpudff1|cpudff1_d~3, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E46_s_E59_s~0 , u_CPU_SM|u_CPU_SM_inputs|E46_s_E59_s~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff1|cpudff1_d~4 , u_CPU_SM|u_cpudff1|cpudff1_d~4, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff4|cpudff4_d~6 , u_CPU_SM|u_cpudff4|cpudff4_d~6, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff1|cpudff1_d~5 , u_CPU_SM|u_cpudff1|cpudff1_d~5, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff1|cpudff1_d~7 , u_CPU_SM|u_cpudff1|cpudff1_d~7, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E46_s_E59_s~2 , u_CPU_SM|u_CPU_SM_inputs|E46_s_E59_s~2, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff1|cpudff1_d~8 , u_CPU_SM|u_cpudff1|cpudff1_d~8, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E27~0 , u_CPU_SM|u_CPU_SM_inputs|E27~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff1|cpudff1_d~10 , u_CPU_SM|u_cpudff1|cpudff1_d~10, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff1|cpudff1_d~11 , u_CPU_SM|u_cpudff1|cpudff1_d~11, RESDMAC, 1
+instance = comp, \u_CPU_SM|STATE[0] , u_CPU_SM|STATE[0], RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E30_d~0 , u_CPU_SM|u_CPU_SM_inputs|E30_d~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E29_sd~0 , u_CPU_SM|u_CPU_SM_inputs|E29_sd~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E37_s_E44_s , u_CPU_SM|u_CPU_SM_inputs|E37_s_E44_s, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|BRIDGEOUT_Z~0 , u_CPU_SM|u_CPU_SM_outputs|BRIDGEOUT_Z~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|F~0 , u_CPU_SM|u_CPU_SM_outputs|F~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E40_s_E41_s~1 , u_CPU_SM|u_CPU_SM_inputs|E40_s_E41_s~1, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|F~1 , u_CPU_SM|u_CPU_SM_outputs|F~1, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|F~2 , u_CPU_SM|u_CPU_SM_outputs|F~2, RESDMAC, 1
+instance = comp, \u_SCSI_SM|RDFIFO_o~feeder , u_SCSI_SM|RDFIFO_o~feeder, RESDMAC, 1
+instance = comp, \u_SCSI_SM|RDRST_~0 , u_SCSI_SM|RDRST_~0, RESDMAC, 1
+instance = comp, \u_SCSI_SM|RDFIFO_o , u_SCSI_SM|RDFIFO_o, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|DECFIFO_d~0 , u_CPU_SM|u_CPU_SM_outputs|DECFIFO_d~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|DECFIFO , u_CPU_SM|DECFIFO, RESDMAC, 1
+instance = comp, \int_fifo|u_full_empty_ctr|COUNT~4 , int_fifo|u_full_empty_ctr|COUNT~4, RESDMAC, 1
+instance = comp, \int_fifo|u_full_empty_ctr|COUNT[0]~0 , int_fifo|u_full_empty_ctr|COUNT[0]~0, RESDMAC, 1
+instance = comp, \int_fifo|u_full_empty_ctr|COUNT~5 , int_fifo|u_full_empty_ctr|COUNT~5, RESDMAC, 1
+instance = comp, \int_fifo|u_full_empty_ctr|COUNT[0] , int_fifo|u_full_empty_ctr|COUNT[0], RESDMAC, 1
+instance = comp, \int_fifo|u_full_empty_ctr|FIFOFULL~1 , int_fifo|u_full_empty_ctr|FIFOFULL~1, RESDMAC, 1
+instance = comp, \int_fifo|u_full_empty_ctr|FIFOFULL~2 , int_fifo|u_full_empty_ctr|FIFOFULL~2, RESDMAC, 1
+instance = comp, \int_fifo|u_full_empty_ctr|FIFOFULL , int_fifo|u_full_empty_ctr|FIFOFULL, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff2|cpudff2_d~0 , u_CPU_SM|u_cpudff2|cpudff2_d~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff2|cpudff2_d~1 , u_CPU_SM|u_cpudff2|cpudff2_d~1, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E31~1 , u_CPU_SM|u_CPU_SM_inputs|E31~1, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff2|p2c~1 , u_CPU_SM|u_cpudff2|p2c~1, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff2|cpudff2_d~4 , u_CPU_SM|u_cpudff2|cpudff2_d~4, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff2|p2a~3 , u_CPU_SM|u_cpudff2|p2a~3, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff2|cpudff2_d~5 , u_CPU_SM|u_cpudff2|cpudff2_d~5, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff2|cpudff2_d~2 , u_CPU_SM|u_cpudff2|cpudff2_d~2, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|nBREQ_d~4 , u_CPU_SM|u_CPU_SM_outputs|nBREQ_d~4, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E12~0 , u_CPU_SM|u_CPU_SM_inputs|E12~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff2|p2c~4 , u_CPU_SM|u_cpudff2|p2c~4, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff2|cpudff2_d~8 , u_CPU_SM|u_cpudff2|cpudff2_d~8, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff2|cpudff2_d~9 , u_CPU_SM|u_cpudff2|cpudff2_d~9, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \u_CPU_SM|u_cpudff2|cpudff2_d~10 , u_CPU_SM|u_cpudff2|cpudff2_d~10, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff2|cpudff2_d~6 , u_CPU_SM|u_cpudff2|cpudff2_d~6, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_cpudff2|cpudff2_d~11 , u_CPU_SM|u_cpudff2|cpudff2_d~11, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_cpudff2|cpudff2_d~12 , u_CPU_SM|u_cpudff2|cpudff2_d~12, RESDMAC, 1
 instance = comp, \u_CPU_SM|STATE[1] , u_CPU_SM|STATE[1], RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E55~0 , u_CPU_SM|u_CPU_SM_inputs|E55~0, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E36_s_E47_s~0 , u_CPU_SM|u_CPU_SM_inputs|E36_s_E47_s~0, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_cpudff1|cpudff1_d~2 , u_CPU_SM|u_cpudff1|cpudff1_d~2, RESDMAC, 1
@@ -428,10 +645,30 @@ instance = comp, \u_CPU_SM|STATE[4] , u_CPU_SM|STATE[4], RESDMAC, 1
 instance = comp, \LEFTOVERS~0 , LEFTOVERS~0, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E21~0 , u_CPU_SM|u_CPU_SM_inputs|E21~0, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E0~0 , u_CPU_SM|u_CPU_SM_inputs|E0~0, RESDMAC, 1
+=======
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E57_s~0 , u_CPU_SM|u_CPU_SM_inputs|E57_s~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|F2CPUL_d~1 , u_CPU_SM|u_CPU_SM_outputs|F2CPUL_d~1, RESDMAC, 1
+instance = comp, \u_registers|FLUSHFIFO~feeder , u_registers|FLUSHFIFO~feeder, RESDMAC, 1
+instance = comp, \u_registers|u_registers_cntr|CNTR_O[8]~feeder , u_registers|u_registers_cntr|CNTR_O[8]~feeder, RESDMAC, 1
+instance = comp, \u_registers|u_addr_decoder|SP_DMA~1 , u_registers|u_addr_decoder|SP_DMA~1, RESDMAC, 1
+instance = comp, \u_registers|u_registers_cntr|CLR_DMAENA~0 , u_registers|u_registers_cntr|CLR_DMAENA~0, RESDMAC, 1
+instance = comp, \u_registers|u_registers_cntr|CNTR_O[8] , u_registers|u_registers_cntr|CNTR_O[8], RESDMAC, 1
+instance = comp, \u_CPU_SM|DMAENA~feeder , u_CPU_SM|DMAENA~feeder, RESDMAC, 1
+instance = comp, \u_CPU_SM|DMAENA , u_CPU_SM|DMAENA, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|nBREQ_d~6 , u_CPU_SM|u_CPU_SM_outputs|nBREQ_d~6, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E7~0 , u_CPU_SM|u_CPU_SM_inputs|E7~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|FLUSHFIFO , u_CPU_SM|FLUSHFIFO, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E0~0 , u_CPU_SM|u_CPU_SM_inputs|E0~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E5~2 , u_CPU_SM|u_CPU_SM_inputs|E5~2, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E27~1 , u_CPU_SM|u_CPU_SM_inputs|E27~1, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E27~2 , u_CPU_SM|u_CPU_SM_inputs|E27~2, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|nSTOPFLUSH_d~0 , u_CPU_SM|u_CPU_SM_outputs|nSTOPFLUSH_d~0, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \u_CPU_SM|u_CPU_SM_outputs|nSTOPFLUSH_d , u_CPU_SM|u_CPU_SM_outputs|nSTOPFLUSH_d, RESDMAC, 1
 instance = comp, \u_CPU_SM|STOPFLUSH , u_CPU_SM|STOPFLUSH, RESDMAC, 1
 instance = comp, \u_registers|CLR_FLUSHFIFO~0 , u_registers|CLR_FLUSHFIFO~0, RESDMAC, 1
 instance = comp, \u_registers|FLUSHFIFO , u_registers|FLUSHFIFO, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E4~2 , u_CPU_SM|u_CPU_SM_inputs|E4~2, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_CPU_SM_outputs|nBREQ_d~8 , u_CPU_SM|u_CPU_SM_outputs|nBREQ_d~8, RESDMAC, 1
 instance = comp, \u_CPU_SM|BREQ , u_CPU_SM|BREQ, RESDMAC, 1
@@ -443,14 +680,58 @@ instance = comp, \u_CPU_SM|u_CPU_SM_outputs|SIZE1_Y~1 , u_CPU_SM|u_CPU_SM_output
 instance = comp, \u_CPU_SM|u_CPU_SM_outputs|SIZE1_d~3 , u_CPU_SM|u_CPU_SM_outputs|SIZE1_d~3, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_cpudff1|cpudff1_d~12 , u_CPU_SM|u_cpudff1|cpudff1_d~12, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_CPU_SM_outputs|SIZE1_d~0 , u_CPU_SM|u_CPU_SM_outputs|SIZE1_d~0, RESDMAC, 1
+=======
+instance = comp, \LEFTOVERS~0 , LEFTOVERS~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E21~0 , u_CPU_SM|u_CPU_SM_inputs|E21~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff4|cpudff4_d~16 , u_CPU_SM|u_cpudff4|cpudff4_d~16, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff4|cpudff4_d~10 , u_CPU_SM|u_cpudff4|cpudff4_d~10, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|nBREQ_d~5 , u_CPU_SM|u_CPU_SM_outputs|nBREQ_d~5, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|nBREQ_d~9 , u_CPU_SM|u_CPU_SM_outputs|nBREQ_d~9, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff4|cpudff4_d~11 , u_CPU_SM|u_cpudff4|cpudff4_d~11, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff4|p4a~3 , u_CPU_SM|u_cpudff4|p4a~3, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff4|cpudff4_d~13 , u_CPU_SM|u_cpudff4|cpudff4_d~13, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff4|cpudff4_d~17 , u_CPU_SM|u_cpudff4|cpudff4_d~17, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff4|cpudff4_d~12 , u_CPU_SM|u_cpudff4|cpudff4_d~12, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff4|cpudff4_d~14 , u_CPU_SM|u_cpudff4|cpudff4_d~14, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff4|cpudff4_d~15 , u_CPU_SM|u_cpudff4|cpudff4_d~15, RESDMAC, 1
+instance = comp, \u_CPU_SM|STATE[3] , u_CPU_SM|STATE[3], RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E37_s_E44_s~1 , u_CPU_SM|u_CPU_SM_inputs|E37_s_E44_s~1, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E8~0 , u_CPU_SM|u_CPU_SM_inputs|E8~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E4~2 , u_CPU_SM|u_CPU_SM_inputs|E4~2, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|F2CPUL_d~2 , u_CPU_SM|u_CPU_SM_outputs|F2CPUL_d~2, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E56~0 , u_CPU_SM|u_CPU_SM_inputs|E56~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff3|p3a~1 , u_CPU_SM|u_cpudff3|p3a~1, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff3|cpudff3_d~2 , u_CPU_SM|u_cpudff3|cpudff3_d~2, RESDMAC, 1
+instance = comp, \u_CPU_SM|STATE[2] , u_CPU_SM|STATE[2], RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|nBREQ_d~7 , u_CPU_SM|u_CPU_SM_outputs|nBREQ_d~7, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|nBREQ_d~10 , u_CPU_SM|u_CPU_SM_outputs|nBREQ_d~10, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|nBREQ_d~8 , u_CPU_SM|u_CPU_SM_outputs|nBREQ_d~8, RESDMAC, 1
+instance = comp, \u_CPU_SM|BREQ , u_CPU_SM|BREQ, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|SIZE1_Y~0 , u_CPU_SM|u_CPU_SM_outputs|SIZE1_Y~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff4|p4a~0 , u_CPU_SM|u_cpudff4|p4a~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|SIZE1_Y~1 , u_CPU_SM|u_CPU_SM_outputs|SIZE1_Y~1, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|SIZE1_d~0 , u_CPU_SM|u_CPU_SM_outputs|SIZE1_d~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff1|cpudff1_d~12 , u_CPU_SM|u_cpudff1|cpudff1_d~12, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \u_CPU_SM|u_CPU_SM_outputs|SIZE1_d~2 , u_CPU_SM|u_CPU_SM_outputs|SIZE1_d~2, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_CPU_SM_outputs|SIZE1_d~4 , u_CPU_SM|u_CPU_SM_outputs|SIZE1_d~4, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_CPU_SM_outputs|SIZE1_d~5 , u_CPU_SM|u_CPU_SM_outputs|SIZE1_d~5, RESDMAC, 1
 instance = comp, \u_CPU_SM|SIZE1 , u_CPU_SM|SIZE1, RESDMAC, 1
+<<<<<<< Updated upstream
+=======
+instance = comp, \u_CPU_SM|u_cpudff4|cpudff4_d~9 , u_CPU_SM|u_cpudff4|cpudff4_d~9, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|BGACK_d~0 , u_CPU_SM|u_CPU_SM_outputs|BGACK_d~0, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \u_CPU_SM|u_CPU_SM_outputs|BGACK_d~1 , u_CPU_SM|u_CPU_SM_outputs|BGACK_d~1, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_CPU_SM_outputs|BGACK_d~2 , u_CPU_SM|u_CPU_SM_outputs|BGACK_d~2, RESDMAC, 1
 instance = comp, \u_CPU_SM|BGACK , u_CPU_SM|BGACK, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_CPU_SM_outputs|F2CPUL_d~3 , u_CPU_SM|u_CPU_SM_outputs|F2CPUL_d~3, RESDMAC, 1
+<<<<<<< Updated upstream
+=======
+instance = comp, \u_CPU_SM|u_cpudff2|p2c~2 , u_CPU_SM|u_cpudff2|p2c~2, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff2|p2c~3 , u_CPU_SM|u_cpudff2|p2c~3, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E60~0 , u_CPU_SM|u_CPU_SM_inputs|E60~0, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \u_CPU_SM|u_CPU_SM_outputs|PLLW_d~0 , u_CPU_SM|u_CPU_SM_outputs|PLLW_d~0, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_CPU_SM_outputs|PAS_d~0 , u_CPU_SM|u_CPU_SM_outputs|PAS_d~0, RESDMAC, 1
 instance = comp, \u_CPU_SM|u_CPU_SM_outputs|PAS_d~1 , u_CPU_SM|u_CPU_SM_outputs|PAS_d~1, RESDMAC, 1
@@ -466,6 +747,7 @@ instance = comp, \u_registers|u_registers_term|REG_DSK_ , u_registers|u_register
 instance = comp, \u_SCSI_SM|nLS2CPU~feeder , u_SCSI_SM|nLS2CPU~feeder, RESDMAC, 1
 instance = comp, \u_SCSI_SM|nLS2CPU , u_SCSI_SM|nLS2CPU, RESDMAC, 1
 instance = comp, \_DSACK~4 , _DSACK~4, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_registers|u_addr_decoder|WDREGREQ , u_registers|u_addr_decoder|WDREGREQ, RESDMAC, 1
 instance = comp, \u_SCSI_SM|CCPUREQ , u_SCSI_SM|CCPUREQ, RESDMAC, 1
 instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E1~1 , u_SCSI_SM|u_scsi_sm_inputs|E1~1, RESDMAC, 1
@@ -479,12 +761,50 @@ instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[4]~1 , u_SCSI_SM|u_scsi
 instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[4]~2 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[4]~2, RESDMAC, 1
 instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[4]~5 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[4]~5, RESDMAC, 1
 instance = comp, \u_SCSI_SM|STATE[4] , u_SCSI_SM|STATE[4], RESDMAC, 1
+=======
+instance = comp, \int_fifo|u_next_out_cntr|COUNT[0]~2 , int_fifo|u_next_out_cntr|COUNT[0]~2, RESDMAC, 1
+instance = comp, \int_fifo|u_next_out_cntr|COUNT[0] , int_fifo|u_next_out_cntr|COUNT[0], RESDMAC, 1
+instance = comp, \u_SCSI_SM|CDSACK_~0 , u_SCSI_SM|CDSACK_~0, RESDMAC, 1
+instance = comp, \u_SCSI_SM|CDSACK_ , u_SCSI_SM|CDSACK_, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[2]~20 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[2]~20, RESDMAC, 1
+instance = comp, \u_registers|u_addr_decoder|WDREGREQ , u_registers|u_addr_decoder|WDREGREQ, RESDMAC, 1
+instance = comp, \u_SCSI_SM|CCPUREQ , u_SCSI_SM|CCPUREQ, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E0~0 , u_SCSI_SM|u_scsi_sm_inputs|E0~0, RESDMAC, 1
+instance = comp, \_DREQ~I , _DREQ, RESDMAC, 1
+instance = comp, \u_SCSI_SM|CDREQ_~feeder , u_SCSI_SM|CDREQ_~feeder, RESDMAC, 1
+instance = comp, \u_SCSI_SM|CDREQ_ , u_SCSI_SM|CDREQ_, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E0~1 , u_SCSI_SM|u_scsi_sm_inputs|E0~1, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|DACK~0 , u_SCSI_SM|u_scsi_sm_outputs|DACK~0, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[2]~21 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[2]~21, RESDMAC, 1
+instance = comp, \u_SCSI_SM|STATE[2] , u_SCSI_SM|STATE[2], RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[0]~15 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[0]~15, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[0]~16 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[0]~16, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[0]~17 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[0]~17, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E1~0 , u_SCSI_SM|u_scsi_sm_inputs|E1~0, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E[9]~14 , u_SCSI_SM|u_scsi_sm_inputs|E[9]~14, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E[7]~6 , u_SCSI_SM|u_scsi_sm_inputs|E[7]~6, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|WE~0 , u_SCSI_SM|u_scsi_sm_outputs|WE~0, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[0]~18 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[0]~18, RESDMAC, 1
+instance = comp, \u_SCSI_SM|STATE[0] , u_SCSI_SM|STATE[0], RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E[13]~8 , u_SCSI_SM|u_scsi_sm_inputs|E[13]~8, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[4]~0 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[4]~0, RESDMAC, 1
+instance = comp, \u_SCSI_SM|RIFIFO_o~feeder , u_SCSI_SM|RIFIFO_o~feeder, RESDMAC, 1
+instance = comp, \u_SCSI_SM|RIRST_~0 , u_SCSI_SM|RIRST_~0, RESDMAC, 1
+instance = comp, \u_SCSI_SM|RIFIFO_o , u_SCSI_SM|RIFIFO_o, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E1~2 , u_SCSI_SM|u_scsi_sm_inputs|E1~2, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E1~3 , u_SCSI_SM|u_scsi_sm_inputs|E1~3, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[4]~2 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[4]~2, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[4]~5 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[4]~5, RESDMAC, 1
+instance = comp, \u_SCSI_SM|STATE[4] , u_SCSI_SM|STATE[4], RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[1]~13 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[1]~13, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[1]~11 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[1]~11, RESDMAC, 1
 instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E[16]~9 , u_SCSI_SM|u_scsi_sm_inputs|E[16]~9, RESDMAC, 1
 instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E[24]~11 , u_SCSI_SM|u_scsi_sm_inputs|E[24]~11, RESDMAC, 1
 instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E[27]~10 , u_SCSI_SM|u_scsi_sm_inputs|E[27]~10, RESDMAC, 1
 instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[1]~3 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[1]~3, RESDMAC, 1
 instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[1]~12 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[1]~12, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[1]~13 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[1]~13, RESDMAC, 1
 instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[1]~14 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[1]~14, RESDMAC, 1
 instance = comp, \u_SCSI_SM|STATE[1] , u_SCSI_SM|STATE[1], RESDMAC, 1
@@ -502,10 +822,16 @@ instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[0]~17 , u_SCSI_SM|u_scs
 instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E[9]~14 , u_SCSI_SM|u_scsi_sm_inputs|E[9]~14, RESDMAC, 1
 instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[0]~18 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[0]~18, RESDMAC, 1
 instance = comp, \u_SCSI_SM|STATE[0] , u_SCSI_SM|STATE[0], RESDMAC, 1
+=======
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[1]~14 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[1]~14, RESDMAC, 1
+instance = comp, \u_SCSI_SM|STATE[1] , u_SCSI_SM|STATE[1], RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E1~1 , u_SCSI_SM|u_scsi_sm_inputs|E1~1, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[4]~4 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[4]~4, RESDMAC, 1
 instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[3]~6 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[3]~6, RESDMAC, 1
 instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[3]~8 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[3]~8, RESDMAC, 1
 instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[3]~9 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[3]~9, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[3]~10 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[3]~10, RESDMAC, 1
 instance = comp, \u_SCSI_SM|STATE[3] , u_SCSI_SM|STATE[3], RESDMAC, 1
 instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E24~0 , u_SCSI_SM|u_scsi_sm_inputs|E24~0, RESDMAC, 1
@@ -541,12 +867,32 @@ instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|CPU2S , u_SCSI_SM|u_scsi_sm_output
 instance = comp, \u_SCSI_SM|CPU2S_o , u_SCSI_SM|CPU2S_o, RESDMAC, 1
 instance = comp, \u_datapath|ID[1]~6 , u_datapath|ID[1]~6, RESDMAC, 1
 instance = comp, \u_datapath|ID[1]~7 , u_datapath|ID[1]~7, RESDMAC, 1
+=======
+instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E22~0 , u_SCSI_SM|u_scsi_sm_inputs|E22~0, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|RE~2 , u_SCSI_SM|u_scsi_sm_outputs|RE~2, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[3]~7 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[3]~7, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[3]~10 , u_SCSI_SM|u_scsi_sm_outputs|NEXT_STATE[3]~10, RESDMAC, 1
+instance = comp, \u_SCSI_SM|STATE[3] , u_SCSI_SM|STATE[3], RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|S2F~0 , u_SCSI_SM|u_scsi_sm_outputs|S2F~0, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E[7]~7 , u_SCSI_SM|u_scsi_sm_inputs|E[7]~7, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|S2F~1 , u_SCSI_SM|u_scsi_sm_outputs|S2F~1, RESDMAC, 1
+instance = comp, \u_SCSI_SM|S2F_o , u_SCSI_SM|S2F_o, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff1|p1b~0 , u_CPU_SM|u_cpudff1|p1b~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E31~0 , u_CPU_SM|u_CPU_SM_inputs|E31~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|DIEH_Z~0 , u_CPU_SM|u_CPU_SM_outputs|DIEH_Z~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|DIEL_d~2 , u_CPU_SM|u_CPU_SM_outputs|DIEL_d~2, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|DIEL_d~0 , u_CPU_SM|u_CPU_SM_outputs|DIEL_d~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|DIEL_d~3 , u_CPU_SM|u_CPU_SM_outputs|DIEL_d~3, RESDMAC, 1
+instance = comp, \u_CPU_SM|DIEL , u_CPU_SM|DIEL, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_input|UD_LATCH[0] , u_datapath|u_datapath_input|UD_LATCH[0], RESDMAC, 1
+instance = comp, \u_datapath|ID[0]~1 , u_datapath|ID[0]~1, RESDMAC, 1
+instance = comp, \u_datapath|ID[0]~2 , u_datapath|ID[0]~2, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|u_next_in_cntr|COUNT[0]~2 , int_fifo|u_next_in_cntr|COUNT[0]~2, RESDMAC, 1
 instance = comp, \int_fifo|u_next_in_cntr|COUNT[0] , int_fifo|u_next_in_cntr|COUNT[0], RESDMAC, 1
-instance = comp, \int_fifo|u_next_in_cntr|COUNT[1]~0 , int_fifo|u_next_in_cntr|COUNT[1]~0, RESDMAC, 1
-instance = comp, \int_fifo|u_next_in_cntr|COUNT[1] , int_fifo|u_next_in_cntr|COUNT[1], RESDMAC, 1
 instance = comp, \int_fifo|u_next_in_cntr|COUNT[2]~1 , int_fifo|u_next_in_cntr|COUNT[2]~1, RESDMAC, 1
 instance = comp, \int_fifo|u_next_in_cntr|COUNT[2] , int_fifo|u_next_in_cntr|COUNT[2], RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \int_fifo|Decoder0~0 , int_fifo|Decoder0~0, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[6][1] , int_fifo|BUFFER[6][1], RESDMAC, 1
 instance = comp, \int_fifo|Decoder0~3 , int_fifo|Decoder0~3, RESDMAC, 1
@@ -559,9 +905,69 @@ instance = comp, \int_fifo|Decoder0~1 , int_fifo|Decoder0~1, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[5][1] , int_fifo|BUFFER[5][1], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[4][1]~feeder , int_fifo|BUFFER[4][1]~feeder, RESDMAC, 1
 instance = comp, \int_fifo|Decoder0~2 , int_fifo|Decoder0~2, RESDMAC, 1
+=======
+instance = comp, \int_fifo|u_next_in_cntr|COUNT[1]~0 , int_fifo|u_next_in_cntr|COUNT[1]~0, RESDMAC, 1
+instance = comp, \int_fifo|u_next_in_cntr|COUNT[1] , int_fifo|u_next_in_cntr|COUNT[1], RESDMAC, 1
+instance = comp, \int_fifo|Decoder0~2 , int_fifo|Decoder0~2, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][0] , int_fifo|BUFFER[4][0], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][0]~feeder , int_fifo|BUFFER[5][0]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|Decoder0~1 , int_fifo|Decoder0~1, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][0] , int_fifo|BUFFER[5][0], RESDMAC, 1
+instance = comp, \int_fifo|Mux31~0 , int_fifo|Mux31~0, RESDMAC, 1
+instance = comp, \int_fifo|Decoder0~3 , int_fifo|Decoder0~3, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][0] , int_fifo|BUFFER[7][0], RESDMAC, 1
+instance = comp, \int_fifo|Decoder0~0 , int_fifo|Decoder0~0, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][0] , int_fifo|BUFFER[6][0], RESDMAC, 1
+instance = comp, \int_fifo|Mux31~1 , int_fifo|Mux31~1, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][0]~feeder , int_fifo|BUFFER[2][0]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|Decoder0~5 , int_fifo|Decoder0~5, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][0] , int_fifo|BUFFER[2][0], RESDMAC, 1
+instance = comp, \int_fifo|Decoder0~7 , int_fifo|Decoder0~7, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][0] , int_fifo|BUFFER[3][0], RESDMAC, 1
+instance = comp, \int_fifo|u_next_out_cntr|COUNT[1]~0 , int_fifo|u_next_out_cntr|COUNT[1]~0, RESDMAC, 1
+instance = comp, \int_fifo|u_next_out_cntr|COUNT[1] , int_fifo|u_next_out_cntr|COUNT[1], RESDMAC, 1
+instance = comp, \int_fifo|Decoder0~6 , int_fifo|Decoder0~6, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][0] , int_fifo|BUFFER[0][0], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][0]~feeder , int_fifo|BUFFER[1][0]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|Decoder0~4 , int_fifo|Decoder0~4, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][0] , int_fifo|BUFFER[1][0], RESDMAC, 1
+instance = comp, \int_fifo|Mux31~2 , int_fifo|Mux31~2, RESDMAC, 1
+instance = comp, \int_fifo|Mux31~3 , int_fifo|Mux31~3, RESDMAC, 1
+instance = comp, \int_fifo|Mux31~4 , int_fifo|Mux31~4, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|LD_LATCH[0] , u_datapath|u_datapath_output|LD_LATCH[0], RESDMAC, 1
+instance = comp, \u_registers|u_registers_istr|FE , u_registers|u_registers_istr|FE, RESDMAC, 1
+instance = comp, \u_registers|u_addr_decoder|ST_DMA~0 , u_registers|u_addr_decoder|ST_DMA~0, RESDMAC, 1
+instance = comp, \u_registers|u_addr_decoder|ISTR_RD_ , u_registers|u_addr_decoder|ISTR_RD_, RESDMAC, 1
+instance = comp, \u_registers|u_addr_decoder|CONTR_RD_~0 , u_registers|u_addr_decoder|CONTR_RD_~0, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[5]~32 , u_datapath|u_datapath_output|DATA[5]~32, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[0]~33 , u_datapath|u_datapath_output|DATA[0]~33, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E24~0 , u_SCSI_SM|u_scsi_sm_inputs|E24~0, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|S2CPU~0 , u_SCSI_SM|u_scsi_sm_outputs|S2CPU~0, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|S2CPU~1 , u_SCSI_SM|u_scsi_sm_outputs|S2CPU~1, RESDMAC, 1
+instance = comp, \u_SCSI_SM|S2CPU_o , u_SCSI_SM|S2CPU_o, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[0]~34 , u_datapath|u_datapath_output|DATA[0]~34, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[15]~35 , u_datapath|u_datapath_output|DATA[15]~35, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|F2CPUL_d~4 , u_CPU_SM|u_CPU_SM_outputs|F2CPUL_d~4, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|F2CPUL_d~5 , u_CPU_SM|u_CPU_SM_outputs|F2CPUL_d~5, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|F2CPUL_d~6 , u_CPU_SM|u_CPU_SM_outputs|F2CPUL_d~6, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|F2CPUL_d~7 , u_CPU_SM|u_CPU_SM_outputs|F2CPUL_d~7, RESDMAC, 1
+instance = comp, \u_CPU_SM|F2CPUL , u_CPU_SM|F2CPUL, RESDMAC, 1
+instance = comp, \u_registers|u_registers_istr|FF , u_registers|u_registers_istr|FF, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[1]~36 , u_datapath|u_datapath_output|DATA[1]~36, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|WE~1 , u_SCSI_SM|u_scsi_sm_outputs|WE~1, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|CPU2S , u_SCSI_SM|u_scsi_sm_outputs|CPU2S, RESDMAC, 1
+instance = comp, \u_SCSI_SM|CPU2S_o , u_SCSI_SM|CPU2S_o, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_input|UD_LATCH[1] , u_datapath|u_datapath_input|UD_LATCH[1], RESDMAC, 1
+instance = comp, \u_datapath|ID[1]~6 , u_datapath|ID[1]~6, RESDMAC, 1
+instance = comp, \u_datapath|ID[1]~7 , u_datapath|ID[1]~7, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][1] , int_fifo|BUFFER[6][1], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][1] , int_fifo|BUFFER[7][1], RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|BUFFER[4][1] , int_fifo|BUFFER[4][1], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][1] , int_fifo|BUFFER[5][1], RESDMAC, 1
 instance = comp, \int_fifo|Mux30~0 , int_fifo|Mux30~0, RESDMAC, 1
 instance = comp, \int_fifo|Mux30~1 , int_fifo|Mux30~1, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \int_fifo|Decoder0~6 , int_fifo|Decoder0~6, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[0][1] , int_fifo|BUFFER[0][1], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[2][1]~feeder , int_fifo|BUFFER[2][1]~feeder, RESDMAC, 1
@@ -572,10 +978,14 @@ instance = comp, \int_fifo|Decoder0~4 , int_fifo|Decoder0~4, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[1][1] , int_fifo|BUFFER[1][1], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[3][1]~feeder , int_fifo|BUFFER[3][1]~feeder, RESDMAC, 1
 instance = comp, \int_fifo|Decoder0~7 , int_fifo|Decoder0~7, RESDMAC, 1
+=======
+instance = comp, \int_fifo|BUFFER[1][1] , int_fifo|BUFFER[1][1], RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|BUFFER[3][1] , int_fifo|BUFFER[3][1], RESDMAC, 1
 instance = comp, \int_fifo|Mux30~3 , int_fifo|Mux30~3, RESDMAC, 1
 instance = comp, \int_fifo|Mux30~4 , int_fifo|Mux30~4, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|LD_LATCH[1] , u_datapath|u_datapath_output|LD_LATCH[1], RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_registers|u_registers_istr|FF , u_registers|u_registers_istr|FF, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[1]~36 , u_datapath|u_datapath_output|DATA[1]~36, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[1]~37 , u_datapath|u_datapath_output|DATA[1]~37, RESDMAC, 1
@@ -584,6 +994,22 @@ instance = comp, \u_datapath|ID[2]~13 , u_datapath|ID[2]~13, RESDMAC, 1
 instance = comp, \u_datapath|ID[2]~14 , u_datapath|ID[2]~14, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[6][2] , int_fifo|BUFFER[6][2], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[7][2] , int_fifo|BUFFER[7][2], RESDMAC, 1
+=======
+instance = comp, \u_datapath|u_datapath_output|DATA[1]~37 , u_datapath|u_datapath_output|DATA[1]~37, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[2]~38 , u_datapath|u_datapath_output|DATA[2]~38, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[2]~39 , u_datapath|u_datapath_output|DATA[2]~39, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_input|UD_LATCH[2] , u_datapath|u_datapath_input|UD_LATCH[2], RESDMAC, 1
+instance = comp, \u_datapath|ID[2]~13 , u_datapath|ID[2]~13, RESDMAC, 1
+instance = comp, \u_datapath|ID[2]~14 , u_datapath|ID[2]~14, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][2] , int_fifo|BUFFER[3][2], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][2] , int_fifo|BUFFER[1][2], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][2] , int_fifo|BUFFER[0][2], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][2] , int_fifo|BUFFER[2][2], RESDMAC, 1
+instance = comp, \int_fifo|Mux29~2 , int_fifo|Mux29~2, RESDMAC, 1
+instance = comp, \int_fifo|Mux29~3 , int_fifo|Mux29~3, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][2] , int_fifo|BUFFER[7][2], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][2] , int_fifo|BUFFER[5][2], RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|BUFFER[4][2] , int_fifo|BUFFER[4][2], RESDMAC, 1
 instance = comp, \int_fifo|Mux29~0 , int_fifo|Mux29~0, RESDMAC, 1
 instance = comp, \int_fifo|Mux29~1 , int_fifo|Mux29~1, RESDMAC, 1
@@ -598,6 +1024,7 @@ instance = comp, \int_fifo|Mux29~4 , int_fifo|Mux29~4, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|LD_LATCH[2] , u_datapath|u_datapath_output|LD_LATCH[2], RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[2]~39 , u_datapath|u_datapath_output|DATA[2]~39, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[2]~40 , u_datapath|u_datapath_output|DATA[2]~40, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|S2F~0 , u_SCSI_SM|u_scsi_sm_outputs|S2F~0, RESDMAC, 1
 instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E[7]~7 , u_SCSI_SM|u_scsi_sm_inputs|E[7]~7, RESDMAC, 1
 instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|S2F~1 , u_SCSI_SM|u_scsi_sm_outputs|S2F~1, RESDMAC, 1
@@ -614,10 +1041,29 @@ instance = comp, \int_fifo|Mux28~2 , int_fifo|Mux28~2, RESDMAC, 1
 instance = comp, \int_fifo|Mux28~3 , int_fifo|Mux28~3, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[6][3] , int_fifo|BUFFER[6][3], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[7][3] , int_fifo|BUFFER[7][3], RESDMAC, 1
+=======
+instance = comp, \u_datapath|u_datapath_input|UD_LATCH[3] , u_datapath|u_datapath_input|UD_LATCH[3], RESDMAC, 1
+instance = comp, \u_datapath|ID[3]~18 , u_datapath|ID[3]~18, RESDMAC, 1
+instance = comp, \u_datapath|ID[3]~19 , u_datapath|ID[3]~19, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][3] , int_fifo|BUFFER[6][3], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][3] , int_fifo|BUFFER[7][3], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][3] , int_fifo|BUFFER[5][3], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][3]~feeder , int_fifo|BUFFER[4][3]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][3] , int_fifo|BUFFER[4][3], RESDMAC, 1
+instance = comp, \int_fifo|Mux28~0 , int_fifo|Mux28~0, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|Mux28~1 , int_fifo|Mux28~1, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][3]~feeder , int_fifo|BUFFER[1][3]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][3] , int_fifo|BUFFER[1][3], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][3] , int_fifo|BUFFER[3][3], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][3] , int_fifo|BUFFER[2][3], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][3] , int_fifo|BUFFER[0][3], RESDMAC, 1
+instance = comp, \int_fifo|Mux28~2 , int_fifo|Mux28~2, RESDMAC, 1
+instance = comp, \int_fifo|Mux28~3 , int_fifo|Mux28~3, RESDMAC, 1
 instance = comp, \int_fifo|Mux28~4 , int_fifo|Mux28~4, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|LD_LATCH[3] , u_datapath|u_datapath_output|LD_LATCH[3], RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[3]~41 , u_datapath|u_datapath_output|DATA[3]~41, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_registers|u_registers_cntr|CNTR_O[4] , u_registers|u_registers_cntr|CNTR_O[4], RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[4]~42 , u_datapath|u_datapath_output|DATA[4]~42, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_input|UD_LATCH[4] , u_datapath|u_datapath_input|UD_LATCH[4], RESDMAC, 1
@@ -628,13 +1074,24 @@ instance = comp, \int_fifo|BUFFER[7][4] , int_fifo|BUFFER[7][4], RESDMAC, 1
 instance = comp, \int_fifo|Mux27~1 , int_fifo|Mux27~1, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[1][4]~feeder , int_fifo|BUFFER[1][4]~feeder, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[1][4] , int_fifo|BUFFER[1][4], RESDMAC, 1
+=======
+instance = comp, \int_fifo|u_next_out_cntr|COUNT[2]~1 , int_fifo|u_next_out_cntr|COUNT[2]~1, RESDMAC, 1
+instance = comp, \int_fifo|u_next_out_cntr|COUNT[2] , int_fifo|u_next_out_cntr|COUNT[2], RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_input|UD_LATCH[4] , u_datapath|u_datapath_input|UD_LATCH[4], RESDMAC, 1
+instance = comp, \u_datapath|ID[4]~25 , u_datapath|ID[4]~25, RESDMAC, 1
+instance = comp, \u_datapath|ID[4]~26 , u_datapath|ID[4]~26, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][4]~feeder , int_fifo|BUFFER[3][4]~feeder, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|BUFFER[3][4] , int_fifo|BUFFER[3][4], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][4]~feeder , int_fifo|BUFFER[1][4]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][4] , int_fifo|BUFFER[1][4], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[2][4] , int_fifo|BUFFER[2][4], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[0][4] , int_fifo|BUFFER[0][4], RESDMAC, 1
 instance = comp, \int_fifo|Mux27~2 , int_fifo|Mux27~2, RESDMAC, 1
 instance = comp, \int_fifo|Mux27~3 , int_fifo|Mux27~3, RESDMAC, 1
 instance = comp, \int_fifo|Mux27~4 , int_fifo|Mux27~4, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|LD_LATCH[4] , u_datapath|u_datapath_output|LD_LATCH[4], RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_datapath|u_datapath_output|DATA[4]~43 , u_datapath|u_datapath_output|DATA[4]~43, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_input|UD_LATCH[5] , u_datapath|u_datapath_input|UD_LATCH[5], RESDMAC, 1
 instance = comp, \u_datapath|ID[5]~30 , u_datapath|ID[5]~30, RESDMAC, 1
@@ -667,6 +1124,36 @@ instance = comp, \int_fifo|BUFFER[4][6] , int_fifo|BUFFER[4][6], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[5][6] , int_fifo|BUFFER[5][6], RESDMAC, 1
 instance = comp, \int_fifo|Mux25~0 , int_fifo|Mux25~0, RESDMAC, 1
 instance = comp, \int_fifo|Mux25~1 , int_fifo|Mux25~1, RESDMAC, 1
+=======
+instance = comp, \u_registers|u_registers_istr|CLR_INT_~0 , u_registers|u_registers_istr|CLR_INT_~0, RESDMAC, 1
+instance = comp, \u_registers|u_registers_istr|INT_P , u_registers|u_registers_istr|INT_P, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[4]~42 , u_datapath|u_datapath_output|DATA[4]~42, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[4]~43 , u_datapath|u_datapath_output|DATA[4]~43, RESDMAC, 1
+instance = comp, \u_registers|u_registers_istr|INT_F , u_registers|u_registers_istr|INT_F, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[5]~44 , u_datapath|u_datapath_output|DATA[5]~44, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_input|UD_LATCH[5] , u_datapath|u_datapath_input|UD_LATCH[5], RESDMAC, 1
+instance = comp, \u_datapath|ID[5]~30 , u_datapath|ID[5]~30, RESDMAC, 1
+instance = comp, \u_datapath|ID[5]~31 , u_datapath|ID[5]~31, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][5] , int_fifo|BUFFER[7][5], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][5] , int_fifo|BUFFER[6][5], RESDMAC, 1
+instance = comp, \int_fifo|Mux26~1 , int_fifo|Mux26~1, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][5] , int_fifo|BUFFER[3][5], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][5] , int_fifo|BUFFER[1][5], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][5] , int_fifo|BUFFER[0][5], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][5] , int_fifo|BUFFER[2][5], RESDMAC, 1
+instance = comp, \int_fifo|Mux26~2 , int_fifo|Mux26~2, RESDMAC, 1
+instance = comp, \int_fifo|Mux26~3 , int_fifo|Mux26~3, RESDMAC, 1
+instance = comp, \int_fifo|Mux26~4 , int_fifo|Mux26~4, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|LD_LATCH[5] , u_datapath|u_datapath_output|LD_LATCH[5], RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[5]~45 , u_datapath|u_datapath_output|DATA[5]~45, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_input|UD_LATCH[6] , u_datapath|u_datapath_input|UD_LATCH[6], RESDMAC, 1
+instance = comp, \u_datapath|ID[6]~37 , u_datapath|ID[6]~37, RESDMAC, 1
+instance = comp, \u_datapath|ID[6]~38 , u_datapath|ID[6]~38, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][6]~feeder , int_fifo|BUFFER[3][6]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][6] , int_fifo|BUFFER[3][6], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][6] , int_fifo|BUFFER[1][6], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][6] , int_fifo|BUFFER[2][6], RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|BUFFER[0][6] , int_fifo|BUFFER[0][6], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[2][6]~feeder , int_fifo|BUFFER[2][6]~feeder, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[2][6] , int_fifo|BUFFER[2][6], RESDMAC, 1
@@ -675,12 +1162,19 @@ instance = comp, \int_fifo|BUFFER[1][6] , int_fifo|BUFFER[1][6], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[3][6]~feeder , int_fifo|BUFFER[3][6]~feeder, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[3][6] , int_fifo|BUFFER[3][6], RESDMAC, 1
 instance = comp, \int_fifo|Mux25~3 , int_fifo|Mux25~3, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][6] , int_fifo|BUFFER[6][6], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][6] , int_fifo|BUFFER[7][6], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][6] , int_fifo|BUFFER[5][6], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][6] , int_fifo|BUFFER[4][6], RESDMAC, 1
+instance = comp, \int_fifo|Mux25~0 , int_fifo|Mux25~0, RESDMAC, 1
+instance = comp, \int_fifo|Mux25~1 , int_fifo|Mux25~1, RESDMAC, 1
 instance = comp, \int_fifo|Mux25~4 , int_fifo|Mux25~4, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|LD_LATCH[6] , u_datapath|u_datapath_output|LD_LATCH[6], RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[6]~46 , u_datapath|u_datapath_output|DATA[6]~46, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_input|UD_LATCH[7] , u_datapath|u_datapath_input|UD_LATCH[7], RESDMAC, 1
 instance = comp, \u_datapath|ID[7]~42 , u_datapath|ID[7]~42, RESDMAC, 1
 instance = comp, \u_datapath|ID[7]~43 , u_datapath|ID[7]~43, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \int_fifo|BUFFER[7][7] , int_fifo|BUFFER[7][7], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[4][7] , int_fifo|BUFFER[4][7], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[5][7] , int_fifo|BUFFER[5][7], RESDMAC, 1
@@ -691,11 +1185,26 @@ instance = comp, \int_fifo|BUFFER[3][7] , int_fifo|BUFFER[3][7], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[0][7] , int_fifo|BUFFER[0][7], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[2][7]~feeder , int_fifo|BUFFER[2][7]~feeder, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[2][7] , int_fifo|BUFFER[2][7], RESDMAC, 1
+=======
+instance = comp, \int_fifo|BUFFER[4][7] , int_fifo|BUFFER[4][7], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][7] , int_fifo|BUFFER[5][7], RESDMAC, 1
+instance = comp, \int_fifo|Mux24~0 , int_fifo|Mux24~0, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][7] , int_fifo|BUFFER[7][7], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][7] , int_fifo|BUFFER[6][7], RESDMAC, 1
+instance = comp, \int_fifo|Mux24~1 , int_fifo|Mux24~1, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][7]~feeder , int_fifo|BUFFER[1][7]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][7] , int_fifo|BUFFER[1][7], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][7] , int_fifo|BUFFER[3][7], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][7] , int_fifo|BUFFER[2][7], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][7]~feeder , int_fifo|BUFFER[0][7]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][7] , int_fifo|BUFFER[0][7], RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|Mux24~2 , int_fifo|Mux24~2, RESDMAC, 1
 instance = comp, \int_fifo|Mux24~3 , int_fifo|Mux24~3, RESDMAC, 1
 instance = comp, \int_fifo|Mux24~4 , int_fifo|Mux24~4, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|LD_LATCH[7] , u_datapath|u_datapath_output|LD_LATCH[7], RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[7]~47 , u_datapath|u_datapath_output|DATA[7]~47, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_datapath|u_datapath_input|UD_LATCH[8] , u_datapath|u_datapath_input|UD_LATCH[8], RESDMAC, 1
 instance = comp, \u_datapath|ID[8]~4 , u_datapath|ID[8]~4, RESDMAC, 1
 instance = comp, \u_datapath|ID[8]~5 , u_datapath|ID[8]~5, RESDMAC, 1
@@ -714,46 +1223,80 @@ instance = comp, \int_fifo|Mux23~2 , int_fifo|Mux23~2, RESDMAC, 1
 instance = comp, \int_fifo|Mux23~3 , int_fifo|Mux23~3, RESDMAC, 1
 instance = comp, \int_fifo|Mux23~4 , int_fifo|Mux23~4, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|LD_LATCH[8] , u_datapath|u_datapath_output|LD_LATCH[8], RESDMAC, 1
+=======
+>>>>>>> Stashed changes
 instance = comp, \u_datapath|u_datapath_output|DATA[8]~48 , u_datapath|u_datapath_output|DATA[8]~48, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_scsi|SCSI_DATA_RX[0]~0 , u_datapath|u_datapath_scsi|SCSI_DATA_RX[0]~0, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_scsi|SCSI_DATA_LATCHED[0] , u_datapath|u_datapath_scsi|SCSI_DATA_LATCHED[0], RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[8]~49 , u_datapath|u_datapath_output|DATA[8]~49, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_datapath|u_datapath_scsi|SCSI_DATA_RX[1]~1 , u_datapath|u_datapath_scsi|SCSI_DATA_RX[1]~1, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_scsi|SCSI_DATA_LATCHED[1] , u_datapath|u_datapath_scsi|SCSI_DATA_LATCHED[1], RESDMAC, 1
+=======
+>>>>>>> Stashed changes
 instance = comp, \u_datapath|u_datapath_input|UD_LATCH[9] , u_datapath|u_datapath_input|UD_LATCH[9], RESDMAC, 1
 instance = comp, \u_datapath|ID[9]~10 , u_datapath|ID[9]~10, RESDMAC, 1
 instance = comp, \u_datapath|ID[9]~11 , u_datapath|ID[9]~11, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[3][9] , int_fifo|BUFFER[3][9], RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \int_fifo|BUFFER[0][9] , int_fifo|BUFFER[0][9], RESDMAC, 1
 instance = comp, \int_fifo|Mux22~2 , int_fifo|Mux22~2, RESDMAC, 1
 instance = comp, \int_fifo|Mux22~3 , int_fifo|Mux22~3, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[6][9] , int_fifo|BUFFER[6][9], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[7][9] , int_fifo|BUFFER[7][9], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[5][9] , int_fifo|BUFFER[5][9], RESDMAC, 1
+=======
+instance = comp, \int_fifo|BUFFER[1][9] , int_fifo|BUFFER[1][9], RESDMAC, 1
+instance = comp, \int_fifo|Mux22~3 , int_fifo|Mux22~3, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|BUFFER[4][9] , int_fifo|BUFFER[4][9], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][9]~feeder , int_fifo|BUFFER[5][9]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][9] , int_fifo|BUFFER[5][9], RESDMAC, 1
 instance = comp, \int_fifo|Mux22~0 , int_fifo|Mux22~0, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][9] , int_fifo|BUFFER[7][9], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][9] , int_fifo|BUFFER[6][9], RESDMAC, 1
 instance = comp, \int_fifo|Mux22~1 , int_fifo|Mux22~1, RESDMAC, 1
 instance = comp, \int_fifo|Mux22~4 , int_fifo|Mux22~4, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|LD_LATCH[9] , u_datapath|u_datapath_output|LD_LATCH[9], RESDMAC, 1
+<<<<<<< Updated upstream
+=======
+instance = comp, \u_datapath|u_datapath_scsi|SCSI_DATA_RX[1]~1 , u_datapath|u_datapath_scsi|SCSI_DATA_RX[1]~1, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|SCSI_DATA_LATCHED[1] , u_datapath|u_datapath_scsi|SCSI_DATA_LATCHED[1], RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \u_datapath|u_datapath_output|DATA[9]~50 , u_datapath|u_datapath_output|DATA[9]~50, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_scsi|SCSI_DATA_RX[2]~2 , u_datapath|u_datapath_scsi|SCSI_DATA_RX[2]~2, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_scsi|SCSI_DATA_LATCHED[2] , u_datapath|u_datapath_scsi|SCSI_DATA_LATCHED[2], RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_input|UD_LATCH[10] , u_datapath|u_datapath_input|UD_LATCH[10], RESDMAC, 1
 instance = comp, \u_datapath|ID[10]~16 , u_datapath|ID[10]~16, RESDMAC, 1
 instance = comp, \u_datapath|ID[10]~17 , u_datapath|ID[10]~17, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \int_fifo|BUFFER[6][10] , int_fifo|BUFFER[6][10], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[7][10] , int_fifo|BUFFER[7][10], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[4][10] , int_fifo|BUFFER[4][10], RESDMAC, 1
 instance = comp, \int_fifo|Mux21~0 , int_fifo|Mux21~0, RESDMAC, 1
 instance = comp, \int_fifo|Mux21~1 , int_fifo|Mux21~1, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[1][10] , int_fifo|BUFFER[1][10], RESDMAC, 1
+=======
+instance = comp, \int_fifo|BUFFER[3][10] , int_fifo|BUFFER[3][10], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][10] , int_fifo|BUFFER[1][10], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][10] , int_fifo|BUFFER[0][10], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][10]~feeder , int_fifo|BUFFER[2][10]~feeder, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|BUFFER[2][10] , int_fifo|BUFFER[2][10], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[0][10] , int_fifo|BUFFER[0][10], RESDMAC, 1
 instance = comp, \int_fifo|Mux21~2 , int_fifo|Mux21~2, RESDMAC, 1
 instance = comp, \int_fifo|Mux21~3 , int_fifo|Mux21~3, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][10] , int_fifo|BUFFER[4][10], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][10]~feeder , int_fifo|BUFFER[5][10]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][10] , int_fifo|BUFFER[5][10], RESDMAC, 1
+instance = comp, \int_fifo|Mux21~0 , int_fifo|Mux21~0, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][10] , int_fifo|BUFFER[7][10], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][10] , int_fifo|BUFFER[6][10], RESDMAC, 1
+instance = comp, \int_fifo|Mux21~1 , int_fifo|Mux21~1, RESDMAC, 1
 instance = comp, \int_fifo|Mux21~4 , int_fifo|Mux21~4, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|LD_LATCH[10] , u_datapath|u_datapath_output|LD_LATCH[10], RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[10]~51 , u_datapath|u_datapath_output|DATA[10]~51, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_datapath|u_datapath_input|UD_LATCH[11] , u_datapath|u_datapath_input|UD_LATCH[11], RESDMAC, 1
 instance = comp, \u_datapath|ID[11]~22 , u_datapath|ID[11]~22, RESDMAC, 1
 instance = comp, \u_datapath|ID[11]~23 , u_datapath|ID[11]~23, RESDMAC, 1
@@ -764,6 +1307,23 @@ instance = comp, \int_fifo|BUFFER[5][11] , int_fifo|BUFFER[5][11], RESDMAC, 1
 instance = comp, \int_fifo|Mux20~0 , int_fifo|Mux20~0, RESDMAC, 1
 instance = comp, \int_fifo|Mux20~1 , int_fifo|Mux20~1, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[3][11] , int_fifo|BUFFER[3][11], RESDMAC, 1
+=======
+instance = comp, \u_datapath|u_datapath_scsi|SCSI_DATA_RX[3]~3 , u_datapath|u_datapath_scsi|SCSI_DATA_RX[3]~3, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|SCSI_DATA_LATCHED[3] , u_datapath|u_datapath_scsi|SCSI_DATA_LATCHED[3], RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_input|UD_LATCH[11] , u_datapath|u_datapath_input|UD_LATCH[11], RESDMAC, 1
+instance = comp, \u_datapath|ID[11]~22 , u_datapath|ID[11]~22, RESDMAC, 1
+instance = comp, \u_datapath|ID[11]~23 , u_datapath|ID[11]~23, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][11] , int_fifo|BUFFER[6][11], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][11] , int_fifo|BUFFER[7][11], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][11] , int_fifo|BUFFER[5][11], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][11]~feeder , int_fifo|BUFFER[4][11]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][11] , int_fifo|BUFFER[4][11], RESDMAC, 1
+instance = comp, \int_fifo|Mux20~0 , int_fifo|Mux20~0, RESDMAC, 1
+instance = comp, \int_fifo|Mux20~1 , int_fifo|Mux20~1, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][11]~feeder , int_fifo|BUFFER[3][11]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][11] , int_fifo|BUFFER[3][11], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][11] , int_fifo|BUFFER[1][11], RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|BUFFER[2][11] , int_fifo|BUFFER[2][11], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[0][11]~feeder , int_fifo|BUFFER[0][11]~feeder, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[0][11] , int_fifo|BUFFER[0][11], RESDMAC, 1
@@ -771,6 +1331,7 @@ instance = comp, \int_fifo|Mux20~2 , int_fifo|Mux20~2, RESDMAC, 1
 instance = comp, \int_fifo|Mux20~3 , int_fifo|Mux20~3, RESDMAC, 1
 instance = comp, \int_fifo|Mux20~4 , int_fifo|Mux20~4, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|LD_LATCH[11] , u_datapath|u_datapath_output|LD_LATCH[11], RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_datapath|u_datapath_scsi|SCSI_DATA_RX[3]~3 , u_datapath|u_datapath_scsi|SCSI_DATA_RX[3]~3, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_scsi|SCSI_DATA_LATCHED[3] , u_datapath|u_datapath_scsi|SCSI_DATA_LATCHED[3], RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[11]~52 , u_datapath|u_datapath_output|DATA[11]~52, RESDMAC, 1
@@ -783,13 +1344,29 @@ instance = comp, \int_fifo|BUFFER[4][12] , int_fifo|BUFFER[4][12], RESDMAC, 1
 instance = comp, \int_fifo|Mux19~0 , int_fifo|Mux19~0, RESDMAC, 1
 instance = comp, \int_fifo|Mux19~1 , int_fifo|Mux19~1, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[1][12] , int_fifo|BUFFER[1][12], RESDMAC, 1
+=======
+instance = comp, \u_datapath|u_datapath_output|DATA[11]~52 , u_datapath|u_datapath_output|DATA[11]~52, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|SCSI_DATA_RX[4]~4 , u_datapath|u_datapath_scsi|SCSI_DATA_RX[4]~4, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|SCSI_DATA_LATCHED[4] , u_datapath|u_datapath_scsi|SCSI_DATA_LATCHED[4], RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_input|UD_LATCH[12] , u_datapath|u_datapath_input|UD_LATCH[12], RESDMAC, 1
+instance = comp, \u_datapath|ID[12]~28 , u_datapath|ID[12]~28, RESDMAC, 1
+instance = comp, \u_datapath|ID[12]~29 , u_datapath|ID[12]~29, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][12] , int_fifo|BUFFER[3][12], RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|BUFFER[0][12] , int_fifo|BUFFER[0][12], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[2][12]~feeder , int_fifo|BUFFER[2][12]~feeder, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[2][12] , int_fifo|BUFFER[2][12], RESDMAC, 1
 instance = comp, \int_fifo|Mux19~2 , int_fifo|Mux19~2, RESDMAC, 1
 instance = comp, \int_fifo|Mux19~3 , int_fifo|Mux19~3, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][12] , int_fifo|BUFFER[7][12], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][12] , int_fifo|BUFFER[5][12], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][12] , int_fifo|BUFFER[4][12], RESDMAC, 1
+instance = comp, \int_fifo|Mux19~0 , int_fifo|Mux19~0, RESDMAC, 1
+instance = comp, \int_fifo|Mux19~1 , int_fifo|Mux19~1, RESDMAC, 1
 instance = comp, \int_fifo|Mux19~4 , int_fifo|Mux19~4, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|LD_LATCH[12]~feeder , u_datapath|u_datapath_output|LD_LATCH[12]~feeder, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|LD_LATCH[12] , u_datapath|u_datapath_output|LD_LATCH[12], RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_datapath|u_datapath_scsi|SCSI_DATA_RX[4]~4 , u_datapath|u_datapath_scsi|SCSI_DATA_RX[4]~4, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_scsi|SCSI_DATA_LATCHED[4] , u_datapath|u_datapath_scsi|SCSI_DATA_LATCHED[4], RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[12]~53 , u_datapath|u_datapath_output|DATA[12]~53, RESDMAC, 1
@@ -801,12 +1378,31 @@ instance = comp, \u_datapath|ID[13]~35 , u_datapath|ID[13]~35, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[6][13]~feeder , int_fifo|BUFFER[6][13]~feeder, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[6][13] , int_fifo|BUFFER[6][13], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[7][13] , int_fifo|BUFFER[7][13], RESDMAC, 1
+=======
+instance = comp, \u_datapath|u_datapath_output|DATA[12]~53 , u_datapath|u_datapath_output|DATA[12]~53, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_input|UD_LATCH[13] , u_datapath|u_datapath_input|UD_LATCH[13], RESDMAC, 1
+instance = comp, \u_datapath|ID[13]~34 , u_datapath|ID[13]~34, RESDMAC, 1
+instance = comp, \u_datapath|ID[13]~35 , u_datapath|ID[13]~35, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][13] , int_fifo|BUFFER[0][13], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][13] , int_fifo|BUFFER[2][13], RESDMAC, 1
+instance = comp, \int_fifo|Mux18~2 , int_fifo|Mux18~2, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][13] , int_fifo|BUFFER[3][13], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][13]~feeder , int_fifo|BUFFER[1][13]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][13] , int_fifo|BUFFER[1][13], RESDMAC, 1
+instance = comp, \int_fifo|Mux18~3 , int_fifo|Mux18~3, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][13]~feeder , int_fifo|BUFFER[6][13]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][13] , int_fifo|BUFFER[6][13], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][13] , int_fifo|BUFFER[7][13], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][13] , int_fifo|BUFFER[4][13], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][13]~feeder , int_fifo|BUFFER[5][13]~feeder, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|BUFFER[5][13] , int_fifo|BUFFER[5][13], RESDMAC, 1
 instance = comp, \int_fifo|Mux18~0 , int_fifo|Mux18~0, RESDMAC, 1
 instance = comp, \int_fifo|Mux18~1 , int_fifo|Mux18~1, RESDMAC, 1
 instance = comp, \int_fifo|Mux18~4 , int_fifo|Mux18~4, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|LD_LATCH[13]~feeder , u_datapath|u_datapath_output|LD_LATCH[13]~feeder, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|LD_LATCH[13] , u_datapath|u_datapath_output|LD_LATCH[13], RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_datapath|u_datapath_output|DATA[13]~54 , u_datapath|u_datapath_output|DATA[13]~54, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_scsi|SCSI_DATA_RX[6]~6 , u_datapath|u_datapath_scsi|SCSI_DATA_RX[6]~6, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_scsi|SCSI_DATA_LATCHED[6] , u_datapath|u_datapath_scsi|SCSI_DATA_LATCHED[6], RESDMAC, 1
@@ -821,19 +1417,52 @@ instance = comp, \int_fifo|Mux17~0 , int_fifo|Mux17~0, RESDMAC, 1
 instance = comp, \int_fifo|Mux17~1 , int_fifo|Mux17~1, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[1][14] , int_fifo|BUFFER[1][14], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[3][14] , int_fifo|BUFFER[3][14], RESDMAC, 1
+=======
+instance = comp, \u_datapath|u_datapath_scsi|SCSI_DATA_RX[5]~5 , u_datapath|u_datapath_scsi|SCSI_DATA_RX[5]~5, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|SCSI_DATA_LATCHED[5] , u_datapath|u_datapath_scsi|SCSI_DATA_LATCHED[5], RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[13]~54 , u_datapath|u_datapath_output|DATA[13]~54, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_input|UD_LATCH[14] , u_datapath|u_datapath_input|UD_LATCH[14], RESDMAC, 1
+instance = comp, \u_datapath|ID[14]~40 , u_datapath|ID[14]~40, RESDMAC, 1
+instance = comp, \u_datapath|ID[14]~41 , u_datapath|ID[14]~41, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][14] , int_fifo|BUFFER[6][14], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][14] , int_fifo|BUFFER[4][14], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][14] , int_fifo|BUFFER[5][14], RESDMAC, 1
+instance = comp, \int_fifo|Mux17~0 , int_fifo|Mux17~0, RESDMAC, 1
+instance = comp, \int_fifo|Mux17~1 , int_fifo|Mux17~1, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][14]~feeder , int_fifo|BUFFER[3][14]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][14] , int_fifo|BUFFER[3][14], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][14] , int_fifo|BUFFER[1][14], RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|BUFFER[0][14] , int_fifo|BUFFER[0][14], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[2][14] , int_fifo|BUFFER[2][14], RESDMAC, 1
 instance = comp, \int_fifo|Mux17~2 , int_fifo|Mux17~2, RESDMAC, 1
 instance = comp, \int_fifo|Mux17~3 , int_fifo|Mux17~3, RESDMAC, 1
 instance = comp, \int_fifo|Mux17~4 , int_fifo|Mux17~4, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|LD_LATCH[14] , u_datapath|u_datapath_output|LD_LATCH[14], RESDMAC, 1
+<<<<<<< Updated upstream
+=======
+instance = comp, \u_datapath|u_datapath_scsi|SCSI_DATA_RX[6]~6 , u_datapath|u_datapath_scsi|SCSI_DATA_RX[6]~6, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|SCSI_DATA_LATCHED[6] , u_datapath|u_datapath_scsi|SCSI_DATA_LATCHED[6], RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \u_datapath|u_datapath_output|DATA[14]~55 , u_datapath|u_datapath_output|DATA[14]~55, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_input|UD_LATCH[15] , u_datapath|u_datapath_input|UD_LATCH[15], RESDMAC, 1
 instance = comp, \u_datapath|ID[15]~46 , u_datapath|ID[15]~46, RESDMAC, 1
 instance = comp, \u_datapath|ID[15]~47 , u_datapath|ID[15]~47, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \int_fifo|BUFFER[3][15] , int_fifo|BUFFER[3][15], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[1][15] , int_fifo|BUFFER[1][15], RESDMAC, 1
 instance = comp, \int_fifo|Mux16~3 , int_fifo|Mux16~3, RESDMAC, 1
+=======
+instance = comp, \int_fifo|BUFFER[1][15]~feeder , int_fifo|BUFFER[1][15]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][15] , int_fifo|BUFFER[1][15], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][15] , int_fifo|BUFFER[3][15], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][15] , int_fifo|BUFFER[0][15], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][15] , int_fifo|BUFFER[2][15], RESDMAC, 1
+instance = comp, \int_fifo|Mux16~2 , int_fifo|Mux16~2, RESDMAC, 1
+instance = comp, \int_fifo|Mux16~3 , int_fifo|Mux16~3, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][15]~feeder , int_fifo|BUFFER[6][15]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][15] , int_fifo|BUFFER[6][15], RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|BUFFER[7][15] , int_fifo|BUFFER[7][15], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[4][15] , int_fifo|BUFFER[4][15], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[5][15]~feeder , int_fifo|BUFFER[5][15]~feeder, RESDMAC, 1
@@ -845,21 +1474,36 @@ instance = comp, \u_datapath|u_datapath_output|LD_LATCH[15] , u_datapath|u_datap
 instance = comp, \u_datapath|u_datapath_scsi|SCSI_DATA_RX[7]~7 , u_datapath|u_datapath_scsi|SCSI_DATA_RX[7]~7, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_scsi|SCSI_DATA_LATCHED[7] , u_datapath|u_datapath_scsi|SCSI_DATA_LATCHED[7], RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[15]~56 , u_datapath|u_datapath_output|DATA[15]~56, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_datapath|ID[16]~0 , u_datapath|ID[16]~0, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[7][16]~feeder , int_fifo|BUFFER[7][16]~feeder, RESDMAC, 1
+=======
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|BRIDGEOUT_d~2 , u_CPU_SM|u_CPU_SM_outputs|BRIDGEOUT_d~2, RESDMAC, 1
+instance = comp, \u_CPU_SM|BRIDGEOUT , u_CPU_SM|BRIDGEOUT, RESDMAC, 1
+instance = comp, \u_datapath|ID[16]~0 , u_datapath|ID[16]~0, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][16] , int_fifo|BUFFER[6][16], RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|BUFFER[7][16] , int_fifo|BUFFER[7][16], RESDMAC, 1
-instance = comp, \int_fifo|BUFFER[5][16] , int_fifo|BUFFER[5][16], RESDMAC, 1
-instance = comp, \int_fifo|BUFFER[4][16]~feeder , int_fifo|BUFFER[4][16]~feeder, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[4][16] , int_fifo|BUFFER[4][16], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][16] , int_fifo|BUFFER[5][16], RESDMAC, 1
 instance = comp, \int_fifo|Mux15~0 , int_fifo|Mux15~0, RESDMAC, 1
 instance = comp, \int_fifo|Mux15~1 , int_fifo|Mux15~1, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \int_fifo|BUFFER[1][16] , int_fifo|BUFFER[1][16], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[2][16] , int_fifo|BUFFER[2][16], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[0][16] , int_fifo|BUFFER[0][16], RESDMAC, 1
+=======
+instance = comp, \int_fifo|BUFFER[3][16]~feeder , int_fifo|BUFFER[3][16]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][16] , int_fifo|BUFFER[3][16], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][16] , int_fifo|BUFFER[1][16], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][16] , int_fifo|BUFFER[0][16], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][16] , int_fifo|BUFFER[2][16], RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|Mux15~2 , int_fifo|Mux15~2, RESDMAC, 1
 instance = comp, \int_fifo|Mux15~3 , int_fifo|Mux15~3, RESDMAC, 1
 instance = comp, \int_fifo|Mux15~4 , int_fifo|Mux15~4, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|UD_LATCH[0] , u_datapath|u_datapath_output|UD_LATCH[0], RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_datapath|u_datapath_input|UD_LATCH[0] , u_datapath|u_datapath_input|UD_LATCH[0], RESDMAC, 1
 instance = comp, \u_datapath|ID[0]~1 , u_datapath|ID[0]~1, RESDMAC, 1
 instance = comp, \u_datapath|ID[0]~2 , u_datapath|ID[0]~2, RESDMAC, 1
@@ -926,18 +1570,60 @@ instance = comp, \int_fifo|BUFFER[3][19] , int_fifo|BUFFER[3][19], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[1][19] , int_fifo|BUFFER[1][19], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[0][19] , int_fifo|BUFFER[0][19], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[2][19] , int_fifo|BUFFER[2][19], RESDMAC, 1
+=======
+instance = comp, \u_datapath|u_datapath_output|DATA[16]~57 , u_datapath|u_datapath_output|DATA[16]~57, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[16]~58 , u_datapath|u_datapath_output|DATA[16]~58, RESDMAC, 1
+instance = comp, \u_datapath|ID[17]~8 , u_datapath|ID[17]~8, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][17] , int_fifo|BUFFER[6][17], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][17] , int_fifo|BUFFER[7][17], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][17] , int_fifo|BUFFER[4][17], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][17] , int_fifo|BUFFER[5][17], RESDMAC, 1
+instance = comp, \int_fifo|Mux14~0 , int_fifo|Mux14~0, RESDMAC, 1
+instance = comp, \int_fifo|Mux14~1 , int_fifo|Mux14~1, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][17] , int_fifo|BUFFER[1][17], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][17] , int_fifo|BUFFER[3][17], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][17] , int_fifo|BUFFER[0][17], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][17]~feeder , int_fifo|BUFFER[2][17]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][17] , int_fifo|BUFFER[2][17], RESDMAC, 1
+instance = comp, \int_fifo|Mux14~2 , int_fifo|Mux14~2, RESDMAC, 1
+instance = comp, \int_fifo|Mux14~3 , int_fifo|Mux14~3, RESDMAC, 1
+instance = comp, \int_fifo|Mux14~4 , int_fifo|Mux14~4, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|UD_LATCH[1] , u_datapath|u_datapath_output|UD_LATCH[1], RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_inputs|E39_s~0 , u_CPU_SM|u_CPU_SM_inputs|E39_s~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|F2CPUH_d~2 , u_CPU_SM|u_CPU_SM_outputs|F2CPUH_d~2, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_cpudff2|p2c~0 , u_CPU_SM|u_cpudff2|p2c~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|F2CPUH_Z~0 , u_CPU_SM|u_CPU_SM_outputs|F2CPUH_Z~0, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|F2CPUH_d~3 , u_CPU_SM|u_CPU_SM_outputs|F2CPUH_d~3, RESDMAC, 1
+instance = comp, \u_CPU_SM|u_CPU_SM_outputs|F2CPUH_d~4 , u_CPU_SM|u_CPU_SM_outputs|F2CPUH_d~4, RESDMAC, 1
+instance = comp, \u_CPU_SM|F2CPUH , u_CPU_SM|F2CPUH, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[17]~59 , u_datapath|u_datapath_output|DATA[17]~59, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[17]~60 , u_datapath|u_datapath_output|DATA[17]~60, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[18]~61 , u_datapath|u_datapath_output|DATA[18]~61, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[18]~62 , u_datapath|u_datapath_output|DATA[18]~62, RESDMAC, 1
+instance = comp, \u_datapath|ID[19]~20 , u_datapath|ID[19]~20, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][19] , int_fifo|BUFFER[1][19], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][19] , int_fifo|BUFFER[2][19], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][19]~feeder , int_fifo|BUFFER[0][19]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][19] , int_fifo|BUFFER[0][19], RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|Mux12~2 , int_fifo|Mux12~2, RESDMAC, 1
 instance = comp, \int_fifo|Mux12~3 , int_fifo|Mux12~3, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[6][19] , int_fifo|BUFFER[6][19], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[7][19] , int_fifo|BUFFER[7][19], RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \int_fifo|BUFFER[4][19] , int_fifo|BUFFER[4][19], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[5][19] , int_fifo|BUFFER[5][19], RESDMAC, 1
+=======
+instance = comp, \int_fifo|BUFFER[5][19] , int_fifo|BUFFER[5][19], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][19] , int_fifo|BUFFER[4][19], RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|Mux12~0 , int_fifo|Mux12~0, RESDMAC, 1
 instance = comp, \int_fifo|Mux12~1 , int_fifo|Mux12~1, RESDMAC, 1
 instance = comp, \int_fifo|Mux12~4 , int_fifo|Mux12~4, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|UD_LATCH[3] , u_datapath|u_datapath_output|UD_LATCH[3], RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[19]~63 , u_datapath|u_datapath_output|DATA[19]~63, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[19]~64 , u_datapath|u_datapath_output|DATA[19]~64, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_datapath|u_datapath_output|DATA[20]~65 , u_datapath|u_datapath_output|DATA[20]~65, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[20]~66 , u_datapath|u_datapath_output|DATA[20]~66, RESDMAC, 1
 instance = comp, \u_datapath|ID[21]~32 , u_datapath|ID[21]~32, RESDMAC, 1
@@ -946,12 +1632,39 @@ instance = comp, \int_fifo|BUFFER[6][21] , int_fifo|BUFFER[6][21], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[7][21] , int_fifo|BUFFER[7][21], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[4][21] , int_fifo|BUFFER[4][21], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[5][21]~feeder , int_fifo|BUFFER[5][21]~feeder, RESDMAC, 1
+=======
+instance = comp, \u_datapath|ID[20]~24 , u_datapath|ID[20]~24, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][20] , int_fifo|BUFFER[1][20], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][20] , int_fifo|BUFFER[2][20], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][20]~feeder , int_fifo|BUFFER[0][20]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][20] , int_fifo|BUFFER[0][20], RESDMAC, 1
+instance = comp, \int_fifo|Mux11~2 , int_fifo|Mux11~2, RESDMAC, 1
+instance = comp, \int_fifo|Mux11~3 , int_fifo|Mux11~3, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][20] , int_fifo|BUFFER[7][20], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][20] , int_fifo|BUFFER[5][20], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][20] , int_fifo|BUFFER[4][20], RESDMAC, 1
+instance = comp, \int_fifo|Mux11~0 , int_fifo|Mux11~0, RESDMAC, 1
+instance = comp, \int_fifo|Mux11~1 , int_fifo|Mux11~1, RESDMAC, 1
+instance = comp, \int_fifo|Mux11~4 , int_fifo|Mux11~4, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|UD_LATCH[4] , u_datapath|u_datapath_output|UD_LATCH[4], RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[20]~65 , u_datapath|u_datapath_output|DATA[20]~65, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[20]~66 , u_datapath|u_datapath_output|DATA[20]~66, RESDMAC, 1
+instance = comp, \u_datapath|ID[21]~32 , u_datapath|ID[21]~32, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][21] , int_fifo|BUFFER[7][21], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][21] , int_fifo|BUFFER[4][21], RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|BUFFER[5][21] , int_fifo|BUFFER[5][21], RESDMAC, 1
 instance = comp, \int_fifo|Mux10~0 , int_fifo|Mux10~0, RESDMAC, 1
 instance = comp, \int_fifo|Mux10~1 , int_fifo|Mux10~1, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[1][21] , int_fifo|BUFFER[1][21], RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \int_fifo|BUFFER[2][21] , int_fifo|BUFFER[2][21], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[0][21] , int_fifo|BUFFER[0][21], RESDMAC, 1
+=======
+instance = comp, \int_fifo|BUFFER[0][21] , int_fifo|BUFFER[0][21], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][21]~feeder , int_fifo|BUFFER[2][21]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][21] , int_fifo|BUFFER[2][21], RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|Mux10~2 , int_fifo|Mux10~2, RESDMAC, 1
 instance = comp, \int_fifo|Mux10~3 , int_fifo|Mux10~3, RESDMAC, 1
 instance = comp, \int_fifo|Mux10~4 , int_fifo|Mux10~4, RESDMAC, 1
@@ -959,6 +1672,7 @@ instance = comp, \u_datapath|u_datapath_output|UD_LATCH[5] , u_datapath|u_datapa
 instance = comp, \u_datapath|u_datapath_output|DATA[21]~67 , u_datapath|u_datapath_output|DATA[21]~67, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[21]~68 , u_datapath|u_datapath_output|DATA[21]~68, RESDMAC, 1
 instance = comp, \u_datapath|ID[22]~36 , u_datapath|ID[22]~36, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \int_fifo|BUFFER[1][22] , int_fifo|BUFFER[1][22], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[0][22] , int_fifo|BUFFER[0][22], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[2][22] , int_fifo|BUFFER[2][22], RESDMAC, 1
@@ -966,15 +1680,26 @@ instance = comp, \int_fifo|Mux9~2 , int_fifo|Mux9~2, RESDMAC, 1
 instance = comp, \int_fifo|Mux9~3 , int_fifo|Mux9~3, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[6][22]~feeder , int_fifo|BUFFER[6][22]~feeder, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[6][22] , int_fifo|BUFFER[6][22], RESDMAC, 1
+=======
+instance = comp, \int_fifo|BUFFER[7][22] , int_fifo|BUFFER[7][22], RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|BUFFER[4][22] , int_fifo|BUFFER[4][22], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][22]~feeder , int_fifo|BUFFER[5][22]~feeder, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[5][22] , int_fifo|BUFFER[5][22], RESDMAC, 1
 instance = comp, \int_fifo|Mux9~0 , int_fifo|Mux9~0, RESDMAC, 1
 instance = comp, \int_fifo|Mux9~1 , int_fifo|Mux9~1, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][22] , int_fifo|BUFFER[1][22], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][22] , int_fifo|BUFFER[3][22], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][22] , int_fifo|BUFFER[0][22], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][22] , int_fifo|BUFFER[2][22], RESDMAC, 1
+instance = comp, \int_fifo|Mux9~2 , int_fifo|Mux9~2, RESDMAC, 1
+instance = comp, \int_fifo|Mux9~3 , int_fifo|Mux9~3, RESDMAC, 1
 instance = comp, \int_fifo|Mux9~4 , int_fifo|Mux9~4, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|UD_LATCH[6] , u_datapath|u_datapath_output|UD_LATCH[6], RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[22]~69 , u_datapath|u_datapath_output|DATA[22]~69, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[22]~70 , u_datapath|u_datapath_output|DATA[22]~70, RESDMAC, 1
 instance = comp, \u_datapath|ID[23]~44 , u_datapath|ID[23]~44, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \int_fifo|BUFFER[3][23] , int_fifo|BUFFER[3][23], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[2][23] , int_fifo|BUFFER[2][23], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[0][23]~feeder , int_fifo|BUFFER[0][23]~feeder, RESDMAC, 1
@@ -982,22 +1707,59 @@ instance = comp, \int_fifo|BUFFER[0][23] , int_fifo|BUFFER[0][23], RESDMAC, 1
 instance = comp, \int_fifo|Mux8~2 , int_fifo|Mux8~2, RESDMAC, 1
 instance = comp, \int_fifo|Mux8~3 , int_fifo|Mux8~3, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[7][23] , int_fifo|BUFFER[7][23], RESDMAC, 1
+=======
+instance = comp, \int_fifo|BUFFER[7][23] , int_fifo|BUFFER[7][23], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][23] , int_fifo|BUFFER[4][23], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][23]~feeder , int_fifo|BUFFER[5][23]~feeder, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|BUFFER[5][23] , int_fifo|BUFFER[5][23], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[4][23] , int_fifo|BUFFER[4][23], RESDMAC, 1
 instance = comp, \int_fifo|Mux8~0 , int_fifo|Mux8~0, RESDMAC, 1
 instance = comp, \int_fifo|Mux8~1 , int_fifo|Mux8~1, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][23] , int_fifo|BUFFER[3][23], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][23] , int_fifo|BUFFER[2][23], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][23]~feeder , int_fifo|BUFFER[0][23]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][23] , int_fifo|BUFFER[0][23], RESDMAC, 1
+instance = comp, \int_fifo|Mux8~2 , int_fifo|Mux8~2, RESDMAC, 1
+instance = comp, \int_fifo|Mux8~3 , int_fifo|Mux8~3, RESDMAC, 1
 instance = comp, \int_fifo|Mux8~4 , int_fifo|Mux8~4, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|UD_LATCH[7] , u_datapath|u_datapath_output|UD_LATCH[7], RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[23]~71 , u_datapath|u_datapath_output|DATA[23]~71, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[23]~72 , u_datapath|u_datapath_output|DATA[23]~72, RESDMAC, 1
+<<<<<<< Updated upstream
+=======
+instance = comp, \u_datapath|ID[24]~3 , u_datapath|ID[24]~3, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][24]~feeder , int_fifo|BUFFER[3][24]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][24] , int_fifo|BUFFER[3][24], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][24]~feeder , int_fifo|BUFFER[1][24]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][24] , int_fifo|BUFFER[1][24], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][24] , int_fifo|BUFFER[0][24], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][24] , int_fifo|BUFFER[2][24], RESDMAC, 1
+instance = comp, \int_fifo|Mux7~2 , int_fifo|Mux7~2, RESDMAC, 1
+instance = comp, \int_fifo|Mux7~3 , int_fifo|Mux7~3, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][24] , int_fifo|BUFFER[6][24], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][24] , int_fifo|BUFFER[7][24], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][24] , int_fifo|BUFFER[4][24], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][24] , int_fifo|BUFFER[5][24], RESDMAC, 1
+instance = comp, \int_fifo|Mux7~0 , int_fifo|Mux7~0, RESDMAC, 1
+instance = comp, \int_fifo|Mux7~1 , int_fifo|Mux7~1, RESDMAC, 1
+instance = comp, \int_fifo|Mux7~4 , int_fifo|Mux7~4, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|UD_LATCH[8] , u_datapath|u_datapath_output|UD_LATCH[8], RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \u_datapath|u_datapath_output|DATA[24]~73 , u_datapath|u_datapath_output|DATA[24]~73, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[24]~74 , u_datapath|u_datapath_output|DATA[24]~74, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[25]~75 , u_datapath|u_datapath_output|DATA[25]~75, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[25]~77 , u_datapath|u_datapath_output|DATA[25]~77, RESDMAC, 1
 instance = comp, \u_datapath|ID[25]~9 , u_datapath|ID[25]~9, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \int_fifo|BUFFER[3][25] , int_fifo|BUFFER[3][25], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[1][25] , int_fifo|BUFFER[1][25], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[0][25] , int_fifo|BUFFER[0][25], RESDMAC, 1
+=======
+instance = comp, \int_fifo|BUFFER[1][25] , int_fifo|BUFFER[1][25], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][25] , int_fifo|BUFFER[0][25], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][25]~feeder , int_fifo|BUFFER[2][25]~feeder, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|BUFFER[2][25] , int_fifo|BUFFER[2][25], RESDMAC, 1
 instance = comp, \int_fifo|Mux6~2 , int_fifo|Mux6~2, RESDMAC, 1
 instance = comp, \int_fifo|Mux6~3 , int_fifo|Mux6~3, RESDMAC, 1
@@ -1013,12 +1775,21 @@ instance = comp, \u_datapath|u_datapath_output|UD_LATCH[9] , u_datapath|u_datapa
 instance = comp, \u_datapath|u_datapath_output|DATA[25]~78 , u_datapath|u_datapath_output|DATA[25]~78, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[26]~79 , u_datapath|u_datapath_output|DATA[26]~79, RESDMAC, 1
 instance = comp, \u_datapath|ID[26]~15 , u_datapath|ID[26]~15, RESDMAC, 1
+<<<<<<< Updated upstream
+=======
+instance = comp, \int_fifo|BUFFER[3][26] , int_fifo|BUFFER[3][26], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][26] , int_fifo|BUFFER[1][26], RESDMAC, 1
+instance = comp, \int_fifo|Mux5~3 , int_fifo|Mux5~3, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][26]~feeder , int_fifo|BUFFER[6][26]~feeder, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|BUFFER[6][26] , int_fifo|BUFFER[6][26], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][26]~feeder , int_fifo|BUFFER[7][26]~feeder, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[7][26] , int_fifo|BUFFER[7][26], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[5][26] , int_fifo|BUFFER[5][26], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[4][26] , int_fifo|BUFFER[4][26], RESDMAC, 1
 instance = comp, \int_fifo|Mux5~0 , int_fifo|Mux5~0, RESDMAC, 1
 instance = comp, \int_fifo|Mux5~1 , int_fifo|Mux5~1, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \int_fifo|BUFFER[3][26]~feeder , int_fifo|BUFFER[3][26]~feeder, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[3][26] , int_fifo|BUFFER[3][26], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[1][26] , int_fifo|BUFFER[1][26], RESDMAC, 1
@@ -1033,9 +1804,22 @@ instance = comp, \u_datapath|u_datapath_output|DATA[26]~80 , u_datapath|u_datapa
 instance = comp, \u_datapath|u_datapath_output|DATA[25]~76 , u_datapath|u_datapath_output|DATA[25]~76, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[27]~81 , u_datapath|u_datapath_output|DATA[27]~81, RESDMAC, 1
 instance = comp, \u_datapath|ID[27]~21 , u_datapath|ID[27]~21, RESDMAC, 1
+=======
+instance = comp, \int_fifo|Mux5~4 , int_fifo|Mux5~4, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|UD_LATCH[10] , u_datapath|u_datapath_output|UD_LATCH[10], RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[26]~80 , u_datapath|u_datapath_output|DATA[26]~80, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[27]~81 , u_datapath|u_datapath_output|DATA[27]~81, RESDMAC, 1
+instance = comp, \u_datapath|ID[27]~21 , u_datapath|ID[27]~21, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][27] , int_fifo|BUFFER[1][27], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][27] , int_fifo|BUFFER[2][27], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][27] , int_fifo|BUFFER[0][27], RESDMAC, 1
+instance = comp, \int_fifo|Mux4~2 , int_fifo|Mux4~2, RESDMAC, 1
+instance = comp, \int_fifo|Mux4~3 , int_fifo|Mux4~3, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][27] , int_fifo|BUFFER[6][27], RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|BUFFER[7][27] , int_fifo|BUFFER[7][27], RESDMAC, 1
-instance = comp, \int_fifo|BUFFER[4][27] , int_fifo|BUFFER[4][27], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[5][27] , int_fifo|BUFFER[5][27], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][27] , int_fifo|BUFFER[4][27], RESDMAC, 1
 instance = comp, \int_fifo|Mux4~0 , int_fifo|Mux4~0, RESDMAC, 1
 instance = comp, \int_fifo|Mux4~1 , int_fifo|Mux4~1, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[1][27]~feeder , int_fifo|BUFFER[1][27]~feeder, RESDMAC, 1
@@ -1049,13 +1833,28 @@ instance = comp, \int_fifo|Mux4~3 , int_fifo|Mux4~3, RESDMAC, 1
 instance = comp, \int_fifo|Mux4~4 , int_fifo|Mux4~4, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|UD_LATCH[11] , u_datapath|u_datapath_output|UD_LATCH[11], RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[27]~82 , u_datapath|u_datapath_output|DATA[27]~82, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_datapath|ID[28]~27 , u_datapath|ID[28]~27, RESDMAC, 1
-instance = comp, \int_fifo|BUFFER[5][28] , int_fifo|BUFFER[5][28], RESDMAC, 1
+=======
+instance = comp, \u_datapath|u_datapath_output|DATA[28]~83 , u_datapath|u_datapath_output|DATA[28]~83, RESDMAC, 1
+instance = comp, \u_datapath|ID[28]~27 , u_datapath|ID[28]~27, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][28] , int_fifo|BUFFER[3][28], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][28] , int_fifo|BUFFER[1][28], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][28] , int_fifo|BUFFER[2][28], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][28] , int_fifo|BUFFER[0][28], RESDMAC, 1
+instance = comp, \int_fifo|Mux3~2 , int_fifo|Mux3~2, RESDMAC, 1
+instance = comp, \int_fifo|Mux3~3 , int_fifo|Mux3~3, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][28] , int_fifo|BUFFER[6][28], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][28] , int_fifo|BUFFER[7][28], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[4][28] , int_fifo|BUFFER[4][28], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][28]~feeder , int_fifo|BUFFER[5][28]~feeder, RESDMAC, 1
+>>>>>>> Stashed changes
+instance = comp, \int_fifo|BUFFER[5][28] , int_fifo|BUFFER[5][28], RESDMAC, 1
 instance = comp, \int_fifo|Mux3~0 , int_fifo|Mux3~0, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[7][28] , int_fifo|BUFFER[7][28], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[6][28] , int_fifo|BUFFER[6][28], RESDMAC, 1
 instance = comp, \int_fifo|Mux3~1 , int_fifo|Mux3~1, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \int_fifo|BUFFER[3][28] , int_fifo|BUFFER[3][28], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[1][28]~feeder , int_fifo|BUFFER[1][28]~feeder, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[1][28] , int_fifo|BUFFER[1][28], RESDMAC, 1
@@ -1063,6 +1862,10 @@ instance = comp, \int_fifo|Mux3~3 , int_fifo|Mux3~3, RESDMAC, 1
 instance = comp, \int_fifo|Mux3~4 , int_fifo|Mux3~4, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|UD_LATCH[12] , u_datapath|u_datapath_output|UD_LATCH[12], RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[28]~83 , u_datapath|u_datapath_output|DATA[28]~83, RESDMAC, 1
+=======
+instance = comp, \int_fifo|Mux3~4 , int_fifo|Mux3~4, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|UD_LATCH[12] , u_datapath|u_datapath_output|UD_LATCH[12], RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \u_datapath|u_datapath_output|DATA[28]~84 , u_datapath|u_datapath_output|DATA[28]~84, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[29]~85 , u_datapath|u_datapath_output|DATA[29]~85, RESDMAC, 1
 instance = comp, \u_datapath|ID[29]~33 , u_datapath|ID[29]~33, RESDMAC, 1
@@ -1070,9 +1873,13 @@ instance = comp, \int_fifo|BUFFER[6][29] , int_fifo|BUFFER[6][29], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[7][29] , int_fifo|BUFFER[7][29], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[5][29] , int_fifo|BUFFER[5][29], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[4][29] , int_fifo|BUFFER[4][29], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][29] , int_fifo|BUFFER[5][29], RESDMAC, 1
 instance = comp, \int_fifo|Mux2~0 , int_fifo|Mux2~0, RESDMAC, 1
 instance = comp, \int_fifo|Mux2~1 , int_fifo|Mux2~1, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \int_fifo|BUFFER[3][29] , int_fifo|BUFFER[3][29], RESDMAC, 1
+=======
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|BUFFER[1][29] , int_fifo|BUFFER[1][29], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[0][29] , int_fifo|BUFFER[0][29], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[2][29] , int_fifo|BUFFER[2][29], RESDMAC, 1
@@ -1081,6 +1888,7 @@ instance = comp, \int_fifo|Mux2~3 , int_fifo|Mux2~3, RESDMAC, 1
 instance = comp, \int_fifo|Mux2~4 , int_fifo|Mux2~4, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|UD_LATCH[13] , u_datapath|u_datapath_output|UD_LATCH[13], RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[29]~86 , u_datapath|u_datapath_output|DATA[29]~86, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_datapath|ID[30]~39 , u_datapath|ID[30]~39, RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[7][30] , int_fifo|BUFFER[7][30], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[6][30] , int_fifo|BUFFER[6][30], RESDMAC, 1
@@ -1104,11 +1912,37 @@ instance = comp, \int_fifo|BUFFER[5][31] , int_fifo|BUFFER[5][31], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[4][31] , int_fifo|BUFFER[4][31], RESDMAC, 1
 instance = comp, \int_fifo|Mux0~0 , int_fifo|Mux0~0, RESDMAC, 1
 instance = comp, \int_fifo|Mux0~1 , int_fifo|Mux0~1, RESDMAC, 1
+=======
+instance = comp, \u_datapath|u_datapath_output|DATA[25]~76 , u_datapath|u_datapath_output|DATA[25]~76, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[30]~87 , u_datapath|u_datapath_output|DATA[30]~87, RESDMAC, 1
+instance = comp, \u_datapath|ID[30]~39 , u_datapath|ID[30]~39, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][30] , int_fifo|BUFFER[3][30], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][30] , int_fifo|BUFFER[0][30], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][30]~feeder , int_fifo|BUFFER[2][30]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][30] , int_fifo|BUFFER[2][30], RESDMAC, 1
+instance = comp, \int_fifo|Mux1~2 , int_fifo|Mux1~2, RESDMAC, 1
+instance = comp, \int_fifo|Mux1~3 , int_fifo|Mux1~3, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][30]~feeder , int_fifo|BUFFER[7][30]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][30] , int_fifo|BUFFER[7][30], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][30] , int_fifo|BUFFER[6][30], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][30] , int_fifo|BUFFER[4][30], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][30]~feeder , int_fifo|BUFFER[5][30]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][30] , int_fifo|BUFFER[5][30], RESDMAC, 1
+instance = comp, \int_fifo|Mux1~0 , int_fifo|Mux1~0, RESDMAC, 1
+instance = comp, \int_fifo|Mux1~1 , int_fifo|Mux1~1, RESDMAC, 1
+instance = comp, \int_fifo|Mux1~4 , int_fifo|Mux1~4, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|UD_LATCH[14] , u_datapath|u_datapath_output|UD_LATCH[14], RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[30]~88 , u_datapath|u_datapath_output|DATA[30]~88, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[31]~89 , u_datapath|u_datapath_output|DATA[31]~89, RESDMAC, 1
+instance = comp, \u_datapath|ID[31]~45 , u_datapath|ID[31]~45, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][31] , int_fifo|BUFFER[1][31], RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \int_fifo|BUFFER[3][31] , int_fifo|BUFFER[3][31], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[0][31] , int_fifo|BUFFER[0][31], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[2][31] , int_fifo|BUFFER[2][31], RESDMAC, 1
 instance = comp, \int_fifo|Mux0~2 , int_fifo|Mux0~2, RESDMAC, 1
 instance = comp, \int_fifo|Mux0~3 , int_fifo|Mux0~3, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \int_fifo|Mux0~4 , int_fifo|Mux0~4, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|UD_LATCH[15] , u_datapath|u_datapath_output|UD_LATCH[15], RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_output|DATA[31]~90 , u_datapath|u_datapath_output|DATA[31]~90, RESDMAC, 1
@@ -1131,6 +1965,41 @@ instance = comp, \int_fifo|BUFFER[1][24] , int_fifo|BUFFER[1][24], RESDMAC, 1
 instance = comp, \int_fifo|BUFFER[3][24] , int_fifo|BUFFER[3][24], RESDMAC, 1
 instance = comp, \int_fifo|Mux7~3 , int_fifo|Mux7~3, RESDMAC, 1
 instance = comp, \int_fifo|Mux7~4 , int_fifo|Mux7~4, RESDMAC, 1
+=======
+instance = comp, \int_fifo|BUFFER[6][31] , int_fifo|BUFFER[6][31], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][31] , int_fifo|BUFFER[7][31], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][31] , int_fifo|BUFFER[5][31], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][31]~feeder , int_fifo|BUFFER[4][31]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][31] , int_fifo|BUFFER[4][31], RESDMAC, 1
+instance = comp, \int_fifo|Mux0~0 , int_fifo|Mux0~0, RESDMAC, 1
+instance = comp, \int_fifo|Mux0~1 , int_fifo|Mux0~1, RESDMAC, 1
+instance = comp, \int_fifo|Mux0~4 , int_fifo|Mux0~4, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|UD_LATCH[15] , u_datapath|u_datapath_output|UD_LATCH[15], RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_output|DATA[31]~90 , u_datapath|u_datapath_output|DATA[31]~90, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|F2S~4 , u_SCSI_SM|u_scsi_sm_outputs|F2S~4, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|F2S~2 , u_SCSI_SM|u_scsi_sm_outputs|F2S~2, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|F2S~3 , u_SCSI_SM|u_scsi_sm_outputs|F2S~3, RESDMAC, 1
+instance = comp, \u_SCSI_SM|F2S_o , u_SCSI_SM|F2S_o, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector5~0 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector5~0, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_input|UD_LATCH[8] , u_datapath|u_datapath_input|UD_LATCH[8], RESDMAC, 1
+instance = comp, \u_datapath|ID[8]~4 , u_datapath|ID[8]~4, RESDMAC, 1
+instance = comp, \u_datapath|ID[8]~5 , u_datapath|ID[8]~5, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][8] , int_fifo|BUFFER[3][8], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][8] , int_fifo|BUFFER[1][8], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][8] , int_fifo|BUFFER[0][8], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][8]~feeder , int_fifo|BUFFER[2][8]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][8] , int_fifo|BUFFER[2][8], RESDMAC, 1
+instance = comp, \int_fifo|Mux23~2 , int_fifo|Mux23~2, RESDMAC, 1
+instance = comp, \int_fifo|Mux23~3 , int_fifo|Mux23~3, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][8] , int_fifo|BUFFER[5][8], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][8] , int_fifo|BUFFER[4][8], RESDMAC, 1
+instance = comp, \int_fifo|Mux23~0 , int_fifo|Mux23~0, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][8] , int_fifo|BUFFER[7][8], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[6][8] , int_fifo|BUFFER[6][8], RESDMAC, 1
+instance = comp, \int_fifo|Mux23~1 , int_fifo|Mux23~1, RESDMAC, 1
+instance = comp, \int_fifo|Mux23~4 , int_fifo|Mux23~4, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector5~1 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector5~1, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector0~2 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector0~2, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector0~3 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector0~3, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector0~0 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector0~0, RESDMAC, 1
@@ -1138,6 +2007,7 @@ instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector0~1 , u_d
 instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector0~4 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector0~4, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Z[0]~0 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Z[0]~0, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector1~2 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector1~2, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector1~3 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector1~3, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector5~0 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector5~0, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector1~0 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector1~0, RESDMAC, 1
@@ -1172,31 +2042,86 @@ instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector7~3 , u_d
 instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector7~1 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector7~1, RESDMAC, 1
 instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector7~4 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector7~4, RESDMAC, 1
 instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E21~0 , u_SCSI_SM|u_scsi_sm_inputs|E21~0, RESDMAC, 1
+=======
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector1~1 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector1~1, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector1~3 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector1~3, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector1~4 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector1~4, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector2~2 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector2~2, RESDMAC, 1
+instance = comp, \u_datapath|ID[18]~12 , u_datapath|ID[18]~12, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[7][18] , int_fifo|BUFFER[7][18], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[4][18] , int_fifo|BUFFER[4][18], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[5][18] , int_fifo|BUFFER[5][18], RESDMAC, 1
+instance = comp, \int_fifo|Mux13~0 , int_fifo|Mux13~0, RESDMAC, 1
+instance = comp, \int_fifo|Mux13~1 , int_fifo|Mux13~1, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][18]~feeder , int_fifo|BUFFER[3][18]~feeder, RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[3][18] , int_fifo|BUFFER[3][18], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[1][18] , int_fifo|BUFFER[1][18], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[0][18] , int_fifo|BUFFER[0][18], RESDMAC, 1
+instance = comp, \int_fifo|BUFFER[2][18] , int_fifo|BUFFER[2][18], RESDMAC, 1
+instance = comp, \int_fifo|Mux13~2 , int_fifo|Mux13~2, RESDMAC, 1
+instance = comp, \int_fifo|Mux13~3 , int_fifo|Mux13~3, RESDMAC, 1
+instance = comp, \int_fifo|Mux13~4 , int_fifo|Mux13~4, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector2~3 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector2~3, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector2~0 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector2~0, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector2~1 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector2~1, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector2~4 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector2~4, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector3~1 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector3~1, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector3~2 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector3~2, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector3~3 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector3~3, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector3~4 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector3~4, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector4~0 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector4~0, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector4~1 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector4~1, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector4~2 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector4~2, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector4~3 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector4~3, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector4~4 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector4~4, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector5~5 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector5~5, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector5~4 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector5~4, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector5~2 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector5~2, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector5~3 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector5~3, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector5~6 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector5~6, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector6~3 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector6~3, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector6~2 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector6~2, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector6~0 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector6~0, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector6~1 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector6~1, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector6~4 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector6~4, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector7~2 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector7~2, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector7~3 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector7~3, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector7~1 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector7~1, RESDMAC, 1
+instance = comp, \u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector7~4 , u_datapath|u_datapath_scsi|u_datapath_8b_MUX|Selector7~4, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|DACK~1 , u_SCSI_SM|u_scsi_sm_outputs|DACK~1, RESDMAC, 1
 instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E0~0 , u_SCSI_SM|u_scsi_sm_inputs|E0~0, RESDMAC, 1
 instance = comp, \u_SCSI_SM|u_scsi_sm_inputs|E0~1 , u_SCSI_SM|u_scsi_sm_inputs|E0~1, RESDMAC, 1
 instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|DACK~0 , u_SCSI_SM|u_scsi_sm_outputs|DACK~0, RESDMAC, 1
 instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|DACK , u_SCSI_SM|u_scsi_sm_outputs|DACK, RESDMAC, 1
 instance = comp, \u_SCSI_SM|DACK_o , u_SCSI_SM|DACK_o, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|RE~2 , u_SCSI_SM|u_scsi_sm_outputs|RE~2, RESDMAC, 1
+=======
+instance = comp, \u_registers|u_registers_cntr|CNTR_O[4]~feeder , u_registers|u_registers_cntr|CNTR_O[4]~feeder, RESDMAC, 1
+instance = comp, \u_registers|u_registers_cntr|CNTR_O[4] , u_registers|u_registers_cntr|CNTR_O[4], RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|RE~0 , u_SCSI_SM|u_scsi_sm_outputs|RE~0, RESDMAC, 1
+instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|RE~1 , u_SCSI_SM|u_scsi_sm_outputs|RE~1, RESDMAC, 1
+>>>>>>> Stashed changes
 instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|RE~3 , u_SCSI_SM|u_scsi_sm_outputs|RE~3, RESDMAC, 1
 instance = comp, \u_SCSI_SM|RE_o , u_SCSI_SM|RE_o, RESDMAC, 1
 instance = comp, \_IOR~0 , _IOR~0, RESDMAC, 1
 instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|WE , u_SCSI_SM|u_scsi_sm_outputs|WE, RESDMAC, 1
 instance = comp, \u_SCSI_SM|WE_o , u_SCSI_SM|WE_o, RESDMAC, 1
 instance = comp, \_IOW~0 , _IOW~0, RESDMAC, 1
-instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|SCSI_CS~0 , u_SCSI_SM|u_scsi_sm_outputs|SCSI_CS~0, RESDMAC, 1
 instance = comp, \u_SCSI_SM|u_scsi_sm_outputs|SCSI_CS~1 , u_SCSI_SM|u_scsi_sm_outputs|SCSI_CS~1, RESDMAC, 1
 instance = comp, \u_SCSI_SM|SCSI_CS_o , u_SCSI_SM|SCSI_CS_o, RESDMAC, 1
 instance = comp, \u_registers|u_addr_decoder|ADDR_VALID~0 , u_registers|u_addr_decoder|ADDR_VALID~0, RESDMAC, 1
 instance = comp, \_LED_RD~0 , _LED_RD~0, RESDMAC, 1
 instance = comp, \_LED_WR~0 , _LED_WR~0, RESDMAC, 1
+instance = comp, \DATA_OE_~0 , DATA_OE_~0, RESDMAC, 1
 instance = comp, \_INT~I , _INT, RESDMAC, 1
 instance = comp, \_BR~I , _BR, RESDMAC, 1
 instance = comp, \_CSX0~I , _CSX0, RESDMAC, 1
 instance = comp, \_CSX1~I , _CSX1, RESDMAC, 1
 instance = comp, \SIZ1~I , SIZ1, RESDMAC, 1
 instance = comp, \_DS~I , _DS, RESDMAC, 1
+<<<<<<< Updated upstream
 instance = comp, \PD_PORT[8]~I , PD_PORT[8], RESDMAC, 1
 instance = comp, \PD_PORT[9]~I , PD_PORT[9], RESDMAC, 1
 instance = comp, \PD_PORT[10]~I , PD_PORT[10], RESDMAC, 1
@@ -1205,15 +2130,16 @@ instance = comp, \PD_PORT[12]~I , PD_PORT[12], RESDMAC, 1
 instance = comp, \PD_PORT[13]~I , PD_PORT[13], RESDMAC, 1
 instance = comp, \PD_PORT[14]~I , PD_PORT[14], RESDMAC, 1
 instance = comp, \PD_PORT[15]~I , PD_PORT[15], RESDMAC, 1
+=======
+>>>>>>> Stashed changes
 instance = comp, \_BERR~I , _BERR, RESDMAC, 1
-instance = comp, \A12~I , A12, RESDMAC, 1
 instance = comp, \_DMAEN~I , _DMAEN, RESDMAC, 1
 instance = comp, \_DACK~I , _DACK, RESDMAC, 1
-instance = comp, \_IORDY~I , _IORDY, RESDMAC, 1
-instance = comp, \INTB~I , INTB, RESDMAC, 1
 instance = comp, \_IOR~I , _IOR, RESDMAC, 1
 instance = comp, \_IOW~I , _IOW, RESDMAC, 1
 instance = comp, \_CSS~I , _CSS, RESDMAC, 1
 instance = comp, \_LED_RD~I , _LED_RD, RESDMAC, 1
 instance = comp, \_LED_WR~I , _LED_WR, RESDMAC, 1
 instance = comp, \_LED_DMA~I , _LED_DMA, RESDMAC, 1
+instance = comp, \OWN_~I , OWN_, RESDMAC, 1
+instance = comp, \DATA_OE_~I , DATA_OE_, RESDMAC, 1

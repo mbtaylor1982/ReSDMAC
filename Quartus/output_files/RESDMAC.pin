@@ -64,15 +64,15 @@ CHIP  "RESDMAC"  ASSIGNED TO AN: EP2C5T144C8
 
 Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage : I/O Bank  : User Assignment
 -------------------------------------------------------------------------------------------------------------
-~ASDO~ / RESERVED_INPUT_WITH_WEAK_PULLUP : 1         : input  : 3.3-V LVTTL       :         : 1         : Y              
-~nCSO~ / RESERVED_INPUT_WITH_WEAK_PULLUP : 2         : input  : 3.3-V LVTTL       :         : 1         : Y              
-_INT                         : 3         : output : 3.3-V LVTTL       :         : 1         : Y              
-_BR                          : 4         : output : 3.3-V LVTTL       :         : 1         : Y              
+~ASDO~ / RESERVED_INPUT_WITH_WEAK_PULLUP : 1         : input  : 3.3-V LVTTL       :         : 1         : N              
+~nCSO~ / RESERVED_INPUT_WITH_WEAK_PULLUP : 2         : input  : 3.3-V LVTTL       :         : 1         : N              
+PD_PORT[2]                   : 3         : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+PD_PORT[3]                   : 4         : bidir  : 3.3-V LVTTL       :         : 1         : Y              
 VCCIO1                       : 5         : power  :                   : 3.3V    : 1         :                
 GND                          : 6         : gnd    :                   :         :           :                
-_LED_DMA                     : 7         : output : 3.3-V LVTTL       :         : 1         : Y              
-_DMAEN                       : 8         : output : 3.3-V LVTTL       :         : 1         : Y              
-_IOR                         : 9         : output : 3.3-V LVTTL       :         : 1         : Y              
+_STERM                       : 7         : input  : 3.3-V LVTTL       :         : 1         : Y              
+PD_PORT[4]                   : 8         : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+PD_PORT[6]                   : 9         : bidir  : 3.3-V LVTTL       :         : 1         : Y              
 TDO                          : 10        : output :                   :         : 1         :                
 TMS                          : 11        : input  :                   :         : 1         :                
 TCK                          : 12        : input  :                   :         : 1         :                
@@ -81,21 +81,21 @@ DATA0                        : 14        : input  :                   :         
 DCLK                         : 15        :        :                   :         : 1         :                
 nCE                          : 16        :        :                   :         : 1         :                
 SCLK                         : 17        : input  : 3.3-V LVTTL       :         : 1         : Y              
-_DREQ                        : 18        : input  : 3.3-V LVTTL       :         : 1         : Y              
+_BERR                        : 18        : input  : 3.3-V LVTTL       :         : 1         : Y              
 GND                          : 19        : gnd    :                   :         :           :                
 nCONFIG                      : 20        :        :                   :         : 1         :                
-GND+                         : 21        :        :                   :         : 1         :                
-GND+                         : 22        :        :                   :         : 1         :                
+_CS                          : 21        : input  : 3.3-V LVTTL       :         : 1         : Y              
+ADDR[2]                      : 22        : input  : 3.3-V LVTTL       :         : 1         : Y              
 VCCIO1                       : 23        : power  :                   : 3.3V    : 1         :                
-_DACK                        : 24        : output : 3.3-V LVTTL       :         : 1         : Y              
-_IOW                         : 25        : output : 3.3-V LVTTL       :         : 1         : Y              
-_CSS                         : 26        : output : 3.3-V LVTTL       :         : 1         : Y              
-_CSX0                        : 27        : output : 3.3-V LVTTL       :         : 1         : Y              
-GND*                         : 28        :        :                   :         : 1         :                
+PD_PORT[5]                   : 24        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+PD_PORT[7]                   : 25        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+ADDR[3]                      : 26        : input  : 3.3-V LVTTL       :         : 1         : Y              
+ADDR[6]                      : 27        : input  : 3.3-V LVTTL       :         : 1         : Y              
+_RST                         : 28        : input  : 3.3-V LVTTL       :         : 1         : Y              
 VCCIO1                       : 29        : power  :                   : 3.3V    : 1         :                
-_CSX1                        : 30        : output : 3.3-V LVTTL       :         : 1         : Y              
-_LED_RD                      : 31        : output : 3.3-V LVTTL       :         : 1         : Y              
-_LED_WR                      : 32        : output : 3.3-V LVTTL       :         : 1         : Y              
+ADDR[4]                      : 30        : input  : 3.3-V LVTTL       :         : 1         : Y              
+ADDR[5]                      : 31        : input  : 3.3-V LVTTL       :         : 1         : Y              
+INTA                         : 32        : input  : 3.3-V LVTTL       :         : 1         : Y              
 GND                          : 33        : gnd    :                   :         :           :                
 GND_PLL1                     : 34        : gnd    :                   :         :           :                
 VCCD_PLL1                    : 35        : power  :                   : 1.2V    :           :                
@@ -103,71 +103,71 @@ GND_PLL1                     : 36        : gnd    :                   :         
 VCCA_PLL1                    : 37        : power  :                   : 1.2V    :           :                
 GNDA_PLL1                    : 38        : gnd    :                   :         :           :                
 GND                          : 39        : gnd    :                   :         :           :                
-SIZ1                         : 40        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
-_AS                          : 41        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
-_DSACK[0]                    : 42        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
-DATA[0]                      : 43        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
-DATA[2]                      : 44        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
-DATA[4]                      : 45        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+_INT                         : 40        : output : 3.3-V LVTTL       :         : 4         : Y              
+_DMAEN                       : 41        : output : 3.3-V LVTTL       :         : 4         : Y              
+_IOR                         : 42        : output : 3.3-V LVTTL       :         : 4         : Y              
+_CSS                         : 43        : output : 3.3-V LVTTL       :         : 4         : Y              
+_LED_WR                      : 44        : output : 3.3-V LVTTL       :         : 4         : Y              
+OWN_                         : 45        : output : 3.3-V LVTTL       :         : 4         : Y              
 VCCIO4                       : 46        : power  :                   : 3.3V    : 4         :                
-DATA[6]                      : 47        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
-DATA[8]                      : 48        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+GND*                         : 47        :        :                   :         : 4         :                
+GND*                         : 48        :        :                   :         : 4         :                
 GND                          : 49        : gnd    :                   :         :           :                
 VCCINT                       : 50        : power  :                   : 1.2V    :           :                
-DATA[16]                     : 51        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
-DATA[10]                     : 52        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
-DATA[12]                     : 53        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+GND*                         : 51        :        :                   :         : 4         :                
+GND*                         : 52        :        :                   :         : 4         :                
+GND*                         : 53        :        :                   :         : 4         :                
 VCCIO4                       : 54        : power  :                   : 3.3V    : 4         :                
-DATA[13]                     : 55        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+GND*                         : 55        :        :                   :         : 4         :                
 GND                          : 56        : gnd    :                   :         :           :                
-DATA[14]                     : 57        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
-DATA[15]                     : 58        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
-R_W                          : 59        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
-_DS                          : 60        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+GND*                         : 57        :        :                   :         : 4         :                
+GND*                         : 58        :        :                   :         : 4         :                
+_BR                          : 59        : output : 3.3-V LVTTL       :         : 4         : Y              
+_DACK                        : 60        : output : 3.3-V LVTTL       :         : 4         : Y              
 GND                          : 61        : gnd    :                   :         :           :                
 VCCINT                       : 62        : power  :                   : 1.2V    :           :                
-DATA[17]                     : 63        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
-_DSACK[1]                    : 64        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
-DATA[1]                      : 65        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+GND*                         : 63        :        :                   :         : 4         :                
+_IOW                         : 64        : output : 3.3-V LVTTL       :         : 4         : Y              
+_LED_RD                      : 65        : output : 3.3-V LVTTL       :         : 4         : Y              
 VCCIO4                       : 66        : power  :                   : 3.3V    : 4         :                
-DATA[3]                      : 67        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+_LED_DMA                     : 67        : output : 3.3-V LVTTL       :         : 4         : Y              
 GND                          : 68        : gnd    :                   :         :           :                
-DATA[5]                      : 69        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
-DATA[7]                      : 70        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
-DATA[9]                      : 71        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
-DATA[11]                     : 72        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
-PD_PORT[8]                   : 73        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
-PD_PORT[9]                   : 74        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
-PD_PORT[10]                  : 75        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
-~LVDS41p/nCEO~               : 76        : output : 3.3-V LVTTL       :         : 3         : Y              
+DATA_OE_                     : 69        : output : 3.3-V LVTTL       :         : 4         : Y              
+GND*                         : 70        :        :                   :         : 4         :                
+GND*                         : 71        :        :                   :         : 4         :                
+GND*                         : 72        :        :                   :         : 4         :                
+DATA[17]                     : 73        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+DATA[18]                     : 74        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+DATA[19]                     : 75        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+~LVDS41p/nCEO~               : 76        : output : 3.3-V LVTTL       :         : 3         : N              
 VCCIO3                       : 77        : power  :                   : 3.3V    : 3         :                
 GND                          : 78        : gnd    :                   :         :           :                
-ADDR[5]                      : 79        : input  : 3.3-V LVTTL       :         : 3         : Y              
-PD_PORT[12]                  : 80        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
-PD_PORT[14]                  : 81        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+PD_PORT[0]                   : 79        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+DATA[21]                     : 80        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+DATA[23]                     : 81        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
 nSTATUS                      : 82        :        :                   :         : 3         :                
 CONF_DONE                    : 83        :        :                   :         : 3         :                
 MSEL1                        : 84        :        :                   :         : 3         :                
 MSEL0                        : 85        :        :                   :         : 3         :                
-_BERR                        : 86        : input  : 3.3-V LVTTL       :         : 3         : Y              
-A12                          : 87        : input  : 3.3-V LVTTL       :         : 3         : Y              
-_IORDY                       : 88        : input  : 3.3-V LVTTL       :         : 3         : Y              
-INTB                         : 89        : input  : 3.3-V LVTTL       :         : 3         : Y              
-_CS                          : 90        : input  : 3.3-V LVTTL       :         : 3         : Y              
-INTA                         : 91        : input  : 3.3-V LVTTL       :         : 3         : Y              
-PD_PORT[11]                  : 92        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
-PD_PORT[13]                  : 93        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
-PD_PORT[15]                  : 94        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+DATA[25]                     : 86        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+DATA[27]                     : 87        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+_BG                          : 88        : input  : 3.3-V LVTTL       :         : 3         : Y              
+_DREQ                        : 89        : input  : 3.3-V LVTTL       :         : 3         : Y              
+GND+                         : 90        :        :                   :         : 3         :                
+GND+                         : 91        :        :                   :         : 3         :                
+DATA[20]                     : 92        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+DATA[22]                     : 93        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+DATA[24]                     : 94        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
 VCCIO3                       : 95        : power  :                   : 3.3V    : 3         :                
-_STERM                       : 96        : input  : 3.3-V LVTTL       :         : 3         : Y              
-_RST                         : 97        : input  : 3.3-V LVTTL       :         : 3         : Y              
+DATA[26]                     : 96        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+DATA[28]                     : 97        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
 GND                          : 98        : gnd    :                   :         :           :                
-_BG                          : 99        : input  : 3.3-V LVTTL       :         : 3         : Y              
-ADDR[2]                      : 100       : input  : 3.3-V LVTTL       :         : 3         : Y              
-ADDR[3]                      : 101       : input  : 3.3-V LVTTL       :         : 3         : Y              
+PD_PORT[1]                   : 99        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+DATA[29]                     : 100       : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+DATA[30]                     : 101       : bidir  : 3.3-V LVTTL       :         : 3         : Y              
 VCCIO3                       : 102       : power  :                   : 3.3V    : 3         :                
-ADDR[6]                      : 103       : input  : 3.3-V LVTTL       :         : 3         : Y              
-ADDR[4]                      : 104       : input  : 3.3-V LVTTL       :         : 3         : Y              
+DATA[31]                     : 103       : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+_BGACK                       : 104       : bidir  : 3.3-V LVTTL       :         : 3         : Y              
 GND                          : 105       : gnd    :                   :         :           :                
 GND_PLL2                     : 106       : gnd    :                   :         :           :                
 VCCD_PLL2                    : 107       : power  :                   : 1.2V    :           :                
@@ -175,36 +175,36 @@ GND_PLL2                     : 108       : gnd    :                   :         
 VCCA_PLL2                    : 109       : power  :                   : 1.2V    :           :                
 GNDA_PLL2                    : 110       : gnd    :                   :         :           :                
 GND                          : 111       : gnd    :                   :         :           :                
-DATA[18]                     : 112       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
-DATA[20]                     : 113       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
-DATA[22]                     : 114       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
-DATA[24]                     : 115       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+SIZ1                         : 112       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+_AS                          : 113       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+_DSACK[0]                    : 114       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+DATA[0]                      : 115       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
 VCCIO2                       : 116       : power  :                   : 3.3V    : 2         :                
 GND                          : 117       : gnd    :                   :         :           :                
-DATA[26]                     : 118       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
-DATA[28]                     : 119       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
-PD_PORT[6]                   : 120       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
-DATA[30]                     : 121       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
-_BGACK                       : 122       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+DATA[2]                      : 118       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+DATA[4]                      : 119       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+DATA[15]                     : 120       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+DATA[6]                      : 121       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+DATA[8]                      : 122       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
 GND                          : 123       : gnd    :                   :         :           :                
 VCCINT                       : 124       : power  :                   : 1.2V    :           :                
-PD_PORT[1]                   : 125       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
-PD_PORT[3]                   : 126       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+DATA[10]                     : 125       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+DATA[12]                     : 126       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
 VCCIO2                       : 127       : power  :                   : 3.3V    : 2         :                
 GND                          : 128       : gnd    :                   :         :           :                
-DATA[19]                     : 129       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+R_W                          : 129       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
 GND                          : 130       : gnd    :                   :         :           :                
 VCCINT                       : 131       : power  :                   : 1.2V    :           :                
-PD_PORT[7]                   : 132       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
-DATA[21]                     : 133       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
-DATA[23]                     : 134       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
-DATA[25]                     : 135       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
-DATA[27]                     : 136       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
-DATA[29]                     : 137       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+DATA[16]                     : 132       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+_DS                          : 133       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+_DSACK[1]                    : 134       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+DATA[1]                      : 135       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+DATA[3]                      : 136       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+DATA[5]                      : 137       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
 VCCIO2                       : 138       : power  :                   : 3.3V    : 2         :                
-DATA[31]                     : 139       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+DATA[7]                      : 139       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
 GND                          : 140       : gnd    :                   :         :           :                
-PD_PORT[0]                   : 141       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
-PD_PORT[2]                   : 142       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
-PD_PORT[4]                   : 143       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
-PD_PORT[5]                   : 144       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+DATA[9]                      : 141       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+DATA[11]                     : 142       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+DATA[13]                     : 143       : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+DATA[14]                     : 144       : bidir  : 3.3-V LVTTL       :         : 2         : Y              

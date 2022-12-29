@@ -1,5 +1,9 @@
 Analysis & Synthesis report for RESDMAC
+<<<<<<< Updated upstream
 Wed Dec 28 22:11:54 2022
+=======
+Thu Dec 29 22:40:57 2022
+>>>>>>> Stashed changes
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -45,16 +49,28 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
+<<<<<<< Updated upstream
 ; Analysis & Synthesis Status        ; Successful - Wed Dec 28 22:11:54 2022           ;
+=======
+; Analysis & Synthesis Status        ; Successful - Thu Dec 29 22:40:57 2022           ;
+>>>>>>> Stashed changes
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; RESDMAC                                         ;
 ; Top-level Entity Name              ; RESDMAC                                         ;
 ; Family                             ; Cyclone II                                      ;
+<<<<<<< Updated upstream
 ; Total logic elements               ; 900                                             ;
 ;     Total combinational functions  ; 638                                             ;
 ;     Dedicated logic registers      ; 396                                             ;
 ; Total registers                    ; 396                                             ;
 ; Total pins                         ; 83                                              ;
+=======
+; Total logic elements               ; 918                                             ;
+;     Total combinational functions  ; 656                                             ;
+;     Dedicated logic registers      ; 396                                             ;
+; Total registers                    ; 396                                             ;
+; Total pins                         ; 72                                              ;
+>>>>>>> Stashed changes
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
 ; Embedded Multiplier 9-bit elements ; 0                                               ;
@@ -71,9 +87,6 @@ applicable agreement for further details.
 ; Top-level entity name                                                      ; RESDMAC            ; RESDMAC            ;
 ; Family name                                                                ; Cyclone II         ; Cyclone IV GX      ;
 ; Use smart compilation                                                      ; On                 ; Off                ;
-; Optimization Technique                                                     ; Area               ; Balanced           ;
-; Perform WYSIWYG Primitive Resynthesis                                      ; On                 ; Off                ;
-; Auto Shift Register Replacement                                            ; Always             ; Auto               ;
 ; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
 ; Enable compact report table                                                ; Off                ; Off                ;
 ; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
@@ -104,11 +117,14 @@ applicable agreement for further details.
 ; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
 ; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
 ; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
 ; Carry Chain Length                                                         ; 70                 ; 70                 ;
 ; Auto Carry Chains                                                          ; On                 ; On                 ;
 ; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
 ; Auto ROM Replacement                                                       ; On                 ; On                 ;
 ; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
 ; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
 ; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
 ; Strict RAM Replacement                                                     ; Off                ; Off                ;
@@ -188,6 +204,7 @@ applicable agreement for further details.
 +---------------------------------------------+-------------------------------------------------------+
 ; Resource                                    ; Usage                                                 ;
 +---------------------------------------------+-------------------------------------------------------+
+<<<<<<< Updated upstream
 ; Estimated Total logic elements              ; 900                                                   ;
 ;                                             ;                                                       ;
 ; Total combinational functions               ; 638                                                   ;
@@ -198,18 +215,35 @@ applicable agreement for further details.
 ;                                             ;                                                       ;
 ; Logic elements by mode                      ;                                                       ;
 ;     -- normal mode                          ; 638                                                   ;
+=======
+; Estimated Total logic elements              ; 918                                                   ;
+;                                             ;                                                       ;
+; Total combinational functions               ; 656                                                   ;
+; Logic element usage by number of LUT inputs ;                                                       ;
+;     -- 4 input functions                    ; 439                                                   ;
+;     -- 3 input functions                    ; 141                                                   ;
+;     -- <=2 input functions                  ; 76                                                    ;
+;                                             ;                                                       ;
+; Logic elements by mode                      ;                                                       ;
+;     -- normal mode                          ; 656                                                   ;
+>>>>>>> Stashed changes
 ;     -- arithmetic mode                      ; 0                                                     ;
 ;                                             ;                                                       ;
 ; Total registers                             ; 396                                                   ;
 ;     -- Dedicated logic registers            ; 396                                                   ;
 ;     -- I/O registers                        ; 0                                                     ;
 ;                                             ;                                                       ;
-; I/O pins                                    ; 83                                                    ;
+; I/O pins                                    ; 72                                                    ;
 ; Embedded Multiplier 9-bit elements          ; 0                                                     ;
 ; Maximum fan-out node                        ; fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[1] ;
 ; Maximum fan-out                             ; 99                                                    ;
+<<<<<<< Updated upstream
 ; Total fan-out                               ; 3436                                                  ;
 ; Average fan-out                             ; 3.08                                                  ;
+=======
+; Total fan-out                               ; 3517                                                  ;
+; Average fan-out                             ; 3.13                                                  ;
+>>>>>>> Stashed changes
 +---------------------------------------------+-------------------------------------------------------+
 
 
@@ -218,6 +252,7 @@ applicable agreement for further details.
 +-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                    ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                          ; Library Name ;
 +-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------+--------------+
+<<<<<<< Updated upstream
 ; |RESDMAC                                      ; 638 (16)          ; 396 (6)      ; 0           ; 0            ; 0       ; 0         ; 83   ; 0            ; |RESDMAC                                                                                     ; work         ;
 ;    |CPU_SM:u_CPU_SM|                          ; 177 (0)           ; 26 (26)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM                                                                     ; work         ;
 ;       |CPU_SM_inputs:u_CPU_SM_inputs|         ; 37 (37)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs                                       ; work         ;
@@ -243,6 +278,33 @@ applicable agreement for further details.
 ;       |fifo_write_strobes:u_write_strobes|    ; 5 (5)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo_write_strobes:u_write_strobes                                    ; work         ;
 ;    |registers:u_registers|                    ; 21 (1)            ; 14 (2)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers                                                               ; work         ;
 ;       |addr_decoder:u_addr_decoder|           ; 13 (13)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|addr_decoder:u_addr_decoder                                   ; work         ;
+=======
+; |RESDMAC                                      ; 656 (17)          ; 396 (6)      ; 0           ; 0            ; 0       ; 0         ; 72   ; 0            ; |RESDMAC                                                                                     ; work         ;
+;    |CPU_SM:u_CPU_SM|                          ; 186 (0)           ; 26 (26)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM                                                                     ; work         ;
+;       |CPU_SM_inputs:u_CPU_SM_inputs|         ; 40 (40)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs                                       ; work         ;
+;       |CPU_SM_outputs:u_CPU_SM_outputs|       ; 67 (67)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs                                     ; work         ;
+;       |cpudff1:u_cpudff1|                     ; 16 (16)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff1:u_cpudff1                                                   ; work         ;
+;       |cpudff2:u_cpudff2|                     ; 19 (19)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff2:u_cpudff2                                                   ; work         ;
+;       |cpudff3:u_cpudff3|                     ; 17 (17)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff3:u_cpudff3                                                   ; work         ;
+;       |cpudff4:u_cpudff4|                     ; 14 (14)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff4:u_cpudff4                                                   ; work         ;
+;       |cpudff5:u_cpudff5|                     ; 13 (13)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff5:u_cpudff5                                                   ; work         ;
+;    |SCSI_SM:u_SCSI_SM|                        ; 73 (3)            ; 25 (25)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|SCSI_SM:u_SCSI_SM                                                                   ; work         ;
+;       |scsi_sm_inputs:u_scsi_sm_inputs|       ; 20 (20)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs                                   ; work         ;
+;       |scsi_sm_outputs:u_scsi_sm_outputs|     ; 50 (50)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs                                 ; work         ;
+;    |datapath:u_datapath|                      ; 161 (48)          ; 56 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath                                                                 ; work         ;
+;       |datapath_input:u_datapath_input|       ; 0 (0)             ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_input:u_datapath_input                                 ; work         ;
+;       |datapath_output:u_datapath_output|     ; 62 (62)           ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output                               ; work         ;
+;       |datapath_scsi:u_datapath_scsi|         ; 51 (8)            ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi                                   ; work         ;
+;          |datapath_8b_MUX:u_datapath_8b_MUX|  ; 43 (43)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX ; work         ;
+;    |fifo:int_fifo|                            ; 195 (168)         ; 269 (256)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo                                                                       ; work         ;
+;       |fifo_3bit_cntr:u_next_in_cntr|         ; 3 (3)             ; 3 (3)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr                                         ; work         ;
+;       |fifo_3bit_cntr:u_next_out_cntr|        ; 3 (3)             ; 3 (3)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr                                        ; work         ;
+;       |fifo__full_empty_ctr:u_full_empty_ctr| ; 13 (13)           ; 5 (5)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr                                 ; work         ;
+;       |fifo_byte_ptr:u_byte_ptr|              ; 3 (3)             ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo_byte_ptr:u_byte_ptr                                              ; work         ;
+;       |fifo_write_strobes:u_write_strobes|    ; 5 (5)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo_write_strobes:u_write_strobes                                    ; work         ;
+;    |registers:u_registers|                    ; 24 (1)            ; 14 (2)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers                                                               ; work         ;
+;       |addr_decoder:u_addr_decoder|           ; 16 (16)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|addr_decoder:u_addr_decoder                                   ; work         ;
+>>>>>>> Stashed changes
 ;       |registers_cntr:u_registers_cntr|       ; 1 (1)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|registers_cntr:u_registers_cntr                               ; work         ;
 ;       |registers_istr:u_registers_istr|       ; 2 (2)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|registers_istr:u_registers_istr                               ; work         ;
 ;       |registers_term:u_registers_term|       ; 4 (4)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|registers_term:u_registers_term                               ; work         ;
@@ -284,9 +346,15 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------------------------+---------+
 ; Inverted Register                                              ; Fan out ;
 +----------------------------------------------------------------+---------+
+<<<<<<< Updated upstream
 ; DSACK_LATCHED_[1]                                              ; 5       ;
 ; DSACK_LATCHED_[0]                                              ; 5       ;
 ; fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY  ; 12      ;
+=======
+; DSACK_LATCHED_[1]                                              ; 6       ;
+; DSACK_LATCHED_[0]                                              ; 6       ;
+; fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY  ; 13      ;
+>>>>>>> Stashed changes
 ; registers:u_registers|registers_term:u_registers_term|REG_DSK_ ; 1       ;
 ; registers:u_registers|registers_istr:u_registers_istr|FE       ; 1       ;
 ; Total number of inverted registers = 5                         ;         ;
@@ -336,7 +404,11 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+<<<<<<< Updated upstream
     Info: Processing started: Wed Dec 28 22:11:51 2022
+=======
+    Info: Processing started: Thu Dec 29 22:40:54 2022
+>>>>>>> Stashed changes
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off RESDMAC -c RESDMAC
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file /home/mike/EAGLE/projects/SDMAC-Replacement/RTL/datapath/datapath_8b_MUX.v
@@ -507,13 +579,17 @@ Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
     Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[15]" feeding internal logic into a wire
 Warning (19016): Clock multiplexers are found and protected
     Warning (19017): Found clock multiplexer SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|SET_DSACK~synth
+<<<<<<< Updated upstream
 Info (17026): Resynthesizing 0 WYSIWYG logic cells and I/Os using "area" technology mapper which leaves 0 WYSIWYG logic cells and I/Os untouched
+=======
+>>>>>>> Stashed changes
 Info (13000): Registers with preset signals will power-up high
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Info (17049): 2 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file /home/mike/EAGLE/projects/SDMAC-Replacement/Quartus/output_files/RESDMAC.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+<<<<<<< Updated upstream
 Warning (21074): Design contains 4 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "_BERR"
     Warning (15610): No output dependent on input pin "A12"
@@ -527,6 +603,16 @@ Info (21057): Implemented 1058 device resources after synthesis - the final reso
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 89 warnings
     Info: Peak virtual memory: 586 megabytes
     Info: Processing ended: Wed Dec 28 22:11:54 2022
+=======
+Info (21057): Implemented 1066 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 13 input pins
+    Info (21059): Implemented 12 output pins
+    Info (21060): Implemented 47 bidirectional pins
+    Info (21061): Implemented 994 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 84 warnings
+    Info: Peak virtual memory: 591 megabytes
+    Info: Processing ended: Thu Dec 29 22:40:57 2022
+>>>>>>> Stashed changes
     Info: Elapsed time: 00:00:03
     Info: Total CPU time (on all processors): 00:00:02
 

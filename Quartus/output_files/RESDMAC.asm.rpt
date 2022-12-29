@@ -1,5 +1,9 @@
 Assembler report for RESDMAC
+<<<<<<< Updated upstream
 Wed Dec 28 22:13:58 2022
+=======
+Thu Dec 29 22:41:08 2022
+>>>>>>> Stashed changes
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -38,7 +42,11 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
+<<<<<<< Updated upstream
 ; Assembler Status      ; Successful - Wed Dec 28 22:13:58 2022 ;
+=======
+; Assembler Status      ; Successful - Thu Dec 29 22:41:08 2022 ;
+>>>>>>> Stashed changes
 ; Revision Name         ; RESDMAC                               ;
 ; Top-level Entity Name ; RESDMAC                               ;
 ; Family                ; Cyclone II                            ;
@@ -94,8 +102,13 @@ applicable agreement for further details.
 ; Option         ; Setting              ;
 +----------------+----------------------+
 ; Device         ; EP2C5T144C8          ;
+<<<<<<< Updated upstream
 ; JTAG usercode  ; 0x00108AC8           ;
 ; Checksum       ; 0x00108AC8           ;
+=======
+; JTAG usercode  ; 0x0010BC00           ;
+; Checksum       ; 0x0010BC00           ;
+>>>>>>> Stashed changes
 +----------------+----------------------+
 
 
@@ -106,7 +119,11 @@ applicable agreement for further details.
 +--------------------+------------------+
 ; Device             ; EPCS4            ;
 ; JTAG usercode      ; 0x00000000       ;
+<<<<<<< Updated upstream
 ; Checksum           ; 0x0742FD65       ;
+=======
+; Checksum           ; 0x0742CD6D       ;
+>>>>>>> Stashed changes
 ; Compression Ratio  ; 2                ;
 +--------------------+------------------+
 
@@ -117,14 +134,23 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Assembler
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+<<<<<<< Updated upstream
     Info: Processing started: Wed Dec 28 22:13:58 2022
+=======
+    Info: Processing started: Thu Dec 29 22:41:07 2022
+>>>>>>> Stashed changes
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off RESDMAC -c RESDMAC
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus II 64-Bit Assembler was successful. 0 errors, 0 warnings
     Info: Peak virtual memory: 534 megabytes
+<<<<<<< Updated upstream
     Info: Processing ended: Wed Dec 28 22:13:58 2022
     Info: Elapsed time: 00:00:00
+=======
+    Info: Processing ended: Thu Dec 29 22:41:08 2022
+    Info: Elapsed time: 00:00:01
+>>>>>>> Stashed changes
     Info: Total CPU time (on all processors): 00:00:00
 
 

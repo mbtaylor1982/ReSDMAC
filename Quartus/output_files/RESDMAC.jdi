@@ -1,6 +1,10 @@
 <sld_project_info>
   <project>
+<<<<<<< Updated upstream
     <hash md5_digest_80b="641d371c66eaf8fc4175"/>
+=======
+    <hash md5_digest_80b="3d07dc72ba423a65ee02"/>
+>>>>>>> Stashed changes
   </project>
   <file_info>
     <file device="EP2C5T144C8" path="RESDMAC.sof" usercode="0xFFFFFFFF"/>

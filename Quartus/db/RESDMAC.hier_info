@@ -7,9 +7,7 @@ R_W <> R_W
 _AS <> registers:u_registers.AS_
 _AS <> _AS
 _DS <> _DS
-_DSACK[0] <> CPU_SM:u_CPU_SM.DSACK0_
 _DSACK[0] <> _DSACK[0]
-_DSACK[1] <> CPU_SM:u_CPU_SM.DSACK1_
 _DSACK[1] <> _DSACK[1]
 DATA[0] <> datapath:u_datapath.DATA_IO
 DATA[1] <> datapath:u_datapath.DATA_IO
@@ -47,27 +45,28 @@ _STERM => _STERM.IN1
 SCLK => SCLK.IN2
 _CS => _CS.IN1
 _RST => _RST.IN4
-_BERR => ~NO_FANOUT~
+_BERR => DSK0_IN_.IN1
+_BERR => DSK1_IN_.IN1
 ADDR[2] => ADDR[2].IN1
 ADDR[3] => A3.IN2
 ADDR[4] => ADDR[4].IN1
 ADDR[5] => ADDR[5].IN1
 ADDR[6] => ADDR[6].IN1
-A12 => ~NO_FANOUT~
 _BR <= _BR.DB_MAX_OUTPUT_PORT_TYPE
 _BG => _BG.IN1
 _BGACK <> _BGACK
 _DMAEN <= BGACK.DB_MAX_OUTPUT_PORT_TYPE
 _DREQ => DREQ_.IN0
 _DACK <= SCSI_SM:u_SCSI_SM.DACK_o
-_IORDY => ~NO_FANOUT~
 INTA => INTA.IN1
-INTB => ~NO_FANOUT~
 _IOR <= _IOR.DB_MAX_OUTPUT_PORT_TYPE
 _IOW <= _IOW.DB_MAX_OUTPUT_PORT_TYPE
 _CSS <= SCSI_SM:u_SCSI_SM.SCSI_CS_o
+<<<<<<< Updated upstream
 _CSX0 <= _CSX0.DB_MAX_OUTPUT_PORT_TYPE
 _CSX1 <= _CSX1.DB_MAX_OUTPUT_PORT_TYPE
+=======
+>>>>>>> Stashed changes
 PD_PORT[0] <> datapath:u_datapath.PD
 PD_PORT[1] <> datapath:u_datapath.PD
 PD_PORT[2] <> datapath:u_datapath.PD
@@ -76,17 +75,11 @@ PD_PORT[4] <> datapath:u_datapath.PD
 PD_PORT[5] <> datapath:u_datapath.PD
 PD_PORT[6] <> datapath:u_datapath.PD
 PD_PORT[7] <> datapath:u_datapath.PD
-PD_PORT[8] <> PD_PORT[8]
-PD_PORT[9] <> PD_PORT[9]
-PD_PORT[10] <> PD_PORT[10]
-PD_PORT[11] <> PD_PORT[11]
-PD_PORT[12] <> PD_PORT[12]
-PD_PORT[13] <> PD_PORT[13]
-PD_PORT[14] <> PD_PORT[14]
-PD_PORT[15] <> PD_PORT[15]
 _LED_RD <= _LED_RD.DB_MAX_OUTPUT_PORT_TYPE
 _LED_WR <= _LED_WR.DB_MAX_OUTPUT_PORT_TYPE
 _LED_DMA <= BGACK.DB_MAX_OUTPUT_PORT_TYPE
+OWN_ <= BGACK.DB_MAX_OUTPUT_PORT_TYPE
+DATA_OE_ <= DATA_OE_.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |RESDMAC|registers:u_registers
