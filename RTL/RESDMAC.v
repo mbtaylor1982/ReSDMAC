@@ -27,7 +27,7 @@
 module RESDMAC(
     output _INT,        //Connected to INT2 needs to be Open Collector output.
 
-    inout SIZ1,         //Indicates a 16 bit transfer is true. 
+    output SIZ1,         //Indicates a 16 bit transfer is true. 
 
     inout R_W,          //Read Write from CPU
     inout _AS,          //Address Strobe
