@@ -80,7 +80,7 @@ set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
 set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_NETLIST_TYPE POST_FIT -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_location_assignment PIN_27 -to ADDR[6]
@@ -124,15 +124,15 @@ set_location_assignment PIN_69 -to DATA_OE_
 set_location_assignment PIN_31 -to INTA
 set_location_assignment PIN_45 -to OWN_
 set_location_assignment PIN_25 -to PD_PORT[7]
-set_location_assignment PIN_9 -to PD_PORT[6]
+set_location_assignment PIN_51 -to PD_PORT[6]
 set_location_assignment PIN_24 -to PD_PORT[5]
 set_location_assignment PIN_8 -to PD_PORT[4]
 set_location_assignment PIN_4 -to PD_PORT[3]
-set_location_assignment PIN_3 -to PD_PORT[2]
+set_location_assignment PIN_47 -to PD_PORT[2]
 set_location_assignment PIN_99 -to PD_PORT[1]
 set_location_assignment PIN_79 -to PD_PORT[0]
 set_location_assignment PIN_129 -to R_W
-set_location_assignment PIN_17 -to SCLK
+set_location_assignment PIN_90 -to SCLK
 set_location_assignment PIN_112 -to SIZ1
 set_location_assignment PIN_113 -to _AS
 set_location_assignment PIN_32 -to _BERR
@@ -150,9 +150,10 @@ set_location_assignment PIN_114 -to _DSACK[0]
 set_location_assignment PIN_40 -to _INT
 set_location_assignment PIN_42 -to _IOR
 set_location_assignment PIN_64 -to _IOW
-set_location_assignment PIN_67 -to _LED_DMA
-set_location_assignment PIN_65 -to _LED_RD
-set_location_assignment PIN_44 -to _LED_WR
+set_location_assignment PIN_3 -to _LED_DMA
+set_location_assignment PIN_7 -to _LED_RD
+set_location_assignment PIN_9 -to _LED_WR
 set_location_assignment PIN_28 -to _RST
-set_location_assignment PIN_7 -to _STERM
+set_location_assignment PIN_48 -to _STERM
+set_global_assignment -name SDC_FILE RESDMAC.sdc
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
