@@ -1,6 +1,6 @@
 |RESDMAC
 _INT <= registers:u_registers.INT_O_
-SIZ1 <> SIZ1
+SIZ1 <= SIZ1.DB_MAX_OUTPUT_PORT_TYPE
 R_W <> registers:u_registers.RW
 R_W <> SCSI_SM:u_SCSI_SM.RW
 R_W <> R_W
