@@ -10595,7 +10595,7 @@ Source: http://focus.ti.com/lit/ds/symlink/sn74lvcr162245.pdf</description>
 <wire x1="15.24" y1="-147.32" x2="15.24" y2="109.22" width="0.762" layer="92"/>
 <wire x1="15.24" y1="109.22" x2="160.02" y2="109.22" width="0.762" layer="92"/>
 <wire x1="160.02" y1="109.22" x2="160.02" y2="-147.32" width="0.762" layer="92"/>
-<label x="91.44" y="111.76" size="1.778" layer="95" rot="R180"/>
+<label x="15.24" y="-17.78" size="1.778" layer="95"/>
 </segment>
 </bus>
 </busses>
@@ -10610,16 +10610,6 @@ Source: http://focus.ti.com/lit/ds/symlink/sn74lvcr162245.pdf</description>
 <pinref part="IC2" gate="G$1" pin="2DIR"/>
 <wire x1="40.64" y1="20.32" x2="15.24" y2="20.32" width="0.1524" layer="91"/>
 <label x="17.78" y="20.32" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="IC3" gate="G$1" pin="1DIR"/>
-<wire x1="40.64" y1="0" x2="15.24" y2="0" width="0.1524" layer="91"/>
-<label x="17.78" y="0" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="IC3" gate="G$1" pin="2DIR"/>
-<wire x1="40.64" y1="-58.42" x2="15.24" y2="-58.42" width="0.1524" layer="91"/>
-<label x="17.78" y="-58.42" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="CPU_DATAD0" class="0">
@@ -10662,26 +10652,6 @@ Source: http://focus.ti.com/lit/ds/symlink/sn74lvcr162245.pdf</description>
 <wire x1="40.64" y1="43.18" x2="15.24" y2="43.18" width="0.1524" layer="91"/>
 <label x="17.78" y="43.18" size="1.778" layer="95"/>
 </segment>
-<segment>
-<pinref part="IC3" gate="G$1" pin="GND@3"/>
-<wire x1="40.64" y1="-50.8" x2="15.24" y2="-50.8" width="0.1524" layer="91"/>
-<label x="17.78" y="-50.8" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="IC3" gate="G$1" pin="GND@2"/>
-<wire x1="40.64" y1="-35.56" x2="15.24" y2="-35.56" width="0.1524" layer="91"/>
-<label x="17.78" y="-35.56" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="IC3" gate="G$1" pin="GND@1"/>
-<wire x1="40.64" y1="-22.86" x2="15.24" y2="-22.86" width="0.1524" layer="91"/>
-<label x="17.78" y="-22.86" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="IC3" gate="G$1" pin="GND"/>
-<wire x1="40.64" y1="-7.62" x2="15.24" y2="-7.62" width="0.1524" layer="91"/>
-<label x="17.78" y="-7.62" size="1.778" layer="95"/>
-</segment>
 </net>
 <net name="CPU_DATAD3" class="0">
 <segment>
@@ -10702,16 +10672,6 @@ Source: http://focus.ti.com/lit/ds/symlink/sn74lvcr162245.pdf</description>
 <pinref part="IC2" gate="G$1" pin="VCC"/>
 <wire x1="40.64" y1="63.5" x2="15.24" y2="63.5" width="0.1524" layer="91"/>
 <label x="17.78" y="63.5" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="IC3" gate="G$1" pin="VCC@1"/>
-<wire x1="40.64" y1="-43.18" x2="15.24" y2="-43.18" width="0.1524" layer="91"/>
-<label x="17.78" y="-43.18" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="IC3" gate="G$1" pin="VCC"/>
-<wire x1="40.64" y1="-15.24" x2="15.24" y2="-15.24" width="0.1524" layer="91"/>
-<label x="17.78" y="-15.24" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="CPU_DATAD4" class="0">
@@ -10796,118 +10756,6 @@ Source: http://focus.ti.com/lit/ds/symlink/sn74lvcr162245.pdf</description>
 <pinref part="IC2" gate="G$1" pin="2B8"/>
 <wire x1="40.64" y1="22.86" x2="15.24" y2="22.86" width="0.1524" layer="91"/>
 <label x="17.78" y="22.86" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="CPU_DATAD16" class="0">
-<segment>
-<pinref part="IC3" gate="G$1" pin="1B1"/>
-<wire x1="40.64" y1="-2.54" x2="15.24" y2="-2.54" width="0.1524" layer="91"/>
-<label x="17.78" y="-2.54" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="CPU_DATAD17" class="0">
-<segment>
-<pinref part="IC3" gate="G$1" pin="1B2"/>
-<wire x1="40.64" y1="-5.08" x2="15.24" y2="-5.08" width="0.1524" layer="91"/>
-<label x="17.78" y="-5.08" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="CPU_DATAD18" class="0">
-<segment>
-<pinref part="IC3" gate="G$1" pin="1B3"/>
-<wire x1="40.64" y1="-10.16" x2="15.24" y2="-10.16" width="0.1524" layer="91"/>
-<label x="17.78" y="-10.16" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="CPU_DATAD19" class="0">
-<segment>
-<pinref part="IC3" gate="G$1" pin="1B4"/>
-<wire x1="40.64" y1="-12.7" x2="15.24" y2="-12.7" width="0.1524" layer="91"/>
-<label x="17.78" y="-12.7" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="CPU_DATAD20" class="0">
-<segment>
-<pinref part="IC3" gate="G$1" pin="1B5"/>
-<wire x1="40.64" y1="-17.78" x2="15.24" y2="-17.78" width="0.1524" layer="91"/>
-<label x="17.78" y="-17.78" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="CPU_DATAD21" class="0">
-<segment>
-<pinref part="IC3" gate="G$1" pin="1B6"/>
-<wire x1="40.64" y1="-20.32" x2="15.24" y2="-20.32" width="0.1524" layer="91"/>
-<label x="17.78" y="-20.32" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="CPU_DATAD22" class="0">
-<segment>
-<pinref part="IC3" gate="G$1" pin="1B7"/>
-<wire x1="40.64" y1="-25.4" x2="15.24" y2="-25.4" width="0.1524" layer="91"/>
-<label x="17.78" y="-25.4" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="CPU_DATAD23" class="0">
-<segment>
-<pinref part="IC3" gate="G$1" pin="1B8"/>
-<wire x1="40.64" y1="-27.94" x2="15.24" y2="-27.94" width="0.1524" layer="91"/>
-<label x="17.78" y="-27.94" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="CPU_DATAD24" class="0">
-<segment>
-<pinref part="IC3" gate="G$1" pin="2B1"/>
-<wire x1="40.64" y1="-30.48" x2="15.24" y2="-30.48" width="0.1524" layer="91"/>
-<label x="17.78" y="-30.48" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="CPU_DATAD25" class="0">
-<segment>
-<pinref part="IC3" gate="G$1" pin="2B2"/>
-<wire x1="40.64" y1="-33.02" x2="15.24" y2="-33.02" width="0.1524" layer="91"/>
-<label x="17.78" y="-33.02" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="CPU_DATAD26" class="0">
-<segment>
-<pinref part="IC3" gate="G$1" pin="2B3"/>
-<wire x1="40.64" y1="-38.1" x2="15.24" y2="-38.1" width="0.1524" layer="91"/>
-<label x="17.78" y="-38.1" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="CPU_DATAD27" class="0">
-<segment>
-<pinref part="IC3" gate="G$1" pin="2B4"/>
-<wire x1="40.64" y1="-40.64" x2="15.24" y2="-40.64" width="0.1524" layer="91"/>
-<label x="17.78" y="-40.64" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="CPU_DATAD28" class="0">
-<segment>
-<pinref part="IC3" gate="G$1" pin="2B5"/>
-<wire x1="40.64" y1="-45.72" x2="15.24" y2="-45.72" width="0.1524" layer="91"/>
-<label x="17.78" y="-45.72" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="CPU_DATAD29" class="0">
-<segment>
-<pinref part="IC3" gate="G$1" pin="2B6"/>
-<wire x1="40.64" y1="-48.26" x2="15.24" y2="-48.26" width="0.1524" layer="91"/>
-<label x="17.78" y="-48.26" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="CPU_DATAD30" class="0">
-<segment>
-<pinref part="IC3" gate="G$1" pin="2B7"/>
-<wire x1="40.64" y1="-53.34" x2="15.24" y2="-53.34" width="0.1524" layer="91"/>
-<label x="17.78" y="-53.34" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="CPU_DATAD31" class="0">
-<segment>
-<pinref part="IC3" gate="G$1" pin="2B8"/>
-<wire x1="40.64" y1="-55.88" x2="15.24" y2="-55.88" width="0.1524" layer="91"/>
-<label x="17.78" y="-55.88" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>
