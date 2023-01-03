@@ -374,7 +374,7 @@ assign DSK1_IN_ = _BERR & _DSACK[1];
 //assign _CSX1 = 1'bz;
 assign A3 = ADDR[3];
 assign DATA_OE_ = (_AS | _CS | H_0C);
-assign PDATA_OE_ = (~_DACK & _CSS);
+assign PDATA_OE_ (~_DACK & _CSS);
 
 endmodule
 

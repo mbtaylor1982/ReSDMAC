@@ -118,7 +118,7 @@ PD_PORT[6]                   : 51        : bidir  : 3.3-V LVTTL       :         
 ADDR[5]                      : 52        : input  : 3.3-V LVTTL       :         : 4         : Y              
 ADDR[6]                      : 53        : input  : 3.3-V LVTTL       :         : 4         : Y              
 VCCIO4                       : 54        : power  :                   : 3.3V    : 4         :                
-GND*                         : 55        :        :                   :         : 4         :                
+PDATA_OE_                    : 55        : output : 3.3-V LVTTL       :         : 4         : Y              
 GND                          : 56        : gnd    :                   :         :           :                
 GND*                         : 57        :        :                   :         : 4         :                
 GND*                         : 58        :        :                   :         : 4         :                

@@ -1,5 +1,5 @@
 Fitter report for RESDMAC
-Mon Jan  2 21:33:59 2023
+Tue Jan  3 15:48:01 2023
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -64,18 +64,18 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Fitter Summary                                                                       ;
 +------------------------------------+-------------------------------------------------+
-; Fitter Status                      ; Successful - Mon Jan  2 21:33:58 2023           ;
+; Fitter Status                      ; Successful - Tue Jan  3 15:48:01 2023           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; RESDMAC                                         ;
 ; Top-level Entity Name              ; RESDMAC                                         ;
 ; Family                             ; Cyclone II                                      ;
 ; Device                             ; EP2C5T144C8                                     ;
 ; Timing Models                      ; Final                                           ;
-; Total logic elements               ; 772 / 4,608 ( 17 % )                            ;
-;     Total combinational functions  ; 662 / 4,608 ( 14 % )                            ;
+; Total logic elements               ; 778 / 4,608 ( 17 % )                            ;
+;     Total combinational functions  ; 663 / 4,608 ( 14 % )                            ;
 ;     Dedicated logic registers      ; 396 / 4,608 ( 9 % )                             ;
 ; Total registers                    ; 396                                             ;
-; Total pins                         ; 72 / 89 ( 81 % )                                ;
+; Total pins                         ; 73 / 89 ( 82 % )                                ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0 / 119,808 ( 0 % )                             ;
 ; Embedded Multiplier 9-bit elements ; 0 / 26 ( 0 % )                                  ;
@@ -140,8 +140,8 @@ applicable agreement for further details.
 ; Type                ; Value                  ;
 +---------------------+------------------------+
 ; Placement (by node) ;                        ;
-;     -- Requested    ; 0 / 1136 ( 0.00 % )    ;
-;     -- Achieved     ; 0 / 1136 ( 0.00 % )    ;
+;     -- Requested    ; 0 / 1138 ( 0.00 % )    ;
+;     -- Achieved     ; 0 / 1138 ( 0.00 % )    ;
 ;                     ;                        ;
 ; Routing (by net)    ;                        ;
 ;     -- Requested    ; 0 / 0 ( 0.00 % )       ;
@@ -164,7 +164,7 @@ applicable agreement for further details.
 +--------------------------------+---------+-------------------+-------------------------+-------------------+
 ; Partition Name                 ; # Nodes ; # Preserved Nodes ; Preservation Level Used ; Netlist Type Used ;
 +--------------------------------+---------+-------------------+-------------------------+-------------------+
-; Top                            ; 1133    ; 0                 ; N/A                     ; Source File       ;
+; Top                            ; 1135    ; 0                 ; N/A                     ; Source File       ;
 ; hard_block:auto_generated_inst ; 3       ; 0                 ; N/A                     ; Source File       ;
 +--------------------------------+---------+-------------------+-------------------------+-------------------+
 
@@ -180,28 +180,28 @@ The pin-out file can be found in /home/mike/EAGLE/projects/SDMAC-Replacement/Qua
 +---------------------------------------------+----------------------+
 ; Resource                                    ; Usage                ;
 +---------------------------------------------+----------------------+
-; Total logic elements                        ; 772 / 4,608 ( 17 % ) ;
-;     -- Combinational with no register       ; 376                  ;
-;     -- Register only                        ; 110                  ;
-;     -- Combinational with a register        ; 286                  ;
+; Total logic elements                        ; 778 / 4,608 ( 17 % ) ;
+;     -- Combinational with no register       ; 382                  ;
+;     -- Register only                        ; 115                  ;
+;     -- Combinational with a register        ; 281                  ;
 ;                                             ;                      ;
 ; Logic element usage by number of LUT inputs ;                      ;
 ;     -- 4 input functions                    ; 439                  ;
 ;     -- 3 input functions                    ; 141                  ;
-;     -- <=2 input functions                  ; 82                   ;
-;     -- Register only                        ; 110                  ;
+;     -- <=2 input functions                  ; 83                   ;
+;     -- Register only                        ; 115                  ;
 ;                                             ;                      ;
 ; Logic elements by mode                      ;                      ;
-;     -- normal mode                          ; 662                  ;
+;     -- normal mode                          ; 663                  ;
 ;     -- arithmetic mode                      ; 0                    ;
 ;                                             ;                      ;
 ; Total registers*                            ; 396 / 4,851 ( 8 % )  ;
 ;     -- Dedicated logic registers            ; 396 / 4,608 ( 9 % )  ;
 ;     -- I/O registers                        ; 0 / 243 ( 0 % )      ;
 ;                                             ;                      ;
-; Total LABs:  partially or completely used   ; 64 / 288 ( 22 % )    ;
+; Total LABs:  partially or completely used   ; 59 / 288 ( 20 % )    ;
 ; Virtual pins                                ; 0                    ;
-; I/O pins                                    ; 72 / 89 ( 81 % )     ;
+; I/O pins                                    ; 73 / 89 ( 82 % )     ;
 ;     -- Clock pins                           ; 4 / 4 ( 100 % )      ;
 ;                                             ;                      ;
 ; Global signals                              ; 8                    ;
@@ -214,12 +214,12 @@ The pin-out file can be found in /home/mike/EAGLE/projects/SDMAC-Replacement/Qua
 ; JTAGs                                       ; 0 / 1 ( 0 % )        ;
 ; ASMI blocks                                 ; 0 / 1 ( 0 % )        ;
 ; CRC blocks                                  ; 0 / 1 ( 0 % )        ;
-; Average interconnect usage (total/H/V)      ; 6% / 6% / 4%         ;
-; Peak interconnect usage (total/H/V)         ; 9% / 9% / 8%         ;
+; Average interconnect usage (total/H/V)      ; 5% / 6% / 5%         ;
+; Peak interconnect usage (total/H/V)         ; 9% / 8% / 9%         ;
 ; Maximum fan-out                             ; 99                   ;
 ; Highest non-global fan-out                  ; 99                   ;
-; Total fan-out                               ; 3578                 ;
-; Average fan-out                             ; 3.01                 ;
+; Total fan-out                               ; 3577                 ;
+; Average fan-out                             ; 3.02                 ;
 +---------------------------------------------+----------------------+
 *  Register count does not include registers inside RAM blocks or DSP blocks.
 
@@ -232,28 +232,28 @@ The pin-out file can be found in /home/mike/EAGLE/projects/SDMAC-Replacement/Qua
 +---------------------------------------------+---------------------+--------------------------------+
 ; Difficulty Clustering Region                ; Low                 ; Low                            ;
 ;                                             ;                     ;                                ;
-; Total logic elements                        ; 772 / 4608 ( 17 % ) ; 0 / 4608 ( 0 % )               ;
-;     -- Combinational with no register       ; 376                 ; 0                              ;
-;     -- Register only                        ; 110                 ; 0                              ;
-;     -- Combinational with a register        ; 286                 ; 0                              ;
+; Total logic elements                        ; 778 / 4608 ( 17 % ) ; 0 / 4608 ( 0 % )               ;
+;     -- Combinational with no register       ; 382                 ; 0                              ;
+;     -- Register only                        ; 115                 ; 0                              ;
+;     -- Combinational with a register        ; 281                 ; 0                              ;
 ;                                             ;                     ;                                ;
 ; Logic element usage by number of LUT inputs ;                     ;                                ;
 ;     -- 4 input functions                    ; 439                 ; 0                              ;
 ;     -- 3 input functions                    ; 141                 ; 0                              ;
-;     -- <=2 input functions                  ; 82                  ; 0                              ;
-;     -- Register only                        ; 110                 ; 0                              ;
+;     -- <=2 input functions                  ; 83                  ; 0                              ;
+;     -- Register only                        ; 115                 ; 0                              ;
 ;                                             ;                     ;                                ;
 ; Logic elements by mode                      ;                     ;                                ;
-;     -- normal mode                          ; 662                 ; 0                              ;
+;     -- normal mode                          ; 663                 ; 0                              ;
 ;     -- arithmetic mode                      ; 0                   ; 0                              ;
 ;                                             ;                     ;                                ;
 ; Total registers                             ; 396                 ; 0                              ;
 ;     -- Dedicated logic registers            ; 396 / 4608 ( 9 % )  ; 0 / 4608 ( 0 % )               ;
 ;                                             ;                     ;                                ;
-; Total LABs:  partially or completely used   ; 64 / 288 ( 22 % )   ; 0 / 288 ( 0 % )                ;
+; Total LABs:  partially or completely used   ; 59 / 288 ( 20 % )   ; 0 / 288 ( 0 % )                ;
 ;                                             ;                     ;                                ;
 ; Virtual pins                                ; 0                   ; 0                              ;
-; I/O pins                                    ; 72                  ; 0                              ;
+; I/O pins                                    ; 73                  ; 0                              ;
 ; Embedded Multiplier 9-bit elements          ; 0 / 26 ( 0 % )      ; 0 / 26 ( 0 % )                 ;
 ; Total memory bits                           ; 0                   ; 0                              ;
 ; Total RAM block bits                        ; 0                   ; 0                              ;
@@ -266,8 +266,8 @@ The pin-out file can be found in /home/mike/EAGLE/projects/SDMAC-Replacement/Qua
 ;     -- Registered Output Connections        ; 0                   ; 0                              ;
 ;                                             ;                     ;                                ;
 ; Internal Connections                        ;                     ;                                ;
-;     -- Total Connections                    ; 3578                ; 0                              ;
-;     -- Registered Connections               ; 1389                ; 0                              ;
+;     -- Total Connections                    ; 3577                ; 0                              ;
+;     -- Registered Connections               ; 1391                ; 0                              ;
 ;                                             ;                     ;                                ;
 ; External Connections                        ;                     ;                                ;
 ;     -- Top                                  ; 0                   ; 0                              ;
@@ -275,7 +275,7 @@ The pin-out file can be found in /home/mike/EAGLE/projects/SDMAC-Replacement/Qua
 ;                                             ;                     ;                                ;
 ; Partition Interface                         ;                     ;                                ;
 ;     -- Input Ports                          ; 13                  ; 0                              ;
-;     -- Output Ports                         ; 13                  ; 0                              ;
+;     -- Output Ports                         ; 14                  ; 0                              ;
 ;     -- Bidir Ports                          ; 46                  ; 0                              ;
 ;                                             ;                     ;                                ;
 ; Registered Ports                            ;                     ;                                ;
@@ -315,25 +315,26 @@ The pin-out file can be found in /home/mike/EAGLE/projects/SDMAC-Replacement/Qua
 +---------+-------+----------+--------------+--------------+-------------+-----------------------+--------------------+--------+----------------+---------------+-----------------+----------+--------------+--------------+-------------+----------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Output Pins                                                                                                                                                                                                                                                                                                                            ;
-+----------+-------+----------+--------------+--------------+-------------+-----------------+------------------------+---------------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-------------+----------------------+------+----------------------+---------------------+
-; Name     ; Pin # ; I/O Bank ; X coordinate ; Y coordinate ; Cell number ; Output Register ; Output Enable Register ; Power Up High ; PCI I/O Enabled ; Open Drain ; TRI Primitive ; Bus Hold ; Weak Pull Up ; I/O Standard ; Current Strength ; Termination ; Location assigned by ; Load ; Output Enable Source ; Output Enable Group ;
-+----------+-------+----------+--------------+--------------+-------------+-----------------+------------------------+---------------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-------------+----------------------+------+----------------------+---------------------+
-; DATA_OE_ ; 69    ; 4        ; 26           ; 0            ; 3           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
-; OWN_     ; 45    ; 4        ; 3            ; 0            ; 0           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
-; SIZ1     ; 112   ; 2        ; 26           ; 14           ; 0           ; no              ; no                     ; no            ; no              ; no         ; yes           ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
-; _BR      ; 59    ; 4        ; 14           ; 0            ; 1           ; no              ; no                     ; no            ; no              ; yes        ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
-; _CSS     ; 43    ; 4        ; 3            ; 0            ; 2           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
-; _DACK    ; 60    ; 4        ; 14           ; 0            ; 0           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
-; _DMAEN   ; 41    ; 4        ; 1            ; 0            ; 1           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
-; _INT     ; 40    ; 4        ; 1            ; 0            ; 2           ; no              ; no                     ; no            ; no              ; yes        ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
-; _IOR     ; 42    ; 4        ; 1            ; 0            ; 0           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
-; _IOW     ; 64    ; 4        ; 21           ; 0            ; 1           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
-; _LED_DMA ; 3     ; 1        ; 0            ; 13           ; 2           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
-; _LED_RD  ; 7     ; 1        ; 0            ; 11           ; 1           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
-; _LED_WR  ; 9     ; 1        ; 0            ; 11           ; 3           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
-+----------+-------+----------+--------------+--------------+-------------+-----------------+------------------------+---------------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-------------+----------------------+------+----------------------+---------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Output Pins                                                                                                                                                                                                                                                                                                                             ;
++-----------+-------+----------+--------------+--------------+-------------+-----------------+------------------------+---------------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-------------+----------------------+------+----------------------+---------------------+
+; Name      ; Pin # ; I/O Bank ; X coordinate ; Y coordinate ; Cell number ; Output Register ; Output Enable Register ; Power Up High ; PCI I/O Enabled ; Open Drain ; TRI Primitive ; Bus Hold ; Weak Pull Up ; I/O Standard ; Current Strength ; Termination ; Location assigned by ; Load ; Output Enable Source ; Output Enable Group ;
++-----------+-------+----------+--------------+--------------+-------------+-----------------+------------------------+---------------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-------------+----------------------+------+----------------------+---------------------+
+; DATA_OE_  ; 69    ; 4        ; 26           ; 0            ; 3           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
+; OWN_      ; 45    ; 4        ; 3            ; 0            ; 0           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
+; PDATA_OE_ ; 55    ; 4        ; 9            ; 0            ; 0           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
+; SIZ1      ; 112   ; 2        ; 26           ; 14           ; 0           ; no              ; no                     ; no            ; no              ; no         ; yes           ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
+; _BR       ; 59    ; 4        ; 14           ; 0            ; 1           ; no              ; no                     ; no            ; no              ; yes        ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
+; _CSS      ; 43    ; 4        ; 3            ; 0            ; 2           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
+; _DACK     ; 60    ; 4        ; 14           ; 0            ; 0           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
+; _DMAEN    ; 41    ; 4        ; 1            ; 0            ; 1           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
+; _INT      ; 40    ; 4        ; 1            ; 0            ; 2           ; no              ; no                     ; no            ; no              ; yes        ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
+; _IOR      ; 42    ; 4        ; 1            ; 0            ; 0           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
+; _IOW      ; 64    ; 4        ; 21           ; 0            ; 1           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
+; _LED_DMA  ; 3     ; 1        ; 0            ; 13           ; 2           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
+; _LED_RD   ; 7     ; 1        ; 0            ; 11           ; 1           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
+; _LED_WR   ; 9     ; 1        ; 0            ; 11           ; 3           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; User                 ; 0 pF ; -                    ; -                   ;
++-----------+-------+----------+--------------+--------------+-------------+-----------------+------------------------+---------------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-------------+----------------------+------+----------------------+---------------------+
 
 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -398,7 +399,7 @@ The pin-out file can be found in /home/mike/EAGLE/projects/SDMAC-Replacement/Qua
 ; 1        ; 16 / 19 ( 84 % ) ; 3.3V          ; --           ;
 ; 2        ; 22 / 23 ( 96 % ) ; 3.3V          ; --           ;
 ; 3        ; 19 / 23 ( 83 % ) ; 3.3V          ; --           ;
-; 4        ; 18 / 24 ( 75 % ) ; 3.3V          ; --           ;
+; 4        ; 19 / 24 ( 79 % ) ; 3.3V          ; --           ;
 +----------+------------------+---------------+--------------+
 
 
@@ -461,7 +462,7 @@ The pin-out file can be found in /home/mike/EAGLE/projects/SDMAC-Replacement/Qua
 ; 52       ; 53         ; 4        ; ADDR[5]                                  ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; Y               ; no       ; Off          ;
 ; 53       ; 57         ; 4        ; ADDR[6]                                  ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; Y               ; no       ; Off          ;
 ; 54       ;            ; 4        ; VCCIO4                                   ; power  ;              ; 3.3V    ; --         ;                 ; --       ; --           ;
-; 55       ; 58         ; 4        ; GND*                                     ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
+; 55       ; 58         ; 4        ; PDATA_OE_                                ; output ; 3.3-V LVTTL  ;         ; Column I/O ; Y               ; no       ; Off          ;
 ; 56       ;            ;          ; GND                                      ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; 57       ; 59         ; 4        ; GND*                                     ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; 58       ; 60         ; 4        ; GND*                                     ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
@@ -597,33 +598,33 @@ Note: User assignments will override these defaults. The user specified values a
 +-----------------------------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+----------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                    ; Logic Cells ; Dedicated Logic Registers ; I/O Registers ; Memory Bits ; M4Ks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Full Hierarchy Name                                                                          ; Library Name ;
 +-----------------------------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+----------------------------------------------------------------------------------------------+--------------+
-; |RESDMAC                                      ; 772 (18)    ; 396 (6)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 72   ; 0            ; 376 (12)     ; 110 (4)           ; 286 (5)          ; |RESDMAC                                                                                     ; work         ;
+; |RESDMAC                                      ; 778 (16)    ; 396 (6)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 73   ; 0            ; 382 (10)     ; 115 (4)           ; 281 (8)          ; |RESDMAC                                                                                     ; work         ;
 ;    |CPU_SM:u_CPU_SM|                          ; 192 (26)    ; 26 (26)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 166 (0)      ; 4 (4)             ; 22 (2)           ; |RESDMAC|CPU_SM:u_CPU_SM                                                                     ; work         ;
-;       |CPU_SM_inputs:u_CPU_SM_inputs|         ; 40 (40)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 39 (39)      ; 0 (0)             ; 1 (1)            ; |RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs                                       ; work         ;
-;       |CPU_SM_outputs:u_CPU_SM_outputs|       ; 67 (67)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 53 (53)      ; 0 (0)             ; 14 (14)          ; |RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs                                     ; work         ;
-;       |cpudff1:u_cpudff1|                     ; 16 (16)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 15 (15)      ; 0 (0)             ; 1 (1)            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff1:u_cpudff1                                                   ; work         ;
-;       |cpudff2:u_cpudff2|                     ; 19 (19)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 18 (18)      ; 0 (0)             ; 1 (1)            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff2:u_cpudff2                                                   ; work         ;
-;       |cpudff3:u_cpudff3|                     ; 17 (17)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 16 (16)      ; 0 (0)             ; 1 (1)            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff3:u_cpudff3                                                   ; work         ;
+;       |CPU_SM_inputs:u_CPU_SM_inputs|         ; 40 (40)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 38 (38)      ; 0 (0)             ; 2 (2)            ; |RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs                                       ; work         ;
+;       |CPU_SM_outputs:u_CPU_SM_outputs|       ; 67 (67)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 52 (52)      ; 0 (0)             ; 15 (15)          ; |RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs                                     ; work         ;
+;       |cpudff1:u_cpudff1|                     ; 16 (16)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 16 (16)      ; 0 (0)             ; 0 (0)            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff1:u_cpudff1                                                   ; work         ;
+;       |cpudff2:u_cpudff2|                     ; 19 (19)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 19 (19)      ; 0 (0)             ; 0 (0)            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff2:u_cpudff2                                                   ; work         ;
+;       |cpudff3:u_cpudff3|                     ; 17 (17)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 15 (15)      ; 0 (0)             ; 2 (2)            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff3:u_cpudff3                                                   ; work         ;
 ;       |cpudff4:u_cpudff4|                     ; 14 (14)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 13 (13)      ; 0 (0)             ; 1 (1)            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff4:u_cpudff4                                                   ; work         ;
-;       |cpudff5:u_cpudff5|                     ; 13 (13)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 12 (12)      ; 0 (0)             ; 1 (1)            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff5:u_cpudff5                                                   ; work         ;
-;    |SCSI_SM:u_SCSI_SM|                        ; 84 (27)     ; 25 (25)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 59 (2)       ; 6 (6)             ; 19 (6)           ; |RESDMAC|SCSI_SM:u_SCSI_SM                                                                   ; work         ;
-;       |scsi_sm_inputs:u_scsi_sm_inputs|       ; 20 (20)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 19 (19)      ; 0 (0)             ; 1 (1)            ; |RESDMAC|SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs                                   ; work         ;
-;       |scsi_sm_outputs:u_scsi_sm_outputs|     ; 50 (50)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 38 (38)      ; 0 (0)             ; 12 (12)          ; |RESDMAC|SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs                                 ; work         ;
-;    |datapath:u_datapath|                      ; 165 (34)    ; 56 (0)                    ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 95 (25)      ; 4 (0)             ; 66 (23)          ; |RESDMAC|datapath:u_datapath                                                                 ; work         ;
-;       |datapath_input:u_datapath_input|       ; 16 (16)     ; 16 (16)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 2 (2)             ; 14 (14)          ; |RESDMAC|datapath:u_datapath|datapath_input:u_datapath_input                                 ; work         ;
-;       |datapath_output:u_datapath_output|     ; 72 (72)     ; 32 (32)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 35 (35)      ; 2 (2)             ; 35 (35)          ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output                               ; work         ;
-;       |datapath_scsi:u_datapath_scsi|         ; 52 (9)      ; 8 (8)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 35 (1)       ; 0 (0)             ; 17 (8)           ; |RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi                                   ; work         ;
-;          |datapath_8b_MUX:u_datapath_8b_MUX|  ; 43 (43)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 34 (34)      ; 0 (0)             ; 9 (9)            ; |RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX ; work         ;
-;    |fifo:int_fifo|                            ; 296 (268)   ; 269 (256)                 ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 27 (12)      ; 92 (91)           ; 177 (165)        ; |RESDMAC|fifo:int_fifo                                                                       ; work         ;
+;       |cpudff5:u_cpudff5|                     ; 13 (13)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 13 (13)      ; 0 (0)             ; 0 (0)            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff5:u_cpudff5                                                   ; work         ;
+;    |SCSI_SM:u_SCSI_SM|                        ; 84 (27)     ; 25 (25)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 59 (2)       ; 4 (4)             ; 21 (8)           ; |RESDMAC|SCSI_SM:u_SCSI_SM                                                                   ; work         ;
+;       |scsi_sm_inputs:u_scsi_sm_inputs|       ; 20 (20)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 20 (20)      ; 0 (0)             ; 0 (0)            ; |RESDMAC|SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs                                   ; work         ;
+;       |scsi_sm_outputs:u_scsi_sm_outputs|     ; 50 (50)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 37 (37)      ; 0 (0)             ; 13 (13)          ; |RESDMAC|SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs                                 ; work         ;
+;    |datapath:u_datapath|                      ; 177 (38)    ; 56 (0)                    ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 100 (20)     ; 16 (0)            ; 61 (28)          ; |RESDMAC|datapath:u_datapath                                                                 ; work         ;
+;       |datapath_input:u_datapath_input|       ; 16 (16)     ; 16 (16)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 15 (15)          ; |RESDMAC|datapath:u_datapath|datapath_input:u_datapath_input                                 ; work         ;
+;       |datapath_output:u_datapath_output|     ; 77 (77)     ; 32 (32)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 42 (42)      ; 15 (15)           ; 20 (20)          ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output                               ; work         ;
+;       |datapath_scsi:u_datapath_scsi|         ; 51 (8)      ; 8 (8)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 38 (0)       ; 0 (0)             ; 13 (8)           ; |RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi                                   ; work         ;
+;          |datapath_8b_MUX:u_datapath_8b_MUX|  ; 43 (43)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 38 (38)      ; 0 (0)             ; 5 (5)            ; |RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX ; work         ;
+;    |fifo:int_fifo|                            ; 299 (272)   ; 269 (256)                 ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 30 (16)      ; 86 (86)           ; 183 (170)        ; |RESDMAC|fifo:int_fifo                                                                       ; work         ;
 ;       |fifo_3bit_cntr:u_next_in_cntr|         ; 3 (3)       ; 3 (3)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 3 (3)            ; |RESDMAC|fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr                                         ; work         ;
 ;       |fifo_3bit_cntr:u_next_out_cntr|        ; 3 (3)       ; 3 (3)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 3 (3)            ; |RESDMAC|fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr                                        ; work         ;
 ;       |fifo__full_empty_ctr:u_full_empty_ctr| ; 13 (13)     ; 5 (5)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 8 (8)        ; 0 (0)             ; 5 (5)            ; |RESDMAC|fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr                                 ; work         ;
-;       |fifo_byte_ptr:u_byte_ptr|              ; 4 (4)       ; 2 (2)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 2 (2)        ; 1 (1)             ; 1 (1)            ; |RESDMAC|fifo:int_fifo|fifo_byte_ptr:u_byte_ptr                                              ; work         ;
+;       |fifo_byte_ptr:u_byte_ptr|              ; 3 (3)       ; 2 (2)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 2 (2)            ; |RESDMAC|fifo:int_fifo|fifo_byte_ptr:u_byte_ptr                                              ; work         ;
 ;       |fifo_write_strobes:u_write_strobes|    ; 5 (5)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 5 (5)        ; 0 (0)             ; 0 (0)            ; |RESDMAC|fifo:int_fifo|fifo_write_strobes:u_write_strobes                                    ; work         ;
-;    |registers:u_registers|                    ; 32 (3)      ; 14 (2)                    ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 17 (1)       ; 0 (0)             ; 15 (1)           ; |RESDMAC|registers:u_registers                                                               ; work         ;
-;       |addr_decoder:u_addr_decoder|           ; 16 (16)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 12 (12)      ; 0 (0)             ; 4 (4)            ; |RESDMAC|registers:u_registers|addr_decoder:u_addr_decoder                                   ; work         ;
+;    |registers:u_registers|                    ; 32 (2)      ; 14 (2)                    ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 17 (0)       ; 1 (0)             ; 14 (2)           ; |RESDMAC|registers:u_registers                                                               ; work         ;
+;       |addr_decoder:u_addr_decoder|           ; 16 (16)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 13 (13)      ; 0 (0)             ; 3 (3)            ; |RESDMAC|registers:u_registers|addr_decoder:u_addr_decoder                                   ; work         ;
 ;       |registers_cntr:u_registers_cntr|       ; 5 (5)       ; 4 (4)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 4 (4)            ; |RESDMAC|registers:u_registers|registers_cntr:u_registers_cntr                               ; work         ;
-;       |registers_istr:u_registers_istr|       ; 6 (6)       ; 4 (4)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 2 (2)        ; 0 (0)             ; 4 (4)            ; |RESDMAC|registers:u_registers|registers_istr:u_registers_istr                               ; work         ;
+;       |registers_istr:u_registers_istr|       ; 6 (6)       ; 4 (4)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 2 (2)        ; 1 (1)             ; 3 (3)            ; |RESDMAC|registers:u_registers|registers_istr:u_registers_istr                               ; work         ;
 ;       |registers_term:u_registers_term|       ; 5 (5)       ; 4 (4)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 4 (4)            ; |RESDMAC|registers:u_registers|registers_term:u_registers_term                               ; work         ;
 +-----------------------------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+----------------------------------------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
@@ -693,6 +694,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; _LED_DMA   ; Output   ; --            ; --            ; --                    ; --  ;
 ; OWN_       ; Output   ; --            ; --            ; --                    ; --  ;
 ; DATA_OE_   ; Output   ; --            ; --            ; --                    ; --  ;
+; PDATA_OE_  ; Output   ; --            ; --            ; --                    ; --  ;
 ; _CS        ; Input    ; (0) 171 ps    ; (0) 171 ps    ; --                    ; --  ;
 ; ADDR[2]    ; Input    ; (0) 171 ps    ; (0) 171 ps    ; --                    ; --  ;
 ; ADDR[3]    ; Input    ; (0) 171 ps    ; (0) 171 ps    ; --                    ; --  ;
@@ -748,31 +750,31 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - registers:u_registers|registers_term:u_registers_term|CYCLE_END~2                               ; 1                 ; 6       ;
 ; _DS                                                                                                    ;                   ;         ;
 ; _DSACK[0]                                                                                              ;                   ;         ;
-;      - CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E6_d~0                                            ; 0                 ; 6       ;
-;      - CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E23_sd~1                                          ; 0                 ; 6       ;
-;      - aCYCLEDONE_~1                                                                                   ; 0                 ; 6       ;
-;      - CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|F~1                                             ; 0                 ; 6       ;
-;      - CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E25_d~0                                           ; 0                 ; 6       ;
-;      - DSACK_LATCHED_[0]~1                                                                             ; 0                 ; 6       ;
-; _DSACK[1]                                                                                              ;                   ;         ;
 ;      - CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E6_d~0                                            ; 1                 ; 6       ;
-;      - DSK1_IN_~0                                                                                      ; 1                 ; 6       ;
-;      - CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E23_sd~3                                          ; 1                 ; 6       ;
-;      - aCYCLEDONE_~0                                                                                   ; 1                 ; 6       ;
+;      - CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E23_sd~1                                          ; 1                 ; 6       ;
+;      - aCYCLEDONE_~1                                                                                   ; 1                 ; 6       ;
 ;      - CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|F~1                                             ; 1                 ; 6       ;
 ;      - CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E25_d~0                                           ; 1                 ; 6       ;
-;      - CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|SIZE1_Y~5                                       ; 1                 ; 6       ;
-;      - CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|BRIDGEOUT_Z~2                                   ; 1                 ; 6       ;
-;      - DSACK_LATCHED_[1]~0                                                                             ; 1                 ; 6       ;
+;      - DSACK_LATCHED_[0]~1                                                                             ; 1                 ; 6       ;
+; _DSACK[1]                                                                                              ;                   ;         ;
+;      - CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E6_d~0                                            ; 0                 ; 6       ;
+;      - DSK1_IN_~0                                                                                      ; 0                 ; 6       ;
+;      - CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E23_sd~3                                          ; 0                 ; 6       ;
+;      - aCYCLEDONE_~0                                                                                   ; 0                 ; 6       ;
+;      - CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|F~1                                             ; 0                 ; 6       ;
+;      - CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E25_d~0                                           ; 0                 ; 6       ;
+;      - CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|SIZE1_Y~5                                       ; 0                 ; 6       ;
+;      - CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|BRIDGEOUT_Z~2                                   ; 0                 ; 6       ;
+;      - DSACK_LATCHED_[1]~0                                                                             ; 0                 ; 6       ;
 ; DATA[0]                                                                                                ;                   ;         ;
-;      - datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector0~3 ; 0                 ; 6       ;
-;      - datapath:u_datapath|ID[16]~32                                                                   ; 0                 ; 6       ;
-;      - datapath:u_datapath|ID[0]~33                                                                    ; 0                 ; 6       ;
+;      - datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector0~3 ; 1                 ; 6       ;
+;      - datapath:u_datapath|ID[16]~32                                                                   ; 1                 ; 6       ;
+;      - datapath:u_datapath|ID[0]~33                                                                    ; 1                 ; 6       ;
 ; DATA[1]                                                                                                ;                   ;         ;
-;      - registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[1]                                 ; 0                 ; 6       ;
-;      - datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector1~3 ; 0                 ; 6       ;
-;      - datapath:u_datapath|ID[1]~36                                                                    ; 0                 ; 6       ;
-;      - datapath:u_datapath|ID[17]~37                                                                   ; 0                 ; 6       ;
+;      - registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[1]                                 ; 1                 ; 6       ;
+;      - datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector1~3 ; 1                 ; 6       ;
+;      - datapath:u_datapath|ID[1]~36                                                                    ; 1                 ; 6       ;
+;      - datapath:u_datapath|ID[17]~37                                                                   ; 1                 ; 6       ;
 ; DATA[2]                                                                                                ;                   ;         ;
 ;      - registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[2]                                 ; 0                 ; 6       ;
 ;      - datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector2~3 ; 0                 ; 6       ;
@@ -783,14 +785,14 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - datapath:u_datapath|ID[3]~44                                                                    ; 0                 ; 6       ;
 ;      - datapath:u_datapath|ID[19]~45                                                                   ; 0                 ; 6       ;
 ; DATA[4]                                                                                                ;                   ;         ;
-;      - registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[4]                                 ; 1                 ; 6       ;
-;      - datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector4~3 ; 1                 ; 6       ;
-;      - datapath:u_datapath|ID[20]~48                                                                   ; 1                 ; 6       ;
-;      - datapath:u_datapath|ID[4]~49                                                                    ; 1                 ; 6       ;
+;      - registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[4]                                 ; 0                 ; 6       ;
+;      - datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector4~3 ; 0                 ; 6       ;
+;      - datapath:u_datapath|ID[20]~48                                                                   ; 0                 ; 6       ;
+;      - datapath:u_datapath|ID[4]~49                                                                    ; 0                 ; 6       ;
 ; DATA[5]                                                                                                ;                   ;         ;
-;      - datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector5~5 ; 1                 ; 6       ;
-;      - datapath:u_datapath|ID[5]~52                                                                    ; 1                 ; 6       ;
-;      - datapath:u_datapath|ID[21]~53                                                                   ; 1                 ; 6       ;
+;      - datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector5~5 ; 0                 ; 6       ;
+;      - datapath:u_datapath|ID[5]~52                                                                    ; 0                 ; 6       ;
+;      - datapath:u_datapath|ID[21]~53                                                                   ; 0                 ; 6       ;
 ; DATA[6]                                                                                                ;                   ;         ;
 ;      - datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector6~3 ; 1                 ; 6       ;
 ;      - datapath:u_datapath|ID[22]~56                                                                   ; 1                 ; 6       ;
@@ -803,8 +805,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - datapath:u_datapath|ID[24]~34                                                                   ; 0                 ; 6       ;
 ;      - datapath:u_datapath|ID[8]~35                                                                    ; 0                 ; 6       ;
 ; DATA[9]                                                                                                ;                   ;         ;
-;      - datapath:u_datapath|ID[25]~38                                                                   ; 0                 ; 6       ;
-;      - datapath:u_datapath|ID[9]~39                                                                    ; 0                 ; 6       ;
+;      - datapath:u_datapath|ID[25]~38                                                                   ; 1                 ; 6       ;
+;      - datapath:u_datapath|ID[9]~39                                                                    ; 1                 ; 6       ;
 ; DATA[10]                                                                                               ;                   ;         ;
 ;      - datapath:u_datapath|ID[26]~42                                                                   ; 0                 ; 6       ;
 ;      - datapath:u_datapath|ID[10]~43                                                                   ; 0                 ; 6       ;
@@ -812,39 +814,39 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - datapath:u_datapath|ID[27]~46                                                                   ; 0                 ; 6       ;
 ;      - datapath:u_datapath|ID[11]~47                                                                   ; 0                 ; 6       ;
 ; DATA[12]                                                                                               ;                   ;         ;
-;      - datapath:u_datapath|ID[28]~50                                                                   ; 1                 ; 6       ;
-;      - datapath:u_datapath|ID[12]~51                                                                   ; 1                 ; 6       ;
+;      - datapath:u_datapath|ID[28]~50                                                                   ; 0                 ; 6       ;
+;      - datapath:u_datapath|ID[12]~51                                                                   ; 0                 ; 6       ;
 ; DATA[13]                                                                                               ;                   ;         ;
 ;      - datapath:u_datapath|ID[29]~54                                                                   ; 0                 ; 6       ;
 ;      - datapath:u_datapath|ID[13]~55                                                                   ; 0                 ; 6       ;
 ; DATA[14]                                                                                               ;                   ;         ;
-;      - datapath:u_datapath|ID[30]~58                                                                   ; 0                 ; 6       ;
-;      - datapath:u_datapath|ID[14]~59                                                                   ; 0                 ; 6       ;
+;      - datapath:u_datapath|ID[30]~58                                                                   ; 1                 ; 6       ;
+;      - datapath:u_datapath|ID[14]~59                                                                   ; 1                 ; 6       ;
 ; DATA[15]                                                                                               ;                   ;         ;
 ;      - datapath:u_datapath|ID[31]~62                                                                   ; 0                 ; 6       ;
 ;      - datapath:u_datapath|ID[15]~63                                                                   ; 0                 ; 6       ;
 ; DATA[16]                                                                                               ;                   ;         ;
-;      - datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[0]                                 ; 0                 ; 6       ;
+;      - datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[0]                                 ; 1                 ; 6       ;
 ; DATA[17]                                                                                               ;                   ;         ;
-;      - datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[1]                                 ; 1                 ; 6       ;
+;      - datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[1]                                 ; 0                 ; 6       ;
 ; DATA[18]                                                                                               ;                   ;         ;
 ;      - datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[2]                                 ; 0                 ; 6       ;
 ; DATA[19]                                                                                               ;                   ;         ;
 ;      - datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[3]                                 ; 0                 ; 6       ;
 ; DATA[20]                                                                                               ;                   ;         ;
-;      - datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[4]                                 ; 1                 ; 6       ;
+;      - datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[4]                                 ; 0                 ; 6       ;
 ; DATA[21]                                                                                               ;                   ;         ;
-;      - datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[5]~feeder                          ; 0                 ; 6       ;
+;      - datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[5]                                 ; 0                 ; 6       ;
 ; DATA[22]                                                                                               ;                   ;         ;
-;      - datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[6]~feeder                          ; 0                 ; 6       ;
+;      - datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[6]                                 ; 0                 ; 6       ;
 ; DATA[23]                                                                                               ;                   ;         ;
 ;      - datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[7]                                 ; 0                 ; 6       ;
 ; DATA[24]                                                                                               ;                   ;         ;
 ;      - datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[8]                                 ; 0                 ; 6       ;
 ; DATA[25]                                                                                               ;                   ;         ;
-;      - registers:u_registers|A1                                                                        ; 1                 ; 6       ;
-;      - fifo:int_fifo|fifo_byte_ptr:u_byte_ptr|MUXZ~0                                                   ; 1                 ; 6       ;
-;      - datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[9]                                 ; 1                 ; 6       ;
+;      - registers:u_registers|A1                                                                        ; 0                 ; 6       ;
+;      - fifo:int_fifo|fifo_byte_ptr:u_byte_ptr|MUXZ~0                                                   ; 0                 ; 6       ;
+;      - datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[9]                                 ; 0                 ; 6       ;
 ; DATA[26]                                                                                               ;                   ;         ;
 ;      - datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[10]                                ; 1                 ; 6       ;
 ; DATA[27]                                                                                               ;                   ;         ;
@@ -858,7 +860,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; DATA[31]                                                                                               ;                   ;         ;
 ;      - datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[15]                                ; 0                 ; 6       ;
 ; _BGACK                                                                                                 ;                   ;         ;
-;      - aCYCLEDONE_~1                                                                                   ; 0                 ; 6       ;
+;      - aCYCLEDONE_~1                                                                                   ; 1                 ; 6       ;
 ; PD_PORT[0]                                                                                             ;                   ;         ;
 ;      - datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector0~2 ; 1                 ; 6       ;
 ;      - datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[0]~0                             ; 1                 ; 6       ;
@@ -874,12 +876,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - datapath:u_datapath|ID[1]~66                                                                    ; 1                 ; 6       ;
 ;      - datapath:u_datapath|ID[9]~67                                                                    ; 1                 ; 6       ;
 ; PD_PORT[2]                                                                                             ;                   ;         ;
-;      - datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector2~2 ; 0                 ; 6       ;
-;      - datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[2]~2                             ; 0                 ; 6       ;
-;      - datapath:u_datapath|ID[18]~40                                                                   ; 0                 ; 6       ;
-;      - datapath:u_datapath|ID[26]~42                                                                   ; 0                 ; 6       ;
-;      - datapath:u_datapath|ID[2]~68                                                                    ; 0                 ; 6       ;
-;      - datapath:u_datapath|ID[10]~69                                                                   ; 0                 ; 6       ;
+;      - datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector2~2 ; 1                 ; 6       ;
+;      - datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[2]~2                             ; 1                 ; 6       ;
+;      - datapath:u_datapath|ID[18]~40                                                                   ; 1                 ; 6       ;
+;      - datapath:u_datapath|ID[26]~42                                                                   ; 1                 ; 6       ;
+;      - datapath:u_datapath|ID[2]~68                                                                    ; 1                 ; 6       ;
+;      - datapath:u_datapath|ID[10]~69                                                                   ; 1                 ; 6       ;
 ; PD_PORT[3]                                                                                             ;                   ;         ;
 ;      - datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector3~2 ; 1                 ; 6       ;
 ;      - datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[3]~3                             ; 1                 ; 6       ;
@@ -919,8 +921,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; ADDR[2]                                                                                                ;                   ;         ;
 ; ADDR[3]                                                                                                ;                   ;         ;
 ; ADDR[5]                                                                                                ;                   ;         ;
-;      - registers:u_registers|addr_decoder:u_addr_decoder|ST_DMA~0                                      ; 0                 ; 6       ;
-;      - registers:u_registers|registers_cntr:u_registers_cntr|CLR_DMAENA~0                              ; 0                 ; 6       ;
+;      - registers:u_registers|addr_decoder:u_addr_decoder|ST_DMA~0                                      ; 1                 ; 6       ;
+;      - registers:u_registers|registers_cntr:u_registers_cntr|CLR_DMAENA~0                              ; 1                 ; 6       ;
 ; ADDR[6]                                                                                                ;                   ;         ;
 ;      - registers:u_registers|addr_decoder:u_addr_decoder|ST_DMA~0                                      ; 1                 ; 6       ;
 ;      - registers:u_registers|addr_decoder:u_addr_decoder|WDREGREQ                                      ; 1                 ; 6       ;
@@ -936,18 +938,18 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - registers:u_registers|registers_istr:u_registers_istr|CLR_INT_~0                                ; 1                 ; 6       ;
 ;      - registers:u_registers|addr_decoder:u_addr_decoder|ST_DMA                                        ; 1                 ; 6       ;
 ; INTA                                                                                                   ;                   ;         ;
-;      - registers:u_registers|registers_istr:u_registers_istr|INT                                       ; 0                 ; 6       ;
-;      - registers:u_registers|registers_istr:u_registers_istr|INT_F                                     ; 0                 ; 6       ;
+;      - registers:u_registers|registers_istr:u_registers_istr|INT                                       ; 1                 ; 6       ;
+;      - registers:u_registers|registers_istr:u_registers_istr|INT_F~feeder                              ; 1                 ; 6       ;
 ; _BERR                                                                                                  ;                   ;         ;
-;      - CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E6_d~0                                            ; 0                 ; 6       ;
-;      - CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E23_sd~1                                          ; 0                 ; 6       ;
-;      - DSK1_IN_~0                                                                                      ; 0                 ; 6       ;
-;      - CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E23_sd~3                                          ; 0                 ; 6       ;
-;      - aCYCLEDONE_~0                                                                                   ; 0                 ; 6       ;
-;      - CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|F~1                                             ; 0                 ; 6       ;
-;      - CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E25_d~0                                           ; 0                 ; 6       ;
-;      - CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|SIZE1_Y~5                                       ; 0                 ; 6       ;
-;      - CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|BRIDGEOUT_Z~2                                   ; 0                 ; 6       ;
+;      - CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E6_d~0                                            ; 1                 ; 6       ;
+;      - CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E23_sd~1                                          ; 1                 ; 6       ;
+;      - DSK1_IN_~0                                                                                      ; 1                 ; 6       ;
+;      - CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E23_sd~3                                          ; 1                 ; 6       ;
+;      - aCYCLEDONE_~0                                                                                   ; 1                 ; 6       ;
+;      - CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|F~1                                             ; 1                 ; 6       ;
+;      - CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E25_d~0                                           ; 1                 ; 6       ;
+;      - CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|SIZE1_Y~5                                       ; 1                 ; 6       ;
+;      - CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|BRIDGEOUT_Z~2                                   ; 1                 ; 6       ;
 ; _STERM                                                                                                 ;                   ;         ;
 ;      - CPU_SM:u_CPU_SM|cpudff2:u_cpudff2|cpudff2_d~0                                                   ; 1                 ; 6       ;
 ;      - CPU_SM:u_CPU_SM|cpudff2:u_cpudff2|p2c~0                                                         ; 1                 ; 6       ;
@@ -975,30 +977,30 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|DIEH_Z~3                                        ; 1                 ; 6       ;
 ; SCLK                                                                                                   ;                   ;         ;
 ; _RST                                                                                                   ;                   ;         ;
-;      - registers:u_registers|A1                                                                        ; 0                 ; 6       ;
-;      - registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[4]                                 ; 0                 ; 6       ;
-;      - registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[2]                                 ; 0                 ; 6       ;
-;      - registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[1]                                 ; 0                 ; 6       ;
-;      - fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOFULL                                    ; 0                 ; 6       ;
-;      - fifo:int_fifo|fifo_byte_ptr:u_byte_ptr|BO0                                                      ; 0                 ; 6       ;
-;      - fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|COUNT[0]                                    ; 0                 ; 6       ;
-;      - fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY                                   ; 0                 ; 6       ;
-;      - registers:u_registers|CLR_FLUSHFIFO~0                                                           ; 0                 ; 6       ;
-;      - fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|COUNT[2]                                    ; 0                 ; 6       ;
-;      - fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|COUNT[1]                                    ; 0                 ; 6       ;
-;      - SCSI_SM:u_SCSI_SM|RDRST_~0                                                                      ; 0                 ; 6       ;
-;      - SCSI_SM:u_SCSI_SM|RIRST_~0                                                                      ; 0                 ; 6       ;
-;      - registers:u_registers|registers_istr:u_registers_istr|FE                                        ; 0                 ; 6       ;
-;      - registers:u_registers|registers_istr:u_registers_istr|FF                                        ; 0                 ; 6       ;
-;      - fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[1]                                           ; 0                 ; 6       ;
-;      - fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[0]                                           ; 0                 ; 6       ;
-;      - fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[2]                                           ; 0                 ; 6       ;
-;      - registers:u_registers|registers_cntr:u_registers_cntr|CLR_DMAENA~0                              ; 0                 ; 6       ;
-;      - registers:u_registers|registers_istr:u_registers_istr|CLR_INT_~0                                ; 0                 ; 6       ;
-;      - fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr|COUNT[1]                                            ; 0                 ; 6       ;
-;      - fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr|COUNT[2]                                            ; 0                 ; 6       ;
-;      - fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr|COUNT[0]                                            ; 0                 ; 6       ;
-;      - SCSI_SM:u_SCSI_SM|CRESET_~feeder                                                                ; 0                 ; 6       ;
+;      - registers:u_registers|A1                                                                        ; 1                 ; 6       ;
+;      - registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[4]                                 ; 1                 ; 6       ;
+;      - registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[2]                                 ; 1                 ; 6       ;
+;      - registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[1]                                 ; 1                 ; 6       ;
+;      - fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOFULL                                    ; 1                 ; 6       ;
+;      - fifo:int_fifo|fifo_byte_ptr:u_byte_ptr|BO0                                                      ; 1                 ; 6       ;
+;      - fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|COUNT[0]                                    ; 1                 ; 6       ;
+;      - fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY                                   ; 1                 ; 6       ;
+;      - SCSI_SM:u_SCSI_SM|CRESET_                                                                       ; 1                 ; 6       ;
+;      - registers:u_registers|CLR_FLUSHFIFO~0                                                           ; 1                 ; 6       ;
+;      - fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|COUNT[2]                                    ; 1                 ; 6       ;
+;      - fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|COUNT[1]                                    ; 1                 ; 6       ;
+;      - SCSI_SM:u_SCSI_SM|RDRST_~0                                                                      ; 1                 ; 6       ;
+;      - SCSI_SM:u_SCSI_SM|RIRST_~0                                                                      ; 1                 ; 6       ;
+;      - registers:u_registers|registers_istr:u_registers_istr|FE                                        ; 1                 ; 6       ;
+;      - registers:u_registers|registers_istr:u_registers_istr|FF                                        ; 1                 ; 6       ;
+;      - fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[1]                                           ; 1                 ; 6       ;
+;      - fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[0]                                           ; 1                 ; 6       ;
+;      - fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[2]                                           ; 1                 ; 6       ;
+;      - registers:u_registers|registers_cntr:u_registers_cntr|CLR_DMAENA~0                              ; 1                 ; 6       ;
+;      - registers:u_registers|registers_istr:u_registers_istr|CLR_INT_~0                                ; 1                 ; 6       ;
+;      - fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr|COUNT[1]                                            ; 1                 ; 6       ;
+;      - fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr|COUNT[2]                                            ; 1                 ; 6       ;
+;      - fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr|COUNT[0]                                            ; 1                 ; 6       ;
 ; _BG                                                                                                    ;                   ;         ;
 ; _DREQ                                                                                                  ;                   ;         ;
 +--------------------------------------------------------------------------------------------------------+-------------------+---------+
@@ -1010,67 +1012,67 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Name                                                                                       ; Location          ; Fan-Out ; Usage                      ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
 +--------------------------------------------------------------------------------------------+-------------------+---------+----------------------------+--------+----------------------+------------------+---------------------------+
 ; CPU_SM:u_CPU_SM|BGACK                                                                      ; LCFF_X27_Y10_N7   ; 11      ; Output enable              ; no     ; --                   ; --               ; --                        ;
-; CPU_SM:u_CPU_SM|INCFIFO                                                                    ; LCFF_X22_Y8_N15   ; 9       ; Sync. load                 ; no     ; --                   ; --               ; --                        ;
-; CPU_SM:u_CPU_SM|PAS                                                                        ; LCFF_X27_Y7_N7    ; 32      ; Clock                      ; yes    ; Global Clock         ; GCLK7            ; --                        ;
-; CPU_SM:u_CPU_SM|PDS                                                                        ; LCFF_X27_Y7_N5    ; 16      ; Clock                      ; yes    ; Global Clock         ; GCLK4            ; --                        ;
-; INCNI                                                                                      ; LCCOMB_X24_Y9_N24 ; 3       ; Clock                      ; no     ; --                   ; --               ; --                        ;
-; INCNO                                                                                      ; LCCOMB_X22_Y8_N26 ; 3       ; Clock                      ; no     ; --                   ; --               ; --                        ;
+; CPU_SM:u_CPU_SM|INCFIFO                                                                    ; LCFF_X27_Y8_N31   ; 9       ; Sync. load                 ; no     ; --                   ; --               ; --                        ;
+; CPU_SM:u_CPU_SM|PAS                                                                        ; LCFF_X27_Y8_N17   ; 32      ; Clock                      ; yes    ; Global Clock         ; GCLK4            ; --                        ;
+; CPU_SM:u_CPU_SM|PDS                                                                        ; LCFF_X27_Y8_N13   ; 16      ; Clock                      ; yes    ; Global Clock         ; GCLK7            ; --                        ;
+; INCNI                                                                                      ; LCCOMB_X24_Y7_N26 ; 3       ; Clock                      ; no     ; --                   ; --               ; --                        ;
+; INCNO                                                                                      ; LCCOMB_X24_Y8_N28 ; 3       ; Clock                      ; no     ; --                   ; --               ; --                        ;
 ; SCLK                                                                                       ; PIN_90            ; 26      ; Clock                      ; no     ; --                   ; --               ; --                        ;
 ; SCLK                                                                                       ; PIN_90            ; 32      ; Clock                      ; yes    ; Global Clock         ; GCLK6            ; --                        ;
-; SCSI_SM:u_SCSI_SM|CRESET_                                                                  ; LCFF_X21_Y8_N1    ; 13      ; Async. clear, Clock enable ; no     ; --                   ; --               ; --                        ;
-; SCSI_SM:u_SCSI_SM|INCBO_o                                                                  ; LCFF_X2_Y6_N15    ; 2       ; Clock                      ; no     ; --                   ; --               ; --                        ;
-; SCSI_SM:u_SCSI_SM|RDFIFO_d                                                                 ; LCFF_X22_Y7_N1    ; 1       ; Clock                      ; no     ; --                   ; --               ; --                        ;
-; SCSI_SM:u_SCSI_SM|RDRST_~0                                                                 ; LCCOMB_X22_Y8_N28 ; 1       ; Async. clear               ; no     ; --                   ; --               ; --                        ;
-; SCSI_SM:u_SCSI_SM|RIFIFO_d                                                                 ; LCFF_X21_Y7_N7    ; 1       ; Clock                      ; no     ; --                   ; --               ; --                        ;
-; SCSI_SM:u_SCSI_SM|RIRST_~0                                                                 ; LCCOMB_X21_Y8_N16 ; 1       ; Async. clear               ; no     ; --                   ; --               ; --                        ;
-; SCSI_SM:u_SCSI_SM|STATE[4]                                                                 ; LCFF_X24_Y7_N9    ; 32      ; Sync. clear                ; no     ; --                   ; --               ; --                        ;
-; SCSI_SM:u_SCSI_SM|nLS2CPU                                                                  ; LCFF_X24_Y7_N5    ; 8       ; Clock                      ; yes    ; Global Clock         ; GCLK5            ; --                        ;
-; SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|SET_DSACK                              ; LCCOMB_X24_Y7_N26 ; 1       ; Clock                      ; no     ; --                   ; --               ; --                        ;
+; SCSI_SM:u_SCSI_SM|CRESET_                                                                  ; LCFF_X25_Y7_N17   ; 13      ; Async. clear, Clock enable ; no     ; --                   ; --               ; --                        ;
+; SCSI_SM:u_SCSI_SM|INCBO_o                                                                  ; LCFF_X27_Y6_N15   ; 2       ; Clock                      ; no     ; --                   ; --               ; --                        ;
+; SCSI_SM:u_SCSI_SM|RDFIFO_d                                                                 ; LCFF_X25_Y5_N15   ; 1       ; Clock                      ; no     ; --                   ; --               ; --                        ;
+; SCSI_SM:u_SCSI_SM|RDRST_~0                                                                 ; LCCOMB_X26_Y8_N12 ; 1       ; Async. clear               ; no     ; --                   ; --               ; --                        ;
+; SCSI_SM:u_SCSI_SM|RIFIFO_d                                                                 ; LCFF_X27_Y4_N19   ; 1       ; Clock                      ; no     ; --                   ; --               ; --                        ;
+; SCSI_SM:u_SCSI_SM|RIRST_~0                                                                 ; LCCOMB_X26_Y8_N10 ; 1       ; Async. clear               ; no     ; --                   ; --               ; --                        ;
+; SCSI_SM:u_SCSI_SM|STATE[4]                                                                 ; LCFF_X27_Y5_N17   ; 32      ; Sync. clear                ; no     ; --                   ; --               ; --                        ;
+; SCSI_SM:u_SCSI_SM|nLS2CPU                                                                  ; LCFF_X27_Y5_N1    ; 8       ; Clock                      ; yes    ; Global Clock         ; GCLK5            ; --                        ;
+; SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|SET_DSACK                              ; LCCOMB_X27_Y5_N2  ; 1       ; Clock                      ; no     ; --                   ; --               ; --                        ;
 ; _AS~0                                                                                      ; PIN_113           ; 15      ; Async. clear               ; no     ; --                   ; --               ; --                        ;
 ; _RST                                                                                       ; PIN_28            ; 24      ; Async. clear               ; no     ; --                   ; --               ; --                        ;
-; datapath:u_datapath|datapath_output:u_datapath_output|DATA[15]~35                          ; LCCOMB_X20_Y9_N16 ; 32      ; Output enable              ; no     ; --                   ; --               ; --                        ;
-; datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Z[0]~0 ; LCCOMB_X17_Y7_N30 ; 8       ; Output enable              ; no     ; --                   ; --               ; --                        ;
-; fifo:int_fifo|Decoder0~0                                                                   ; LCCOMB_X24_Y9_N8  ; 32      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; fifo:int_fifo|Decoder0~1                                                                   ; LCCOMB_X24_Y9_N10 ; 32      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; fifo:int_fifo|Decoder0~2                                                                   ; LCCOMB_X24_Y9_N2  ; 32      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; fifo:int_fifo|Decoder0~3                                                                   ; LCCOMB_X24_Y9_N12 ; 32      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; fifo:int_fifo|Decoder0~4                                                                   ; LCCOMB_X24_Y9_N30 ; 32      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; fifo:int_fifo|Decoder0~5                                                                   ; LCCOMB_X24_Y9_N0  ; 32      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; fifo:int_fifo|Decoder0~6                                                                   ; LCCOMB_X24_Y9_N6  ; 32      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; fifo:int_fifo|Decoder0~7                                                                   ; LCCOMB_X24_Y9_N26 ; 32      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|clk                                    ; LCCOMB_X21_Y8_N24 ; 5       ; Clock                      ; no     ; --                   ; --               ; --                        ;
-; fifo:int_fifo|fifo_byte_ptr:u_byte_ptr|BO1_CLK                                             ; LCCOMB_X2_Y6_N16  ; 1       ; Clock                      ; no     ; --                   ; --               ; --                        ;
-; fifo:int_fifo|fifo_write_strobes:u_write_strobes|LLWS                                      ; LCCOMB_X1_Y6_N26  ; 64      ; Clock                      ; yes    ; Global Clock         ; GCLK0            ; --                        ;
-; fifo:int_fifo|fifo_write_strobes:u_write_strobes|LMWS                                      ; LCCOMB_X1_Y6_N28  ; 64      ; Clock                      ; yes    ; Global Clock         ; GCLK1            ; --                        ;
-; fifo:int_fifo|fifo_write_strobes:u_write_strobes|UMWS                                      ; LCCOMB_X1_Y6_N20  ; 64      ; Clock                      ; yes    ; Global Clock         ; GCLK2            ; --                        ;
-; fifo:int_fifo|fifo_write_strobes:u_write_strobes|UUWS                                      ; LCCOMB_X1_Y6_N30  ; 64      ; Clock                      ; yes    ; Global Clock         ; GCLK3            ; --                        ;
-; registers:u_registers|CLR_FLUSHFIFO~0                                                      ; LCCOMB_X19_Y8_N10 ; 1       ; Async. clear               ; no     ; --                   ; --               ; --                        ;
-; registers:u_registers|addr_decoder:u_addr_decoder|ACR_WR                                   ; LCCOMB_X18_Y8_N2  ; 2       ; Clock                      ; no     ; --                   ; --               ; --                        ;
-; registers:u_registers|addr_decoder:u_addr_decoder|CONTR_WR                                 ; LCCOMB_X14_Y8_N28 ; 3       ; Clock                      ; no     ; --                   ; --               ; --                        ;
-; registers:u_registers|addr_decoder:u_addr_decoder|FLUSH_                                   ; LCCOMB_X18_Y8_N30 ; 1       ; Clock                      ; no     ; --                   ; --               ; --                        ;
-; registers:u_registers|addr_decoder:u_addr_decoder|ISTR_RD_                                 ; LCCOMB_X14_Y8_N8  ; 8       ; Clock                      ; no     ; --                   ; --               ; --                        ;
-; registers:u_registers|addr_decoder:u_addr_decoder|ST_DMA                                   ; LCCOMB_X18_Y8_N24 ; 1       ; Clock                      ; no     ; --                   ; --               ; --                        ;
-; registers:u_registers|registers_cntr:u_registers_cntr|CLR_DMAENA~0                         ; LCCOMB_X18_Y8_N10 ; 1       ; Async. clear               ; no     ; --                   ; --               ; --                        ;
-; registers:u_registers|registers_istr:u_registers_istr|CLR_INT_~0                           ; LCCOMB_X18_Y8_N20 ; 2       ; Async. clear               ; no     ; --                   ; --               ; --                        ;
-; registers:u_registers|registers_term:u_registers_term|CYCLE_END~2                          ; LCCOMB_X18_Y8_N0  ; 1       ; Async. clear               ; no     ; --                   ; --               ; --                        ;
-; rtl~0                                                                                      ; LCCOMB_X27_Y9_N28 ; 1       ; Clock                      ; no     ; --                   ; --               ; --                        ;
+; datapath:u_datapath|datapath_output:u_datapath_output|DATA[15]~35                          ; LCCOMB_X27_Y7_N16 ; 32      ; Output enable              ; no     ; --                   ; --               ; --                        ;
+; datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Z[0]~0 ; LCCOMB_X24_Y6_N28 ; 8       ; Output enable              ; no     ; --                   ; --               ; --                        ;
+; fifo:int_fifo|Decoder0~0                                                                   ; LCCOMB_X24_Y7_N10 ; 32      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; fifo:int_fifo|Decoder0~1                                                                   ; LCCOMB_X24_Y7_N16 ; 32      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; fifo:int_fifo|Decoder0~2                                                                   ; LCCOMB_X24_Y7_N6  ; 32      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; fifo:int_fifo|Decoder0~3                                                                   ; LCCOMB_X24_Y7_N8  ; 32      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; fifo:int_fifo|Decoder0~4                                                                   ; LCCOMB_X24_Y7_N0  ; 32      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; fifo:int_fifo|Decoder0~5                                                                   ; LCCOMB_X24_Y7_N12 ; 32      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; fifo:int_fifo|Decoder0~6                                                                   ; LCCOMB_X24_Y7_N18 ; 32      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; fifo:int_fifo|Decoder0~7                                                                   ; LCCOMB_X24_Y7_N24 ; 32      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|clk                                    ; LCCOMB_X26_Y8_N24 ; 5       ; Clock                      ; no     ; --                   ; --               ; --                        ;
+; fifo:int_fifo|fifo_byte_ptr:u_byte_ptr|BO1_CLK                                             ; LCCOMB_X26_Y6_N14 ; 1       ; Clock                      ; no     ; --                   ; --               ; --                        ;
+; fifo:int_fifo|fifo_write_strobes:u_write_strobes|LLWS                                      ; LCCOMB_X25_Y6_N18 ; 64      ; Clock                      ; yes    ; Global Clock         ; GCLK2            ; --                        ;
+; fifo:int_fifo|fifo_write_strobes:u_write_strobes|LMWS                                      ; LCCOMB_X25_Y6_N6  ; 64      ; Clock                      ; yes    ; Global Clock         ; GCLK1            ; --                        ;
+; fifo:int_fifo|fifo_write_strobes:u_write_strobes|UMWS                                      ; LCCOMB_X25_Y6_N22 ; 64      ; Clock                      ; yes    ; Global Clock         ; GCLK0            ; --                        ;
+; fifo:int_fifo|fifo_write_strobes:u_write_strobes|UUWS                                      ; LCCOMB_X25_Y6_N8  ; 64      ; Clock                      ; yes    ; Global Clock         ; GCLK3            ; --                        ;
+; registers:u_registers|CLR_FLUSHFIFO~0                                                      ; LCCOMB_X26_Y6_N2  ; 1       ; Async. clear               ; no     ; --                   ; --               ; --                        ;
+; registers:u_registers|addr_decoder:u_addr_decoder|ACR_WR                                   ; LCCOMB_X26_Y6_N12 ; 2       ; Clock                      ; no     ; --                   ; --               ; --                        ;
+; registers:u_registers|addr_decoder:u_addr_decoder|CONTR_WR                                 ; LCCOMB_X26_Y6_N4  ; 3       ; Clock                      ; no     ; --                   ; --               ; --                        ;
+; registers:u_registers|addr_decoder:u_addr_decoder|FLUSH_                                   ; LCCOMB_X26_Y6_N30 ; 1       ; Clock                      ; no     ; --                   ; --               ; --                        ;
+; registers:u_registers|addr_decoder:u_addr_decoder|ISTR_RD_                                 ; LCCOMB_X22_Y6_N6  ; 8       ; Clock                      ; no     ; --                   ; --               ; --                        ;
+; registers:u_registers|addr_decoder:u_addr_decoder|ST_DMA                                   ; LCCOMB_X26_Y6_N0  ; 1       ; Clock                      ; no     ; --                   ; --               ; --                        ;
+; registers:u_registers|registers_cntr:u_registers_cntr|CLR_DMAENA~0                         ; LCCOMB_X26_Y6_N22 ; 1       ; Async. clear               ; no     ; --                   ; --               ; --                        ;
+; registers:u_registers|registers_istr:u_registers_istr|CLR_INT_~0                           ; LCCOMB_X22_Y6_N12 ; 2       ; Async. clear               ; no     ; --                   ; --               ; --                        ;
+; registers:u_registers|registers_term:u_registers_term|CYCLE_END~2                          ; LCCOMB_X26_Y6_N10 ; 1       ; Async. clear               ; no     ; --                   ; --               ; --                        ;
+; rtl~0                                                                                      ; LCCOMB_X27_Y7_N26 ; 1       ; Clock                      ; no     ; --                   ; --               ; --                        ;
 +--------------------------------------------------------------------------------------------+-------------------+---------+----------------------------+--------+----------------------+------------------+---------------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Global & Other Fast Signals                                                                                                                              ;
-+-------------------------------------------------------+------------------+---------+----------------------+------------------+---------------------------+
-; Name                                                  ; Location         ; Fan-Out ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
-+-------------------------------------------------------+------------------+---------+----------------------+------------------+---------------------------+
-; CPU_SM:u_CPU_SM|PAS                                   ; LCFF_X27_Y7_N7   ; 32      ; Global Clock         ; GCLK7            ; --                        ;
-; CPU_SM:u_CPU_SM|PDS                                   ; LCFF_X27_Y7_N5   ; 16      ; Global Clock         ; GCLK4            ; --                        ;
-; SCLK                                                  ; PIN_90           ; 32      ; Global Clock         ; GCLK6            ; --                        ;
-; SCSI_SM:u_SCSI_SM|nLS2CPU                             ; LCFF_X24_Y7_N5   ; 8       ; Global Clock         ; GCLK5            ; --                        ;
-; fifo:int_fifo|fifo_write_strobes:u_write_strobes|LLWS ; LCCOMB_X1_Y6_N26 ; 64      ; Global Clock         ; GCLK0            ; --                        ;
-; fifo:int_fifo|fifo_write_strobes:u_write_strobes|LMWS ; LCCOMB_X1_Y6_N28 ; 64      ; Global Clock         ; GCLK1            ; --                        ;
-; fifo:int_fifo|fifo_write_strobes:u_write_strobes|UMWS ; LCCOMB_X1_Y6_N20 ; 64      ; Global Clock         ; GCLK2            ; --                        ;
-; fifo:int_fifo|fifo_write_strobes:u_write_strobes|UUWS ; LCCOMB_X1_Y6_N30 ; 64      ; Global Clock         ; GCLK3            ; --                        ;
-+-------------------------------------------------------+------------------+---------+----------------------+------------------+---------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Global & Other Fast Signals                                                                                                                               ;
++-------------------------------------------------------+-------------------+---------+----------------------+------------------+---------------------------+
+; Name                                                  ; Location          ; Fan-Out ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
++-------------------------------------------------------+-------------------+---------+----------------------+------------------+---------------------------+
+; CPU_SM:u_CPU_SM|PAS                                   ; LCFF_X27_Y8_N17   ; 32      ; Global Clock         ; GCLK4            ; --                        ;
+; CPU_SM:u_CPU_SM|PDS                                   ; LCFF_X27_Y8_N13   ; 16      ; Global Clock         ; GCLK7            ; --                        ;
+; SCLK                                                  ; PIN_90            ; 32      ; Global Clock         ; GCLK6            ; --                        ;
+; SCSI_SM:u_SCSI_SM|nLS2CPU                             ; LCFF_X27_Y5_N1    ; 8       ; Global Clock         ; GCLK5            ; --                        ;
+; fifo:int_fifo|fifo_write_strobes:u_write_strobes|LLWS ; LCCOMB_X25_Y6_N18 ; 64      ; Global Clock         ; GCLK2            ; --                        ;
+; fifo:int_fifo|fifo_write_strobes:u_write_strobes|LMWS ; LCCOMB_X25_Y6_N6  ; 64      ; Global Clock         ; GCLK1            ; --                        ;
+; fifo:int_fifo|fifo_write_strobes:u_write_strobes|UMWS ; LCCOMB_X25_Y6_N22 ; 64      ; Global Clock         ; GCLK0            ; --                        ;
+; fifo:int_fifo|fifo_write_strobes:u_write_strobes|UUWS ; LCCOMB_X25_Y6_N8  ; 64      ; Global Clock         ; GCLK3            ; --                        ;
++-------------------------------------------------------+-------------------+---------+----------------------+------------------+---------------------------+
 
 
 +-----------------------------------------------------------------------------------------------------------+
@@ -1268,6 +1270,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; CPU_SM:u_CPU_SM|cpudff2:u_cpudff2|p2a~2                                                         ; 3       ;
 ; registers:u_registers|addr_decoder:u_addr_decoder|ADDR_VALID~0                                  ; 3       ;
 ; registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[4]                                 ; 3       ;
+; SCSI_SM:u_SCSI_SM|DACK_o                                                                        ; 3       ;
 ; INTA                                                                                            ; 2       ;
 ; ADDR[5]                                                                                         ; 2       ;
 ; DATA[15]~15                                                                                     ; 2       ;
@@ -1415,8 +1418,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E46_s_E59_s~0                                     ; 2       ;
 ; registers:u_registers|registers_istr:u_registers_istr|INT                                       ; 2       ;
 ; registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[2]                                 ; 2       ;
+; SCSI_SM:u_SCSI_SM|SCSI_CS_o                                                                     ; 2       ;
 ; SCSI_SM:u_SCSI_SM|RE_o                                                                          ; 2       ;
-; SCSI_SM:u_SCSI_SM|DACK_o                                                                        ; 2       ;
 ; SCSI_SM:u_SCSI_SM|INCBO_o                                                                       ; 2       ;
 ; SCSI_SM:u_SCSI_SM|nLS2CPU~feeder                                                                ; 1       ;
 ; registers:u_registers|registers_term:u_registers_term|REG_DSK_~feeder                           ; 1       ;
@@ -2077,7 +2080,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; SCSI_SM:u_SCSI_SM|RIRST_~0                                                                      ; 1       ;
 ; SCSI_SM:u_SCSI_SM|RIFIFO_d                                                                      ; 1       ;
 ; SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|NEXT_STATE[2]~21                            ; 1       ;
-; SCSI_SM:u_SCSI_SM|RDRST_~0                                                                      ; 1       ;
 +-------------------------------------------------------------------------------------------------+---------+
 
 
@@ -2086,93 +2088,93 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------------+------------------------+
 ; Other Routing Resource Type ; Usage                  ;
 +-----------------------------+------------------------+
-; Block interconnects         ; 1,189 / 15,666 ( 8 % ) ;
-; C16 interconnects           ; 27 / 812 ( 3 % )       ;
-; C4 interconnects            ; 519 / 11,424 ( 5 % )   ;
-; Direct links                ; 196 / 15,666 ( 1 % )   ;
+; Block interconnects         ; 1,183 / 15,666 ( 8 % ) ;
+; C16 interconnects           ; 30 / 812 ( 4 % )       ;
+; C4 interconnects            ; 553 / 11,424 ( 5 % )   ;
+; Direct links                ; 217 / 15,666 ( 1 % )   ;
 ; Global clocks               ; 8 / 8 ( 100 % )        ;
-; Local interconnects         ; 390 / 4,608 ( 8 % )    ;
-; R24 interconnects           ; 55 / 652 ( 8 % )       ;
-; R4 interconnects            ; 741 / 13,328 ( 6 % )   ;
+; Local interconnects         ; 379 / 4,608 ( 8 % )    ;
+; R24 interconnects           ; 60 / 652 ( 9 % )       ;
+; R4 interconnects            ; 602 / 13,328 ( 5 % )   ;
 +-----------------------------+------------------------+
 
 
 +----------------------------------------------------------------------------+
 ; LAB Logic Elements                                                         ;
 +---------------------------------------------+------------------------------+
-; Number of Logic Elements  (Average = 12.06) ; Number of LABs  (Total = 64) ;
+; Number of Logic Elements  (Average = 13.19) ; Number of LABs  (Total = 59) ;
 +---------------------------------------------+------------------------------+
 ; 1                                           ; 4                            ;
-; 2                                           ; 5                            ;
+; 2                                           ; 1                            ;
 ; 3                                           ; 2                            ;
-; 4                                           ; 1                            ;
+; 4                                           ; 0                            ;
 ; 5                                           ; 1                            ;
-; 6                                           ; 2                            ;
-; 7                                           ; 1                            ;
+; 6                                           ; 0                            ;
+; 7                                           ; 0                            ;
 ; 8                                           ; 2                            ;
 ; 9                                           ; 1                            ;
 ; 10                                          ; 1                            ;
-; 11                                          ; 1                            ;
-; 12                                          ; 0                            ;
+; 11                                          ; 0                            ;
+; 12                                          ; 2                            ;
 ; 13                                          ; 1                            ;
-; 14                                          ; 1                            ;
+; 14                                          ; 5                            ;
 ; 15                                          ; 5                            ;
-; 16                                          ; 36                           ;
+; 16                                          ; 34                           ;
 +---------------------------------------------+------------------------------+
 
 
 +-------------------------------------------------------------------+
 ; LAB-wide Signals                                                  ;
 +------------------------------------+------------------------------+
-; LAB-wide Signals  (Average = 1.39) ; Number of LABs  (Total = 64) ;
+; LAB-wide Signals  (Average = 1.44) ; Number of LABs  (Total = 59) ;
 +------------------------------------+------------------------------+
-; 1 Async. clear                     ; 9                            ;
-; 1 Clock                            ; 49                           ;
-; 1 Clock enable                     ; 1                            ;
+; 1 Async. clear                     ; 11                           ;
+; 1 Clock                            ; 39                           ;
+; 1 Clock enable                     ; 4                            ;
 ; 1 Sync. clear                      ; 1                            ;
-; 2 Async. clears                    ; 3                            ;
-; 2 Clock enables                    ; 19                           ;
-; 2 Clocks                           ; 7                            ;
+; 2 Async. clears                    ; 2                            ;
+; 2 Clock enables                    ; 17                           ;
+; 2 Clocks                           ; 11                           ;
 +------------------------------------+------------------------------+
 
 
 +-----------------------------------------------------------------------------+
 ; LAB Signals Sourced                                                         ;
 +----------------------------------------------+------------------------------+
-; Number of Signals Sourced  (Average = 17.27) ; Number of LABs  (Total = 64) ;
+; Number of Signals Sourced  (Average = 18.68) ; Number of LABs  (Total = 59) ;
 +----------------------------------------------+------------------------------+
 ; 0                                            ; 0                            ;
-; 1                                            ; 0                            ;
-; 2                                            ; 6                            ;
-; 3                                            ; 2                            ;
-; 4                                            ; 3                            ;
+; 1                                            ; 4                            ;
+; 2                                            ; 0                            ;
+; 3                                            ; 1                            ;
+; 4                                            ; 2                            ;
 ; 5                                            ; 0                            ;
-; 6                                            ; 1                            ;
-; 7                                            ; 1                            ;
-; 8                                            ; 0                            ;
-; 9                                            ; 1                            ;
-; 10                                           ; 2                            ;
-; 11                                           ; 3                            ;
-; 12                                           ; 0                            ;
+; 6                                            ; 0                            ;
+; 7                                            ; 0                            ;
+; 8                                            ; 1                            ;
+; 9                                            ; 0                            ;
+; 10                                           ; 0                            ;
+; 11                                           ; 1                            ;
+; 12                                           ; 2                            ;
 ; 13                                           ; 0                            ;
-; 14                                           ; 1                            ;
-; 15                                           ; 1                            ;
-; 16                                           ; 3                            ;
-; 17                                           ; 4                            ;
-; 18                                           ; 6                            ;
-; 19                                           ; 4                            ;
-; 20                                           ; 1                            ;
+; 14                                           ; 2                            ;
+; 15                                           ; 3                            ;
+; 16                                           ; 4                            ;
+; 17                                           ; 2                            ;
+; 18                                           ; 3                            ;
+; 19                                           ; 6                            ;
+; 20                                           ; 6                            ;
 ; 21                                           ; 1                            ;
-; 22                                           ; 3                            ;
+; 22                                           ; 1                            ;
 ; 23                                           ; 3                            ;
-; 24                                           ; 2                            ;
-; 25                                           ; 3                            ;
-; 26                                           ; 3                            ;
-; 27                                           ; 0                            ;
-; 28                                           ; 4                            ;
+; 24                                           ; 3                            ;
+; 25                                           ; 2                            ;
+; 26                                           ; 0                            ;
+; 27                                           ; 3                            ;
+; 28                                           ; 2                            ;
 ; 29                                           ; 2                            ;
-; 30                                           ; 1                            ;
-; 31                                           ; 2                            ;
+; 30                                           ; 0                            ;
+; 31                                           ; 4                            ;
 ; 32                                           ; 1                            ;
 +----------------------------------------------+------------------------------+
 
@@ -2180,62 +2182,67 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------------------------------------------------------------------+
 ; LAB Signals Sourced Out                                                        ;
 +-------------------------------------------------+------------------------------+
-; Number of Signals Sourced Out  (Average = 7.98) ; Number of LABs  (Total = 64) ;
+; Number of Signals Sourced Out  (Average = 8.85) ; Number of LABs  (Total = 59) ;
 +-------------------------------------------------+------------------------------+
 ; 0                                               ; 0                            ;
-; 1                                               ; 6                            ;
-; 2                                               ; 4                            ;
-; 3                                               ; 4                            ;
-; 4                                               ; 1                            ;
-; 5                                               ; 4                            ;
-; 6                                               ; 2                            ;
-; 7                                               ; 1                            ;
-; 8                                               ; 12                           ;
-; 9                                               ; 2                            ;
+; 1                                               ; 4                            ;
+; 2                                               ; 2                            ;
+; 3                                               ; 1                            ;
+; 4                                               ; 2                            ;
+; 5                                               ; 3                            ;
+; 6                                               ; 0                            ;
+; 7                                               ; 3                            ;
+; 8                                               ; 10                           ;
+; 9                                               ; 6                            ;
 ; 10                                              ; 9                            ;
-; 11                                              ; 6                            ;
-; 12                                              ; 5                            ;
-; 13                                              ; 2                            ;
-; 14                                              ; 4                            ;
+; 11                                              ; 7                            ;
+; 12                                              ; 3                            ;
+; 13                                              ; 3                            ;
+; 14                                              ; 2                            ;
 ; 15                                              ; 2                            ;
+; 16                                              ; 1                            ;
+; 17                                              ; 1                            ;
 +-------------------------------------------------+------------------------------+
 
 
 +-----------------------------------------------------------------------------+
 ; LAB Distinct Inputs                                                         ;
 +----------------------------------------------+------------------------------+
-; Number of Distinct Inputs  (Average = 15.77) ; Number of LABs  (Total = 64) ;
+; Number of Distinct Inputs  (Average = 17.00) ; Number of LABs  (Total = 59) ;
 +----------------------------------------------+------------------------------+
 ; 0                                            ; 0                            ;
 ; 1                                            ; 0                            ;
 ; 2                                            ; 4                            ;
-; 3                                            ; 2                            ;
-; 4                                            ; 2                            ;
-; 5                                            ; 3                            ;
-; 6                                            ; 1                            ;
-; 7                                            ; 2                            ;
-; 8                                            ; 3                            ;
-; 9                                            ; 0                            ;
-; 10                                           ; 1                            ;
-; 11                                           ; 2                            ;
-; 12                                           ; 1                            ;
-; 13                                           ; 7                            ;
-; 14                                           ; 2                            ;
+; 3                                            ; 0                            ;
+; 4                                            ; 1                            ;
+; 5                                            ; 0                            ;
+; 6                                            ; 2                            ;
+; 7                                            ; 1                            ;
+; 8                                            ; 2                            ;
+; 9                                            ; 2                            ;
+; 10                                           ; 0                            ;
+; 11                                           ; 1                            ;
+; 12                                           ; 0                            ;
+; 13                                           ; 4                            ;
+; 14                                           ; 4                            ;
 ; 15                                           ; 3                            ;
-; 16                                           ; 3                            ;
-; 17                                           ; 0                            ;
-; 18                                           ; 0                            ;
+; 16                                           ; 2                            ;
+; 17                                           ; 5                            ;
+; 18                                           ; 5                            ;
 ; 19                                           ; 2                            ;
-; 20                                           ; 4                            ;
-; 21                                           ; 1                            ;
-; 22                                           ; 4                            ;
-; 23                                           ; 0                            ;
+; 20                                           ; 3                            ;
+; 21                                           ; 2                            ;
+; 22                                           ; 2                            ;
+; 23                                           ; 1                            ;
 ; 24                                           ; 2                            ;
-; 25                                           ; 6                            ;
-; 26                                           ; 3                            ;
+; 25                                           ; 1                            ;
+; 26                                           ; 2                            ;
 ; 27                                           ; 1                            ;
-; 28                                           ; 3                            ;
-; 29                                           ; 2                            ;
+; 28                                           ; 2                            ;
+; 29                                           ; 1                            ;
+; 30                                           ; 2                            ;
+; 31                                           ; 1                            ;
+; 32                                           ; 1                            ;
 +----------------------------------------------+------------------------------+
 
 
@@ -2374,9 +2381,9 @@ Info (170195): Router estimated average interconnect usage is 5% of the availabl
 Info (170194): Fitter routing operations ending: elapsed time is 00:00:01
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
-Info (11888): Total time spent on timing analysis during the Fitter is 0.70 seconds.
+Info (11888): Total time spent on timing analysis during the Fitter is 0.68 seconds.
 Info (306004): Started post-fitting delay annotation
-Warning (306006): Found 59 output pins without output pin load capacitance assignment
+Warning (306006): Found 60 output pins without output pin load capacitance assignment
     Info (306007): Pin "_INT" has no specified output pin load capacitance -- assuming default load capacitance of 0 pF for timing analysis
     Info (306007): Pin "SIZ1" has no specified output pin load capacitance -- assuming default load capacitance of 0 pF for timing analysis
     Info (306007): Pin "_BR" has no specified output pin load capacitance -- assuming default load capacitance of 0 pF for timing analysis
@@ -2436,16 +2443,17 @@ Warning (306006): Found 59 output pins without output pin load capacitance assig
     Info (306007): Pin "_LED_DMA" has no specified output pin load capacitance -- assuming default load capacitance of 0 pF for timing analysis
     Info (306007): Pin "OWN_" has no specified output pin load capacitance -- assuming default load capacitance of 0 pF for timing analysis
     Info (306007): Pin "DATA_OE_" has no specified output pin load capacitance -- assuming default load capacitance of 0 pF for timing analysis
+    Info (306007): Pin "PDATA_OE_" has no specified output pin load capacitance -- assuming default load capacitance of 0 pF for timing analysis
 Info (306005): Delay annotation completed successfully
 Info (306004): Started post-fitting delay annotation
 Info (306005): Delay annotation completed successfully
-Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:00
+Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:01
 Warning (169174): The Reserve All Unused Pins setting has not been specified, and will default to 'As output driving ground'.
 Info (144001): Generated suppressed messages file /home/mike/EAGLE/projects/SDMAC-Replacement/Quartus/output_files/RESDMAC.fit.smsg
 Info: Quartus II 64-Bit Fitter was successful. 0 errors, 18 warnings
-    Info: Peak virtual memory: 643 megabytes
-    Info: Processing ended: Mon Jan  2 21:33:59 2023
-    Info: Elapsed time: 00:00:06
+    Info: Peak virtual memory: 637 megabytes
+    Info: Processing ended: Tue Jan  3 15:48:02 2023
+    Info: Elapsed time: 00:00:07
     Info: Total CPU time (on all processors): 00:00:04
 
 
