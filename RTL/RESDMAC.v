@@ -82,6 +82,8 @@ module RESDMAC(
     output OWN_,        //Active low signal to show SDMAC is bus master, This can be used to set direction on level shifters for control signals.
     output DATA_OE_,    //Active low ouput enable for DBUS level shifters.
     output PDATA_OE_    //Active low ouput enable for Peripheral BUS level shifters.
+    output DATA_OE_,    //Active low ouput enable for DBUS level shifters.
+    output PDATA_OE_    //Active low ouput enable for Peripheral BUS level shifters.
 );
 
 reg AS_O_;

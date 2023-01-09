@@ -150,6 +150,7 @@
 <wire x1="100" y1="0" x2="100" y2="80" width="0" layer="20"/>
 <wire x1="100" y1="80" x2="0" y2="80" width="0" layer="20"/>
 <wire x1="0" y1="80" x2="0" y2="0" width="0" layer="20"/>
+<<<<<<< HEAD
 <dimension x1="3.81" y1="19.05" x2="54.61" y2="19.05" x3="29.21" y3="15.24" textsize="1.778" layer="1" unit="inch"/>
 <dimension x1="54.61" y1="19.05" x2="54.61" y2="69.85" x3="46.99" y3="44.45" textsize="1.778" layer="1" unit="inch"/>
 <dimension x1="54.61" y1="19.05" x2="54.61" y2="29.21" x3="58.42" y3="24.13" textsize="1.778" layer="1" unit="inch"/>
@@ -160,6 +161,8 @@
 <dimension x1="54.61" y1="62.23" x2="54.61" y2="72.39" x3="45.72" y3="67.31" textsize="1.778" layer="1" unit="inch"/>
 <dimension x1="11.43" y1="72.39" x2="1.27" y2="72.39" x3="6.35" y3="63.5" textsize="1.778" layer="1" unit="inch"/>
 <dimension x1="44.45" y1="72.39" x2="54.61" y2="72.39" x3="49.53" y3="63.5" textsize="1.778" layer="1" unit="inch"/>
+=======
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </plain>
 <libraries>
 <library name="Capacitor" urn="urn:adsk.eagle:library:16290819">
@@ -535,6 +538,7 @@ square</description>
 <rectangle x1="16.256" y1="1.016" x2="16.764" y2="1.524" layer="51"/>
 <rectangle x1="16.256" y1="-1.524" x2="16.764" y2="-1.016" layer="51"/>
 </package>
+<<<<<<< HEAD
 <package name="1X02" urn="urn:adsk.eagle:footprint:22309/1" library_version="4">
 <description>&lt;b&gt;PIN HEADER&lt;/b&gt;</description>
 <wire x1="-1.905" y1="1.27" x2="-0.635" y2="1.27" width="0.1524" layer="21"/>
@@ -559,6 +563,8 @@ square</description>
 <rectangle x1="-1.524" y1="-0.254" x2="-1.016" y2="0.254" layer="51"/>
 <rectangle x1="1.016" y1="-0.254" x2="1.524" y2="0.254" layer="51"/>
 </package>
+=======
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </packages>
 <packages3d>
 <package3d name="2X14" urn="urn:adsk.eagle:package:22426/2" type="model" library_version="4">
@@ -567,12 +573,15 @@ square</description>
 <packageinstance name="2X14"/>
 </packageinstances>
 </package3d>
+<<<<<<< HEAD
 <package3d name="1X02" urn="urn:adsk.eagle:package:22435/2" type="model" library_version="4">
 <description>PIN HEADER</description>
 <packageinstances>
 <packageinstance name="1X02"/>
 </packageinstances>
 </package3d>
+=======
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </packages3d>
 </library>
 <library name="74alvc164254">
@@ -933,6 +942,7 @@ square</description>
 <variantdefs>
 </variantdefs>
 <classes>
+<<<<<<< HEAD
 <class number="0" name="default" width="0.127" drill="0.1524">
 <clearance class="0" value="0.127"/>
 </class>
@@ -986,6 +996,65 @@ square</description>
 <param name="rlMinViaInner" value="8mil"/>
 <param name="rlMaxViaInner" value="20mil"/>
 <param name="rlMinMicroViaOuter" value="3mil"/>
+=======
+<class number="0" name="default" width="0" drill="0">
+</class>
+</classes>
+<designrules name="default">
+<description language="de">&lt;b&gt;EAGLE Design Rules&lt;/b&gt;
+&lt;p&gt;
+Die Standard-Design-Rules sind so gewählt, dass sie für 
+die meisten Anwendungen passen. Sollte ihre Platine 
+besondere Anforderungen haben, treffen Sie die erforderlichen
+Einstellungen hier und speichern die Design Rules unter 
+einem neuen Namen ab.</description>
+<description language="en">&lt;b&gt;EAGLE Design Rules&lt;/b&gt;
+&lt;p&gt;
+The default Design Rules have been set to cover
+a wide range of applications. Your particular design
+may have different requirements, so please make the
+necessary adjustments and save your customized
+design rules under a new name.</description>
+<param name="layerSetup" value="(1*16)"/>
+<param name="mtCopper" value="0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm"/>
+<param name="mtIsolate" value="1.5mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm"/>
+<param name="mdWireWire" value="6mil"/>
+<param name="mdWirePad" value="6mil"/>
+<param name="mdWireVia" value="6mil"/>
+<param name="mdPadPad" value="6mil"/>
+<param name="mdPadVia" value="6mil"/>
+<param name="mdViaVia" value="6mil"/>
+<param name="mdSmdPad" value="6mil"/>
+<param name="mdSmdVia" value="6mil"/>
+<param name="mdSmdSmd" value="6mil"/>
+<param name="mdViaViaSameLayer" value="6mil"/>
+<param name="mnLayersViaInSmd" value="2"/>
+<param name="mdCopperDimension" value="40mil"/>
+<param name="mdDrill" value="6mil"/>
+<param name="mdSmdStop" value="0mil"/>
+<param name="msWidth" value="6mil"/>
+<param name="msDrill" value="0.35mm"/>
+<param name="msMicroVia" value="9.99mm"/>
+<param name="msBlindViaRatio" value="0.5"/>
+<param name="rvPadTop" value="0.25"/>
+<param name="rvPadInner" value="0.25"/>
+<param name="rvPadBottom" value="0.25"/>
+<param name="rvViaOuter" value="0.25"/>
+<param name="rvViaInner" value="0.25"/>
+<param name="rvMicroViaOuter" value="0.25"/>
+<param name="rvMicroViaInner" value="0.25"/>
+<param name="rlMinPadTop" value="10mil"/>
+<param name="rlMaxPadTop" value="20mil"/>
+<param name="rlMinPadInner" value="10mil"/>
+<param name="rlMaxPadInner" value="20mil"/>
+<param name="rlMinPadBottom" value="10mil"/>
+<param name="rlMaxPadBottom" value="20mil"/>
+<param name="rlMinViaOuter" value="8mil"/>
+<param name="rlMaxViaOuter" value="20mil"/>
+<param name="rlMinViaInner" value="8mil"/>
+<param name="rlMaxViaInner" value="20mil"/>
+<param name="rlMinMicroViaOuter" value="4mil"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 <param name="rlMaxMicroViaOuter" value="20mil"/>
 <param name="rlMinMicroViaInner" value="4mil"/>
 <param name="rlMaxMicroViaInner" value="20mil"/>
@@ -1180,6 +1249,7 @@ square</description>
 <attribute name="NAME" x="90.17" y="40.005" size="1.778" layer="25" ratio="10" rot="R180"/>
 <attribute name="VALUE" x="89.8525" y="42.545" size="1.27" layer="27" ratio="10" rot="R180"/>
 </element>
+<<<<<<< HEAD
 <element name="P1" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="2X14" package3d_urn="urn:adsk.eagle:package:22426/2" value="" x="27.94" y="71.12" locked="yes" smashed="yes" rot="R180">
 <attribute name="NAME" x="45.72" y="67.945" locked="yes" size="1.27" layer="25" ratio="10" rot="R180"/>
 <attribute name="POPULARITY" value="0" x="-3.81" y="124.46" locked="yes" size="1.778" layer="27" rot="R180" display="off"/>
@@ -1199,6 +1269,27 @@ square</description>
 <attribute name="NAME" x="56.515" y="63.5" locked="yes" size="1.27" layer="25" ratio="10" rot="R270"/>
 <attribute name="POPULARITY" value="0" x="-22.86" y="13.97" locked="yes" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="48.895" y="63.5" locked="yes" size="1.27" layer="27" rot="R270"/>
+=======
+<element name="P1" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="2X14" package3d_urn="urn:adsk.eagle:package:22426/2" value="" x="27.94" y="72.39" smashed="yes" rot="R180">
+<attribute name="NAME" x="45.72" y="69.215" size="1.27" layer="25" ratio="10" rot="R180"/>
+<attribute name="POPULARITY" value="0" x="-3.81" y="125.73" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" x="45.72" y="76.835" size="1.27" layer="27" rot="R180"/>
+</element>
+<element name="P2" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="2X14" package3d_urn="urn:adsk.eagle:package:22426/2" value="" x="5.08" y="48.26" smashed="yes" rot="R270">
+<attribute name="NAME" x="8.255" y="66.04" size="1.27" layer="25" ratio="10" rot="R270"/>
+<attribute name="POPULARITY" value="0" x="-55.88" y="16.51" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" x="0.635" y="66.04" size="1.27" layer="27" rot="R270"/>
+</element>
+<element name="P3" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="2X14" package3d_urn="urn:adsk.eagle:package:22426/2" value="" x="27.94" y="24.13" smashed="yes">
+<attribute name="NAME" x="10.16" y="27.305" size="1.27" layer="25" ratio="10"/>
+<attribute name="POPULARITY" value="0" x="59.69" y="-44.45" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="10.16" y="19.685" size="1.27" layer="27"/>
+</element>
+<element name="P4" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="2X14" package3d_urn="urn:adsk.eagle:package:22426/2" value="" x="52.07" y="46.99" smashed="yes" rot="R270">
+<attribute name="NAME" x="55.245" y="64.77" size="1.27" layer="25" ratio="10" rot="R270"/>
+<attribute name="POPULARITY" value="0" x="-24.13" y="15.24" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" x="47.625" y="64.77" size="1.27" layer="27" rot="R270"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </element>
 <element name="U1" library="74alvc164254" package="DGG48-M" value="74ALVC164245DGGRE4DGG48-M" x="17.78" y="38.1" smashed="yes">
 <attribute name="COPYRIGHT" value="Copyright (C) 2023 Ultra Librarian. All rights reserved." x="17.78" y="38.1" size="1.778" layer="27" display="off"/>
@@ -1228,11 +1319,14 @@ square</description>
 <attribute name="NAME" x="36.0934" y="37.465" size="1.27" layer="27" ratio="6" rot="SR0"/>
 <attribute name="VALUE" x="37.6428" y="37.465" size="1.27" layer="21" ratio="6" rot="SR0"/>
 </element>
+<<<<<<< HEAD
 <element name="JP1" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X02" package3d_urn="urn:adsk.eagle:package:22435/2" value="" x="88.9" y="73.66" smashed="yes">
 <attribute name="NAME" x="86.2838" y="75.4888" size="1.27" layer="25" ratio="10"/>
 <attribute name="POPULARITY" value="98" x="88.9" y="73.66" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="86.36" y="70.485" size="1.27" layer="27"/>
 </element>
+=======
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </elements>
 <signals>
 <signal name="GND">
@@ -1301,11 +1395,18 @@ square</description>
 <contactref element="P4" pad="9"/>
 <contactref element="P4" pad="25"/>
 <contactref element="P4" pad="26"/>
+<<<<<<< HEAD
 <contactref element="JP1" pad="2"/>
 <wire x1="77.47" y1="34.29" x2="82.55" y2="59.69" width="0" layer="19" extent="1-1"/>
 <wire x1="54.61" y1="31.75" x2="77.47" y2="34.29" width="0" layer="19" extent="1-1"/>
 <wire x1="52.07" y1="31.75" x2="54.61" y2="31.75" width="0" layer="19" extent="1-1"/>
 <wire x1="43.27525" y1="33.35" x2="52.07" y2="31.75" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="77.47" y1="34.29" x2="82.55" y2="59.69" width="0" layer="19" extent="1-1"/>
+<wire x1="53.34" y1="33.02" x2="77.47" y2="34.29" width="0" layer="19" extent="1-1"/>
+<wire x1="50.8" y1="33.02" x2="53.34" y2="33.02" width="0" layer="19" extent="1-1"/>
+<wire x1="43.27525" y1="33.35" x2="50.8" y2="33.02" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 <wire x1="43.27525" y1="33.85" x2="43.27525" y2="33.35" width="0" layer="19" extent="1-1"/>
 <wire x1="43.27525" y1="34.35" x2="43.27525" y2="33.85" width="0" layer="19" extent="1-1"/>
 <wire x1="43.27525" y1="34.85" x2="43.27525" y2="34.35" width="0" layer="19" extent="1-1"/>
@@ -1324,8 +1425,13 @@ square</description>
 <wire x1="35.46475" y1="33.85" x2="35.46475" y2="34.35" width="0" layer="19" extent="1-1"/>
 <wire x1="35.46475" y1="33.35" x2="35.46475" y2="33.85" width="0" layer="19" extent="1-1"/>
 <wire x1="35.46475" y1="32.35" x2="35.46475" y2="33.35" width="0" layer="19" extent="1-1"/>
+<<<<<<< HEAD
 <wire x1="41.91" y1="21.59" x2="43.27525" y2="32.35" width="0" layer="19" extent="1-1"/>
 <wire x1="44.45" y1="19.05" x2="41.91" y2="21.59" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="41.91" y1="25.4" x2="43.27525" y2="32.35" width="0" layer="19" extent="1-1"/>
+<wire x1="44.45" y1="22.86" x2="41.91" y2="25.4" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 <wire x1="43.27525" y1="52.67" x2="40.2454" y2="45.72" width="0" layer="19" extent="1-1"/>
 <wire x1="43.27525" y1="54.17" x2="43.27525" y2="52.67" width="0" layer="19" extent="1-1"/>
 <wire x1="43.27525" y1="57.17" x2="43.27525" y2="54.17" width="0" layer="19" extent="1-1"/>
@@ -1336,11 +1442,19 @@ square</description>
 <wire x1="35.46475" y1="59.67" x2="35.46475" y2="62.67" width="0" layer="19" extent="1-1"/>
 <wire x1="35.46475" y1="57.17" x2="35.46475" y2="59.67" width="0" layer="19" extent="1-1"/>
 <wire x1="35.46475" y1="54.17" x2="35.46475" y2="57.17" width="0" layer="19" extent="1-1"/>
+<<<<<<< HEAD
 <wire x1="52.07" y1="62.23" x2="43.27525" y2="62.67" width="0" layer="19" extent="1-1"/>
 <wire x1="54.61" y1="62.23" x2="52.07" y2="62.23" width="0" layer="19" extent="1-1"/>
 <wire x1="52.07" y1="52.07" x2="43.27525" y2="52.67" width="0" layer="19" extent="1-1"/>
 <wire x1="54.61" y1="52.07" x2="52.07" y2="52.07" width="0" layer="19" extent="1-1"/>
 <wire x1="54.61" y1="54.61" x2="54.61" y2="52.07" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="50.8" y1="63.5" x2="43.27525" y2="62.67" width="0" layer="19" extent="1-1"/>
+<wire x1="53.34" y1="63.5" x2="50.8" y2="63.5" width="0" layer="19" extent="1-1"/>
+<wire x1="50.8" y1="53.34" x2="43.27525" y2="52.67" width="0" layer="19" extent="1-1"/>
+<wire x1="53.34" y1="53.34" x2="50.8" y2="53.34" width="0" layer="19" extent="1-1"/>
+<wire x1="53.34" y1="55.88" x2="53.34" y2="53.34" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 <wire x1="21.68525" y1="62.67" x2="35.46475" y2="62.67" width="0" layer="19" extent="1-1"/>
 <wire x1="21.68525" y1="59.67" x2="21.68525" y2="62.67" width="0" layer="19" extent="1-1"/>
 <wire x1="21.68525" y1="57.17" x2="21.68525" y2="59.67" width="0" layer="19" extent="1-1"/>
@@ -1350,10 +1464,17 @@ square</description>
 <wire x1="13.87475" y1="59.67" x2="13.87475" y2="62.67" width="0" layer="19" extent="1-1"/>
 <wire x1="13.87475" y1="57.17" x2="13.87475" y2="59.67" width="0" layer="19" extent="1-1"/>
 <wire x1="13.87475" y1="54.17" x2="13.87475" y2="57.17" width="0" layer="19" extent="1-1"/>
+<<<<<<< HEAD
 <wire x1="13.97" y1="69.85" x2="18.6554" y2="66.04" width="0" layer="19" extent="1-1"/>
 <wire x1="13.97" y1="72.39" x2="13.97" y2="69.85" width="0" layer="19" extent="1-1"/>
 <wire x1="3.81" y1="62.23" x2="13.87475" y2="62.67" width="0" layer="19" extent="1-1"/>
 <wire x1="1.27" y1="62.23" x2="3.81" y2="62.23" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="13.97" y1="71.12" x2="18.6554" y2="66.04" width="0" layer="19" extent="1-1"/>
+<wire x1="13.97" y1="73.66" x2="13.97" y2="71.12" width="0" layer="19" extent="1-1"/>
+<wire x1="6.35" y1="64.77" x2="13.87475" y2="62.67" width="0" layer="19" extent="1-1"/>
+<wire x1="3.81" y1="64.77" x2="6.35" y2="64.77" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 <wire x1="18.6554" y1="45.72" x2="21.68525" y2="54.17" width="0" layer="19" extent="1-1"/>
 <wire x1="21.68525" y1="42.35" x2="18.6554" y2="45.72" width="0" layer="19" extent="1-1"/>
 <wire x1="21.68525" y1="39.35" x2="21.68525" y2="42.35" width="0" layer="19" extent="1-1"/>
@@ -1363,10 +1484,16 @@ square</description>
 <wire x1="13.87475" y1="39.35" x2="13.87475" y2="42.35" width="0" layer="19" extent="1-1"/>
 <wire x1="13.87475" y1="36.85" x2="13.87475" y2="39.35" width="0" layer="19" extent="1-1"/>
 <wire x1="13.87475" y1="33.85" x2="13.87475" y2="36.85" width="0" layer="19" extent="1-1"/>
+<<<<<<< HEAD
 <wire x1="11.43" y1="21.59" x2="13.87475" y2="33.85" width="0" layer="19" extent="1-1"/>
 <wire x1="11.43" y1="19.05" x2="11.43" y2="21.59" width="0" layer="19" extent="1-1"/>
 <wire x1="1.27" y1="29.21" x2="11.43" y2="21.59" width="0" layer="19" extent="1-1"/>
 <wire x1="90.17" y1="73.66" x2="11.43" y2="19.05" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="11.43" y1="25.4" x2="13.87475" y2="33.85" width="0" layer="19" extent="1-1"/>
+<wire x1="11.43" y1="22.86" x2="11.43" y2="25.4" width="0" layer="19" extent="1-1"/>
+<wire x1="3.81" y1="31.75" x2="11.43" y2="25.4" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="R!W">
 <contactref element="IC1" pad="37"/>
@@ -1399,7 +1526,11 @@ square</description>
 <contactref element="U1" pad="5"/>
 <wire x1="13.87475" y1="41.85" x2="82.55" y2="31.75" width="0" layer="19" extent="1-1"/>
 </signal>
+<<<<<<< HEAD
 <signal name="VCC3.3" class="1">
+=======
+<signal name="VCC3.3">
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 <contactref element="C9" pad="1"/>
 <contactref element="C10" pad="1"/>
 <contactref element="C11" pad="1"/>
@@ -1425,6 +1556,7 @@ square</description>
 <wire x1="38.4946" y1="45.72" x2="35.46475" y2="52.67" width="0" layer="19" extent="1-1"/>
 <wire x1="43.27525" y1="40.85" x2="38.4946" y2="45.72" width="0" layer="19" extent="1-1"/>
 <wire x1="43.27525" y1="35.35" x2="43.27525" y2="40.85" width="0" layer="19" extent="1-1"/>
+<<<<<<< HEAD
 <wire x1="52.07" y1="29.21" x2="43.27525" y2="35.35" width="0" layer="19" extent="1-1"/>
 <wire x1="54.61" y1="29.21" x2="52.07" y2="29.21" width="0" layer="19" extent="1-1"/>
 <wire x1="44.45" y1="21.59" x2="52.07" y2="29.21" width="0" layer="19" extent="1-1"/>
@@ -1437,6 +1569,20 @@ square</description>
 <wire x1="21.68525" y1="40.85" x2="16.9046" y2="45.72" width="0" layer="19" extent="1-1"/>
 <wire x1="21.68525" y1="35.35" x2="21.68525" y2="40.85" width="0" layer="19" extent="1-1"/>
 <wire x1="3.81" y1="29.21" x2="21.68525" y2="35.35" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="50.8" y1="30.48" x2="43.27525" y2="35.35" width="0" layer="19" extent="1-1"/>
+<wire x1="53.34" y1="30.48" x2="50.8" y2="30.48" width="0" layer="19" extent="1-1"/>
+<wire x1="44.45" y1="25.4" x2="50.8" y2="30.48" width="0" layer="19" extent="1-1"/>
+<wire x1="21.68525" y1="55.67" x2="35.46475" y2="52.67" width="0" layer="19" extent="1-1"/>
+<wire x1="21.68525" y1="61.17" x2="21.68525" y2="55.67" width="0" layer="19" extent="1-1"/>
+<wire x1="16.9046" y1="66.04" x2="21.68525" y2="61.17" width="0" layer="19" extent="1-1"/>
+<wire x1="11.43" y1="71.12" x2="16.9046" y2="66.04" width="0" layer="19" extent="1-1"/>
+<wire x1="11.43" y1="73.66" x2="11.43" y2="71.12" width="0" layer="19" extent="1-1"/>
+<wire x1="16.9046" y1="45.72" x2="21.68525" y2="55.67" width="0" layer="19" extent="1-1"/>
+<wire x1="21.68525" y1="40.85" x2="16.9046" y2="45.72" width="0" layer="19" extent="1-1"/>
+<wire x1="21.68525" y1="35.35" x2="21.68525" y2="40.85" width="0" layer="19" extent="1-1"/>
+<wire x1="6.35" y1="31.75" x2="21.68525" y2="35.35" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="CPU_DATAD4">
 <contactref element="IC1" pad="5"/>
@@ -1498,7 +1644,11 @@ square</description>
 <contactref element="U1" pad="23"/>
 <wire x1="13.87475" y1="32.85" x2="95.25" y2="39.37" width="0" layer="19" extent="1-1"/>
 </signal>
+<<<<<<< HEAD
 <signal name="VCC5" class="1">
+=======
+<signal name="VCC5">
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 <contactref element="IC1" pad="21"/>
 <contactref element="IC1" pad="63"/>
 <contactref element="U1" pad="7"/>
@@ -1509,6 +1659,7 @@ square</description>
 <contactref element="U4" pad="18"/>
 <contactref element="U5" pad="7"/>
 <contactref element="U5" pad="18"/>
+<<<<<<< HEAD
 <wire x1="36.703" y1="40.894" x2="36.659" y2="40.85" width="0.1524" layer="1"/>
 <contactref element="JP1" pad="1"/>
 <wire x1="92.71" y1="44.45" x2="87.63" y2="73.66" width="0" layer="19" extent="1-1"/>
@@ -1518,6 +1669,13 @@ square</description>
 <wire x1="35.46475" y1="35.35" x2="35.46475" y2="40.85" width="0" layer="19" extent="1-1"/>
 <wire x1="35.46475" y1="55.67" x2="35.46475" y2="40.85" width="0" layer="19" extent="1-1"/>
 <wire x1="35.46475" y1="61.17" x2="35.46475" y2="55.67" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="67.31" y1="49.53" x2="92.71" y2="44.45" width="0" layer="19" extent="1-1"/>
+<wire x1="35.46475" y1="55.67" x2="67.31" y2="49.53" width="0" layer="19" extent="1-1"/>
+<wire x1="35.46475" y1="61.17" x2="35.46475" y2="55.67" width="0" layer="19" extent="1-1"/>
+<wire x1="35.46475" y1="40.85" x2="35.46475" y2="55.67" width="0" layer="19" extent="1-1"/>
+<wire x1="35.46475" y1="35.35" x2="35.46475" y2="40.85" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 <wire x1="13.87475" y1="61.17" x2="35.46475" y2="61.17" width="0" layer="19" extent="1-1"/>
 <wire x1="13.87475" y1="55.67" x2="13.87475" y2="61.17" width="0" layer="19" extent="1-1"/>
 <wire x1="13.87475" y1="40.85" x2="13.87475" y2="55.67" width="0" layer="19" extent="1-1"/>
@@ -1810,7 +1968,11 @@ square</description>
 <contactref element="U3" pad="48"/>
 <contactref element="U3" pad="25"/>
 <contactref element="P1" pad="21"/>
+<<<<<<< HEAD
 <wire x1="21.68525" y1="64.17" x2="19.05" y2="72.39" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="21.68525" y1="64.17" x2="19.05" y2="73.66" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 <wire x1="21.68525" y1="52.67" x2="21.68525" y2="64.17" width="0" layer="19" extent="1-1"/>
 <wire x1="21.68525" y1="43.85" x2="21.68525" y2="52.67" width="0" layer="19" extent="1-1"/>
 <wire x1="21.68525" y1="32.35" x2="21.68525" y2="43.85" width="0" layer="19" extent="1-1"/>
@@ -1818,32 +1980,56 @@ square</description>
 <signal name="P1_HDR1">
 <contactref element="P1" pad="1"/>
 <contactref element="U4" pad="30"/>
+<<<<<<< HEAD
 <wire x1="43.27525" y1="55.17" x2="44.45" y2="72.39" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="43.27525" y1="55.17" x2="44.45" y2="73.66" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P1_HDR3">
 <contactref element="P1" pad="3"/>
 <contactref element="U4" pad="29"/>
+<<<<<<< HEAD
 <wire x1="43.27525" y1="54.67" x2="41.91" y2="72.39" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="43.27525" y1="54.67" x2="41.91" y2="73.66" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P1_HDR5">
 <contactref element="P1" pad="5"/>
 <contactref element="U1" pad="27"/>
+<<<<<<< HEAD
 <wire x1="21.68525" y1="33.35" x2="39.37" y2="72.39" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="21.68525" y1="33.35" x2="39.37" y2="73.66" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P1_HDR7">
 <contactref element="P1" pad="7"/>
 <contactref element="U4" pad="44"/>
+<<<<<<< HEAD
 <wire x1="43.27525" y1="62.17" x2="36.83" y2="72.39" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="43.27525" y1="62.17" x2="36.83" y2="73.66" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P1_HDR9">
 <contactref element="P1" pad="9"/>
 <contactref element="U4" pad="38"/>
+<<<<<<< HEAD
 <wire x1="43.27525" y1="59.17" x2="34.29" y2="72.39" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="43.27525" y1="59.17" x2="34.29" y2="73.66" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P1_HDR11">
 <contactref element="P1" pad="11"/>
 <contactref element="U5" pad="41"/>
+<<<<<<< HEAD
 <wire x1="43.27525" y1="40.35" x2="31.75" y2="72.39" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="43.27525" y1="40.35" x2="31.75" y2="73.66" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P1_HDR13">
 <contactref element="P1" pad="13"/>
@@ -1860,17 +2046,29 @@ square</description>
 <signal name="P1_HDR23">
 <contactref element="P1" pad="23"/>
 <contactref element="U3" pad="37"/>
+<<<<<<< HEAD
 <wire x1="21.68525" y1="58.67" x2="16.51" y2="72.39" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="21.68525" y1="58.67" x2="16.51" y2="73.66" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P1_HDR2">
 <contactref element="P1" pad="2"/>
 <contactref element="U4" pad="32"/>
+<<<<<<< HEAD
 <wire x1="43.27525" y1="56.17" x2="44.45" y2="69.85" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="43.27525" y1="56.17" x2="44.45" y2="71.12" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P1_HDR4">
 <contactref element="P1" pad="4"/>
 <contactref element="U4" pad="35"/>
+<<<<<<< HEAD
 <wire x1="43.27525" y1="57.67" x2="41.91" y2="69.85" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="43.27525" y1="57.67" x2="41.91" y2="71.12" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P1_HDR6">
 <contactref element="P1" pad="6"/>
@@ -1878,17 +2076,28 @@ square</description>
 <signal name="P1_HDR8">
 <contactref element="P1" pad="8"/>
 <contactref element="U5" pad="32"/>
+<<<<<<< HEAD
 <wire x1="43.27525" y1="35.85" x2="36.83" y2="69.85" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="43.27525" y1="35.85" x2="36.83" y2="71.12" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P1_HDR10">
 <contactref element="P1" pad="10"/>
 <contactref element="U5" pad="43"/>
+<<<<<<< HEAD
 <wire x1="43.27525" y1="41.35" x2="34.29" y2="69.85" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="P1_HDR12">
 <contactref element="P1" pad="12"/>
 <contactref element="U4" pad="48"/>
 <wire x1="31.75" y1="69.85" x2="43.27525" y2="64.17" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="43.27525" y1="41.35" x2="34.29" y2="71.12" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="P1_HDR12">
+<contactref element="P1" pad="12"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P1_HDR14">
 <contactref element="P1" pad="14"/>
@@ -1896,12 +2105,20 @@ square</description>
 <signal name="P1_HDR16">
 <contactref element="P1" pad="16"/>
 <contactref element="U4" pad="33"/>
+<<<<<<< HEAD
 <wire x1="26.67" y1="69.85" x2="43.27525" y2="56.67" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="26.67" y1="71.12" x2="43.27525" y2="56.67" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P1_HDR18">
 <contactref element="P1" pad="18"/>
 <contactref element="U4" pad="27"/>
+<<<<<<< HEAD
 <wire x1="24.13" y1="69.85" x2="43.27525" y2="53.67" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="24.13" y1="71.12" x2="43.27525" y2="53.67" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P1_HDR20">
 <contactref element="P1" pad="20"/>
@@ -1909,12 +2126,20 @@ square</description>
 <signal name="P1_HDR22">
 <contactref element="P1" pad="22"/>
 <contactref element="U3" pad="46"/>
+<<<<<<< HEAD
 <wire x1="21.68525" y1="63.17" x2="19.05" y2="69.85" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="21.68525" y1="63.17" x2="19.05" y2="71.12" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P1_HDR24">
 <contactref element="P1" pad="24"/>
 <contactref element="U3" pad="40"/>
+<<<<<<< HEAD
 <wire x1="21.68525" y1="60.17" x2="16.51" y2="69.85" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="21.68525" y1="60.17" x2="16.51" y2="71.12" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P2_HDR3">
 <contactref element="P2" pad="3"/>
@@ -1922,12 +2147,20 @@ square</description>
 <signal name="P2_HDR5">
 <contactref element="P2" pad="5"/>
 <contactref element="U3" pad="43"/>
+<<<<<<< HEAD
 <wire x1="1.27" y1="57.15" x2="21.68525" y2="61.67" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="3.81" y1="59.69" x2="21.68525" y2="61.67" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P2_HDR7">
 <contactref element="P2" pad="7"/>
 <contactref element="U4" pad="47"/>
+<<<<<<< HEAD
 <wire x1="1.27" y1="54.61" x2="43.27525" y2="63.67" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="3.81" y1="57.15" x2="43.27525" y2="63.67" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P2_HDR9">
 <contactref element="P2" pad="9"/>
@@ -1935,37 +2168,65 @@ square</description>
 <signal name="P2_HDR11">
 <contactref element="P2" pad="11"/>
 <contactref element="U3" pad="32"/>
+<<<<<<< HEAD
 <wire x1="1.27" y1="49.53" x2="21.68525" y2="56.17" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="3.81" y1="52.07" x2="21.68525" y2="56.17" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P2_HDR13">
 <contactref element="P2" pad="13"/>
 <contactref element="U5" pad="35"/>
+<<<<<<< HEAD
 <wire x1="1.27" y1="46.99" x2="43.27525" y2="37.35" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="3.81" y1="49.53" x2="43.27525" y2="37.35" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P2_HDR17">
 <contactref element="P2" pad="17"/>
 <contactref element="U3" pad="38"/>
+<<<<<<< HEAD
 <wire x1="1.27" y1="41.91" x2="21.68525" y2="59.17" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="3.81" y1="44.45" x2="21.68525" y2="59.17" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P1_HDR15">
 <contactref element="P1" pad="15"/>
 <contactref element="U4" pad="36"/>
+<<<<<<< HEAD
 <wire x1="43.27525" y1="58.17" x2="26.67" y2="72.39" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="43.27525" y1="58.17" x2="26.67" y2="73.66" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P2_HDR19">
 <contactref element="P2" pad="19"/>
 <contactref element="U3" pad="33"/>
+<<<<<<< HEAD
 <wire x1="1.27" y1="39.37" x2="21.68525" y2="56.67" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="3.81" y1="41.91" x2="21.68525" y2="56.67" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P2_HDR21">
 <contactref element="P2" pad="21"/>
 <contactref element="U4" pad="46"/>
+<<<<<<< HEAD
 <wire x1="1.27" y1="36.83" x2="43.27525" y2="63.17" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="3.81" y1="39.37" x2="43.27525" y2="63.17" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P2_HDR23">
 <contactref element="P2" pad="23"/>
 <contactref element="U3" pad="27"/>
+<<<<<<< HEAD
 <wire x1="1.27" y1="34.29" x2="21.68525" y2="53.67" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="3.81" y1="36.83" x2="21.68525" y2="53.67" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P2_HDR25">
 <contactref element="P2" pad="25"/>
@@ -1973,7 +2234,11 @@ square</description>
 <signal name="P2_HDR4">
 <contactref element="P2" pad="4"/>
 <contactref element="U3" pad="44"/>
+<<<<<<< HEAD
 <wire x1="3.81" y1="59.69" x2="21.68525" y2="62.17" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="6.35" y1="62.23" x2="21.68525" y2="62.17" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P2_HDR6">
 <contactref element="P2" pad="6"/>
@@ -1984,42 +2249,74 @@ square</description>
 <signal name="P2_HDR10">
 <contactref element="P2" pad="10"/>
 <contactref element="U3" pad="35"/>
+<<<<<<< HEAD
 <wire x1="3.81" y1="52.07" x2="21.68525" y2="57.67" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="6.35" y1="54.61" x2="21.68525" y2="57.67" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P2_HDR12">
 <contactref element="P2" pad="12"/>
 <contactref element="U5" pad="37"/>
+<<<<<<< HEAD
 <wire x1="3.81" y1="49.53" x2="43.27525" y2="38.35" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="6.35" y1="52.07" x2="43.27525" y2="38.35" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P2_HDR14">
 <contactref element="P2" pad="14"/>
 <contactref element="U5" pad="26"/>
+<<<<<<< HEAD
 <wire x1="3.81" y1="46.99" x2="43.27525" y2="32.85" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="6.35" y1="49.53" x2="43.27525" y2="32.85" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P2_HDR16">
 <contactref element="P2" pad="16"/>
 <contactref element="U3" pad="41"/>
+<<<<<<< HEAD
 <wire x1="3.81" y1="44.45" x2="21.68525" y2="60.67" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="6.35" y1="46.99" x2="21.68525" y2="60.67" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P2_HDR18">
 <contactref element="P2" pad="18"/>
 <contactref element="U3" pad="36"/>
+<<<<<<< HEAD
 <wire x1="3.81" y1="41.91" x2="21.68525" y2="58.17" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="6.35" y1="44.45" x2="21.68525" y2="58.17" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P2_HDR20">
 <contactref element="P2" pad="20"/>
 <contactref element="U3" pad="30"/>
+<<<<<<< HEAD
 <wire x1="3.81" y1="39.37" x2="21.68525" y2="55.17" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="6.35" y1="41.91" x2="21.68525" y2="55.17" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P2_HDR22">
 <contactref element="P2" pad="22"/>
 <contactref element="U3" pad="29"/>
+<<<<<<< HEAD
 <wire x1="3.81" y1="36.83" x2="21.68525" y2="54.67" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="6.35" y1="39.37" x2="21.68525" y2="54.67" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P2_HDR24">
 <contactref element="P2" pad="24"/>
 <contactref element="U3" pad="26"/>
+<<<<<<< HEAD
 <wire x1="3.81" y1="34.29" x2="21.68525" y2="53.17" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="6.35" y1="36.83" x2="21.68525" y2="53.17" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P2_HDR26">
 <contactref element="P2" pad="26"/>
@@ -2027,7 +2324,11 @@ square</description>
 <signal name="P3_HDR3">
 <contactref element="P3" pad="3"/>
 <contactref element="U4" pad="26"/>
+<<<<<<< HEAD
 <wire x1="13.97" y1="19.05" x2="43.27525" y2="53.17" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="13.97" y1="22.86" x2="43.27525" y2="53.17" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P3_HDR5">
 <contactref element="P3" pad="5"/>
@@ -2035,27 +2336,47 @@ square</description>
 <signal name="P3_HDR7">
 <contactref element="P3" pad="7"/>
 <contactref element="U1" pad="44"/>
+<<<<<<< HEAD
 <wire x1="19.05" y1="19.05" x2="21.68525" y2="41.85" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="19.05" y1="22.86" x2="21.68525" y2="41.85" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P3_HDR9">
 <contactref element="P3" pad="9"/>
 <contactref element="U1" pad="26"/>
+<<<<<<< HEAD
 <wire x1="21.59" y1="19.05" x2="21.68525" y2="32.85" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="21.59" y1="22.86" x2="21.68525" y2="32.85" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P3_HDR11">
 <contactref element="P3" pad="11"/>
 <contactref element="U1" pad="36"/>
+<<<<<<< HEAD
 <wire x1="24.13" y1="19.05" x2="21.68525" y2="37.85" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="24.13" y1="22.86" x2="21.68525" y2="37.85" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P3_HDR13">
 <contactref element="P3" pad="13"/>
 <contactref element="U1" pad="30"/>
+<<<<<<< HEAD
 <wire x1="26.67" y1="19.05" x2="21.68525" y2="34.85" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="26.67" y1="22.86" x2="21.68525" y2="34.85" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P3_HDR15">
 <contactref element="P3" pad="15"/>
 <contactref element="U3" pad="47"/>
+<<<<<<< HEAD
 <wire x1="29.21" y1="19.05" x2="21.68525" y2="63.67" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="29.21" y1="22.86" x2="21.68525" y2="63.67" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P3_HDR17">
 <contactref element="P3" pad="17"/>
@@ -2063,17 +2384,29 @@ square</description>
 <signal name="P3_HDR19">
 <contactref element="P3" pad="19"/>
 <contactref element="U1" pad="43"/>
+<<<<<<< HEAD
 <wire x1="34.29" y1="19.05" x2="21.68525" y2="41.35" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="34.29" y1="22.86" x2="21.68525" y2="41.35" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P3_HDR21">
 <contactref element="P3" pad="21"/>
 <contactref element="U1" pad="37"/>
+<<<<<<< HEAD
 <wire x1="21.68525" y1="38.35" x2="36.83" y2="19.05" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="21.68525" y1="38.35" x2="36.83" y2="22.86" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P3_HDR23">
 <contactref element="P3" pad="23"/>
 <contactref element="U1" pad="32"/>
+<<<<<<< HEAD
 <wire x1="21.68525" y1="35.85" x2="39.37" y2="19.05" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="21.68525" y1="35.85" x2="39.37" y2="22.86" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P3_HDR25">
 <contactref element="P3" pad="25"/>
@@ -2084,22 +2417,38 @@ square</description>
 <signal name="P3_HDR6">
 <contactref element="P3" pad="6"/>
 <contactref element="U1" pad="47"/>
+<<<<<<< HEAD
 <wire x1="16.51" y1="21.59" x2="21.68525" y2="43.35" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="16.51" y1="25.4" x2="21.68525" y2="43.35" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P3_HDR8">
 <contactref element="P3" pad="8"/>
 <contactref element="U1" pad="41"/>
+<<<<<<< HEAD
 <wire x1="19.05" y1="21.59" x2="21.68525" y2="40.35" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="19.05" y1="25.4" x2="21.68525" y2="40.35" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P3_HDR10">
 <contactref element="P3" pad="10"/>
 <contactref element="U1" pad="38"/>
+<<<<<<< HEAD
 <wire x1="21.59" y1="21.59" x2="21.68525" y2="38.85" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="21.59" y1="25.4" x2="21.68525" y2="38.85" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P3_HDR12">
 <contactref element="P3" pad="12"/>
 <contactref element="U1" pad="33"/>
+<<<<<<< HEAD
 <wire x1="24.13" y1="21.59" x2="21.68525" y2="36.35" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="24.13" y1="25.4" x2="21.68525" y2="36.35" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P3_HDR14">
 <contactref element="P3" pad="14"/>
@@ -2110,22 +2459,38 @@ square</description>
 <signal name="P3_HDR18">
 <contactref element="P3" pad="18"/>
 <contactref element="U1" pad="46"/>
+<<<<<<< HEAD
 <wire x1="31.75" y1="21.59" x2="21.68525" y2="42.85" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="31.75" y1="25.4" x2="21.68525" y2="42.85" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P3_HDR20">
 <contactref element="P3" pad="20"/>
 <contactref element="U1" pad="40"/>
+<<<<<<< HEAD
 <wire x1="21.68525" y1="39.85" x2="34.29" y2="21.59" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="21.68525" y1="39.85" x2="34.29" y2="25.4" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P3_HDR22">
 <contactref element="P3" pad="22"/>
 <contactref element="U1" pad="35"/>
+<<<<<<< HEAD
 <wire x1="21.68525" y1="37.35" x2="36.83" y2="21.59" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="21.68525" y1="37.35" x2="36.83" y2="25.4" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P3_HDR24">
 <contactref element="P3" pad="24"/>
 <contactref element="U1" pad="29"/>
+<<<<<<< HEAD
 <wire x1="21.68525" y1="34.35" x2="39.37" y2="21.59" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="21.68525" y1="34.35" x2="39.37" y2="25.4" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P4_HDR3">
 <contactref element="P4" pad="3"/>
@@ -2139,17 +2504,29 @@ square</description>
 <signal name="P4_HDR11">
 <contactref element="P4" pad="11"/>
 <contactref element="U5" pad="36"/>
+<<<<<<< HEAD
 <wire x1="43.27525" y1="37.85" x2="52.07" y2="49.53" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="43.27525" y1="37.85" x2="50.8" y2="50.8" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P4_HDR13">
 <contactref element="P4" pad="13"/>
 <contactref element="U5" pad="46"/>
+<<<<<<< HEAD
 <wire x1="43.27525" y1="42.85" x2="52.07" y2="46.99" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="43.27525" y1="42.85" x2="50.8" y2="48.26" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P4_HDR15">
 <contactref element="P4" pad="15"/>
 <contactref element="U4" pad="37"/>
+<<<<<<< HEAD
 <wire x1="52.07" y1="44.45" x2="43.27525" y2="58.67" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="50.8" y1="45.72" x2="43.27525" y2="58.67" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P4_HDR17">
 <contactref element="P4" pad="17"/>
@@ -2157,22 +2534,38 @@ square</description>
 <signal name="P4_HDR21">
 <contactref element="P4" pad="21"/>
 <contactref element="U5" pad="44"/>
+<<<<<<< HEAD
 <wire x1="43.27525" y1="41.85" x2="52.07" y2="36.83" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="43.27525" y1="41.85" x2="50.8" y2="38.1" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P4_HDR23">
 <contactref element="P4" pad="23"/>
 <contactref element="U5" pad="38"/>
+<<<<<<< HEAD
 <wire x1="43.27525" y1="38.85" x2="52.07" y2="34.29" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="43.27525" y1="38.85" x2="50.8" y2="35.56" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P4_HDR4">
 <contactref element="P4" pad="4"/>
 <contactref element="U4" pad="43"/>
+<<<<<<< HEAD
 <wire x1="43.27525" y1="61.67" x2="54.61" y2="59.69" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="43.27525" y1="61.67" x2="53.34" y2="60.96" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P4_HDR6">
 <contactref element="P4" pad="6"/>
 <contactref element="U4" pad="41"/>
+<<<<<<< HEAD
 <wire x1="43.27525" y1="60.67" x2="54.61" y2="57.15" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="43.27525" y1="60.67" x2="53.34" y2="58.42" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P4_HDR12">
 <contactref element="P4" pad="12"/>
@@ -2180,12 +2573,20 @@ square</description>
 <signal name="P4_HDR14">
 <contactref element="P4" pad="14"/>
 <contactref element="U5" pad="47"/>
+<<<<<<< HEAD
 <wire x1="43.27525" y1="43.35" x2="54.61" y2="46.99" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="43.27525" y1="43.35" x2="53.34" y2="48.26" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P4_HDR16">
 <contactref element="P4" pad="16"/>
 <contactref element="U4" pad="40"/>
+<<<<<<< HEAD
 <wire x1="54.61" y1="44.45" x2="43.27525" y2="60.17" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="53.34" y1="45.72" x2="43.27525" y2="60.17" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P4_HDR18">
 <contactref element="P4" pad="18"/>
@@ -2193,12 +2594,20 @@ square</description>
 <signal name="P4_HDR22">
 <contactref element="P4" pad="22"/>
 <contactref element="U5" pad="33"/>
+<<<<<<< HEAD
 <wire x1="43.27525" y1="36.35" x2="54.61" y2="36.83" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="43.27525" y1="36.35" x2="53.34" y2="38.1" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 <signal name="P4_HDR24">
 <contactref element="P4" pad="24"/>
 <contactref element="U5" pad="40"/>
+<<<<<<< HEAD
 <wire x1="43.27525" y1="39.85" x2="54.61" y2="34.29" width="0" layer="19" extent="1-1"/>
+=======
+<wire x1="43.27525" y1="39.85" x2="53.34" y2="35.56" width="0" layer="19" extent="1-1"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </signal>
 </signals>
 <mfgpreviewcolors>

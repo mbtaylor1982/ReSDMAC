@@ -4578,6 +4578,7 @@ DMAC</text>
 <plain>
 </plain>
 <instances>
+<<<<<<< HEAD
 <instance part="P1" gate="A" x="-12.7" y="83.82" smashed="yes">
 <attribute name="NAME" x="-19.05" y="104.775" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-19.05" y="60.96" size="1.778" layer="96"/>
@@ -4593,6 +4594,23 @@ DMAC</text>
 <instance part="P4" gate="A" x="-12.7" y="-48.26" smashed="yes">
 <attribute name="NAME" x="-19.05" y="-29.845" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-19.05" y="-71.12" size="1.778" layer="96"/>
+=======
+<instance part="P1" gate="A" x="-96.52" y="40.64" smashed="yes">
+<attribute name="NAME" x="-102.87" y="59.055" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-102.87" y="17.78" size="1.778" layer="96"/>
+</instance>
+<instance part="P2" gate="A" x="-96.52" y="-15.24" smashed="yes">
+<attribute name="NAME" x="-102.87" y="3.175" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-102.87" y="-38.1" size="1.778" layer="96"/>
+</instance>
+<instance part="P3" gate="A" x="-43.18" y="38.1" smashed="yes">
+<attribute name="NAME" x="-49.53" y="56.515" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-49.53" y="15.24" size="1.778" layer="96"/>
+</instance>
+<instance part="P4" gate="A" x="-45.72" y="-12.7" smashed="yes">
+<attribute name="NAME" x="-52.07" y="5.715" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-52.07" y="-35.56" size="1.778" layer="96"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </instance>
 <instance part="U1" gate="A" x="35.56" y="96.52" smashed="yes">
 <attribute name="NAME" x="51.1556" y="105.6386" size="2.0828" layer="95" ratio="6" rot="SR0"/>
@@ -4628,6 +4646,7 @@ DMAC</text>
 </instance>
 </instances>
 <busses>
+<<<<<<< HEAD
 <bus name="MASTERBUS:A12,!AS,!BERR,!BG,!BGACK,!BR,CLK,CPU_ADDR[2..6],CPU_DATAD[0..31],!CS,!CSS,!CSX0,!CSX1,!DACK,!DATAOE,!DMAEN,DMA_LED,!DREQ,!DS,!DSACK0,!DSACK1,GND,INC_ADD,!INT2,INTA,INTB,!IOR,!IORDY,!IOW,!OWN,P1_HDR[1..28],P2_HDR[1..28],P3_HDR[1..28],P4_HDR[1..28],P_DATA[0..15],RD_LED,!RST,R!W,SIZ1,!STERM,TCK,TDI,TDO,TMS,VCC3.3,VCC5,WR_LED">
 <segment>
 <wire x1="15.24" y1="-175.26" x2="15.24" y2="109.22" width="0.762" layer="92"/>
@@ -4636,6 +4655,14 @@ DMAC</text>
 <label x="91.44" y="111.76" size="1.778" layer="95" rot="R180"/>
 <wire x1="15.24" y1="109.22" x2="-40.64" y2="109.22" width="0.762" layer="92"/>
 <wire x1="-40.64" y1="109.22" x2="-40.64" y2="-71.12" width="0.762" layer="92"/>
+=======
+<bus name="MASTERBUS:A12,!AS,!BERR,!BG,!BGACK,!BR,CLK,CPU_ADDR[2..6],CPU_DATAD[0..31],!CS,!CSS,!CSX0,!CSX1,!DACK,!DATAOE,!DMAEN,DMA_LED,!DREQ,!DS,!DSACK0,!DSACK1,GND,INC_ADD,!INT2,INTA,INTB,!IOR,!IORDY,!IOW,!OWN,P_DATA[0..15],RD_LED,!RST,R!W,SIZ1,!STERM,TCK,TDI,TDO,TMS,VCC3.3,VCC5,WR_LED">
+<segment>
+<wire x1="15.24" y1="-175.26" x2="15.24" y2="109.22" width="0.762" layer="92"/>
+<wire x1="15.24" y1="109.22" x2="109.22" y2="109.22" width="0.762" layer="92"/>
+<wire x1="109.22" y1="109.22" x2="109.22" y2="-147.32" width="0.762" layer="92"/>
+<label x="91.44" y="111.76" size="1.778" layer="95" rot="R180"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </segment>
 </bus>
 </busses>
@@ -4686,11 +4713,14 @@ DMAC</text>
 <junction x="27.94" y="25.4"/>
 <label x="17.78" y="25.4" size="1.778" layer="95"/>
 </segment>
+<<<<<<< HEAD
 <segment>
 <pinref part="P1" gate="A" pin="21"/>
 <wire x1="-15.24" y1="73.66" x2="-40.64" y2="73.66" width="0.1524" layer="91"/>
 <label x="-38.1" y="73.66" size="1.778" layer="95"/>
 </segment>
+=======
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </net>
 <net name="CPU_DATAD0" class="0">
 <segment>
@@ -4962,6 +4992,7 @@ DMAC</text>
 <wire x1="38.1" y1="-55.88" x2="15.24" y2="-55.88" width="0.1524" layer="91"/>
 <label x="17.78" y="-55.88" size="1.778" layer="95"/>
 </segment>
+<<<<<<< HEAD
 <segment>
 <pinref part="P1" gate="A" pin="27"/>
 <wire x1="-15.24" y1="66.04" x2="-40.64" y2="66.04" width="0.1524" layer="91"/>
@@ -4992,6 +5023,8 @@ DMAC</text>
 <wire x1="-7.62" y1="-66.04" x2="15.24" y2="-66.04" width="0.1524" layer="91"/>
 <label x="-2.54" y="-66.04" size="1.778" layer="95"/>
 </segment>
+=======
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </net>
 <net name="VCC5" class="0">
 <segment>
@@ -5167,6 +5200,7 @@ DMAC</text>
 <pinref part="U5" gate="A" pin="2B5"/>
 <wire x1="38.1" y1="-167.64" x2="15.24" y2="-167.64" width="0.1524" layer="91"/>
 <label x="17.78" y="-167.64" size="1.778" layer="95"/>
+<<<<<<< HEAD
 <pinref part="U5" gate="A" pin="2B7"/>
 <wire x1="38.1" y1="-172.72" x2="38.1" y2="-170.18" width="0.1524" layer="91"/>
 <junction x="38.1" y="-167.64"/>
@@ -5264,10 +5298,30 @@ DMAC</text>
 <pinref part="P4" gate="A" pin="26"/>
 <wire x1="-7.62" y1="-63.5" x2="15.24" y2="-63.5" width="0.1524" layer="91"/>
 <label x="-2.54" y="-63.5" size="1.778" layer="95"/>
+=======
+</segment>
+<segment>
+<pinref part="U5" gate="A" pin="2B7"/>
+<wire x1="38.1" y1="-172.72" x2="15.24" y2="-172.72" width="0.1524" layer="91"/>
+<label x="17.78" y="-172.72" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U5" gate="A" pin="2B6"/>
+<wire x1="38.1" y1="-170.18" x2="15.24" y2="-170.18" width="0.1524" layer="91"/>
+<label x="17.78" y="-170.18" size="1.778" layer="95"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </segment>
 </net>
 <net name="!CSS" class="0">
 <segment>
+<<<<<<< HEAD
+=======
+<pinref part="U4" gate="A" pin="!1OE"/>
+<wire x1="38.1" y1="-48.26" x2="15.24" y2="-48.26" width="0.1524" layer="91"/>
+<label x="17.78" y="-48.26" size="1.778" layer="95"/>
+</segment>
+<segment>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 <pinref part="U4" gate="A" pin="2B2"/>
 <wire x1="38.1" y1="-86.36" x2="15.24" y2="-86.36" width="0.1524" layer="91"/>
 <label x="17.78" y="-86.36" size="1.778" layer="95"/>
@@ -5474,6 +5528,7 @@ DMAC</text>
 <label x="17.78" y="-101.6" size="1.778" layer="95"/>
 </segment>
 </net>
+<<<<<<< HEAD
 <net name="P1_HDR1" class="0">
 <segment>
 <pinref part="P1" gate="A" pin="1"/>
@@ -6388,6 +6443,8 @@ DMAC</text>
 <label x="83.82" y="-129.54" size="1.778" layer="95"/>
 </segment>
 </net>
+=======
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </nets>
 </sheet>
 <sheet>

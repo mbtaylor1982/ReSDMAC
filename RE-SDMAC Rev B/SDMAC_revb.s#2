@@ -4660,7 +4660,11 @@ DMAC</text>
 <class number="0" name="default" width="0.127" drill="0.1524">
 <clearance class="0" value="0.127"/>
 </class>
+<<<<<<< HEAD
 <class number="1" name="Power" width="0.254" drill="0.1524">
+=======
+<class number="1" name="Power" width="0.127" drill="0.1524">
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 <clearance class="1" value="0.127"/>
 </class>
 </classes>
@@ -4678,7 +4682,10 @@ DMAC</text>
 <part name="U3" library="74alvc164254" deviceset="74ALVC164245DGGRE4" device="DGG48-M"/>
 <part name="U4" library="74alvc164254" deviceset="74ALVC164245DGGRE4" device="DGG48-M" override_package3d_urn="urn:adsk.eagle:package:38720562/2" override_package_urn="urn:adsk.eagle:footprint:38720564/1"/>
 <part name="U5" library="74alvc164254" deviceset="74ALVC164245DGGRE4" device="DGG48-M"/>
+<<<<<<< HEAD
 <part name="JP1" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X2" device="" package3d_urn="urn:adsk.eagle:package:22435/2"/>
+=======
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </parts>
 <sheets>
 <sheet>
@@ -4732,10 +4739,13 @@ DMAC</text>
 <instance part="U5" gate="B" x="137.16" y="-66.04" smashed="yes">
 <attribute name="NAME" x="152.7556" y="-54.3814" size="2.0828" layer="95" ratio="6" rot="SR0"/>
 <attribute name="VALUE" x="152.1206" y="-56.9214" size="2.0828" layer="96" ratio="6" rot="SR0"/>
+<<<<<<< HEAD
 </instance>
 <instance part="JP1" gate="G$1" x="132.08" y="71.12" smashed="yes">
 <attribute name="NAME" x="125.73" y="76.835" size="1.778" layer="95"/>
 <attribute name="VALUE" x="125.73" y="66.04" size="1.778" layer="96"/>
+=======
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </instance>
 </instances>
 <busses>
@@ -5109,16 +5119,23 @@ DMAC</text>
 <pinref part="U1" gate="B" pin="VCCB_2"/>
 <wire x1="139.7" y1="93.98" x2="134.62" y2="93.98" width="0.1524" layer="91"/>
 <pinref part="U1" gate="B" pin="VCCB"/>
+<<<<<<< HEAD
 <wire x1="134.62" y1="93.98" x2="121.92" y2="93.98" width="0.1524" layer="91"/>
 <wire x1="121.92" y1="93.98" x2="109.22" y2="93.98" width="0.1524" layer="91"/>
+=======
+<wire x1="134.62" y1="93.98" x2="109.22" y2="93.98" width="0.1524" layer="91"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 <wire x1="139.7" y1="91.44" x2="134.62" y2="91.44" width="0.1524" layer="91"/>
 <wire x1="134.62" y1="91.44" x2="134.62" y2="93.98" width="0.1524" layer="91"/>
 <junction x="134.62" y="93.98"/>
 <label x="114.3" y="93.98" size="1.778" layer="95"/>
+<<<<<<< HEAD
 <pinref part="JP1" gate="G$1" pin="1"/>
 <wire x1="129.54" y1="73.66" x2="121.92" y2="73.66" width="0.1524" layer="91"/>
 <wire x1="121.92" y1="73.66" x2="121.92" y2="93.98" width="0.1524" layer="91"/>
 <junction x="121.92" y="93.98"/>
+=======
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </segment>
 <segment>
 <pinref part="U3" gate="B" pin="VCCB_2"/>
@@ -5151,12 +5168,20 @@ DMAC</text>
 <label x="116.84" y="-73.66" size="1.778" layer="95"/>
 </segment>
 </net>
+<<<<<<< HEAD
 <net name="GND" class="1">
 <segment>
 <pinref part="U1" gate="B" pin="GND_2"/>
 <wire x1="139.7" y1="86.36" x2="111.76" y2="86.36" width="0.1524" layer="91"/>
 <pinref part="U1" gate="B" pin="GND"/>
 <wire x1="111.76" y1="86.36" x2="109.22" y2="86.36" width="0.1524" layer="91"/>
+=======
+<net name="GND" class="0">
+<segment>
+<pinref part="U1" gate="B" pin="GND_2"/>
+<wire x1="139.7" y1="86.36" x2="109.22" y2="86.36" width="0.1524" layer="91"/>
+<pinref part="U1" gate="B" pin="GND"/>
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 <wire x1="139.7" y1="68.58" x2="139.7" y2="71.12" width="0.1524" layer="91"/>
 <junction x="139.7" y="86.36"/>
 <pinref part="U1" gate="B" pin="GND_3"/>
@@ -5178,10 +5203,13 @@ DMAC</text>
 <pinref part="U1" gate="B" pin="GND_8"/>
 <junction x="139.7" y="71.12"/>
 <label x="114.3" y="86.36" size="1.778" layer="95"/>
+<<<<<<< HEAD
 <pinref part="JP1" gate="G$1" pin="2"/>
 <wire x1="129.54" y1="71.12" x2="111.76" y2="71.12" width="0.1524" layer="91"/>
 <wire x1="111.76" y1="71.12" x2="111.76" y2="86.36" width="0.1524" layer="91"/>
 <junction x="111.76" y="86.36"/>
+=======
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </segment>
 <segment>
 <pinref part="U3" gate="B" pin="GND_2"/>
@@ -5768,11 +5796,14 @@ DMAC</text>
 <wire x1="-7.62" y1="86.36" x2="15.24" y2="86.36" width="0.1524" layer="91"/>
 <label x="-2.54" y="86.36" size="1.778" layer="95"/>
 </segment>
+<<<<<<< HEAD
 <segment>
 <pinref part="U4" gate="A" pin="!1OE"/>
 <wire x1="38.1" y1="-48.26" x2="15.24" y2="-48.26" width="0.1524" layer="91"/>
 <label x="17.78" y="-48.26" size="1.778" layer="95"/>
 </segment>
+=======
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 </net>
 <net name="P1_HDR14" class="0">
 <segment>

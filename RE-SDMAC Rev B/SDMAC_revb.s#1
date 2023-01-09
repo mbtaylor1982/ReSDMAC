@@ -4660,7 +4660,11 @@ DMAC</text>
 <class number="0" name="default" width="0.127" drill="0.1524">
 <clearance class="0" value="0.127"/>
 </class>
+<<<<<<< HEAD
 <class number="1" name="Power" width="0.381" drill="0.1524">
+=======
+<class number="1" name="Power" width="0.127" drill="0.1524">
+>>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
 <clearance class="1" value="0.127"/>
 </class>
 </classes>
