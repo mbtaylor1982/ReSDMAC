@@ -33,7 +33,8 @@ module RESDMAC(
     inout _AS,          //Address Strobe
     inout _DS,          //Data Strobe 
 
-    inout [1:0] _DSACK, //Dynamic size and DATA ack.
+    output [1:0] _DSACK_O, //Dynamic size and DATA ack.
+    input [1:0] _DSACK_I, //Dynamic size and DATA ack.
     
     inout [31:0] DATA,   // CPU side data bus 32bit wide
 
@@ -51,8 +52,8 @@ module RESDMAC(
 
     output  _BR,        //Bus Request
     input   _BG,        //Bus Grant
-    inout  _BGACK,     //Bus Grant Acknoledge
-  
+    output  _BGACK_O,     //Bus Grant Acknoledge
+    input  _BGACK_I,
 
     output _DMAEN,      //Low =  Enable Address Generator in Ramsey
     
@@ -79,7 +80,8 @@ module RESDMAC(
     output _LED_WR,     //Indicate write to SDMAC or peripherial port.
     output _LED_DMA,    //Indicate DMA cycle/busmaster.
     output OWN_,        //Active low signal to show SDMAC is bus master, This can be used to set direction on level shifters for control signals.
-    output DATA_OE_     //Active low ouput enable for DBUS level shifters.
+    output DATA_OE_,    //Active low ouput enable for DBUS level shifters.
+    output PDATA_OE_    //Active low ouput enable for Peripheral BUS level shifters.
 );
 
 reg AS_O_;
@@ -129,7 +131,7 @@ wire REG_DSK_;
 wire WDREGREQ;
 wire PAS;
 wire PDS;
-wire BGACK;
+wire CPUSM_BGACK;
 wire BREQ;
 wire SIZE1_CPUSM;
 wire F2CPUL;
@@ -190,7 +192,7 @@ registers u_registers(
 CPU_SM u_CPU_SM(
     .PAS           (PAS         ),
     .PDS           (PDS         ),
-    .BGACK         (BGACK       ),
+    .BGACK         (CPUSM_BGACK ),
     .BREQ          (BREQ        ),
     .aBGRANT_      (_BG         ),
     .SIZE1         (SIZE1_CPUSM ),
@@ -330,22 +332,22 @@ always @(posedge nSCLK or negedge nAS_) begin
     if (nAS_ == 1'b0)
         DSACK_LATCHED_ <= 2'b11;
     else 
-        DSACK_LATCHED_ <= _DSACK;
+        DSACK_LATCHED_ <= {DSK1_IN_, DSK0_IN_};
 end
 
 assign nSCLK  = ~SCLK;
 assign nAS_ = ~_AS;
-assign OWN_ = ~BGACK;
+assign OWN_ = ~CPUSM_BGACK;
 
 //System Outputs
 assign R_W = OWN_ ? 1'bz : ~DMADIR;
 assign _AS = OWN_ ? 1'bz : AS_O_;
 assign _DS = OWN_ ? 1'bz : DS_O_;
 assign _DMAEN = OWN_;
-assign _BGACK = OWN_ ? 1'bz : 1'b0;
+assign _BGACK_O = OWN_ ? 1'bz : 1'b0;
 assign _BR = BREQ ?  1'b0 : 1'bz;
 assign SIZ1 = OWN_ ? 1'bz : SIZE1_CPUSM;
-assign _DSACK = (REG_DSK_ & LS2CPU) ? 2'bzz : 2'b00;
+assign _DSACK_O = (REG_DSK_ & LS2CPU) ? 2'b11 : 2'b00;
 
 //SCSI outputs
 assign _IOR = ~(PRESET | RE);
@@ -363,16 +365,20 @@ assign DREQ_ = (~DMAENA | _DREQ);
 assign LEFTOVERS = (~BOEQ0 & FLUSHFIFO & FIFOEMPTY);
 assign INCNO = (INCNO_CPU | INCNO_SCSI);
 assign INCNI = (INCNI_CPU | INCNI_SCSI);
-assign aCYCLEDONE_ = ~(_BGACK & _AS & DSK0_IN_ & DSK1_IN_ & _STERM);
+assign aCYCLEDONE_ = ~(_BGACK_I & _AS & DSK0_IN_ & DSK1_IN_ & _STERM);
+
 assign DSACK_CPU_SM = ~(DSACK_LATCHED_[0] & DSACK_LATCHED_[1]);
-assign DSK0_IN_ = _BERR & _DSACK[0];
-assign DSK1_IN_ = _BERR & _DSACK[1];
+assign DSK0_IN_ = _BERR & _DSACK_I[0];
+assign DSK1_IN_ = _BERR & _DSACK_I[1];
 
 //assign PD_PORT[15:8]  = 8'bzzzzzzzz;
 //assign _CSX0 = 1'bz;
 //assign _CSX1 = 1'bz;
 assign A3 = ADDR[3];
 assign DATA_OE_ = (_AS | _CS | H_0C);
+assign PDATA_OE_ = (~_DACK & _CSS);
+
+
 
 endmodule
 

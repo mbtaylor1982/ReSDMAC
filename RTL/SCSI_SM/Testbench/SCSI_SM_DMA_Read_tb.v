@@ -33,11 +33,11 @@ reg DMADIR;
 reg INCFIFO;
 reg DECFIFO;
 reg RESET_;
-reg BOEQ3;
+wire BOEQ3;
 reg CPUCLK;
 reg DREQ_;
-reg FIFOFULL;
-reg FIFOEMPTY;
+wire FIFOFULL;
+wire FIFOEMPTY;
 
 //Outputs
 wire LS2CPU;
@@ -87,42 +87,62 @@ SCSI_SM u_SCSI_SM(
     .LS2CPU    (LS2CPU    ),
     .LBYTE_    (LBYTE_    )
 );
+reg [1:0] ByteCount;
+reg [3:0] LongWordCount;
 
 assign DACK_ = ~DACK_o;
 assign RE_ = ~RE_o;
 
+assign BOEQ3 = (ByteCount == 2'b11);
+assign FIFOEMPTY = (LongWordCount == 4'b0000);
+assign FIFOFULL = (LongWordCount == 4'b1000);
 
+
+always @(posedge INCBO_o or negedge RESET_) begin
+     if (RESET_ == 1'b0)
+        ByteCount <= 2'b00;
+    else
+        ByteCount <= ByteCount + 2'b01;
+end
+
+always @(posedge INCFIFO or negedge RESET_) begin
+     if (RESET_ == 1'b0)
+        LongWordCount <= 4'b0000;
+    else
+        LongWordCount <= LongWordCount + 4'b0001;
+end
+
+always @(posedge CPUCLK or negedge RESET_) begin
+     if (RESET_ == 1'b0)
+        INCFIFO <= 1'b0;
+    else
+        INCFIFO <= INCNI_o;
+end
 
     initial begin
         $display("*Testing SDMAC SCSI_SM.v Module*");
-        $dumpfile("../SCSI_SM/VCD/SCSI_SM_DMA_tb.vcd");
+        $dumpfile("../SCSI_SM/VCD/SCSI_SM_DMA_READ_tb.vcd");
         $dumpvars(0, scsi_sm_tb);
         
-        $display("Testing SCSI State Machine DMA Cycle");
+        $display("Testing SCSI State Machine DMA Read Cycle");
         CPUCLK = 1'b1;
         CPUREQ = 1'b0;
         RESET_ = 1'b1;
         nAS_ = 1'b0;
         RW = 1'b0;
         DMADIR = 1'b1;
-        INCFIFO = 1'b0;
         DECFIFO = 1'b0;
-        BOEQ3 = 1'b0;
         DREQ_ = 1'b1;
-        FIFOFULL = 1'b0;
-        FIFOEMPTY = 1'b1;
         repeat(2) #20 CPUCLK = ~CPUCLK;
         RESET_ = 1'b0;
         repeat(4) #20 CPUCLK = ~CPUCLK;
         RESET_ = 1'b1;
-        repeat(2) #20 CPUCLK = ~CPUCLK;
-        //DMA Read cycle
-        repeat(2) #20 CPUCLK = ~CPUCLK;
+        repeat(4) #20 CPUCLK = ~CPUCLK;
         DREQ_ = 1'b0;
-        repeat(6) #20 CPUCLK = ~CPUCLK;
-        DREQ_ = 1'b1;
-        repeat(12) #20 CPUCLK = ~CPUCLK;   
+        repeat(364) #20 CPUCLK = ~CPUCLK;        
         $finish;
     end 
+
+    
 
 endmodule

@@ -1,0 +1,181 @@
+html, body {
+	height: 100%;
+}
+
+body {
+	font-family: "Tahoma", "DejaVu Sans", "Bitstream Vera Sans", "Arial", sans-serif;
+	font-size: 10pt;
+}
+
+iframe {
+	height: 100%;
+	width: 100%;
+}
+
+h1 {
+	font-size: 14pt;
+}
+h2 {
+	font-size: 13pt;
+}
+h3 {
+	font-size: 12pt;
+}
+h4,h5,h6 {
+	font-size: 11pt;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-weight: bold;
+}
+
+table, td, th {
+	border: 1px solid black;
+}
+
+td, th {
+	padding: 3px 1em 3px 2px;
+}
+
+thead {
+	background-color: #C0C0C0;
+}
+
+li {
+	padding: 2px;
+}
+
+li .toc_entry {
+	cursor: pointer;
+	border: 1px solid transparent;
+	margin-left: 18px;
+}
+
+.hidden_content {
+	display: none;
+}
+
+/* Slick-grid styles */
+.toggle {
+	height: 9px;
+	width: 9px;
+	display: inline-block;
+}
+.toggle.expand {
+	background: url(data:image/gif;base64,R0lGODlhCQAJAPcAAAFGeoCAgNXz/+v5/+v6/+z5/+36//L7//X8//j9/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAAAACQAJAAAIOAADCBxIUIDBgwIEChgwAECBAgQUFjAAQIABAwoBaNSIMYCAAwIqGlSIAEHFkiQTIBCgkqDLAAEBADs=) no-repeat center center;
+}
+.toggle.collapse {
+	background: url(data:image/gif;base64,R0lGODlhCQAJAPcAAAFGeoCAgNXz/+v5/+v6/+z5/+36//L7//X8//j9/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAAAACQAJAAAIMwADCBxIUIDBgwIEChgwwECBAgQUFjBAkaJCABgxGlB4AGHCAAIQiBypEEECkScJqgwQEAA7) no-repeat center center;
+}
+
+/* */
+.report_summary_table {
+	border: 0;
+}
+
+.report_summary_table td {
+	white-space: pre;
+	text-align: left;
+	margin: 0;
+	border: 0;
+	padding: 0.1em 0.5em;
+}
+
+.rdb_text {
+	white-space: pre;
+}
+
+/* Report table of contents */
+.rdb_unknown_type {
+	background: url(../img/afcq_question_mark.png) no-repeat;
+}
+.rdb_closed_folder {
+	background: url(../img/afcq_closed_folder.png) no-repeat;
+}
+.rdb_opened_folder {
+	background: url(../img/afcq_opened_folder.png) no-repeat;
+}
+.rdb_text_type {
+	background: url(../img/afcq_generic_file.png) no-repeat;
+}
+.rdb_table_type {
+	background: url(../img/afcq_table.png) no-repeat;
+}
+.rdb_summary_table_type {
+	background: url(../img/afcq_summary_table.png) no-repeat;
+}
+.rdb_timing_table_type {
+	background: url(../img/afcq_timing_table.png) no-repeat;
+}
+.rdb_chart_type {
+	background: url(../img/afcq_bar_chart.png) no-repeat;
+}
+.rdb_histogram_type {
+	background: url(../img/afcq_histogram.png) no-repeat;
+}
+.rdb_path_type {
+	background: url(../img/afcq_report_path.png) no-repeat;
+}
+.rdb_waveform_display_type {
+	background: url(../img/afcq_waveform.png) no-repeat;
+}
+.rdb_messages_type {
+	background: url(../img/afcq_msg_info.png) no-repeat;
+}
+.rdb_pin_type {
+	background: url(../img/afcq_input_small.png) no-repeat;
+}
+.rdb_timing_violated {
+	color: red;
+}
+
+.messages {
+	font-family: "Consolas", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "Courier New", "Courier", monospace;
+}
+.messages ul {
+	white-space: pre-wrap;
+}
+.messages ul ul {
+	padding-left: 1em;
+}
+.messages li {
+	padding: 2px 0 2px 18px;
+}
+
+.info_message {
+	background: url(../img/afcq_msg_info.png) no-repeat;
+	color: #008000;
+}
+.extra_info_message {
+	background: url(../img/afcq_msg_extra_info.png) no-repeat;
+	color: #008000;
+}
+.warning_message {
+	background: url(../img/afcq_msg_warning.png) no-repeat;
+	color: #0000FF;
+}
+.critical_warning_message {
+	background: url(../img/afcq_msg_critical_warning.png) no-repeat;
+	color: #0000FF;
+}
+.error_message {
+	background: url(../img/afcq_msg_error.png) no-repeat;
+	color: #FF0000;
+}
+.debug_message {
+	background: url(../img/afcq_msg_debug.png) no-repeat;
+	color: #000000;
+}
+.stdout {
+	background: url(../img/afcq_console_msg_stdout.png) no-repeat;
+	color: #000000;
+}
+.tcl_prompt {
+	background: url(../img/afcq_msg_tcl_prompt.png) no-repeat;
+	color: #000000;
+}
+.tcl_cont_prompt {
+	background: url(../img/afcq_msg_tcl_cont_prompt.png) no-repeat;
+	color: #000000;
+}
+

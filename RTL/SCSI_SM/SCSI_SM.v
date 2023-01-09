@@ -52,8 +52,6 @@ module SCSI_SM
     output wire LBYTE_
 );
 
-localparam INITIAL_STATE = 5'b00000;
-
 reg [4:0] STATE;
 
 //Clocked inputs
@@ -161,7 +159,7 @@ end
 //State Machine
 always @(posedge BCLK or negedge CRESET_) begin
     if (CRESET_ == 1'b0)
-        STATE <= INITIAL_STATE;
+        STATE <= 5'b00000;
     else
         STATE <= NEXT_STATE;
 end

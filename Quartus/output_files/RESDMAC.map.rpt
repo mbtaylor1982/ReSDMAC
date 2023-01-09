@@ -1,5 +1,5 @@
 Analysis & Synthesis report for RESDMAC
-Fri Dec 30 21:59:12 2022
+Tue Jan  3 15:47:54 2023
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -45,16 +45,16 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Dec 30 21:59:12 2022           ;
+; Analysis & Synthesis Status        ; Successful - Tue Jan  3 15:47:54 2023           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; RESDMAC                                         ;
 ; Top-level Entity Name              ; RESDMAC                                         ;
 ; Family                             ; Cyclone II                                      ;
-; Total logic elements               ; 918                                             ;
-;     Total combinational functions  ; 656                                             ;
+; Total logic elements               ; 919                                             ;
+;     Total combinational functions  ; 657                                             ;
 ;     Dedicated logic registers      ; 396                                             ;
 ; Total registers                    ; 396                                             ;
-; Total pins                         ; 72                                              ;
+; Total pins                         ; 73                                              ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
 ; Embedded Multiplier 9-bit elements ; 0                                               ;
@@ -188,27 +188,27 @@ applicable agreement for further details.
 +---------------------------------------------+-------------------------------------------------------+
 ; Resource                                    ; Usage                                                 ;
 +---------------------------------------------+-------------------------------------------------------+
-; Estimated Total logic elements              ; 918                                                   ;
+; Estimated Total logic elements              ; 919                                                   ;
 ;                                             ;                                                       ;
-; Total combinational functions               ; 656                                                   ;
+; Total combinational functions               ; 657                                                   ;
 ; Logic element usage by number of LUT inputs ;                                                       ;
 ;     -- 4 input functions                    ; 439                                                   ;
 ;     -- 3 input functions                    ; 141                                                   ;
-;     -- <=2 input functions                  ; 76                                                    ;
+;     -- <=2 input functions                  ; 77                                                    ;
 ;                                             ;                                                       ;
 ; Logic elements by mode                      ;                                                       ;
-;     -- normal mode                          ; 656                                                   ;
+;     -- normal mode                          ; 657                                                   ;
 ;     -- arithmetic mode                      ; 0                                                     ;
 ;                                             ;                                                       ;
 ; Total registers                             ; 396                                                   ;
 ;     -- Dedicated logic registers            ; 396                                                   ;
 ;     -- I/O registers                        ; 0                                                     ;
 ;                                             ;                                                       ;
-; I/O pins                                    ; 72                                                    ;
+; I/O pins                                    ; 73                                                    ;
 ; Embedded Multiplier 9-bit elements          ; 0                                                     ;
 ; Maximum fan-out node                        ; fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[1] ;
 ; Maximum fan-out                             ; 99                                                    ;
-; Total fan-out                               ; 3517                                                  ;
+; Total fan-out                               ; 3520                                                  ;
 ; Average fan-out                             ; 3.13                                                  ;
 +---------------------------------------------+-------------------------------------------------------+
 
@@ -218,7 +218,7 @@ applicable agreement for further details.
 +-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                    ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                          ; Library Name ;
 +-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------+--------------+
-; |RESDMAC                                      ; 656 (17)          ; 396 (6)      ; 0           ; 0            ; 0       ; 0         ; 72   ; 0            ; |RESDMAC                                                                                     ; work         ;
+; |RESDMAC                                      ; 657 (18)          ; 396 (6)      ; 0           ; 0            ; 0       ; 0         ; 73   ; 0            ; |RESDMAC                                                                                     ; work         ;
 ;    |CPU_SM:u_CPU_SM|                          ; 186 (0)           ; 26 (26)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM                                                                     ; work         ;
 ;       |CPU_SM_inputs:u_CPU_SM_inputs|         ; 40 (40)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs                                       ; work         ;
 ;       |CPU_SM_outputs:u_CPU_SM_outputs|       ; 67 (67)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs                                     ; work         ;
@@ -336,9 +336,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Fri Dec 30 21:59:09 2022
+    Info: Processing started: Tue Jan  3 15:47:51 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off RESDMAC -c RESDMAC
-Critical Warning (138067): Current license file does not support incremental compilation. The Quartus II software removes all the user-specified design partitions in the design automatically.
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file /home/mike/EAGLE/projects/SDMAC-Replacement/RTL/SCSI_SM/scsi_sm_outputs.v
     Info (12023): Found entity 1: scsi_sm_outputs
@@ -512,17 +511,16 @@ Info (13000): Registers with preset signals will power-up high
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Info (17049): 2 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file /home/mike/EAGLE/projects/SDMAC-Replacement/Quartus/output_files/RESDMAC.map.smsg
-Critical Warning (138067): Current license file does not support incremental compilation. The Quartus II software removes all the user-specified design partitions in the design automatically.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 1066 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1068 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 13 input pins
-    Info (21059): Implemented 12 output pins
-    Info (21060): Implemented 47 bidirectional pins
-    Info (21061): Implemented 994 logic cells
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 86 warnings
+    Info (21059): Implemented 14 output pins
+    Info (21060): Implemented 46 bidirectional pins
+    Info (21061): Implemented 995 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 84 warnings
     Info: Peak virtual memory: 594 megabytes
-    Info: Processing ended: Fri Dec 30 21:59:12 2022
+    Info: Processing ended: Tue Jan  3 15:47:54 2023
     Info: Elapsed time: 00:00:03
     Info: Total CPU time (on all processors): 00:00:02
 
