@@ -91,7 +91,7 @@ reg [1:0] ByteCount;
 reg [3:0] LongWordCount;
 
 assign DACK_ = ~DACK_o;
-assign RE_ = ~RE_o;
+assign WE_ = ~WE_o;
 
 assign BOEQ3 = (ByteCount == 2'b11);
 assign FIFOEMPTY = (LongWordCount == 4'b0000);
