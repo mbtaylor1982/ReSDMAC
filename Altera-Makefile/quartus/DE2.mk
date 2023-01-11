@@ -1,0 +1,2 @@
+FAMILY = "Cyclone II"
+PART = EP2C35F672C6
