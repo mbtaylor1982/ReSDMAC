@@ -91,7 +91,7 @@ wire [27:0] E;
 wire [4:0] NEXT_STATE;
 
 scsi_sm_inputs u_scsi_sm_inputs(
-    .STATE      (STATE),
+    .STATE      (STATE      ),
     .BOEQ3      (BOEQ3      ),
     .CCPUREQ    (CCPUREQ    ),
     .CDREQ_     (CDREQ_     ),
