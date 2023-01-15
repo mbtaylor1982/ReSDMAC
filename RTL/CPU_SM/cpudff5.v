@@ -33,9 +33,38 @@ module cpudff5 (
 
 wire p5a, p5b, p5c;
 
-assign p5a = (~(~(~E26  & ~E5 & ~E4 & ~E27 & ~E8 & ~E11) | ~(~E32  & ~E13 & ~E14 & ~E15 & ~E22 & ~E60) | ~(~E61 & ~E62 & ~E48 & ~E53 & ~E58)) & ~(~(~E30_d & ~E9_d & ~E28_d) & DSACK));
-assign p5b = (~(~STERM_& ~(~E36_s_E47_s & ~E33_sd_E38_s & ~E39_s & ~E40_s_E41_s & ~E42_s & ~E37_s_E44_s)));
-assign p5c = (~(~(~(~(E23_sd & DSACK) & ~(~DSACK & E43_s_E49_sd) ) | E57_s)& STERM_));
+assign p5a = 
+(
+  ~(
+    ~(~E26  & ~E5 & ~E4 & ~E27 & ~E8 & ~E11) | 
+    ~(~E32  & ~E13 & ~E14 & ~E15 & ~E22 & ~E60) | 
+    ~(~E61 & ~E62 & ~E48 & ~E53 & ~E58)
+  ) & 
+  ~(
+    ~(~E30_d & ~E9_d & ~E28_d) & DSACK
+  )
+);
+
+assign p5b = 
+(
+  ~(~STERM_& 
+    ~(~E36_s_E47_s & ~E33_sd_E38_s & ~E39_s & ~E40_s_E41_s & ~E42_s & ~E37_s_E44_s)
+  )
+);
+
+assign p5c = 
+(
+  ~(
+    (
+      ~(
+        ~(E23_sd & DSACK) & 
+        ~(~DSACK & E43_s_E49_sd) 
+      ) | 
+      E57_s
+    )& 
+    STERM_
+  )
+);
 
 assign cpudff5_d = (~(p5a & p5b & p5c));
 

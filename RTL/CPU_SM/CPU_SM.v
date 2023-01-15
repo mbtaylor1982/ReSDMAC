@@ -509,25 +509,32 @@ always @(posedge  BBCLK) begin
 end
 
 //clocked outputs
-always @(posedge BCLK) begin
-    BGACK <= BGACK_d;
-    BREQ <= ~nBREQ_d;
-    BRIDGEIN <= ~nBRIDGEIN_d;
-    BRIDGEOUT <= BRIDGEOUT_d;
-    DECFIFO <= DECFIFO_d;
-    DIEH <= DIEH_d;
-    DIEL <= DIEL_d;
-    F2CPUH <= F2CPUH_d;
-    F2CPUL <= F2CPUL_d;
-    INCFIFO <= INCFIFO_d;
-    INCNI <= nINCNI_d;
-    INCNO <= INCNO_d;
-    PAS <= PAS_d;
-    PDS <= PDS_d;
-    PLHW <= PLHW_d;
-    PLLW <= PLLW_d;
-    SIZE1 <= SIZE1_d;
-    STOPFLUSH <= ~nSTOPFLUSH_d;
+always @(posedge BCLK or negedge CCRESET_) begin
+    if (CCRESET_ == 1'b0) begin
+        //BGACK <= 1'b0;
+        //PAS <= 1'b0;
+        //PDS <= 1'b0;
+    end
+    else begin
+        BGACK <= BGACK_d;
+        BREQ <= ~nBREQ_d;
+        BRIDGEIN <= ~nBRIDGEIN_d;
+        BRIDGEOUT <= BRIDGEOUT_d;
+        DECFIFO <= DECFIFO_d;
+        DIEH <= DIEH_d;
+        DIEL <= DIEL_d;
+        F2CPUH <= F2CPUH_d;
+        F2CPUL <= F2CPUL_d;
+        INCFIFO <= INCFIFO_d;
+        INCNI <= nINCNI_d;
+        INCNO <= INCNO_d;
+        PAS <= PAS_d;
+        PDS <= PDS_d;
+        PLHW <= PLHW_d;
+        PLLW <= PLLW_d;
+        SIZE1 <= SIZE1_d;
+        STOPFLUSH <= ~nSTOPFLUSH_d;
+    end
 end
 
 always @(posedge BCLK or negedge CCRESET_) begin
