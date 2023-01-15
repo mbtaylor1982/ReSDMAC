@@ -22,34 +22,34 @@
 `endif
 
 module SCSI_SM
-(   input CPUREQ,
-    input RW,
-    input DMADIR,   
-    input INCFIFO,
-    input DECFIFO, 
-    input RESET_,
-    input BOEQ3,
-    input CPUCLK,
-    input DREQ_,
-    input FIFOFULL,
-    input FIFOEMPTY,
-    input nAS_,
+(   input BOEQ3,            //Asserted when transfering Byte 3
+    input CPUCLK,           //CPU CLK
+    input CPUREQ,           //Request CPU access to SCSI registers.
+    input DECFIFO,          //Decremt FIFO pointer
+    input DMADIR,           //Control Direction Of DMA transfer.
+    input DREQ_,            //Data transfer request from SCSI IC
+    input FIFOEMPTY,        //FIFOFULL flag
+    input FIFOFULL,         //FIFO EMPTY flag
+    input INCFIFO,          //Increment FIFO pointer
+    input nAS_,             //Inverted CPU Address Strobe
+    input RESET_,           //System Reset
+    input RW,               //CPU RW signal
 
-    output reg RDFIFO_o,
-    output reg RIFIFO_o,
-    output reg RE_o,
-    output reg WE_o,
-    output reg SCSI_CS_o,
-    output reg DACK_o,
-    output reg INCBO_o,
-    output reg INCNO_o,
-    output reg INCNI_o,
-    output reg S2F_o,
-    output reg F2S_o,
-    output reg S2CPU_o,
-    output reg CPU2S_o,
-    output wire LS2CPU,
-    output wire LBYTE_
+    output reg CPU2S_o,     //Indicate CPU to SCSI Transfer
+    output reg DACK_o,      //SCSI IC Data request Acknowledge
+    output reg F2S_o,       //Indicate FIFO to SCSI Transfer
+    output reg INCBO_o,     //Increment FIFO Byte Pointer
+    output reg INCNI_o,     //Increment FIFO Next In Pointer
+    output reg INCNO_o,     //Increement FIFO Next Out Pointer
+    output reg RDFIFO_o,    //Read Longword from FIFO
+    output reg RE_o,        //Read indicator to SCSI IC
+    output reg RIFIFO_o,    //Write Longword to FIFO
+    output reg S2CPU_o,     //Indicate SCSI to CPU Transfer
+    output reg S2F_o,       //Indicate SCSI to FIFO Transfer
+    output reg SCSI_CS_o,   //Chip Select for SCSI IC
+    output reg WE_o,        //Write indicator to SCSI IC
+    output wire LBYTE_,     //Load byte signal for FIFO
+    output wire LS2CPU      //Latch SCSI to CPU DATA, Also indicates CPU Cycle Termination
 );
 
 reg [4:0] STATE;
@@ -60,66 +60,62 @@ reg CDREQ_;
 reg CDSACK_;
 reg CRESET_;
 
-wire DSACK_;
-wire RE;
-wire WE;
-wire SCSI_CS;
-wire DACK;
-wire INCBO;
-wire INCNO;
-wire INCNI;
-wire S2F;
-wire F2S;
-wire S2CPU;
+wire BBCLK; // CPUCLK Inverted 6 time for delay.
+wire BCLK; // CPUCLK Inverted 4 times for delay.
 wire CPU2S;
+wire DACK;
+wire DSACK_;
+wire F2S;
+wire INCBO;
+wire INCNI;
+wire INCNO;
+wire nCLK; 
+wire RDRST_;
+wire RE;
+wire RIRST_;
+wire S2CPU;
+wire S2F;
+wire SCSI_CS;
+wire SET_DSACK;
+wire WE;
 
 reg RDFIFO_d;
 reg RIFIFO_d;
 reg nLS2CPU;
 
-wire RDRST_;
-wire RIRST_;
-
-wire SET_DSACK;
-
-
-wire nCLK; // CPUCLK Inverted
-wire BCLK; // CPUCLK Inverted 4 times for delay.
-wire BBCLK; // CPUCLK Inverted 6 time for delay.
-
 wire [27:0] E;
 wire [4:0] NEXT_STATE;
 
 scsi_sm_inputs u_scsi_sm_inputs(
-    .STATE      (STATE      ),
     .BOEQ3      (BOEQ3      ),
     .CCPUREQ    (CCPUREQ    ),
     .CDREQ_     (CDREQ_     ),
     .CDSACK_    (CDSACK_    ),
     .DMADIR     (DMADIR     ),
+    .E          (E          ),
     .FIFOEMPTY  (FIFOEMPTY  ),
     .FIFOFULL   (FIFOFULL   ),
     .RDFIFO_o   (RDFIFO_o   ),
     .RIFIFO_o   (RIFIFO_o   ),
     .RW         (RW         ),
-    .E          (E          )
+    .STATE      (STATE      )
 );
 
 scsi_sm_outputs u_scsi_sm_outputs(
-    .E          (E          ),
-    .NEXT_STATE (NEXT_STATE ), 
+    .CPU2S      (CPU2S      ),
     .DACK       (DACK       ),
+    .E          (E          ),
+    .F2S        (F2S        ),
     .INCBO      (INCBO      ),
     .INCNI      (INCNI      ),
     .INCNO      (INCNO      ),
+    .NEXT_STATE (NEXT_STATE ), 
     .RE         (RE         ),
-    .WE         (WE         ),
+    .S2CPU      (S2CPU      ),
+    .S2F        (S2F        ),
     .SCSI_CS    (SCSI_CS    ),
     .SET_DSACK  (SET_DSACK  ),
-    .S2F        (S2F        ),
-    .F2S        (F2S        ),
-    .S2CPU      (S2CPU      ),
-    .CPU2S      (CPU2S      )
+    .WE         (WE         )
 );
 
 //clocked reset
@@ -141,19 +137,19 @@ end
 
 //Clocked outputs.
 always @(posedge BCLK) begin
-    RE_o <= RE;
-    WE_o <= WE;
-    SCSI_CS_o <= ~SCSI_CS;
-    DACK_o <= DACK;
-    INCBO_o <= INCBO;
-    INCNO_o <= INCNO;
-    INCNI_o <= INCNI;
-    S2F_o <= S2F;
-    F2S_o <= F2S;
-    S2CPU_o <= S2CPU;
     CPU2S_o <= CPU2S;   
+    DACK_o <= DACK;
+    F2S_o <= F2S;
+    INCBO_o <= INCBO;
+    INCNI_o <= INCNI;
+    INCNO_o <= INCNO;
     RDFIFO_d <= E[3];
+    RE_o <= RE;
     RIFIFO_d <=  E[4];
+    S2CPU_o <= S2CPU;
+    S2F_o <= S2F;
+    SCSI_CS_o <= ~SCSI_CS;
+    WE_o <= WE;
 end
 
 //State Machine
