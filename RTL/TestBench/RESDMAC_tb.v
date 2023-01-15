@@ -21,17 +21,172 @@
 
 `include "RTL/RESDMAC.v"
 
-module RESDMAC_tb; 
+module RESDMAC_tb;
+//------------------------------------------------------------------------------
+//  UUT
+//------------------------------------------------------------------------------
+    // ports
+    reg R_W_i;
+    wire R_W_o;
+    assign R_W_o = R_W_IO;
+    assign R_W_IO = 1 ? R_W_i : 1'bz;
 
+    reg _AS_i;
+    wire _AS_o;
+    assign _AS_o = _AS_IO;
+    assign _AS_IO = 1 ? _AS_i : 1'bz;
 
-initial begin
+    reg _DS_i;
+    wire _DS_o;
+    assign _DS_o = _DS_IO;
+    assign _DS_IO = 1 ? _DS_i : 1'bz;
+
+    
+    wire        _INT     ;  // Connected to INT2 needs to be Open Collector output.
+    wire        SIZ1     ;  // Indicates a 16 bit transfer is true. 
+    wire        R_W_IO   ;  // Read Write from CPU
+    wire        _AS_IO   ;  // Address Strobe
+    wire        _DS_IO   ;  // Data Strobe 
+    wire  [1:0] _DSACK_O ;  // Dynamic size and DATA ack.
+    reg   [1:0] _DSACK_I ;  // Dynamic size and DATA ack.
+    wire [31:0] DATA     ;  // CPU side data bus 32bit wide
+    reg         _STERM   ;  // static/synchronous data ack.
+    reg         SCLK     ;  // CPUCLKB
+    reg         _CS      ;  // _SCSI from Fat Garry
+    reg         _RST     ;  // System Reset
+    reg         _BERR    ;  // Bus Error 
+    reg   [6:2] ADDR     ;  // CPU address Bus, bits are actually [6:2]
+    wire        _BR      ;  // Bus Request
+    reg         _BG      ;  // Bus Grant
+    wire        _BGACK_O ;  // Bus Grant Acknoledge
+    reg         _BGACK_I ;  // 
+    wire        _DMAEN   ;  // Low =  Enable Address Generator in Ramsey
+    reg         _DREQ    ;  // 
+    wire        _DACK    ;  // 
+    reg         INTA     ;  // Interupt from WD33c93A (SCSI)
+    wire        _IOR     ;  // Active Low read strobe
+    wire        _IOW     ;  // Ative Low Write strobe
+    wire        _CSS     ;  // Port 0 CS      
+    wire  [7:0] PD_PORT  ;  // 
+    wire        _LED_RD  ;  // Indicated read from SDMAC or peripherial port.
+    wire        _LED_WR  ;  // Indicate write to SDMAC or peripherial port.
+    wire        _LED_DMA ;  // Indicate DMA cycle/busmaster.
+    wire        OWN_     ;  // Active low signal to show SDMAC is bus master, This can be used to set direction on level shifters for control signals.
+    wire        DATA_OE_ ;  // Active low ouput enable for DBUS level shifters.
+    wire        PDATA_OE_;  // Active low ouput enable for Peripheral BUS level shifters.
+    // module
+    RESDMAC uut (
+        ._INT       (_INT       ),
+        .SIZ1       (SIZ1       ),
+        .R_W_IO     (R_W_IO     ),
+        ._AS_IO     (_AS_IO     ),
+        ._DS_IO     (_DS_IO     ),
+        ._DSACK_O   (_DSACK_O   ),
+        ._DSACK_I   (_DSACK_I   ),
+        .DATA       (DATA       ),
+        ._STERM     (_STERM     ),
+        .SCLK       (SCLK       ),
+        ._CS        (_CS        ),
+        ._RST       (_RST       ),
+        ._BERR      (_BERR      ),
+        .ADDR       (ADDR       ),
+        ._BR        (_BR        ),
+        ._BG        (_BG        ),
+        ._BGACK_O   (_BGACK_O   ),
+        ._BGACK_I   (_BGACK_I   ),
+        ._DMAEN     (_DMAEN     ),
+        ._DREQ      (_DREQ      ),
+        ._DACK      (_DACK      ),
+        .INTA       (INTA       ),
+        ._IOR       (_IOR       ),
+        ._IOW       (_IOW       ),
+        ._CSS       (_CSS       ),
+        .PD_PORT    (PD_PORT    ),
+        ._LED_RD    (_LED_RD    ),
+        ._LED_WR    (_LED_WR    ),
+        ._LED_DMA   (_LED_DMA   ),
+        .OWN_       (OWN_       ),
+        .DATA_OE_   (DATA_OE_   ),
+        .PDATA_OE_  (PDATA_OE_  )
+    );
+//------------------------------------------------------------------------------
+//  localparam
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+//  clk
+//------------------------------------------------------------------------------
+    localparam CLK_FREQ = 100_000_000;
+    localparam PERIOD = 1E9/CLK_FREQ;
+    initial begin
+        SCLK = 0;
+        forever #(PERIOD/2) SCLK = ~ SCLK;
+    end
+//------------------------------------------------------------------------------
+//  general tasks and functions
+//------------------------------------------------------------------------------
+    // -------- wait n periods of clock --------
+    task wait_n_clk(input integer i);
+        begin
+            repeat(i) @(posedge SCLK);
+        end
+    endtask
+    // -------- wait n periods of clock (with Tcko) --------
+    task wait_n_clko(input integer i);
+        begin
+            repeat(i) @(posedge SCLK);
+            #1;
+        end
+    endtask
+//------------------------------------------------------------------------------
+//  initial values
+//------------------------------------------------------------------------------
+    initial begin
+        _RST = 1;
+        // -------- input --------
+
+    end
+//------------------------------------------------------------------------------
+//  simulation tasks
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+//  run simulation
+//------------------------------------------------------------------------------
+    initial begin
         $display("*Testing RESDMAC TOP Module*");
         $dumpfile("../VCD/RESDMAC_tb.vcd");
-        $dumpvars(0, u_RESDMAC);
-        
-        
-        
-        $finish;
-end
+        $dumpvars(0, RESDMAC_tb);
+        // -------- RESET --------
+        wait_n_clk(10);
+        _RST = 0;
+        wait_n_clko(10);
+        _RST = 1;
+        wait_n_clko(10);
+        _CS = 0;
+        _BG = 1;
+        _BGACK_I = 1;
+        _DREQ = 1;
+        INTA = 0;
+        _BERR = 1;
+        _STERM = 1;
+        R_W_i = 1;
+        _AS_i = 1'b1;
+        _DS_i = 1;
+        _DSACK_I = 2'b11;
+        ADDR = 5'b00000;
 
+
+        // --------  --------
+
+        // --------  --------
+
+        // -------- END --------
+        repeat(10) begin
+            wait_n_clk(100);
+            $stop();
+        end
+        $finish;
+    end
+//------------------------------------------------------------------------------
 endmodule

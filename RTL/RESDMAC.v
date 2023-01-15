@@ -29,9 +29,9 @@ module RESDMAC(
 
     output SIZ1,         //Indicates a 16 bit transfer is true. 
 
-    inout R_W,          //Read Write from CPU
-    inout _AS,          //Address Strobe
-    inout _DS,          //Data Strobe 
+    inout R_W_IO,          //Read Write from CPU
+    inout _AS_IO,          //Address Strobe
+    inout _DS_IO,          //Data Strobe 
 
     output [1:0] _DSACK_O, //Dynamic size and DATA ack.
     input [1:0] _DSACK_I, //Dynamic size and DATA ack.
@@ -96,6 +96,15 @@ wire [31:0] MOD;
 
 wire [31:0] ID;
 wire [31:0] OD;
+
+wire _AS;
+assign _AS = _AS_IO; 
+
+wire _DS;
+assign _DS = _DS_IO;
+
+wire R_W;
+assign R_W = R_W_IO;
 
 wire LBYTE_;
 wire RE_o;
@@ -341,9 +350,9 @@ assign nAS_ = ~_AS;
 assign OWN_ = ~CPUSM_BGACK;
 
 //System Outputs
-assign R_W = OWN_ ? 1'bz : ~DMADIR;
-assign _AS = OWN_ ? 1'bz : AS_O_;
-assign _DS = OWN_ ? 1'bz : DS_O_;
+assign R_W_IO = OWN_ ? 1'bz : ~DMADIR;
+assign _AS_IO = OWN_ ? 1'bz : AS_O_;
+assign _DS_IO = OWN_ ? 1'bz : DS_O_;
 assign _DMAEN = OWN_;
 assign _BGACK_O = OWN_ ? 1'bz : 1'b0;
 assign _BR = BREQ ?  1'b0 : 1'bz;
