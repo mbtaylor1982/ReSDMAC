@@ -29,17 +29,17 @@ module RESDMAC_tb;
     reg R_W_i;
     wire R_W_o;
     assign R_W_o = R_W_IO;
-    assign R_W_IO = 1 ? R_W_i : 1'bz;
+    assign R_W_IO = OWN_ ? R_W_i : 1'bz;
 
     reg _AS_i;
     wire _AS_o;
     assign _AS_o = _AS_IO;
-    assign _AS_IO = 1 ? _AS_i : 1'bz;
+    assign _AS_IO = OWN_ ? _AS_i : 1'bz;
 
     reg _DS_i;
     wire _DS_o;
     assign _DS_o = _DS_IO;
-    assign _DS_IO = 1 ? _DS_i : 1'bz;
+    assign _DS_IO = OWN_ ? _DS_i : 1'bz;
 
     
     wire        _INT     ;  // Connected to INT2 needs to be Open Collector output.
@@ -142,8 +142,11 @@ module RESDMAC_tb;
 //  initial values
 //------------------------------------------------------------------------------
     initial begin
-        _RST = 1;
+        _RST = 0;
         // -------- input --------
+        R_W_i = 1;
+        _AS_i = 1'b1;
+        _DS_i = 1;
 
     end
 //------------------------------------------------------------------------------
@@ -158,11 +161,11 @@ module RESDMAC_tb;
         $dumpfile("../VCD/RESDMAC_tb.vcd");
         $dumpvars(0, RESDMAC_tb);
         // -------- RESET --------
-        wait_n_clk(10);
+        wait_n_clk(2);
         _RST = 0;
-        wait_n_clko(10);
+        wait_n_clko(2);
         _RST = 1;
-        wait_n_clko(10);
+        wait_n_clko(1);
         _CS = 0;
         _BG = 1;
         _BGACK_I = 1;
