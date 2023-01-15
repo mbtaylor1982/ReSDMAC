@@ -29,67 +29,80 @@
 `endif
 
 module CPU_SM(
-    output reg PAS,
-    output reg PDS,
-    output reg BGACK,
-    output reg BREQ,
-    input aBGRANT_,
-    output reg SIZE1,
-    input aRESET_,
-    input STERM_,
-    input DSACK0_,
-    input DSACK1_,
-    input DSACK,
-    input aCYCLEDONE_,
-    input CLK,
-    input DMADIR,
     input A1,
-    output reg F2CPUL,
-    output reg F2CPUH,
-    output reg BRIDGEIN,
-    output reg BRIDGEOUT,
-    output reg DIEH,
-    output reg DIEL,
-    input LASTWORD,
-    input BOEQ3,
-    input FIFOFULL,
-    input FIFOEMPTY,
-    input RDFIFO_,
-    output reg DECFIFO,
-    input RIFIFO_,
-    output reg INCFIFO,
-    output reg INCNO,
-    output reg INCNI,
+    input aBGRANT_,
+    input aCYCLEDONE_,
+    input aDMAENA,
     input aDREQ_,
     input aFLUSHFIFO,
-    output reg STOPFLUSH,
-    input aDMAENA,
+    input aRESET_,
+    input BOEQ3,
+    input CLK,
+    input DMADIR,
+    input DSACK,
+    input DSACK0_,
+    input DSACK1_,
+    input FIFOEMPTY,
+    input FIFOFULL,
+    input LASTWORD,
+    input RDFIFO_,
+    input RIFIFO_,
+    input STERM_,
+
+    output reg BGACK,
+    output reg BREQ,
+    output reg BRIDGEIN,
+    output reg BRIDGEOUT,
+    output reg DECFIFO,
+    output reg DIEH,
+    output reg DIEL,
+    output reg F2CPUH,
+    output reg F2CPUL,
+    output reg INCFIFO,
+    output reg INCNI,
+    output reg INCNO,
+    output reg PAS,
+    output reg PDS,
+    output reg PLHW,
     output reg PLLW,
-    output reg PLHW
+    output reg SIZE1,
+    output reg STOPFLUSH
 );
 
 reg [4:0] STATE;
 wire [4:0] NEXT_STATE;
 
 //clocked inputs
-reg DREQ_;
 reg BGRANT_;
-reg nCYCLEDONE;
-reg FLUSHFIFO;
-reg DMAENA;
 reg CCRESET_;
+reg DMAENA;
+reg DREQ_;
+reg FLUSHFIFO;
+reg nCYCLEDONE;
 
-wire nCLK; // CPUCLK Inverted
-wire BCLK; // CPUCLK inverted 4 times for delay.
 wire BBCLK; // CPUCLK Inverted 6 time for delay.
-wire CYCLEDONE;
+wire BCLK; // CPUCLK inverted 4 times for delay.
+wire BGACK_d;
+wire BRIDGEOUT_d;
 
+wire cpudff1_d;
+wire cpudff2_d;
+wire cpudff3_d;
+wire cpudff4_d;
+wire cpudff5_d;
 
 wire cpudff1_q;
 wire cpudff2_q;
 wire cpudff3_q;
 wire cpudff4_q;
 wire cpudff5_q;
+
+wire CYCLEDONE;
+
+wire DECFIFO_d;
+wire DIEH_d;
+wire DIEL_d;
+
 wire E0;
 wire E1;
 wire E2;
@@ -128,10 +141,12 @@ wire E34;
 wire E35;
 wire E36_s_E47_s;
 wire E37_s_E44_s;
+wire E37_s;
 wire E39_s;
 wire E40_s_E41_s;
 wire E42_s;
 wire E43_s_E49_sd;
+wire E44_s;
 wire E45;
 wire E46_s_E59_s;
 wire E48;
@@ -145,31 +160,21 @@ wire E58;
 wire E60;
 wire E61;
 wire E62;
-wire cpudff1_d;
-wire cpudff2_d;
-wire cpudff3_d;
-wire cpudff4_d;
-wire cpudff5_d;
-wire E37_s;
-wire E44_s;
-wire nINCNI_d;
+
+wire F2CPUH_d;
+wire F2CPUL_d;
+wire INCFIFO_d;
+wire INCNO_d;
 wire nBREQ_d;
-wire SIZE1_d;
+wire nBRIDGEIN_d;
+wire nCLK;
+wire nINCNI_d;
+wire nSTOPFLUSH_d;
 wire PAS_d;
 wire PDS_d;
-wire F2CPUL_d;
-wire F2CPUH_d;
-wire BRIDGEOUT_d;
-wire PLLW_d;
 wire PLHW_d;
-wire INCFIFO_d;
-wire DECFIFO_d;
-wire INCNO_d;
-wire nSTOPFLUSH_d;
-wire DIEH_d;
-wire DIEL_d;
-wire nBRIDGEIN_d;
-wire BGACK_d;
+wire PLLW_d;
+wire SIZE1_d;
 
 CPU_SM_inputs u_CPU_SM_inputs(
     .A1           (A1           ),
@@ -496,33 +501,33 @@ end
 
 //clocked inputs.
 always @(posedge  BBCLK) begin
-    DREQ_ <= aDREQ_;
     BGRANT_ <= aBGRANT_;
-    nCYCLEDONE <= aCYCLEDONE_;
-    FLUSHFIFO <= aFLUSHFIFO;
     DMAENA <= aDMAENA;
+    DREQ_ <= aDREQ_;
+    FLUSHFIFO <= aFLUSHFIFO;
+    nCYCLEDONE <= aCYCLEDONE_;
 end
 
 //clocked outputs
 always @(posedge BCLK) begin
-    INCNI <= nINCNI_d;
+    BGACK <= BGACK_d;
     BREQ <= ~nBREQ_d;
-    SIZE1 <= SIZE1_d;
-    PAS <= PAS_d;
-    PDS <= PDS_d;
-    F2CPUL <= F2CPUL_d;
-    F2CPUH <= F2CPUH_d;
+    BRIDGEIN <= ~nBRIDGEIN_d;
     BRIDGEOUT <= BRIDGEOUT_d;
-    PLLW <= PLLW_d;
-    PLHW <= PLHW_d;
-    INCFIFO <= INCFIFO_d;
     DECFIFO <= DECFIFO_d;
-    INCNO <= INCNO_d;
-    STOPFLUSH <= ~nSTOPFLUSH_d;
     DIEH <= DIEH_d;
     DIEL <= DIEL_d;
-    BRIDGEIN <= ~nBRIDGEIN_d;
-    BGACK <= BGACK_d;
+    F2CPUH <= F2CPUH_d;
+    F2CPUL <= F2CPUL_d;
+    INCFIFO <= INCFIFO_d;
+    INCNI <= nINCNI_d;
+    INCNO <= INCNO_d;
+    PAS <= PAS_d;
+    PDS <= PDS_d;
+    PLHW <= PLHW_d;
+    PLLW <= PLLW_d;
+    SIZE1 <= SIZE1_d;
+    STOPFLUSH <= ~nSTOPFLUSH_d;
 end
 
 always @(posedge BCLK or negedge CCRESET_) begin
@@ -540,11 +545,9 @@ assign cpudff3_q = ~STATE[2];
 assign cpudff4_q = ~STATE[3];
 assign cpudff5_q = ~STATE[4];
 
-
-assign nCLK = !CLK;
-assign BCLK = CLK; // may need to change this to add delays
 assign BBCLK = CLK; // may need to change this to add delays
-
+assign BCLK = CLK; // may need to change this to add delays
 assign CYCLEDONE = ~nCYCLEDONE;
+assign nCLK = ~CLK;
 
 endmodule
