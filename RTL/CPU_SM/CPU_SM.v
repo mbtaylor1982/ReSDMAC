@@ -493,7 +493,6 @@ CPU_SM_outputs u_CPU_SM_outputs(
     .BGACK_d      (BGACK_d      )
 );
 
-
 //clocked reset
 always @(posedge nCLK) begin
     CCRESET_ <= aRESET_;   
@@ -539,20 +538,22 @@ end
 
 always @(posedge BCLK or negedge CCRESET_) begin
     if (CCRESET_ == 1'b0) 
-        STATE <= 1'b0;
+        STATE <= 5'b00000;
     else 
         STATE <= NEXT_STATE;
 end
 
 assign NEXT_STATE = {cpudff5_d, cpudff4_d, cpudff3_d, cpudff2_d, cpudff1_d};
 
-assign cpudff1_q = ~STATE[0];
-assign cpudff2_q = ~STATE[1];
-assign cpudff3_q = ~STATE[2];
-assign cpudff4_q = ~STATE[3];
-assign cpudff5_q = ~STATE[4];
+assign cpudff1_q = STATE[0];
+assign cpudff2_q = STATE[1];
+assign cpudff3_q = STATE[2];
+assign cpudff4_q = STATE[3];
+assign cpudff5_q = STATE[4];
 
-assign BBCLK = CLK; // may need to change this to add delays
+
+
+assign BBCLK = BCLK; // may need to change this to add delays
 assign BCLK = CLK; // may need to change this to add delays
 assign CYCLEDONE = ~nCYCLEDONE;
 assign nCLK = ~CLK;

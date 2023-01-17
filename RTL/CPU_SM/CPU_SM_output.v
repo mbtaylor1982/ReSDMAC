@@ -57,6 +57,7 @@ module CPU_SM_outputs (
 assign nINCNI_d = (~(E32 | E48)); 
 //assign INCNI_d = (E32 | E48);
 assign nBREQ_d = (~((E2 | E3 | E4 | E5 | E7 | E8) | (E10 | E11 | E12 | E16 | E17 | E18) | E19)); 
+
 //assign BREQ_d = ((E2 | E3 | E4 | E5 | E7 | E8) | (E10 | E11 | E12 | E16 | E17 | E18) | E19);
 
 
@@ -171,7 +172,7 @@ assign BGACK_W = (~(CYCLEDONE | BGRANT_) & BGACK_V);
 
 assign BGACK_X = (BGRANT_ & BGACK_V); //not when S-08h S-02h and BGRANT_
 
-assign BGACK_Y = (~(cpudff1 | cpudff2 | cpudff3 | cpudff4)); //not when S-10h or s-0h
+assign BGACK_Y = (~cpudff1 & ~cpudff2 & ~cpudff3 & ~cpudff4); //not when S-10h or s-0h
 assign BGACK_Z = (~cpudff1 & cpudff2 & cpudff3 & cpudff4 & cpudff5); //not when S-1Eh
 
 assign BGACK_d = (~(BGACK_W | BGACK_X | BGACK_Y | BGACK_Z));

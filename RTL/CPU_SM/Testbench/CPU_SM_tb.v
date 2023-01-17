@@ -145,13 +145,13 @@ module CPU_SM_tb;
         aRESET_ = 0;
         // -------- input --------
         A1 = 1'b0;
-        aBGRANT_ = 1'b1;
+        aBGRANT_ = 1'b0;
         aCYCLEDONE_ = 1'b1;
         aDMAENA = 1'b0;
         aDREQ_ = 1'b1;
         aFLUSHFIFO = 1'b0;
         BOEQ3 = 1'b0;
-        DMADIR = 1'b0;
+        DMADIR = 1'b1;
         DSACK = 1'b0;
         DSACK0_ = 1'b1;
         DSACK1_ = 1'b1;
@@ -174,7 +174,7 @@ module CPU_SM_tb;
         wait_n_clk(1);
         aRESET_ = 1;
         wait_n_clko(1);
-        aDMAENA = 0;
+        aDMAENA = 1;
         wait_n_clko(10);
         
 

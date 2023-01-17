@@ -179,4 +179,5 @@ module CPU_SM_inputs (
   assign E60 = (ncpudff1_q & cpudff2_q & ncpudff4_q & cpudff5_q);//Checked MT
   assign E61 = (ncpudff1_q & cpudff2_q & cpudff4_q & ncpudff5_q);//Checked MT
   assign E62 = (cpudff1_q & ncpudff2_q & cpudff4_q & ncpudff5_q);//Checked MT
+  
 endmodule

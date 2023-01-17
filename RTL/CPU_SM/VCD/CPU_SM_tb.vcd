@@ -1,5 +1,5 @@
 $date
-	Mon Jan 16 16:53:05 2023
+	Tue Jan 17 23:09:28 2023
 $end
 $version
 	Icarus Verilog
@@ -72,20 +72,20 @@ $var wire 1 D aDMAENA $end
 $var wire 1 E aDREQ_ $end
 $var wire 1 F aFLUSHFIFO $end
 $var wire 1 G aRESET_ $end
-$var wire 1 M cpudff1_q $end
-$var wire 1 N cpudff2_q $end
-$var wire 1 O cpudff3_q $end
-$var wire 1 P cpudff4_q $end
-$var wire 1 Q cpudff5_q $end
-$var wire 1 R nCLK $end
-$var wire 1 S nSTOPFLUSH_d $end
-$var wire 1 T nINCNI_d $end
-$var wire 1 U nBRIDGEIN_d $end
-$var wire 1 V nBREQ_d $end
-$var wire 1 W cpudff5_d $end
-$var wire 1 X cpudff4_d $end
-$var wire 1 Y cpudff3_d $end
-$var wire 1 Z cpudff2_d $end
+$var wire 1 M nCLK $end
+$var wire 1 N nSTOPFLUSH_d $end
+$var wire 1 O nINCNI_d $end
+$var wire 1 P nBRIDGEIN_d $end
+$var wire 1 Q nBREQ_d $end
+$var wire 1 R cpudff5_q $end
+$var wire 1 S cpudff5_d $end
+$var wire 1 T cpudff4_q $end
+$var wire 1 U cpudff4_d $end
+$var wire 1 V cpudff3_q $end
+$var wire 1 W cpudff3_d $end
+$var wire 1 X cpudff2_q $end
+$var wire 1 Y cpudff2_d $end
+$var wire 1 Z cpudff1_q $end
 $var wire 1 [ cpudff1_d $end
 $var wire 1 \ SIZE1_d $end
 $var wire 1 ] PLLW_d $end
@@ -251,11 +251,11 @@ $var wire 1 < FIFOEMPTY $end
 $var wire 1 = FIFOFULL $end
 $var wire 1 H" FLUSHFIFO $end
 $var wire 1 > LASTWORD $end
-$var wire 1 M cpudff1_q $end
-$var wire 1 N cpudff2_q $end
-$var wire 1 O cpudff3_q $end
-$var wire 1 P cpudff4_q $end
-$var wire 1 Q cpudff5_q $end
+$var wire 1 Z cpudff1_q $end
+$var wire 1 X cpudff2_q $end
+$var wire 1 V cpudff3_q $end
+$var wire 1 T cpudff4_q $end
+$var wire 1 R cpudff5_q $end
 $var wire 1 K" nA1 $end
 $var wire 1 L" nBGRANT_ $end
 $var wire 1 M" nCYCLEDONE $end
@@ -379,14 +379,14 @@ $var wire 1 z" SIZE1_Y $end
 $var wire 1 {" SIZE1_Z $end
 $var wire 1 \ SIZE1_d $end
 $var wire 1 A STERM_ $end
-$var wire 1 V nBREQ_d $end
-$var wire 1 U nBRIDGEIN_d $end
-$var wire 1 T nINCNI_d $end
-$var wire 1 S nSTOPFLUSH_d $end
-$var wire 1 W cpudff5 $end
-$var wire 1 X cpudff4 $end
-$var wire 1 Y cpudff3 $end
-$var wire 1 Z cpudff2 $end
+$var wire 1 Q nBREQ_d $end
+$var wire 1 P nBRIDGEIN_d $end
+$var wire 1 O nINCNI_d $end
+$var wire 1 N nSTOPFLUSH_d $end
+$var wire 1 S cpudff5 $end
+$var wire 1 U cpudff4 $end
+$var wire 1 W cpudff3 $end
+$var wire 1 Y cpudff2 $end
 $var wire 1 [ cpudff1 $end
 $upscope $end
 $scope module u_cpudff1 $end
@@ -448,7 +448,7 @@ $var wire 1 n E57_s $end
 $var wire 1 m E58 $end
 $var wire 1 k E61 $end
 $var wire 1 A STERM_ $end
-$var wire 1 Z cpudff2_d $end
+$var wire 1 Y cpudff2_d $end
 $var wire 1 !# p2a $end
 $var wire 1 "# p2b $end
 $var wire 1 ## p2c $end
@@ -479,7 +479,7 @@ $var wire 1 r E51_s_E54_sd $end
 $var wire 1 o E56 $end
 $var wire 1 j E62 $end
 $var wire 1 A STERM_ $end
-$var wire 1 Y cpudff3_d $end
+$var wire 1 W cpudff3_d $end
 $var wire 1 $# p3a $end
 $var wire 1 %# p3b $end
 $var wire 1 &# p3c $end
@@ -519,7 +519,7 @@ $var wire 1 h E7 $end
 $var wire 1 g E8 $end
 $var wire 1 f E9_d $end
 $var wire 1 A STERM_ $end
-$var wire 1 X cpudff4_d $end
+$var wire 1 U cpudff4_d $end
 $var wire 1 '# p4a $end
 $var wire 1 (# p4b $end
 $var wire 1 )# p4c $end
@@ -556,7 +556,7 @@ $var wire 1 j E62 $end
 $var wire 1 g E8 $end
 $var wire 1 f E9_d $end
 $var wire 1 A STERM_ $end
-$var wire 1 W cpudff5_d $end
+$var wire 1 S cpudff5_d $end
 $var wire 1 *# p5a $end
 $var wire 1 +# p5b $end
 $var wire 1 ,# p5c $end
@@ -590,7 +590,7 @@ b1 -#
 1$#
 1##
 1"#
-0!#
+1!#
 1~"
 1}"
 1|"
@@ -598,7 +598,7 @@ b1 -#
 1z"
 0y"
 1x"
-0w"
+1w"
 xv"
 1u"
 xt"
@@ -623,23 +623,23 @@ xt"
 1a"
 1`"
 0_"
-0^"
-x]"
-x\"
-1["
+1^"
+0]"
+0\"
+0["
 1Z"
 1Y"
-0X"
-0W"
-0V"
-0U"
-0T"
+1X"
+1W"
+1V"
+1U"
+1T"
 1S"
 1R"
 0Q"
 0P"
 0O"
-1N"
+0N"
 xM"
 xL"
 1K"
@@ -650,12 +650,12 @@ xG"
 xF"
 0E"
 xD"
-xC"
+0C"
 0B"
 0A"
 0@"
 0?"
-0>"
+x>"
 0="
 0<"
 0;"
@@ -684,7 +684,7 @@ xC"
 0$"
 0#"
 0""
-1!"
+0!"
 0~
 0}
 0|
@@ -714,26 +714,26 @@ xC"
 0d
 0c
 0b
-b10 a
+b0 a
 x`
 x_
 0^
-1]
+0]
 1\
 0[
-1Z
+0Z
 0Y
 0X
 0W
-1V
-1U
-1T
-1S
-1R
+0V
+0U
+0T
+0S
+0R
 1Q
-1P
+0P
 1O
-1N
+xN
 1M
 zL
 zK
@@ -745,7 +745,7 @@ xJ
 1E
 0D
 1C
-1B
+0B
 1A
 1@
 1?
@@ -755,7 +755,7 @@ xJ
 1;
 1:
 09
-08
+18
 07
 06
 05
@@ -779,18 +779,17 @@ x"
 x!
 $end
 #5
-0C"
-0\"
+1N
+0>"
 1M"
 0J
-0L"
-1]"
+1L"
 1J"
 0H"
 1G"
 0F"
-1D"
-0R
+0D"
+0M
 b1 .#
 1G
 1H
@@ -798,50 +797,14 @@ b1 .#
 17
 #10
 1E"
-1R
+1M
 0H
 0I
 07
 #15
-1C"
-0|"
-0*#
-0]"
-0["
-0!#
-1`
-1_
-1Y
-1@"
-1?"
-1X
-1w"
-0##
-1^
-1[
-b11111 a
-1W
-0{"
-0t"
-0v"
-0&#
-0x"
-0g"
-0j"
-0)#
-0U
-0S
-0~"
-0,#
-1*"
-1v
-1n
-0!"
-1U"
-0N
 0!
 1"
-1#
+0#
 0$
 0'
 1(
@@ -852,663 +815,123 @@ b11111 a
 0-
 0.
 0/
-00
+10
 01
 02
-b10 I"
-0R
+0M
 1H
 1I
 17
 #20
-1R
+1M
 0H
 0I
 07
 #25
-0C"
-1^"
-0[
-0Z
-0W
-1|"
-1!#
-1*#
-x`
-x_
-0Y
-0]
-0@"
-0?"
-b0 a
-0X
-1##
-0^
-1{"
-xt"
-xv"
-1~"
-1&#
-1x"
-1g"
-1j"
-1)#
-1,#
-1S
-1T"
-1V"
-1W"
-1X"
-0*"
-0v
-0n
+1F"
 0M
-0O
-0P
-0Q
-b11111 I"
-1!
-1$
-1%
-1&
-1,
-1-
-10
-12
-0R
 1H
 1I
 17
 b1010 .#
+1D
 #30
-1R
+1M
 0H
 0I
 07
 #35
-0C"
-1]"
-1Z
-1\
-0^"
-1["
-0[
-1]
-0W
-0@"
-x`
-b10 a
-0X
-0!#
-0y"
-0w"
-0d
-0e
-1|"
-1s"
-1*#
-x_
-1e"
-1U
-1'#
-0c
-1p"
-1m"
-1u"
-1S
-1Z"
-0o
-0*"
-1!"
-0p
-0w
-0T"
-0U"
-0V"
-0W"
-0X"
-08"
-0/"
-1M
-1N
-1O
-1P
-1Q
-0!
-0#
-0$
-x%
-x&
-0,
-0-
-02
-b0 I"
-0R
+0M
 1H
 1I
 17
 #40
-1R
+1M
 0H
 0I
 07
 #45
-1C"
-0|"
-0*#
-0]"
-0["
-0!#
-1`
-1_
-1Y
-1@"
-1?"
-1X
-1w"
-0##
-1^
-1[
-b11111 a
-1W
-0{"
-0t"
-0v"
-0&#
-0x"
-0g"
-0j"
-0)#
-0U
-0S
-0~"
-0,#
-1*"
-1v
-1n
-0!"
-1U"
-0N
-b10 I"
-1#
-00
-0R
+0M
 1H
 1I
 17
 #50
-1R
+1M
 0H
 0I
 07
 #55
-0C"
-1^"
-0[
-0Z
-0W
-1|"
-1!#
-1*#
-x`
-x_
-0Y
-0]
-0@"
-0?"
-b0 a
-0X
-1##
-0^
-1{"
-xt"
-xv"
-1~"
-1&#
-1x"
-1g"
-1j"
-1)#
-1,#
-1S
-1T"
-1V"
-1W"
-1X"
-0*"
-0v
-0n
 0M
-0O
-0P
-0Q
-1!
-1$
-1%
-1&
-1,
-1-
-10
-12
-b11111 I"
-0R
 1H
 1I
 17
 #60
-1R
+1M
 0H
 0I
 07
 #65
-0C"
-1]"
-1Z
-1\
-0^"
-1["
-0[
-1]
-0W
-0@"
-x`
-b10 a
-0X
-0!#
-0y"
-0w"
-0d
-0e
-1|"
-1s"
-1*#
-x_
-1e"
-1U
-1'#
-0c
-1p"
-1m"
-1u"
-1S
-1Z"
-0o
-0*"
-1!"
-0p
-0w
-0T"
-0U"
-0V"
-0W"
-0X"
-08"
-0/"
-1M
-1N
-1O
-1P
-1Q
-b0 I"
-0!
-0#
-0$
-x%
-x&
-0,
-0-
-02
-0R
+0M
 1H
 1I
 17
 #70
-1R
+1M
 0H
 0I
 07
 #75
-1C"
-0|"
-0*#
-0]"
-0["
-0!#
-1`
-1_
-1Y
-1@"
-1?"
-1X
-1w"
-0##
-1^
-1[
-b11111 a
-1W
-0{"
-0t"
-0v"
-0&#
-0x"
-0g"
-0j"
-0)#
-0U
-0S
-0~"
-0,#
-1*"
-1v
-1n
-0!"
-1U"
-0N
-1#
-00
-b10 I"
-0R
+0M
 1H
 1I
 17
 #80
-1R
+1M
 0H
 0I
 07
 #85
-0C"
-1^"
-0[
-0Z
-0W
-1|"
-1!#
-1*#
-x`
-x_
-0Y
-0]
-0@"
-0?"
-b0 a
-0X
-1##
-0^
-1{"
-xt"
-xv"
-1~"
-1&#
-1x"
-1g"
-1j"
-1)#
-1,#
-1S
-1T"
-1V"
-1W"
-1X"
-0*"
-0v
-0n
 0M
-0O
-0P
-0Q
-b11111 I"
-1!
-1$
-1%
-1&
-1,
-1-
-10
-12
-0R
 1H
 1I
 17
 #90
-1R
+1M
 0H
 0I
 07
 #95
-0C"
-1]"
-1Z
-1\
-0^"
-1["
-0[
-1]
-0W
-0@"
-x`
-b10 a
-0X
-0!#
-0y"
-0w"
-0d
-0e
-1|"
-1s"
-1*#
-x_
-1e"
-1U
-1'#
-0c
-1p"
-1m"
-1u"
-1S
-1Z"
-0o
-0*"
-1!"
-0p
-0w
-0T"
-0U"
-0V"
-0W"
-0X"
-08"
-0/"
-1M
-1N
-1O
-1P
-1Q
-0!
-0#
-0$
-x%
-x&
-0,
-0-
-02
-b0 I"
-0R
+0M
 1H
 1I
 17
 #100
-1R
+1M
 0H
 0I
 07
 #105
-1C"
-0|"
-0*#
-0]"
-0["
-0!#
-1`
-1_
-1Y
-1@"
-1?"
-1X
-1w"
-0##
-1^
-1[
-b11111 a
-1W
-0{"
-0t"
-0v"
-0&#
-0x"
-0g"
-0j"
-0)#
-0U
-0S
-0~"
-0,#
-1*"
-1v
-1n
-0!"
-1U"
-0N
-b10 I"
-1#
-00
-0R
+0M
 1H
 1I
 17
 #110
-1R
+1M
 0H
 0I
 07
 #115
-0C"
-1^"
-0[
-0Z
-0W
-1|"
-1!#
-1*#
-x`
-x_
-0Y
-0]
-0@"
-0?"
-b0 a
-0X
-1##
-0^
-1{"
-xt"
-xv"
-1~"
-1&#
-1x"
-1g"
-1j"
-1)#
-1,#
-1S
-1T"
-1V"
-1W"
-1X"
-0*"
-0v
-0n
 0M
-0O
-0P
-0Q
-1!
-1$
-1%
-1&
-1,
-1-
-10
-12
-b11111 I"
-0R
 1H
 1I
 17
 #120
-1R
+1M
 0H
 0I
 07
 #125
-0C"
-1]"
-1Z
-1\
-0^"
-1["
-0[
-1]
-0W
-0@"
-x`
-b10 a
-0X
-0!#
-0y"
-0w"
-0d
-0e
-1|"
-1s"
-1*#
-x_
-1e"
-1U
-1'#
-0c
-1p"
-1m"
-1u"
-1S
-1Z"
-0o
-0*"
-1!"
-0p
-0w
-0T"
-0U"
-0V"
-0W"
-0X"
-08"
-0/"
-1M
-1N
-1O
-1P
-1Q
-b0 I"
-0!
-0#
-0$
-x%
-x&
-0,
-0-
-02
-0R
+0M
 1H
 1I
 17
