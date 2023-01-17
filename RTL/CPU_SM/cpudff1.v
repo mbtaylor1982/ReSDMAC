@@ -49,9 +49,38 @@ module cpudff1 (
 );
   wire p1a, p1b, p1c;
 
-  assign p1a = (~ (DSACK & ~ (~ E25_d & ~ E50_d_E52_d & ~ E6_d)) & ~ (~ DSACK & E50_d_E52_d) & ~ (~ (~ E12 & ~ E26 & ~ E53) | ~ (~ E27 & ~ E32 & ~ E48 & ~ E55) | ~ (~ E56 & ~ E58 & ~ E60 & ~ E62)));
-  assign p1b = ~(~(~E43_s_E49_sd & ~E46_s_E59_s & ~E51_s_E54_sd) & ~STERM_);
-  assign p1c = ~ ((~ (~ (DSACK & E23_sd) & ~ (~ DSACK & (E24_sd | E29_sd | E33_sd_E38_s | E43_s_E49_sd | E51_s_E54_sd))) | E36_s_E47_s | E37_s_E44_s | E40_s_E41_s | E46_s_E59_s | E57_s) & STERM_);
+  assign p1a = 
+  (
+    ~(DSACK & 
+      ~(~ E25_d & ~ E50_d_E52_d & ~ E6_d)
+    ) & 
+    ~(~ DSACK & E50_d_E52_d) & 
+    ~(
+      ~(~ E12 & ~ E26 & ~ E53) | 
+      ~(~ E27 & ~ E32 & ~ E48 & ~ E55) | 
+      ~(~ E56 & ~ E58 & ~ E60 & ~ E62)
+    )
+  );
+  
+  assign p1b = 
+  ~(
+    ~(~E43_s_E49_sd & ~E46_s_E59_s & ~E51_s_E54_sd) & 
+    ~STERM_
+  );
+
+  assign p1c = 
+  ~(
+    (
+      ~(
+        ~(DSACK & E23_sd) & 
+        ~(~ DSACK & 
+          (E24_sd | E29_sd | E33_sd_E38_s | E43_s_E49_sd | E51_s_E54_sd)
+        )
+      ) | 
+      E36_s_E47_s | E37_s_E44_s | E40_s_E41_s | E46_s_E59_s | E57_s
+    ) & 
+    STERM_
+  );
 
   assign cpudff1_d = (~(p1a & p1b & p1c));
 

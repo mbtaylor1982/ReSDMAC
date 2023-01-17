@@ -166,11 +166,13 @@ assign nBRIDGEIN_d = (~(~E56 & ~E55 & ~E35 & ~E61 & ~E50_d_E52_d));
 //BGACK
 wire BGACK_V, BGACK_W, BGACK_X, BGACK_Y, BGACK_Z;
 
-assign BGACK_V = (~(cpudff5 | cpudff3 | cpudff1) & (cpudff4 ^ cpudff2));
+assign BGACK_V = (~(cpudff5 | cpudff3 | cpudff1) & (cpudff4 ^ cpudff2)); //S-08h S-02h
 assign BGACK_W = (~(CYCLEDONE | BGRANT_) & BGACK_V);
-assign BGACK_X = (BGRANT_ & BGACK_V);
-assign BGACK_Y = (~(cpudff1 | cpudff2 | cpudff3 | cpudff4));
-assign BGACK_Z = (~cpudff1 & cpudff2 & cpudff3 & cpudff4 & cpudff5);
+
+assign BGACK_X = (BGRANT_ & BGACK_V); //not when S-08h S-02h and BGRANT_
+
+assign BGACK_Y = (~(cpudff1 | cpudff2 | cpudff3 | cpudff4)); //not when S-10h or s-0h
+assign BGACK_Z = (~cpudff1 & cpudff2 & cpudff3 & cpudff4 & cpudff5); //not when S-1Eh
 
 assign BGACK_d = (~(BGACK_W | BGACK_X | BGACK_Y | BGACK_Z));
 

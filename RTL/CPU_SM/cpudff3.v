@@ -33,9 +33,46 @@ module cpudff3 (
 );
 wire p3a, p3b, p3c;
 
-assign p3a = (~( ~(~(~E4 & ~E10 & ~E21 & ~E27) | ~(~E34 & ~E32 & ~E35) | ~(~E56 & ~E62 & ~E45)) & ~(~(~E20_d & ~E28_d & ~E30_d) & DSACK) & ~(E50_d_E52_d & ~DSACK)));
-assign p3b = (~(~STERM_ & ~(~E36_s_E47_s & ~E33_sd_E38_s & ~E39_s & ~E40_s_E41_s & ~E42_s & ~E37_s_E44_s)));
-assign p3c = (~(STERM_ & ( ~(~(E23_sd & DSACK) & ~(~DSACK & (E33_sd_E38_s | E51_s_E54_sd)) ) | (E36_s_E47_s | E46_s_E59_s))));
+assign p3a = 
+(
+  ~( 
+    ~(
+      ~(~E4 & ~E10 & ~E21 & ~E27) | 
+      ~(~E34 & ~E32 & ~E35) | 
+      ~(~E56 & ~E62 & ~E45)
+    ) & 
+    ~(
+      ~(
+        (~E20_d & ~E28_d & ~E30_d) & 
+        DSACK
+      )
+    ) & 
+    ~(E50_d_E52_d & ~DSACK)
+  )
+);
+
+assign p3b = 
+(
+  ~(
+    ~STERM_ & 
+    ~(~E36_s_E47_s & ~E33_sd_E38_s & ~E39_s & ~E40_s_E41_s & ~E42_s & ~E37_s_E44_s)
+  )
+);
+
+assign p3c = 
+(
+  ~(STERM_ & 
+    ( 
+      ~(
+        ~(E23_sd & DSACK) & 
+        ~(~DSACK & 
+          (E33_sd_E38_s | E51_s_E54_sd)
+        ) 
+      ) | 
+      (E36_s_E47_s | E46_s_E59_s)
+    )
+  )
+);
 
 assign cpudff3_d = (~(p3a & p3b & p3c));
 
