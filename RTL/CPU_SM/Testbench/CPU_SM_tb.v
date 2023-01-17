@@ -145,22 +145,22 @@ module CPU_SM_tb;
         aRESET_ = 0;
         // -------- input --------
         A1 = 1'b0;
-        aBGRANT_ = 1'b0;
-        aCYCLEDONE_ = 1'b0;
+        aBGRANT_ = 1'b1;
+        aCYCLEDONE_ = 1'b1;
         aDMAENA = 1'b0;
-        aDREQ_ = 1'b0;
+        aDREQ_ = 1'b1;
         aFLUSHFIFO = 1'b0;
         BOEQ3 = 1'b0;
         DMADIR = 1'b0;
         DSACK = 1'b0;
-        DSACK0_ = 1'b0;
-        DSACK1_ = 1'b0;
-        FIFOEMPTY = 1'b0;
+        DSACK0_ = 1'b1;
+        DSACK1_ = 1'b1;
+        FIFOEMPTY = 1'b1;
         FIFOFULL = 1'b0;
         LASTWORD = 1'b0;
-        RDFIFO_ = 1'b0;
-        RIFIFO_ = 1'b0;
-        STERM_ = 1'b0;
+        RDFIFO_ = 1'b1;
+        RIFIFO_ = 1'b1;
+        STERM_ = 1'b1;
     end
 //------------------------------------------------------------------------------
 //  simulation tasks
@@ -171,18 +171,12 @@ module CPU_SM_tb;
 //------------------------------------------------------------------------------
     initial begin
         // -------- RESET --------
-        wait_n_clk(10);
+        wait_n_clk(1);
         aRESET_ = 1;
+        wait_n_clko(1);
+        aDMAENA = 0;
         wait_n_clko(10);
-        // --------  --------
-
-        // --------  --------
-
-        // -------- END --------
-        repeat(10) begin
-            wait_n_clk(100);
-            $stop();
-        end
+        
 
         $finish;
     end
