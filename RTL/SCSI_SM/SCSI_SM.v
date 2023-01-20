@@ -125,8 +125,12 @@ end
 
 //clocked inputs.
 always @(posedge  BBCLK or negedge CRESET_) begin
-    if (CRESET_ == 1'b0) 
-        CDSACK_ <= 1'b0;
+    if (CRESET_ == 1'b0)
+    begin 
+        CDSACK_ <= 1'b1;
+        CCPUREQ <= 1'b0;
+        CDREQ_ <= 1'b0;
+    end
     else 
     begin
         CCPUREQ <= CPUREQ;
