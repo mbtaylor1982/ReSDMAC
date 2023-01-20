@@ -25,40 +25,37 @@
 `endif
 
 module RESDMAC(
-    output _INT,        //Connected to INT2 needs to be Open Collector output.
+    output tri1 _INT,        //Connected to INT2 needs to be Open Collector output.
 
-    output SIZ1,         //Indicates a 16 bit transfer is true. 
+    output tri1 SIZ1,         //Indicates a 16 bit transfer is true. 
 
-    inout R_W_IO,          //Read Write from CPU
-    inout _AS_IO,          //Address Strobe
-    inout _DS_IO,          //Data Strobe 
-
-    output [1:0] _DSACK_O, //Dynamic size and DATA ack.
-    input [1:0] _DSACK_I, //Dynamic size and DATA ack.
+    inout tri1 R_W_IO,          //Read Write from CPU
+    inout tri1 _AS_IO,          //Address Strobe
+    inout tri1 _DS_IO,          //Data Strobe 
+    inout tri1 [1:0] _DSACK_IO,        //Dynamic size and DATA ack.
     
-    inout [31:0] DATA,   // CPU side data bus 32bit wide
+    inout tri1 [31:0] DATA_IO,   // CPU side data bus 32bit wide
 
-    input _STERM,       //static/synchronous data ack.
+    input tri1 _STERM,       //static/synchronous data ack.
     
     input SCLK,         //CPUCLKB
     input _CS,           //_SCSI from Fat Garry
     input _RST,         //System Reset
-    input _BERR,        //Bus Error 
+    input tri1 _BERR,        //Bus Error 
 
     input [6:2] ADDR,   //CPU address Bus, bits are actually [6:2]
     //input A12,          // additional address input to allow this to co-exist with A4000 IDE card.
     
     // Bus Mastering/Arbitration.
 
-    output  _BR,        //Bus Request
-    input   _BG,        //Bus Grant
-    output  _BGACK_O,     //Bus Grant Acknoledge
-    input  _BGACK_I,
+    output   _BR,        //Bus Request
+    input    _BG,        //Bus Grant
+    inout   tri1 BGACK_IO_,  //Bus Grant Acknoledge
 
     output _DMAEN,      //Low =  Enable Address Generator in Ramsey
     
     // Peripheral port Control signals
-    input _DREQ,
+    input tri1 _DREQ,
     output _DACK,
     //input _IORDY,
 
@@ -73,7 +70,7 @@ module RESDMAC(
     //output _CSX1,       //Port2 CS 
 
     // Peripheral Device port
-    inout [7:0] PD_PORT,
+    inout tri1 [7:0] PD_PORT,
     
     //Diagnostic LEDS
     output _LED_RD,     //Indicated read from SDMAC or peripherial port.
@@ -87,6 +84,7 @@ module RESDMAC(
 
 reg AS_O_;
 reg DS_O_;
+reg [31:0] DATA_O;
 reg LLW;
 reg LHW;
 reg [1:0] DSACK_LATCHED_;
@@ -106,6 +104,9 @@ assign _DS = _DS_IO;
 wire R_W;
 assign R_W = R_W_IO;
 
+wire [31:0] DATA;
+assign DATA = DATA_IO;
+
 wire LBYTE_;
 wire RE_o;
 wire DACK_o;
@@ -120,10 +121,8 @@ wire DREQ_;
 wire nDMAENA;
 wire INCNO;
 wire INCNI;
-//wire OWN_;
-wire LEFTOVERS;
+wire OWN_;
 wire nSCLK;
-wire aCYCLEDONE_;
 wire nAS_;
 wire DSACK_CPU_SM;
 
@@ -168,11 +167,10 @@ wire CPU2S;
 wire BOEQ0;
 wire BO0;
 wire BO1;
-wire RW;
 wire A3;
 wire DSK0_IN_;
 wire DSK1_IN_;
-
+wire _BGACK_I;
 
 registers u_registers(
     .ADDR      ({1'b0, ADDR, 2'b00}),
@@ -210,8 +208,6 @@ CPU_SM u_CPU_SM(
     .STERM_        (_STERM      ),
     .DSACK0_       (DSK0_IN_    ),
     .DSACK1_       (DSK1_IN_    ),
-    .DSACK         (DSACK_CPU_SM),
-    .aCYCLEDONE_   (aCYCLEDONE_ ),
     .CLK           (SCLK        ),
     .DMADIR        (DMADIR      ),
     .A1            (A1          ),
@@ -221,7 +217,7 @@ CPU_SM u_CPU_SM(
     .BRIDGEOUT     (BRIDGEOUT   ),
     .DIEH          (DIEH        ),
     .DIEL          (DIEL        ),
-    .LASTWORD      (LEFTOVERS   ),
+    .BOEQ0         (BOEQ0       ),
     .BOEQ3         (BOEQ3       ),
     .FIFOFULL      (FIFOFULL    ),
     .FIFOEMPTY     (FIFOEMPTY   ),
@@ -236,7 +232,10 @@ CPU_SM u_CPU_SM(
     .STOPFLUSH     (STOPFLUSH   ),
     .aDMAENA       (DMAENA      ),
     .PLLW          (PLLW        ),
-    .PLHW          (PLHW        )
+    .PLHW          (PLHW        ),
+    .AS_           (_AS         ),
+    .BGACK_I_      (_BGACK_I    )
+
 );
 
 SCSI_SM u_SCSI_SM(
@@ -293,14 +292,14 @@ fifo int_fifo(
 );
 
 datapath u_datapath(
-    .DATA_IO   (DATA        ),
+    .DATA_IO   (DATA_IO     ),
     .PD        (PD_PORT     ),
     .OD        (OD          ),
     .MOD       (MOD         ),
     .PAS       (PAS         ),
     .nDS_      (~_DS        ),
     .nDMAC_    (~_CS        ),
-    .RW        (RW          ),
+    .RW        (R_W          ),
     .nOWN_     (~OWN_       ),
     .DMADIR    (DMADIR      ),
     .BRIDGEIN  (BRIDGEIN    ),
@@ -319,23 +318,14 @@ datapath u_datapath(
     .ID        (ID          ),
     .F2CPUL    (F2CPUL      ),
     .F2CPUH    (F2CPUH      ),
-    .BnDS_O_   (~PDS        )
+    .BnDS_O_   (~DS_O_      )
 );
 
-always @(posedge nSCLK) begin
-    AS_O_ <= PAS;    
-end
-
-always @(posedge nSCLK) begin
-    DS_O_ <= PDS;    
-end
-
-always @(posedge nSCLK) begin
-    LLW <= PLLW;    
-end
-
-always @(posedge nSCLK) begin
-    LHW <= PLHW;    
+always @(posedge SCLK) begin
+    AS_O_ <= ~PAS;    
+    DS_O_ <= ~PDS; 
+    LLW <= PLLW;
+    LHW <= PLHW;
 end
 
 always @(posedge nSCLK or negedge nAS_) begin
@@ -348,16 +338,18 @@ end
 assign nSCLK  = ~SCLK;
 assign nAS_ = ~_AS;
 assign OWN_ = ~CPUSM_BGACK;
+assign _BGACK_I = _BGACK_IO;
 
 //System Outputs
-assign R_W_IO = OWN_ ? 1'bz : ~DMADIR;
+assign  R_W_IO = OWN_ ? 1'bz : ~DMADIR;
 assign _AS_IO = OWN_ ? 1'bz : AS_O_;
 assign _DS_IO = OWN_ ? 1'bz : DS_O_;
+assign DATA_IO = OWN_ ? 32'bz : DATA_O;
 assign _DMAEN = OWN_;
-assign _BGACK_O = OWN_ ? 1'bz : 1'b0;
 assign _BR = BREQ ?  1'b0 : 1'bz;
-assign SIZ1 = OWN_ ? 1'bz : SIZE1_CPUSM;
-assign _DSACK_O = (REG_DSK_ & LS2CPU) ? 2'b11 : 2'b00;
+assign SIZ1 = OWN_ ? 1'b0 : SIZE1_CPUSM;
+assign _DSACK_IO = (REG_DSK_ & LS2CPU) ? 2'bzz : 2'b00;
+assign _BGACK_IO = OWN_ ? 1'bz : 1'b0;
 
 //SCSI outputs
 assign _IOR = ~(PRESET | RE);
@@ -372,23 +364,15 @@ assign _LED_DMA = OWN_;
 
 //internal connections
 assign DREQ_ = (~DMAENA | _DREQ);
-assign LEFTOVERS = (~BOEQ0 & FLUSHFIFO & FIFOEMPTY);
 assign INCNO = (INCNO_CPU | INCNO_SCSI);
 assign INCNI = (INCNI_CPU | INCNI_SCSI);
-assign aCYCLEDONE_ = ~(_BGACK_I & _AS & DSK0_IN_ & DSK1_IN_ & _STERM);
 
-assign DSACK_CPU_SM = ~(DSACK_LATCHED_[0] & DSACK_LATCHED_[1]);
-assign DSK0_IN_ = _BERR & _DSACK_I[0];
-assign DSK1_IN_ = _BERR & _DSACK_I[1];
+assign DSK0_IN_ = _BERR & _DSACK_IO[0];
+assign DSK1_IN_ = _BERR & _DSACK_IO[1];
 
-//assign PD_PORT[15:8]  = 8'bzzzzzzzz;
-//assign _CSX0 = 1'bz;
-//assign _CSX1 = 1'bz;
 assign A3 = ADDR[3];
 assign DATA_OE_ = (_AS | _CS | H_0C);
 assign PDATA_OE_ = (~_DACK & _CSS);
-
-
 
 endmodule
 

@@ -41,25 +41,28 @@ module RESDMAC_tb;
     assign _DS_o = _DS_IO;
     assign _DS_IO = OWN_ ? _DS_i : 1'bz;
 
+    reg [31:0] DATA_i ;
+    wire [31:0] DATA_o;
+    assign DATA_o = DATA_IO;
+    assign DATA_IO = OWN_ ? DATA_i : 32'bz;
+
     
-    wire        _INT     ;  // Connected to INT2 needs to be Open Collector output.
+    tri1        _INT     ;  // Connected to INT2 needs to be Open Collector output.
     wire        SIZ1     ;  // Indicates a 16 bit transfer is true. 
-    wire        R_W_IO   ;  // Read Write from CPU
-    wire        _AS_IO   ;  // Address Strobe
-    wire        _DS_IO   ;  // Data Strobe 
-    wire  [1:0] _DSACK_O ;  // Dynamic size and DATA ack.
-    reg   [1:0] _DSACK_I ;  // Dynamic size and DATA ack.
-    wire [31:0] DATA     ;  // CPU side data bus 32bit wide
+    tri1        R_W_IO   ;  // Read Write from CPU
+    tri1        _AS_IO   ;  // Address Strobe
+    tri1        _DS_IO   ;  // Data Strobe 
+    tri1 [1:0] _DSACK_IO ;  // Dynamic size and DATA ack.
+    tri1 [31:0] DATA_IO  ;  // CPU side data bus 32bit wide
     reg         _STERM   ;  // static/synchronous data ack.
     reg         SCLK     ;  // CPUCLKB
     reg         _CS      ;  // _SCSI from Fat Garry
     reg         _RST     ;  // System Reset
     reg         _BERR    ;  // Bus Error 
     reg   [6:2] ADDR     ;  // CPU address Bus, bits are actually [6:2]
-    wire        _BR      ;  // Bus Request
+    tri1        _BR      ;  // Bus Request
     reg         _BG      ;  // Bus Grant
-    wire        _BGACK_O ;  // Bus Grant Acknoledge
-    reg         _BGACK_I ;  // 
+    tri1        BGACK_IO_; // Bus Grant Acknoledge
     wire        _DMAEN   ;  // Low =  Enable Address Generator in Ramsey
     reg         _DREQ    ;  // 
     wire        _DACK    ;  // 
@@ -67,7 +70,7 @@ module RESDMAC_tb;
     wire        _IOR     ;  // Active Low read strobe
     wire        _IOW     ;  // Ative Low Write strobe
     wire        _CSS     ;  // Port 0 CS      
-    wire  [7:0] PD_PORT  ;  // 
+    tri1  [7:0] PD_PORT  ;  // 
     wire        _LED_RD  ;  // Indicated read from SDMAC or peripherial port.
     wire        _LED_WR  ;  // Indicate write to SDMAC or peripherial port.
     wire        _LED_DMA ;  // Indicate DMA cycle/busmaster.
@@ -81,9 +84,8 @@ module RESDMAC_tb;
         .R_W_IO     (R_W_IO     ),
         ._AS_IO     (_AS_IO     ),
         ._DS_IO     (_DS_IO     ),
-        ._DSACK_O   (_DSACK_O   ),
-        ._DSACK_I   (_DSACK_I   ),
-        .DATA       (DATA       ),
+        ._DSACK_IO  (_DSACK_IO  ),
+        .DATA_IO    (DATA_IO    ),
         ._STERM     (_STERM     ),
         .SCLK       (SCLK       ),
         ._CS        (_CS        ),
@@ -92,8 +94,7 @@ module RESDMAC_tb;
         .ADDR       (ADDR       ),
         ._BR        (_BR        ),
         ._BG        (_BG        ),
-        ._BGACK_O   (_BGACK_O   ),
-        ._BGACK_I   (_BGACK_I   ),
+        .BGACK_IO_   (BGACK_IO_ ),
         ._DMAEN     (_DMAEN     ),
         ._DREQ      (_DREQ      ),
         ._DACK      (_DACK      ),
@@ -116,7 +117,7 @@ module RESDMAC_tb;
 //------------------------------------------------------------------------------
 //  clk
 //------------------------------------------------------------------------------
-    localparam CLK_FREQ = 100_000_000;
+    localparam CLK_FREQ = 25_000_000;
     localparam PERIOD = 1E9/CLK_FREQ;
     initial begin
         SCLK = 0;
@@ -142,11 +143,21 @@ module RESDMAC_tb;
 //  initial values
 //------------------------------------------------------------------------------
     initial begin
-        _RST = 0;
+        _RST = 1;
         // -------- input --------
         R_W_i = 1;
         _AS_i = 1'b1;
         _DS_i = 1;
+        _CS = 1;
+        _BG = 1;
+        _DREQ = 1;
+        INTA = 0;
+        _BERR = 1;
+        _STERM = 1;
+        R_W_i = 1;
+        _AS_i = 1'b1;
+        _DS_i = 1;
+        ADDR <= 5'b11111;
 
     end
 //------------------------------------------------------------------------------
@@ -161,35 +172,34 @@ module RESDMAC_tb;
         $dumpfile("../VCD/RESDMAC_tb.vcd");
         $dumpvars(0, RESDMAC_tb);
         // -------- RESET --------
-        wait_n_clk(2);
+        wait_n_clk(1);
         _RST = 0;
-        wait_n_clko(2);
-        _RST = 1;
         wait_n_clko(1);
-        _CS = 0;
-        _BG = 1;
-        _BGACK_I = 1;
-        _DREQ = 1;
-        INTA = 0;
-        _BERR = 1;
-        _STERM = 1;
+        _RST = 1;
+        wait_n_clko(3);
+        ADDR <= 5'b10000;
+        _CS = 0; 
+        wait_n_clko(1);
+        _AS_i = 1'b0;
+        R_W_i = 1'b0;
+        DATA_i <= 32'hAABBCCDD; 
+        wait_n_clko(1);
+        _DS_i = 1'b0;
+        wait_n_clko(5);        
         R_W_i = 1;
-        _AS_i = 1'b1;
-        _DS_i = 1;
-        _DSACK_I = 2'b11;
-        ADDR = 5'b00000;
-
-
-        // --------  --------
-
-        // --------  --------
-
-        // -------- END --------
-        repeat(10) begin
-            wait_n_clk(100);
-            $stop();
-        end
+        wait_n_clko(2);
+        ADDR <= 5'b00000;
+        DATA_i <= 32'h00000000;
+        _CS = 1; 
+        wait_n_clko(2);
         $finish;
+    end
+    always @(negedge SCLK) begin
+        if (~(_DSACK_IO[0] & _DSACK_IO[1])  == 1'b1) 
+        begin
+            _AS_i <= 1'b1;
+            _DS_i <= 1'b1;    
+        end
     end
 //------------------------------------------------------------------------------
 endmodule
