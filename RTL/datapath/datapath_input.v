@@ -17,7 +17,7 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 module datapath_input (
-    inout [31:0] DATA,
+    input [31:0] DATA,
     
     input bBRIDGEIN,
     input bDIEH,
@@ -43,9 +43,10 @@ end
 assign LOWER_INPUT_DATA = DATA[15:0];
 assign UPPDER_INTPUT_DATA = DATA[31:16];
 
-assign UPPDER_OUTPUT_DATA = bDIEH ? LOWER_INPUT_DATA : 16'hzzz;
-assign LOWER_OUTPUT_DATA = bDIEL ? LOWER_INPUT_DATA : 16'hzzz;
-assign LOWER_OUTPUT_DATA = bBRIDGEIN ? UD_LATCH : 16'hzzz;
+assign UPPDER_OUTPUT_DATA = bDIEH ? LOWER_INPUT_DATA : 16'hzzzz;
+assign LOWER_OUTPUT_DATA = bDIEL ? LOWER_INPUT_DATA : (bBRIDGEIN ? UD_LATCH : 16'hzzzz);
+
+//assign LOWER_OUTPUT_DATA = bBRIDGEIN ? UD_LATCH : (bDIEL ? LOWER_INPUT_DATA : 16'hzzzz);
 
 assign ID = {UPPDER_OUTPUT_DATA, LOWER_OUTPUT_DATA};
 assign MID = DATA;

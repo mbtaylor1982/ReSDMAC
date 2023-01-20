@@ -58,7 +58,7 @@ assign SCSI_IN  = (S2F | S2CPU);
 datapath_24dec u_datapath_24dec(
     .A  (BO0     ),
     .B  (BO1     ),
-    .G  (~F2S    ),
+    .G  (F2S    ),
     .Z0 (F2S_UUD ),
     .Z1 (F2S_UMD ),
     .Z2 (F2S_LMD ),
@@ -72,9 +72,9 @@ datapath_8b_MUX u_datapath_8b_MUX(
     .C (OD[23:16]),
     .D (OD[31:24]),
     .E (ID[23:16]),
-    .F (ID[7:0] ),
+    .F (ID[7:0]),
     //selects
-    .S ({(CPU2S & ~A3), (CPU2S & A3),F2S_UUD, F2S_UMD,F2S_LMD, F2S_LLD}), 
+    .S ({(CPU2S & ~A3), (CPU2S & A3), F2S_UUD, F2S_UMD, F2S_LMD, F2S_LLD}), 
     
     .Z (SCSI_DATA_TX) //output
 );

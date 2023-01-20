@@ -17,7 +17,7 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 module datapath_output (
-    inout [31:0] DATA,  
+    output [31:0] DATA,  
     
     input [31:0] OD,
     input [31:0] MOD,

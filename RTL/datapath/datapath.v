@@ -118,7 +118,7 @@ assign DOEH_ = DOEL_;
 assign bBRIDGEIN = BRIDGEIN;
 assign bDIEH = DIEH;
 
-assign bDIEL = ~(DIEL|CPU2S);
+assign bDIEL = (DIEL|CPU2S);
 
 assign MOD_TX = S2CPU ? MOD_SCSI : MOD;
 
