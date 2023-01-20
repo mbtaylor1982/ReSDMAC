@@ -131,7 +131,13 @@ module CPU_SM_inputs (
   assign E5 = ~ (~ (nA1 & CYCLEDONE & nBGRANT_ &  LASTWORD) | ~ (ncpudff2_q & cpudff4_q) | ~ (BOEQ3 & ncpudff1_q & ncpudff3_q & ncpudff5_q));//Checked MT
   assign E6_d = (nDSACK0_ & nDSACK1_ & cpudff1_q & cpudff2_q & ncpudff3_q & cpudff4_q & cpudff5_q);//Checked MT
   assign E7 = (DMADIR & DMAENA & FIFOFULL & ncpudff1_q & ncpudff2_q & ncpudff3_q & ncpudff4_q & ncpudff5_q);//Checked MT
-  assign E8 = ~ (~ (nA1 & nBGRANT_ & CYCLEDONE & ncpudff3_q) | LASTWORD | ~ (ncpudff1_q & ncpudff2_q & cpudff4_q & ncpudff5_q));//Checked MT
+  assign E8 = 
+  ~(
+    ~(nA1 & nBGRANT_ & CYCLEDONE & ncpudff3_q) | 
+    ~(ncpudff1_q & ncpudff2_q & cpudff4_q & ncpudff5_q) |
+    LASTWORD  
+  );//Checked MT
+
   assign E9_d = (nDSACK0_ & nDSACK1_ & cpudff1_q & ncpudff3_q & ncpudff4_q & ncpudff5_q);//checked MT
   assign E10 = (A1 & nBGRANT_ & CYCLEDONE & ncpudff1_q & ncpudff2_q & ncpudff3_q & cpudff4_q & ncpudff5_q);//Checked MT
   assign E11 = (nA1 & nBGRANT_ & CYCLEDONE & ncpudff1_q & cpudff2_q & ncpudff3_q & ncpudff4_q & ncpudff5_q);//Checked MT
@@ -142,7 +148,9 @@ module CPU_SM_inputs (
   assign E16 = (BGRANT_ & ncpudff1_q & cpudff2_q & ncpudff3_q & ncpudff4_q & ncpudff5_q);//Checked MT
   assign E17 = (nCYCLEDONE & ncpudff1_q & cpudff2_q & ncpudff3_q & ncpudff4_q & ncpudff5_q);//Checked MT
   assign E18 = (BGRANT_ & ncpudff1_q & ncpudff2_q & ncpudff3_q & cpudff4_q & ncpudff5_q);//Checked MT
+
   assign E19 = (nCYCLEDONE & ncpudff1_q & ncpudff2_q & ncpudff3_q & cpudff4_q & ncpudff5_q);//Checked MT
+  
   assign E20_d = (nDSACK1_ & cpudff1_q & ncpudff2_q & ncpudff3_q & ncpudff4_q & ncpudff5_q);//Checked MT
   assign E21 = ~ (~ (BOEQ3 & FIFOEMPTY & LASTWORD) | cpudff2_q | ~ (cpudff3_q & cpudff4_q & cpudff5_q)); //Checked MT
   assign E22 = (~ DMAENA & ncpudff1_q & ncpudff4_q & cpudff5_q);//Checked MT

@@ -30,24 +30,24 @@
 
 module CPU_SM(
     input A1,
-    input aBGRANT_,
-    input aCYCLEDONE_,
+    input aBGRANT_,   
     input aDMAENA,
     input aDREQ_,
     input aFLUSHFIFO,
     input aRESET_,
+    input BOEQ0,
     input BOEQ3,
     input CLK,
     input DMADIR,
-    input DSACK,
-    input DSACK0_,
+    input DSACK0_,   
     input DSACK1_,
     input FIFOEMPTY,
     input FIFOFULL,
-    input LASTWORD,
     input RDFIFO_,
-    input RIFIFO_,
+    input RIFIFO_,    
     input STERM_,
+    input AS_,
+    input BGACK_I_,
 
     output reg BGACK,
     output reg BREQ,
@@ -77,8 +77,11 @@ reg BGRANT_;
 reg CCRESET_;
 reg DMAENA;
 reg DREQ_;
+reg [1:0] DSACK_LATCHED_;
 reg FLUSHFIFO;
 reg nCYCLEDONE;
+
+wire aCYCLEDONE_;
 
 wire BBCLK; // CPUCLK Inverted 6 time for delay.
 wire BCLK; // CPUCLK inverted 4 times for delay.
@@ -102,6 +105,7 @@ wire CYCLEDONE;
 wire DECFIFO_d;
 wire DIEH_d;
 wire DIEL_d;
+wire DSACK; 
 
 wire E0;
 wire E1;
@@ -165,6 +169,7 @@ wire F2CPUH_d;
 wire F2CPUL_d;
 wire INCFIFO_d;
 wire INCNO_d;
+wire nAS_;
 wire nBREQ_d;
 wire nBRIDGEIN_d;
 wire nCLK;
@@ -175,6 +180,7 @@ wire PDS_d;
 wire PLHW_d;
 wire PLLW_d;
 wire SIZE1_d;
+wire LASTWORD;
 
 CPU_SM_inputs u_CPU_SM_inputs(
     .A1           (A1           ),
@@ -510,9 +516,25 @@ end
 //clocked outputs
 always @(posedge BCLK or negedge CCRESET_) begin
     if (CCRESET_ == 1'b0) begin
-        //BGACK <= 1'b0;
-        //PAS <= 1'b0;
-        //PDS <= 1'b0;
+        BGACK <= 1'b0;
+        PAS <= 1'b0;
+        PDS <= 1'b0;
+        BREQ <= 1'b0;
+        BRIDGEIN <= 1'b0;
+        BRIDGEOUT <= 1'b0;
+        DECFIFO <= 1'b0;
+        DIEH <= 1'b0;
+        DIEL <= 1'b0;
+        F2CPUH <= 1'b0;
+        F2CPUL <= 1'b0;
+        INCFIFO <= 1'b0;
+        INCNI <= 1'b0;
+        INCNO <= 1'b0;
+        PLHW <= 1'b0;
+        PLLW <= 1'b0;
+        SIZE1 <= 1'b0;
+        STOPFLUSH <= 1'b0;
+
     end
     else begin
         BGACK <= BGACK_d;
@@ -525,7 +547,7 @@ always @(posedge BCLK or negedge CCRESET_) begin
         F2CPUH <= F2CPUH_d;
         F2CPUL <= F2CPUL_d;
         INCFIFO <= INCFIFO_d;
-        INCNI <= nINCNI_d;
+        INCNI <= ~nINCNI_d;
         INCNO <= INCNO_d;
         PAS <= PAS_d;
         PDS <= PDS_d;
@@ -543,6 +565,17 @@ always @(posedge BCLK or negedge CCRESET_) begin
         STATE <= NEXT_STATE;
 end
 
+
+always @(posedge nCLK or negedge nAS_) begin
+    if (nAS_ == 1'b0)
+        DSACK_LATCHED_ <= 2'b11;
+    else 
+        DSACK_LATCHED_ <= {DSACK1_, DSACK0_};
+end
+
+assign aCYCLEDONE_ = ~(BGACK_I_ & AS_ & DSACK0_ & DSACK1_ & STERM_);
+assign LASTWORD = (~BOEQ0 & aFLUSHFIFO & FIFOEMPTY);
+
 assign NEXT_STATE = {cpudff5_d, cpudff4_d, cpudff3_d, cpudff2_d, cpudff1_d};
 
 assign cpudff1_q = STATE[0];
@@ -551,11 +584,11 @@ assign cpudff3_q = STATE[2];
 assign cpudff4_q = STATE[3];
 assign cpudff5_q = STATE[4];
 
-
-
 assign BBCLK = BCLK; // may need to change this to add delays
 assign BCLK = CLK; // may need to change this to add delays
 assign CYCLEDONE = ~nCYCLEDONE;
+assign DSACK = ~(DSACK_LATCHED_[0] & DSACK_LATCHED_[1]);
+assign nAS_ = ~AS_;
 assign nCLK = ~CLK;
 
 endmodule

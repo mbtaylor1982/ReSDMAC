@@ -39,8 +39,6 @@ module CPU_SM_tb;
     reg     STERM_     ;  // 
     reg     DSACK0_    ;  // 
     reg     DSACK1_    ;  // 
-    reg     DSACK      ;  // 
-    reg     aCYCLEDONE_;  // 
     reg     CLK        ;  // 
     reg     DMADIR     ;  // 
     reg     A1         ;  // 
@@ -50,8 +48,8 @@ module CPU_SM_tb;
     wire    BRIDGEOUT  ;  // 
     wire    DIEH       ;  // 
     wire    DIEL       ;  // 
-    reg     LASTWORD   ;  // 
     reg     BOEQ3      ;  // 
+    reg     BOEQ0      ;  // 
     reg     FIFOFULL   ;  // 
     reg     FIFOEMPTY  ;  // 
     reg     RDFIFO_    ;  // 
@@ -66,6 +64,8 @@ module CPU_SM_tb;
     reg     aDMAENA    ;  // 
     wire    PLLW       ;  // 
     wire    PLHW       ;  // 
+    reg     AS_        ;  //
+    reg     BGACK_I_   ;  // 
     // module
     CPU_SM uut (
         .PAS            (PAS            ),
@@ -78,8 +78,6 @@ module CPU_SM_tb;
         .STERM_         (STERM_         ),
         .DSACK0_        (DSACK0_        ),
         .DSACK1_        (DSACK1_        ),
-        .DSACK          (DSACK          ),
-        .aCYCLEDONE_    (aCYCLEDONE_    ),
         .CLK            (CLK            ),
         .DMADIR         (DMADIR         ),
         .A1             (A1             ),
@@ -89,7 +87,7 @@ module CPU_SM_tb;
         .BRIDGEOUT      (BRIDGEOUT      ),
         .DIEH           (DIEH           ),
         .DIEL           (DIEL           ),
-        .LASTWORD       (LASTWORD       ),
+        .BOEQ0          (BOEQ0          ),
         .BOEQ3          (BOEQ3          ),
         .FIFOFULL       (FIFOFULL       ),
         .FIFOEMPTY      (FIFOEMPTY      ),
@@ -104,7 +102,9 @@ module CPU_SM_tb;
         .STOPFLUSH      (STOPFLUSH      ),
         .aDMAENA        (aDMAENA        ),
         .PLLW           (PLLW           ),
-        .PLHW           (PLHW           )
+        .PLHW           (PLHW           ),
+        .AS_            (AS_            ),
+        .BGACK_I_       (BGACK_I_       )
     );
 //------------------------------------------------------------------------------
 //  localparam
@@ -114,7 +114,7 @@ module CPU_SM_tb;
 //  clk
 //------------------------------------------------------------------------------
     localparam CLK_FREQ = 25_000_000;
-    localparam PERIOD = 25E6/CLK_FREQ;
+    localparam PERIOD = 1E9/CLK_FREQ;
     initial begin
         $display("*Testing SDMAC CPU_SM.v Module*");
         $dumpfile("../CPU_SM/VCD/CPU_SM_tb.vcd");
@@ -144,20 +144,22 @@ module CPU_SM_tb;
     initial begin
         aRESET_ = 0;
         // -------- input --------
-        A1 = 1'b0;
-        aBGRANT_ = 1'b0;
-        aCYCLEDONE_ = 1'b1;
+        A1 = 1'b1;
+        aBGRANT_ = 1'b1;
+        
+        AS_ = 1'b0;
         aDMAENA = 1'b0;
         aDREQ_ = 1'b1;
         aFLUSHFIFO = 1'b0;
-        BOEQ3 = 1'b0;
+        BOEQ0 = 1'b0;
+        BOEQ3 = 1'b1;
         DMADIR = 1'b1;
-        DSACK = 1'b0;
+
         DSACK0_ = 1'b1;
         DSACK1_ = 1'b1;
-        FIFOEMPTY = 1'b1;
-        FIFOFULL = 1'b0;
-        LASTWORD = 1'b0;
+        FIFOEMPTY = 1'b0;
+        FIFOFULL = 1'b1;
+
         RDFIFO_ = 1'b1;
         RIFIFO_ = 1'b1;
         STERM_ = 1'b1;
@@ -175,10 +177,21 @@ module CPU_SM_tb;
         aRESET_ = 1;
         wait_n_clko(1);
         aDMAENA = 1;
-        wait_n_clko(10);
+        wait_n_clko(2);
+        AS_ = 1'b1; 
+        wait_n_clko(2);
+        aBGRANT_ = 1'b0;
+        wait_n_clko(1);
+        wait_n_clko(50);
         
 
         $finish;
     end
+    
+  always @(BGACK) begin
+    BGACK_I_ <= ~BGACK;  
+    if (BGACK == 1'b0 ) aBGRANT_ <= 1'b1;
+  end
+
 //------------------------------------------------------------------------------
 endmodule
