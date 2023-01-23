@@ -35,7 +35,8 @@ wire CYCLE_END;
 
 assign CYCLE_ACTIVE = ~(AS_| DMAC_);
 assign CYCLE_TERM = (TERM_COUNTER == 3'd4);
-assign CYCLE_END = ~(AS_| WDREGREQ | h_0C);
+//assign CYCLE_END = ~(AS_| WDREGREQ | h_0C); //this is for production
+assign CYCLE_END = ~(AS_| WDREGREQ); //just for testing
 
 always@(posedge nCPUCLK or posedge AS_) begin
   if (AS_ == 1'b1)

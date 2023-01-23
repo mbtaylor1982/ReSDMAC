@@ -123,7 +123,7 @@ module CPU_SM_inputs (
   assign ncpudff4_q = ~ cpudff4_q;
   assign ncpudff5_q = ~ cpudff5_q;
   
-  assign E0 = ~ (~ (DMADIR & FIFOEMPTY & nFIFOFULL & FLUSHFIFO) | ~ (DMAENA & nLASTWORD & ncpudff3_q & 1'b1) | ~ (ncpudff1_q & ncpudff2_q & ncpudff4_q & ncpudff5_q));//checked MT
+  assign E0 = ~ (~ (DMADIR & FIFOEMPTY & nFIFOFULL & FLUSHFIFO) | ~ (DMAENA & nLASTWORD & ncpudff3_q) | ~ (ncpudff1_q & ncpudff2_q & ncpudff4_q & ncpudff5_q));//checked MT
   assign E1 = (nDMADIR & DMAENA & ~DREQ_ & FIFOEMPTY & ncpudff1_q & ncpudff2_q & ncpudff4_q & cpudff5_q);//checked MT
   assign E2 = ~ (~ (DMADIR & DMAENA & nFIFOEMPTY & FLUSHFIFO) | ~ (ncpudff1_q & ncpudff2_q & ncpudff4_q & ncpudff5_q) | cpudff3_q);//checked MT
   assign E3 = ~ (~ (DMADIR & DMAENA & FLUSHFIFO & LASTWORD) | (ncpudff1_q & ncpudff2_q & ncpudff4_q & cpudff5_q) | cpudff3_q);//Checked MT

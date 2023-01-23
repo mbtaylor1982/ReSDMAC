@@ -170,7 +170,7 @@ wire BO1;
 wire A3;
 wire DSK0_IN_;
 wire DSK1_IN_;
-wire _BGACK_I;
+tri1 _BGACK_I;
 
 registers u_registers(
     .ADDR      ({1'b0, ADDR, 2'b00}),
@@ -221,9 +221,9 @@ CPU_SM u_CPU_SM(
     .BOEQ3         (BOEQ3       ),
     .FIFOFULL      (FIFOFULL    ),
     .FIFOEMPTY     (FIFOEMPTY   ),
-    .RDFIFO_       (RDFIFO_o    ),
+    .RDFIFO_       (~RDFIFO_o    ),
     .DECFIFO       (DECFIFO     ),
-    .RIFIFO_       (RIFIFO_o    ),
+    .RIFIFO_       (~RIFIFO_o    ),
     .INCFIFO       (INCFIFO     ),
     .INCNO         (INCNO_CPU   ),
     .INCNI         (INCNI_CPU   ),

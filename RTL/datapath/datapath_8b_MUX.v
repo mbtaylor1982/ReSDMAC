@@ -39,7 +39,7 @@ always @(A,B,C,D,E,F,S) begin
         6'b001000 : Z = D;
         6'b010000 : Z = E;
         6'b100000 : Z = F;
-        default : Z = 8'b00000000; 
+        default : Z = 8'bzzzzzzzz; 
     endcase
     
 end

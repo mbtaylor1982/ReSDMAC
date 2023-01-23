@@ -54,10 +54,20 @@ module CPU_SM_outputs (
 );
 
 
-assign nINCNI_d = (~(E32 | E48)); 
+assign nINCNI_d = ~(E32 | E48); 
 //assign INCNI_d = (E32 | E48);
-assign nBREQ_d = (~((E2 | E3 | E4 | E5 | E7 | E8) | (E10 | E11 | E12 | E16 | E17 | E18) | E19)); 
+assign nBREQ_d = ~(E2 | E3 | E4 | E5 | E7 | E8 | E10 | E11 | E12 | E16 | E17 | E18 | E19);
 
+/*
+(
+    ~(
+        (E2 | E3 | E4 | E5 | E7 | E8) | 
+        (E10 | E11 | E12 | E16 | E17 | E18) | 
+        E19
+    )
+); 
+*/
+   
 //assign BREQ_d = ((E2 | E3 | E4 | E5 | E7 | E8) | (E10 | E11 | E12 | E16 | E17 | E18) | E19);
 
 
@@ -74,7 +84,18 @@ assign SIZE1_d = (~(SIZE1_X & SIZE1_Y & SIZE1_Z));
 wire PAS_X, PAS_Y;
 
 assign PAS_X = (~(~(~E62 & ~E61 & ~E60 & ~E58) |~(~E56 & ~E53 & ~E48 & ~E45) | ~(~E34 & ~E26 & ~E21)) & ~(E50_d_E52_d & ~DSACK));
-assign PAS_Y = (~(((~DSACK & (E24_sd | E29_sd | E33_sd_E38_s | E43_s_E49_sd | E51_s_E54_sd))|(E37_s-E44_s | E40_s_E41_s | E36_s_E47_s | E57_s | E46_s_E59_s)) & STERM_));
+assign PAS_Y = 
+(
+    ~(
+        (
+            (~DSACK & 
+                (E24_sd | E29_sd | E33_sd_E38_s | E43_s_E49_sd | E51_s_E54_sd)
+            )|
+            (E37_s_E44_s | E40_s_E41_s | E36_s_E47_s | E57_s | E46_s_E59_s)
+        ) & 
+        STERM_
+    )
+);
 
 assign PAS_d = (~(PAS_X & PAS_Y));
 
@@ -82,7 +103,7 @@ assign PAS_d = (~(PAS_X & PAS_Y));
 wire PDS_X, PDS_Y;
 
 assign PDS_X = ((~E62 & ~E61 & ~E60 & ~E48 & ~E56) & ~(E50_d_E52_d & ~DSACK));
-assign PDS_Y = (~(((~DSACK & (E24_sd | E29_sd | E33_sd_E38_s | E43_s_E49_sd | E51_s_E54_sd))|(E37_s-E44_s | E40_s_E41_s | E36_s_E47_s | E57_s | E46_s_E59_s)) & STERM_));
+assign PDS_Y = (~(((~DSACK & (E24_sd | E29_sd | E33_sd_E38_s | E43_s_E49_sd | E51_s_E54_sd))|(E37_s_E44_s | E40_s_E41_s | E36_s_E47_s | E57_s | E46_s_E59_s)) & STERM_));
 //assign PDS_Y = PAS_Y; //looks like these are the same equations, possible gate saving.
 
 assign PDS_d = (~(PDS_X & PDS_Y));
