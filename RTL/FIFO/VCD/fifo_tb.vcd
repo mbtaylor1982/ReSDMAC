@@ -1,5 +1,5 @@
 $date
-	Sat Nov 26 18:48:48 2022
+	Mon Jan 16 11:46:02 2023
 $end
 $version
 	Icarus Verilog
@@ -8,13 +8,13 @@ $timescale
 	100ps
 $end
 $scope module fifo_tb $end
-$var wire 1 ! BO0 $end
-$var wire 1 " BO1 $end
-$var wire 32 # OD [31:0] $end
-$var wire 1 $ FIFOFULL $end
-$var wire 1 % FIFOEMPTY $end
-$var wire 1 & BOEQ3 $end
-$var wire 1 ' BOEQ0 $end
+$var wire 32 ! OD [31:0] $end
+$var wire 1 " FIFOFULL $end
+$var wire 1 # FIFOEMPTY $end
+$var wire 1 $ BOEQ3 $end
+$var wire 1 % BOEQ0 $end
+$var wire 1 & BO1 $end
+$var wire 1 ' BO0 $end
 $var reg 1 ( ACR_WR $end
 $var reg 1 ) DECFIFO $end
 $var reg 1 * H_0C $end
@@ -30,8 +30,6 @@ $var reg 1 3 MID25 $end
 $var reg 1 4 RST_FIFO_ $end
 $scope module dut_fifo $end
 $var wire 1 ( ACR_WR $end
-$var wire 1 ! BO0 $end
-$var wire 1 " BO1 $end
 $var wire 1 ) DECFIFO $end
 $var wire 1 * H_0C $end
 $var wire 32 5 ID [31:0] $end
@@ -43,19 +41,21 @@ $var wire 1 0 LBYTE_ $end
 $var wire 1 1 LHWORD $end
 $var wire 1 2 LLWORD $end
 $var wire 1 3 MID25 $end
-$var wire 32 6 OD [31:0] $end
 $var wire 1 4 RST_FIFO_ $end
-$var wire 3 7 WRITE_PTR [2:0] $end
-$var wire 1 8 UUWS $end
-$var wire 1 9 UMWS $end
-$var wire 3 : READ_PTR [2:0] $end
-$var wire 1 ; LMWS $end
-$var wire 1 < LLWS $end
-$var wire 1 $ FIFOFULL $end
-$var wire 1 % FIFOEMPTY $end
-$var wire 2 = BYTE_PTR [1:0] $end
-$var wire 1 & BOEQ3 $end
-$var wire 1 ' BOEQ0 $end
+$var wire 3 6 WRITE_PTR [2:0] $end
+$var wire 1 7 UUWS $end
+$var wire 1 8 UMWS $end
+$var wire 3 9 READ_PTR [2:0] $end
+$var wire 1 : LMWS $end
+$var wire 1 ; LLWS $end
+$var wire 1 " FIFOFULL $end
+$var wire 1 # FIFOEMPTY $end
+$var wire 2 < BYTE_PTR [1:0] $end
+$var wire 1 $ BOEQ3 $end
+$var wire 1 % BOEQ0 $end
+$var wire 1 & BO1 $end
+$var wire 1 ' BO0 $end
+$var reg 32 = OD [31:0] $end
 $scope module u_byte_ptr $end
 $var wire 1 ( ACR_WR $end
 $var wire 1 > BO1_CLK $end
@@ -74,8 +74,8 @@ $var wire 1 - INCFIFO $end
 $var wire 1 4 RST_FIFO_ $end
 $var wire 1 C clk $end
 $var reg 3 D COUNT [2:0] $end
-$var reg 1 % FIFOEMPTY $end
-$var reg 1 $ FIFOFULL $end
+$var reg 1 # FIFOEMPTY $end
+$var reg 1 " FIFOFULL $end
 $upscope $end
 $scope module u_next_in_cntr $end
 $var wire 1 . CLK $end
@@ -91,17 +91,20 @@ $scope module u_write_strobes $end
 $var wire 1 0 LBYTE_ $end
 $var wire 1 1 LHWORD $end
 $var wire 1 2 LLWORD $end
-$var wire 1 < LLWS $end
-$var wire 1 ; LMWS $end
+$var wire 1 ; LLWS $end
+$var wire 1 : LMWS $end
 $var wire 2 G PTR [1:0] $end
-$var wire 1 9 UMWS $end
-$var wire 1 8 UUWS $end
+$var wire 1 8 UMWS $end
+$var wire 1 7 UUWS $end
 $var wire 1 H BO1 $end
 $var wire 1 I BO0 $end
 $upscope $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
 #0
 $dumpvars
 0I
@@ -116,14 +119,14 @@ xB
 x@
 bx0 ?
 x>
-bx0 =
-x<
+bx =
+bx0 <
 x;
-b0 :
-x9
+x:
+b0 9
 x8
-b0 7
-bx 6
+x7
+b0 6
 bx 5
 04
 x3
@@ -138,18 +141,18 @@ bx +
 x*
 0)
 x(
-x'
-0&
-1%
+0'
+x&
+x%
 0$
-bx #
-z"
-z!
+1#
+0"
+bx !
 $end
 #200
 14
 #400
-0%
+0#
 b1 D
 1C
 1-
@@ -199,14 +202,14 @@ b111 D
 0C
 0-
 #3200
-1$
+1"
 1C
 1-
 #3400
 0C
 0-
 #3600
-0$
+0"
 b110 D
 1C
 1)
@@ -256,7 +259,7 @@ b0 D
 0C
 0)
 #6400
-1%
+1#
 1C
 1)
 #6600
@@ -270,49 +273,49 @@ b0 D
 #7000
 14
 #7200
-b1 7
+b1 6
 b1 E
 1.
 #7400
 0.
 #7600
-b10 7
+b10 6
 b10 E
 1.
 #7800
 0.
 #8000
-b11 7
+b11 6
 b11 E
 1.
 #8200
 0.
 #8400
-b100 7
+b100 6
 b100 E
 1.
 #8600
 0.
 #8800
-b101 7
+b101 6
 b101 E
 1.
 #9000
 0.
 #9200
-b110 7
+b110 6
 b110 E
 1.
 #9400
 0.
 #9600
-b111 7
+b111 6
 b111 E
 1.
 #9800
 0.
 #10000
-b0 7
+b0 6
 b0 E
 1.
 #10200
@@ -322,54 +325,54 @@ b0 E
 #10400
 14
 #10600
-b1 :
+b1 9
 b1 F
 1/
 #10800
 0/
 #11000
-b10 :
+b10 9
 b10 F
 1/
 #11200
 0/
 #11400
-b11 :
+b11 9
 b11 F
 1/
 #11600
 0/
 #11800
-b100 :
+b100 9
 b100 F
 1/
 #12000
 0/
 #12200
-b101 :
+b101 9
 b101 F
 1/
 #12400
 0/
 #12600
-b110 :
+b110 9
 b110 F
 1/
 #12800
 0/
 #13000
-b111 :
+b111 9
 b111 F
 1/
 #13200
 0/
 #13400
-b0 :
+b0 9
 b0 F
 1/
 #13600
-0<
-09
+0;
+08
 0>
 03
 0(
@@ -385,16 +388,17 @@ b1010101010101010101010101010101 5
 #13800
 14
 #14000
-bx01010101xxxxxxxx01010101 #
-bx01010101xxxxxxxx01010101 6
-08
-0;
-x<
-x9
+bx01010101xxxxxxxx01010101 !
+bx01010101xxxxxxxx01010101 =
+07
+0:
+x;
+x8
 1I
-x&
-0'
-bx1 =
+1'
+x$
+0%
+bx1 <
 bx1 ?
 bx1 G
 1A
@@ -404,16 +408,17 @@ bx1 G
 0>
 0,
 #14400
-b1010101010101010101010101010101 #
-b1010101010101010101010101010101 6
-x8
-x;
-0<
-09
+b1010101010101010101010101010101 !
+b1010101010101010101010101010101 =
+x7
+x:
+0;
+08
 0I
-0&
-x'
-bx0 =
+0'
+0$
+x%
+bx0 <
 bx0 ?
 bx0 G
 0A
@@ -423,14 +428,15 @@ bx0 G
 0>
 0,
 #14800
-08
-0;
-x<
-x9
+07
+0:
+x;
+x8
 1I
-x&
-0'
-bx1 =
+1'
+x$
+0%
+bx1 <
 bx1 ?
 bx1 G
 1A
@@ -440,14 +446,15 @@ bx1 G
 0>
 0,
 #15200
-x8
-x;
-0<
-09
+x7
+x:
+0;
+08
 0I
-0&
-x'
-bx0 =
+0'
+0$
+x%
+bx0 <
 bx0 ?
 bx0 G
 0A
@@ -464,15 +471,17 @@ bx0 G
 #15800
 14
 #16000
-08
-0;
-1<
+07
+0:
+1;
 1H
-1I
-1B
 1&
-0'
-b11 =
+1I
+1'
+1B
+1$
+0%
+b11 <
 b11 ?
 b11 G
 1A
@@ -482,11 +491,12 @@ b11 G
 0>
 0,
 #16400
-1;
-0<
+1:
+0;
 0I
-0&
-b10 =
+0'
+0$
+b10 <
 b10 ?
 b10 G
 0A
@@ -503,13 +513,15 @@ b10 G
 #16920
 14
 #17120
-0;
-19
+0:
+18
 0H
-1I
-0B
 0&
-b1 =
+1I
+1'
+0B
+0$
+b1 <
 b1 ?
 b1 G
 1A
@@ -519,11 +531,12 @@ b1 G
 0>
 0,
 #17520
-18
-09
+17
+08
 0I
-1'
-b0 =
+0'
+1%
+b0 <
 b0 ?
 b0 G
 0A
@@ -533,64 +546,65 @@ b0 G
 0>
 0,
 #17920
-08
-19
+07
+18
 1I
-0'
-b1 =
+1'
+0%
+b1 <
 b1 ?
 b1 G
 1A
 1>
 1,
 #18120
-bx #
-bx 6
-b1 :
+bx !
+bx =
+b1 9
 b1 F
 1/
 #18320
 0/
 #18520
-b10 :
+b10 9
 b10 F
 1/
 #18720
 0/
 #18920
-b11 :
+b11 9
 b11 F
 1/
 #19120
 0/
 #19320
-b100 :
+b100 9
 b100 F
 1/
 #19520
 0/
 #19720
-b101 :
+b101 9
 b101 F
 1/
 #19920
 0/
 #20120
-b110 :
+b110 9
 b110 F
 1/
 #20320
 0/
 #20520
-b111 :
+b111 9
 b111 F
 1/
 #20720
 0/
 #20920
-b1010101010101010101010101010101 #
-b1010101010101010101010101010101 6
-b0 :
+b1010101010101010101010101010101 !
+b1010101010101010101010101010101 =
+b0 9
 b0 F
 1/
 #21120

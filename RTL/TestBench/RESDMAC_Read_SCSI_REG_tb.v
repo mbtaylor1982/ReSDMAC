@@ -59,7 +59,7 @@ module RESDMAC_tb;
     reg         _CS      ;  // _SCSI from Fat Garry
     reg         _RST     ;  // System Reset
     reg         _BERR    ;  // Bus Error 
-    reg   [6:2] ADDR     ;  // CPU address Bus, bits are actually [6:2]
+    reg   [31:0] ADDR     ;  // CPU address Bus, bits are actually [6:2]
     tri1        _BR      ;  // Bus Request
     reg         _BG      ;  // Bus Grant
     tri1        BGACK_IO_; // Bus Grant Acknoledge
@@ -91,7 +91,7 @@ module RESDMAC_tb;
         ._CS        (_CS        ),
         ._RST       (_RST       ),
         ._BERR      (_BERR      ),
-        .ADDR       (ADDR       ),
+        .ADDR       (ADDR[6:2]  ),
         ._BR        (_BR        ),
         ._BG        (_BG        ),
         .BGACK_IO_   (BGACK_IO_ ),
@@ -148,7 +148,7 @@ module RESDMAC_tb;
         R_W_i = 1;
         _AS_i = 1'b1;
         _DS_i = 1;
-        _CS = 1;
+        //_CS = 1;
         _BG = 1;
         _DREQ = 1;
         INTA = 0;
@@ -157,7 +157,9 @@ module RESDMAC_tb;
         R_W_i = 1;
         _AS_i = 1'b1;
         _DS_i = 1;
-        ADDR <= 5'b11111;
+        ADDR <= 32'hffffffff;
+        DATA_i <= 32'hzzzzzzzz;
+        
 
     end
 //------------------------------------------------------------------------------
@@ -168,8 +170,8 @@ module RESDMAC_tb;
 //  run simulation
 //------------------------------------------------------------------------------
     initial begin
-        $display("*Testing RESDMAC TOP Module*");
-        $dumpfile("../VCD/RESDMAC_tb.vcd");
+        $display("*Testing RESDMAC TOP Module Read From SCSI Registers*");
+        $dumpfile("../VCD/RESDMAC_Read_SCSI_REG_tb.vcd");
         $dumpvars(0, RESDMAC_tb);
         // -------- RESET --------
         wait_n_clk(1);
@@ -177,20 +179,20 @@ module RESDMAC_tb;
         wait_n_clko(1);
         _RST = 1;
         wait_n_clko(3);
-        ADDR <= 5'b10000;
-        _CS = 0; 
+        ADDR <= 32'h00DD0040;
+
         wait_n_clko(1);
         _AS_i = 1'b0;
-        R_W_i = 1'b0;
-        DATA_i <= 32'hAABBCCDD; 
+        R_W_i = 1'b1;
+        //DATA_i <= 32'hAABBCCDD; 
         wait_n_clko(1);
         _DS_i = 1'b0;
         wait_n_clko(5);        
         R_W_i = 1;
         wait_n_clko(2);
-        ADDR <= 5'b00000;
-        DATA_i <= 32'h00000000;
-        _CS = 1; 
+        ADDR <= 32'hffffffff;
+        //DATA_i <= 32'hffffffff;
+
         wait_n_clko(2);
         $finish;
     end
@@ -201,5 +203,11 @@ module RESDMAC_tb;
             _DS_i <= 1'b1;    
         end
     end
+
+    always @(ADDR) begin
+        _CS <= ~(~ADDR[31] & ~ADDR[30] & ~ADDR[29] & ~ADDR[28]  & ~ADDR[27] & ~ADDR[26] & ~ADDR[25]  & ~ADDR[24] & ADDR[23]  
+        & ADDR[22] & ~ADDR[21] & ADDR[20]  & ADDR[19] & ADDR[18] & ~ADDR[17]  & ADDR[16]);
+    end
+
 //------------------------------------------------------------------------------
 endmodule

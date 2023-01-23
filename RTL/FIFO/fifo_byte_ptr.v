@@ -37,8 +37,11 @@ always @(posedge INCBO or negedge RST_FIFO_) begin
         BO0 <= ~BO0;    
 end
 
-always @(posedge BO1_CLK) begin
-    BO1 <= MUXZ;
+always @(posedge BO1_CLK or negedge RST_FIFO_) begin
+    if (RST_FIFO_ == 1'b0)
+        BO1 <= 1'b0;
+    else
+        BO1 <= MUXZ;
 end
 
 assign MUXZ = (H_0C) ? ~MID25 : (BO0 ^ ~BO1);

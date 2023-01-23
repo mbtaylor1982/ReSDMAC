@@ -67,6 +67,7 @@ assign DATA = S2CPU ? MOD : 32'hzzzzzzzz;
 */
 
 assign DATA = S2CPU ? MOD : {(DOEH_ ? 16'hzzzz : UPPER_OUTPUT_DATA), (DOEL_ ? 16'hzzzz : LOWER_OUTPUT_DATA)};
+//assign DATA = MOD | {(DOEH_ ? 16'hzzzz : UPPER_OUTPUT_DATA), (DOEL_ ? 16'hzzzz : LOWER_OUTPUT_DATA)};
 
 
 endmodule
