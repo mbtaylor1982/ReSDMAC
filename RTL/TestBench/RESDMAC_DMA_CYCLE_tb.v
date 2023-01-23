@@ -62,7 +62,7 @@ module RESDMAC_tb;
     reg  [31:0] ADDR     ;  // CPU address Bus, bits are actually [6:2]
     tri1        _BR      ;  // Bus Request
     reg         _BG      ;  // Bus Grant
-    tri1        BGACK_IO_; // Bus Grant Acknoledge
+    tri1        _BGACK_IO; // Bus Grant Acknoledge
     wire        _DMAEN   ;  // Low =  Enable Address Generator in Ramsey
     reg         _DREQ    ;  // 
     wire        _DACK    ;  // 
@@ -94,7 +94,7 @@ module RESDMAC_tb;
         .ADDR       (ADDR[6:2]  ),
         ._BR        (_BR        ),
         ._BG        (_BG        ),
-        .BGACK_IO_   (BGACK_IO_ ),
+        ._BGACK_IO   (_BGACK_IO ),
         ._DMAEN     (_DMAEN     ),
         ._DREQ      (_DREQ      ),
         ._DACK      (_DACK      ),
@@ -238,9 +238,9 @@ module RESDMAC_tb;
         wait_n_clko(2);
         ADDR <= 32'hffffffff;
         DATA_i <= 32'hzzzzzzzz;
-        wait_n_clko(2);
+        wait_n_clko(1);
         _BG <= 1'b0;
-        wait_n_clko(100);
+        wait_n_clko(50);
         $finish;
     end
     always @(negedge SCLK) begin

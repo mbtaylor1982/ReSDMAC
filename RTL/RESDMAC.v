@@ -50,7 +50,7 @@ module RESDMAC(
 
     output   _BR,        //Bus Request
     input    _BG,        //Bus Grant
-    inout   tri1 BGACK_IO_,  //Bus Grant Acknoledge
+    inout   tri1 _BGACK_IO,  //Bus Grant Acknoledge
 
     output _DMAEN,      //Low =  Enable Address Generator in Ramsey
     
