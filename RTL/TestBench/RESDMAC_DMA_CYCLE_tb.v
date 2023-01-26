@@ -182,7 +182,7 @@ module RESDMAC_tb;
         //Setup DMA Direction to in
         wait_n_clko(2);
         ADDR <= 32'h00DD0008;
-        DATA_i <= 32'h00000002; 
+        DATA_i <= 32'h00000006; 
         wait_n_clko(1);
         _AS_i = 1'b0;
         R_W_i = 1'b0;
@@ -208,7 +208,7 @@ module RESDMAC_tb;
         wait_n_clko(2);
         ADDR <= 32'hffffffff;
         DATA_i <= 32'hzzzzzzzz;
-
+        
         //Write Source Addr to the ACR in Ramsey.
         wait_n_clko(2);
         ADDR <= 32'h00DD000C;
@@ -239,11 +239,11 @@ module RESDMAC_tb;
         ADDR <= 32'hffffffff;
         DATA_i <= 32'hzzzzzzzz;
         wait_n_clko(1);
-        _BG <= 1'b0;
+        //_BG <= 1'b0;
         wait_n_clko(50);
         $finish;
     end
-    always @(negedge SCLK) begin
+    always @(posedge SCLK) begin
         if (~(_DSACK_IO[0] & _DSACK_IO[1])  == 1'b1) 
         begin
             _AS_i <= 1'b1;
@@ -254,6 +254,20 @@ module RESDMAC_tb;
     always @(ADDR) begin
         _CS <= ~(~ADDR[31] & ~ADDR[30] & ~ADDR[29] & ~ADDR[28]  & ~ADDR[27] & ~ADDR[26] & ~ADDR[25]  & ~ADDR[24] & ADDR[23]  
         & ADDR[22] & ~ADDR[21] & ADDR[20]  & ADDR[19] & ADDR[18] & ~ADDR[17]  & ADDR[16]);
+    end
+
+    always @(posedge SCLK) begin
+        if (_BGACK_IO == 1'b0) 
+        begin
+            _BG <= 1'b1;     
+        end
+    end
+
+    always @(posedge SCLK) begin
+        if ((_BR  == 1'b0) && (_BGACK_IO == 1'b1) && (_AS_i == 1'b1)) 
+        begin
+            _BG <= 1'b0;    
+        end
     end
 
 

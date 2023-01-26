@@ -30,11 +30,8 @@ module CPU_SM_inputs (
   input FIFOFULL,
   input FLUSHFIFO,
   input LASTWORD,
-  input cpudff1_q,
-  input cpudff2_q,
-  input cpudff3_q,
-  input cpudff4_q,
-  input cpudff5_q,
+  input [4:0] STATE, 
+
   output E0,
   output E1,
   output E2,
@@ -91,11 +88,6 @@ module CPU_SM_inputs (
   output E61,
   output E62
 );
-  wire ncpudff1_q;
-  wire ncpudff2_q;
-  wire ncpudff3_q;
-  wire ncpudff4_q;
-  wire ncpudff5_q;
 
   wire nA1;
   wire nBGRANT_;
@@ -106,86 +98,76 @@ module CPU_SM_inputs (
   wire nFIFOEMPTY;
   wire nFIFOFULL;
   wire nLASTWORD;
-  
-  assign nA1 = ~ A1;
-  assign nBGRANT_ = ~ BGRANT_;
-  assign nCYCLEDONE = ~ CYCLEDONE;
-  assign nDMADIR = ~ DMADIR;
-  assign nDSACK0_ = ~ DSACK0_;
-  assign nDSACK1_ = ~ DSACK1_;
-  assign nFIFOEMPTY = ~ FIFOEMPTY;
-  assign nFIFOFULL = ~ FIFOFULL;
-  assign nLASTWORD = ~ LASTWORD;
+  wire nDREQ_;
+  wire nBOEQ3;
+ 
+  assign nA1          = ~A1;
+  assign nBGRANT_     = ~BGRANT_;
+  assign nCYCLEDONE   = ~CYCLEDONE;
+  assign nDMADIR      = ~DMADIR;
+  assign nDSACK0_     = ~DSACK0_;
+  assign nDSACK1_     = ~DSACK1_;
+  assign nFIFOEMPTY   = ~FIFOEMPTY;
+  assign nFIFOFULL    = ~FIFOFULL;
+  assign nLASTWORD    = ~LASTWORD;
+  assign nDREQ_       = ~DREQ_;
+  assign nBOEQ3       = ~BOEQ3;
+  assign nDMAENA      = ~DMAENA;
 
-  assign ncpudff1_q = ~ cpudff1_q;
-  assign ncpudff2_q = ~ cpudff2_q;
-  assign ncpudff3_q = ~ cpudff3_q;
-  assign ncpudff4_q = ~ cpudff4_q;
-  assign ncpudff5_q = ~ cpudff5_q;
-  
-  assign E0 = ~ (~ (DMADIR & FIFOEMPTY & nFIFOFULL & FLUSHFIFO) | ~ (DMAENA & nLASTWORD & ncpudff3_q) | ~ (ncpudff1_q & ncpudff2_q & ncpudff4_q & ncpudff5_q));//checked MT
-  assign E1 = (nDMADIR & DMAENA & ~DREQ_ & FIFOEMPTY & ncpudff1_q & ncpudff2_q & ncpudff4_q & cpudff5_q);//checked MT
-  assign E2 = ~ (~ (DMADIR & DMAENA & nFIFOEMPTY & FLUSHFIFO) | ~ (ncpudff1_q & ncpudff2_q & ncpudff4_q & ncpudff5_q) | cpudff3_q);//checked MT
-  assign E3 = ~ (~ (DMADIR & DMAENA & FLUSHFIFO & LASTWORD) | (ncpudff1_q & ncpudff2_q & ncpudff4_q & cpudff5_q) | cpudff3_q);//Checked MT
-  assign E4 = ~ (~ (~ BOEQ3 & ncpudff1_q & ncpudff3_q & ncpudff5_q) | ~ (nA1 & CYCLEDONE & nBGRANT_ &  LASTWORD) | ~ (ncpudff2_q & cpudff4_q)); //Checked MT
-  assign E5 = ~ (~ (nA1 & CYCLEDONE & nBGRANT_ &  LASTWORD) | ~ (ncpudff2_q & cpudff4_q) | ~ (BOEQ3 & ncpudff1_q & ncpudff3_q & ncpudff5_q));//Checked MT
-  assign E6_d = (nDSACK0_ & nDSACK1_ & cpudff1_q & cpudff2_q & ncpudff3_q & cpudff4_q & cpudff5_q);//Checked MT
-  assign E7 = (DMADIR & DMAENA & FIFOFULL & ncpudff1_q & ncpudff2_q & ncpudff3_q & ncpudff4_q & ncpudff5_q);//Checked MT
-  assign E8 = 
-  ~(
-    ~(nA1 & nBGRANT_ & CYCLEDONE & ncpudff3_q) | 
-    ~(ncpudff1_q & ncpudff2_q & cpudff4_q & ncpudff5_q) |
-    LASTWORD  
-  );//Checked MT
-
-  assign E9_d = (nDSACK0_ & nDSACK1_ & cpudff1_q & ncpudff3_q & ncpudff4_q & ncpudff5_q);//checked MT
-  assign E10 = (A1 & nBGRANT_ & CYCLEDONE & ncpudff1_q & ncpudff2_q & ncpudff3_q & cpudff4_q & ncpudff5_q);//Checked MT
-  assign E11 = (nA1 & nBGRANT_ & CYCLEDONE & ncpudff1_q & cpudff2_q & ncpudff3_q & ncpudff4_q & ncpudff5_q);//Checked MT
-  assign E12 = (A1 & nBGRANT_ & CYCLEDONE & ncpudff1_q & cpudff2_q & ncpudff3_q & ncpudff4_q & ncpudff5_q);//Checked MT
-  assign E13 = (nDMADIR & DMAENA & ncpudff1_q & ncpudff2_q & ncpudff4_q & ncpudff5_q);//Checked MT
-  assign E14 = (nDMADIR & DREQ_ & ncpudff1_q & ncpudff4_q & cpudff5_q);//Checked MT
-  assign E15 = ~ (DMADIR | FIFOEMPTY | ~ (ncpudff1_q & ncpudff4_q & cpudff5_q));//Checked MT
-  assign E16 = (BGRANT_ & ncpudff1_q & cpudff2_q & ncpudff3_q & ncpudff4_q & ncpudff5_q);//Checked MT
-  assign E17 = (nCYCLEDONE & ncpudff1_q & cpudff2_q & ncpudff3_q & ncpudff4_q & ncpudff5_q);//Checked MT
-  assign E18 = (BGRANT_ & ncpudff1_q & ncpudff2_q & ncpudff3_q & cpudff4_q & ncpudff5_q);//Checked MT
-
-  assign E19 = (nCYCLEDONE & ncpudff1_q & ncpudff2_q & ncpudff3_q & cpudff4_q & ncpudff5_q);//Checked MT
-  
-  assign E20_d = (nDSACK1_ & cpudff1_q & ncpudff2_q & ncpudff3_q & ncpudff4_q & ncpudff5_q);//Checked MT
-  assign E21 = ~ (~ (BOEQ3 & FIFOEMPTY & LASTWORD) | cpudff2_q | ~ (cpudff3_q & cpudff4_q & cpudff5_q)); //Checked MT
-  assign E22 = (~ DMAENA & ncpudff1_q & ncpudff4_q & cpudff5_q);//Checked MT
-  assign E23_sd = (DSACK0_ & nDSACK1_ & cpudff2_q & cpudff3_q & cpudff4_q & ncpudff5_q);//Checked MT
-  assign E24_sd = ~ (~ (cpudff1_q & ncpudff2_q & ncpudff3_q) | cpudff4_q | cpudff5_q);//Checked MT
-  assign E25_d = (nDSACK0_ & nDSACK1_ & cpudff2_q & cpudff3_q & cpudff4_q & ncpudff5_q);//Checked MT
-  assign E26 = ~ (BOEQ3 | ~ (FIFOEMPTY & LASTWORD & ncpudff2_q) | ~ (cpudff3_q & cpudff4_q & cpudff5_q));//Checked MT
-  assign E27 = (FIFOEMPTY & nLASTWORD & ncpudff2_q & cpudff3_q & cpudff4_q & cpudff5_q);//Checked MT
-  
-  assign E28_d = (nDSACK1_ & cpudff1_q & cpudff2_q & cpudff3_q & ncpudff4_q & ncpudff5_q);//Checked MT
-  assign E29_sd = (cpudff1_q & cpudff2_q & ncpudff3_q & ncpudff4_q & ncpudff5_q);//Checked MT
-  assign E30_d = (nDSACK1_ & cpudff1_q & cpudff2_q & ncpudff3_q & ncpudff4_q & ncpudff5_q);//Checked MT
-  assign E31 = (nDSACK1_ & cpudff1_q & ncpudff3_q & cpudff4_q & cpudff5_q);//Checked MT
-  assign E32 = (FIFOFULL & cpudff1_q & cpudff2_q & ncpudff3_q & cpudff4_q & ncpudff5_q);//Checked MT
-  assign E33_sd_E38_s = (cpudff1_q & cpudff2_q & cpudff3_q & ncpudff4_q & ncpudff5_q);//Checked MT
-  assign E34 = (nFIFOEMPTY & ncpudff2_q & cpudff3_q & cpudff4_q & cpudff5_q);//Checked MT
-  assign E35 = (cpudff2_q & cpudff3_q & cpudff4_q & cpudff5_q);//Checked MT
-  assign E36_s_E47_s = (cpudff1_q & cpudff2_q & ncpudff3_q & ncpudff4_q & cpudff5_q);//Checked MT
-  assign E37_s_E44_s = (ncpudff2_q & cpudff3_q & cpudff4_q & ncpudff5_q);//Checked MT
-  assign E39_s = (cpudff1_q & ncpudff2_q & ncpudff3_q & ncpudff4_q & ncpudff5_q);//Checked MT
-  assign E40_s_E41_s = (cpudff1_q & ncpudff2_q & ncpudff3_q & ncpudff4_q & cpudff5_q);//Checked MT
-  assign E42_s = (cpudff1_q & cpudff2_q & ncpudff3_q & ncpudff4_q & ncpudff5_q);//Checked MT
-  assign E43_s_E49_sd = (cpudff1_q & ncpudff3_q & cpudff4_q & cpudff5_q);//Checked MT
-  assign E45 = (ncpudff1_q & ncpudff2_q & ncpudff3_q & cpudff4_q & cpudff5_q);//Checked MT
-  assign E46_s_E59_s = (cpudff1_q & ncpudff2_q & cpudff3_q & cpudff5_q);//Checked MT
-  assign E48 = (nFIFOFULL & cpudff1_q & cpudff2_q & ncpudff3_q & cpudff4_q & ncpudff5_q);//Checked MT
-  assign E50_d_E52_d = (cpudff1_q & ncpudff2_q & cpudff3_q & ncpudff5_q);//Checked MT
-  assign E51_s_E54_sd = (cpudff2_q & cpudff3_q & cpudff4_q & ncpudff5_q);//Checked MT
-  assign E53 = (ncpudff1_q & ncpudff2_q & cpudff3_q & ncpudff4_q & ncpudff5_q);//Checked MT
-  assign E55 = (ncpudff1_q & cpudff2_q & cpudff3_q);//Checked MT
-  assign E56 = (ncpudff1_q & cpudff2_q & cpudff4_q & cpudff5_q);//Checked MT
-  assign E57_s = (cpudff1_q & ncpudff2_q & cpudff4_q & cpudff5_q);//Checked MT
-  assign E58 = (ncpudff1_q & cpudff3_q & ncpudff4_q & cpudff5_q);//Checked MT
-  assign E60 = (ncpudff1_q & cpudff2_q & ncpudff4_q & cpudff5_q);//Checked MT
-  assign E61 = (ncpudff1_q & cpudff2_q & cpudff4_q & ncpudff5_q);//Checked MT
-  assign E62 = (cpudff1_q & ncpudff2_q & cpudff4_q & ncpudff5_q);//Checked MT
+  assign E0             = ((STATE == 5'd0) & DMAENA & DMADIR & FIFOEMPTY & nFIFOFULL & FLUSHFIFO & nLASTWORD);//s0
+  assign E1             = ((STATE == 5'b10x00) & DMAENA & nDMADIR & FIFOEMPTY & nDREQ_);//s16 or s20
+  assign E2             = ((STATE == 5'd0) & DMAENA & DMADIR & nFIFOEMPTY & FLUSHFIFO);//s0
+  assign E3             = ((STATE == 5'd0) & DMAENA & DMADIR & FLUSHFIFO & LASTWORD);//s0
+  assign E4             = ((STATE == 5'd8) & CYCLEDONE & LASTWORD & nA1 & nBGRANT_ & nBOEQ3);//s8
+  assign E5             = ((STATE == 5'd8) & CYCLEDONE & LASTWORD & nA1 & nBGRANT_ & BOEQ3);//s8
+  assign E6_d           = ((STATE == 5'd28) & nDSACK0_ & nDSACK1_);//s28
+  assign E7             = ((STATE == 5'd0) & DMADIR & DMAENA & FIFOFULL);//s0
+  assign E8             = ((STATE == 5'd8) & CYCLEDONE & nLASTWORD & nA1 & nBGRANT_);//s8
+  assign E9_d           = ((STATE == 5'b000x1) & nDSACK0_ & nDSACK1_);//s1 or s3
+  assign E10            = ((STATE == 5'd8) & CYCLEDONE & A1 & nBGRANT_);//s8
+  assign E11            = ((STATE == 5'd2) & CYCLEDONE & nA1 & nBGRANT_);//s2
+  assign E12            = ((STATE == 5'd2) & CYCLEDONE & A1 & nBGRANT_);//s2
+  assign E13            = ((STATE == 5'b00x00) & nDMADIR & DMAENA);//s0 or s4
+  assign E14            = ((STATE == 5'b10xx0) & nDMADIR & DREQ_);//s16, s18, s20, s22
+  assign E15            = ((STATE == 5'b10xx0) & nDMADIR & nFIFOEMPTY);//s16, s18, s20, s22
+  assign E16            = ((STATE == 5'd2) & BGRANT_);//s2
+  assign E17            = ((STATE == 5'd2) & nCYCLEDONE);//s2
+  assign E18            = ((STATE == 5'd8) & BGRANT_);//s8
+  assign E19            = ((STATE == 5'd8) & nCYCLEDONE);//s8
+  assign E20_d          = ((STATE == 5'd1) & nDSACK1_);//s1
+  assign E21            = ((STATE == 5'b1110x) & BOEQ3 & FIFOEMPTY & LASTWORD);//s28 or 29
+  assign E22            = ((STATE == 5'b10xx0) & nDMAENA);//s16, s18, s20, s22
+  assign E23_sd         = ((STATE == 5'b0111x) & DSACK0_ & nDSACK1_);//s14 or s15
+  assign E24_sd         = (STATE == 5'd1);//s1
+  assign E25_d          = ((STATE == 5'b0111x) & nDSACK0_ & nDSACK1_);//s14 or s15
+  assign E26            = ((STATE == 5'b1110x) & nBOEQ3 & FIFOEMPTY & LASTWORD);//s28 or 29
+  assign E27            = ((STATE == 5'b1110x) & FIFOEMPTY & nLASTWORD);//s28 or 29
+  assign E28_d          = ((STATE == 5'd7) & nDSACK1_);//s7
+  assign E29_sd         = (STATE == 5'd3);//s3
+  assign E30_d          = ((STATE == 5'd3) & nDSACK1_);//s3
+  assign E31            = ((STATE == 5'b110x1) & nDSACK1_);//s25 or s27
+  assign E32            = ((STATE == 5'd11) & FIFOFULL);//s11
+  assign E33_sd_E38_s   = ((STATE == 5'd7));//s7
+  assign E34            = ((STATE == 5'b1110x) & nFIFOEMPTY); //s28 or s29
+  assign E35            = (STATE == 5'b1111x);//s30 or s31
+  assign E36_s_E47_s    = (STATE == 5'd19);//s19
+  assign E37_s_E44_s    = (STATE == 5'b0110x);//s12 or s13
+  assign E39_s          = (STATE == 5'd1);//s1
+  assign E40_s_E41_s    = (STATE == 5'd17);//s17
+  assign E42_s          = (STATE == 5'd3);//s3
+  assign E43_s_E49_sd   = (STATE == 5'b110x1);//s25 or s29
+  assign E45            = (STATE == 5'd24);//s24
+  assign E46_s_E59_s    = (STATE == 5'b1x101);//s21 or s29
+  assign E48            = ((STATE == 5'd11) & nFIFOFULL );//s11
+  assign E50_d_E52_d    = (STATE == 5'b0x101);//s5 or s13
+  assign E51_s_E54_sd   = (STATE == 5'b0111x);//s14 or s15
+  assign E53            = (STATE == 5'd4);//s4
+  assign E55            = (STATE == 5'bxx110);//s6, s14, s22, s30
+  assign E56            = (STATE == 5'b11x10);//s26 or s30
+  assign E57_s          = (STATE == 5'b11x01);//s25 or s29 
+  assign E58            = (STATE == 5'b101x0);//s20 or s22
+  assign E60            = (STATE == 5'b10x10);//s18 or s22
+  assign E61            = (STATE == 5'b01x10);//s10 or 14
+  assign E62            = (STATE == 5'b01x01);//s9 or s13
   
 endmodule

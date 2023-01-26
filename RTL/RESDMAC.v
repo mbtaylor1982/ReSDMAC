@@ -321,9 +321,12 @@ datapath u_datapath(
     .BnDS_O_   (~DS_O_      )
 );
 
-always @(posedge SCLK) begin
+always @(posedge nSCLK) begin
     AS_O_ <= ~PAS;    
     DS_O_ <= ~PDS; 
+end
+
+always @(posedge nSCLK) begin
     LLW <= PLLW;
     LHW <= PLHW;
 end

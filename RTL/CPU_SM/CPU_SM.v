@@ -94,12 +94,6 @@ wire cpudff3_d;
 wire cpudff4_d;
 wire cpudff5_d;
 
-wire cpudff1_q;
-wire cpudff2_q;
-wire cpudff3_q;
-wire cpudff4_q;
-wire cpudff5_q;
-
 wire CYCLEDONE;
 
 wire DECFIFO_d;
@@ -196,11 +190,7 @@ CPU_SM_inputs u_CPU_SM_inputs(
     .FIFOFULL     (FIFOFULL     ),
     .FLUSHFIFO    (FLUSHFIFO    ),
     .LASTWORD     (LASTWORD     ),
-    .cpudff1_q    (cpudff1_q    ),
-    .cpudff2_q    (cpudff2_q    ),
-    .cpudff3_q    (cpudff3_q    ),
-    .cpudff4_q    (cpudff4_q    ),
-    .cpudff5_q    (cpudff5_q    ),
+    .STATE        (STATE        ),
     .E0           (E0           ),
     .E1           (E1           ),
     .E2           (E2           ),
@@ -473,11 +463,11 @@ CPU_SM_outputs u_CPU_SM_outputs(
     .BGRANT_      (BGRANT_      ),
     .CYCLEDONE    (CYCLEDONE    ),
     .E31          (E31          ),
-    .cpudff1      (cpudff1_d    ),
-    .cpudff2      (cpudff2_d    ),
-    .cpudff3      (cpudff3_d    ),
-    .cpudff4      (cpudff4_d    ),
-    .cpudff5      (cpudff5_d    ),
+    .cpudff1      (STATE[0]     ),
+    .cpudff2      (STATE[1]    ),
+    .cpudff3      (STATE[2]    ),
+    .cpudff4      (STATE[3]    ),
+    .cpudff5      (STATE[4]    ),
     
     .nINCNI_d     (nINCNI_d     ),
     .nBREQ_d      (nBREQ_d      ),
@@ -578,11 +568,6 @@ assign LASTWORD = (~BOEQ0 & aFLUSHFIFO & FIFOEMPTY);
 
 assign NEXT_STATE = {cpudff5_d, cpudff4_d, cpudff3_d, cpudff2_d, cpudff1_d};
 
-assign cpudff1_q = STATE[0];
-assign cpudff2_q = STATE[1];
-assign cpudff3_q = STATE[2];
-assign cpudff4_q = STATE[3];
-assign cpudff5_q = STATE[4];
 
 assign BBCLK = BCLK; // may need to change this to add delays
 assign BCLK = CLK; // may need to change this to add delays
