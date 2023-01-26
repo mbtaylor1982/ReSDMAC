@@ -94,7 +94,7 @@ module RESDMAC_tb;
         .ADDR       (ADDR[6:2]  ),
         ._BR        (_BR        ),
         ._BG        (_BG        ),
-        .BGACK_IO_   (BGACK_IO_ ),
+        ._BGACK_IO  (BGACK_IO_  ),
         ._DMAEN     (_DMAEN     ),
         ._DREQ      (_DREQ      ),
         ._DACK      (_DACK      ),

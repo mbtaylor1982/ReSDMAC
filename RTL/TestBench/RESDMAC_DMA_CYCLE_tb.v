@@ -182,7 +182,7 @@ module RESDMAC_tb;
         //Setup DMA Direction to in
         wait_n_clko(2);
         ADDR <= 32'h00DD0008;
-        DATA_i <= 32'h00000006; 
+        DATA_i <= 32'h00000002; 
         wait_n_clko(1);
         _AS_i = 1'b0;
         R_W_i = 1'b0;
@@ -194,7 +194,7 @@ module RESDMAC_tb;
         ADDR <= 32'hffffffff;
         DATA_i <= 32'hzzzzzzzz;
 
-        //Flush the FIFO
+        //Flush the FIFO        
         wait_n_clko(2);
         ADDR <= 32'h00DD0014;
         DATA_i <= 32'h00000001; 

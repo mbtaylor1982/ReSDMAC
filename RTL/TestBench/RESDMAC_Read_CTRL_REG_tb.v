@@ -94,7 +94,7 @@ module RESDMAC_tb;
         .ADDR       (ADDR[6:2]  ),
         ._BR        (_BR        ),
         ._BG        (_BG        ),
-        .BGACK_IO_   (BGACK_IO_ ),
+        ._BGACK_IO   (BGACK_IO_ ),
         ._DMAEN     (_DMAEN     ),
         ._DREQ      (_DREQ      ),
         ._DACK      (_DACK      ),
@@ -180,7 +180,7 @@ module RESDMAC_tb;
         _RST = 1;
         wait_n_clko(3);
         ADDR <= 32'h00DD0008;
-        DATA_i <= 32'hAAAAAAAA; 
+        DATA_i <= 32'h00000006; 
         wait_n_clko(1);
         _AS_i = 1'b0;
         R_W_i = 1'b0;
