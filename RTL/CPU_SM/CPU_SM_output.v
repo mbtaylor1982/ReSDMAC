@@ -31,6 +31,7 @@ module CPU_SM_outputs (
     input E20_d, E39_s, E37_s_E44_s,
     input E6_d, E9_d, RDFIFO_, RIFIFO_, BGRANT_, CYCLEDONE,
     input E31, cpudff1, cpudff2, cpudff3, cpudff4, cpudff5,
+    input [4:0] STATE,
 
     output nINCNI_d,
     output nBREQ_d,
@@ -188,13 +189,13 @@ assign nBRIDGEIN_d = (~(~E56 & ~E55 & ~E35 & ~E61 & ~E50_d_E52_d));
 //BGACK
 wire BGACK_V, BGACK_W, BGACK_X, BGACK_Y, BGACK_Z;
 
-assign BGACK_V = (~(cpudff5 | cpudff3 | cpudff1) & (cpudff4 ^ cpudff2)); //S8 or S2
+assign BGACK_V = ((STATE == 5'd2) | (STATE == 5'd8)); 
 assign BGACK_W = (~(CYCLEDONE | BGRANT_) & BGACK_V);
 
-assign BGACK_X = (BGRANT_ & BGACK_V); //not when S8 S0 and BGRANT_
+assign BGACK_X = (BGRANT_ & BGACK_V); 
 
-assign BGACK_Y = (~cpudff1 & ~cpudff2 & ~cpudff3 & ~cpudff4); //not when S16 or s0
-assign BGACK_Z = (~cpudff1 & cpudff2 & cpudff3 & cpudff4 & cpudff5); //not when S-1Eh
+assign BGACK_Y = ((STATE == 5'd0) | (STATE == 5'd16));
+assign BGACK_Z = (STATE == 5'd30);
 
 assign BGACK_d = ~(BGACK_W | BGACK_X | BGACK_Y | BGACK_Z);
 

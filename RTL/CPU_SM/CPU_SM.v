@@ -468,7 +468,7 @@ CPU_SM_outputs u_CPU_SM_outputs(
     .cpudff3      (STATE[2]    ),
     .cpudff4      (STATE[3]    ),
     .cpudff5      (STATE[4]    ),
-    
+    .STATE        (STATE        ),
     .nINCNI_d     (nINCNI_d     ),
     .nBREQ_d      (nBREQ_d      ),
     .SIZE1_d      (SIZE1_d      ),
