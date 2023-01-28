@@ -96,7 +96,7 @@ SCSI_SM u_SCSI_SM(
         RESET_ = 1'b1;
         nAS_ = 1'b0;
         RW = 1'b1;
-        DMADIR = 1'b0;
+        DMADIR = 1'b1;
         INCFIFO = 1'b0;
         DECFIFO = 1'b0;
         BOEQ3 = 1'b0;

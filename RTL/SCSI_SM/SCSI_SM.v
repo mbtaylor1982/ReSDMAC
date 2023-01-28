@@ -55,33 +55,35 @@ module SCSI_SM
 reg [4:0] STATE;
 
 //Clocked inputs
-reg CCPUREQ;
-reg CDREQ_;
-reg CDSACK_;
-reg CRESET_;
+reg CCPUREQ;    // Clocked signal to indicate a CPU cycle to read or write WD33C93 Registers.
+reg CDREQ_;     // Clocked WD33C93 DMA request.
+reg CDSACK_;    // Clocked Feedback from CPU cycle termination.
+reg CRESET_;    // Clocked system reset.
 
-wire BBCLK; // CPUCLK Inverted 6 time for delay.
-wire BCLK; // CPUCLK Inverted 4 times for delay.
-wire CPU2S;
-wire DACK;
-wire DSACK_;
-wire F2S;
-wire INCBO;
-wire INCNI;
-wire INCNO;
-wire nCLK; 
-wire RDRST_;
-wire RE;
-wire RIRST_;
-wire S2CPU;
-wire S2F;
-wire SCSI_CS;
-wire SET_DSACK;
-wire WE;
+wire BBCLK;     // CPUCLK Inverted 6 time for delay.
+wire BCLK;      // CPUCLK Inverted 4 times for delay.
+wire CPU2S;     // Enable CPU to SCSI datapath.
+wire DACK;      // Ack WD3C93 DMA transfer request.
+wire DSACK_;    // Feedback from CPU cycle termination.
+wire F2S;       // Enable FIFO to SCSI datapath.
+wire INCBO;     // Inc the FIFO byte ptr.
+wire INCNI;     // Inc the FIFO Next in ptr.
+wire INCNO;     // Inc the FIFO Next out ptr.
+wire nCLK;      // Inverted CPU Clk.
+wire RDRST_;    // Feedback from RDFIFO_d.
+wire RE;        // Read enable line for WD33C93 IC.
+wire RIRST_;    // Feedback from RIFIFO_d.
+wire S2CPU;     // Enable SCSI to CPU datapath.
+wire S2F;       // Enable SCSI to FIFO datapath.
+wire SCSI_CS;   // Chip select to WD33C93 IC.
+wire SET_DSACK; // Signal to latch SCSI data for CPU and terminate CPU Cycle.
+wire WE;        // Write enable line for WD33C93 IC.
 
-reg RDFIFO_d;
-reg RIFIFO_d;
-reg nLS2CPU;
+reg nLS2CPU;    //Inverted signal to idicate when to latch the SCSI data for CPU cycle.
+
+//*not sure on these  Miket 2023-01-28*
+reg RDFIFO_d;   // Signal CPU SM to read FIFO? 
+reg RIFIFO_d;   // Signal CPU SM to Write to FIFO? 
 
 wire [27:0] E;
 wire [4:0] NEXT_STATE;
@@ -129,12 +131,12 @@ always @(posedge  BBCLK or negedge CRESET_) begin
     begin 
         CDSACK_ <= 1'b1;
         CCPUREQ <= 1'b0;
-        CDREQ_ <= 1'b0;
+        CDREQ_  <= 1'b1;
     end
     else 
     begin
         CCPUREQ <= CPUREQ;
-        CDREQ_ <= DREQ_;
+        CDREQ_  <= DREQ_;
         CDSACK_ <= DSACK_;   
     end
 end
@@ -152,7 +154,7 @@ always @(posedge BCLK) begin
     RIFIFO_d <=  E[4];
     S2CPU_o <= S2CPU;
     S2F_o <= S2F;
-    SCSI_CS_o <= ~SCSI_CS;
+    SCSI_CS_o <= SCSI_CS;
     WE_o <= WE;
 end
 
