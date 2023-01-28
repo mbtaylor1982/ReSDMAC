@@ -117,8 +117,11 @@ module CPU_SM_inputs (
   assign E0             = ((STATE == 5'd0) & DMAENA & DMADIR & FIFOEMPTY & nFIFOFULL & FLUSHFIFO & nLASTWORD);//s0
   assign E1             = (((STATE == 5'd16) | (STATE == 5'd20)) & DMAENA & nDMADIR & FIFOEMPTY & nDREQ_);//s16 or s20
   assign E2             = ((STATE == 5'd0) & DMAENA & DMADIR & nFIFOEMPTY & FLUSHFIFO);//s0
+
   assign E3             = ((STATE == 5'd0) & DMAENA & DMADIR & FLUSHFIFO & LASTWORD);//s0
+
   assign E4             = ((STATE == 5'd8) & CYCLEDONE & LASTWORD & nA1 & nBGRANT_ & nBOEQ3);//s8
+  
   assign E5             = ((STATE == 5'd8) & CYCLEDONE & LASTWORD & nA1 & nBGRANT_ & BOEQ3);//s8
   assign E6_d           = ((STATE == 5'd28) & nDSACK0_ & nDSACK1_);//s28
   assign E7             = ((STATE == 5'd0) & DMADIR & DMAENA & FIFOFULL);//s0
@@ -133,7 +136,9 @@ module CPU_SM_inputs (
   assign E16            = ((STATE == 5'd2) & BGRANT_);//s2
   assign E17            = ((STATE == 5'd2) & nCYCLEDONE);//s2
   assign E18            = ((STATE == 5'd8) & BGRANT_);//s8
+  
   assign E19            = ((STATE == 5'd8) & nCYCLEDONE);//s8
+
   assign E20_d          = ((STATE == 5'd1) & nDSACK1_);//s1
   assign E21            = (((STATE == 5'd28) | (STATE == 5'd29)) & BOEQ3 & FIFOEMPTY & LASTWORD);//s28 or 29
   assign E22            = (((STATE == 5'd16) | (STATE == 5'd18) | (STATE == 5'd20) | (STATE == 5'd22)) & nDMAENA);//s16, s18, s20, s22

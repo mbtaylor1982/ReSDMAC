@@ -149,7 +149,7 @@ module CPU_SM_tb;
         
         AS_ = 1'b0;
         aDMAENA = 1'b0;
-        aDREQ_ = 1'b1;
+        aDREQ_ = 1'b0;
         aFLUSHFIFO = 1'b0;
         BOEQ0 = 1'b0;
         BOEQ3 = 1'b1;
@@ -157,8 +157,8 @@ module CPU_SM_tb;
 
         DSACK0_ = 1'b1;
         DSACK1_ = 1'b1;
-        FIFOEMPTY = 1'b0;
-        FIFOFULL = 1'b1;
+        FIFOEMPTY = 1'b1;
+        FIFOFULL = 1'b0;
 
         RDFIFO_ = 1'b1;
         RIFIFO_ = 1'b1;

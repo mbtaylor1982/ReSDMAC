@@ -463,11 +463,6 @@ CPU_SM_outputs u_CPU_SM_outputs(
     .BGRANT_      (BGRANT_      ),
     .CYCLEDONE    (CYCLEDONE    ),
     .E31          (E31          ),
-    .cpudff1      (STATE[0]     ),
-    .cpudff2      (STATE[1]    ),
-    .cpudff3      (STATE[2]    ),
-    .cpudff4      (STATE[3]    ),
-    .cpudff5      (STATE[4]    ),
     .STATE        (STATE        ),
     .nINCNI_d     (nINCNI_d     ),
     .nBREQ_d      (nBREQ_d      ),
@@ -495,12 +490,21 @@ always @(posedge nCLK) begin
 end
 
 //clocked inputs.
-always @(posedge  BBCLK) begin
-    BGRANT_ <= aBGRANT_;
-    DMAENA <= aDMAENA;
-    DREQ_ <= aDREQ_;
-    FLUSHFIFO <= aFLUSHFIFO;
-    nCYCLEDONE <= aCYCLEDONE_;
+always @(posedge  BBCLK or negedge CCRESET_) begin
+    if (CCRESET_ == 1'b0) begin
+        BGRANT_ <= 1'b1;
+        DMAENA <= 1'b0;
+        DREQ_ <= 1'b1;
+        FLUSHFIFO <= 1'b0;
+        nCYCLEDONE <= 1'b0;
+    end
+    else begin
+        BGRANT_ <= aBGRANT_;
+        DMAENA <= aDMAENA;
+        DREQ_ <= aDREQ_;
+        FLUSHFIFO <= aFLUSHFIFO;
+        nCYCLEDONE <= aCYCLEDONE_;
+    end
 end
 
 //clocked outputs
@@ -564,12 +568,13 @@ always @(posedge nCLK or negedge nAS_) begin
 end
 
 assign aCYCLEDONE_ = ~(BGACK_I_ & AS_ & DSACK0_ & DSACK1_ & STERM_);
+
 assign LASTWORD = (~BOEQ0 & aFLUSHFIFO & FIFOEMPTY);
 
 assign NEXT_STATE = {cpudff5_d, cpudff4_d, cpudff3_d, cpudff2_d, cpudff1_d};
 
 
-assign BBCLK = BCLK; // may need to change this to add delays
+assign BBCLK = |BCLK; // may need to change this to add delays
 assign BCLK = CLK; // may need to change this to add delays
 assign CYCLEDONE = ~nCYCLEDONE;
 assign DSACK = ~(DSACK_LATCHED_[0] & DSACK_LATCHED_[1]);

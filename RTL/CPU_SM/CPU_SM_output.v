@@ -30,7 +30,7 @@ module CPU_SM_outputs (
     input E45, E34, E24_sd, E37_s, E44_s,
     input E20_d, E39_s, E37_s_E44_s,
     input E6_d, E9_d, RDFIFO_, RIFIFO_, BGRANT_, CYCLEDONE,
-    input E31, cpudff1, cpudff2, cpudff3, cpudff4, cpudff5,
+    input E31,
     input [4:0] STATE,
 
     output nINCNI_d,
@@ -145,8 +145,8 @@ assign PLLW_Y = (~((~(~(E23_sd & DSACK) & ~(~DSACK & (E43_s_E49_sd | E51_s_E54_s
 
 assign PLLW_d = (~(PLLW_X & PLLW_Y));
 
+//PLHW
 assign PLHW_d = ~(~(E48 | E60) & (~(((~DSACK & E43_s_E49_sd) | E57_s) & STERM_)));
-
 
 //FIFO COUNTER STROBES
 wire A,B,C,D,E,F;
@@ -187,16 +187,12 @@ assign nBRIDGEIN_d = (~(~E56 & ~E55 & ~E35 & ~E61 & ~E50_d_E52_d));
 //assign BRIDGEIN_d = ~(E56 | E55 | E35 | E61 | E50_d_E52_d);
 
 //BGACK
-wire BGACK_V, BGACK_W, BGACK_X, BGACK_Y, BGACK_Z;
+wire S2ORS8, BGACK_W, BGACK_X;
+assign S2ORS8 = ((STATE == 5'd2) | (STATE == 5'd8)); 
 
-assign BGACK_V = ((STATE == 5'd2) | (STATE == 5'd8)); 
-assign BGACK_W = (~(CYCLEDONE | BGRANT_) & BGACK_V);
+assign BGACK_W = (~(CYCLEDONE | BGRANT_) & S2ORS8);
+assign BGACK_X = (BGRANT_ & S2ORS8); 
 
-assign BGACK_X = (BGRANT_ & BGACK_V); 
-
-assign BGACK_Y = ((STATE == 5'd0) | (STATE == 5'd16));
-assign BGACK_Z = (STATE == 5'd30);
-
-assign BGACK_d = ~(BGACK_W | BGACK_X | BGACK_Y | BGACK_Z);
+assign BGACK_d = ~((STATE == 5'd0) | (STATE == 5'd16) | (STATE == 5'd30) | BGACK_W | BGACK_X);
 
 endmodule
