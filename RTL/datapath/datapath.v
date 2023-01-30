@@ -112,7 +112,8 @@ datapath_scsi u_datapath_scsi(
     .MOD       (MOD_SCSI  )
 );
 
-assign DOEL_ = ~((nDS_ & nDMAC_ & RW) | (nOWN_ & DMADIR));
+//assign DOEL_ = ~((nDS_ & nDMAC_ & RW) | (nOWN_ & DMADIR));
+assign DOEL_ = (~(nDS_ & nDMAC_ & RW) & ~(nOWN_ & DMADIR));
 assign DOEH_ = DOEL_;
 
 assign bBRIDGEIN = BRIDGEIN;

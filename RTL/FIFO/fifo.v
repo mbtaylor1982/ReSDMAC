@@ -118,23 +118,24 @@ assign BOEQ3 = (BYTE_PTR == 2'b11);
 reg [31:0] BUFFER [7:0]; 
 
 //WRITE DATA TO FIFO BUFFER
-always @(posedge UUWS) begin
+always @(negedge UUWS) begin
   BUFFER[WRITE_PTR][31:24] <= ID[31:24];
 end
 
-always @(posedge UMWS) begin
+always @(negedge UMWS) begin
   BUFFER[WRITE_PTR][23:16] <= ID[23:16];
 end
 
-always @(posedge LMWS) begin
+always @(negedge LMWS) begin
   BUFFER[WRITE_PTR][15:8] <= ID[15:8];
 end
 
-always @(posedge LLWS) begin
+always @(negedge LLWS) begin
   BUFFER[WRITE_PTR][7:0] <= ID[7:0];
 end
 
-always @(READ_PTR, BUFFER[READ_PTR]) begin
+//always @(READ_PTR, BUFFER[READ_PTR]) begin
+always @(*) begin
   OD <= BUFFER[READ_PTR];
 end
 

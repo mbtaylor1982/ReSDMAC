@@ -552,6 +552,8 @@ always @(posedge BCLK or negedge CCRESET_) begin
     end
 end
 
+
+
 always @(posedge BCLK or negedge CCRESET_) begin
     if (CCRESET_ == 1'b0) 
         STATE <= 5'b00000;
@@ -570,6 +572,7 @@ end
 assign aCYCLEDONE_ = ~(BGACK_I_ & AS_ & DSACK0_ & DSACK1_ & STERM_);
 
 assign LASTWORD = (~BOEQ0 & aFLUSHFIFO & FIFOEMPTY);
+
 
 assign NEXT_STATE = {cpudff5_d, cpudff4_d, cpudff3_d, cpudff2_d, cpudff1_d};
 

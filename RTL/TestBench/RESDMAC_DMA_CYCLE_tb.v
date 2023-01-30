@@ -46,6 +46,11 @@ module RESDMAC_tb;
     assign DATA_o = DATA_IO;
     assign DATA_IO = OWN_ ? DATA_i : 32'bz;
 
+    reg [7:0] PD_i;
+    wire [7:0] PD_o;
+    assign PD_o = PD_PORT;
+    assign PD_PORT = _IOR ? 8'bz : PD_i;
+
     
     tri1        _INT     ;  // Connected to INT2 needs to be Open Collector output.
     wire        SIZ1     ;  // Indicates a 16 bit transfer is true. 
@@ -150,7 +155,7 @@ module RESDMAC_tb;
         _DS_i = 1;
         //_CS = 1;
         _BG = 1;
-        _DREQ = 1;
+        _DREQ = 0;
         INTA = 0;
         _BERR = 1;
         _STERM = 1;
@@ -159,6 +164,7 @@ module RESDMAC_tb;
         _DS_i = 1;
         ADDR <= 32'hffffffff;
         DATA_i <= 32'hzzzzzzzz;
+        PD_i <= 8'hAA;
         
 
     end
@@ -193,26 +199,11 @@ module RESDMAC_tb;
         wait_n_clko(2);
         ADDR <= 32'hffffffff;
         DATA_i <= 32'hzzzzzzzz;
-
-        //Flush the FIFO        
-        wait_n_clko(2);
-        ADDR <= 32'h00DD0014;
-        DATA_i <= 32'h00000001; 
-        wait_n_clko(1);
-        _AS_i = 1'b0;
-        R_W_i = 1'b0;
-        wait_n_clko(1);
-        _DS_i = 1'b0;
-        wait_n_clko(2);        
-        R_W_i = 1;
-        wait_n_clko(2);
-        ADDR <= 32'hffffffff;
-        DATA_i <= 32'hzzzzzzzz;
         
         //Write Source Addr to the ACR in Ramsey.
         wait_n_clko(2);
         ADDR <= 32'h00DD000C;
-        DATA_i <= 32'h00000000; 
+        DATA_i <= 32'h00000008; 
         wait_n_clko(1);
         _AS_i = 1'b0;
         R_W_i = 1'b0;
@@ -240,7 +231,7 @@ module RESDMAC_tb;
         DATA_i <= 32'hzzzzzzzz;
         wait_n_clko(1);
         //_BG <= 1'b0;
-        wait_n_clko(50);
+        wait_n_clko(250);
         $finish;
     end
     always @(posedge SCLK) begin

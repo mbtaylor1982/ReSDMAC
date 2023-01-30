@@ -82,7 +82,7 @@ datapath_8b_MUX u_datapath_8b_MUX(
 assign SCSI_DATA = SCSI_OUT ? SCSI_DATA_TX : 8'hzz;
 
 
-assign SCSI_DATA_RX = SCSI_IN ? SCSI_DATA : 8'h00;
+assign SCSI_DATA_RX = SCSI_IN ? SCSI_DATA : 8'hzz;
 
 always @(negedge LS2CPU, posedge S2CPU) begin
     if (LS2CPU == 1'b0) begin 
@@ -94,7 +94,7 @@ always @(negedge LS2CPU, posedge S2CPU) begin
 end
 
 
-assign MOD = S2CPU ? {SCSI_DATA_LATCHED, 8'h00 , SCSI_DATA_LATCHED, 8'h00}: 32'hzzzzzzzz;
+assign MOD = S2CPU ? {SCSI_DATA_LATCHED, 8'hzz , SCSI_DATA_LATCHED, 8'hzz}: 32'hzzzzzzzz;
 
 assign ID = S2F ? {SCSI_DATA_RX, SCSI_DATA_RX, SCSI_DATA_RX, SCSI_DATA_RX}: 32'hzzzzzzzz;
 

@@ -183,14 +183,14 @@ assign DIEL_Z = (~(((~DSACK & (E51_s_E54_sd | E43_s_E49_sd)) |(E46_s_E59_s | E57
 
 assign DIEL_d = (~(DIEL_X & DIEL_Y & DIEL_Z));
 
-assign nBRIDGEIN_d = (~(~E56 & ~E55 & ~E35 & ~E61 & ~E50_d_E52_d));
+assign nBRIDGEIN_d = (~E56 & ~E55 & ~E35 & ~E61 & ~E50_d_E52_d);
 //assign BRIDGEIN_d = ~(E56 | E55 | E35 | E61 | E50_d_E52_d);
 
 //BGACK
 wire S2ORS8, BGACK_W, BGACK_X;
 assign S2ORS8 = ((STATE == 5'd2) | (STATE == 5'd8)); 
 
-assign BGACK_W = (~(CYCLEDONE | BGRANT_) & S2ORS8);
+assign BGACK_W = (~CYCLEDONE & ~BGRANT_ & S2ORS8);
 assign BGACK_X = (BGRANT_ & S2ORS8); 
 
 assign BGACK_d = ~((STATE == 5'd0) | (STATE == 5'd16) | (STATE == 5'd30) | BGACK_W | BGACK_X);
