@@ -87,7 +87,6 @@ reg DS_O_;
 reg [31:0] DATA_O;
 reg LLW;
 reg LHW;
-reg [1:0] DSACK_LATCHED_;
 
 wire [31:0] MID;
 wire [31:0] MOD;
@@ -331,17 +330,12 @@ always @(posedge nSCLK) begin
     LHW <= PLHW;
 end
 
-always @(posedge nSCLK or negedge nAS_) begin
-    if (nAS_ == 1'b0)
-        DSACK_LATCHED_ <= 2'b11;
-    else 
-        DSACK_LATCHED_ <= {DSK1_IN_, DSK0_IN_};
-end
+
 
 assign nSCLK  = ~SCLK;
 assign nAS_ = ~_AS;
 assign OWN_ = ~CPUSM_BGACK;
-assign _BGACK_I = _BGACK_IO;
+assign _BGACK_I =  _BGACK_IO;
 
 //System Outputs
 assign  R_W_IO = OWN_ ? 1'bz : ~DMADIR;

@@ -86,7 +86,8 @@ module CPU_SM_inputs (
   output E58,
   output E60,
   output E61,
-  output E62
+  output E62,
+  output [62:0]E
 );
 
   wire nA1;
