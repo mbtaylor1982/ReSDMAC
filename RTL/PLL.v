@@ -28,6 +28,18 @@ module PLL (
         else 
             locked <= 1'b1;
     end
+`else
+//Need to have ALTPLL IP Component installed in Quartus for this to work.
+
+    APLL APLL_inst (
+        .areset (rst    ),
+        .inclk0 (clk    ),
+        .c0     (c45    ),
+        .c1     (c90    ),
+        .c2     (c135   ),
+        .locked (locked )
+    );
+
 `endif
 
 endmodule
