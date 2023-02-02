@@ -196,7 +196,7 @@ module RESDMAC_tb;
         wait_n_clko(2);
         $finish;
     end
-    always @(negedge SCLK) begin
+    always @(posedge SCLK) begin
         if (~(_DSACK_IO[0] & _DSACK_IO[1])  == 1'b1) 
         begin
             _AS_i <= 1'b1;

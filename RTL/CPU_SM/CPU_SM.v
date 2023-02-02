@@ -38,6 +38,8 @@ module CPU_SM(
     input BOEQ0,
     input BOEQ3,
     input CLK,
+    input CLK90,            //CPU CLK Phase shifted 90 Deg. 
+    input CLK135,           //CPU CLK Phase shifted 135 Deg.
     input DMADIR,
     input DSACK0_,   
     input DSACK1_,
@@ -577,11 +579,11 @@ assign LASTWORD = (~BOEQ0 & aFLUSHFIFO & FIFOEMPTY);
 assign NEXT_STATE = {cpudff5_d, cpudff4_d, cpudff3_d, cpudff2_d, cpudff1_d};
 
 
-assign BBCLK = |BCLK; // may need to change this to add delays
-assign BCLK = CLK; // may need to change this to add delays
+assign BBCLK = CLK135;//BCLK; // may need to change this to add delays
+assign BCLK = CLK90;//CLK; // may need to change this to add delays
 assign CYCLEDONE = ~nCYCLEDONE;
-assign DSACK = ~(DSACK_LATCHED_[0] & DSACK_LATCHED_[1]);
+assign #6 DSACK = ~(DSACK_LATCHED_[0] & DSACK_LATCHED_[1]);
 assign nAS_ = ~AS_;
-assign nCLK = ~CLK;
+assign #3 nCLK = ~CLK;
 
 endmodule

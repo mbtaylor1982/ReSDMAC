@@ -22,6 +22,7 @@
     `include "RTL/CPU_SM/CPU_SM.v"
     `include "RTL/Registers/registers.v"
     `include "RTL/datapath/datapath.v"
+    `include "RTL/PLL.v"
 `endif
 
 module RESDMAC(
@@ -124,7 +125,8 @@ wire OWN_;
 wire nSCLK;
 wire nAS_;
 wire DSACK_CPU_SM;
-
+wire CLK45, CLK90, CLK135;
+wire PLLLOCKED;
 
 wire STOPFLUSH;
 wire FIFOEMPTY;
@@ -208,6 +210,8 @@ CPU_SM u_CPU_SM(
     .DSACK0_       (DSK0_IN_    ),
     .DSACK1_       (DSK1_IN_    ),
     .CLK           (SCLK        ),
+    .CLK90         (CLK90       ),
+    .CLK135        (CLK135      ),
     .DMADIR        (DMADIR      ),
     .A1            (A1          ),
     .F2CPUL        (F2CPUL      ),
@@ -246,6 +250,8 @@ SCSI_SM u_SCSI_SM(
     .RESET_    (_RST        ),
     .BOEQ3     (BOEQ3       ),
     .CPUCLK    (SCLK        ),
+    .CLK90     (CLK90       ),
+    .CLK135    (CLK135      ),
     .DREQ_     (DREQ_       ),
     .FIFOFULL  (FIFOFULL    ),
     .FIFOEMPTY (FIFOEMPTY   ),
@@ -320,6 +326,16 @@ datapath u_datapath(
     .BnDS_O_   (~DS_O_      )
 );
 
+PLL u_PLL (
+    .rst    (~_RST  ),  // input, (wire), 
+    .clk    (SCLK   ),  // input, (wire), 
+    .c45    (CLK45  ),  // output, (wire), 
+    .c90    (CLK90  ),  // output, (wire), 
+    .c135   (CLK135 ),  // output, (wire), 
+    .locked (PLLLOCKED )   // output, reg, 
+);
+
+
 always @(posedge nSCLK) begin
     AS_O_ <= ~PAS;    
     DS_O_ <= ~PDS; 
@@ -330,8 +346,6 @@ always @(posedge nSCLK) begin
     LHW <= PLHW;
 end
 
-
-
 assign nSCLK  = ~SCLK;
 assign nAS_ = ~_AS;
 assign OWN_ = ~CPUSM_BGACK;
@@ -341,7 +355,7 @@ assign _BGACK_I =  _BGACK_IO;
 assign  R_W_IO = OWN_ ? 1'bz : ~DMADIR;
 assign _AS_IO = OWN_ ? 1'bz : AS_O_;
 assign _DS_IO = OWN_ ? 1'bz : DS_O_;
-assign DATA_IO = OWN_ ? 32'bz : DATA_O;
+//assign DATA_IO = OWN_ ? 32'bz : DATA_O;
 assign _DMAEN = OWN_;
 assign _BR = BREQ ?  1'b0 : 1'bz;
 assign SIZ1 = OWN_ ? 1'b0 : SIZE1_CPUSM;
@@ -368,10 +382,9 @@ assign DSK0_IN_ = _BERR & _DSACK_IO[0];
 assign DSK1_IN_ = _BERR & _DSACK_IO[1];
 
 assign A3 = ADDR[3];
-assign DATA_OE_ = (_AS | _CS | H_0C);
-assign PDATA_OE_ = (~_DACK & _CSS);
+assign DATA_OE_ = (_AS | _CS | H_0C) & _BGACK_IO;
+assign PDATA_OE_ = (_DACK | ~_CSS);
 
 endmodule
-
 
 

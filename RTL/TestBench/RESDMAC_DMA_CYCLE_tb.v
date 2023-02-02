@@ -155,7 +155,7 @@ module RESDMAC_tb;
         _DS_i = 1;
         //_CS = 1;
         _BG = 1;
-        _DREQ = 0;
+        _DREQ = 1;
         INTA = 0;
         _BERR = 1;
         _STERM = 1;
@@ -215,6 +215,8 @@ module RESDMAC_tb;
         ADDR <= 32'hffffffff;
         DATA_i <= 32'hzzzzzzzz;
 
+        _DREQ = 0;
+
         //Start DMA Cycle.
         wait_n_clko(2);
         ADDR <= 32'h00DD0010;
@@ -230,8 +232,12 @@ module RESDMAC_tb;
         ADDR <= 32'h00000000;
         DATA_i <= 32'hzzzzzzzz;
         wait_n_clko(1);
+        ADDR <= 32'h08000000;
+
         //_BG <= 1'b0;
-        wait_n_clko(250);
+        wait_n_clko(200);
+        _DREQ <= 1'b1;
+        wait_n_clko(100);
         $finish;
     end
     always @(posedge SCLK) begin
@@ -261,6 +267,15 @@ module RESDMAC_tb;
         end
     end
 
+    always @(posedge SCLK) begin
+        if ((_DACK | (_IOR & _IOW)) == 1'b0)
+        begin
+            _DREQ <= 1'b1;
+        end
+        else
+            _DREQ <= 1'b0;
+            
+    end
 
 
 //------------------------------------------------------------------------------

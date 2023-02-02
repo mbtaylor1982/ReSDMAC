@@ -24,6 +24,8 @@
 module SCSI_SM
 (   input BOEQ3,            //Asserted when transfering Byte 3
     input CPUCLK,           //CPU CLK
+    input CLK90,            //CPU CLK Phase shifted 90 Deg. 
+    input CLK135,           //CPU CLK Phase shifted 135 Deg.
     input CPUREQ,           //Request CPU access to SCSI registers.
     input DECFIFO,          //Decremt FIFO pointer
     input DMADIR,           //Control Direction Of DMA transfer.
@@ -187,9 +189,9 @@ always @(posedge SET_DSACK or negedge nAS_) begin
         nLS2CPU <= 1'b1;
 end
 
-assign nCLK = ~CPUCLK;
-assign BCLK = CPUCLK; // may need to change this to add delays
-assign BBCLK = CPUCLK; // may need to change this to add delays
+assign #3 nCLK = ~CPUCLK;
+assign BCLK = CLK90;
+assign BBCLK = CLK135;
 
 assign LS2CPU = ~nLS2CPU;
 assign DSACK_ = LS2CPU;
