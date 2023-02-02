@@ -29,7 +29,9 @@ module PLL (
             locked <= 1'b1;
     end
 `else
+
 //Need to have ALTPLL IP Component installed in Quartus for this to work.
+//Setup with 25Mhz input and 3 clks at 45,90 and 135 degrees phase shift.
 
     APLL APLL_inst (
         .areset (rst    ),
