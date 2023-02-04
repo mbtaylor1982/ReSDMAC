@@ -277,14 +277,11 @@ module RESDMAC_tb;
             
     end
 
-    always @(negedge SCLK) begin
+    always @(negedge SCLK, posedge _AS_IO) begin
         if (_BGACK_IO == 1'b0) 
         begin
-            if ((_AS_IO == 1'b0) && (_DS_IO == 1'b0))
-            begin
-                _STERM <= 1'b0;  
-                if (_STERM == 1'b0) _STERM <= 1'b1;           
-            end
+            if (_AS_IO == 1'b0) _STERM <= 1'b0;         
+            else if (_STERM == 1'b0) _STERM <= 1'b1;
         end
     end
 
