@@ -188,7 +188,7 @@ module RESDMAC_tb;
         //Setup DMA Direction to in
         wait_n_clko(2);
         ADDR <= 32'h00DD0008;
-        DATA_i <= 32'h00000006; 
+        DATA_i <= 32'h00000004; 
         wait_n_clko(1);
         _AS_i = 1'b0;
         R_W_i = 1'b0;
@@ -256,7 +256,7 @@ module RESDMAC_tb;
     always @(posedge SCLK) begin
         if (_BGACK_IO == 1'b0) 
         begin
-            _BG <= 1'b1;    
+            _BG <= 1'b1;
         end
     end
 
@@ -276,6 +276,19 @@ module RESDMAC_tb;
             _DREQ <= 1'b0;
             
     end
+
+    always @(negedge SCLK) begin
+        if (_BGACK_IO == 1'b0) 
+        begin
+            if ((_AS_IO == 1'b0) && (_DS_IO == 1'b0))
+            begin
+                _STERM <= 1'b0;  
+                if (_STERM == 1'b0) _STERM <= 1'b1;           
+            end
+        end
+    end
+
+    
 
 
 //------------------------------------------------------------------------------

@@ -17,16 +17,9 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 module cpudff5 (
-  input E26, E5, E4, E27, E8, E11,
-  input E32, E13, E14, E15, E22, E60,
-  input E61, E62, E48, E53, E58,
-  input E30_d, E9_d, E28_d, 
-  input DSACK,
-  input STERM_,
-  input E36_s_E47_s, E33_sd_E38_s, E39_s, E40_s_E41_s, E42_s, E37_s_E44_s,
-  input E23_sd, 
-  input E43_s_E49_sd,
-  input E57_s,
+  input DSACK, STERM_,
+  input [62:0]E,
+  input [62:0]nE,
   
   output cpudff5_d
 );
@@ -36,19 +29,19 @@ wire p5a, p5b, p5c;
 assign p5a = 
 (
   ~(
-    ~(~E26  & ~E5 & ~E4 & ~E27 & ~E8 & ~E11) | 
-    ~(~E32  & ~E13 & ~E14 & ~E15 & ~E22 & ~E60) | 
-    ~(~E61 & ~E62 & ~E48 & ~E53 & ~E58)
+    ~(nE[26] & nE[5] & nE[4] & nE[27] & nE[8] & nE[11]) | 
+    ~(nE[32] & nE[13] & nE[14] & nE[15] & nE[22] & nE[60]) | 
+    ~(nE[61] & nE[62] & nE[48] & nE[53] & nE[58])
   ) & 
   ~(
-    ~(~E30_d & ~E9_d & ~E28_d) & DSACK
+    ~(nE[30] & nE[9] & nE[28]) & DSACK
   )
 );
 
 assign p5b = 
 (
   ~(~STERM_& 
-    ~(~E36_s_E47_s & ~E33_sd_E38_s & ~E39_s & ~E40_s_E41_s & ~E42_s & ~E37_s_E44_s)
+    ~(nE[36] & nE[33] & nE[39] & nE[40] & nE[42] & nE[37])
   )
 );
 
@@ -57,10 +50,10 @@ assign p5c =
   ~(
     (
       ~(
-        ~(E23_sd & DSACK) & 
-        ~(~DSACK & E43_s_E49_sd) 
+        ~(E[23] & DSACK) & 
+        ~(~DSACK & E[43]) 
       ) | 
-      E57_s
+      E[57]
     )& 
     STERM_
   )

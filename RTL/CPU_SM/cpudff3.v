@@ -17,17 +17,9 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 module cpudff3 (
-  input E4, E10, E21, E27,
-  input E34, E32, E35,
-  input E56, E62, E45,
-  input E20_d, E28_d, E30_d,
-  input DSACK, 
-  input E50_d_E52_d, 
-  input STERM_,
-  input E36_s_E47_s, E33_sd_E38_s, E39_s, E40_s_E41_s, E42_s, E37_s_E44_s,
-  input E23_sd,
-  input E51_s_E54_sd, 
-  input E46_s_E59_s,
+  input DSACK, STERM_,
+  input [62:0]E,
+  input [62:0]nE,
 
   output cpudff3_d
 );
@@ -37,17 +29,17 @@ assign p3a =
 (
   ~( 
     ~(
-      ~(~E4 & ~E10 & ~E21 & ~E27) | 
-      ~(~E34 & ~E32 & ~E35) | 
-      ~(~E56 & ~E62 & ~E45)
+      ~(nE[4] & nE[10] & nE[21] & nE[27]) | 
+      ~(nE[34] & nE[32] & nE[35]) | 
+      ~(nE[56] & nE[62] & nE[45])
     ) & 
     ~(
       ~(
-        (~E20_d & ~E28_d & ~E30_d) & 
+        (nE[20] & nE[28] & nE[30]) & 
         DSACK
       )
     ) & 
-    ~(E50_d_E52_d & ~DSACK)
+    ~(E[50] & ~DSACK)
   )
 );
 
@@ -55,7 +47,7 @@ assign p3b =
 (
   ~(
     ~STERM_ & 
-    ~(~E36_s_E47_s & ~E33_sd_E38_s & ~E39_s & ~E40_s_E41_s & ~E42_s & ~E37_s_E44_s)
+    ~(nE[36] & nE[33] & nE[39] & nE[40] & nE[42] & nE[37])
   )
 );
 
@@ -64,12 +56,12 @@ assign p3c =
   ~(STERM_ & 
     ( 
       ~(
-        ~(E23_sd & DSACK) & 
+        ~(E[23] & DSACK) & 
         ~(~DSACK & 
-          (E33_sd_E38_s | E51_s_E54_sd)
+          (E[33] | E[51])
         ) 
       ) | 
-      (E36_s_E47_s | E46_s_E59_s)
+      (E[36] | E[46])
     )
   )
 );

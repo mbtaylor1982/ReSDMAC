@@ -176,45 +176,64 @@ module CPU_SM_inputs (
   assign nE[36]              = ~(STATE == 5'd19);//s19
   assign #6 E[36]            = ~nE[36];
 
-  
-  //------
-  
-  
   //E37_s_E44_s
   assign E[37]               = (STATE == 5'd12)  | (STATE == 5'd13);//s12 or s13
+  assign #6 nE[37]           = ~E[37];
   
-  assign #5 E[39]            = (STATE == 5'd1);//s1
-  
+  assign #3 nE[39]           = ~(STATE == 5'd1);//s1
+  assign #3 E[39]            = ~nE[39];
+
   //E40_s_E41_s
-  assign #5 E[40]            = (STATE == 5'd17);//s17
-  
-  assign #5 E[42]            = (STATE == 5'd3);//s3
+  assign nE[40]              = ~(STATE == 5'd17);//s17
+  assign #6 E[40]            = ~nE[40];
+
+  assign #3 nE[42]           = ~(STATE == 5'd3);//s3
+  assign #3 E[42]            = ~nE[42];
 
   //E43_s_E49_sd
   assign E[43]               = (STATE == 5'd25)  | (STATE == 5'd29);//s25 or s29
+  assign #6 nE[43]           = ~E[43];
   
-  assign #5 E[45]            = (STATE == 5'd24);//s24
+  assign #3 nE[45]           = ~(STATE == 5'd24);//s24
+  assign #3 E[45]            = ~nE[45];
 
   //E46_s_E59_s
   assign E[46]               = (STATE == 5'd21)  | (STATE == 5'd29);//s21 or s29
+  assign #6 nE[46]           = ~E[46];
   
-  assign #5 E[48]            = ((STATE == 5'd11) & nFIFOFULL );//s11
+  assign #3 nE[48]           = ~((STATE == 5'd11) & nFIFOFULL );//s11
+  assign #3 E[48]            = ~nE[48];
 
   //E50_d_E52_d
   assign E[50]               = (STATE == 5'd5)   | (STATE == 5'd13);//s5 or s13
+  assign #6 nE[50]           = ~E[50];
   
   //E51_s_E54_sd
   assign E[51]               = (STATE == 5'd14)  | (STATE == 5'd15);//s14 or s15
+  assign #6 nE[51]           = ~E[51];
   
-  assign #5 E[53]            = (STATE == 5'd4);//s4
+  assign #3 nE[53]           = ~(STATE == 5'd4);//s4
+  assign #3 E[53]            = ~nE[53];
   
-  assign #2 E[55]            = (STATE == 5'd6)   | (STATE == 5'd14) | (STATE == 5'd22) | (STATE == 5'd30);//s6, s14, s22, s30
-  assign #2 E[56]            = (STATE == 5'd26)  | (STATE == 5'd30);//s26 or s30
-  assign #2 E[57]            = (STATE == 5'd25)  | (STATE == 5'd29);//s25 or s29 
-  assign #2 E[58]            = (STATE == 5'd20)  | (STATE == 5'd22);//s20 or s22
+  assign #3 E[55]            = (STATE == 5'd6)   | (STATE == 5'd14) | (STATE == 5'd22) | (STATE == 5'd30);//s6, s14, s22, s30
+  assign #3 nE[55]           = ~E[55];
 
-  assign #2 E[60]            = (STATE == 5'd18)  | (STATE == 5'd22);//s18 or s22
-  assign #2 E[61]            = (STATE == 5'd10)  | (STATE == 5'd14);//s10 or 14
-  assign #2 E[62]            = (STATE == 5'd9)   | (STATE == 5'd13);//s9 or s13
+  assign #3 E[56]            = (STATE == 5'd26)  | (STATE == 5'd30);//s26 or s30
+  assign #3 nE[56]           = ~E[56];
+
+  assign #3 E[57]            = (STATE == 5'd25)  | (STATE == 5'd29);//s25 or s29 
+  assign #3 nE[57]           = ~E[57];
+
+  assign #3 E[58]            = (STATE == 5'd20)  | (STATE == 5'd22);//s20 or s22
+  assign #3 nE[58]           = ~E[58];
+
+  assign #3 E[60]            = (STATE == 5'd18)  | (STATE == 5'd22);//s18 or s22
+  assign #3 nE[60]           = ~E[60];
+
+  assign #3 E[61]            = (STATE == 5'd10)  | (STATE == 5'd14);//s10 or 14
+  assign #3 nE[61]           = ~E[61];
+
+  assign #3 E[62]            = (STATE == 5'd9)   | (STATE == 5'd13);//s9 or s13
+  assign #3 nE[62]           = ~E[62];
   
 endmodule

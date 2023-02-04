@@ -17,16 +17,9 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 module cpudff4 (
-  input E61, E60, E2, E3, E5, E7, E12, E8,
-  input E55, E18, E19, E48, E21, E31, E34, E45,
-  input E50_d_E52_d, E9_d, E25_d, E28_d, E30_d,
-  input DSACK,
-  input STERM_,
-  inout E51_s_E54_sd, E46_s_E59_s, E36_s_E47_s, 
-  input E33_sd_E38_s, E39_s, E40_s_E41_s, 
-  input E42_s, E43_s_E49_sd, E37_s_E44_s,
-  input E23_sd,
-  input E57_s,
+  input DSACK, STERM_,
+  input [62:0]E,
+  input [62:0]nE,
    
   output cpudff4_d
 );
@@ -35,11 +28,11 @@ wire p4a, p4b, p4c;
 assign p4a = 
 (
   ~(
-    ~(~E61 & ~E60 & ~E2 & ~E3 & ~E5 & ~E7 & ~E12 & ~E8) | 
-    ~(~E55 & ~E18 & ~E19 & ~E48 & ~E21 & ~E31 & ~E34 & ~E45)
+    ~(nE[61] & nE[60] & nE[2] & nE[3] & nE[5] & nE[7] & nE[12] & nE[8]) | 
+    ~(nE[55] & nE[18] & nE[19] & nE[48] & nE[21] & nE[31] & nE[34] & nE[45])
   ) & 
   ~(
-    ~(~E50_d_E52_d & ~E9_d & ~E25_d & ~E28_d & ~E30_d) 
+    ~(nE[50] & nE[9] & nE[25] & nE[28] & nE[30]) 
     & DSACK
   )
 );
@@ -48,9 +41,9 @@ assign p4b =
 (
   ~(~STERM_ & 
       (
-        ~(~E51_s_E54_sd & ~E46_s_E59_s & ~E36_s_E47_s) | 
-        ~(~E33_sd_E38_s & ~E39_s & ~E40_s_E41_s) | 
-        ~(~E42_s & ~E43_s_E49_sd & ~E37_s_E44_s)
+        ~(nE[51] & nE[46] & nE[36]) | 
+        ~(nE[33] & nE[39] & nE[40]) | 
+        ~(nE[42] & nE[43] & nE[37])
       )
   )
 );
@@ -60,12 +53,12 @@ assign p4c =
   ~(
     (
       ~(
-        ~(E23_sd & DSACK) & 
+        ~(E[23] & DSACK) & 
         ~(~DSACK & 
-          (E51_s_E54_sd | E43_s_E49_sd)
+          (E[51] | E[43])
         )
       ) | 
-      (E57_s | E46_s_E59_s)
+      (E[57] | E[46])
     )& 
     STERM_
   )

@@ -103,63 +103,9 @@ wire DIEH_d;
 wire DIEL_d;
 wire DSACK; 
 
-wire E0;
-wire E1;
-wire E2;
-wire E3;
-wire E4;
-wire E5;
-wire E6_d;
-wire E7;
-wire E8;
-wire E9_d;
-wire E10;
-wire E11;
-wire E12;
-wire E13;
-wire E14;
-wire E15;
-wire E16;
-wire E17;
-wire E18;
-wire E19;
-wire E20_d;
-wire E21;
-wire E22;
-wire E23_sd;
-wire E24_sd;
-wire E25_d;
-wire E26;
-wire E27;
-wire E28_d;
-wire E29_sd;
-wire E30_d;
-wire E31;
-wire E32;
-wire E33_sd_E38_s;
-wire E34;
-wire E35;
-wire E36_s_E47_s;
-wire E37_s_E44_s;
-wire E37_s;
-wire E39_s;
-wire E40_s_E41_s;
-wire E42_s;
-wire E43_s_E49_sd;
-wire E44_s;
-wire E45;
-wire E46_s_E59_s;
-wire E48;
-wire E50_d_E52_d;
-wire E51_s_E54_sd;
-wire E53;
-wire E55;
-wire E56;
-wire E57_s;
-wire E58;
-wire E60;
-wire E61;
-wire E62;
+wire [62:0] E;
+wire [62:0] nE;
+
 
 wire F2CPUH_d;
 wire F2CPUL_d;
@@ -193,278 +139,57 @@ CPU_SM_inputs u_CPU_SM_inputs(
     .FLUSHFIFO    (FLUSHFIFO    ),
     .LASTWORD     (LASTWORD     ),
     .STATE        (STATE        ),
-    .E0           (E0           ),
-    .E1           (E1           ),
-    .E2           (E2           ),
-    .E3           (E3           ),
-    .E4           (E4           ),
-    .E5           (E5           ),
-    .E6_d         (E6_d         ),
-    .E7           (E7           ),
-    .E8           (E8           ),
-    .E9_d         (E9_d         ),
-    .E10          (E10          ),
-    .E11          (E11          ),
-    .E12          (E12          ),
-    .E13          (E13          ),
-    .E14          (E14          ),
-    .E15          (E15          ),
-    .E16          (E16          ),
-    .E17          (E17          ),
-    .E18          (E18          ),
-    .E19          (E19          ),
-    .E20_d        (E20_d        ),
-    .E21          (E21          ),
-    .E22          (E22          ),
-    .E23_sd       (E23_sd       ),
-    .E24_sd       (E24_sd       ),
-    .E25_d        (E25_d        ),
-    .E26          (E26          ),
-    .E27          (E27          ),
-    .E28_d        (E28_d        ),
-    .E29_sd       (E29_sd       ),
-    .E30_d        (E30_d        ),
-    .E31          (E31          ),
-    .E32          (E32          ),
-    .E33_sd_E38_s (E33_sd_E38_s ),
-    .E34          (E34          ),
-    .E35          (E35          ),
-    .E36_s_E47_s  (E36_s_E47_s  ),
-    .E37_s_E44_s  (E37_s_E44_s  ),
-    .E39_s        (E39_s        ),
-    .E40_s_E41_s  (E40_s_E41_s  ),
-    .E42_s        (E42_s        ),
-    .E43_s_E49_sd (E43_s_E49_sd ),
-    .E45          (E45          ),
-    .E46_s_E59_s  (E46_s_E59_s  ),
-    .E48          (E48          ),
-    .E50_d_E52_d  (E50_d_E52_d  ),
-    .E51_s_E54_sd (E51_s_E54_sd ),
-    .E53          (E53          ),
-    .E55          (E55          ),
-    .E56          (E56          ),
-    .E57_s        (E57_s        ),
-    .E58          (E58          ),
-    .E60          (E60          ),
-    .E61          (E61          ),
-    .E62          (E62          )
+    .nE           (nE),
+    .E            (E)
 );
 cpudff1 u_cpudff1(
-    .DSACK        (DSACK        ),
-    .E12          (E12          ),
-    .E25_d        (E25_d        ),
-    .E26          (E26          ),
-    .E27          (E27          ),
-    .E32          (E32          ),
-    .E48          (E48          ),
-    .E50_d_E52_d  (E50_d_E52_d  ),
-    .E53          (E53          ),
-    .E55          (E55          ),
-    .E56          (E56          ),
-    .E58          (E58          ),
-    .E60          (E60          ),
-    .E62          (E62          ),
-    .E6_d         (E6_d         ),
-    .E43_s_E49_sd (E43_s_E49_sd ),
-    .E46_s_E59_s  (E46_s_E59_s  ),
-    .E51_s_E54_sd (E51_s_E54_sd ),
+    .DSACK        (DSACK        ),    
     .STERM_       (STERM_       ),
-    .E23_sd       (E23_sd       ),
-    .E24_sd       (E24_sd       ),
-    .E29_sd       (E29_sd       ),
-    .E33_sd_E38_s (E33_sd_E38_s ),
-    .E36_s_E47_s  (E36_s_E47_s  ),
-    .E37_s_E44_s  (E37_s_E44_s  ),
-    .E40_s_E41_s  (E40_s_E41_s  ),
-    .E57_s        (E57_s        ),
+    .nE           (nE           ),
+    .E            (E            ),
     .cpudff1_d    (cpudff1_d    )
 );
+
 cpudff2 u_cpudff2(
-    .E1           (E1           ),
-    .E11          (E11          ),
-    .E16          (E16          ),
-    .E17          (E17          ),
-    .E26          (E26          ),
-    .E27          (E27          ),
-    .E31          (E31          ),
-    .E32          (E32          ),
-    .E35          (E35          ),
-    .E55          (E55          ),
-    .E58          (E58          ),
-    .E61          (E61          ),
-    .E25_d        (E25_d        ),
-    .E50_d_E52_d  (E50_d_E52_d  ),
     .DSACK        (DSACK        ),
     .STERM_       (STERM_       ),
-    .E43_s_E49_sd (E43_s_E49_sd ),
-    .E46_s_E59_s  (E46_s_E59_s  ),
-    .E51_s_E54_sd (E51_s_E54_sd ),
-    .E23_sd       (E23_sd       ),
-    .E33_sd_E38_s (E33_sd_E38_s ),
-    .E29_sd       (E29_sd       ),
-    .E36_s_E47_s  (E36_s_E47_s  ),
-    .E57_s        (E57_s        ),
-    .E40_s_E41_s  (E40_s_E41_s  ),
+    .nE           (nE           ),
+    .E            (E            ),
     .cpudff2_d    (cpudff2_d    )
 );
+
 cpudff3 u_cpudff3(
-    .E4           (E4           ),
-    .E10          (E10          ),
-    .E21          (E21          ),
-    .E27          (E27          ),
-    .E34          (E34          ),
-    .E32          (E32          ),
-    .E35          (E35          ),
-    .E56          (E56          ),
-    .E62          (E62          ),
-    .E45          (E45          ),
-    .E20_d        (E20_d        ),
-    .E28_d        (E28_d        ),
-    .E30_d        (E30_d        ),
     .DSACK        (DSACK        ),
-    .E50_d_E52_d  (E50_d_E52_d  ),
     .STERM_       (STERM_       ),
-    .E36_s_E47_s  (E36_s_E47_s  ),
-    .E33_sd_E38_s (E33_sd_E38_s ),
-    .E39_s        (E39_s        ),
-    .E40_s_E41_s  (E40_s_E41_s  ),
-    .E42_s        (E42_s        ),
-    .E37_s_E44_s  (E37_s_E44_s  ),
-    .E23_sd       (E23_sd       ),
-    .E51_s_E54_sd (E51_s_E54_sd ),
-    .E46_s_E59_s  (E46_s_E59_s  ),
+    .nE           (nE           ),
+    .E            (E            ),
     .cpudff3_d    (cpudff3_d    )
 );
+
 cpudff4 u_cpudff4(
-    .E61          (E61          ),
-    .E60          (E60          ),
-    .E2           (E2           ),
-    .E3           (E3           ),
-    .E5           (E5           ),
-    .E7           (E7           ),
-    .E12          (E12          ),
-    .E8           (E8           ),
-    .E55          (E55          ),
-    .E18          (E18          ),
-    .E19          (E19          ),
-    .E48          (E48          ),
-    .E21          (E21          ),
-    .E31          (E31          ),
-    .E34          (E34          ),
-    .E45          (E45          ),
-    .E50_d_E52_d  (E50_d_E52_d  ),
-    .E9_d         (E9_d         ),
-    .E25_d        (E25_d        ),
-    .E28_d        (E28_d        ),
-    .E30_d        (E30_d        ),
     .DSACK        (DSACK        ),
     .STERM_       (STERM_       ),
-    .E51_s_E54_sd (E51_s_E54_sd ),
-    .E46_s_E59_s  (E46_s_E59_s  ),
-    .E36_s_E47_s  (E36_s_E47_s  ),
-    .E33_sd_E38_s (E33_sd_E38_s ),
-    .E39_s        (E39_s        ),
-    .E40_s_E41_s  (E40_s_E41_s  ),
-    .E42_s        (E42_s        ),
-    .E43_s_E49_sd (E43_s_E49_sd ),
-    .E37_s_E44_s  (E37_s_E44_s  ),
-    .E23_sd       (E23_sd       ),
-    .E57_s        (E57_s        ),
+    .nE           (nE           ),
+    .E            (E            ),
     .cpudff4_d    (cpudff4_d    )
 );
+
 cpudff5 u_cpudff5(
-    .E26          (E26          ),
-    .E5           (E5           ),
-    .E4           (E4           ),
-    .E27          (E27          ),
-    .E8           (E8           ),
-    .E11          (E11          ),
-    .E32          (E32          ),
-    .E13          (E13          ),
-    .E14          (E14          ),
-    .E15          (E15          ),
-    .E22          (E22          ),
-    .E60          (E60          ),
-    .E61          (E61          ),
-    .E62          (E62          ),
-    .E48          (E48          ),
-    .E53          (E53          ),
-    .E58          (E58          ),
-    .E30_d        (E30_d        ),
-    .E9_d         (E9_d         ),
-    .E28_d        (E28_d        ),
     .DSACK        (DSACK        ),
     .STERM_       (STERM_       ),
-    .E36_s_E47_s  (E36_s_E47_s  ),
-    .E33_sd_E38_s (E33_sd_E38_s ),
-    .E39_s        (E39_s        ),
-    .E40_s_E41_s  (E40_s_E41_s  ),
-    .E42_s        (E42_s        ),
-    .E37_s_E44_s  (E37_s_E44_s  ),
-    .E23_sd       (E23_sd       ),
-    .E43_s_E49_sd (E43_s_E49_sd ),
-    .E57_s        (E57_s        ),
+    .nE           (nE           ),
+    .E            (E            ),
     .cpudff5_d    (cpudff5_d    )
 );
 CPU_SM_outputs u_CPU_SM_outputs(
-    .E32          (E32          ),
-    .E48          (E48          ),
-    .E2           (E2           ),
-    .E3           (E3           ),
-    .E4           (E4           ),
-    .E5           (E5           ),
-    .E7           (E7           ),
-    .E8           (E8           ),
-    .E10          (E10          ),
-    .E11          (E11          ),
-    .E12          (E12          ),
-    .E16          (E16          ),
-    .E17          (E17          ),
-    .E18          (E18          ),
-    .E19          (E19          ),
-    .E0           (E0           ),
-    .E21          (E21          ),
-    .E26          (E26          ),
-    .E27          (E27          ),
-    .E56          (E56          ),
-    .E55          (E55          ),
-    .E35          (E35          ),
-    .E61          (E61          ),
-    .E50_d_E52_d  (E50_d_E52_d  ),
-    .E60          (E60          ),
     .DSACK        (DSACK        ),
-    .E43_s_E49_sd (E43_s_E49_sd ),
-    .E57_s        (E57_s        ),
     .STERM_       (STERM_       ),
-    .E36_s_E47_s  (E36_s_E47_s  ),
-    .E33_sd_E38_s (E33_sd_E38_s ),
-    .E40_s_E41_s  (E40_s_E41_s  ),
-    .E42_s        (E42_s        ),
-    .E46_s_E59_s  (E46_s_E59_s  ),
-    .E51_s_E54_sd (E51_s_E54_sd ),
-    .E62          (E62          ),
-    .E58          (E58          ),
-    .E53          (E53          ),
-    .E25_d        (E25_d        ),
-    .E28_d        (E28_d        ),
-    .E30_d        (E30_d        ),
-    .E23_sd       (E23_sd       ),
-    .E29_sd       (E29_sd       ),
-    .E45          (E45          ),
-    .E34          (E34          ),
-    .E24_sd       (E24_sd       ),
-    .E37_s        (E37_s        ),
-    .E44_s        (E44_s        ),
-    .E20_d        (E20_d        ),
-    .E39_s        (E39_s        ),
-    .E37_s_E44_s  (E37_s_E44_s  ),
-    .E6_d         (E6_d         ),
-    .E9_d         (E9_d         ),
+    .nE           (nE           ),
+    .E            (E            ),
     .RDFIFO_      (RDFIFO_      ),
     .RIFIFO_      (RIFIFO_      ),
     .BGRANT_      (BGRANT_      ),
     .CYCLEDONE    (CYCLEDONE    ),
-    .E31          (E31          ),
     .STATE        (STATE        ),
     .nINCNI_d     (nINCNI_d     ),
     .nBREQ_d      (nBREQ_d      ),

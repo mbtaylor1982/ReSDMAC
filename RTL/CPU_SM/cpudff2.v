@@ -17,16 +17,9 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 module cpudff2 (
-  input E1, E11, E16, E17,
-  input E26, E27, E31, E32,
-  input E35, E55, E58, E61,
-  input E25_d,E50_d_E52_d,
-  input DSACK,
-  input STERM_,
-  input E43_s_E49_sd, E46_s_E59_s, E51_s_E54_sd,
-  input E23_sd, 
-  input E33_sd_E38_s, E29_sd,
-  input E36_s_E47_s, E57_s, E40_s_E41_s,
+  input DSACK, STERM_,
+  input [62:0]E,
+  input [62:0]nE,
     
   output cpudff2_d
 );
@@ -35,30 +28,30 @@ wire p2a, p2b, p2c;
 assign p2a = 
 (
   ~( 
-    ~(~E1 & ~E11 & ~E16 & ~E17) | 
-    ~(~E26 & ~E27 & ~E31 & ~E32) | 
-    ~(~E35 & ~E55 & ~E58 & ~E61) 
+    ~(nE[1] & nE[11] & nE[16] & nE[17]) | 
+    ~(nE[26] & nE[27] & nE[31] & nE[32]) | 
+    ~(nE[35] & nE[55] & nE[58] & nE[61]) 
   ) & 
-  ~(~(~E25_d & ~E50_d_E52_d) & DSACK)
+  ~(~(nE[25] & nE[50]) & DSACK)
 );
 
 assign p2b = 
 ~(
   ~STERM_ & 
-  ~(~E43_s_E49_sd & ~E46_s_E59_s & ~E51_s_E54_sd)
+  ~(nE[43] & nE[46] & nE[51])
 );
 
 assign p2c = 
 ~(
   (
     ~(
-      ~(E23_sd & DSACK) & 
+      ~(E[23] & DSACK) & 
       ~(
         ~DSACK & 
-        (E33_sd_E38_s|E43_s_E49_sd|E51_s_E54_sd|E29_sd)
+        (E[33]|E[43]|E[51]|E[29])
       )
     )|
-    (E36_s_E47_s|E57_s|E46_s_E59_s|E40_s_E41_s)
+    (E[36]|E[57]|E[46]|E[40])
   ) & 
   STERM_
 );
