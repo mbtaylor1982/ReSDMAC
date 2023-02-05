@@ -17,7 +17,8 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 module cpudff4 (
-  input DSACK, STERM_,
+  input DSACK, nDSACK,
+  input STERM_, nSTERM_,
   input [62:0]E,
   input [62:0]nE,
    
@@ -39,7 +40,7 @@ assign p4a =
 
 assign p4b = 
 (
-  ~(~STERM_ & 
+  ~(nSTERM_ & 
       (
         ~(nE[51] & nE[46] & nE[36]) | 
         ~(nE[33] & nE[39] & nE[40]) | 
@@ -54,7 +55,7 @@ assign p4c =
     (
       ~(
         ~(E[23] & DSACK) & 
-        ~(~DSACK & 
+        ~(nDSACK & 
           (E[51] | E[43])
         )
       ) | 

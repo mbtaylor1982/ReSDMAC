@@ -17,7 +17,8 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 module cpudff1 (
-    input DSACK, STERM_,
+    input DSACK, nDSACK,
+    input STERM_, nSTERM_,
     input [62:0]E,
     input [62:0]nE,
 
@@ -30,7 +31,7 @@ module cpudff1 (
     ~(DSACK & 
       ~(nE[25] & nE[50] & nE[6])
     ) & 
-    ~(~ DSACK & E[50]) & 
+    ~(nDSACK & E[50]) & 
     ~(
       ~(nE[12] & nE[26] & nE[53]) | 
       ~(nE[27] & nE[32] & nE[48] & nE[55]) | 
@@ -41,7 +42,7 @@ module cpudff1 (
   assign p1b = 
   ~(
     ~(nE[43] & nE[46] & nE[51]) & 
-    ~STERM_
+    nSTERM_
   );
 
   assign p1c = 
@@ -51,7 +52,7 @@ module cpudff1 (
       (E[36] | E[37] | E[40] | E[46] | E[57]) |
       ~(
         ~(DSACK & E[23]) & 
-        ~(~DSACK &  (E[24]| E[29] | E[33] | E[43] | E[51]))
+        ~(nDSACK &  (E[24]| E[29] | E[33] | E[43] | E[51]))
       ) 
     ) 
   );

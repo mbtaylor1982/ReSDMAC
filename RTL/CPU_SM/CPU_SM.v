@@ -47,7 +47,7 @@ module CPU_SM(
     input FIFOFULL,
     input RDFIFO_,
     input RIFIFO_,    
-    input STERM_,
+    input iSTERM_,
     input AS_,
     input BGACK_I_,
 
@@ -101,7 +101,7 @@ wire CYCLEDONE;
 wire DECFIFO_d;
 wire DIEH_d;
 wire DIEL_d;
-wire DSACK; 
+wire iDSACK; 
 
 wire [62:0] E;
 wire [62:0] nE;
@@ -115,6 +115,7 @@ wire nAS_;
 wire nBREQ_d;
 wire nBRIDGEIN_d;
 wire nCLK;
+wire nDSACK;
 wire nINCNI_d;
 wire nSTOPFLUSH_d;
 wire PAS_d;
@@ -122,6 +123,7 @@ wire PDS_d;
 wire PLHW_d;
 wire PLLW_d;
 wire SIZE1_d;
+wire nSTERM_;
 wire LASTWORD;
 
 CPU_SM_inputs u_CPU_SM_inputs(
@@ -143,8 +145,10 @@ CPU_SM_inputs u_CPU_SM_inputs(
     .E            (E)
 );
 cpudff1 u_cpudff1(
-    .DSACK        (DSACK        ),    
+    .DSACK        (DSACK        ),
+    .nDSACK       (nDSACK       ),
     .STERM_       (STERM_       ),
+    .nSTERM_      (nSTERM_      ),
     .nE           (nE           ),
     .E            (E            ),
     .cpudff1_d    (cpudff1_d    )
@@ -152,7 +156,9 @@ cpudff1 u_cpudff1(
 
 cpudff2 u_cpudff2(
     .DSACK        (DSACK        ),
+    .nDSACK       (nDSACK       ),
     .STERM_       (STERM_       ),
+    .nSTERM_      (nSTERM_      ),
     .nE           (nE           ),
     .E            (E            ),
     .cpudff2_d    (cpudff2_d    )
@@ -160,7 +166,9 @@ cpudff2 u_cpudff2(
 
 cpudff3 u_cpudff3(
     .DSACK        (DSACK        ),
+    .nDSACK       (nDSACK       ),
     .STERM_       (STERM_       ),
+    .nSTERM_      (nSTERM_      ),
     .nE           (nE           ),
     .E            (E            ),
     .cpudff3_d    (cpudff3_d    )
@@ -168,7 +176,9 @@ cpudff3 u_cpudff3(
 
 cpudff4 u_cpudff4(
     .DSACK        (DSACK        ),
+    .nDSACK       (nDSACK       ),
     .STERM_       (STERM_       ),
+    .nSTERM_      (nSTERM_      ),
     .nE           (nE           ),
     .E            (E            ),
     .cpudff4_d    (cpudff4_d    )
@@ -176,14 +186,18 @@ cpudff4 u_cpudff4(
 
 cpudff5 u_cpudff5(
     .DSACK        (DSACK        ),
+    .nDSACK       (nDSACK       ),
     .STERM_       (STERM_       ),
+    .nSTERM_      (nSTERM_      ),
     .nE           (nE           ),
     .E            (E            ),
     .cpudff5_d    (cpudff5_d    )
 );
 CPU_SM_outputs u_CPU_SM_outputs(
     .DSACK        (DSACK        ),
+    .nDSACK       (nDSACK       ),
     .STERM_       (STERM_       ),
+    .nSTERM_      (nSTERM_      ),
     .nE           (nE           ),
     .E            (E            ),
     .RDFIFO_      (RDFIFO_      ),
@@ -296,7 +310,7 @@ always @(posedge nCLK or negedge nAS_) begin
         DSACK_LATCHED_ <= {DSACK1_, DSACK0_};
 end
 
-assign aCYCLEDONE_ = ~(BGACK_I_ & AS_ & DSACK0_ & DSACK1_ & STERM_);
+assign  aCYCLEDONE_ = ~(BGACK_I_ & AS_ & DSACK0_ & DSACK1_ & STERM_);
 
 assign LASTWORD = (~BOEQ0 & aFLUSHFIFO & FIFOEMPTY);
 
@@ -307,8 +321,12 @@ assign NEXT_STATE = {cpudff5_d, cpudff4_d, cpudff3_d, cpudff2_d, cpudff1_d};
 assign BBCLK = CLK135;//BCLK; // may need to change this to add delays
 assign BCLK = CLK90;//CLK; // may need to change this to add delays
 assign CYCLEDONE = ~nCYCLEDONE;
-assign #6 DSACK = ~(DSACK_LATCHED_[0] & DSACK_LATCHED_[1]);
+assign iDSACK = ~(DSACK_LATCHED_[0] & DSACK_LATCHED_[1]);
 assign nAS_ = ~AS_;
 assign #3 nCLK = ~CLK;
+assign #6 DSACK = iDSACK;
+assign nDSACK = ~iDSACK;
+assign #6 STERM_ = iSTERM_;
+assign nSTERM_ = ~iSTERM_;
 
 endmodule

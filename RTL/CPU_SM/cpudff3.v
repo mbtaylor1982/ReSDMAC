@@ -17,7 +17,8 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 module cpudff3 (
-  input DSACK, STERM_,
+  input DSACK, nDSACK,
+  input STERM_, nSTERM_,
   input [62:0]E,
   input [62:0]nE,
 
@@ -39,14 +40,14 @@ assign p3a =
         DSACK
       )
     ) & 
-    ~(E[50] & ~DSACK)
+    ~(E[50] & nDSACK)
   )
 );
 
 assign p3b = 
 (
   ~(
-    ~STERM_ & 
+    nSTERM_ & 
     ~(nE[36] & nE[33] & nE[39] & nE[40] & nE[42] & nE[37])
   )
 );
@@ -57,7 +58,7 @@ assign p3c =
     ( 
       ~(
         ~(E[23] & DSACK) & 
-        ~(~DSACK & 
+        ~(nDSACK & 
           (E[33] | E[51])
         ) 
       ) | 

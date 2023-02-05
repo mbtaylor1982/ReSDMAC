@@ -17,7 +17,8 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 module cpudff5 (
-  input DSACK, STERM_,
+  input DSACK, nDSACK,
+  input STERM_, nSTERM_,
   input [62:0]E,
   input [62:0]nE,
   
@@ -33,14 +34,12 @@ assign p5a =
     ~(nE[32] & nE[13] & nE[14] & nE[15] & nE[22] & nE[60]) | 
     ~(nE[61] & nE[62] & nE[48] & nE[53] & nE[58])
   ) & 
-  ~(
-    ~(nE[30] & nE[9] & nE[28]) & DSACK
-  )
+  ~(~(nE[30] & nE[9] & nE[28]) & DSACK)
 );
 
 assign p5b = 
 (
-  ~(~STERM_& 
+  ~(nSTERM_& 
     ~(nE[36] & nE[33] & nE[39] & nE[40] & nE[42] & nE[37])
   )
 );
@@ -51,7 +50,7 @@ assign p5c =
     (
       ~(
         ~(E[23] & DSACK) & 
-        ~(~DSACK & E[43]) 
+        ~(nDSACK & E[43]) 
       ) | 
       E[57]
     )& 

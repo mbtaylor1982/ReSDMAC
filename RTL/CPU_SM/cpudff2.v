@@ -17,7 +17,8 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 module cpudff2 (
-  input DSACK, STERM_,
+  input DSACK, nDSACK,
+  input STERM_, nSTERM_,
   input [62:0]E,
   input [62:0]nE,
     
@@ -37,7 +38,7 @@ assign p2a =
 
 assign p2b = 
 ~(
-  ~STERM_ & 
+  nSTERM_ & 
   ~(nE[43] & nE[46] & nE[51])
 );
 
@@ -47,7 +48,7 @@ assign p2c =
     ~(
       ~(E[23] & DSACK) & 
       ~(
-        ~DSACK & 
+        nDSACK & 
         (E[33]|E[43]|E[51]|E[29])
       )
     )|
