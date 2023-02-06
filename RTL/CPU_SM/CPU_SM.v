@@ -38,6 +38,7 @@ module CPU_SM(
     input BOEQ0,
     input BOEQ3,
     input CLK,
+    input CLK45,
     input CLK90,            //CPU CLK Phase shifted 90 Deg. 
     input CLK135,           //CPU CLK Phase shifted 135 Deg.
     input DMADIR,
@@ -233,67 +234,64 @@ end
 //clocked inputs.
 always @(posedge  BBCLK or negedge CCRESET_) begin
     if (CCRESET_ == 1'b0) begin
-        BGRANT_ <= 1'b1;
-        DMAENA <= 1'b0;
-        DREQ_ <= 1'b1;
-        FLUSHFIFO <= 1'b0;
-        nCYCLEDONE <= 1'b0;
+        BGRANT_     <= 1'b1;
+        DMAENA      <= 1'b0;
+        DREQ_       <= 1'b1;
+        FLUSHFIFO   <= 1'b0;
+        nCYCLEDONE  <= 1'b0;
     end
     else begin
-        BGRANT_ <= aBGRANT_;
-        DMAENA <= aDMAENA;
-        DREQ_ <= aDREQ_;
-        FLUSHFIFO <= aFLUSHFIFO;
-        nCYCLEDONE <= aCYCLEDONE_;
+        BGRANT_     <= aBGRANT_;
+        DMAENA      <= aDMAENA;
+        DREQ_       <= aDREQ_;
+        FLUSHFIFO   <= aFLUSHFIFO;
+        nCYCLEDONE  <= aCYCLEDONE_;
     end
 end
 
 //clocked outputs
 always @(posedge BCLK or negedge CCRESET_) begin
     if (CCRESET_ == 1'b0) begin
-        BGACK <= 1'b0;
-        PAS <= 1'b0;
-        PDS <= 1'b0;
-        BREQ <= 1'b0;
-        BRIDGEIN <= 1'b0;
-        BRIDGEOUT <= 1'b0;
-        DECFIFO <= 1'b0;
-        DIEH <= 1'b0;
-        DIEL <= 1'b0;
-        F2CPUH <= 1'b0;
-        F2CPUL <= 1'b0;
-        INCFIFO <= 1'b0;
-        INCNI <= 1'b0;
-        INCNO <= 1'b0;
-        PLHW <= 1'b0;
-        PLLW <= 1'b0;
-        SIZE1 <= 1'b0;
-        STOPFLUSH <= 1'b0;
-
+        BGACK       <= 1'b0;
+        PAS         <= 1'b0;
+        PDS         <= 1'b0;
+        BREQ        <= 1'b0;
+        BRIDGEIN    <= 1'b0;
+        BRIDGEOUT   <= 1'b0;
+        DECFIFO     <= 1'b0;
+        DIEH        <= 1'b0;
+        DIEL        <= 1'b0;
+        F2CPUH      <= 1'b0;
+        F2CPUL      <= 1'b0;
+        INCFIFO     <= 1'b0;
+        INCNI       <= 1'b0;
+        INCNO       <= 1'b0;
+        PLHW        <= 1'b0;
+        PLLW        <= 1'b0;
+        SIZE1       <= 1'b0;
+        STOPFLUSH   <= 1'b0;
     end
     else begin
-        BGACK <= BGACK_d;
-        BREQ <= ~nBREQ_d;
-        BRIDGEIN <= ~nBRIDGEIN_d;
-        BRIDGEOUT <= BRIDGEOUT_d;
-        DECFIFO <= DECFIFO_d;
-        DIEH <= DIEH_d;
-        DIEL <= DIEL_d;
-        F2CPUH <= F2CPUH_d;
-        F2CPUL <= F2CPUL_d;
-        INCFIFO <= INCFIFO_d;
-        INCNI <= ~nINCNI_d;
-        INCNO <= INCNO_d;
-        PAS <= PAS_d;
-        PDS <= PDS_d;
-        PLHW <= PLHW_d;
-        PLLW <= PLLW_d;
-        SIZE1 <= SIZE1_d;
-        STOPFLUSH <= ~nSTOPFLUSH_d;
+        BGACK       <= BGACK_d;
+        BREQ        <= ~nBREQ_d;
+        BRIDGEIN    <= ~nBRIDGEIN_d;
+        BRIDGEOUT   <= BRIDGEOUT_d;
+        DECFIFO     <= DECFIFO_d;
+        DIEH        <= DIEH_d;
+        DIEL        <= DIEL_d;
+        F2CPUH      <= F2CPUH_d;
+        F2CPUL      <= F2CPUL_d;
+        INCFIFO     <= INCFIFO_d;
+        INCNI       <= ~nINCNI_d;
+        INCNO       <= INCNO_d;
+        PAS         <= PAS_d;
+        PDS         <= PDS_d;
+        PLHW        <= PLHW_d;
+        PLLW        <= PLLW_d;
+        SIZE1       <= SIZE1_d;
+        STOPFLUSH   <= ~nSTOPFLUSH_d;
     end
 end
-
-
 
 always @(posedge BCLK or negedge CCRESET_) begin
     if (CCRESET_ == 1'b0) 
@@ -301,7 +299,6 @@ always @(posedge BCLK or negedge CCRESET_) begin
     else 
         STATE <= NEXT_STATE;
 end
-
 
 always @(posedge nCLK or negedge nAS_) begin
     if (nAS_ == 1'b0)
@@ -314,16 +311,15 @@ assign  aCYCLEDONE_ = ~(BGACK_I_ & AS_ & DSACK0_ & DSACK1_ & STERM_);
 
 assign LASTWORD = (~BOEQ0 & aFLUSHFIFO & FIFOEMPTY);
 
-
 assign NEXT_STATE = {cpudff5_d, cpudff4_d, cpudff3_d, cpudff2_d, cpudff1_d};
 
-
-assign BBCLK = CLK135;//BCLK; // may need to change this to add delays
+assign #3 nCLK = ~CLK;
 assign BCLK = CLK90;//CLK; // may need to change this to add delays
+assign BBCLK = CLK135;//BCLK; // may need to change this to add delays
+
 assign CYCLEDONE = ~nCYCLEDONE;
 assign iDSACK = ~(DSACK_LATCHED_[0] & DSACK_LATCHED_[1]);
-assign nAS_ = ~AS_;
-assign #3 nCLK = ~CLK;
+assign #3 nAS_ = ~AS_;
 assign #6 DSACK = iDSACK;
 assign nDSACK = ~iDSACK;
 assign #6 STERM_ = iSTERM_;

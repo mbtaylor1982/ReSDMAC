@@ -191,7 +191,7 @@ module CPU_SM_inputs (
   assign #3 E[42]            = ~nE[42];
 
   //E43_s_E49_sd
-  assign E[43]               = (STATE == 5'd25)  | (STATE == 5'd29);//s25 or s29
+  assign E[43]               = (STATE == 5'd25)  | (STATE == 5'd27);//s25 or s27
   assign #6 nE[43]           = ~E[43];
   
   assign #3 nE[45]           = ~(STATE == 5'd24);//s24

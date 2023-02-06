@@ -102,7 +102,7 @@ wire _DS;
 assign _DS = _DS_IO;
 
 wire R_W;
-assign R_W = R_W_IO;
+assign  R_W = R_W_IO;
 
 wire [31:0] DATA;
 assign DATA = DATA_IO;
@@ -206,10 +206,11 @@ CPU_SM u_CPU_SM(
     .aBGRANT_      (_BG         ),
     .SIZE1         (SIZE1_CPUSM ),
     .aRESET_       (_RST        ),
-    .STERM_        (_STERM      ),
+    .iSTERM_        (_STERM      ),
     .DSACK0_       (DSK0_IN_    ),
     .DSACK1_       (DSK1_IN_    ),
     .CLK           (SCLK        ),
+    .CLK45         (CLK45       ),
     .CLK90         (CLK90       ),
     .CLK135        (CLK135      ),
     .DMADIR        (DMADIR      ),
@@ -347,7 +348,7 @@ always @(posedge nSCLK) begin
 end
 
 assign nSCLK  = ~SCLK;
-assign nAS_ = ~_AS;
+assign nAS_ = ~_AS_IO;
 assign OWN_ = ~CPUSM_BGACK;
 assign _BGACK_I =  _BGACK_IO;
 

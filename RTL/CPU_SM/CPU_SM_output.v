@@ -75,17 +75,20 @@ assign SIZE1_d = (~(SIZE1_X & SIZE1_Y & SIZE1_Z));
 //PAS
 wire PAS_X, PAS_Y;
 
-assign PAS_X = (~(~(nE[62] & nE[61]  & nE[60]  & nE[58] ) |~(nE[56]  & nE[53] & nE[48]  & nE[45] ) | ~(nE[34]  & nE[26]  & nE[21] )) & ~(E[50]  & nDSACK));
+assign PAS_X = 
+~(nDSACK & E[50]) &
+~(
+    ~(nE[62] & nE[61] & nE[60] & nE[58]) |
+    ~(nE[56] & nE[53] & nE[48] & nE[45]) | 
+    ~(nE[34] & nE[26] & nE[21])
+);
+
 assign PAS_Y = 
-(
-    ~(
-        (
-            (nDSACK & 
-                (E[24] | E[29]  | E[33]  | E[43]  | E[51] )
-            )|
-            (E[37] | E[40] | E[36] | E[57] | E[46] )
-        ) & 
-        STERM_
+~(  
+    STERM_ &
+    (
+        (nDSACK & (E[24] | E[29] | E[33] | E[43] | E[51])) |
+        (E[37] | E[40] | E[36] | E[57] | E[46])
     )
 );
 
@@ -140,14 +143,14 @@ assign PLLW_d = (~(PLLW_X & PLLW_Y));
 assign PLHW_d = ~(~(E[48]  | E[60] ) & (~(((nDSACK & E[43] ) | E[57] ) & STERM_)));
 
 //FIFO COUNTER STROBES
-wire A,B,C,D,E,F;
+wire AA,BB,CC,DD,EE,FF;
 
 assign AA = (~(~(nE[51]  & nE[46]  & nE[43] ) & nSTERM_));
 assign BB = (~(DSACK & ~(nE[50]  & nE[25]  & nE[6] )) & nE[55] );
 assign CC = (~(~(nE[9]   & nE[30] ) & DSACK));
 assign DD = (~(nSTERM_ & ~(nE[39]  & nE[40] & nE[37] & nE[42] )));
-assign EE = (~(A & B & ~RDFIFO_));
-assign FF = (~(C & D & ~RIFIFO_));
+assign EE = (~(AA & BB & ~RDFIFO_));
+assign FF = (~(CC & DD & ~RIFIFO_));
 
 assign INCFIFO_d = (~(AA & BB & FF));
 assign DECFIFO_d = (~(CC & DD & EE));

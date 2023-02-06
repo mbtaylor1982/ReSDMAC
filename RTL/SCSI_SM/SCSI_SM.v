@@ -145,19 +145,19 @@ end
 
 //Clocked outputs.
 always @(posedge BCLK) begin
-    CPU2S_o <= CPU2S;   
-    DACK_o <= DACK;
-    F2S_o <= F2S;
-    INCBO_o <= INCBO;
-    INCNI_o <= INCNI;
-    INCNO_o <= INCNO;
-    RDFIFO_d <= E[3];
-    RE_o <= RE;
-    RIFIFO_d <=  E[4];
-    S2CPU_o <= S2CPU;
-    S2F_o <= S2F;
-    SCSI_CS_o <= SCSI_CS;
-    WE_o <= WE;
+    CPU2S_o     <= CPU2S;   
+    DACK_o      <= DACK;
+    F2S_o       <= F2S;
+    INCBO_o     <= INCBO;
+    INCNI_o     <= INCNI;
+    INCNO_o     <= INCNO;
+    RDFIFO_d    <= E[3];
+    RE_o        <= RE;
+    RIFIFO_d    <= E[4];
+    S2CPU_o     <= S2CPU;
+    S2F_o       <= S2F;
+    SCSI_CS_o   <= SCSI_CS;
+    WE_o        <= WE;
 end
 
 //State Machine

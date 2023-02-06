@@ -26,6 +26,8 @@ module RESDMAC_tb;
 //  UUT
 //------------------------------------------------------------------------------
     // ports
+    reg [1:0] Count = 2'b00;
+
     reg R_W_i;
     wire R_W_o;
     assign R_W_o = R_W_IO;
@@ -44,7 +46,7 @@ module RESDMAC_tb;
     reg [31:0] DATA_i ;
     wire [31:0] DATA_o;
     assign DATA_o = DATA_IO;
-    assign DATA_IO = OWN_ ? DATA_i : 32'bz;
+    assign DATA_IO = (R_W_IO ^ OWN_) ? DATA_i : 32'hzzzzzzzz;
 
     reg [7:0] PD_i;
     wire [7:0] PD_o;
@@ -233,6 +235,7 @@ module RESDMAC_tb;
         DATA_i <= 32'hzzzzzzzz;
         wait_n_clko(1);
         ADDR <= 32'h08000000;
+        DATA_i <= 32'h00000000;
 
         //_BG <= 1'b0;
         wait_n_clko(200);
@@ -277,11 +280,25 @@ module RESDMAC_tb;
             
     end
 
-    always @(negedge SCLK, posedge _AS_IO) begin
+    always @(posedge SCLK, posedge _AS_IO) begin
         if (_BGACK_IO == 1'b0) 
         begin
-            if (_AS_IO == 1'b0) _STERM <= 1'b0;         
-            else if (_STERM == 1'b0) _STERM <= 1'b1;
+            if (_AS_IO == 1'b0)
+            begin
+                 Count <= Count +1'b1;
+                 if (Count == 2'b10)
+                 begin
+                    _STERM <= 1'b0;
+                    Count <= 2'b00;        
+                 end 
+            end
+            else if (_STERM == 1'b0)
+            begin 
+                _STERM <= 1'b1;
+                ADDR <= ADDR + 32'h4;
+                DATA_i <= DATA_i + 32'h11111111;
+
+            end
         end
     end
 
