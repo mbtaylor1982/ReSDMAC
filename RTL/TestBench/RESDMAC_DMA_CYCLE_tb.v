@@ -235,7 +235,7 @@ module RESDMAC_tb;
         DATA_i <= 32'hzzzzzzzz;
         wait_n_clko(1);
         ADDR <= 32'h08000000;
-        DATA_i <= 32'h00000000;
+        DATA_i <= 32'h00ABCDEF;
 
         //_BG <= 1'b0;
         wait_n_clko(200);
@@ -296,7 +296,7 @@ module RESDMAC_tb;
             begin 
                 _STERM <= 1'b1;
                 ADDR <= ADDR + 32'h4;
-                DATA_i <= DATA_i + 32'h11111111;
+                DATA_i <= DATA_i + 32'h11000000;
 
             end
         end
