@@ -7,7 +7,7 @@
 | 0     | !CDREQ_ & !FIFOFULL & DMADIR & !CCPUREQ & !RIFIFO_o | 24         | DACK             |
 | 0     | !DMADIR & !CCPUREQ                                  | 16         |                  |
 | 0     | CCPUREQ                                             | 8          |                  |
-| 1     | BOEQ3                                               | No Change  | INCNO            |
+| 1     | BOEQ3                                               | 0          | INCNO            |
 | 1     | !DMADIR & !CCPUREQ                                  | 16         |                  |
 | 1     |                                                     | 16         | INCBO F2S        |
 | 2     |                                                     | 18         | DACK WE F2S      |
