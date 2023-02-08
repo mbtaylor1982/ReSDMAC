@@ -1,5 +1,0 @@
-verilog work "../../RTL/Registers/registers_term.v"
-verilog work "../../RTL/Registers/registers_istr.v"
-verilog work "../../RTL/Registers/registers_cntr.v"
-verilog work "../../RTL/Registers/addr_decoder.v"
-verilog work "../../RTL/Registers/registers.v"

@@ -1,5 +1,0 @@
-set -tmpdir "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/xst/projnav.tmp"
-set -xsthdpdir "/home/mike/EAGLE/projects/SDMAC-Replacement/ISE/RESDMAC/xst"
-elaborate
--ifn fifo_write_strobes.prj
--ifmt mixed
