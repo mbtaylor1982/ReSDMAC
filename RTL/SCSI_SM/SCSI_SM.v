@@ -22,16 +22,17 @@
 `endif
 
 module SCSI_SM
+
 (   input BOEQ3,            //Asserted when transfering Byte 3
-    input CPUCLK,           //CPU CLK
-    input CLK90,            //CPU CLK Phase shifted 90 Deg. 
-    input CLK135,           //CPU CLK Phase shifted 135 Deg.
+    input nCLK,             //CPUClk Inverted 1 time for delay.
+    input BCLK,             //CPUCLK Inverted 4 times for delay.
+    input BBCLK,            //CPUCLK Inverted 6 times for delay.
     input CPUREQ,           //Request CPU access to SCSI registers.
     input DECFIFO,          //Decremt FIFO pointer
     input DMADIR,           //Control Direction Of DMA transfer.
     input DREQ_,            //Data transfer request from SCSI IC
     input FIFOEMPTY,        //FIFOFULL flag
-    input FIFOFULL,         //FIFO EMPTY flag
+    input FIFOFULL,         //FIFOEMPTY flag
     input INCFIFO,          //Increment FIFO pointer
     input nAS_,             //Inverted CPU Address Strobe
     input RESET_,           //System Reset
@@ -61,9 +62,6 @@ reg CCPUREQ;    // Clocked signal to indicate a CPU cycle to read or write WD33C
 reg CDREQ_;     // Clocked WD33C93 DMA request.
 reg CDSACK_;    // Clocked Feedback from CPU cycle termination.
 reg CRESET_;    // Clocked system reset.
-
-wire BBCLK;     // CPUCLK Inverted 6 time for delay.
-wire BCLK;      // CPUCLK Inverted 4 times for delay.
 wire CPU2S;     // Enable CPU to SCSI datapath.
 wire DACK;      // Ack WD3C93 DMA transfer request.
 wire DSACK_;    // Feedback from CPU cycle termination.
@@ -71,7 +69,6 @@ wire F2S;       // Enable FIFO to SCSI datapath.
 wire INCBO;     // Inc the FIFO byte ptr.
 wire INCNI;     // Inc the FIFO Next in ptr.
 wire INCNO;     // Inc the FIFO Next out ptr.
-wire nCLK;      // Inverted CPU Clk.
 wire RDRST_;    // Feedback from RDFIFO_d.
 wire RE;        // Read enable line for WD33C93 IC.
 wire RIRST_;    // Feedback from RIFIFO_d.
@@ -188,10 +185,6 @@ always @(posedge SET_DSACK or negedge nAS_) begin
     else
         nLS2CPU <= 1'b1;
 end
-
-assign #3 nCLK = ~CPUCLK;
-assign BCLK = CLK90;
-assign BBCLK = CLK135;
 
 assign LS2CPU = ~nLS2CPU;
 assign DSACK_ = LS2CPU;

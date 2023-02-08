@@ -96,13 +96,19 @@ wire [31:0] ID;
 wire [31:0] OD;
 
 wire _AS;
-assign _AS = _AS_IO; 
+wire n_AS;
+assign #2 n_AS = ~_AS_IO; 
+assign #2 _AS = ~n_AS;
 
 wire _DS;
-assign _DS = _DS_IO;
+wire n_DS;
+assign #2 n_DS = ~_DS_IO;
+assign #2 _DS = ~n_DS;
 
 wire R_W;
-assign  R_W = R_W_IO;
+wire nR_W;
+assign #2 nR_W = ~R_W_IO;
+assign #2 R_W = ~nR_W;
 
 wire [31:0] DATA;
 assign DATA = DATA_IO;
@@ -122,10 +128,10 @@ wire nDMAENA;
 wire INCNO;
 wire INCNI;
 wire OWN_;
-wire nSCLK;
-wire nAS_;
+
 wire DSACK_CPU_SM;
-wire CLK45, CLK90, CLK135;
+
+wire QnCPUCLK, nCLK, BCLK, BBCLK;
 wire PLLLOCKED;
 
 wire STOPFLUSH;
@@ -172,13 +178,14 @@ wire A3;
 wire DSK0_IN_;
 wire DSK1_IN_;
 tri1 _BGACK_I;
+wire BnDS_O_;
 
 registers u_registers(
     .ADDR      ({1'b0, ADDR, 2'b00}),
     .DMAC_     (_CS       ),
     .AS_       (_AS       ),
     .RW        (R_W       ),
-    .nCPUCLK   (~SCLK     ),
+    .nCPUCLK   (nCLK      ),
     .MID       (MID       ),
     .STOPFLUSH (STOPFLUSH ),
     .RST_      (_RST      ),
@@ -206,13 +213,12 @@ CPU_SM u_CPU_SM(
     .aBGRANT_      (_BG         ),
     .SIZE1         (SIZE1_CPUSM ),
     .aRESET_       (_RST        ),
-    .iSTERM_        (_STERM      ),
+    .iSTERM_       (_STERM      ),
     .DSACK0_       (DSK0_IN_    ),
     .DSACK1_       (DSK1_IN_    ),
-    .CLK           (SCLK        ),
-    .CLK45         (CLK45       ),
-    .CLK90         (CLK90       ),
-    .CLK135        (CLK135      ),
+    .nCLK          (nCLK        ), 
+    .BCLK          (BCLK        ), 
+    .BBCLK         (BBCLK       ), 
     .DMADIR        (DMADIR      ),
     .A1            (A1          ),
     .F2CPUL        (F2CPUL      ),
@@ -238,6 +244,7 @@ CPU_SM u_CPU_SM(
     .PLLW          (PLLW        ),
     .PLHW          (PLHW        ),
     .AS_           (_AS         ),
+    .nAS_          (n_AS        ),
     .BGACK_I_      (_BGACK_I    )
 
 );
@@ -250,13 +257,13 @@ SCSI_SM u_SCSI_SM(
     .DECFIFO   (DECFIFO     ),
     .RESET_    (_RST        ),
     .BOEQ3     (BOEQ3       ),
-    .CPUCLK    (SCLK        ),
-    .CLK90     (CLK90       ),
-    .CLK135    (CLK135      ),
+    .nCLK      (nCLK        ), 
+    .BCLK      (BCLK        ), 
+    .BBCLK     (BBCLK       ), 
     .DREQ_     (DREQ_       ),
     .FIFOFULL  (FIFOFULL    ),
     .FIFOEMPTY (FIFOEMPTY   ),
-    .nAS_      (nAS_        ),
+    .nAS_      (n_AS        ),
     .RDFIFO_o  (RDFIFO_o    ),
     .RIFIFO_o  (RIFIFO_o    ),
     .RE_o      (RE          ),
@@ -303,9 +310,9 @@ datapath u_datapath(
     .OD        (OD          ),
     .MOD       (MOD         ),
     .PAS       (PAS         ),
-    .nDS_      (~_DS        ),
+    .nDS_      (n_DS        ),
     .nDMAC_    (~_CS        ),
-    .RW        (R_W          ),
+    .RW        (R_W         ),
     .nOWN_     (~OWN_       ),
     .DMADIR    (DMADIR      ),
     .BRIDGEIN  (BRIDGEIN    ),
@@ -324,31 +331,27 @@ datapath u_datapath(
     .ID        (ID          ),
     .F2CPUL    (F2CPUL      ),
     .F2CPUH    (F2CPUH      ),
-    .BnDS_O_   (~DS_O_      )
+    .BnDS_O_   (BnDS_O_     )
 );
 
 PLL u_PLL (
-    .rst    (~_RST  ),  // input, (wire), 
-    .clk    (SCLK   ),  // input, (wire), 
-    .c45    (CLK45  ),  // output, (wire), 
-    .c90    (CLK90  ),  // output, (wire), 
-    .c135   (CLK135 ),  // output, (wire), 
-    .locked (PLLLOCKED )   // output, reg, 
-);
+        .rst         (~_RST    ),
+        .CPUCLK_I    (SCLK     ),
+        .nCLK        (nCLK     ),
+        .BCLK        (BCLK     ),
+        .BBCLK       (BBCLK    ),
+        .QnCPUCLK    (QnCPUCLK ),
+        .locked      (PLLLOCKED   )
+    );
 
 
-always @(posedge nSCLK) begin
-    AS_O_ <= ~PAS;    
-    DS_O_ <= ~PDS; 
+always @(posedge QnCPUCLK) begin
+    AS_O_   <= ~PAS;    
+    DS_O_   <= ~PDS; 
+    LLW     <= PLLW;
+    LHW     <= PLHW;
 end
 
-always @(posedge nSCLK) begin
-    LLW <= PLLW;
-    LHW <= PLHW;
-end
-
-assign nSCLK  = ~SCLK;
-assign nAS_ = ~_AS_IO;
 assign OWN_ = ~CPUSM_BGACK;
 assign _BGACK_I =  _BGACK_IO;
 
@@ -385,6 +388,8 @@ assign DSK1_IN_ = _BERR & _DSACK_IO[1];
 assign A3 = ADDR[3];
 assign DATA_OE_ = (_AS | _CS | H_0C) & _BGACK_IO;
 assign PDATA_OE_ = (_DACK | ~_CSS);
+
+assign #4 BnDS_O_ = ~DS_O_;
 
 endmodule
 

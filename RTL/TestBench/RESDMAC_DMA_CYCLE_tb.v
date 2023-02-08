@@ -280,7 +280,7 @@ module RESDMAC_tb;
             
     end
 
-    always @(posedge SCLK, posedge _AS_IO) begin
+    always @(negedge SCLK, posedge _AS_IO) begin
         if (_BGACK_IO == 1'b0) 
         begin
             if (_AS_IO == 1'b0)

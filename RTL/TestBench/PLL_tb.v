@@ -12,19 +12,21 @@ module PLL_tb;
 //------------------------------------------------------------------------------
     // ports
     reg     rst   ;  // 
-    reg     clk   ;  // 
-    wire    c45   ;  // 
-    wire    c90   ;  // 
-    wire    c135  ;  // 
+    reg     CPUCLK_I   ;  // 
+    wire    nCLK   ;  // 
+    wire    BCLK   ;  // 
+    wire    BBCLK  ;  // 
+    wire    QnCPUCLK;
     wire    locked;  // 
     // module
     PLL uut (
-        .rst    (rst    ),
-        .clk    (clk    ),
-        .c45    (c45    ),
-        .c90    (c90    ),
-        .c135   (c135   ),
-        .locked (locked )
+        .rst         (rst      ),
+        .CPUCLK_I    (CPUCLK_I ),
+        .nCLK        (nCLK     ),
+        .BCLK        (BCLK     ),
+        .BBCLK       (BBCLK    ),
+        .QnCPUCLK    (QnCPUCLK ),
+        .locked      (locked   )
     );
 //------------------------------------------------------------------------------
 //  localparam
@@ -36,8 +38,8 @@ module PLL_tb;
     localparam CLK_FREQ = 25_000_000;
     localparam PERIOD = 1E9/CLK_FREQ;
     initial begin
-        clk = 0;
-        forever #(PERIOD/2) clk = ~ clk;
+        CPUCLK_I = 0;
+        forever #(PERIOD/2) CPUCLK_I = ~ CPUCLK_I;
     end
 //------------------------------------------------------------------------------
 //  general tasks and functions
@@ -45,13 +47,13 @@ module PLL_tb;
     // -------- wait n periods of clock --------
     task wait_n_clk(input integer i);
         begin
-            repeat(i) @(posedge clk);
+            repeat(i) @(posedge CPUCLK_I);
         end
     endtask
     // -------- wait n periods of clock (with Tcko) --------
     task wait_n_clko(input integer i);
         begin
-            repeat(i) @(posedge clk);
+            repeat(i) @(posedge CPUCLK_I);
             #1;
         end
     endtask

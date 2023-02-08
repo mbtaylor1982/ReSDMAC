@@ -37,10 +37,9 @@ module CPU_SM(
     input aRESET_,
     input BOEQ0,
     input BOEQ3,
-    input CLK,
-    input CLK45,
-    input CLK90,            //CPU CLK Phase shifted 90 Deg. 
-    input CLK135,           //CPU CLK Phase shifted 135 Deg.
+    input nCLK,             //CPUClk Inverted 1 time for delay.
+    input BCLK,             //CPUCLK Inverted 4 times for delay.
+    input BBCLK,            //CPUCLK Inverted 6 times for delay.    
     input DMADIR,
     input DSACK0_,   
     input DSACK1_,
@@ -50,6 +49,7 @@ module CPU_SM(
     input RIFIFO_,    
     input iSTERM_,
     input AS_,
+    input nAS_,
     input BGACK_I_,
 
     output reg BGACK,
@@ -85,9 +85,6 @@ reg FLUSHFIFO;
 reg nCYCLEDONE;
 
 wire aCYCLEDONE_;
-
-wire BBCLK; // CPUCLK Inverted 6 time for delay.
-wire BCLK; // CPUCLK inverted 4 times for delay.
 wire BGACK_d;
 wire BRIDGEOUT_d;
 
@@ -112,10 +109,8 @@ wire F2CPUH_d;
 wire F2CPUL_d;
 wire INCFIFO_d;
 wire INCNO_d;
-wire nAS_;
 wire nBREQ_d;
 wire nBRIDGEIN_d;
-wire nCLK;
 wire nDSACK;
 wire nINCNI_d;
 wire nSTOPFLUSH_d;
@@ -313,16 +308,15 @@ assign LASTWORD = (~BOEQ0 & aFLUSHFIFO & FIFOEMPTY);
 
 assign NEXT_STATE = {cpudff5_d, cpudff4_d, cpudff3_d, cpudff2_d, cpudff1_d};
 
-assign #3 nCLK = ~CLK;
-assign BCLK = CLK90;//CLK; // may need to change this to add delays
-assign BBCLK = CLK135;//BCLK; // may need to change this to add delays
 
 assign CYCLEDONE = ~nCYCLEDONE;
 assign iDSACK = ~(DSACK_LATCHED_[0] & DSACK_LATCHED_[1]);
-assign #3 nAS_ = ~AS_;
-assign #6 DSACK = iDSACK;
+
+assign #4 DSACK = iDSACK;
 assign nDSACK = ~iDSACK;
-assign #6 STERM_ = iSTERM_;
+assign #4 STERM_ = iSTERM_;
 assign nSTERM_ = ~iSTERM_;
+
+
 
 endmodule
