@@ -97,18 +97,18 @@ wire [31:0] OD;
 
 wire _AS;
 wire n_AS;
-assign #2 n_AS = ~_AS_IO; 
-assign #2 _AS = ~n_AS;
+assign #2.5 n_AS = ~_AS_IO; 
+assign #2.5 _AS = ~n_AS;
 
 wire _DS;
 wire n_DS;
-assign #2 n_DS = ~_DS_IO;
-assign #2 _DS = ~n_DS;
+assign #2.5 n_DS = ~_DS_IO;
+assign #2.5 _DS = ~n_DS;
 
 wire R_W;
 wire nR_W;
-assign #2 nR_W = ~R_W_IO;
-assign #2 R_W = ~nR_W;
+assign #2.5 nR_W = ~R_W_IO;
+assign #2.5 R_W = ~nR_W;
 
 wire [31:0] DATA;
 assign DATA = DATA_IO;
@@ -389,7 +389,7 @@ assign A3 = ADDR[3];
 assign DATA_OE_ = (_AS | _CS | H_0C) & _BGACK_IO;
 assign PDATA_OE_ = (_DACK | ~_CSS);
 
-assign #4 BnDS_O_ = ~DS_O_;
+assign #5 BnDS_O_ = ~DS_O_;
 
 endmodule
 

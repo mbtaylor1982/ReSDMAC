@@ -302,7 +302,7 @@ always @(posedge nCLK or negedge nAS_) begin
         DSACK_LATCHED_ <= {DSACK1_, DSACK0_};
 end
 
-assign  aCYCLEDONE_ = ~(BGACK_I_ & AS_ & DSACK0_ & DSACK1_ & STERM_);
+assign  aCYCLEDONE_ = ~(BGACK_I_ & AS_ & DSACK0_ & DSACK1_ & iSTERM_);
 
 assign LASTWORD = (~BOEQ0 & aFLUSHFIFO & FIFOEMPTY);
 
@@ -312,9 +312,9 @@ assign NEXT_STATE = {cpudff5_d, cpudff4_d, cpudff3_d, cpudff2_d, cpudff1_d};
 assign CYCLEDONE = ~nCYCLEDONE;
 assign iDSACK = ~(DSACK_LATCHED_[0] & DSACK_LATCHED_[1]);
 
-assign #4 DSACK = iDSACK;
+assign #5 DSACK = iDSACK;
 assign nDSACK = ~iDSACK;
-assign #4 STERM_ = iSTERM_;
+assign #5 STERM_ = iSTERM_;
 assign nSTERM_ = ~iSTERM_;
 
 

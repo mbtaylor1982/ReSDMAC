@@ -1,5 +1,5 @@
 $date
-	Fri Feb 10 15:07:32 2023
+	Sat Feb 11 15:33:14 2023
 $end
 $version
 	Icarus Verilog
@@ -7,7 +7,7 @@ $end
 $timescale
 	100ps
 $end
-$scope module RESDMAC_tb $end
+$scope module RESDMAC_DMA_WRITE_tb $end
 $var wire 1 ! AS_DELAYED $end
 $var wire 32 " DATA_IO [31:0] $end
 $var wire 32 # DATA_o [31:0] $end

@@ -21,12 +21,18 @@
 
 `include "RTL/RESDMAC.v"
 
-module RESDMAC_tb;
+module RESDMAC_DMA_WRITE_tb;
 //------------------------------------------------------------------------------
 //  UUT
 //------------------------------------------------------------------------------
     // ports
-    reg [1:0] Count = 2'b00;
+    reg [2:0] Count = 3'b000;
+
+    wire sclk_delayed;
+    assign #5 sclk_delayed = SCLK;
+
+    wire AS_DELAYED;
+    assign #5 AS_DELAYED = _AS_IO;
 
     reg R_W_i;
     wire R_W_o;
@@ -178,16 +184,16 @@ module RESDMAC_tb;
 //  run simulation
 //------------------------------------------------------------------------------
     initial begin
-        $display("*Testing RESDMAC TOP Module DMA CYCLE*");
-        $dumpfile("../VCD/RESDMAC_DMA_CYCLE_tb.vcd");
-        $dumpvars(0, RESDMAC_tb);
+        $display("*Testing RESDMAC TOP Module Write to SCSI DMA CYCLE*");
+        $dumpfile("../VCD/RESDMAC_DMA_SCSI_WRITE_CYCLE_tb.vcd");
+        $dumpvars(0, RESDMAC_DMA_WRITE_tb);
         // -------- RESET --------
         wait_n_clk(1);
         _RST = 0;
         wait_n_clko(1);
         _RST = 1;
 
-        //Setup DMA Direction to in
+        //Setup DMA Direction to write to SCSI read from Memory
         wait_n_clko(2);
         ADDR <= 32'h00DD0008;
         DATA_i <= 32'h00000004; 
@@ -217,7 +223,7 @@ module RESDMAC_tb;
         ADDR <= 32'hffffffff;
         DATA_i <= 32'hzzzzzzzz;
 
-        _DREQ = 0;
+        _DREQ = 1;
 
         //Start DMA Cycle.
         wait_n_clko(2);
@@ -256,40 +262,40 @@ module RESDMAC_tb;
         & ADDR[22] & ~ADDR[21] & ADDR[20]  & ADDR[19] & ADDR[18] & ~ADDR[17]  & ADDR[16]);
     end
 
-    always @(posedge SCLK) begin
+    always @(negedge sclk_delayed) begin
         if (_BGACK_IO == 1'b0) 
         begin
             _BG <= 1'b1;
         end
     end
 
-    always @(posedge SCLK) begin
+    always @(negedge sclk_delayed) begin
         if ((_BR  == 1'b0) && (_BGACK_IO == 1'b1) && (_AS_i == 1'b1)) 
         begin
             _BG <= 1'b0;    
         end
     end
 
-    always @(posedge SCLK) begin
+    always @(negedge SCLK) begin
         if ((_DACK | (_IOR & _IOW)) == 1'b0)
         begin
             _DREQ <= 1'b1;
         end
-        else
+        else 
             _DREQ <= 1'b0;
             
     end
 
-    always @(negedge SCLK, posedge _AS_IO) begin
+    always @(sclk_delayed, posedge AS_DELAYED) begin
         if (_BGACK_IO == 1'b0) 
         begin
-            if (_AS_IO == 1'b0)
+            if (AS_DELAYED == 1'b0)
             begin
                  Count <= Count +1'b1;
-                 if (Count == 2'b10)
+                 if (Count == 3'b100)
                  begin
                     _STERM <= 1'b0;
-                    Count <= 2'b00;        
+                    Count <= 3'b000;        
                  end 
             end
             else if (_STERM == 1'b0)
