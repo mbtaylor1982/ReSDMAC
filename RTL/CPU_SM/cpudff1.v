@@ -28,9 +28,7 @@ module cpudff1 (
 
   assign p1a = 
   (
-    ~(DSACK & 
-      ~(nE[25] & nE[50] & nE[6])
-    ) & 
+    ~(DSACK & ~(nE[25] & nE[50] & nE[6])) & 
     ~(nDSACK & E[50]) & 
     ~(
       ~(nE[12] & nE[26] & nE[53]) | 
@@ -39,11 +37,7 @@ module cpudff1 (
     )
   );
   
-  assign p1b = 
-  ~(
-    ~(nE[43] & nE[46] & nE[51]) & 
-    nSTERM_
-  );
+  assign p1b = ~(nSTERM_ & ~(nE[43] & nE[46] & nE[51]));
 
   assign p1c = 
   ~(

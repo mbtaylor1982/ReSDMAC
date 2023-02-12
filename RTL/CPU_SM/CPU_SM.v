@@ -233,7 +233,7 @@ always @(posedge  BBCLK or negedge CCRESET_) begin
         DMAENA      <= 1'b0;
         DREQ_       <= 1'b1;
         FLUSHFIFO   <= 1'b0;
-        nCYCLEDONE  <= 1'b0;
+        nCYCLEDONE  <= 1'b1;
     end
     else begin
         BGRANT_     <= aBGRANT_;

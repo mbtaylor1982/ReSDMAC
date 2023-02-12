@@ -59,6 +59,8 @@ module RESDMAC_DMA_WRITE_tb;
     assign PD_o = PD_PORT;
     assign PD_PORT = _IOR ? 8'bz : PD_i;
 
+    reg DMA;
+
     
     tri1        _INT     ;  // Connected to INT2 needs to be Open Collector output.
     wire        SIZ1     ;  // Indicates a 16 bit transfer is true. 
@@ -173,6 +175,7 @@ module RESDMAC_DMA_WRITE_tb;
         ADDR <= 32'hffffffff;
         DATA_i <= 32'hzzzzzzzz;
         PD_i <= 8'hAA;
+        DMA <= 1'b0;
         
 
     end
@@ -242,11 +245,46 @@ module RESDMAC_DMA_WRITE_tb;
         wait_n_clko(1);
         ADDR <= 32'h08000000;
         DATA_i <= 32'h00ABCDEF;
+        DMA <= 1'b1;
 
         //_BG <= 1'b0;
-        wait_n_clko(200);
-        _DREQ <= 1'b1;
-        wait_n_clko(100);
+        wait_n_clko(201);
+        DMA <= 1'b0;
+        wait_n_clko(10);
+
+        //FLush DMA Cycle.
+        wait_n_clko(2);
+        ADDR <= 32'h00DD0014;
+        DATA_i <= 32'h00000001; 
+        wait_n_clko(1);
+        _AS_i = 1'b0;
+        R_W_i = 1'b0;
+        wait_n_clko(1);
+        _DS_i = 1'b0;
+        wait_n_clko(2);        
+        R_W_i = 1;
+        wait_n_clko(2);
+        ADDR <= 32'h00000000;
+        DATA_i <= 32'hzzzzzzzz;
+        wait_n_clko(1);
+
+
+        //Stop DMA Cycle.
+        wait_n_clko(2);
+        ADDR <= 32'h00DD003C;
+        DATA_i <= 32'h00000001; 
+        wait_n_clko(1);
+        _AS_i = 1'b0;
+        R_W_i = 1'b0;
+        wait_n_clko(1);
+        _DS_i = 1'b0;
+        wait_n_clko(2);        
+        R_W_i = 1;
+        wait_n_clko(2);
+        ADDR <= 32'h00000000;
+        DATA_i <= 32'hzzzzzzzz;
+        wait_n_clko(1);
+         
         $finish;
     end
     always @(posedge SCLK) begin
@@ -281,7 +319,7 @@ module RESDMAC_DMA_WRITE_tb;
         begin
             _DREQ <= 1'b1;
         end
-        else 
+        else if (DMA == 1'b1)
             _DREQ <= 1'b0;
             
     end

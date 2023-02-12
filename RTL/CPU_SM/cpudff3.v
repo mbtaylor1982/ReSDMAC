@@ -27,42 +27,25 @@ module cpudff3 (
 wire p3a, p3b, p3c;
 
 assign p3a = 
-(
-  ~( 
-    ~(
-      ~(nE[4] & nE[10] & nE[21] & nE[27]) | 
-      ~(nE[34] & nE[32] & nE[35]) | 
-      ~(nE[56] & nE[62] & nE[45])
-    ) & 
-    ~(
-      ~(
-        (nE[20] & nE[28] & nE[30]) & 
-        DSACK
-      )
-    ) & 
-    ~(E[50] & nDSACK)
-  )
+( 
+  ~(
+    ~(nE[4] & nE[10] & nE[21] & nE[27]) | 
+    ~(nE[34] & nE[32] & nE[35]) | 
+    ~(nE[56] & nE[62] & nE[45])
+  ) & 
+  ~(DSACK & ~(nE[20] & nE[28] & nE[30])) & 
+  ~(nDSACK & E[50])
 );
 
-assign p3b = 
-(
-  ~(
-    nSTERM_ & 
-    ~(nE[36] & nE[33] & nE[39] & nE[40] & nE[42] & nE[37])
-  )
-);
+assign p3b = ~(nSTERM_ & ~(nE[36] & nE[33] & nE[39] & nE[40] & nE[42] & nE[37]));
 
 assign p3c = 
-(
-  ~(STERM_ & 
-    ( 
-      ~(
-        ~(E[23] & DSACK) & 
-        ~(nDSACK & 
-          (E[33] | E[51])
-        ) 
-      ) | 
-      (E[36] | E[46])
+~(STERM_ &
+  ( 
+    (E[36] | E[46]) |
+    ~(
+      ~(DSACK & E[23]) & 
+      ~(nDSACK & (E[33] | E[51])) 
     )
   )
 );

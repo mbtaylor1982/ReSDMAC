@@ -33,19 +33,20 @@ assign p2a =
     ~(nE[26] & nE[27] & nE[31] & nE[32]) | 
     ~(nE[35] & nE[55] & nE[58] & nE[61]) 
   ) & 
-  ~(~(nE[25] & nE[50]) & DSACK)
+  ~(DSACK & ~(nE[25] & nE[50]))
 );
 
-assign p2b = ~( nSTERM_ & ~(nE[43] & nE[46] & nE[51]) );
+assign p2b = ~(nSTERM_ & ~(nE[43] & nE[46] & nE[51]));
 
 assign p2c = 
 ~(
   STERM_ &
   (
+    (E[36] | E[57] | E[46] | E[40]) |
     ~(
-      ~(DSACK & E[23]) & ~(nDSACK & (E[33] | E[43] | E[51] | E[29]))
-    )|
-    (E[36] | E[57] | E[46] | E[40])
+      ~(DSACK & E[23]) & 
+      ~(nDSACK & (E[33] | E[43] | E[51] | E[29]))
+    )    
   ) 
 );
 

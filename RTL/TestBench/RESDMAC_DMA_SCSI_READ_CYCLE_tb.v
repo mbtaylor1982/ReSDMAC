@@ -250,7 +250,7 @@ module RESDMAC_DMA_READ_tb;
         //_BG <= 1'b0;
         wait_n_clko(190);
         DMA <= 1'b0;
-        wait_n_clko(110);
+        wait_n_clko(60);
         $finish;
     end
     always @(posedge SCLK) begin
