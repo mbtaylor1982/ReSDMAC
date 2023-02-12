@@ -5,6 +5,7 @@ module PLL (
 	output BCLK,
 	output BBCLK,
     output QnCPUCLK,
+    output Clk200,
 	output reg locked);
 
 `ifdef __ICARUS__ 
@@ -13,7 +14,9 @@ module PLL (
     reg c1 = 1'b0;
     reg c2 = 1'b0;
     reg c3 = 1'b0;
-    wire c4, c5, c6, c7;
+    reg c5 = 1'b0;
+    reg c7 = 1'b0;
+    wire c4, c6, c8;
 
     always @(CPUCLK_I) begin
             c1 <= #2.5 CPUCLK_I;  //22.5 deg
@@ -22,8 +25,19 @@ module PLL (
     end
 
     assign c4 = CPUCLK_I ^ c2; // 50MHZ
-    assign c5 = c1 ^ c3;
+
+    always @(c4) begin
+        c5 <= #5 c4;
+    end
+    
     assign c6 = c4 ^ c5; //100MHZ
+
+    always @(c6) begin
+        c7 <= #2.5 c6;
+    end
+
+    assign c8 = c6 ^ c7;
+
     
     //assign nCLK =  rst ? 1'b0 : ~c1;
     //assign BCLK =  rst ? 1'b0 : c2;
@@ -34,6 +48,7 @@ module PLL (
     assign BCLK =  c2;
     assign BBCLK =  c3;
     assign QnCPUCLK = ~CPUCLK_I; 
+    assign Clk200 = c8;
 
     always @(posedge BCLK, posedge rst) begin
         if (rst == 1'b1)

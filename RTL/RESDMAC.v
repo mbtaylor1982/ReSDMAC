@@ -131,7 +131,7 @@ wire OWN_;
 
 wire DSACK_CPU_SM;
 
-wire QnCPUCLK, nCLK, BCLK, BBCLK;
+wire QnCPUCLK, nCLK, BCLK, BBCLK, CLK200;
 wire PLLLOCKED;
 
 wire STOPFLUSH;
@@ -341,7 +341,8 @@ PLL u_PLL (
         .BCLK        (BCLK     ),
         .BBCLK       (BBCLK    ),
         .QnCPUCLK    (QnCPUCLK ),
-        .locked      (PLLLOCKED   )
+        .Clk200      (CLK200   ),   
+        .locked      (PLLLOCKED)
     );
 
 
