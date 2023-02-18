@@ -45,7 +45,6 @@ begin
     UP[5] <= (UP[4] | DOWN[2]);
     UP[6] <= (UP[5] | DOWN[1]);
     UP[7] <= (UP[6] | DOWN[0]);
-    FIFOFULL <= (UP[6] | DOWN[0]); 
   end
 end
 
@@ -55,7 +54,6 @@ begin
   if (RST_FIFO_ == 0)
   begin
     DOWN <= 7'b0000000;
-    FIFOEMPTY <= 1'b1;
   end
   else
   begin
@@ -66,56 +64,29 @@ begin
     DOWN[4] <= (UP[3] | DOWN[3]);
     DOWN[5] <= (UP[2] | DOWN[4]);
     DOWN[6] <= (UP[1] | DOWN[5]);
-    FIFOEMPTY <= ~( (UP[1] | DOWN[5]) |(UP[2] | DOWN[4])|(UP[3] | DOWN[3])|(UP[4] | DOWN[2])|(UP[5] | DOWN[1])|(UP[6] | DOWN[0])| UP[7]);
-  end
+	end
 end
 
-always @(negedge FIFOEMPTY_RST)
+always @(posedge DECFIFO, negedge FIFOEMPTY_RST, negedge RST_FIFO_)
 begin
-  if (FIFOEMPTY_RST == 0) FIFOEMPTY <= 1'b0;
+	if (FIFOEMPTY_RST == 0) 
+		FIFOEMPTY <= 1'b0;
+	else if (RST_FIFO_ == 0) 
+    FIFOEMPTY <= 1'b1;
+  else
+		FIFOEMPTY <= ~( (UP[1] | DOWN[5]) |(UP[2] | DOWN[4])|(UP[3] | DOWN[3])|(UP[4] | DOWN[2])|(UP[5] | DOWN[1])|(UP[6] | DOWN[0])| UP[7]);
 end
 
-always @(negedge FIFOFULL_RST)
+always @(posedge INCFIFO, negedge FIFOFULL_RST)
 begin
-  if (FIFOFULL_RST == 0) FIFOFULL <= 1'b0;
+	if (FIFOFULL_RST == 0) 
+		FIFOFULL <= 1'b0;
+	else
+		FIFOFULL <= (UP[6] | DOWN[0]); 	
 end
 
 assign FIFOEMPTY_RST = ~(RST_FIFO_ & FIFOEMPTY & INCFIFO);
 assign FIFOFULL_RST = ~(~RST_FIFO_| ~(~FIFOFULL|~DECFIFO));
 assign UP_RST = (RST_FIFO_& ~((UP[0]|UP[1]|UP[2]|UP[3]|UP[4]|UP[5]|UP[6]|UP[7]) & DECFIFO));
-/*
-reg [2:0] COUNT;
-wire clk;
 
-always @(posedge clk or negedge RST_FIFO_) begin
-    if (RST_FIFO_ == 1'b0)
-    begin
-        COUNT <= 3'b000;
-        FIFOEMPTY <= 1'b1;
-        FIFOFULL <= 1'b0;
-    end
-    else if (INCFIFO)
-    begin
-      if (COUNT == 3'b111) 
-        FIFOFULL <= 1'b1;
-      else
-      begin
-        COUNT <=  COUNT + 1'b1;
-        FIFOEMPTY <= 1'b0;
-      end
-    end 
-    else if (DECFIFO)
-    begin
-        if (COUNT == 3'b000) 
-            FIFOEMPTY <= 1'b1;
-        else
-        begin
-            COUNT <=  COUNT -1'b1;
-            FIFOFULL <= 1'b0;
-        end
-    end 
-end
-
-assign clk = (INCFIFO | DECFIFO);
-*/
 endmodule

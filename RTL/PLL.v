@@ -4,9 +4,8 @@ module PLL (
 	output nCLK,
 	output BCLK,
 	output BBCLK,
-    output QnCPUCLK,
-    output Clk200,
-	output reg locked);
+   output QnCPUCLK,
+	output locked);
 
 `ifdef __ICARUS__ 
 // simulate a PLL with 25MHZ input clk
@@ -14,57 +13,37 @@ module PLL (
     reg c1 = 1'b0;
     reg c2 = 1'b0;
     reg c3 = 1'b0;
-    reg c5 = 1'b0;
-    reg c7 = 1'b0;
-    wire c4, c6, c8;
-
+	 reg Slocked;
+ 
     always @(CPUCLK_I) begin
             c1 <= #2.5 CPUCLK_I;  //22.5 deg
             c2 <= #10 CPUCLK_I;  //90 deg
             c3 <= #15 CPUCLK_I; //135 deg
     end
 
-    assign c4 = CPUCLK_I ^ c2; // 50MHZ
-
-    always @(c4) begin
-        c5 <= #5 c4;
-    end
-    
-    assign c6 = c4 ^ c5; //100MHZ
-
-    always @(c6) begin
-        c7 <= #2.5 c6;
-    end
-
-    assign c8 = c6 ^ c7;
-
-    
     //assign nCLK =  rst ? 1'b0 : ~c1;
     //assign BCLK =  rst ? 1'b0 : c2;
     //assign BBCLK =  rst ? 1'b0 : c3;
     //assign QnCPUCLK = rst ? 1'b0 : ~CPUCLK_I; 
 
-    assign nCLK = ~c1;
-    assign BCLK =  c2;
-    assign BBCLK =  c3;
-    assign QnCPUCLK = ~CPUCLK_I; 
-    assign Clk200 = c8;
-
     always @(posedge BCLK, posedge rst) begin
         if (rst == 1'b1)
-            locked <= 1'b0;
+            Slocaked <= 1'b0;
         else 
-            locked <= 1'b1;
+            Slocaked <= 1'b1;
     end
-`else
-
+	 
+	 assign locked = Slocaked;
+	 
+`elsif ALTERA_RESERVED_QIS
 //Need to have ALTPLL IP Component installed in Quartus for this to work.
 //Setup with 25Mhz input and 3 clks at 22.5,90 and 135 degrees phase shift.
 
-18, 72, 108,
-    APLL APLL_inst (
+wire c1, c2, c3;
+
+    atpll APLL_inst (
         .areset (rst    ),
-        .inclk0 (clk    ),
+        .inclk0 (CPUCLK_I    ),
         .c0     (c1    ),
         .c1     (c2    ),
         .c2     (c3   ),
@@ -72,5 +51,10 @@ module PLL (
     );
 
 `endif
+
+    assign nCLK = ~c1;
+    assign BCLK =  c2;
+    assign BBCLK =  c3;
+    assign QnCPUCLK = ~CPUCLK_I; 
 
 endmodule

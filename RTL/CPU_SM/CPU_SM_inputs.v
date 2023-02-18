@@ -47,6 +47,7 @@ module CPU_SM_inputs (
   wire nLASTWORD;
   wire nDREQ_;
   wire nBOEQ3;
+  wire nDMAENA;
    
   assign nA1          = ~A1;
   assign nBGRANT_     = ~BGRANT_;

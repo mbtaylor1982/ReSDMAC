@@ -250,8 +250,7 @@ module RESDMAC_DMA_WRITE_tb;
         //_BG <= 1'b0;
         wait_n_clko(201);
         DMA <= 1'b0;
-        wait_n_clko(10);
-
+        
         //FLush DMA Cycle.
         wait_n_clko(2);
         ADDR <= 32'h00DD0014;

@@ -59,15 +59,6 @@ assign UPPER_INPUT_DATA = OD[31:16];
 
 assign LOWER_OUTPUT_DATA = F2CPUL ? LD_LATCH : MOD[15:0];
 assign UPPER_OUTPUT_DATA = F2CPUH ? (BRIDGEOUT ? 16'hzzzz : UD_LATCH) : (BRIDGEOUT ? LD_LATCH : MOD[31:16]); 
-
-/*
-assign DATA[15:0] = DOEL_ ? 16'hzzzz : LOWER_OUTPUT_DATA;
-assign DATA[31:16] = DOEH_ ? 16'hzzzz : UPPER_OUTPUT_DATA;
-assign DATA = S2CPU ? MOD : 32'hzzzzzzzz;
-*/
-
 assign DATA = S2CPU ? MOD : {(DOEH_ ? 16'hzzzz : UPPER_OUTPUT_DATA), (DOEL_ ? 16'hzzzz : LOWER_OUTPUT_DATA)};
-//assign DATA = MOD | {(DOEH_ ? 16'hzzzz : UPPER_OUTPUT_DATA), (DOEL_ ? 16'hzzzz : LOWER_OUTPUT_DATA)};
-
 
 endmodule

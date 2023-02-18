@@ -99,7 +99,8 @@ wire CYCLEDONE;
 wire DECFIFO_d;
 wire DIEH_d;
 wire DIEL_d;
-wire iDSACK; 
+wire iDSACK;
+wire DSACK; 
 
 wire [62:0] E;
 wire [62:0] nE;
@@ -120,6 +121,7 @@ wire PLHW_d;
 wire PLLW_d;
 wire SIZE1_d;
 wire nSTERM_;
+wire STERM_;
 wire LASTWORD;
 
 CPU_SM_inputs u_CPU_SM_inputs(

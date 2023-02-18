@@ -188,11 +188,11 @@ module RESDMAC_tb;
         _DS_i = 1'b0;
         wait_n_clko(5);        
         R_W_i = 1;
-        wait_n_clko(2);
+        //wait_n_clko(2);
         ADDR <= 32'hffffffff;
         DATA_i <= 32'hffffffff;
 
-        wait_n_clko(2);
+        wait_n_clko(4);
         $finish;
     end
     always @(negedge SCLK) begin
