@@ -9,11 +9,13 @@
 | 0     | CCPUREQ                                             | 8          |                  |
 | 1     | BOEQ3                                               | 0          | INCNO            |
 | 1     | !DMADIR & !CCPUREQ                                  | 16         |                  |
-| 1     |                                                     | 16         | INCBO F2S        |
-| 2     |                                                     | 18         | DACK WE F2S      |
-| 3     |                                                     | 19         | RE SCSI_CS S2CPU |
-| 4     |                                                     | 20         | DACK RE S2F      |
-| 5     |                                                     |            |                  |
+| 1     | STATE ONLY                                          | 16         | INCBO F2S        |
+| 2     | STATE ONLY                                          | 18         | DACK WE F2S      |
+| 3     | STATE ONLY                                          | 19         | RE SCSI_CS S2CPU |
+| 4     | STATE ONLY                                          | 20         | DACK RE S2F      |
+| 5     | BOEQ3                                               | 0          | INCNO            |
+| 5     | STATE ONLY                                          | 16         | INCBO F2S        |
+| 5     | STATE ONLY                                          | 20         | DACK RE S2F      |
 | 6     |                                                     |            |                  |
 | 7     |                                                     |            |                  |
 | 8     |                                                     |            |                  |
