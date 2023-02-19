@@ -1,0 +1,18 @@
+.ui-layout-west ul {
+	list-style: none;
+	padding: 2px 0 2px 0;
+	white-space: nowrap;
+}
+
+.ui-layout-west ul ul {
+	padding: 2px 0 2px 2em;
+}
+
+.ui-layout-pane {
+	padding: 0;
+}
+
+.ui-widget-header {
+	padding: 3px;
+}
+

@@ -1,0 +1,1320 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML><HEAD>
+<TITLE>High Violations</TITLE>
+
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.layout-latest.css">
+<link rel="stylesheet" type="text/css" href="css/override.css">
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/jquery.layout-latest.js"></script>
+
+
+</HEAD>
+
+<BODY>
+<TABLE>
+<thead><TR  bgcolor="#BFBFBF">
+<TH>Rule name</TH>
+<TH>Name</TH>
+</TR>
+</thead><tbody><TR >
+<TD >Rule A108: Design should not contain latches - Latch 1</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Latch 1</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~1</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule A108: Design should not contain latches - Latch 2</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Latch 2</TD>
+<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[2]~9</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule A108: Design should not contain latches - Latch 3</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Latch 3</TD>
+<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[4]~17</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule A108: Design should not contain latches - Latch 4</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Latch 4</TD>
+<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[0]~1</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule A108: Design should not contain latches - Latch 5</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Latch 5</TD>
+<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[3]~13</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule A108: Design should not contain latches - Latch 6</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Latch 6</TD>
+<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[5]~21</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule A108: Design should not contain latches - Latch 7</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Latch 7</TD>
+<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[6]~25</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule A108: Design should not contain latches - Latch 8</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Latch 8</TD>
+<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[7]~29</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule A108: Design should not contain latches - Latch 9</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Latch 9</TD>
+<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[1]~5</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule C105: Clock signal should be a global signal</TD>
+<TD >SCSI_SM:u_SCSI_SM|S2CPU_o</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule R101: Combinational logic used as a reset signal should be synchronized</TD>
+<TD >registers:u_registers|registers_term:u_registers_term|CYCLE_END~0</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Reset signal destination node(s) list</TD>
+<TD >registers:u_registers|registers_term:u_registers_term|REG_DSK_</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule R101: Combinational logic used as a reset signal should be synchronized</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP_RST</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Reset signal destination node(s) list</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[5]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule R101: Combinational logic used as a reset signal should be synchronized</TD>
+<TD >SCSI_SM:u_SCSI_SM|RDRST_~0</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Reset signal destination node(s) list</TD>
+<TD >SCSI_SM:u_SCSI_SM|RDFIFO_o</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule R101: Combinational logic used as a reset signal should be synchronized</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOFULL_RST~0</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Reset signal destination node(s) list</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOFULL</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule R101: Combinational logic used as a reset signal should be synchronized</TD>
+<TD >SCSI_SM:u_SCSI_SM|RIRST_~0</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Reset signal destination node(s) list</TD>
+<TD >SCSI_SM:u_SCSI_SM|RIFIFO_o</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule R101: Combinational logic used as a reset signal should be synchronized</TD>
+<TD >registers:u_registers|CLR_FLUSHFIFO~0</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Reset signal destination node(s) list</TD>
+<TD >registers:u_registers|FLUSHFIFO</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule R101: Combinational logic used as a reset signal should be synchronized</TD>
+<TD >registers:u_registers|registers_cntr:u_registers_cntr|CLR_DMAENA~0</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Reset signal destination node(s) list</TD>
+<TD >registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[8]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule R101: Combinational logic used as a reset signal should be synchronized</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~0</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Reset signal destination node(s) list</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~_emulated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule R101: Combinational logic used as a reset signal should be synchronized</TD>
+<TD >registers:u_registers|registers_istr:u_registers_istr|CLR_INT_~0</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Reset signal destination node(s) list</TD>
+<TD >registers:u_registers|registers_istr:u_registers_istr|INT_F</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S102: Synchronous port and asynchronous port of the same register should not be driven by the same signal source</TD>
+<TD >registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Synchronous and reset port source node(s) list (tri-state)</TD>
+<TD >_AS_IO~0</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S102: Synchronous port and asynchronous port of the same register should not be driven by the same signal source</TD>
+<TD >registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[0]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Synchronous and reset port source node(s) list (tri-state)</TD>
+<TD >_AS_IO~0</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S102: Synchronous port and asynchronous port of the same register should not be driven by the same signal source</TD>
+<TD >registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Synchronous and reset port source node(s) list (tri-state)</TD>
+<TD >_AS_IO~0</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S102: Synchronous port and asynchronous port of the same register should not be driven by the same signal source</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[7]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Synchronous and reset port source node(s) list</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[6]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S102: Synchronous port and asynchronous port of the same register should not be driven by the same signal source</TD>
+<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[1]~_emulated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Synchronous and reset port source node(s) list</TD>
+<TD >SCSI_SM:u_SCSI_SM|nLS2CPU</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S102: Synchronous port and asynchronous port of the same register should not be driven by the same signal source</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[3]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Synchronous and reset port source node(s) list</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S102: Synchronous port and asynchronous port of the same register should not be driven by the same signal source</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[4]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Synchronous and reset port source node(s) list</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[3]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S102: Synchronous port and asynchronous port of the same register should not be driven by the same signal source</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Synchronous and reset port source node(s) list</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S102: Synchronous port and asynchronous port of the same register should not be driven by the same signal source</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Synchronous and reset port source node(s) list</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[0]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S102: Synchronous port and asynchronous port of the same register should not be driven by the same signal source</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[6]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Synchronous and reset port source node(s) list</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[5]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S102: Synchronous port and asynchronous port of the same register should not be driven by the same signal source</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[5]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Synchronous and reset port source node(s) list</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[4]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S102: Synchronous port and asynchronous port of the same register should not be driven by the same signal source</TD>
+<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[2]~_emulated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Synchronous and reset port source node(s) list</TD>
+<TD >SCSI_SM:u_SCSI_SM|nLS2CPU</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S102: Synchronous port and asynchronous port of the same register should not be driven by the same signal source</TD>
+<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[4]~_emulated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Synchronous and reset port source node(s) list</TD>
+<TD >SCSI_SM:u_SCSI_SM|nLS2CPU</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S102: Synchronous port and asynchronous port of the same register should not be driven by the same signal source</TD>
+<TD >registers:u_registers|registers_istr:u_registers_istr|FE</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Synchronous and reset port source node(s) list</TD>
+<TD >_RST</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S102: Synchronous port and asynchronous port of the same register should not be driven by the same signal source</TD>
+<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[0]~_emulated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Synchronous and reset port source node(s) list</TD>
+<TD >SCSI_SM:u_SCSI_SM|nLS2CPU</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S102: Synchronous port and asynchronous port of the same register should not be driven by the same signal source</TD>
+<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[3]~_emulated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Synchronous and reset port source node(s) list</TD>
+<TD >SCSI_SM:u_SCSI_SM|nLS2CPU</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S102: Synchronous port and asynchronous port of the same register should not be driven by the same signal source</TD>
+<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[5]~_emulated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Synchronous and reset port source node(s) list</TD>
+<TD >SCSI_SM:u_SCSI_SM|nLS2CPU</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S102: Synchronous port and asynchronous port of the same register should not be driven by the same signal source</TD>
+<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[6]~_emulated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Synchronous and reset port source node(s) list</TD>
+<TD >SCSI_SM:u_SCSI_SM|nLS2CPU</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S102: Synchronous port and asynchronous port of the same register should not be driven by the same signal source</TD>
+<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[7]~_emulated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Synchronous and reset port source node(s) list</TD>
+<TD >SCSI_SM:u_SCSI_SM|nLS2CPU</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S104: Clock port and any other port of a register should not be driven by the same signal source</TD>
+<TD >fifo:int_fifo|fifo_byte_ptr:u_byte_ptr|BO1</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Violated clock and other port source node(s) list</TD>
+<TD >ADDR[2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S104: Clock port and any other port of a register should not be driven by the same signal source</TD>
+<TD >registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[8]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Violated clock and other port source node(s) list</TD>
+<TD >ADDR[2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S104: Clock port and any other port of a register should not be driven by the same signal source</TD>
+<TD >registers:u_registers|registers_istr:u_registers_istr|INT_P</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Violated clock and other port source node(s) list</TD>
+<TD >ADDR[2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S104: Clock port and any other port of a register should not be driven by the same signal source</TD>
+<TD >registers:u_registers|registers_istr:u_registers_istr|INT_F</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Violated clock and other port source node(s) list</TD>
+<TD >ADDR[2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 1</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk2"</TD>
+<TD >SCSI_SM:u_SCSI_SM|CCPUREQ</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >SCSI_SM:u_SCSI_SM|STATE[4]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >SCSI_SM:u_SCSI_SM|DACK_o</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >SCSI_SM:u_SCSI_SM|STATE[2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >SCSI_SM:u_SCSI_SM|STATE[3]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 2</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "SCLK"</TD>
+<TD >AS_O_</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 3</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >SCSI_SM:u_SCSI_SM|nLS2CPU</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk2"</TD>
+<TD >SCSI_SM:u_SCSI_SM|CDSACK_</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 4</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk2"</TD>
+<TD >SCSI_SM:u_SCSI_SM|CDSACK_</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >SCSI_SM:u_SCSI_SM|STATE[4]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >SCSI_SM:u_SCSI_SM|S2CPU_o</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >SCSI_SM:u_SCSI_SM|STATE[2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >SCSI_SM:u_SCSI_SM|STATE[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >SCSI_SM:u_SCSI_SM|STATE[3]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >SCSI_SM:u_SCSI_SM|STATE[0]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 5</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~_emulated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "R_W_IO"</TD>
+<TD >registers:u_registers|registers_istr:u_registers_istr|FE</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 6</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "R_W_IO"</TD>
+<TD >registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[4]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >SCSI_SM:u_SCSI_SM|STATE[4]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >SCSI_SM:u_SCSI_SM|DACK_o</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STOPFLUSH</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[3]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|BREQ</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >SCSI_SM:u_SCSI_SM|STATE[2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >SCSI_SM:u_SCSI_SM|STATE[3]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 7</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk2"</TD>
+<TD >CPU_SM:u_CPU_SM|BGRANT_</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[4]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[0]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STOPFLUSH</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|BGACK</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[3]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 8</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk2"</TD>
+<TD >CPU_SM:u_CPU_SM|nCYCLEDONE</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[4]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[0]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STOPFLUSH</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|BGACK</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[3]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 9</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "R_W_IO"</TD>
+<TD >registers:u_registers|A1</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[4]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[0]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STOPFLUSH</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[3]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 10</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk0"</TD>
+<TD >CPU_SM:u_CPU_SM|DSACK_LATCHED_[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[4]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[0]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|PDS</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|PLHW</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|DIEH</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|INCFIFO</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|INCNO</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|BRIDGEOUT</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 11</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk0"</TD>
+<TD >CPU_SM:u_CPU_SM|DSACK_LATCHED_[0]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[4]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[0]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|PDS</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|PLHW</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|DIEH</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|INCFIFO</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|INCNO</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|BRIDGEOUT</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 12</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOFULL</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "R_W_IO"</TD>
+<TD >registers:u_registers|registers_istr:u_registers_istr|FF</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 13</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|INCFIFO</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "R_W_IO"</TD>
+<TD >registers:u_registers|registers_istr:u_registers_istr|FE</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 14</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk2"</TD>
+<TD >CPU_SM:u_CPU_SM|FLUSHFIFO</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STOPFLUSH</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[3]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|BREQ</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 15</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "R_W_IO"</TD>
+<TD >registers:u_registers|FLUSHFIFO</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[4]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[0]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STOPFLUSH</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|F2CPUH</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[3]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|F2CPUL</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|SIZE1</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk2"</TD>
+<TD >CPU_SM:u_CPU_SM|FLUSHFIFO</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 16</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk2"</TD>
+<TD >CPU_SM:u_CPU_SM|DMAENA</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[4]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STOPFLUSH</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[3]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|BREQ</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 17</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "ADDR[2]"</TD>
+<TD >registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[8]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk2"</TD>
+<TD >CPU_SM:u_CPU_SM|DMAENA</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk2"</TD>
+<TD >SCSI_SM:u_SCSI_SM|CDREQ_</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 18</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|PLHW</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "SCLK"</TD>
+<TD >LHW</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 19</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk2"</TD>
+<TD >SCSI_SM:u_SCSI_SM|CDREQ_</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[4]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >SCSI_SM:u_SCSI_SM|STATE[4]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >SCSI_SM:u_SCSI_SM|DACK_o</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >SCSI_SM:u_SCSI_SM|STATE[2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >SCSI_SM:u_SCSI_SM|STATE[3]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 20</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|PDS</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "SCLK"</TD>
+<TD >DS_O_</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 21</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "SCLK"</TD>
+<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[9]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[6][9]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[5][9]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[7][9]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[0][9]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[2][9]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[1][9]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[3][9]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[4][9]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 22</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >CPU_SM:u_CPU_SM|PLLW</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "SCLK"</TD>
+<TD >LLW</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 23</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "SCLK"</TD>
+<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[1][1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[4][1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[5][1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[7][1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[6][1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[0][1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[2][1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[3][1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 24</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "SCLK"</TD>
+<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[10]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[4][10]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[5][10]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[7][10]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[6][10]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[3][10]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[0][10]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[2][10]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[1][10]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 25</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "SCLK"</TD>
+<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[6][2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[2][2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[0][2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[1][2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[3][2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[7][2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[4][2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[5][2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 26</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "SCLK"</TD>
+<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[12]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[4][12]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[5][12]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[7][12]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[6][12]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[0][12]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[2][12]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[3][12]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[1][12]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 27</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "SCLK"</TD>
+<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[4]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[3][4]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[0][4]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[2][4]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[1][4]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[5][4]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[4][4]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[7][4]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[6][4]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 28</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "SCLK"</TD>
+<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[0]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[6][0]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[3][0]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[2][0]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[0][0]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[1][0]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[5][0]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[4][0]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[7][0]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 29</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "SCLK"</TD>
+<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[8]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[1][8]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[7][8]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[4][8]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[5][8]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[6][8]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[3][8]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[0][8]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[2][8]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 30</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Source node(s) from clock "SCLK"</TD>
+<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[3]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[0][3]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[2][3]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[3][3]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[1][3]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[7][3]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[6][3]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[4][3]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Destination node(s) from clock "PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1"</TD>
+<TD >fifo:int_fifo|BUFFER[5][3]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 31</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Structure 31</TD>
+<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[11]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 32</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Structure 32</TD>
+<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[13]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 33</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Structure 33</TD>
+<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[5]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 34</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Structure 34</TD>
+<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[6]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 35</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Structure 35</TD>
+<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[14]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 36</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Structure 36</TD>
+<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[7]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains - Structure 37</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Structure 37</TD>
+<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[15]</TD>
+</TR>
+</tbody></TABLE>
+
+<noscript>JavaScript must be enabled to view the report.</noscript>
+</BODY>
+</HTML>

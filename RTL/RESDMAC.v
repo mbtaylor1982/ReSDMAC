@@ -71,7 +71,7 @@ module RESDMAC(
     //output _CSX1,       //Port2 CS 
 
     // Peripheral Device port
-    inout tri1 [7:0] PD_PORT,
+    inout tri1 [15:0] PD_PORT,
     
     //Diagnostic LEDS
     output _LED_RD,     //Indicated read from SDMAC or peripherial port.
@@ -305,7 +305,7 @@ fifo int_fifo(
 
 datapath u_datapath(
     .DATA_IO   (DATA_IO     ),
-    .PD        (PD_PORT     ),
+    .PD        (PD_PORT[7:0]),
     .OD        (OD          ),
     .MOD       (MOD         ),
     .PAS       (PAS         ),

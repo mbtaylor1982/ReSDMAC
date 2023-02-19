@@ -1,0 +1,110 @@
+#cells { width:100%; border-collapse:collapse; }
+/*
+#cells td, #cells th { font-size:.8em; border:1px solid #0069a5; white-space:nowrap; padding:2px 4px 2px 4px; }
+*/
+#cells td, #cells th { border:1px solid #0069a5; white-space:nowrap; padding:1px 3px 1px 3px; }
+#cells th { text-align:left; background-color:#0069a5; color:#ffffff; }
+#cells tr.alt td { color:#000000; background-color:#96c4de; }
+
+body {
+	font: 10px sans-serif;
+}
+
+.axis path, .axis line {
+	fill: none;
+	stroke: #f00;
+}
+svg {
+	font: 10px sans-serif;
+	/*
+	shape-rendering: crispEdges;
+	*/
+}
+p {
+	font: 10px sans-serif;
+	padding: 0;
+	margin-top: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+}
+
+/* for force.js-style graph */
+circle.node {
+	stroke: #fff;
+	stroke-width: 1.0px;
+}
+path.node {
+	stroke: #fff;
+	stroke-width: 1.0px;
+}
+
+line.link {
+	stroke: #999;
+	stroke-opacity: .6;
+}
+
+line.link-selected {
+	stroke: #fd0;
+	stroke-opacity: 1.0;
+}
+
+p.nowrap {
+	white-space: nowrap;
+}
+
+/* jqueryui tabs styling */
+/* tabs only */
+#tabs-nohdr {
+	font: 12px sans-serif;
+	padding: 0px;
+	background: none;
+	border-width: 0px;
+}
+#tabs-nohdr .ui-tabs-nav {
+	padding-left: 0px;
+	background: transparent;
+	border-width: 0px 0px 1px 0px;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+}
+#tabs-nohdr .ui-tabs-panel {
+	background: url(images/ui-bg_highlight-hard_100_f5f3e5_1x100.png) repeat-x scroll 50% top #f5f3e5;
+	border-width: 0px 1px 1px 1px;
+}
+
+#tabs-nobg {
+	font: 12px sans-serif;
+	padding: 0px;
+	border-radius: 0px;
+}
+#tabs-nobg .ui-tabs-nav {
+	background: transparent;
+	border-width: 0px 0px 1px 0px;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+}
+#tabs-nobg .ui-tabs-panel {
+	margin: 0em 0.2em 0.2em 0.2em;
+}
+
+
+/* no padding on jquery ui layout */
+.ui-layout-pane { /* all 'panes' */
+	padding:	0px;
+}
+
+
+/* no rounded corners on the tab pane */
+#svg-tabs {
+	border-radius: 0px;
+}
+
+
+/* jqueryui menu styling */
+#menu {
+	width: 150px;
+}
+

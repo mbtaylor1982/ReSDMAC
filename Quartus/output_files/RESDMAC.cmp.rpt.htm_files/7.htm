@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML><HEAD>
+<TITLE>Flow Log</TITLE>
+
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.layout-latest.css">
+<link rel="stylesheet" type="text/css" href="css/override.css">
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/jquery.layout-latest.js"></script>
+
+
+</HEAD>
+
+<BODY>
+<div class="rdb_text">quartus_map --read_settings_files=on --write_settings_files=off RESDMAC -c RESDMAC
+quartus_fit --read_settings_files=off --write_settings_files=off RESDMAC -c RESDMAC
+quartus_asm --read_settings_files=off --write_settings_files=off RESDMAC -c RESDMAC
+quartus_sta RESDMAC -c RESDMAC
+quartus_drc --read_settings_files=off --write_settings_files=off RESDMAC -c RESDMAC
+quartus_eda --read_settings_files=off --write_settings_files=off RESDMAC -c RESDMAC
+</div>
+<noscript>JavaScript must be enabled to view the report.</noscript>
+</BODY>
+</HTML>

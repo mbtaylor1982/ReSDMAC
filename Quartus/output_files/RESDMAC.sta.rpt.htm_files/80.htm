@@ -1,0 +1,488 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML><HEAD>
+<TITLE>Minimum Clock to Output Times</TITLE>
+
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.layout-latest.css">
+<link rel="stylesheet" type="text/css" href="css/override.css">
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/jquery.layout-latest.js"></script>
+
+
+</HEAD>
+
+<BODY>
+<TABLE>
+<thead><TR  bgcolor="#BFBFBF">
+<TH>Data Port</TH>
+<TH>Clock Port</TH>
+<TH>Rise</TH>
+<TH>Fall</TH>
+<TH>Clock Edge</TH>
+<TH>Clock Reference</TH>
+</TR>
+</thead><tbody><TR >
+<TD >_AS_IO</TD>
+<TD >sclk</TD>
+<TD >3.501</TD>
+<TD >3.501</TD>
+<TD >Fall</TD>
+<TD >sclk</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >_DS_IO</TD>
+<TD >sclk</TD>
+<TD >3.734</TD>
+<TD >3.734</TD>
+<TD >Fall</TD>
+<TD >sclk</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >DATA_IO[*]</TD>
+<TD >sclk</TD>
+<TD >12.210</TD>
+<TD >12.210</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[0]</TD>
+<TD >sclk</TD>
+<TD >13.277</TD>
+<TD >13.277</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[1]</TD>
+<TD >sclk</TD>
+<TD >13.510</TD>
+<TD >13.510</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[2]</TD>
+<TD >sclk</TD>
+<TD >13.355</TD>
+<TD >13.355</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[3]</TD>
+<TD >sclk</TD>
+<TD >13.260</TD>
+<TD >13.260</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[4]</TD>
+<TD >sclk</TD>
+<TD >13.677</TD>
+<TD >13.677</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[5]</TD>
+<TD >sclk</TD>
+<TD >13.433</TD>
+<TD >13.433</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[6]</TD>
+<TD >sclk</TD>
+<TD >13.518</TD>
+<TD >13.518</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[7]</TD>
+<TD >sclk</TD>
+<TD >13.444</TD>
+<TD >13.444</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[8]</TD>
+<TD >sclk</TD>
+<TD >12.881</TD>
+<TD >12.881</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[9]</TD>
+<TD >sclk</TD>
+<TD >13.043</TD>
+<TD >13.043</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[10]</TD>
+<TD >sclk</TD>
+<TD >12.901</TD>
+<TD >12.901</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[11]</TD>
+<TD >sclk</TD>
+<TD >13.065</TD>
+<TD >13.065</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[12]</TD>
+<TD >sclk</TD>
+<TD >12.924</TD>
+<TD >12.924</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[13]</TD>
+<TD >sclk</TD>
+<TD >12.958</TD>
+<TD >12.958</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[14]</TD>
+<TD >sclk</TD>
+<TD >12.995</TD>
+<TD >12.995</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[15]</TD>
+<TD >sclk</TD>
+<TD >12.947</TD>
+<TD >12.947</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[16]</TD>
+<TD >sclk</TD>
+<TD >13.209</TD>
+<TD >13.209</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[17]</TD>
+<TD >sclk</TD>
+<TD >12.980</TD>
+<TD >12.980</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[18]</TD>
+<TD >sclk</TD>
+<TD >13.302</TD>
+<TD >13.302</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[19]</TD>
+<TD >sclk</TD>
+<TD >13.203</TD>
+<TD >13.203</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[20]</TD>
+<TD >sclk</TD>
+<TD >12.781</TD>
+<TD >12.781</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[21]</TD>
+<TD >sclk</TD>
+<TD >12.780</TD>
+<TD >12.780</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[22]</TD>
+<TD >sclk</TD>
+<TD >12.649</TD>
+<TD >12.649</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[23]</TD>
+<TD >sclk</TD>
+<TD >12.679</TD>
+<TD >12.679</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[24]</TD>
+<TD >sclk</TD>
+<TD >12.897</TD>
+<TD >12.897</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[25]</TD>
+<TD >sclk</TD>
+<TD >12.210</TD>
+<TD >12.210</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[26]</TD>
+<TD >sclk</TD>
+<TD >12.634</TD>
+<TD >12.634</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[27]</TD>
+<TD >sclk</TD>
+<TD >12.890</TD>
+<TD >12.890</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[28]</TD>
+<TD >sclk</TD>
+<TD >12.939</TD>
+<TD >12.939</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[29]</TD>
+<TD >sclk</TD>
+<TD >12.781</TD>
+<TD >12.781</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[30]</TD>
+<TD >sclk</TD>
+<TD >12.399</TD>
+<TD >12.399</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;DATA_IO[31]</TD>
+<TD >sclk</TD>
+<TD >12.451</TD>
+<TD >12.451</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >OWN_</TD>
+<TD >sclk</TD>
+<TD >12.226</TD>
+<TD >12.226</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >PDATA_OE_</TD>
+<TD >sclk</TD>
+<TD >12.554</TD>
+<TD >12.554</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >PD_PORT[*]</TD>
+<TD >sclk</TD>
+<TD >12.843</TD>
+<TD >12.843</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;PD_PORT[0]</TD>
+<TD >sclk</TD>
+<TD >12.869</TD>
+<TD >12.869</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;PD_PORT[1]</TD>
+<TD >sclk</TD>
+<TD >12.879</TD>
+<TD >12.879</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;PD_PORT[2]</TD>
+<TD >sclk</TD>
+<TD >12.914</TD>
+<TD >12.914</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;PD_PORT[3]</TD>
+<TD >sclk</TD>
+<TD >12.843</TD>
+<TD >12.843</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;PD_PORT[4]</TD>
+<TD >sclk</TD>
+<TD >12.864</TD>
+<TD >12.864</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;PD_PORT[5]</TD>
+<TD >sclk</TD>
+<TD >12.943</TD>
+<TD >12.943</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;PD_PORT[6]</TD>
+<TD >sclk</TD>
+<TD >13.150</TD>
+<TD >13.150</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;PD_PORT[7]</TD>
+<TD >sclk</TD>
+<TD >13.059</TD>
+<TD >13.059</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >SIZ1</TD>
+<TD >sclk</TD>
+<TD >12.104</TD>
+<TD >12.104</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >_BGACK_IO</TD>
+<TD >sclk</TD>
+<TD >12.481</TD>
+<TD >12.481</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >_BR</TD>
+<TD >sclk</TD>
+<TD >11.956</TD>
+<TD >11.956</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >_CSS</TD>
+<TD >sclk</TD>
+<TD >11.888</TD>
+<TD >11.888</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >_DACK</TD>
+<TD >sclk</TD>
+<TD >11.806</TD>
+<TD >11.806</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >_DMAEN</TD>
+<TD >sclk</TD>
+<TD >12.056</TD>
+<TD >12.056</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >_IOR</TD>
+<TD >sclk</TD>
+<TD >12.168</TD>
+<TD >12.168</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >_IOW</TD>
+<TD >sclk</TD>
+<TD >12.176</TD>
+<TD >12.176</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >_LED_DMA</TD>
+<TD >sclk</TD>
+<TD >12.788</TD>
+<TD >12.788</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >_LED_RD</TD>
+<TD >sclk</TD>
+<TD >13.274</TD>
+<TD >13.274</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >_LED_WR</TD>
+<TD >sclk</TD>
+<TD >13.161</TD>
+<TD >13.161</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody></TABLE>
+
+<noscript>JavaScript must be enabled to view the report.</noscript>
+</BODY>
+</HTML>

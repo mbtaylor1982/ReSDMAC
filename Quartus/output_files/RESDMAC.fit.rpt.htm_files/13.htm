@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML><HEAD>
+<TITLE>Fitter Resource Usage Summary</TITLE>
+
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.layout-latest.css">
+<link rel="stylesheet" type="text/css" href="css/override.css">
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/jquery.layout-latest.js"></script>
+
+
+</HEAD>
+
+<BODY>
+<TABLE>
+<thead><TR  bgcolor="#BFBFBF">
+<TH>Resource</TH>
+<TH>Usage</TH>
+</TR>
+</thead><tbody><TR >
+<TD >Total logic elements</TD>
+<TD >794 / 4,608 ( 17 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;-- Combinational with no register</TD>
+<TD >385</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;-- Register only</TD>
+<TD >129</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;-- Combinational with a register</TD>
+<TD >280</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Logic element usage by number of LUT inputs</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;-- 4 input functions</TD>
+<TD >478</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;-- 3 input functions</TD>
+<TD >119</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;-- <=2 input functions</TD>
+<TD >68</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;-- Register only</TD>
+<TD >129</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Logic elements by mode</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;-- normal mode</TD>
+<TD >665</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;-- arithmetic mode</TD>
+<TD >0</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Total registers*</TD>
+<TD >409 / 4,851 ( 8 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;-- Dedicated logic registers</TD>
+<TD >409 / 4,608 ( 9 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;-- I/O registers</TD>
+<TD >0 / 243 ( 0 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Total LABs:&nbsp; partially or completely used</TD>
+<TD >68 / 288 ( 24 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Virtual pins</TD>
+<TD >0</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >I/O pins</TD>
+<TD >81 / 89 ( 91 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;-- Clock pins </TD>
+<TD >3 / 4 ( 75 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Global signals </TD>
+<TD >8</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >M4Ks</TD>
+<TD >0 / 26 ( 0 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Total block memory bits</TD>
+<TD >0 / 119,808 ( 0 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Total block memory implementation bits</TD>
+<TD >0 / 119,808 ( 0 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Embedded Multiplier 9-bit elements</TD>
+<TD >0 / 26 ( 0 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >PLLs</TD>
+<TD >1 / 2 ( 50 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Global clocks</TD>
+<TD >8 / 8 ( 100 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >JTAGs</TD>
+<TD >0 / 1 ( 0 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >ASMI blocks</TD>
+<TD >0 / 1 ( 0 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >CRC blocks</TD>
+<TD >0 / 1 ( 0 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Average interconnect usage (total/H/V)</TD>
+<TD >6% / 6% / 6%</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Peak interconnect usage (total/H/V)</TD>
+<TD >9% / 9% / 9%</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Maximum fan-out</TD>
+<TD >99</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Highest non-global fan-out</TD>
+<TD >99</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Total fan-out</TD>
+<TD >3731</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Average fan-out</TD>
+<TD >3.01</TD>
+</TR>
+</tbody></TABLE>
+
+<noscript>JavaScript must be enabled to view the report.</noscript>
+</BODY>
+</HTML>

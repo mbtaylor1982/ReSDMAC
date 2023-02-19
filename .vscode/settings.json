@@ -12,6 +12,9 @@
     "license.default": "gpl-3.0",
     "verilog.icarusPersistentBuild": true,
     "verilog.icarusBuildDirectory": "RTL/build/",
+    "licenser.author": "Mike Taylor",
+    "licenser.disableAutoHeaderInsertion": true,
+    "licenser.disableAutoSave": true,
 
 }
 
