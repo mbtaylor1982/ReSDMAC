@@ -1,0 +1,85 @@
+
+<RESULTS project="RESDMAC" revname="__dse_temp_rev" isbest="0" arcname="" wasCompiled="1" name="5-slow">
+ <COPYRIGHT>Copyright (C) 2002 Altera Corporation. All rights reserved.
+                This information and code is highly confidential and proprietary
+                information and code of Altera and is being provided in accordance
+                with and subject to the protections of a non-disclosure agreement
+                which governs its use and disclosure.  Altera products and services
+                are protected under numerous U.S. and foreign patents, maskwork rights
+                copyrights and other intellectual property laws.  Altera assumes no
+                responsibility or liability arising out of the application or use
+                of this information and code. This notice must be retained and
+                reprinted on any copies of this information and code that are
+                permitted to be made.</COPYRIGHT>
+ <SETTING name="PHYSICAL_SYNTHESIS_REGISTER_RETIMING">ON</SETTING>
+ <SETTING name="ROUTER_LCELL_INSERTION_AND_LOGIC_DUPLICATION">ON</SETTING>
+ <SETTING name="SEED">3</SETTING>
+ <SETTING name="PHYSICAL_SYNTHESIS_REGISTER_DUPLICATION">ON</SETTING>
+ <SETTING name="ROUTER_TIMING_OPTIMIZATION_LEVEL">MAXIMUM</SETTING>
+ <SETTING name="PRE_MAPPING_RESYNTHESIS">ON</SETTING>
+ <SETTING name="PHYSICAL_SYNTHESIS_COMBO_LOGIC">ON</SETTING>
+ <SETTING name="PHYSICAL_SYNTHESIS_EFFORT">NORMAL</SETTING>
+ <SETTING name="ENABLE_BENEFICIAL_SKEW_OPTIMIZATION">ON</SETTING>
+ <RESULT name="Clock Setup: 'u_PLL|APLL_inst|altpll_component|pll|clk[1&#93;': Actual Time">10.691 ns</RESULT>
+ <RESULT name="Elapsed Time: Total">00:00:07</RESULT>
+ <RESULT name="Clock Setup: 'u_PLL|APLL_inst|altpll_component|pll|clk[0&#93;': Restricted Fmax">402.58 MHz</RESULT>
+ <RESULT name="Clock Hold: 'u_PLL|APLL_inst|altpll_component|pll|clk[1&#93;': Worst-case Slack">1.053 ns</RESULT>
+ <RESULT name="Clock Recovery: 'u_PLL|APLL_inst|altpll_component|pll|clk[2&#93;': Worst-case Slack">28.915 ns</RESULT>
+ <RESULT name="Clock Hold: 'sclk': Per-clock Edge TNS">0.000 ns</RESULT>
+ <RESULT name="Elapsed Time: Assembler">00:00:00</RESULT>
+ <RESULT name="Elapsed Time: TimeQuest Timing Analyzer">00:00:01</RESULT>
+ <RESULT name="Worst-case Slack">-32.125 ns (Clock Hold: 'n/a')</RESULT>
+ <RESULT name="Clock Setup: 'n/a': Per-clock Keeper TNS">-2.941 ns</RESULT>
+ <RESULT name="Total logic elements">794</RESULT>
+ <RESULT name="Clock Setup: 'u_PLL|APLL_inst|altpll_component|pll|clk[0&#93;': Actual Time">1.789 ns</RESULT>
+ <RESULT name="Clock Setup: 'n/a': Worst-case Slack">-2.941 ns</RESULT>
+ <RESULT name="Clock Setup: 'u_PLL|APLL_inst|altpll_component|pll|clk[0&#93;': Worst-case Slack">38.211 ns</RESULT>
+ <RESULT name="Elapsed Time: Fitter">00:00:05</RESULT>
+ <RESULT name="Total Keeper TNS">-35.066 ns</RESULT>
+ <RESULT name="Clock Removal: 'u_PLL|APLL_inst|altpll_component|pll|clk[1&#93;': Per-clock Keeper TNS">0.000 ns</RESULT>
+ <RESULT name="Clock Removal: 'u_PLL|APLL_inst|altpll_component|pll|clk[2&#93;': Per-clock Keeper TNS">0.000 ns</RESULT>
+ <RESULT name="Clock Recovery: Total Keeper TNS">0.0 ns</RESULT>
+ <RESULT name="Clock Setup: 'sclk': Worst-case Slack">11.117 ns</RESULT>
+ <RESULT name="Clock Removal: 'u_PLL|APLL_inst|altpll_component|pll|clk[2&#93;': Worst-case Slack">8.840 ns</RESULT>
+ <RESULT name="Clock Hold: 'sclk': Worst-case Slack">27.137 ns</RESULT>
+ <RESULT name="Clock Removal: Total Keeper TNS">0.0 ns</RESULT>
+ <RESULT name="Total block memory bits">0</RESULT>
+ <RESULT name="Clock Hold: 'n/a': Per-clock Keeper TNS">-32.125 ns</RESULT>
+ <RESULT name="Clock Setup: 'u_PLL|APLL_inst|altpll_component|pll|clk[1&#93;': Restricted Fmax">93.54 MHz</RESULT>
+ <RESULT name="Clock Hold: 'n/a': Per-clock Edge TNS">-288.993 ns</RESULT>
+ <RESULT name="Clock Setup: 'sclk': Per-clock Edge TNS">0.000 ns</RESULT>
+ <RESULT name="Clock Recovery: 'u_PLL|APLL_inst|altpll_component|pll|clk[1&#93;': Per-clock Keeper TNS">0.000 ns</RESULT>
+ <RESULT name="Clock Hold: 'u_PLL|APLL_inst|altpll_component|pll|clk[1&#93;': Per-clock Edge TNS">0.000 ns</RESULT>
+ <RESULT name="Clock Recovery: 'u_PLL|APLL_inst|altpll_component|pll|clk[2&#93;': Per-clock Keeper TNS">0.000 ns</RESULT>
+ <RESULT name="Timing Model">Slow</RESULT>
+ <RESULT name="Elapsed Time: EDA Netlist Writer">00:00:00</RESULT>
+ <RESULT name="Clock Hold: 'n/a': Worst-case Slack">-32.125 ns</RESULT>
+ <RESULT name="Clock Hold: 'u_PLL|APLL_inst|altpll_component|pll|clk[0&#93;': Worst-case Slack">0.499 ns</RESULT>
+ <RESULT name="Elapsed Time: Analysis &amp; Synthesis">00:00:01</RESULT>
+ <RESULT name="Clock Recovery: 'u_PLL|APLL_inst|altpll_component|pll|clk[1&#93;': Worst-case Slack">23.861 ns</RESULT>
+ <RESULT name="Clock Setup: 'u_PLL|APLL_inst|altpll_component|pll|clk[0&#93;': Per-clock Keeper TNS">0.000 ns</RESULT>
+ <RESULT name="Clock Setup: 'n/a': Per-clock Edge TNS">-26.205 ns</RESULT>
+ <RESULT name="Clock Setup: 'u_PLL|APLL_inst|altpll_component|pll|clk[1&#93;': Per-clock Keeper TNS">0.000 ns</RESULT>
+ <RESULT name="Clock Setup: 'u_PLL|APLL_inst|altpll_component|pll|clk[1&#93;': Per-clock Edge TNS">0.000 ns</RESULT>
+ <RESULT name="Clock Setup: Total Keeper TNS">-2.941 ns</RESULT>
+ <RESULT name="Clock Setup: 'u_PLL|APLL_inst|altpll_component|pll|clk[1&#93;': Worst-case Slack">19.017 ns</RESULT>
+ <RESULT name="Clock Setup: 'sclk': Per-clock Keeper TNS">0.000 ns</RESULT>
+ <RESULT name="Clock Hold: 'u_PLL|APLL_inst|altpll_component|pll|clk[0&#93;': Per-clock Edge TNS">0.000 ns</RESULT>
+ <RESULT name="Clock Removal: 'u_PLL|APLL_inst|altpll_component|pll|clk[2&#93;': Per-clock Edge TNS">0.000 ns</RESULT>
+ <RESULT name="Clock Recovery: 'u_PLL|APLL_inst|altpll_component|pll|clk[2&#93;': Per-clock Edge TNS">0.000 ns</RESULT>
+ <RESULT name="Clock Removal: 'u_PLL|APLL_inst|altpll_component|pll|clk[1&#93;': Worst-case Slack">14.587 ns</RESULT>
+ <RESULT name="Clock Hold: Total Keeper TNS">-32.125 ns</RESULT>
+ <RESULT name="Clock Hold: 'sclk': Per-clock Keeper TNS">0.000 ns</RESULT>
+ <RESULT name="All Failing Paths">&gt;0</RESULT>
+ <RESULT name="Total Thermal Power Dissipation">unknown</RESULT>
+ <RESULT name="Clock Setup: 'u_PLL|APLL_inst|altpll_component|pll|clk[0&#93;': Per-clock Edge TNS">0.000 ns</RESULT>
+ <RESULT name="Clock Period: Geometric Mean">4.37 ns</RESULT>
+ <RESULT name="Clock Setup: 'u_PLL|APLL_inst|altpll_component|pll|clk[0&#93;': Fmax">558.97 MHz</RESULT>
+ <RESULT name="Elapsed Time: Design Assistant">00:00:00</RESULT>
+ <RESULT name="Clock Setup: 'u_PLL|APLL_inst|altpll_component|pll|clk[1&#93;': Fmax">93.54 MHz</RESULT>
+ <RESULT name="Clock Hold: 'u_PLL|APLL_inst|altpll_component|pll|clk[0&#93;': Per-clock Keeper TNS">0.000 ns</RESULT>
+ <RESULT name="Clock Removal: 'u_PLL|APLL_inst|altpll_component|pll|clk[1&#93;': Per-clock Edge TNS">0.000 ns</RESULT>
+ <RESULT name="Clock Hold: 'u_PLL|APLL_inst|altpll_component|pll|clk[1&#93;': Per-clock Keeper TNS">0.000 ns</RESULT>
+ <RESULT name="Clock Recovery: 'u_PLL|APLL_inst|altpll_component|pll|clk[1&#93;': Per-clock Edge TNS">0.000 ns</RESULT>
+</RESULTS>
+
