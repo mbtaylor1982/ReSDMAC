@@ -2,48 +2,24 @@ EAGLE AutoRouter Statistics:
 
 Job           : /home/mike/EAGLE/projects/SDMAC-Replacement/RE-SDMAC Rev B/SDMAC_revb.brd
 
-<<<<<<< HEAD
-Start at      : 10:38:30 (04/01/2023)
-End at        : 10:49:28 (04/01/2023)
-Elapsed time  : 00:00:27
+Start at      : 21:06:37 (02/01/2023)
+End at        : 21:10:32 (02/01/2023)
+Elapsed time  : 00:02:58
 
-Signals       :   171   RoutingGrid: 6.25 mil  Layers: 2
-Connections   :   225   predefined:  65 ( 0 Vias )
+Signals       :    84   RoutingGrid: 6 mil  Layers: 2
+Connections   :   136   predefined:  0 ( 0 Vias )
 
-Router memory :   1094208
+Router memory :   1415648
 
-Passname          :    Busses     Route Optimize1 Optimize2 Optimize3 Optimize4
+Passname          : TopRouter     Route Optimize1 Optimize2 Optimize3 Optimize4
 
-Time per pass     :  00:00:00  00:00:05  00:00:06  00:00:06  00:00:05  00:00:05
-Number of Ripups  :         0         2         0         0         0         0
-max. Level        :         0         1         0         0         0         0
-max. Total        :         0         2         0         0         0         0
+Time per pass     :  00:00:15  00:01:54  00:00:10  00:00:12  00:00:14  00:00:13
+Number of Ripups  :         0       169         0         0         0         0
+max. Level        :         0         7         0         0         0         0
+max. Total        :         0        56         0         0         0         0
 
-Routed            :         0       144       144       144       144       144
-Vias              :         0       486       299       276       256       251
-Resolution        :    28.9 %    92.9 %    92.9 %    92.9 %    92.9 %    92.9 %
+Routed            :        13       136       135       135       135       135
+Vias              :         0       441       393       337       317       299
+Resolution        :     9.6 %   100.0 %    99.3 %    99.3 %    99.3 %    99.3 %
 
-Final             : 76.9% finished. Polygons may have fallen apart.
-=======
-Start at      : 16:27:10 (03/01/2023)
-End at        : 16:39:28 (03/01/2023)
-Elapsed time  : 00:00:30
-
-Signals       :   171   RoutingGrid: 6.25 mil  Layers: 2
-Connections   :   225   predefined:  0 ( 0 Vias )
-
-Router memory :   1258296
-
-Passname          :    Busses     Route Optimize1 Optimize2 Optimize3 Optimize4
-
-Time per pass     :  00:00:00  00:00:06  00:00:07  00:00:06  00:00:05  00:00:06
-Number of Ripups  :         0         0         0         0         0         0
-max. Level        :         0         0         0         0         0         0
-max. Total        :         0         0         0         0         0         0
-
-Routed            :        18       225       225       225       225       225
-Vias              :         0       462       302       251       243       238
-Resolution        :     8.0 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %
-
-Final             : 100.0% finished
->>>>>>> 59b1eeb7e590b9f51fbacd36f1876dcfcc57ec66
+Final             : 99.3% finished
