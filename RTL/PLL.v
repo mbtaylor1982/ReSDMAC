@@ -28,12 +28,12 @@ module PLL (
 
     always @(posedge BCLK, posedge rst) begin
         if (rst == 1'b1)
-            Slocaked <= 1'b0;
+            Slocked <= 1'b0;
         else 
-            Slocaked <= 1'b1;
+            Slocked <= 1'b1;
     end
 	 
-	 assign locked = Slocaked;
+	 assign locked = Slocked;
 	 
 `elsif ALTERA_RESERVED_QIS
 //Need to have ALTPLL IP Component installed in Quartus for this to work.
