@@ -13,24 +13,24 @@
       - [1.5.3.3. PDMD — Peripheral Device Mode Select {#PDMD}](#1533-pdmd--peripheral-device-mode-select-pdmd)
       - [1.5.3.4. INTEN — Interrupt Enable, Active High {#INTEN}](#1534-inten--interrupt-enable-active-high-inten)
       - [1.5.3.5. DDIR — Device Direction {#DDIR}](#1535-ddir--device-direction-ddir)
-      - [1.5.3.6. IO_DX — IORDY and CSX1 Polarity Select {#IO_DX}](#1536-io_dx--iordy-and-csx1-polarity-select-io_dx)
+      - [1.5.3.6. IO\_DX — IORDY and CSX1 Polarity Select {#IO\_DX}](#1536-io_dx--iordy-and-csx1-polarity-select-io_dx)
     - [1.5.4. ACR (Address: ```$0C```) — read/write {#ACR}](#154-acr-address-0c--readwrite-acr)
       - [1.5.4.1. RAMSEY DMAC SUPPORT](#1541-ramsey-dmac-support)
-    - [1.5.5. ST_DMA (Address: ```$10```) — read/write strobe {#ST_DMA}](#155-st_dma-address-10--readwrite-strobe-st_dma)
+    - [1.5.5. ST\_DMA (Address: ```$10```) — read/write strobe {#ST\_DMA}](#155-st_dma-address-10--readwrite-strobe-st_dma)
     - [1.5.6. FLUSH (Address: ```$14```) — read/write strobe {#FLUSH}](#156-flush-address-14--readwrite-strobe-flush)
     - [1.5.7. CINT (Address: ```$18```) — read/write strobe {#CINT}](#157-cint-address-18--readwrite-strobe-cint)
     - [1.5.8. ISTR (Address: ```$1C```) — read only {#ISTR}](#158-istr-address-1c--read-only-istr)
       - [1.5.8.1. INTX — XT/AT Interrupt pending, Active High {#INTX}](#1581-intx--xtat-interrupt-pending-active-high-intx)
-      - [1.5.8.2. INT_F — Interrupt Follow, Active High {#INT_F}](#1582-int_f--interrupt-follow-active-high-int_f)
+      - [1.5.8.2. INT\_F — Interrupt Follow, Active High {#INT\_F}](#1582-int_f--interrupt-follow-active-high-int_f)
       - [1.5.8.3. INTS — SCSI Peripheral Interrupt, Active High {#INTS}](#1583-ints--scsi-peripheral-interrupt-active-high-ints)
-      - [1.5.8.4. E_INT — End-Of-Process Interrupt, Active High {#E_INT}](#1584-e_int--end-of-process-interrupt-active-high-e_int)
-      - [1.5.8.5. INT_P — Interrupt Pending, Active High {#INT_P}](#1585-int_p--interrupt-pending-active-high-int_p)
-      - [1.5.8.6. UE_INT — Under-Run FIFO Error Interrupt, Active High {#UE_INT}](#1586-ue_int--under-run-fifo-error-interrupt-active-high-ue_int)
-      - [1.5.8.7. OE_INT — Over-Run FIFO Error Interrupt, Active High {#OE_INT}](#1587-oe_int--over-run-fifo-error-interrupt-active-high-oe_int)
-      - [1.5.8.8. FF_FLG — FIFO Full Flag, Active High {#FF_FLG}](#1588-ff_flg--fifo-full-flag-active-high-ff_flg)
-      - [1.5.8.9. FE_FLG — FIFO Empty Flag, Active High {#FE_FLG}](#1589-fe_flg--fifo-empty-flag-active-high-fe_flg)
+      - [1.5.8.4. E\_INT — End-Of-Process Interrupt, Active High {#E\_INT}](#1584-e_int--end-of-process-interrupt-active-high-e_int)
+      - [1.5.8.5. INT\_P — Interrupt Pending, Active High {#INT\_P}](#1585-int_p--interrupt-pending-active-high-int_p)
+      - [1.5.8.6. UE\_INT — Under-Run FIFO Error Interrupt, Active High {#UE\_INT}](#1586-ue_int--under-run-fifo-error-interrupt-active-high-ue_int)
+      - [1.5.8.7. OE\_INT — Over-Run FIFO Error Interrupt, Active High {#OE\_INT}](#1587-oe_int--over-run-fifo-error-interrupt-active-high-oe_int)
+      - [1.5.8.8. FF\_FLG — FIFO Full Flag, Active High {#FF\_FLG}](#1588-ff_flg--fifo-full-flag-active-high-ff_flg)
+      - [1.5.8.9. FE\_FLG — FIFO Empty Flag, Active High {#FE\_FLG}](#1589-fe_flg--fifo-empty-flag-active-high-fe_flg)
     - [1.5.9. RESERVED (Address: ```$20,$24,$28,$2C,$30,$34,$38```) {#RESERVED}](#159-reserved-address-2024282c303438-reserved)
-    - [1.5.10. SP_DMA (Address: ```$3C```) — read/write strobe {#SP_DMA}](#1510-sp_dma-address-3c--readwrite-strobe-sp_dma)
+    - [1.5.10. SP\_DMA (Address: ```$3C```) — read/write strobe {#SP\_DMA}](#1510-sp_dma-address-3c--readwrite-strobe-sp_dma)
     - [1.5.11. PORT0 (Address range: ```$40 - $4C```) — read/write {#PORT0}](#1511-port0-address-range-40---4c--readwrite-port0)
     - [1.5.12. PORT1A (Address range: ```$50 - $5C```) — read/write {#PORT1A}](#1512-port1a-address-range-50---5c--readwrite-port1a)
     - [1.5.13. PORT2 (Address range: ```$60 - $6C```) — read/write {#PORT2}](#1513-port2-address-range-60---6c--readwrite-port2)
@@ -72,51 +72,51 @@ The SDMAC is packaged as PLCC (Plastic Leaded Chip Carrier) with 84 Pins
 
 ![PLCC84 SDMAC Package](/Docs/Images/SDMAC_PACKAGE.png)
 
-| Pin    | Direction    | Rev2     | Rev4     | AA3000   | Description                                              |
-| ------ | ------------ | -------- | -------- | -------- | -------------------------------------------------------- |
-| 1..20  | In/Out (o.c) | D0..D19  | D0..D19  | D0..D19  | Processor Data Bus                                       |
-| 21     | -            | VCC      | VCC      | VCC      | +5V DC                                                   |
-| 22..33 | In/Out (o.c) | D20..D31 | D20..D31 | D20..D31 | Processor Data Bus                                       |
-| 34     | In           | INTB     | INTB     | INTB     | Pulled up to VCC via 1k. not connected to anything else. |
-| 35     | Out (o.c)    | _INT     | _INT     | _INT     | Interrupt output (_INT2)                                 |
-| 36     | In/Out (o.c) | SIZ1     | SIZ1     | SIZ1     | Transfer Size                                            |
-| 37     | In/Out (o.c) | R_W      | R_W      | R_W      | Read/Write                                               |
-| 38     | In/Out (o.c) | _AS      | _AS      | _AS      | Address Strobe                                           |
-| 39     | In/Out (o.c) | _DS      | _DS      | _DS      | Data Strobe                                              |
-| 40     | In/Out (o.c) | _DSACK1  | _DSACK1  | _DSACK1  | Data transfer and size acknowledge                       |
-| 41     | In/Out (o.c) | _DSACK0  | _DSACK0  | _DSACK0  | Data transfer and size acknowledge                       |
-| 42     | -            | VSS      | VSS      | VSS      | GND                                                      |
-| 43     | In           | _STERM   | _STERM   | _STERM   | Synchronous Termination (bus cycle)                      |
-| 44     | In           | SCLK     | SCLK     | SCLK     | Clk input (CPUCLKB) 16/25MHz                             |
-| 45     | In           | _CS      | _CS      | _CS      | Chip select (_SCSI)                                      |
-| 46     | In           | _RESET   | _RESET   | _RESET   | Reset (connected to _IORST)                         |
-| 47     | In           | _BERR    | _BERR    | _BERR    | Bus Error                                                |
-| 48..55 | In/Out (o.c) | PD0..PD7 | PD0..PD7 | PD0..PD7 | Peripheral device data port (SCSI)                       |
-| 56     | In/Out (o.c) | NC       | PD8      | CNT      | Peripheral device data port (AA3000/+ i2c)               |
-| 57     | In/Out (o.c) | NC       | PD9      | SP       | Peripheral device data port (AA3000/+ i2c)               |
-| 58     | In/Out (o.c) | NC       | PD10     | AP_0     | Peripheral device data port (AA3000/+DSP)                |
-| 59     | In/Out (o.c) | NC       | PD11     | AP_1     | Peripheral device data port (AA3000/+DSP)                |
-| 60     | In/Out (o.c) | NC       | PD12     | AP-2     | Peripheral device data port (AA3000/+DSP)                |
-| 61     | In/Out (o.c) | NC       | PD13     | VSS      | Peripheral device data port (AA3000/+ GND)               |
-| 62     | In/Out (o.c) | NC       | PD14     | AP_3     | Peripheral device data port (AA3000/+DSP)                |
-| 63     | -            | VCC      | VCC      | VCC      | +5V DC                                                   |
-| 64     | In/Out (o.c) | NC       | PD15     | AP_4     | Peripheral device data port (AA3000/+DSP)                |
-| 65     | In           | _DREQ    | _DREQ    | _DREQ    | Peripheral Port Data Request                             |
-| 66     | Out          | _DACK    | _DACK    | _DACK    | Peripheral Port Data Acknowledge                         |
-| 67     | Out          | _CSS     | _CSS     | _CSS     | Peripheral Port 0 chip select (SCSI)                     |
-| 68     | Out          | _IOW     | _IOW     | _IOW     | Peripheral Port Write                                    |
-| 69     | Out          | _IOR     | _IOR     | _IOR     | Peripheral Port Read                                     |
-| 70     | Out          | _CSX0    | _CSX0    | AP_5     | Peripheral Port 1A chip select (AA3000/+DSP)             |
-| 71     | Out          | _CSX1    | _CSX1    | AP_6     | Peripheral Port 2 chip select (AA3000/+DSP)              |
-| 72     | In           | _IORDY   | _IORDY   | _IORDY   | IORDY FOR PATA/IDE drives (not used in A3000)            |
-| 73     | In           | INTA     | INTA     | INTA     | Peripheral Port 0 interrupt request (SCSI)               |
-| 74     | Out          | INC_ADD  | INC_ADD  | AP_7     | A3000 not connected, (AA3000/+ DSP)                      |
-| 75     | Out          | _DMAEN   | _DMAEN   | _DMAEN   | Enable Ramsey as address generator for DMA cycle         |
-| 76..80 | In           | A2..A6   | A2..A6   | A2..A6   | Processor Address Bus                                    |
-| 81     | Out (o.c)    | _BR      | _BR      | _BR      | Bus Request                                              |
-| 82     | In           | _BG      | _BG      | _BG      | Bus Grant                                                |
-| 83     | In/Out (o.c) | _BGACK   | _BGACK   | _BGACK   | Bus Grant Acknowledge                                    |
-| 84     | -            | VSS      | VSS      | VSS      | GND                                                      |
+| Pin    | Direction      | Rev2     | Rev4     | AA3000   | Description                                              |
+|--------|----------------|----------|----------|----------|----------------------------------------------------------|
+| 1..20  | In/Out         | D0..D19  | D0..D19  | D0..D19  | Processor Data Bus                                       |
+| 21     | -              | VCC      | VCC      | VCC      | +5V DC                                                   |
+| 22..33 | In/Out         | D20..D31 | D20..D31 | D20..D31 | Processor Data Bus                                       |
+| 34     | In             | INTB     | INTB     | INTB     | Pulled up to VCC via 1k. not connected to anything else. |
+| 35     | Out Open Drain | _INT     | _INT     | _INT     | Interrupt output (_INT2)                                 |
+| 36     | Out            | SIZ1     | SIZ1     | SIZ1     | Transfer Size                                            |
+| 37     | In/Out         | R_W      | R_W      | R_W      | Read/Write                                               |
+| 38     | In/Out         | _AS      | _AS      | _AS      | Address Strobe                                           |
+| 39     | In/Out         | _DS      | _DS      | _DS      | Data Strobe                                              |
+| 40     | In/Out         | _DSACK1  | _DSACK1  | _DSACK1  | Data transfer and size acknowledge                       |
+| 41     | In/Out         | _DSACK0  | _DSACK0  | _DSACK0  | Data transfer and size acknowledge                       |
+| 42     | -              | VSS      | VSS      | VSS      | GND                                                      |
+| 43     | In             | _STERM   | _STERM   | _STERM   | Synchronous Termination (bus cycle)                      |
+| 44     | In             | SCLK     | SCLK     | SCLK     | Clk input (CPUCLKB) 16/25MHz                             |
+| 45     | In             | _CS      | _CS      | _CS      | Chip select (_SCSI)                                      |
+| 46     | In             | _RESET   | _RESET   | _RESET   | Reset (connected to _IORST)                              |
+| 47     | In             | _BERR    | _BERR    | _BERR    | Bus Error                                                |
+| 48..55 | In/Out         | PD0..PD7 | PD0..PD7 | PD0..PD7 | Peripheral device data port (SCSI)                       |
+| 56     | In/Out         | NC       | PD8      | CNT      | Peripheral device data port (AA3000/+ i2c)               |
+| 57     | In/Out         | NC       | PD9      | SP       | Peripheral device data port (AA3000/+ i2c)               |
+| 58     | In/Out         | NC       | PD10     | AP_0     | Peripheral device data port (AA3000/+DSP)                |
+| 59     | In/Out         | NC       | PD11     | AP_1     | Peripheral device data port (AA3000/+DSP)                |
+| 60     | In/Out         | NC       | PD12     | AP-2     | Peripheral device data port (AA3000/+DSP)                |
+| 61     | In/Out         | NC       | PD13     | VSS      | Peripheral device data port (AA3000/+ GND)               |
+| 62     | In/Out         | NC       | PD14     | AP_3     | Peripheral device data port (AA3000/+DSP)                |
+| 63     | -              | VCC      | VCC      | VCC      | +5V DC                                                   |
+| 64     | In/Out         | NC       | PD15     | AP_4     | Peripheral device data port (AA3000/+DSP)                |
+| 65     | In             | _DREQ    | _DREQ    | _DREQ    | Peripheral Port Data Request                             |
+| 66     | Out            | _DACK    | _DACK    | _DACK    | Peripheral Port Data Acknowledge                         |
+| 67     | Out            | _CSS     | _CSS     | _CSS     | Peripheral Port 0 chip select (SCSI)                     |
+| 68     | Out            | _IOW     | _IOW     | _IOW     | Peripheral Port Write                                    |
+| 69     | Out            | _IOR     | _IOR     | _IOR     | Peripheral Port Read                                     |
+| 70     | Out            | _CSX0    | _CSX0    | AP_5     | Peripheral Port 1A chip select (AA3000/+DSP)             |
+| 71     | Out            | _CSX1    | _CSX1    | AP_6     | Peripheral Port 2 chip select (AA3000/+DSP)              |
+| 72     | In             | _IORDY   | _IORDY   | _IORDY   | IORDY FOR PATA/IDE drives (not used in A3000)            |
+| 73     | In             | INTA     | INTA     | INTA     | Peripheral Port 0 interrupt request (SCSI)               |
+| 74     | Out            | INC_ADD  | INC_ADD  | AP_7     | A3000 not connected, (AA3000/+ DSP)                      |
+| 75     | Out            | _DMAEN   | _DMAEN   | _DMAEN   | Enable Ramsey as address generator for DMA cycle         |
+| 76..80 | In             | A2..A6   | A2..A6   | A2..A6   | Processor Address Bus                                    |
+| 81     | Out            | _BR      | _BR      | _BR      | Bus Request                                              |
+| 82     | In             | _BG      | _BG      | _BG      | Bus Grant                                                |
+| 83     | In/Out         | _BGACK   | _BGACK   | _BGACK   | Bus Grant Acknowledge                                    |
+| 84     | -              | VSS      | VSS      | VSS      | GND                                                      |
 
 ## 1.4. I/O DEFINITIONS AND LOCATIONS {#IO}
 
@@ -135,7 +135,7 @@ equation for chip select signal:
 
 This means the SDMAC is located betweeen addresses ```$00DD0000-$00DD007F``` with access repeated every ```$80``` untill ```$00DD3FFF``` 
 | HEX Offset  | Symbolic Name         | Definition                   | Type           |
-| ----------- | --------------------- | ---------------------------- | -------------- |
+|-------------|-----------------------|------------------------------|----------------|
 | 00          | [DAWR](#DAWR)         | DACK Width Register          | (write only)   |
 | 04          | [WTC](#WTC)           | Word Transfer Count Register | (read/write)   |
 | 08          | [CNTR](#CNTR)         | Control Register             | (read/write)   |
@@ -164,22 +164,24 @@ The **DATA ACKNOWLEDGE WIDTH REGISTER** is used to determine the pulse width of 
 
 **Register bit descriptions:**
 
-| Bit          | 7   | ..  | 2   | 1   | 0   |
-| ------------ | --- | --- | --- | --- | --- |
-| **Function** | X   | ..  | X   | DW1 | DW0 |
+| Bit          | 7 | .. | 2 | 1   | 0   |
+|--------------|---|----|---|-----|-----|
+| **Function** | X | .. | X | DW1 | DW0 |
 
 > :memo: **NOTE:** **X** Denotes don’t care.
 
 _DACK (pin 66) pulse width is determined as follows:
 
 | DW1 | DWO | DACK WIDTH (number of system clocks) |
-| --- | --- | ------------------------------------ |
+|-----|-----|--------------------------------------|
 | 0   | 0   | 1 SCLK period                        |
 | 0   | 1   | 2 SCLK period                        |
 | 1   | 0   | 3 SCLK period                        |
 | 1   | 1   | 4 SCLK period                        |
 
 > :memo: **NOTE:** For A3000 machines, set [DAWR](#DAWR) to 3.
+
+> :memo: **NOTE:** The DAWR register is not present in the Rev 4 SDMAC.
 
 ### 1.5.2. WTC (Address: ```$04```) — read/write {#WTC}
 
@@ -189,21 +191,22 @@ data words can be transferred with a single command. The counter must be initial
 
 **Register bit descriptions:**
 
-| Bit          | 31  | ..  | 24  | 23  | ..  | 0   |
-| ------------ | --- | --- | --- | --- | --- | --- |
-| **Function** | X   | ..  | X   | MSB | ..  | LSB |
+| Bit          | 31 | .. | 24 | 23  | .. | 0   |
+|--------------|----|----|----|-----|----|-----|
+| **Function** | X  | .. | X  | MSB | .. | LSB |
 
 > :memo: **NOTE:** **X** Denotes don’t care.
 
+> :memo: **NOTE:** The WTC register is read only in the Rev 4 SDMAC and will always return the  value $00000004.
 ### 1.5.3. CNTR (Address: ```$08```) — read/write {#CNTR}
 
 The **CONTROL REGISTER** is an 8 bit register used to set mode and operating parameters of the SDMAC. An external reset will set all register bits to a low state.
 
 **Register bit descriptions:**
 
-| Bit          | 7   | 6   | 5             | 4               | 3             | 2               | 1             | 0               |
-| ------------ | --- | --- | ------------- | --------------- | ------------- | --------------- | ------------- | --------------- |
-| **Function** | X   | X   | [TCEN](#TCEN) | [PREST](#PREST) | [PDMD](#PDMD) | [INTEN](#INTEN) | [DDIR](#DDIR) | [IO_DX](#IO_DX) |
+| Bit          | 7 | 6 | 5             | 4               | 3             | 2               | 1             | 0               |
+|--------------|---|---|---------------|-----------------|---------------|-----------------|---------------|-----------------|
+| **Function** | X | X | [TCEN](#TCEN) | [PREST](#PREST) | [PDMD](#PDMD) | [INTEN](#INTEN) | [DDIR](#DDIR) | [IO_DX](#IO_DX) |
 
 > :memo: **NOTE:** **X** Denotes don’t care.
 
@@ -267,9 +270,9 @@ This register is actually in the RAMSEY gate array and thus must be used with th
 
 **Register bit descriptions:**
 
-| Bit          | 31  | ..  | 0   |
-| ------------ | --- | --- | --- |
-| **Function** | MSB | ..  | LSB |
+| Bit          | 31  | .. | 0   |
+|--------------|-----|----|-----|
+| **Function** | MSB | .. | LSB |
 
 #### 1.5.4.1. RAMSEY DMAC SUPPORT
 
@@ -323,7 +326,7 @@ All internally generated interrupts are set in-active by a hardware reset.
 **Register bit descriptions:**
 
 | Bit          | 8             | 7               | 6             | 5               | 4               | 3                 | 2                 | 1                 | 0                 |
-| ------------ | ------------- | --------------- | ------------- | --------------- | --------------- | ----------------- | ----------------- | ----------------- | ----------------- |
+|--------------|---------------|-----------------|---------------|-----------------|-----------------|-------------------|-------------------|-------------------|-------------------|
 | **Function** | [INTX](#INTX) | [INT_F](#INT_F) | [INTS](#INTS) | [E_INT](#E_INT) | [INT_P](#INT_P) | [UE_INT](#UE_INT) | [OE_INT](#OE_INT) | [FF_FLG](#FF_FLG) | [FE_FLG](#FE_FLG) |
 
 #### 1.5.8.1. INTX — XT/AT Interrupt pending, Active High {#INTX}
@@ -408,7 +411,7 @@ I/O definitions within this address range is application dependent and depends o
 > In the A3000 machine the programmer should access (read/write) the 33C93 SCSI registers  as follows:
 
 | Register                               | R/W        | Access   | Address                  | DBUS byte lane    |
-| -------------------------------------- | ---------- | -------- | ------------------------ | ----------------- |
+|----------------------------------------|------------|----------|--------------------------|-------------------|
 | 33C93 Address Register                 | Write only | longword | ```$40```                | D7-D0             |
 | 33C93 Auxiliary Status Register (SASR) | Read only  | byte     | ```$41, $45, $49, $4D``` | D23-D16 and D7-D0 |
 | 33C93 Register Data (SCMD)             | R/W        | byte     | ```$43, $47, $48, $4F``` | D23-D16 and D7-D0 |
