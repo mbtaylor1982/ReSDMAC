@@ -314,9 +314,9 @@ assign NEXT_STATE = {cpudff5_d, cpudff4_d, cpudff3_d, cpudff2_d, cpudff1_d};
 assign CYCLEDONE = ~nCYCLEDONE;
 assign iDSACK = ~(DSACK_LATCHED_[0] & DSACK_LATCHED_[1]);
 
-assign #5 DSACK = iDSACK;
+assign DSACK = iDSACK;
 assign nDSACK = ~iDSACK;
-assign #5 STERM_ = iSTERM_;
+assign STERM_ = iSTERM_;
 assign nSTERM_ = ~iSTERM_;
 
 

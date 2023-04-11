@@ -35,8 +35,13 @@ wire CYCLE_END;
 
 assign CYCLE_ACTIVE = ~(AS_| DMAC_);
 assign CYCLE_TERM = (TERM_COUNTER == 3'd4);
-//TODO: assign CYCLE_END = ~(AS_| WDREGREQ | h_0C); //this is for production
-assign CYCLE_END = ~(AS_| WDREGREQ); //just for testing
+
+`ifdef __ICARUS__ 
+  //allows sdmac to terminate writes to ACR in Ramsey for testing
+  assign CYCLE_END = ~(AS_| WDREGREQ); 
+`else
+  assign CYCLE_END = ~(AS_| WDREGREQ | h_0C);
+`endif   
 
 always@(posedge nCPUCLK or posedge AS_) begin
   if (AS_ == 1'b1)

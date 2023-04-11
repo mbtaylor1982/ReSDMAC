@@ -26,61 +26,49 @@
 `endif
 
 module RESDMAC(
-    output tri1 _INT,        //Connected to INT2 needs to be Open Collector output.
+    output tri1 _INT,               //Connected to INT2 needs to be Open Collector output.
+    output tri1 SIZ1,               //Indicates a 16 bit transfer is true. 
 
-    output tri1 SIZ1,         //Indicates a 16 bit transfer is true. 
+    inout tri1 R_W_IO,              //Read Write from CPU
+    inout tri1 _AS_IO,              //Address Strobe
+    inout tri1 _DS_IO,              //Data Strobe 
+    inout tri1 [1:0] _DSACK_IO,     //Dynamic size and DATA ack.
+    inout tri1 [31:0] DATA_IO,      // CPU side data bus 32bit wide
 
-    inout tri1 R_W_IO,          //Read Write from CPU
-    inout tri1 _AS_IO,          //Address Strobe
-    inout tri1 _DS_IO,          //Data Strobe 
-    inout tri1 [1:0] _DSACK_IO,        //Dynamic size and DATA ack.
-    
-    inout tri1 [31:0] DATA_IO,   // CPU side data bus 32bit wide
-
-    input tri1 _STERM,       //static/synchronous data ack.
-    
-    input SCLK,         //CPUCLKB
-    input _CS,           //_SCSI from Fat Garry
-    input _RST,         //System Reset
-    input tri1 _BERR,        //Bus Error 
-
-    input [6:2] ADDR,   //CPU address Bus, bits are actually [6:2]
-    //input A12,          // additional address input to allow this to co-exist with A4000 IDE card.
+    input tri1 _STERM,              //static/synchronous data ack.
+    input SCLK,                     //CPUCLKB
+    input _CS,                      //_SCSI from Fat Garry
+    input _RST,                     //System Reset
+    input tri1 _BERR,               //Bus Error 
+    input [6:2] ADDR,               //CPU address Bus, bits are actually [6:2]
     
     // Bus Mastering/Arbitration.
+    output   _BR,                   //Bus Request
+    input    _BG,                   //Bus Grant
+    inout   tri1 _BGACK_IO,         //Bus Grant Acknoledge
 
-    output   _BR,        //Bus Request
-    input    _BG,        //Bus Grant
-    inout   tri1 _BGACK_IO,  //Bus Grant Acknoledge
-
-    output _DMAEN,      //Low =  Enable Address Generator in Ramsey
+    output _DMAEN,                  //Low =  Enable Address Generator in Ramsey
     
-    // Peripheral port Control signals
-    input tri1 _DREQ,
-    output _DACK,
-    //input _IORDY,
+    // Peripheral port signals
+    input tri1 _DREQ,               //DMA Request From WD33c93A (SCSI) 
+    input INTA,                     //Interupt from WD33c93A (SCSI)
 
-    input INTA,         //Interupt from WD33c93A (SCSI)
-    //input INTB,         //Spare Interupt pin.
-
-    output _IOR,        //Active Low read strobe
-    output _IOW,        //Ative Low Write strobe
-
-    output _CSS,        //Port 0 CS      
-    //output _CSX0,       //Port 1A & Port1B CS 
-    //output _CSX1,       //Port2 CS 
-
-    // Peripheral Device port
-    inout tri1 [15:0] PD_PORT,
+    output _DACK,                   //DMA Acknoledge to WD33c93A (SCSI)
+    output _CSS,                    //Port 0 CS    
+    output _IOR,                    //Active Low read strobe
+    output _IOW,                    //Ative Low Write strobe
+    
+    inout tri1 [15:0] PD_PORT,      //Peripheral Data port
     
     //Diagnostic LEDS
-    output _LED_RD,     //Indicated read from SDMAC or peripherial port.
-    output _LED_WR,     //Indicate write to SDMAC or peripherial port.
-    output _LED_DMA,    //Indicate DMA cycle/busmaster.
-	 
-    output OWN_,        //Active low signal to show SDMAC is bus master, This can be used to set direction on level shifters for control signals.
-    output DATA_OE_,    //Active low ouput enable for DBUS level shifters.
-    output PDATA_OE_    //Active low ouput enable for Peripheral BUS level shifters.
+    output _LED_RD,                 //Indicated read from SDMAC or peripherial port.
+    output _LED_WR,                 //Indicate write to SDMAC or peripherial port.
+    output _LED_DMA,                //Indicate DMA cycle/busmaster.
+	
+    //level shifters control signals
+    output OWN_,                    //Active low signal to show SDMAC is bus master, This can be used to set direction on level shifters for control signals.
+    output DATA_OE_,                //Active low ouput enable for DBUS level shifters.
+    output PDATA_OE_                //Active low ouput enable for Peripheral BUS level shifters.
 );
 
 reg AS_O_;
@@ -97,18 +85,18 @@ wire [31:0] OD;
 
 wire _AS;
 wire n_AS;
-assign #2.5 n_AS = ~_AS_IO; 
-assign #2.5 _AS = ~n_AS;
+assign n_AS = ~_AS_IO; 
+assign _AS = ~n_AS;
 
 wire _DS;
 wire n_DS;
-assign #2.5 n_DS = ~_DS_IO;
-assign #2.5 _DS = ~n_DS;
+assign n_DS = ~_DS_IO;
+assign _DS = ~n_DS;
 
 wire R_W;
 wire nR_W;
-assign #2.5 nR_W = ~R_W_IO;
-assign #2.5 R_W = ~nR_W;
+assign  nR_W = ~R_W_IO;
+assign R_W = ~nR_W;
 
 wire [31:0] DATA;
 assign DATA = DATA_IO;
@@ -187,7 +175,7 @@ registers u_registers(
     .nCPUCLK   (nCLK      ),
     .MID       (MID       ),
     .STOPFLUSH (STOPFLUSH ),
-    .RST_      (_RST      ),
+    .RST_      (PLLLOCKED ),
     .FIFOEMPTY (FIFOEMPTY ),
     .FIFOFULL  (FIFOFULL  ),
     .INTA_I    (INTA      ),
@@ -211,7 +199,7 @@ CPU_SM u_CPU_SM(
     .BREQ          (BREQ        ),
     .aBGRANT_      (_BG         ),
     .SIZE1         (SIZE1_CPUSM ),
-    .aRESET_       (_RST        ),
+    .aRESET_       (PLLLOCKED   ),
     .iSTERM_       (_STERM      ),
     .DSACK0_       (DSK0_IN_    ),
     .DSACK1_       (DSK1_IN_    ),
@@ -254,7 +242,7 @@ SCSI_SM u_SCSI_SM(
     .DMADIR    (DMADIR      ),
     .INCFIFO   (INCFIFO     ),
     .DECFIFO   (DECFIFO     ),
-    .RESET_    (_RST        ),
+    .RESET_    (PLLLOCKED   ),
     .BOEQ3     (BOEQ3       ),
     .nCLK      (nCLK        ), 
     .BCLK      (BCLK        ), 
@@ -286,7 +274,7 @@ fifo int_fifo(
     .LBYTE_      (LBYTE_    ),
     .H_0C        (H_0C      ),
     .ACR_WR      (ACR_WR    ),
-    .RST_FIFO_   (_RST      ),
+    .RST_FIFO_   (PLLLOCKED ),
     .MID25       (MID[25]   ),
     .ID          (ID        ),
     .FIFOFULL    (FIFOFULL  ),
@@ -351,14 +339,14 @@ always @(posedge QnCPUCLK) begin
     LHW     <= PLHW;
 end
 
-assign OWN_ = ~CPUSM_BGACK;
+assign OWN_ = ~CPUSM_BGACK; 
 assign _BGACK_I =  _BGACK_IO;
 
 //System Outputs
 assign  R_W_IO = OWN_ ? 1'bz : ~DMADIR;
 assign _AS_IO = OWN_ ? 1'bz : AS_O_;
 assign _DS_IO = OWN_ ? 1'bz : DS_O_;
-//assign DATA_IO = OWN_ ? 32'bz : DATA_O;
+assign DATA_IO = OWN_ ? 32'bz : DATA_O;
 assign _DMAEN = OWN_;
 assign _BR = BREQ ?  1'b0 : 1'bz;
 assign SIZ1 = OWN_ ? 1'b0 : SIZE1_CPUSM;
@@ -385,10 +373,10 @@ assign DSK0_IN_ = _BERR & _DSACK_IO[0];
 assign DSK1_IN_ = _BERR & _DSACK_IO[1];
 
 assign A3 = ADDR[3];
-assign DATA_OE_ = (_AS | _CS | H_0C) & _BGACK_IO;
-assign PDATA_OE_ = (_DACK | ~_CSS);
+assign DATA_OE_ = ((_AS | _CS | H_0C) & _BGACK_IO) ? 1'bz : 1'b0;
+assign PDATA_OE_ = (_DACK | ~_CSS) ? 1'bz : 1'b0;
 
-assign #5 BnDS_O_ = ~DS_O_;
+assign BnDS_O_ = ~DS_O_;
 
 endmodule
 

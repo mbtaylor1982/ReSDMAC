@@ -194,10 +194,3 @@ assign RDRST_ = ~(~RESET_ | DECFIFO);
 assign RIRST_ = ~(~RESET_ | INCFIFO);
 
 endmodule
-
-
-
-
-
-
-
