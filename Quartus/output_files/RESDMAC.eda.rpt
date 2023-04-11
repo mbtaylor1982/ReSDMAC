@@ -1,5 +1,5 @@
 EDA Netlist Writer report for RESDMAC
-Sun Feb 19 19:15:54 2023
+Tue Apr 11 22:24:31 2023
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -36,7 +36,7 @@ applicable agreement for further details.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Sun Feb 19 19:15:54 2023 ;
+; EDA Netlist Writer Status ; Successful - Tue Apr 11 22:24:31 2023 ;
 ; Revision Name             ; RESDMAC                               ;
 ; Top-level Entity Name     ; RESDMAC                               ;
 ; Family                    ; Cyclone II                            ;
@@ -84,12 +84,12 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit EDA Netlist Writer
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Sun Feb 19 19:15:53 2023
+    Info: Processing started: Tue Apr 11 22:24:30 2023
 Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off RESDMAC -c RESDMAC
 Info (204026): Generated files "RESDMAC.vo", "RESDMAC_fast.vo", "RESDMAC_v.sdo" and "RESDMAC_v_fast.sdo" in directory "C:/Users/mbtay/SDMAC-Replacement/Quartus/simulation/modelsim/" for EDA simulation tool
 Info: Quartus II 64-Bit EDA Netlist Writer was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 4554 megabytes
-    Info: Processing ended: Sun Feb 19 19:15:54 2023
+    Info: Peak virtual memory: 4550 megabytes
+    Info: Processing ended: Tue Apr 11 22:24:31 2023
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 

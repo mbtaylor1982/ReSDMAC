@@ -1,10 +1,10 @@
-Analysis & Synthesis Status : Successful - Sun Feb 19 19:15:43 2023
+Analysis & Synthesis Status : Successful - Tue Apr 11 22:24:19 2023
 Quartus II 64-Bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
 Revision Name : RESDMAC
 Top-level Entity Name : RESDMAC
 Family : Cyclone II
-Total logic elements : 925
-    Total combinational functions : 658
+Total logic elements : 950
+    Total combinational functions : 683
     Dedicated logic registers : 409
 Total registers : 409
 Total pins : 81

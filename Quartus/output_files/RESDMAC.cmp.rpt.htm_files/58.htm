@@ -108,17 +108,27 @@
 <TD >0</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|CONTR_RD_~1</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|DOEL_~0</TD>
 <TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_output:u_datapath_output|DATA[1]~4</TD>
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DATA_IO[0]~69</TD>
+<TD >0</TD>
+<TD >6</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DATA_IO[1]~71</TD>
+<TD >0</TD>
+<TD >6</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|CONTR_RD_~1</TD>
+<TD >0</TD>
+<TD >6</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DATA_IO[4]~78</TD>
 <TD >0</TD>
 <TD >6</TD>
 </TR>
@@ -138,6 +148,11 @@
 <TD >0</TD>
 </TR>
 </tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DATA_IO[2]~143</TD>
+<TD >0</TD>
+<TD >6</TD>
+</TR>
+</tbody><tbody><TR >
 <TD >_AS_IO</TD>
 <TD >&nbsp;</TD>
 <TD >&nbsp;</TD>
@@ -148,22 +163,22 @@
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|h_0C~0</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DATA_OE_~0</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|DSACK_LATCHED_[0]</TD>
 <TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|DSACK_LATCHED_[1]</TD>
+<TD >1</TD>
+<TD >6</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|h_0C~0</TD>
+<TD >1</TD>
+<TD >6</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DATA_OE_~1</TD>
 <TD >1</TD>
 <TD >6</TD>
 </TR>
@@ -229,7 +244,7 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|DOEL_~0</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -239,32 +254,27 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DSK0_IN_~0</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|SIZE1_X~3</TD>
-<TD >0</TD>
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|SIZE1_X~5</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|cpudff5:u_cpudff5|cpudff5_d~1</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|aCYCLEDONE_~0</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|FF~0</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|SIZE1_d~11</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -294,7 +304,7 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[0]~3</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -303,13 +313,13 @@
 <TD >&nbsp;</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[1]~7</TD>
-<TD >0</TD>
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[1]</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[1]~feeder</TD>
-<TD >0</TD>
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[1]~7</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -318,13 +328,13 @@
 <TD >&nbsp;</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[2]~11</TD>
-<TD >0</TD>
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[2]</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[2]~feeder</TD>
-<TD >0</TD>
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[2]~11</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -343,13 +353,13 @@
 <TD >&nbsp;</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[4]</TD>
-<TD >0</TD>
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[4]~19</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[4]~19</TD>
-<TD >0</TD>
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[4]~feeder</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -369,7 +379,7 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[6]~27</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -379,7 +389,7 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[7]~31</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -409,7 +419,7 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[10]~39</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -419,7 +429,7 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[11]~42</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -429,7 +439,7 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[12]~45</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -439,7 +449,7 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[13]~48</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -449,7 +459,7 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[14]~51</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -469,12 +479,12 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[16]~0</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[0]</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -529,12 +539,12 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[20]~17</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[4]</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -544,12 +554,12 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[21]~21</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[5]</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -603,23 +613,23 @@
 <TD >&nbsp;</TD>
 </TR>
 </tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|A1</TD>
+<TD >1</TD>
+<TD >6</TD>
+</TR>
+</tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- fifo:int_fifo|fifo_byte_ptr:u_byte_ptr|MUXZ~0</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[9]</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[25]~38</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|A1~feeder</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -629,12 +639,12 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[10]</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[26]~41</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -689,12 +699,12 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[14]</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[30]~53</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -718,7 +728,7 @@
 <TD >&nbsp;</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DATA_OE_~0</TD>
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DATA_OE_~1</TD>
 <TD >1</TD>
 <TD >6</TD>
 </TR>
@@ -734,27 +744,27 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[16]~0</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[0]~4</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[8]~34</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[24]~35</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[0]~0</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -794,27 +804,27 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[18]~9</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[2]~12</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[10]~40</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[26]~41</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[2]~2</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -854,27 +864,27 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[20]~17</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[4]~20</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[12]~46</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[28]~47</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[4]~4</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -884,27 +894,27 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[21]~21</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[5]~24</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[13]~49</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[29]~50</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[5]~5</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -914,27 +924,27 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[22]~25</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[6]~28</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[14]~52</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[30]~53</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[6]~6</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -944,27 +954,27 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[23]~29</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[7]~32</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[15]~55</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[31]~56</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[7]~7</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -974,51 +984,111 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|ADDR_VALID~0</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|h_0C</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DATA_OE_~0</TD>
-<TD >1</TD>
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DATA_OE_~1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|WDREGREQ</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|SP_DMA~0</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|DOEL_~0</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|ST_DMA~0</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_term:u_registers_term|CYCLE_END~0</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[1]~1</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[0]~2</TD>
+<TD >1</TD>
+<TD >6</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >INTA</TD>
+<TD >&nbsp;</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_istr:u_registers_istr|INT</TD>
+<TD >0</TD>
+<TD >6</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_istr:u_registers_istr|INT_F</TD>
+<TD >0</TD>
+<TD >6</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >_STERM</TD>
+<TD >&nbsp;</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >_BERR</TD>
+<TD >&nbsp;</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|cpudff5:u_cpudff5|cpudff5_d~0</TD>
+<TD >0</TD>
+<TD >6</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DSK0_IN_~0</TD>
+<TD >0</TD>
+<TD >6</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|SIZE1_X~5</TD>
+<TD >0</TD>
+<TD >6</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DSK1_IN_</TD>
+<TD >0</TD>
+<TD >6</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|cpudff5:u_cpudff5|cpudff5_d~1</TD>
+<TD >0</TD>
+<TD >6</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|aCYCLEDONE_~0</TD>
+<TD >0</TD>
+<TD >6</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|FF~0</TD>
 <TD >0</TD>
 <TD >6</TD>
 </TR>
@@ -1119,37 +1189,37 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|h_0C~0</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|CLR_INT~0</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|CONTR_RD_~0</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|ST_DMA~1</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_cntr:u_registers_cntr|CLR_DMAENA~0</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|ISTR_RD_</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|ST_DMA</TD>
-<TD >1</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -1219,48 +1289,28 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|h_0C~0</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|WDREGREQ</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|SP_DMA~0</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|ST_DMA~0</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_term:u_registers_term|CYCLE_END~0</TD>
-<TD >0</TD>
+<TD >1</TD>
 <TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >INTA</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_STERM</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_BERR</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_RST</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >_BG</TD>
@@ -1269,7 +1319,17 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|BGRANT_~0</TD>
-<TD >1</TD>
+<TD >0</TD>
+<TD >6</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >_RST</TD>
+<TD >&nbsp;</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|pll</TD>
+<TD >0</TD>
 <TD >6</TD>
 </TR>
 </tbody><tbody><TR >
@@ -1281,11 +1341,6 @@
 <TD >_DREQ</TD>
 <TD >&nbsp;</TD>
 <TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DREQ_</TD>
-<TD >1</TD>
-<TD >6</TD>
 </TR>
 </tbody></TABLE>
 
