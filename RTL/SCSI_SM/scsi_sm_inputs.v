@@ -116,7 +116,7 @@ module scsi_sm_inputs(
 //E0  = 10x00; s16 or s20 when CDREQ_ FIFOEMPTY DMADIR CCPUREQ RDFIFO_o = 0 
 //E1  = 00000; s0 when CDREQ_ FIFOFULL nDMADIR  CCPUREQ RIFIFO_o =0
 //E2  = 11000; s24 when FIFOFULL=1
-//E3  = 00x01; = s1 or s5 when BOEQ3 = 1
+//E3  = 00x01; s1 or s5 when BOEQ3 = 1
 //E4  = 0110x; s12 or s13 when BOEQ3 = 1   
 //E5  = x000x; S0, s1, s16, s17, when nDMADIR=1 and CCPUREQ = 0
 //E6  = x0000; s0 or s16 when CCPUREQ = 1
