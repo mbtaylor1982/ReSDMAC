@@ -26,8 +26,8 @@
 `endif
 
 module RESDMAC(
-    output tri1 _INT,               //Connected to INT2 needs to be Open Collector output.
-    output tri1 SIZ1,               //Indicates a 16 bit transfer is true. 
+    output tri1 INT,               //Connected to INT2 (Open Drain output).
+    output tri1 _SIZ1,             //Indicates a 16 bit transfer (Open Drain output). 
 
     inout tri1 R_W_IO,              //Read Write from CPU
     inout tri1 _AS_IO,              //Address Strobe
@@ -43,7 +43,7 @@ module RESDMAC(
     input [6:2] ADDR,               //CPU address Bus, bits are actually [6:2]
     
     // Bus Mastering/Arbitration.
-    output   _BR,                   //Bus Request
+    output   BR,                    //Bus Request (Open Drain output)
     input    _BG,                   //Bus Grant
     inout   tri1 _BGACK_IO,         //Bus Grant Acknoledge
 
@@ -185,7 +185,7 @@ registers u_registers(
     .ACR_WR    (ACR_WR    ),
     .h_0C      (H_0C      ),
     .A1        (A1        ),
-    .INT_O_    (_INT      ),
+    .INT_O_    (INT      ),
     .DMADIR    (DMADIR    ),
     .DMAENA    (DMAENA    ),
     .REG_DSK_  (REG_DSK_  ),
@@ -349,8 +349,8 @@ assign _DS_IO   = OWN ? DS_O_   : 1'bz;
 assign DATA_IO  = OWN ? DATA_O  : 32'bz;
 assign _DMAEN   = ~OWN;
 
-assign _BR = BREQ ?  1'b0 : 1'bz;
-assign SIZ1 = OWN ? SIZE1_CPUSM: 1'b0;
+assign BR = BREQ ?  1'bz : 1'b1;
+assign _SIZ1 = OWN ? ~SIZE1_CPUSM: 1'b0;
 assign _DSACK_IO = (REG_DSK_ & LS2CPU) ? 2'bzz : 2'b00;
 assign _BGACK_IO = OWN ? 1'b0 :1'bz;
 

@@ -105,6 +105,6 @@ always @(negedge ISTR_RD_  or negedge RESET_) begin
 end
 
 assign ISTR_O = {1'b0, INT_F, INTS, E_INT, INT_P , 1'b0, 1'b0, FF, FE};
-assign INT_O_ = INT ? 1'b0 : 1'bZ;
+assign INT_O_ = INT; //? 1'b0 : 1'bZ;
 
 endmodule
