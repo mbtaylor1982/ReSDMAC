@@ -28,7 +28,7 @@ module SCSI_SM
     input BCLK,             //CPUCLK Inverted 4 times for delay.
     input BBCLK,            //CPUCLK Inverted 6 times for delay.
     input CPUREQ,           //Request CPU access to SCSI registers.
-    input DECFIFO,          //Decremt FIFO pointer
+    input DECFIFO,          //Decrement FIFO pointer
     input DMADIR,           //Control Direction Of DMA transfer.
     input DREQ_,            //Data transfer request from SCSI IC
     input FIFOEMPTY,        //FIFOFULL flag

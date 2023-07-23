@@ -1,10 +1,11 @@
 module PLL (
 	input rst,
-	input  CPUCLK_I,
+	input CPUCLK_I,
+    
 	output nCLK,
 	output BCLK,
 	output BBCLK,
-   output QnCPUCLK,
+    output QnCPUCLK,
 	output locked);
 
 `ifdef __ICARUS__ 

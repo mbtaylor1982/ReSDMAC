@@ -7,9 +7,9 @@
 | 0     | !CDREQ_ & !FIFOFULL & DMADIR & !CCPUREQ & !RIFIFO_o | 24         | DACK                       |
 | 0     | !DMADIR & !CCPUREQ                                  | 16         |                            |
 | 0     | CCPUREQ                                             | 8          |                            |
-| 1     | BOEQ3                                               | 0          | INCNO                      |
-| 1     | !DMADIR & !CCPUREQ                                  | 16         |                            |
 | 1     | STATE ONLY                                          | 16         | INCBO F2S                  |
+| 1     | BOEQ3                                               | 16         | INCNO                      |
+| 1     | !DMADIR & !CCPUREQ                                  | 16         |                            |
 | 2     | STATE ONLY                                          | 18         | DACK WE F2S                |
 | 3     | STATE ONLY                                          | 19         | RE SCSI_CS S2CPU           |
 | 4     | STATE ONLY                                          | 20         | DACK RE S2F                |

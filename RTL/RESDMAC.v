@@ -172,7 +172,7 @@ registers u_registers(
     .DMAC_     (_CS       ),
     .AS_       (_AS       ),
     .RW        (R_W       ),
-    .nCPUCLK   (nCLK      ),
+    .CLK       (SCLK      ),
     .MID       (MID       ),
     .STOPFLUSH (STOPFLUSH ),
     .RST_      (PLLLOCKED ),
@@ -332,7 +332,7 @@ PLL u_PLL (
     );
 
 
-always @(posedge QnCPUCLK) begin
+always @(negedge SCLK) begin
     AS_O_   <= ~PAS;    
     DS_O_   <= ~PDS; 
     LLW     <= PLLW;
@@ -349,7 +349,7 @@ assign _DS_IO   = OWN ? DS_O_   : 1'bz;
 assign DATA_IO  = OWN ? DATA_O  : 32'bz;
 assign _DMAEN   = ~OWN;
 
-assign BR = BREQ ?  1'bz : 1'b1;
+assign BR = BREQ;
 assign _SIZ1 = OWN ? ~SIZE1_CPUSM: 1'b0;
 assign _DSACK_IO = (REG_DSK_ & LS2CPU) ? 2'bzz : 2'b00;
 assign _BGACK_IO = OWN ? 1'b0 :1'bz;
