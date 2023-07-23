@@ -1,0 +1,17 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Firmware",
+            "type": "shell",
+            "command": "docker run --rm -v ${pwd}:/build -e LM_LICENSE_FILE=/opt/license.dat -v /path/to/license.dat:/opt/license.dat:ro -it raetro/quartus:13.0sp1 quartus_sh --flow compile /build/Quartus/RESDMAC.qpf",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
