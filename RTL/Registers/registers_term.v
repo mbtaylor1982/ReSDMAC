@@ -18,7 +18,7 @@
  */ 
 
 module registers_term(
-    input nCPUCLK,
+    input CLK,
     input AS_,
     input DMAC_,
     input WDREGREQ,
@@ -30,31 +30,27 @@ module registers_term(
 reg [2:0] TERM_COUNTER;
 
 wire CYCLE_ACTIVE;
-wire CYCLE_TERM;
-wire CYCLE_END;
-
-assign CYCLE_ACTIVE = ~(AS_| DMAC_);
-assign CYCLE_TERM = (TERM_COUNTER == 3'd4);
 
 `ifdef __ICARUS__ 
   //allows sdmac to terminate writes to ACR in Ramsey for testing
-  assign CYCLE_END = ~(AS_| WDREGREQ); 
+  assign CYCLE_ACTIVE = ~(AS_| DMAC_ | WDREGREQ);
 `else
-  assign CYCLE_END = ~(AS_| WDREGREQ | h_0C);
+  assign CYCLE_ACTIVE = ~(AS_| DMAC_ | WDREGREQ | h_0C);
 `endif   
 
-always@(posedge nCPUCLK or posedge AS_) begin
-  if (AS_ == 1'b1)
-    TERM_COUNTER <= 3'b000;
-  else if (CYCLE_ACTIVE == 1'b1)
+always @(posedge CLK or posedge AS_) begin
+  if (CYCLE_ACTIVE == 1'b1) 
     TERM_COUNTER <=  TERM_COUNTER + 1'b1;
+  if (AS_)
+    TERM_COUNTER <= 3'b000;
 end
 
-always @(posedge CYCLE_TERM or negedge CYCLE_END) begin
-  if (CYCLE_END == 1'b0) 
-    REG_DSK_ <= 1'b1;  
-  else
-    REG_DSK_ <= 1'b0;  
+always @(negedge CLK or posedge AS_) begin
+  if (TERM_COUNTER == 3'd3)
+    REG_DSK_ <= 1'b1; 
+  if (AS_)
+    REG_DSK_ <= 1'b0;
 end
+
 
 endmodule
