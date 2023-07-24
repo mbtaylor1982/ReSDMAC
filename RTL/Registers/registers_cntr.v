@@ -33,24 +33,28 @@ module registers_cntr(
 );
 
 always @(posedge CLK or negedge RESET_) begin
-    if (ST_DMA)
-        DMAENA <= 1'b1;
-    if (SP_DMA)
-        DMAENA <= 1'b0;
     if (~RESET_)    
         DMAENA <= 1'b0;
+    else begin
+        if (ST_DMA)
+            DMAENA <= 1'b1;
+        if (SP_DMA)
+            DMAENA <= 1'b0;
+    end;
 end
 
 always @(posedge CLK or negedge RESET_) begin
-    if (CONTR_WR) begin
-        PRESET <= MID[4];
-        INTENA <= MID[2];
-        DMADIR <= MID[1];    
-    end
     if (~RESET_) begin 
         PRESET <= 1'b0;
         INTENA <= 1'b0;
         DMADIR <= 1'b0;
+    end
+    else begin
+        if (CONTR_WR) begin
+            PRESET <= MID[4];
+            INTENA <= MID[2];
+            DMADIR <= MID[1];    
+        end
     end
 end
 

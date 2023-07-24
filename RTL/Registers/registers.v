@@ -131,20 +131,24 @@ registers_term u_registers_term(
 );
 
 always @(posedge CLK or negedge RST_) begin
-    if (~FLUSH_)
-        FLUSHFIFO <= 1'b1;
-    if (STOPFLUSH)
-        FLUSHFIFO <= 1'b0;
     if (~RST_)
         FLUSHFIFO <= 1'b1;    
+    else begin
+        if (~FLUSH_)
+            FLUSHFIFO <= 1'b1;
+        if (STOPFLUSH)
+            FLUSHFIFO <= 1'b0;
+    end    
 end
 
 //Store value of A1 loaded into ACR
 always @(posedge CLK or negedge RST_) begin
-    if (ACR_WR)
-        A1 <= MID[25];
     if (~RST_)
         A1 <= 1'b0;
+    else begin
+        if (ACR_WR)
+            A1 <= MID[25];
+    end
 end
 
 //drive output data onto bus.

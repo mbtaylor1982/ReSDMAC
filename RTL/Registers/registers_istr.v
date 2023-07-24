@@ -43,21 +43,7 @@ wire INT;
 assign INT = (INTENA & INTA_I);
 
 always @(negedge CLK or negedge RESET_) begin
-  if (ISTR_RD_) begin
-    INT_F   <= INTA_I;
-    INTS    <= INTA_I;
-    E_INT   <= INTA_I;
-    INT_P   <= INT;
-    FF      <= FIFOFULL;
-    FE      <= FIFOEMPTY;
-  end
-  if (CLR_INT) begin
-    INT_F   <= 1'b0;
-    INTS    <= 1'b0;
-    E_INT   <= 1'b0;
-    INT_P   <= 1'b0;    
-  end
-  if  (~RESET_) begin
+   if  (~RESET_) begin
     INT_F   <= 1'b0;
     INTS    <= 1'b0;
     E_INT   <= 1'b0;
@@ -65,7 +51,23 @@ always @(negedge CLK or negedge RESET_) begin
     FF      <= 1'b0;
     FE      <= FIFOEMPTY;
   end
-end
+  else begin
+    if (ISTR_RD_) begin
+      INT_F   <= INTA_I;
+      INTS    <= INTA_I;
+      E_INT   <= INTA_I;
+      INT_P   <= INT;
+      FF      <= FIFOFULL;
+      FE      <= FIFOEMPTY;
+    end
+    if (CLR_INT) begin
+      INT_F   <= 1'b0;
+      INTS    <= 1'b0;
+      E_INT   <= 1'b0;
+      INT_P   <= 1'b0;    
+    end
+  end
+ end
 
 assign ISTR_O = {1'b0, INT_F, INTS, E_INT, INT_P , 1'b0, 1'b0, FF, FE};
 assign INT_O_ = INT; //? 1'b0 : 1'bZ;
