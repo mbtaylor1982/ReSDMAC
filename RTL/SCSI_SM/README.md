@@ -1,70 +1,73 @@
 # SCSI State Machine Details
-
 ## STATES
-
-| State | Condistion                                          | Next State | Outputs                    |
-|-------|-----------------------------------------------------|------------|----------------------------|
-| 0     | !CDREQ_ & !FIFOFULL & DMADIR & !CCPUREQ & !RIFIFO_o | 24         | DACK                       |
-| 0     | !DMADIR & !CCPUREQ                                  | 16         |                            |
-| 0     | CCPUREQ                                             | 8          |                            |
-| 1     | STATE ONLY                                          | 16         | INCBO F2S                  |
-| 1     | BOEQ3                                               | 16         | INCNO                      |
-| 1     | !DMADIR & !CCPUREQ                                  | 16         |                            |
-| 2     | STATE ONLY                                          | 18         | DACK WE F2S                |
-| 3     | STATE ONLY                                          | 19         | RE SCSI_CS S2CPU           |
-| 4     | STATE ONLY                                          | 20         | DACK RE S2F                |
-| 5     | BOEQ3                                               | 0          | INCNO                      |
-| 5     | STATE ONLY                                          | 16         | INCBO F2S                  |
-| 5     | STATE ONLY                                          | 20         | DACK RE S2F                |
-| 6     | STATE ONLY                                          | 22         | SCSI_CS SET_DSACK CPU2S    |
-| 7     | STATE ONLY                                          | 19         | RE SCSI_CS SET_DSACK S2CPU |
-| 8     | !RW                                                 | 17         | WE SCSI_CS CPU2S           |
-| 8     | RW                                                  | 10         | RE SCSI_CS S2CPU           |
-| 9     | nCDSACK_                                            | 17         | S2CPU                      |
-| 9     | STATE ONLY                                          | 25         | S2CPU                      |
-| 10    | RW                                                  | 10         | RE SCSI_CS S2CPU           |
-| 10    | nCDSACK_                                            | 14         |                            |
-| 10    | STATE ONLY                                          | 30         | RE SCSI_CS S2CPU           |
-| 11    | nCDSACK_                                            | 14         |                            |
-| 11    | nCDSACK_                                            | 17         | S2CPU                      |
-| 11    | STATE ONLY                                          | 25         | S2CPU                      |
-| 11    | STATE ONLY                                          | 19         | RE SCSI_CS S2CPU           |
-| 11    | STATE ONLY                                          | 30         | RE SCSI_CS S2CPU           |
-| 12    | BOEQ3                                               | 0          | INCNI                      |
-| 12    | STATE ONLY                                          | 0          | INCBO S2F                  |
-
-| 13    | BOEQ3                                               | 0          | INCNI                      |
-| 13    | STATE ONLY                                          | 0          | INCBO S2F                  |
-| 13    | nCDSACK_                                            | 17         | S2CPU                      |
-| 13    | STATE ONLY                                          | 25         | S2CPU                      |
-
-| 14    | nCDSACK_                                            | 14         |                            |
-| 15    | nCDSACK_                                            | 31         | S2CPU                      |
-| 15    | STATE ONLY                                          | 27         | RE SCSI_CS S2CPU           |
-| 16    | !CDREQ_ !FIFOEMPTY !DMADIR !CCPUREQ !RDFIFO_o       | 28         | DACK                       |
-| 16    | !DMADIR & !CCPUREQ                                  | 16         |                            |
-| 16    | CCPUREQ                                             | 8          |                            |
-| 17    | !DMADIR & !CCPUREQ                                  | 16         |                            |
-| 17    | STATE ONLY                                          | 26         | WE SCSI_CS CPU2S           |
-| 18    | STATE ONLY                                          | 1          | DACK WE F2S                |
-| 19    | STATE ONLY                                          | 9          | RE SCSI_CS SET_DSACK S2CPU |
-| 20    | !CDREQ_ !FIFOEMPTY !DMADIR !CCPUREQ !RDFIFO_o       | 28         | DACK                       |
-| 20    | STATE ONLY                                          | 12         | DACK RE S2F                |
-| 21    | STATE ONLY                                          | 30         | DACK RE S2F WE SCSI_CS CPU2S|
-| 22    | STATE ONLY                                          | 14         |                            |
-| 23    | STATE ONLY                                          | 15         | RE SCSI_CS SET_DSACK S2CPU |
-| 24    | FIFOFULL                                            | 24         | DACK                       |
-| 24    | !FIFOFULL                                           | 4          | RE DACK S2F                |
-| 25    | nCDSACK_                                            | 17         | S2CPU                      |
-| 26    | STATE ONLY                                          | 6          | WE SCSI_CS CPU2S           |
-| 27    | STATE ONLY                                          | 14         | WE SCSI_CS CPU2S           |
-| 27    | nCDSACK_                                            | 31         | S2CPU                      |
-| 28    | STATE ONLY                                          | 2          | DACK WE F2S                |
-| 29    | STATE ONLY                                          | 2          | DACK WE F2S                |
-| 29    | nCDSACK_                                            | 19         | S2CPU                      |
-| 30    | STATE ONLY                                          | 3          | RE SCSI_CS S2CPU           |
-| 31    | nCDSACK_                                            | 27         | S2CPU                      |
-| 31    | STATE ONLY                                          | 11         | RE SCSI_CS SET_DSACK S2CPU |
+| State | Condition                                             | outputs                   | nextstate |
+| ----- | ----------------------------------------------------- | ------------------------- | --------- |
+| 0     | !CDREQ_ & !FIFOFULL & DMADIR & !CCPUREQ & !RIFIFO_o   | DACK                      | 24        |
+| 0     | !DMADIR                                               |                           | 16        |
+| 0     | CCPUREQ                                               |                           | 8         |
+| 1     |                                                       | INCBO, F2S                | 16        |
+| 1     | BOEQ3                                                 | INCNO                     | 0         |
+| 1     | !DMADIR & !CCPUREQ                                    |                           | 16        |
+| 2     |                                                       | DACK, WE, F2S             | 18        |
+| 3     |                                                       | RE, SCSI_CS, S2CPU        | 19        |
+| 4     |                                                       | DACK, RE, S2F             | 20        |
+| 5     |                                                       | INCBO, F2S                | 16        |
+| 5     |                                                       | DACK, RE, S2F             | 20        |
+| 5     | BOEQ3                                                 | INCNO                     | 0         |
+| 6     |                                                       | SCSI_CS, SET_DSACK, CPU2S | 22        |
+| 7     |                                                       | SCSI_CS, SET_DSACK, CPU2S | 22        |
+| 7     |                                                       | RE, SCSI_CS, S2CPU        | 19        |
+| 8     | RW                                                    | RE, SCSI_CS, S2CPU        | 10        |
+| 8     | !RW                                                   | WE, SCSI_CS, CPU2S        | 17        |
+| 9     | !CDSACK_                                              | S2CPU                     | 25        |
+| 9     |                                                       | S2CPU                     | 25        |
+| 10    | RW                                                    | RE, SCSI_CS, S2CPU        | 10        |
+| 10    | !CDSACK_                                              |                           | 14        |
+| 10    |                                                       | RE, SCSI_CS, S2CPU        | 30        |
+| 11    | !CDSACK_                                              |                           | 14        |
+| 11    | !CDSACK_                                              | S2CPU                     | 25        |
+| 11    |                                                       | S2CPU                     | 25        |
+| 11    |                                                       | RE, SCSI_CS, S2CPU        | 19        |
+| 11    |                                                       | RE, SCSI_CS, S2CPU        | 30        |
+| 12    |                                                       | INCBO, S2F                | 0         |
+| 12    | BOEQ3                                                 | INCNI                     | 0         |
+| 13    |                                                       | INCBO, S2F                | 0         |
+| 13    | !CDSACK_                                              | S2CPU                     | 25        |
+| 13    |                                                       | S2CPU                     | 25        |
+| 13    | BOEQ3                                                 | INCNI                     | 0         |
+| 14    | !CDSACK_                                              |                           | 14        |
+| 15    | !CDSACK_                                              |                           | 14        |
+| 15    | !CDSACK_                                              | S2CPU                     | 25        |
+| 15    |                                                       | S2CPU                     | 25        |
+| 15    |                                                       | RE, SCSI_CS, S2CPU        | 19        |
+| 16    | !CDREQ_ & !FIFOEMPTY & !DMADIR & !CCPUREQ & !RDFIFO_o | DACK                      | 12        |
+| 16    | !DMADIR                                               |                           | 16        |
+| 16    | CCPUREQ                                               |                           | 8         |
+| 17    |                                                       | WE, SCSI_CS, CPU2S        | 26        |
+| 17    | !DMADIR                                               |                           | 16        |
+| 18    |                                                       | DACK, WE, F2S             | 1         |
+| 19    |                                                       | RE, SET_DSACK, S2CPU      | 9         |
+| 20    | !CDREQ_ & !FIFOEMPTY & !DMADIR & !CCPUREQ & !RDFIFO_o | DACK                      | 12        |
+| 20    |                                                       | DACK, RE, S2F             | 12        |
+| 21    |                                                       | DACK, RE, S2F             | 12        |
+| 21    |                                                       | WE, SCSI_CS, CPU2S        | 26        |
+| 22    |                                                       |                           | 14        |
+| 23    |                                                       |                           | 14        |
+| 23    |                                                       | RE, SET_DSACK, S2CPU      | 9         |
+| 24    | FIFOFULL                                              | INCNI, INCNO              | 4         |
+| 24    | !FIFOFULL                                             | DACK, RE, S2F             | 4         |
+| 25    | !CDSACK_                                              | S2CPU                     | 25        |
+| 26    |                                                       | WE, SCSI_CS, CPU2S        | 6         |
+| 27    |                                                       | WE, SCSI_CS, CPU2S        | 6         |
+| 27    | !CDSACK_                                              | S2CPU                     | 25        |
+| 27    |                                                       | RE, SET_DSACK, S2CPU      | 9         |
+| 28    |                                                       | DACK, WE, F2S             | 2         |
+| 29    |                                                       | DACK, WE, F2S             | 2         |
+| 29    | !CDSACK_                                              | S2CPU                     | 25        |
+| 30    |                                                       | RE, SCSI_CS, S2CPU        | 3         |
+| 31    |                                                       | RE, SCSI_CS, S2CPU        | 3         |
+| 31    | !CDSACK_                                              | S2CPU                     | 25        |
+| 31    |                                                       | RE, SET_DSACK, S2CPU      | 9         |
 
 
 //Depend on state only E9-E11, E13, E15-E18, E20-E27
