@@ -87,7 +87,7 @@ begin
 end 
 
 
-always @(posedge CLK) begin 
+always @(*) begin 
     // default state_next
     state_next  = state_reg; 
     
