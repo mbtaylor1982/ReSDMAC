@@ -78,7 +78,7 @@ localparam [4:0]
 
 always @(posedge CLK or negedge nRESET)
 begin
-    if (nRESET) begin
+    if (~nRESET) begin
         state_reg <= s0;
     end
     else begin
@@ -87,7 +87,7 @@ begin
 end 
 
 
-always @(*) begin 
+always @(posedge CLK) begin 
     // default state_next
     state_next  = state_reg; 
     
