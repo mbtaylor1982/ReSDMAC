@@ -17,9 +17,8 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 `ifdef __ICARUS__ 
-   // `include "RTL/SCSI_SM/scsi_sm_inputs.v"
-   // `include "RTL/SCSI_SM/scsi_sm_outputs.v"
     `include "RTL/SCSI_SM/SCSI_SM_INTERNALS.v"
+    `include "RTL/SCSI_SM/scsi_sm_internals1.v"
 `endif
 
 module SCSI_SM
@@ -56,7 +55,6 @@ module SCSI_SM
     output wire LS2CPU      //Latch SCSI to CPU DATA, Also indicates CPU Cycle Termination
 );
 
-//reg [4:0] STATE;
 
 //Clocked inputs
 reg CCPUREQ;    // Clocked signal to indicate a CPU cycle to read or write WD33C93 Registers.
@@ -86,9 +84,11 @@ reg nLS2CPU;    //Inverted signal to idicate when to latch the SCSI data for CPU
 reg RDFIFO_d;   // Signal CPU SM to read FIFO? 
 reg RIFIFO_d;   // Signal CPU SM to Write to FIFO? 
 
-//wire [27:0] E;
-//wire [4:0] NEXT_STATE;
-
+/*
+--To swap between the FSM implmanetions instsiate the different modules--
+    1.Original gate based FSM = SCSI_SM_INTERNALS1
+    2.Standard verilog form fsm = SCSI_SM_INTERNALS
+*/
 SCSI_SM_INTERNALS u_SCSI_SM_INTERNALS (
     .CLK        (BCLK       ),  // input, (wire), CLK
     .nRESET     (CRESET_    ),  // input, (wire), Active low reset
@@ -118,47 +118,10 @@ SCSI_SM_INTERNALS u_SCSI_SM_INTERNALS (
     .SET_DSACK  (SET_DSACK  )   // output, reg, 
 );
 
-/*
-
-scsi_sm_inputs u_scsi_sm_inputs(
-    .BOEQ3      (BOEQ3      ),
-    .CCPUREQ    (CCPUREQ    ),
-    .CDREQ_     (CDREQ_     ),
-    .CDSACK_    (CDSACK_    ),
-    .DMADIR     (DMADIR     ),
-    .E          (E          ),
-    .FIFOEMPTY  (FIFOEMPTY  ),
-    .FIFOFULL   (FIFOFULL   ),
-    .RDFIFO_o   (RDFIFO_o   ),
-    .RIFIFO_o   (RIFIFO_o   ),
-    .RW         (RW         ),
-    .STATE      (STATE      )
-);
-
-scsi_sm_outputs u_scsi_sm_outputs(
-    .CPU2S      (CPU2S      ),
-    .DACK       (DACK       ),
-    .E          (E          ),
-    .F2S        (F2S        ),
-    .INCBO      (INCBO      ),
-    .INCNI      (INCNI      ),
-    .INCNO      (INCNO      ),
-    .NEXT_STATE (NEXT_STATE ), 
-    .RE         (RE         ),
-    .S2CPU      (S2CPU      ),
-    .S2F        (S2F        ),
-    .SCSI_CS    (SCSI_CS    ),
-    .SET_DSACK  (SET_DSACK  ),
-    .WE         (WE         )
-);
-
-*/
-
 //clocked reset
 always @(posedge  BCLK) begin
     CRESET_ <= RESET_;
 end
-
 
 //clocked inputs.
 always @(posedge  BCLK or negedge CRESET_) begin
@@ -184,10 +147,8 @@ always @(posedge BCLK) begin
     INCBO_o     <= INCBO;
     INCNI_o     <= INCNI;
     INCNO_o     <= INCNO;
-    //RDFIFO_d    <= E[3];
     RDFIFO_d    <= RDFIFO;
     RE_o        <= RE;
-    //RIFIFO_d    <= E[4];
     RIFIFO_d    <= RIFIFO;
     S2CPU_o     <= S2CPU;
     S2F_o       <= S2F;
@@ -195,15 +156,6 @@ always @(posedge BCLK) begin
     WE_o        <= WE;
 end
 
-/*
-//State Machine
-always @(posedge BCLK or negedge CRESET_) begin
-    if (CRESET_ == 1'b0)
-        STATE <= 5'b00000;
-    else
-        STATE <= NEXT_STATE;
-end
-*/
 always @(posedge RDFIFO_d or negedge RDRST_) begin
     if (RDRST_ == 1'b0) 
         RDFIFO_o <= 1'b0;
