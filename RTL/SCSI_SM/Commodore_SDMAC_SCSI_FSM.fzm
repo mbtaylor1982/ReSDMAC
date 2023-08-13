@@ -1,4 +1,4 @@
-## File last modified by Fizzim: 22:21:10 on 10/08/2023
+## File last modified by Fizzim: 22:02:04 on 13/08/2023
 <version>
    14.02.26
 </version>
@@ -2596,13 +2596,14 @@
    CPU to SCSI
    SCSI to FIFO
    SCSI to CPU
+   Page 6
 </tabs>
 ## START PREFERENCES
 <SCounter>
 24
 </SCounter>
 <TCounter>
-32
+33
 </TCounter>
 <TableVis>
 false
@@ -22074,10 +22075,10 @@ fzm_globalTable
             </status>
          </resetval>
          <x2Obj>
-         -64
+         51
          </x2Obj>
          <y2Obj>
-         5
+         -8
          </y2Obj>
          <page>
          1
@@ -22159,16 +22160,16 @@ fzm_globalTable
    407.0
    </endPtY>
    <startCtrlPtX>
-   454.0
+   479.0
    </startCtrlPtX>
    <startCtrlPtY>
-   192.0
+   212.0
    </startCtrlPtY>
    <endCtrlPtY>
-   455.0
+   477.0
    </endCtrlPtY>
    <endCtrlPtY>
-   391.0
+   359.0
    </endCtrlPtY>
    <startStateIndex>
    9
@@ -28714,34 +28715,34 @@ SCSI to CPU
    state0
    </endState>
    <startPtX>
-   453.0
+   441.0
    </startPtX>
    <startPtY>
-   177.0
+   176.0
    </startPtY>
    <endPtX>
-   403.0
+   396.0
    </endPtX>
    <endPtY>
-   153.0
+   144.0
    </endPtY>
    <startCtrlPtX>
-   453.0
+   426.0
    </startCtrlPtX>
    <startCtrlPtY>
-   260.0
+   257.0
    </startCtrlPtY>
    <endCtrlPtY>
-   339.0
+   323.0
    </endCtrlPtY>
    <endCtrlPtY>
-   206.0
+   185.0
    </endCtrlPtY>
    <startStateIndex>
-   9
+   10
    </startStateIndex>
    <endStateIndex>
-   14
+   15
    </endStateIndex>
    <page>
    1
@@ -28751,7 +28752,7 @@ SCSI to CPU
    </color>
 </transition>
 ## START LOOPBACK TRANSITION OBJECT
-## START LOOPBACK TRANSITION OBJECT
+## START STATE TRANSITION OBJECT
 <transition>
    <attributes>
       <name>
@@ -28759,7 +28760,7 @@ SCSI to CPU
             ABS
             </status>
          <value>
-         trans31
+         trans32
             <status>
             LOCAL
             </status>
@@ -28927,37 +28928,37 @@ SCSI to CPU
    state16
    </startState>
    <endState>
-   state16
+   state0
    </endState>
    <startPtX>
-   532.0
+   444.0
    </startPtX>
    <startPtY>
-   472.0
+   410.0
    </startPtY>
    <endPtX>
-   508.0
+   441.0
    </endPtX>
    <endPtY>
-   521.0
+   176.0
    </endPtY>
    <startCtrlPtX>
-   615.0
+   416.0
    </startCtrlPtX>
    <startCtrlPtY>
-   472.0
+   393.0
    </startCtrlPtY>
    <endCtrlPtY>
-   561.0
+   410.0
    </endCtrlPtY>
    <endCtrlPtY>
-   585.0
+   253.0
    </endCtrlPtY>
    <startStateIndex>
-   0
+   25
    </startStateIndex>
    <endStateIndex>
-   5
+   10
    </endStateIndex>
    <page>
    1
@@ -28965,6 +28966,33 @@ SCSI to CPU
    <color>
    -16777216
    </color>
+   <pageSX>
+   0.0
+   </pageSX>
+   <pageSY>
+   0.0
+   </pageSY>
+   <pageSCX>
+   0.0
+   </pageSCX>
+   <pageSCY>
+   0.0
+   </pageSCY>
+   <pageEX>
+   0.0
+   </pageEX>
+   <pageEY>
+   0.0
+   </pageEY>
+   <pageECX>
+   0.0
+   </pageECX>
+   <pageECY>
+   0.0
+   </pageECY>
+   <stub>
+   false
+   </stub>
 </transition>
-## START LOOPBACK TRANSITION OBJECT
+## END STATE TRANSITION OBJECT
 ## END OBJECTS
