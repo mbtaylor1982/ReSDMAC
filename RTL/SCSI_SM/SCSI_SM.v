@@ -119,7 +119,7 @@ SCSI_SM_INTERNALS u_SCSI_SM_INTERNALS (
 );
 
 //clocked reset
-always @(posedge  BCLK) begin
+always @(posedge  nCLK) begin
     CRESET_ <= RESET_;
 end
 

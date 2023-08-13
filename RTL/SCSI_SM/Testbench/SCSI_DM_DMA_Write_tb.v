@@ -66,7 +66,7 @@ SCSI_SM u_SCSI_SM(
     .DECFIFO   (DECFIFO   ),
     .RESET_    (RESET_    ),
     .BOEQ3     (BOEQ3     ),
-    .CPUCLK    (CPUCLK    ),
+    .BCLK    (CPUCLK    ),
     .DREQ_     (DREQ_     ),
     .FIFOFULL  (FIFOFULL  ),
     .FIFOEMPTY (FIFOEMPTY ),

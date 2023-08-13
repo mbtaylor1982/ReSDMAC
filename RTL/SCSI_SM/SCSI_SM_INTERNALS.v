@@ -190,7 +190,9 @@ always @(*) begin
                 state_next = s28;
             end
             else if (CCPUREQ)
-                state_next = s8;            
+                state_next = s8;
+            else    
+                state_next = s0;        
         end
         s17 : begin
             WE      = 1;
@@ -256,7 +258,6 @@ always @(*) begin
         end
 
     endcase
-end  
-    
+end      
 
 endmodule 
