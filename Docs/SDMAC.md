@@ -70,7 +70,7 @@ The SDMAC is packaged as PLCC (Plastic Leaded Chip Carrier) with 84 Pins
 
 
 
-![PLCC84 SDMAC Package](/Docs/Images/SDMAC_PACKAGE.png)
+![PLCC84 SDMAC Package](/Docs/Images/super-dmac-smd.png)
 
 | Pin    | Direction      | Rev2     | Rev4     | AA3000   | Description                                              |
 |--------|----------------|----------|----------|----------|----------------------------------------------------------|

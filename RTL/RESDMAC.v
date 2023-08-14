@@ -26,8 +26,8 @@
 `endif
 
 module RESDMAC(
-    output tri1 _INT,               //Connected to INT2 needs to be Open Collector output.
-    output tri1 SIZ1,               //Indicates a 16 bit transfer is true. 
+    output tri1 INT,               //Connected to INT2 (Open Drain output).
+    output tri1 _SIZ1,             //Indicates a 16 bit transfer (Open Drain output). 
 
     inout tri1 R_W_IO,              //Read Write from CPU
     inout tri1 _AS_IO,              //Address Strobe
@@ -43,7 +43,7 @@ module RESDMAC(
     input [6:2] ADDR,               //CPU address Bus, bits are actually [6:2]
     
     // Bus Mastering/Arbitration.
-    output   _BR,                   //Bus Request
+    output   BR,                    //Bus Request (Open Drain output)
     input    _BG,                   //Bus Grant
     inout   tri1 _BGACK_IO,         //Bus Grant Acknoledge
 
@@ -66,7 +66,7 @@ module RESDMAC(
     output _LED_DMA,                //Indicate DMA cycle/busmaster.
 	
     //level shifters control signals
-    output OWN,                    //Active low signal to show SDMAC is bus master, This can be used to set direction on level shifters for control signals.
+    output OWN,                     //Active high signal to show SDMAC is bus master, This can be used to set direction on level shifters for control signals.
     output DATA_OE_,                //Active low ouput enable for DBUS level shifters.
     output PDATA_OE_                //Active low ouput enable for Peripheral BUS level shifters.
 );
@@ -172,7 +172,7 @@ registers u_registers(
     .DMAC_     (_CS       ),
     .AS_       (_AS       ),
     .RW        (R_W       ),
-    .nCPUCLK   (nCLK      ),
+    .CLK       (SCLK      ),
     .MID       (MID       ),
     .STOPFLUSH (STOPFLUSH ),
     .RST_      (PLLLOCKED ),
@@ -185,7 +185,7 @@ registers u_registers(
     .ACR_WR    (ACR_WR    ),
     .h_0C      (H_0C      ),
     .A1        (A1        ),
-    .INT_O_    (_INT      ),
+    .INT_O_    (INT      ),
     .DMADIR    (DMADIR    ),
     .DMAENA    (DMAENA    ),
     .REG_DSK_  (REG_DSK_  ),
@@ -300,7 +300,7 @@ datapath u_datapath(
     .nDS_      (n_DS        ),
     .nDMAC_    (~_CS        ),
     .RW        (R_W         ),
-    .nOWN_     (OWN       ),
+    .nOWN_     (OWN         ),
     .DMADIR    (DMADIR      ),
     .BRIDGEIN  (BRIDGEIN    ),
     .BRIDGEOUT (BRIDGEOUT   ),
@@ -332,7 +332,7 @@ PLL u_PLL (
     );
 
 
-always @(posedge QnCPUCLK) begin
+always @(negedge SCLK) begin
     AS_O_   <= ~PAS;    
     DS_O_   <= ~PDS; 
     LLW     <= PLLW;
@@ -343,6 +343,7 @@ assign OWN = CPUSM_BGACK;
 assign _BGACK_I =  _BGACK_IO;
 
 //System Outputs
+
 assign  R_W_IO = ~OWN ? 1'bz : ~DMADIR;
 assign _AS_IO = ~OWN ? 1'bz : AS_O_;
 assign _DS_IO = ~OWN ? 1'bz : DS_O_;
@@ -353,6 +354,7 @@ assign SIZ1 = ~OWN ? 1'b0 : SIZE1_CPUSM;
 assign _DSACK_IO = (REG_DSK_ & LS2CPU) ? 2'bzz : 2'b00;
 assign _BGACK_IO = ~OWN ? 1'bz : 1'b0;
 
+
 //SCSI outputs
 assign _IOR = ~(PRESET | RE);
 assign _IOW = ~(PRESET | WE);
@@ -360,8 +362,10 @@ assign _CSS = ~ SCSI_CS;
 assign _DACK = ~ DACK_o;
 
 //Diagnostic LEDs
+
 assign _LED_WR = ~OWN ? (R_W | _AS | _CS) : DMADIR;
 assign _LED_RD = ~OWN ? (~R_W | _AS | _CS): ~DMADIR;
+
 assign _LED_DMA = ~OWN; 
 
 //internal connections

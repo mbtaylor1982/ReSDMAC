@@ -23,12 +23,13 @@
 module tb_addr_decoder;
 
 // addr_decoder Parameters
-parameter PERIOD  = 20;
+
 
 //Test variables
 integer i;
 
 // addr_decoder Inputs
+reg   CLK                                  = 0 ;
 reg   [7:0]  ADDR                          = 0 ;
 reg   DMAC_                                = 0 ;
 reg   AS_                                  = 0 ;
@@ -49,6 +50,7 @@ wire  CLR_INT                              ;
 wire  FLUSH_                               ;
 
 addr_decoder u_addr_decoder (
+    .CLK        (CLK        ),  // Input, (wire), CPU Clk.
     .ADDR       (ADDR       ),  // input, (wire) [7:0], CPU address Bus
     .DMAC_      (DMAC_      ),  // input, (wire), SDMAC Chip Select !SCSI from Fat Garry.
     .AS_        (AS_        ),  // input, (wire), CPU Address Strobe.
@@ -67,6 +69,15 @@ addr_decoder u_addr_decoder (
     .FLUSH_     (FLUSH_     )   // output, (wire), 
 );
 
+//------------------------------------------------------------------------------
+//  clk
+//------------------------------------------------------------------------------
+localparam CLK_FREQ = 25_000_000;
+localparam PERIOD = 1E9/CLK_FREQ;
+initial begin
+    CLK = 0;
+    forever #(PERIOD/2) CLK = ~ CLK;
+end
 
 initial
 begin

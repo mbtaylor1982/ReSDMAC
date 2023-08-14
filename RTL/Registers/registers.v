@@ -29,7 +29,7 @@ module registers(
   input DMAC_,          // SDMAC Chip Select !SCSI from Fat Garry.
   input AS_,            // CPU Address Strobe.
   input RW,             // CPU Read Write Control Line.
-  input nCPUCLK,
+  input CLK,
   input [31:0] MID,     //DATA IN
   input STOPFLUSH,
   input RST_,
@@ -93,6 +93,7 @@ addr_decoder u_addr_decoder(
 
 //Interupt Status Register
 registers_istr u_registers_istr(
+    .CLK       (CLK       ),
     .RESET_    (RST_      ),
     .FIFOEMPTY (FIFOEMPTY ),
     .FIFOFULL  (FIFOFULL  ),
@@ -106,6 +107,7 @@ registers_istr u_registers_istr(
 
 //Control Register
 registers_cntr u_registers_cntr(
+    .CLK       (CLK       ),
     .RESET_    (RST_      ),
     .CONTR_WR  (CONTR_WR  ),
     .ST_DMA    (ST_DMA    ),
@@ -120,7 +122,7 @@ registers_cntr u_registers_cntr(
 
 //DSACK timing.
 registers_term u_registers_term(
-    .nCPUCLK  (nCPUCLK  ),
+    .CLK      (CLK      ),
     .AS_      (AS_      ),
     .DMAC_    (DMAC_    ),
     .WDREGREQ (WDREGREQ ),
@@ -128,23 +130,25 @@ registers_term u_registers_term(
     .REG_DSK_ (REG_DSK_ )
 );
 
-//FIFOFLUSH control
-wire CLR_FLUSHFIFO;
-assign CLR_FLUSHFIFO = ~(STOPFLUSH | ~RST_);
-
-always @(negedge FLUSH_ or negedge CLR_FLUSHFIFO) begin
-    if (CLR_FLUSHFIFO == 1'b0)
-        FLUSHFIFO <= 1'b0;
-    else
+always @(posedge CLK or negedge RST_) begin
+    if (~RST_)
         FLUSHFIFO <= 1'b1;    
+    else begin
+        if (~FLUSH_)
+            FLUSHFIFO <= 1'b1;
+        if (STOPFLUSH)
+            FLUSHFIFO <= 1'b0;
+    end    
 end
 
 //Store value of A1 loaded into ACR
-always @(posedge ACR_WR or negedge RST_) begin
-    if (RST_ == 1'b0)
+always @(posedge CLK or negedge RST_) begin
+    if (~RST_)
         A1 <= 1'b0;
-    else 
-        A1 <= MID[25];
+    else begin
+        if (ACR_WR)
+            A1 <= MID[25];
+    end
 end
 
 //drive output data onto bus.

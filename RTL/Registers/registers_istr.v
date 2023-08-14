@@ -18,6 +18,7 @@
  */ 
 
 module registers_istr(
+  input CLK,
   input RESET_,
   input FIFOEMPTY,
   input FIFOFULL,
@@ -38,73 +39,37 @@ reg INT_P;
 reg FF;
 reg FE;
 
-wire CLR_INT_;
-assign CLR_INT_ = ~(CLR_INT | ~RESET_);
-
 wire INT;
 assign INT = (INTENA & INTA_I);
 
-//INT_F
-always @(negedge ISTR_RD_ or negedge CLR_INT_) begin
-  if (CLR_INT_ == 1'b0) begin
-    INT_F <= 1'b0;  
+always @(negedge CLK or negedge RESET_) begin
+   if  (~RESET_) begin
+    INT_F   <= 1'b0;
+    INTS    <= 1'b0;
+    E_INT   <= 1'b0;
+    INT_P   <= 1'b0;
+    FF      <= 1'b0;
+    FE      <= FIFOEMPTY;
   end
   else begin
-    INT_F <= INTA_I;
-  end
-end
-
-//INTS
-always @(negedge ISTR_RD_ or negedge CLR_INT_) begin
-  if (CLR_INT_ == 1'b0) begin
-    INTS <= 1'b0;  
-  end
-  else begin
-    INTS <= INTA_I;
-  end
-end
-
-//E_INT
-always @(negedge ISTR_RD_ or negedge CLR_INT_) begin
-  if (CLR_INT_ == 1'b0) begin
-    E_INT <= 1'b0;  
-  end
-  else begin
-    E_INT <= INTA_I;
-  end
-end
-
-//INT_P
-always @(negedge ISTR_RD_ or negedge CLR_INT_) begin
-  if (CLR_INT_ == 1'b0) begin
-    INT_P <= 1'b0;  
-  end
-  else begin
-    INT_P <= INT;
-  end
-end
-
-//FIFO FULL
-always @(negedge ISTR_RD_  or negedge RESET_) begin
-    if (RESET_ == 1'b0) begin 
-      FF <= 1'b0;
+    if (ISTR_RD_) begin
+      INT_F   <= INTA_I;
+      INTS    <= INTA_I;
+      E_INT   <= INTA_I;
+      INT_P   <= INT;
+      FF      <= FIFOFULL;
+      FE      <= FIFOEMPTY;
     end
-    else begin
-      FF <= FIFOFULL;
+    if (CLR_INT) begin
+      INT_F   <= 1'b0;
+      INTS    <= 1'b0;
+      E_INT   <= 1'b0;
+      INT_P   <= 1'b0;    
     end
-end
-
-//FIFO EMPTY
-always @(negedge ISTR_RD_  or negedge RESET_) begin
-    if (RESET_ == 1'b0) begin 
-      FE <= 1'b1;
-    end
-    else begin
-      FE <= FIFOEMPTY;
-    end
-end
+  end
+ end
 
 assign ISTR_O = {1'b0, INT_F, INTS, E_INT, INT_P , 1'b0, 1'b0, FF, FE};
-assign INT_O_ = INT ? 1'b0 : 1'bZ;
+assign INT_O_ = INT; //? 1'b0 : 1'bZ;
 
 endmodule
