@@ -66,7 +66,7 @@ module RESDMAC(
     output _LED_DMA,                //Indicate DMA cycle/busmaster.
 	
     //level shifters control signals
-    output OWN_,                    //Active low signal to show SDMAC is bus master, This can be used to set direction on level shifters for control signals.
+    output OWN,                    //Active low signal to show SDMAC is bus master, This can be used to set direction on level shifters for control signals.
     output DATA_OE_,                //Active low ouput enable for DBUS level shifters.
     output PDATA_OE_                //Active low ouput enable for Peripheral BUS level shifters.
 );
@@ -300,7 +300,7 @@ datapath u_datapath(
     .nDS_      (n_DS        ),
     .nDMAC_    (~_CS        ),
     .RW        (R_W         ),
-    .nOWN_     (~OWN_       ),
+    .nOWN_     (OWN       ),
     .DMADIR    (DMADIR      ),
     .BRIDGEIN  (BRIDGEIN    ),
     .BRIDGEOUT (BRIDGEOUT   ),
@@ -339,19 +339,19 @@ always @(posedge QnCPUCLK) begin
     LHW     <= PLHW;
 end
 
-assign OWN_ = ~CPUSM_BGACK; 
+assign OWN = CPUSM_BGACK; 
 assign _BGACK_I =  _BGACK_IO;
 
 //System Outputs
-assign  R_W_IO = OWN_ ? 1'bz : ~DMADIR;
-assign _AS_IO = OWN_ ? 1'bz : AS_O_;
-assign _DS_IO = OWN_ ? 1'bz : DS_O_;
-assign DATA_IO = OWN_ ? 32'bz : DATA_O;
-assign _DMAEN = OWN_;
+assign  R_W_IO = ~OWN ? 1'bz : ~DMADIR;
+assign _AS_IO = ~OWN ? 1'bz : AS_O_;
+assign _DS_IO = ~OWN ? 1'bz : DS_O_;
+assign DATA_IO = ~OWN ? 32'bz : DATA_O;
+assign _DMAEN = ~OWN;
 assign _BR = BREQ ?  1'b0 : 1'bz;
-assign SIZ1 = OWN_ ? 1'b0 : SIZE1_CPUSM;
+assign SIZ1 = ~OWN ? 1'b0 : SIZE1_CPUSM;
 assign _DSACK_IO = (REG_DSK_ & LS2CPU) ? 2'bzz : 2'b00;
-assign _BGACK_IO = OWN_ ? 1'bz : 1'b0;
+assign _BGACK_IO = ~OWN ? 1'bz : 1'b0;
 
 //SCSI outputs
 assign _IOR = ~(PRESET | RE);
@@ -360,9 +360,9 @@ assign _CSS = ~ SCSI_CS;
 assign _DACK = ~ DACK_o;
 
 //Diagnostic LEDs
-assign _LED_WR = OWN_ ? (R_W | _AS | _CS) : DMADIR;
-assign _LED_RD = OWN_ ? (~R_W | _AS | _CS): ~DMADIR;
-assign _LED_DMA = OWN_; 
+assign _LED_WR = ~OWN ? (R_W | _AS | _CS) : DMADIR;
+assign _LED_RD = ~OWN ? (~R_W | _AS | _CS): ~DMADIR;
+assign _LED_DMA = ~OWN; 
 
 //internal connections
 assign DREQ_ = (~DMAENA | _DREQ);

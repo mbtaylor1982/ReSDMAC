@@ -29,22 +29,22 @@ module RESDMAC_tb;
     reg R_W_i;
     wire R_W_o;
     assign R_W_o = R_W_IO;
-    assign R_W_IO = OWN_ ? R_W_i : 1'bz;
+    assign R_W_IO = ~OWN ? R_W_i : 1'bz;
 
     reg _AS_i;
     wire _AS_o;
     assign _AS_o = _AS_IO;
-    assign _AS_IO = OWN_ ? _AS_i : 1'bz;
+    assign _AS_IO = ~OWN ? _AS_i : 1'bz;
 
     reg _DS_i;
     wire _DS_o;
     assign _DS_o = _DS_IO;
-    assign _DS_IO = OWN_ ? _DS_i : 1'bz;
+    assign _DS_IO = ~OWN ? _DS_i : 1'bz;
 
     reg [31:0] DATA_i ;
     wire [31:0] DATA_o;
     assign DATA_o = DATA_IO;
-    assign DATA_IO = OWN_ ? DATA_i : 32'bz;
+    assign DATA_IO = ~OWN ? DATA_i : 32'bz;
 
     
     tri1        _INT     ;  // Connected to INT2 needs to be Open Collector output.
@@ -74,7 +74,7 @@ module RESDMAC_tb;
     wire        _LED_RD  ;  // Indicated read from SDMAC or peripherial port.
     wire        _LED_WR  ;  // Indicate write to SDMAC or peripherial port.
     wire        _LED_DMA ;  // Indicate DMA cycle/busmaster.
-    wire        OWN_     ;  // Active low signal to show SDMAC is bus master, This can be used to set direction on level shifters for control signals.
+    wire        OWN     ;  // Active low signal to show SDMAC is bus master, This can be used to set direction on level shifters for control signals.
     wire        DATA_OE_ ;  // Active low ouput enable for DBUS level shifters.
     wire        PDATA_OE_;  // Active low ouput enable for Peripheral BUS level shifters.
     // module
@@ -106,7 +106,7 @@ module RESDMAC_tb;
         ._LED_RD    (_LED_RD    ),
         ._LED_WR    (_LED_WR    ),
         ._LED_DMA   (_LED_DMA   ),
-        .OWN_       (OWN_       ),
+        .OWN       (OWN       ),
         .DATA_OE_   (DATA_OE_   ),
         .PDATA_OE_  (PDATA_OE_  )
     );
