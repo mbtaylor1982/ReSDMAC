@@ -46,7 +46,7 @@ Overall, the state machine orchestrates the interactions between the CPU, FIFO, 
 ## Transfers between CPU and SCSI
 
 1. The state machine starts in the idle state (`s0`).
-2. The CPU initiates a transfer by asserting the `CCPUREQ` signal.
+2. The CPU FSM initiates a transfer by asserting the `CCPUREQ` signal.
 3. The state machine transitions to state `s8` in response to `CCPUREQ`.
 4. Depending on the value of the `RW` signal (read or write), the state machine enters different paths:
    - If `RW` is high (indicating a read operation):
