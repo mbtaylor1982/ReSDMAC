@@ -42,3 +42,36 @@ Here's a high-level summary of the state transitions and their associated behavi
 - The state machine handles read and write operations between the CPU and the SCSI interface, manages data transfer between the FIFO and SCSI, and controls various signals such as data acknowledgment (`DACK`), chip selects (`SCSI_CS`), read and write indicators (`RE`, `WE`), and more.
 
 Overall, the state machine orchestrates the interactions between the CPU, FIFO, and SCSI interface to facilitate data transfers and protocol control in accordance with the SCSI specifications. It efficiently manages the state transitions and associated control signals to ensure proper communication and data exchange.
+
+## Transfers between CPU and SCSI
+
+1. The state machine starts in the idle state (`s0`).
+2. The CPU initiates a transfer by asserting the `CCPUREQ` signal.
+3. The state machine transitions to state `s8` in response to `CCPUREQ`.
+4. Depending on the value of the `RW` signal (read or write), the state machine enters different paths:
+   - If `RW` is high (indicating a read operation):
+     5. The state machine asserts `RE` and `S2CPU`, indicating that data is being transferred from the SCSI interface to the CPU.
+     6. The state machine transitions to state `s10` while maintaining `RE` and `S2CPU` signals.
+     7. After the transfer is complete, the state machine transitions back to the idle state (`s0`) when the SCSI interface acknowledges the data transfer (`CDSACK_`).
+   - If `RW` is low (indicating a write operation):
+     5. The state machine asserts `WE` and `CPU2S`, indicating that data is being transferred from the CPU to the SCSI interface.
+     6. The state machine transitions to state `s17` while maintaining `WE` and `CPU2S` signals.
+     7. After the transfer is complete, the state machine transitions back to the idle state (`s0`) when the SCSI interface acknowledges the data transfer (`CDSACK_`).
+    
+## Transfer from SCSI to FIFO:
+
+1. The state machine starts in the idle state (`s0`).
+2. When there's a data transfer request from the SCSI interface (`CDREQ_`), and the FIFO is not full (`~FIFOFULL`), the state machine asserts `DACK` to acknowledge the SCSI interface's request for data transfer.
+3. The state machine transitions to state `s24`.
+4. If the FIFO becomes full (`FIFOFULL`), the state machine increments the next-in and next-out pointers (`INCNI` and `INCNO`) of the FIFO to keep data flowing.
+5. The state machine keeps asserting `RE`, `S2F`, and `DACK` to continue transferring data from the SCSI interface to the FIFO.
+6. Once the transfer is complete, the state machine transitions back to the idle state (`s0`).
+
+## Transfer from FIFO to SCSI:
+
+1. The state machine starts in the idle state (`s0`).
+2. When there's a data transfer request from the SCSI interface (`CDREQ_`), and the FIFO is not empty (`~FIFOEMPTY`), the state machine asserts `DACK` to acknowledge the SCSI interface's request for data transfer.
+3. The state machine transitions to state `s16`.
+4. If the SCSI interface acknowledges the data transfer (`CDSACK_`), the state machine transitions to state `s28`.
+5. In state `s28`, the state machine asserts `WE`, `F2S`, and `DACK` to transfer data from the FIFO to the SCSI interface.
+6. Once the transfer is complete, the state machine transitions back to the idle state (`s0`).
