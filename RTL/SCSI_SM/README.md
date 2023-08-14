@@ -1,34 +1,34 @@
 ## SCSI FSM State Transition Table
 
-| Current State | Inputs                                                   | Next State | Outputs                                                 |
-|---------------|----------------------------------------------------------|------------|---------------------------------------------------------|
-| s0            | ~CDREQ_, ~FIFOFULL, DMADIR, ~CCPUREQ, ~RIFIFO_o         | s24        | DACK = 1                                               |
-| s0            | CCPUREQ                                                  | s8         |                                                         |
-| s0            | ~DMADIR, ~CCPUREQ                                        | s16        |                                                         |
-| s1            |                                                          | s16        | F2S = 1, INCBO = 1, INCNO = BOEQ3, RDFIFO = BOEQ3       |
-| s2            |                                                          | s18        | WE = 1, F2S = 1, DACK = 1                               |
-| s3            |                                                          | s19        | RE = 1, S2CPU = 1, SCSI_CS = 1                         |
-| s4            |                                                          | s20        | RE = 1, S2F = 1, DACK = 1                               |
-| s6            |                                                          | s22        | CPU2S = 1, SET_DSACK = 1, SCSI_CS = 1                   |
-| s8            | RW                                                       | s10        | RE = 1, S2CPU = 1, SCSI_CS = 1                         |
-| s8            | ~RW                                                      | s17        | WE = 1, CPU2S = 1, SCSI_CS = 1                         |
-| s9            |                                                          | s25        | S2CPU = 1                                              |
-| s10           |                                                          | s30        | RE = 1, S2CPU = 1, SCSI_CS = 1                         |
-| s12           |                                                          | s0         | INCBO = 1, S2F = 1, INCNI = BOEQ3, RIFIFO = BOEQ3      |
-| s14           | CDSACK_                                                  | s0         |                                                         |
-| s16           | ~CDREQ_, ~FIFOEMPTY, ~DMADIR, ~CCPUREQ, ~RDFIFO_o       | s28        | DACK = 1                                               |
-| s16           | CCPUREQ                                                  | s8         |                                                         |
-| s17           |                                                          | s26        | WE = 1, CPU2S = 1, SCSI_CS = 1                         |
-| s18           |                                                          | s1         | WE = 1, F2S = 1, DACK = 1                               |
-| s19           |                                                          | s9         | RE = 1, S2CPU = 1, SET_DSACK = 1                       |
-| s20           |                                                          | s12        | RE = 1, S2F = 1, DACK = 1                               |
-| s22           |                                                          | s14        |                                                         |
-| s24           | FIFOFULL                                                 | s4         | INCNI = 1, INCNO = 1, RE = 1, S2F = 1, DACK = 1        |
-| s24           | ~FIFOFULL                                                | s4         | RE = 1, S2F = 1, DACK = 1                               |
-| s25           | CDSACK_                                                  | s0         |                                                         |
-| s26           |                                                          | s6         | WE = 1, CPU2S = 1, SCSI_CS = 1                         |
-| s28           |                                                          | s2         | WE = 1, F2S = 1, DACK = 1                               |
-| s30           |                                                          | s3         | RE = 1, S2CPU = 1, SCSI_CS = 1                         |
+| Current State | Inputs                                            | Next State | Outputs                                           |
+| ------------- | ------------------------------------------------- | ---------- | ------------------------------------------------- |
+| s0            | ~CDREQ_, ~FIFOFULL, DMADIR, ~CCPUREQ, ~RIFIFO_o   | s24        | DACK = 1                                          |
+| s0            | CCPUREQ                                           | s8         |                                                   |
+| s0            | ~DMADIR, ~CCPUREQ                                 | s16        |                                                   |
+| s1            |                                                   | s16        | F2S = 1, INCBO = 1, INCNO = BOEQ3, RDFIFO = BOEQ3 |
+| s2            |                                                   | s18        | WE = 1, F2S = 1, DACK = 1                         |
+| s3            |                                                   | s19        | RE = 1, S2CPU = 1, SCSI_CS = 1                    |
+| s4            |                                                   | s20        | RE = 1, S2F = 1, DACK = 1                         |
+| s6            |                                                   | s22        | CPU2S = 1, SET_DSACK = 1, SCSI_CS = 1             |
+| s8            | RW                                                | s10        | RE = 1, S2CPU = 1, SCSI_CS = 1                    |
+| s8            | ~RW                                               | s17        | WE = 1, CPU2S = 1, SCSI_CS = 1                    |
+| s9            |                                                   | s25        | S2CPU = 1                                         |
+| s10           |                                                   | s30        | RE = 1, S2CPU = 1, SCSI_CS = 1                    |
+| s12           |                                                   | s0         | INCBO = 1, S2F = 1, INCNI = BOEQ3, RIFIFO = BOEQ3 |
+| s14           | CDSACK_                                           | s0         |                                                   |
+| s16           | ~CDREQ_, ~FIFOEMPTY, ~DMADIR, ~CCPUREQ, ~RDFIFO_o | s28        | DACK = 1                                          |
+| s16           | CCPUREQ                                           | s8         |                                                   |
+| s17           |                                                   | s26        | WE = 1, CPU2S = 1, SCSI_CS = 1                    |
+| s18           |                                                   | s1         | WE = 1, F2S = 1, DACK = 1                         |
+| s19           |                                                   | s9         | RE = 1, S2CPU = 1, SET_DSACK = 1                  |
+| s20           |                                                   | s12        | RE = 1, S2F = 1, DACK = 1                         |
+| s22           |                                                   | s14        |                                                   |
+| s24           | FIFOFULL                                          | s4         | INCNI = 1, INCNO = 1, RE = 1, S2F = 1, DACK = 1   |
+| s24           | ~FIFOFULL                                         | s4         | RE = 1, S2F = 1, DACK = 1                         |
+| s25           | CDSACK_                                           | s0         |                                                   |
+| s26           |                                                   | s6         | WE = 1, CPU2S = 1, SCSI_CS = 1                    |
+| s28           |                                                   | s2         | WE = 1, F2S = 1, DACK = 1                         |
+| s30           |                                                   | s3         | RE = 1, S2CPU = 1, SCSI_CS = 1                    |
 
 ## Summary
 
@@ -77,5 +77,5 @@ Overall, the state machine orchestrates the interactions between the CPU, FIFO, 
 6. In state `s28`, the state machine asserts `WE`, `F2S`, and `DACK` to transfer data from the FIFO to the SCSI interface.
 7. The state machine transitions to state `s2` and continues to assert `WE`, `F2S`, and `DACK`
 8. The state machine transitions to state `s18` and continues to assert `WE`, `F2S`, and `DACK`
-9. The state machine transitions to state `s11` where the Byte counter is incremented `INCBO`. If the byte count is 3 the next out pointer is also incremented `INCNO`. 
+9. The state machine transitions to state `s1` where the Byte counter is incremented `INCBO`. If the byte count is 3 the next out pointer is also incremented `INCNO`. 
 10. The state machine then transitions back to the idle state (`s0`).
