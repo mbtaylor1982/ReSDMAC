@@ -1,6 +1,4 @@
-Sure, I can help you generate a state transition table and provide a summary for the given Verilog code. 
-
-## State Transition Table
+## SCSI FSM State Transition Table
 
 | Current State | Inputs                                                   | Next State | Outputs                                                 |
 |---------------|----------------------------------------------------------|------------|---------------------------------------------------------|
