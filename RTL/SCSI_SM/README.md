@@ -32,8 +32,6 @@
 
 ## Summary
 
-The given Verilog code implements a state machine named `SCSI_SM_INTERNALS`. This state machine is designed to control various signals and operations related to the Small Computer System Interface (SCSI) protocol. The state machine operates based on a clock signal (`CLK`) and a reset signal (`nRESET`).
-
 The state machine has multiple states (denoted as `s0`, `s1`, `s2`, etc.), each representing a different operational mode. It responds to various input signals, including control signals from the SCSI interface (`BOEQ3`, `CCPUREQ`, `CDREQ_`, `CDSACK_`, `DMADIR`, `FIFOEMPTY`, `FIFOFULL`, `RDFIFO_o`, `RIFIFO_o`, `RW`) as well as its internal state and control logic.
 
 Here's a high-level summary of the state transitions and their associated behaviors:
