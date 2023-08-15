@@ -37,22 +37,22 @@ module RESDMAC_DMA_READ_tb;
     reg R_W_i;
     wire R_W_o;
     assign R_W_o = R_W_IO;
-    assign R_W_IO = OWN_ ? R_W_i : 1'bz;
+    assign R_W_IO = ~OWN ? R_W_i : 1'bz;
 
     reg _AS_i;
     wire _AS_o;
     assign _AS_o = _AS_IO;
-    assign _AS_IO = OWN_ ? _AS_i : 1'bz;
+    assign _AS_IO = ~OWN ? _AS_i : 1'bz;
 
     reg _DS_i;
     wire _DS_o;
     assign _DS_o = _DS_IO;
-    assign _DS_IO = OWN_ ? _DS_i : 1'bz;
+    assign _DS_IO = ~OWN ? _DS_i : 1'bz;
 
     reg [31:0] DATA_i ;
     wire [31:0] DATA_o;
     assign DATA_o = DATA_IO;
-    assign DATA_IO = (R_W_IO ^ OWN_) ? DATA_i : 32'hzzzzzzzz;
+    assign DATA_IO = (R_W_IO ^ ~OWN) ? DATA_i : 32'hzzzzzzzz;
 
     reg [7:0] PD_i;
     wire [7:0] PD_o;
@@ -62,8 +62,8 @@ module RESDMAC_DMA_READ_tb;
     reg DMA;
 
     
-    tri1        _INT     ;  // Connected to INT2 needs to be Open Collector output.
-    wire        SIZ1     ;  // Indicates a 16 bit transfer is true. 
+    tri0        INT      ;  // Connected to INT2 needs to be Open Collector output.
+    wire        _SIZ1    ;  // Indicates a 16 bit transfer is true. 
     tri1        R_W_IO   ;  // Read Write from CPU
     tri1        _AS_IO   ;  // Address Strobe
     tri1        _DS_IO   ;  // Data Strobe 
@@ -75,7 +75,7 @@ module RESDMAC_DMA_READ_tb;
     reg         _RST     ;  // System Reset
     reg         _BERR    ;  // Bus Error 
     reg  [31:0] ADDR     ;  // CPU address Bus, bits are actually [6:2]
-    tri1        _BR      ;  // Bus Request
+    tri0         BR      ;  // Bus Request
     reg         _BG      ;  // Bus Grant
     tri1        _BGACK_IO; // Bus Grant Acknoledge
     wire        _DMAEN   ;  // Low =  Enable Address Generator in Ramsey
@@ -89,13 +89,13 @@ module RESDMAC_DMA_READ_tb;
     wire        _LED_RD  ;  // Indicated read from SDMAC or peripherial port.
     wire        _LED_WR  ;  // Indicate write to SDMAC or peripherial port.
     wire        _LED_DMA ;  // Indicate DMA cycle/busmaster.
-    wire        OWN_     ;  // Active low signal to show SDMAC is bus master, This can be used to set direction on level shifters for control signals.
+    wire        OWN      ;  // Active low signal to show SDMAC is bus master, This can be used to set direction on level shifters for control signals.
     wire        DATA_OE_ ;  // Active low ouput enable for DBUS level shifters.
     wire        PDATA_OE_;  // Active low ouput enable for Peripheral BUS level shifters.
     // module
     RESDMAC uut (
-        ._INT       (_INT       ),
-        .SIZ1       (SIZ1       ),
+        .INT        (INT        ),
+        ._SIZ1      (_SIZ1       ),
         .R_W_IO     (R_W_IO     ),
         ._AS_IO     (_AS_IO     ),
         ._DS_IO     (_DS_IO     ),
@@ -107,9 +107,9 @@ module RESDMAC_DMA_READ_tb;
         ._RST       (_RST       ),
         ._BERR      (_BERR      ),
         .ADDR       (ADDR[6:2]  ),
-        ._BR        (_BR        ),
+        .BR         (BR         ),
         ._BG        (_BG        ),
-        ._BGACK_IO   (_BGACK_IO ),
+        ._BGACK_IO  (_BGACK_IO  ),
         ._DMAEN     (_DMAEN     ),
         ._DREQ      (_DREQ      ),
         ._DACK      (_DACK      ),
@@ -121,7 +121,7 @@ module RESDMAC_DMA_READ_tb;
         ._LED_RD    (_LED_RD    ),
         ._LED_WR    (_LED_WR    ),
         ._LED_DMA   (_LED_DMA   ),
-        .OWN_       (OWN_       ),
+        .OWN        (OWN        ),
         .DATA_OE_   (DATA_OE_   ),
         .PDATA_OE_  (PDATA_OE_  )
     );
@@ -274,7 +274,7 @@ module RESDMAC_DMA_READ_tb;
     end
 
     always @(negedge sclk_delayed) begin
-        if ((_BR  == 1'b0) && (_BGACK_IO == 1'b1) && (_AS_i == 1'b1)) 
+        if ((BR  == 1'b1) && (_BGACK_IO == 1'b1) && (_AS_i == 1'b1)) 
         begin
             _BG <= 1'b0;    
         end
