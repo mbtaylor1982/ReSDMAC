@@ -17,8 +17,8 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 `ifdef __ICARUS__ 
-    `include "RTL/SCSI_SM/scsi_sm_inputs.v"
-    `include "RTL/SCSI_SM/scsi_sm_outputs.v"
+    `include "RTL/SCSI_SM/SCSI_SM_INTERNALS.v"
+    `include "RTL/SCSI_SM/scsi_sm_internals1.v"
 `endif
 
 module SCSI_SM
@@ -28,7 +28,7 @@ module SCSI_SM
     input BCLK,             //CPUCLK Inverted 4 times for delay.
     input BBCLK,            //CPUCLK Inverted 6 times for delay.
     input CPUREQ,           //Request CPU access to SCSI registers.
-    input DECFIFO,          //Decremt FIFO pointer
+    input DECFIFO,          //Decrement FIFO pointer
     input DMADIR,           //Control Direction Of DMA transfer.
     input DREQ_,            //Data transfer request from SCSI IC
     input FIFOEMPTY,        //FIFOFULL flag
@@ -55,13 +55,13 @@ module SCSI_SM
     output wire LS2CPU      //Latch SCSI to CPU DATA, Also indicates CPU Cycle Termination
 );
 
-reg [4:0] STATE;
 
 //Clocked inputs
 reg CCPUREQ;    // Clocked signal to indicate a CPU cycle to read or write WD33C93 Registers.
 reg CDREQ_;     // Clocked WD33C93 DMA request.
 reg CDSACK_;    // Clocked Feedback from CPU cycle termination.
 reg CRESET_;    // Clocked system reset.
+
 wire CPU2S;     // Enable CPU to SCSI datapath.
 wire DACK;      // Ack WD3C93 DMA transfer request.
 wire DSACK_;    // Feedback from CPU cycle termination.
@@ -84,39 +84,38 @@ reg nLS2CPU;    //Inverted signal to idicate when to latch the SCSI data for CPU
 reg RDFIFO_d;   // Signal CPU SM to read FIFO? 
 reg RIFIFO_d;   // Signal CPU SM to Write to FIFO? 
 
-wire [27:0] E;
-wire [4:0] NEXT_STATE;
-
-scsi_sm_inputs u_scsi_sm_inputs(
-    .BOEQ3      (BOEQ3      ),
-    .CCPUREQ    (CCPUREQ    ),
-    .CDREQ_     (CDREQ_     ),
-    .CDSACK_    (CDSACK_    ),
-    .DMADIR     (DMADIR     ),
-    .E          (E          ),
-    .FIFOEMPTY  (FIFOEMPTY  ),
-    .FIFOFULL   (FIFOFULL   ),
-    .RDFIFO_o   (RDFIFO_o   ),
-    .RIFIFO_o   (RIFIFO_o   ),
-    .RW         (RW         ),
-    .STATE      (STATE      )
-);
-
-scsi_sm_outputs u_scsi_sm_outputs(
-    .CPU2S      (CPU2S      ),
-    .DACK       (DACK       ),
-    .E          (E          ),
-    .F2S        (F2S        ),
-    .INCBO      (INCBO      ),
-    .INCNI      (INCNI      ),
-    .INCNO      (INCNO      ),
-    .NEXT_STATE (NEXT_STATE ), 
-    .RE         (RE         ),
-    .S2CPU      (S2CPU      ),
-    .S2F        (S2F        ),
-    .SCSI_CS    (SCSI_CS    ),
-    .SET_DSACK  (SET_DSACK  ),
-    .WE         (WE         )
+/*
+--To swap between the FSM implmanetions instsiate the different modules--
+    1.Original gate based FSM = SCSI_SM_INTERNALS1
+    2.Standard verilog form fsm = SCSI_SM_INTERNALS
+*/
+SCSI_SM_INTERNALS u_SCSI_SM_INTERNALS (
+    .CLK        (BCLK       ),  // input, (wire), CLK
+    .nRESET     (CRESET_    ),  // input, (wire), Active low reset
+    .BOEQ3      (BOEQ3      ),  // input, (wire), Asserted when transfering Byte 3                
+    .CCPUREQ    (CCPUREQ    ),  // input, (wire), Request CPU access to SCSI registers.
+    .CDREQ_     (CDREQ_     ),  // input, (wire), Data transfer request from SCSI IC.
+    .CDSACK_    (CDSACK_    ),  // input, (wire), DSACK 
+    .DMADIR     (DMADIR     ),  // input, (wire), Control Direction Of DMA transfer.
+    .FIFOEMPTY  (FIFOEMPTY  ),  // input, (wire), FIFOFULL flag
+    .FIFOFULL   (FIFOFULL   ),  // input, (wire), FIFOEMPTY flag
+    .RDFIFO_o   (RDFIFO_o   ),  // input, (wire), 
+    .RIFIFO_o   (RIFIFO_o   ),  // input, (wire), 
+    .RW         (RW         ),  // input, (wire), CPU RW signal
+    .CPU2S      (CPU2S      ),  // output, reg, Indicate CPU to SCSI Transfer
+    .DACK       (DACK       ),  // output, reg, SCSI IC Data request Acknowledge
+    .F2S        (F2S        ),  // output, reg, Indicate FIFO to SCSI Transfer
+    .INCBO      (INCBO      ),  // output, reg, Increment FIFO Byte Pointer
+    .INCNI      (INCNI      ),  // output, reg, Increment FIFO Next In Pointer
+    .INCNO      (INCNO      ),  // output, reg, Increement FIFO Next Out Pointer
+    .RDFIFO     (RDFIFO     ),  // output, reg, Read Longword from FIFO
+    .RE         (RE         ),  // output, reg, Read indicator to SCSI IC
+    .RIFIFO     (RIFIFO     ),  // output, reg, Write Longword to FIFO
+    .S2CPU      (S2CPU      ),  // output, reg, Indicate SCSI to CPU Transfer
+    .S2F        (S2F        ),  // output, reg, Indicate SCSI to FIFO Transfer
+    .SCSI_CS    (SCSI_CS    ),  // output, reg, Chip Select for SCSI IC
+    .WE         (WE         ),  // output, reg, Write indicator to SCSI IC
+    .SET_DSACK  (SET_DSACK  )   // output, reg, 
 );
 
 //clocked reset
@@ -125,7 +124,7 @@ always @(posedge  nCLK) begin
 end
 
 //clocked inputs.
-always @(posedge  BBCLK or negedge CRESET_) begin
+always @(posedge  BCLK or negedge CRESET_) begin
     if (CRESET_ == 1'b0)
     begin 
         CDSACK_ <= 1'b1;
@@ -148,21 +147,13 @@ always @(posedge BCLK) begin
     INCBO_o     <= INCBO;
     INCNI_o     <= INCNI;
     INCNO_o     <= INCNO;
-    RDFIFO_d    <= E[3];
+    RDFIFO_d    <= RDFIFO;
     RE_o        <= RE;
-    RIFIFO_d    <= E[4];
+    RIFIFO_d    <= RIFIFO;
     S2CPU_o     <= S2CPU;
     S2F_o       <= S2F;
     SCSI_CS_o   <= SCSI_CS;
     WE_o        <= WE;
-end
-
-//State Machine
-always @(posedge BCLK or negedge CRESET_) begin
-    if (CRESET_ == 1'b0)
-        STATE <= 5'b00000;
-    else
-        STATE <= NEXT_STATE;
 end
 
 always @(posedge RDFIFO_d or negedge RDRST_) begin

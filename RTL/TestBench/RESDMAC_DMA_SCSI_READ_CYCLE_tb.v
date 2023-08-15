@@ -77,7 +77,7 @@ module RESDMAC_DMA_READ_tb;
     reg  [31:0] ADDR     ;  // CPU address Bus, bits are actually [6:2]
     tri0         BR      ;  // Bus Request
     reg         _BG      ;  // Bus Grant
-    tri1        _BGACK_IO; // Bus Grant Acknoledge
+    tri1        _BGACK_IO;  // Bus Grant Acknoledge
     wire        _DMAEN   ;  // Low =  Enable Address Generator in Ramsey
     reg         _DREQ    ;  // 
     wire        _DACK    ;  // 
@@ -254,7 +254,7 @@ module RESDMAC_DMA_READ_tb;
         $finish;
     end
     always @(posedge SCLK) begin
-        if (~(_DSACK_IO[0] & _DSACK_IO[1])  == 1'b1) 
+        if ((_DSACK_IO[0] & _DSACK_IO[1])  != 1'b0) 
         begin
             _AS_i <= 1'b1;
             _DS_i <= 1'b1;    

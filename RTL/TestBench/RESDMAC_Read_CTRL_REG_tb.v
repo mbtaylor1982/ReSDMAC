@@ -79,8 +79,8 @@ module RESDMAC_tb;
     wire        PDATA_OE_;  // Active low ouput enable for Peripheral BUS level shifters.
     // module
     RESDMAC uut (
-        ._INT       (_INT       ),
-        .SIZ1       (SIZ1       ),
+        .INT       (_INT       ),
+        ._SIZ1       (SIZ1       ),
         .R_W_IO     (R_W_IO     ),
         ._AS_IO     (_AS_IO     ),
         ._DS_IO     (_DS_IO     ),
@@ -92,7 +92,7 @@ module RESDMAC_tb;
         ._RST       (_RST       ),
         ._BERR      (_BERR      ),
         .ADDR       (ADDR[6:2]  ),
-        ._BR        (_BR        ),
+        .BR        (_BR        ),
         ._BG        (_BG        ),
         ._BGACK_IO   (BGACK_IO_ ),
         ._DMAEN     (_DMAEN     ),
@@ -106,7 +106,7 @@ module RESDMAC_tb;
         ._LED_RD    (_LED_RD    ),
         ._LED_WR    (_LED_WR    ),
         ._LED_DMA   (_LED_DMA   ),
-        .OWN_       (OWN_       ),
+        .OWN       (OWN_       ),
         .DATA_OE_   (DATA_OE_   ),
         .PDATA_OE_  (PDATA_OE_  )
     );

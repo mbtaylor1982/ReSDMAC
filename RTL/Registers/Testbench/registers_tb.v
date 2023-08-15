@@ -39,10 +39,10 @@ reg INTA_I;
 //outputs
 wire [31:0] MOD;    //DATA OUT.
 wire PRESET;        //Peripheral Reset.
-wire reg FLUSHFIFO; //Flush FIFO.
+wire FLUSHFIFO;     //Flush FIFO.
 wire ACR_WR;        //input to FIFO_byte_ptr.
 wire h_0C;          //input to FIFO_byte_ptr.
-wire reg A1;        //Store value of A1 written to ACR.  
+wire A1;            //Store value of A1 written to ACR.  
 wire INT_O_;        //INT_2 Output.
 wire DMADIR;        //DMA Direction
 wire DMAENA;        //DMA Enabled.  
@@ -56,7 +56,7 @@ registers u_registers(
     .DMAC_     (DMAC_     ),
     .AS_       (AS_       ),
     .RW        (RW        ),
-    .nCPUCLK   (~CPUCLK   ),
+    .CLK       (~CPUCLK   ),
     .MID       (MID       ),
     .STOPFLUSH (STOPFLUSH ),
     .RST_      (RST_      ),
