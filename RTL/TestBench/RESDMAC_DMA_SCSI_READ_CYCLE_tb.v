@@ -254,7 +254,7 @@ module RESDMAC_DMA_READ_tb;
         $finish;
     end
     always @(posedge SCLK) begin
-        if ((_DSACK_IO[0] & _DSACK_IO[1])  != 1'b0) 
+        if ((_DSACK_IO[0] & _DSACK_IO[1])  == 1'b0) 
         begin
             _AS_i <= 1'b1;
             _DS_i <= 1'b1;    

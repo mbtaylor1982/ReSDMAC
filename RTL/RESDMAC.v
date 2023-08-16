@@ -198,8 +198,8 @@ CPU_SM u_CPU_SM(
     .SIZE1         (SIZE1_CPUSM ),
     .aRESET_       (PLLLOCKED   ),
     .iSTERM_       (_STERM      ),
-    .DSACK0_       (~DSK0_IN_    ),
-    .DSACK1_       (~DSK1_IN_    ),
+    .DSACK0_       (DSK0_IN_    ),
+    .DSACK1_       (DSK1_IN_    ),
     .nCLK          (nCLK        ), 
     .BCLK          (BCLK        ), 
     .BBCLK         (BBCLK       ), 
@@ -369,8 +369,8 @@ assign DSK0_IN_ = _BERR & _DSACK_IO[0];
 assign DSK1_IN_ = _BERR & _DSACK_IO[1];
 
 assign A3 = ADDR[3];
-assign DATA_OE_ = ((_AS | _CS | H_0C) & _BGACK_IO) ? 1'bz : 1'b0;
-assign PDATA_OE_ = (_DACK | ~_CSS) ? 1'bz : 1'b0;
+assign DATA_OE_ = ((_AS | _CS | H_0C) & _BGACK_IO);
+assign PDATA_OE_ = (_DACK & _CSS);
 
 assign BnDS_O_ = ~DS_O_;
 assign INT = ~_INT;
