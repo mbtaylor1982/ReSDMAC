@@ -35,7 +35,7 @@ module RESDMAC_tb;
     wire _AS_o;
     assign _AS_o = _AS_IO;
     assign _AS_IO = ~OWN ? _AS_i : 1'bz;
-
+    
     reg _DS_i;
     wire _DS_o;
     assign _DS_o = _DS_IO;
@@ -45,6 +45,12 @@ module RESDMAC_tb;
     wire [31:0] DATA_o;
     assign DATA_o = DATA_IO;
     assign DATA_IO = ~OWN ? DATA_i : 32'bz;
+
+    reg [7:0] PD_PORT_i ;
+    wire [7:0] PD_PORT_o;
+    assign PD_PORT_o = PD_PORT_IO;
+    assign PD_PORT_IO = ~_IOR ? PD_PORT_i : 32'bz;
+
 
     
     tri0        INT      ;  // Connected to INT2 needs to be Open Collector output.
@@ -70,7 +76,7 @@ module RESDMAC_tb;
     wire        _IOR     ;  // Active Low read strobe
     wire        _IOW     ;  // Ative Low Write strobe
     wire        _CSS     ;  // Port 0 CS      
-    tri1  [7:0] PD_PORT  ;  // 
+    tri1   [7:0] PD_PORT_IO  ;  // 
     wire        _LED_RD  ;  // Indicated read from SDMAC or peripherial port.
     wire        _LED_WR  ;  // Indicate write to SDMAC or peripherial port.
     wire        _LED_DMA ;  // Indicate DMA cycle/busmaster.
@@ -102,7 +108,7 @@ module RESDMAC_tb;
         ._IOR       (_IOR       ),
         ._IOW       (_IOW       ),
         ._CSS       (_CSS       ),
-        .PD_PORT    (PD_PORT    ),
+        .PD_PORT    (PD_PORT_IO ),
         ._LED_RD    (_LED_RD    ),
         ._LED_WR    (_LED_WR    ),
         ._LED_DMA   (_LED_DMA   ),
@@ -159,6 +165,7 @@ module RESDMAC_tb;
         _DS_i = 1;
         ADDR <= 32'hffffffff;
         DATA_i <= 32'hzzzzzzzz;
+        PD_PORT_i <=8'h55;
         
 
     end
@@ -196,6 +203,7 @@ module RESDMAC_tb;
         wait_n_clko(2);
         $finish;
     end
+    
     always @(posedge SCLK) begin
         if (~(_DSACK_IO[0] & _DSACK_IO[1])  == 1'b1) 
         begin
@@ -203,6 +211,7 @@ module RESDMAC_tb;
             _DS_i <= 1'b1;    
         end
     end
+    
 
     always @(ADDR) begin
         _CS <= ~(~ADDR[31] & ~ADDR[30] & ~ADDR[29] & ~ADDR[28]  & ~ADDR[27] & ~ADDR[26] & ~ADDR[25]  & ~ADDR[24] & ADDR[23]  
