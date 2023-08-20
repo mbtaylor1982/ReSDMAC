@@ -31,45 +31,36 @@
 | s30           |                                                   | s3         | RE = 1, S2CPU = 1, SCSI_CS = 1                    |
 ## State Diagram
 ```mermaid
+---
+title: SCSI FSM State Diagram
+---
 stateDiagram-v2
-
-[*] --> s0
-
-s0 --> s24 <<choice>>: ~CDREQ_, ~FIFOFULL, DMADIR, ~CCPUREQ, ~RIFIFO_o
-s0 --> s8 <<choice>>: CCPUREQ
-s0 --> s16 <<choice>>: ~DMADIR, ~CCPUREQ
-
-s1 --> s16
-s2 --> s18
-s3 --> s19
-s4 --> s20
-s6 --> s22
-s8 --> s10 <<choice>>: RW
-s8 --> s17 <<choice>>: ~RW
-s9 --> s25
-
-s10 --> s30
-
-s12 --> s0
-s14 --> s0
-
-s16 --> s28 <<choice>>: ~CDREQ_, ~FIFOEMPTY, ~DMADIR, ~CCPUREQ, ~RDFIFO_o
-s16 --> s8 <<choice>>: CCPUREQ
-s17 --> s26 <<choice>>
-s18 --> s1
-s19 --> s9
-s20 --> s12
-
-s22 --> s14
-
-s24 --> s4 <<choice>>: FIFOFULL
-s24 --> s4 <<choice>>: ~FIFOFULL
-
-s25 --> s0
-s26 --> s6
-
-s28 --> s2
-s30 --> s3
+    [*] --> s0
+    s0 --> s24 <<choice>>
+    s0 --> s8 <<choice>>
+    s0 --> s16 <<choice>>
+    s1 --> s16
+    s2 --> s18
+    s3 --> s19
+    s4 --> s20
+    s6 --> s22
+    s8 --> s10 <<choice>>
+    s8 --> s17 <<choice>> 
+    s9 --> s25
+    s10 --> s30
+    s12 --> s0
+    s14 --> s0
+    s16 --> s28
+    s17 --> s26
+    s18 --> s1
+    s19 --> s9
+    s20 --> s12
+    s22 --> s14
+    s24 --> s4
+    s25 --> s0
+    s26 --> s6
+    s28 --> s2
+    s30 --> s3   
 
 ```
 
