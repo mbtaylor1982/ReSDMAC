@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <HTML><HEAD>
-<TITLE>Multiplexer Restructuring Statistics (No Restructuring Performed)</TITLE>
+<TITLE>Inverted Register Statistics</TITLE>
 
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/base.css">
@@ -18,67 +18,48 @@
 <BODY>
 <TABLE>
 <thead><TR  bgcolor="#BFBFBF">
-<TH>Multiplexer Inputs</TH>
-<TH>Bus Width</TH>
-<TH>Baseline Area</TH>
-<TH>Area if Restructured</TH>
-<TH>Saving if Restructured</TH>
-<TH>Registered</TH>
-<TH>Example Multiplexer Output</TH>
+<TH>Inverted Register</TH>
+<TH>Fan out</TH>
 </TR>
 </thead><tbody><TR >
-<TD >3:1</TD>
-<TD >7 bits</TD>
-<TD >14 LEs</TD>
-<TD >14 LEs</TD>
-<TD >0 LEs</TD>
-<TD >No</TD>
-<TD >|RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[15]</TD>
+<TD >CPU_SM:u_CPU_SM|BGRANT_</TD>
+<TD >4</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >4:1</TD>
-<TD >7 bits</TD>
-<TD >14 LEs</TD>
-<TD >14 LEs</TD>
-<TD >0 LEs</TD>
-<TD >No</TD>
-<TD >|RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[27]</TD>
+<TD >CPU_SM:u_CPU_SM|nCYCLEDONE</TD>
+<TD >4</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >8:1</TD>
-<TD >32 bits</TD>
-<TD >160 LEs</TD>
-<TD >160 LEs</TD>
-<TD >0 LEs</TD>
-<TD >No</TD>
-<TD >|RESDMAC|fifo:int_fifo|Mux21</TD>
+<TD >CPU_SM:u_CPU_SM|DSACK_LATCHED_[0]</TD>
+<TD >9</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >3:1</TD>
-<TD >8 bits</TD>
-<TD >16 LEs</TD>
-<TD >16 LEs</TD>
-<TD >0 LEs</TD>
-<TD >No</TD>
-<TD >|RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[19]</TD>
+<TD >CPU_SM:u_CPU_SM|DSACK_LATCHED_[1]</TD>
+<TD >9</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >4:1</TD>
-<TD >2 bits</TD>
-<TD >4 LEs</TD>
-<TD >4 LEs</TD>
-<TD >0 LEs</TD>
-<TD >No</TD>
-<TD >|RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[1]</TD>
+<TD >SCSI_SM:u_SCSI_SM|CDREQ_</TD>
+<TD >2</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >6:1</TD>
-<TD >8 bits</TD>
-<TD >32 LEs</TD>
-<TD >32 LEs</TD>
-<TD >0 LEs</TD>
-<TD >No</TD>
-<TD >|RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector6</TD>
+<TD >CPU_SM:u_CPU_SM|DREQ_</TD>
+<TD >2</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >SCSI_SM:u_SCSI_SM|CDSACK_</TD>
+<TD >3</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >registers:u_registers|registers_term:u_registers_term|REG_DSK_</TD>
+<TD >2</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >registers:u_registers|registers_istr:u_registers_istr|FE</TD>
+<TD >1</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Total number of inverted registers = 9</TD>
+<TD >&nbsp;</TD>
 </TR>
 </tbody></TABLE>
 

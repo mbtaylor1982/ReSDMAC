@@ -1,5 +1,5 @@
 Flow report for RESDMAC
-Tue Apr 11 22:24:31 2023
+Sun Aug 20 18:31:05 2023
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -40,17 +40,17 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Tue Apr 11 22:24:31 2023           ;
+; Flow Status                        ; Successful - Sun Aug 20 18:31:05 2023           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; RESDMAC                                         ;
 ; Top-level Entity Name              ; RESDMAC                                         ;
 ; Family                             ; Cyclone II                                      ;
 ; Device                             ; EP2C5T144C8                                     ;
 ; Timing Models                      ; Final                                           ;
-; Total logic elements               ; 830 / 4,608 ( 18 % )                            ;
-;     Total combinational functions  ; 690 / 4,608 ( 15 % )                            ;
-;     Dedicated logic registers      ; 409 / 4,608 ( 9 % )                             ;
-; Total registers                    ; 409                                             ;
+; Total logic elements               ; 774 / 4,608 ( 17 % )                            ;
+;     Total combinational functions  ; 627 / 4,608 ( 14 % )                            ;
+;     Dedicated logic registers      ; 427 / 4,608 ( 9 % )                             ;
+; Total registers                    ; 427                                             ;
 ; Total pins                         ; 81 / 89 ( 91 % )                                ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0 / 119,808 ( 0 % )                             ;
@@ -64,7 +64,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/11/2023 22:24:17 ;
+; Start date & time ; 08/20/2023 18:30:51 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; RESDMAC             ;
 +-------------------+---------------------+
@@ -82,7 +82,7 @@ applicable agreement for further details.
 ; ALLOW_SHIFT_REGISTER_MERGING_ACROSS_HIERARCHIES ; Always                                                                       ; Auto                           ; --          ; --             ;
 ; AUTO_PACKED_REGISTERS_STRATIXII                 ; Normal                                                                       ; Auto                           ; --          ; --             ;
 ; AUTO_SHIFT_REGISTER_RECOGNITION                 ; Always                                                                       ; Auto                           ; --          ; --             ;
-; COMPILER_SIGNATURE_ID                           ; 4681953352956.168124825716260                                                ; --                             ; --          ; --             ;
+; COMPILER_SIGNATURE_ID                           ; 4681953352956.169255265121048                                                ; --                             ; --          ; --             ;
 ; CYCLONEII_OPTIMIZATION_TECHNIQUE                ; Speed                                                                        ; Balanced                       ; --          ; --             ;
 ; EDA_OUTPUT_DATA_FORMAT                          ; Verilog Hdl                                                                  ; --                             ; --          ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                             ; ModelSim-Altera (Verilog)                                                    ; <None>                         ; --          ; --             ;
@@ -132,13 +132,13 @@ applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:02     ; 1.0                     ; 4645 MB             ; 00:00:02                           ;
-; Fitter                    ; 00:00:04     ; 2.6                     ; 5340 MB             ; 00:00:03                           ;
-; Assembler                 ; 00:00:01     ; 1.0                     ; 4567 MB             ; 00:00:00                           ;
-; TimeQuest Timing Analyzer ; 00:00:01     ; 1.0                     ; 4611 MB             ; 00:00:01                           ;
-; Design Assistant          ; 00:00:00     ; 1.0                     ; 4547 MB             ; 00:00:00                           ;
-; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 4543 MB             ; 00:00:01                           ;
-; Total                     ; 00:00:09     ; --                      ; --                  ; 00:00:07                           ;
+; Analysis & Synthesis      ; 00:00:02     ; 1.0                     ; 4658 MB             ; 00:00:02                           ;
+; Fitter                    ; 00:00:05     ; 2.3                     ; 5365 MB             ; 00:00:03                           ;
+; Assembler                 ; 00:00:00     ; 1.0                     ; 4574 MB             ; 00:00:00                           ;
+; TimeQuest Timing Analyzer ; 00:00:01     ; 1.0                     ; 4624 MB             ; 00:00:01                           ;
+; Design Assistant          ; 00:00:00     ; 1.0                     ; 4561 MB             ; 00:00:00                           ;
+; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 4568 MB             ; 00:00:00                           ;
+; Total                     ; 00:00:09     ; --                      ; --                  ; 00:00:06                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -147,12 +147,12 @@ applicable agreement for further details.
 +---------------------------+------------------+-----------+------------+----------------+
 ; Module Name               ; Machine Hostname ; OS Name   ; OS Version ; Processor type ;
 +---------------------------+------------------+-----------+------------+----------------+
-; Analysis & Synthesis      ; WINDOWS-23LMJOM  ; Windows 7 ; 6.2        ; x86_64         ;
-; Fitter                    ; WINDOWS-23LMJOM  ; Windows 7 ; 6.2        ; x86_64         ;
-; Assembler                 ; WINDOWS-23LMJOM  ; Windows 7 ; 6.2        ; x86_64         ;
-; TimeQuest Timing Analyzer ; WINDOWS-23LMJOM  ; Windows 7 ; 6.2        ; x86_64         ;
-; Design Assistant          ; WINDOWS-23LMJOM  ; Windows 7 ; 6.2        ; x86_64         ;
-; EDA Netlist Writer        ; WINDOWS-23LMJOM  ; Windows 7 ; 6.2        ; x86_64         ;
+; Analysis & Synthesis      ; WINDOWS-23LMJOM  ; Windows 7 ; 6.1        ; x86_64         ;
+; Fitter                    ; WINDOWS-23LMJOM  ; Windows 7 ; 6.1        ; x86_64         ;
+; Assembler                 ; WINDOWS-23LMJOM  ; Windows 7 ; 6.1        ; x86_64         ;
+; TimeQuest Timing Analyzer ; WINDOWS-23LMJOM  ; Windows 7 ; 6.1        ; x86_64         ;
+; Design Assistant          ; WINDOWS-23LMJOM  ; Windows 7 ; 6.1        ; x86_64         ;
+; EDA Netlist Writer        ; WINDOWS-23LMJOM  ; Windows 7 ; 6.1        ; x86_64         ;
 +---------------------------+------------------+-----------+------------+----------------+
 
 

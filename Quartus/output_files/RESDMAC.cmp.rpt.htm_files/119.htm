@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <HTML><HEAD>
-<TITLE>Minimum Propagation Delay</TITLE>
+<TITLE>Minimum Clock to Output Times</TITLE>
 
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/base.css">
@@ -18,1668 +18,492 @@
 <BODY>
 <TABLE>
 <thead><TR  bgcolor="#BFBFBF">
-<TH>Input Port</TH>
-<TH>Output Port</TH>
-<TH>RR</TH>
-<TH>RF</TH>
-<TH>FR</TH>
-<TH>FF</TH>
+<TH>Data Port</TH>
+<TH>Clock Port</TH>
+<TH>Rise</TH>
+<TH>Fall</TH>
+<TH>Clock Edge</TH>
+<TH>Clock Reference</TH>
 </TR>
 </thead><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[2]</TD>
-<TD >DATA_IO[0]</TD>
-<TD >17.715</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >17.715</TD>
+<TD >_AS_IO</TD>
+<TD >sclk</TD>
+<TD >8.386</TD>
+<TD >8.386</TD>
+<TD >Fall</TD>
+<TD >sclk</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[2]</TD>
-<TD >DATA_IO[1]</TD>
-<TD >17.928</TD>
-<TD >17.206</TD>
-<TD >17.206</TD>
-<TD >17.928</TD>
+<TD >_DS_IO</TD>
+<TD >sclk</TD>
+<TD >9.865</TD>
+<TD >9.865</TD>
+<TD >Fall</TD>
+<TD >sclk</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[2]</TD>
-<TD >DATA_IO[2]</TD>
-<TD >18.410</TD>
-<TD >18.410</TD>
-<TD >18.410</TD>
-<TD >18.410</TD>
+<TD >_DSACK_IO[*]</TD>
+<TD >sclk</TD>
+<TD >9.462</TD>
+<TD >9.462</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[2]</TD>
-<TD >DATA_IO[4]</TD>
-<TD >17.485</TD>
-<TD >17.816</TD>
-<TD >17.816</TD>
-<TD >17.485</TD>
+<TD >&nbsp;_DSACK_IO[0]</TD>
+<TD >sclk</TD>
+<TD >11.416</TD>
+<TD >11.416</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[2]</TD>
-<TD >DATA_IO[5]</TD>
-<TD >18.179</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >18.179</TD>
+<TD >&nbsp;_DSACK_IO[1]</TD>
+<TD >sclk</TD>
+<TD >9.462</TD>
+<TD >9.462</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[2]</TD>
-<TD >DATA_IO[6]</TD>
-<TD >17.693</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >17.693</TD>
+<TD >BR</TD>
+<TD >sclk</TD>
+<TD >14.639</TD>
+<TD >14.639</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[2]</TD>
-<TD >DATA_IO[7]</TD>
-<TD >18.006</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >18.006</TD>
+<TD >DATA_IO[*]</TD>
+<TD >sclk</TD>
+<TD >16.966</TD>
+<TD >16.966</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[2]</TD>
-<TD >DATA_IO[8]</TD>
-<TD >&nbsp;</TD>
-<TD >17.849</TD>
-<TD >17.849</TD>
-<TD >&nbsp;</TD>
+<TD >&nbsp;DATA_IO[0]</TD>
+<TD >sclk</TD>
+<TD >20.302</TD>
+<TD >20.302</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[2]</TD>
-<TD >DATA_OE_</TD>
-<TD >13.009</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >13.009</TD>
+<TD >&nbsp;DATA_IO[1]</TD>
+<TD >sclk</TD>
+<TD >20.527</TD>
+<TD >20.527</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[3]</TD>
-<TD >DATA_IO[0]</TD>
-<TD >18.287</TD>
-<TD >19.195</TD>
-<TD >19.195</TD>
-<TD >18.287</TD>
+<TD >&nbsp;DATA_IO[2]</TD>
+<TD >sclk</TD>
+<TD >19.766</TD>
+<TD >19.766</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[3]</TD>
-<TD >DATA_IO[1]</TD>
-<TD >18.500</TD>
-<TD >19.408</TD>
-<TD >19.408</TD>
-<TD >18.500</TD>
+<TD >&nbsp;DATA_IO[3]</TD>
+<TD >sclk</TD>
+<TD >18.628</TD>
+<TD >18.628</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[3]</TD>
-<TD >DATA_IO[2]</TD>
-<TD >19.890</TD>
-<TD >19.404</TD>
-<TD >19.404</TD>
-<TD >19.890</TD>
+<TD >&nbsp;DATA_IO[4]</TD>
+<TD >sclk</TD>
+<TD >19.541</TD>
+<TD >19.541</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[3]</TD>
-<TD >DATA_IO[4]</TD>
-<TD >18.057</TD>
-<TD >18.965</TD>
-<TD >18.965</TD>
-<TD >18.057</TD>
+<TD >&nbsp;DATA_IO[5]</TD>
+<TD >sclk</TD>
+<TD >20.127</TD>
+<TD >20.127</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[3]</TD>
-<TD >DATA_IO[5]</TD>
-<TD >18.751</TD>
-<TD >19.659</TD>
-<TD >19.659</TD>
-<TD >18.751</TD>
+<TD >&nbsp;DATA_IO[6]</TD>
+<TD >sclk</TD>
+<TD >20.114</TD>
+<TD >20.114</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[3]</TD>
-<TD >DATA_IO[6]</TD>
-<TD >18.265</TD>
-<TD >19.173</TD>
-<TD >19.173</TD>
-<TD >18.265</TD>
+<TD >&nbsp;DATA_IO[7]</TD>
+<TD >sclk</TD>
+<TD >20.090</TD>
+<TD >20.090</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[3]</TD>
-<TD >DATA_IO[7]</TD>
-<TD >18.578</TD>
-<TD >19.486</TD>
-<TD >19.486</TD>
-<TD >18.578</TD>
+<TD >&nbsp;DATA_IO[8]</TD>
+<TD >sclk</TD>
+<TD >17.624</TD>
+<TD >17.624</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[3]</TD>
-<TD >DATA_IO[8]</TD>
-<TD >19.329</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >19.329</TD>
+<TD >&nbsp;DATA_IO[9]</TD>
+<TD >sclk</TD>
+<TD >18.324</TD>
+<TD >18.324</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[3]</TD>
-<TD >DATA_OE_</TD>
-<TD >14.772</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >14.772</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[3]</TD>
-<TD >PD_PORT[0]</TD>
-<TD >16.352</TD>
-<TD >16.352</TD>
-<TD >16.352</TD>
-<TD >16.352</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[3]</TD>
-<TD >PD_PORT[1]</TD>
-<TD >15.546</TD>
-<TD >15.546</TD>
-<TD >15.546</TD>
-<TD >15.546</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[3]</TD>
-<TD >PD_PORT[2]</TD>
-<TD >15.344</TD>
-<TD >15.344</TD>
-<TD >15.344</TD>
-<TD >15.344</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[3]</TD>
-<TD >PD_PORT[3]</TD>
-<TD >15.533</TD>
-<TD >15.533</TD>
-<TD >15.533</TD>
-<TD >15.533</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[3]</TD>
-<TD >PD_PORT[4]</TD>
-<TD >15.983</TD>
-<TD >15.983</TD>
-<TD >15.983</TD>
-<TD >15.983</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[3]</TD>
-<TD >PD_PORT[5]</TD>
-<TD >15.829</TD>
-<TD >15.829</TD>
-<TD >15.829</TD>
-<TD >15.829</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[3]</TD>
-<TD >PD_PORT[6]</TD>
-<TD >16.172</TD>
-<TD >16.172</TD>
-<TD >16.172</TD>
-<TD >16.172</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[3]</TD>
-<TD >PD_PORT[7]</TD>
-<TD >16.926</TD>
-<TD >16.926</TD>
-<TD >16.926</TD>
-<TD >16.926</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[4]</TD>
-<TD >DATA_IO[0]</TD>
-<TD >17.686</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >17.686</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[4]</TD>
-<TD >DATA_IO[1]</TD>
-<TD >17.899</TD>
-<TD >17.177</TD>
-<TD >17.177</TD>
-<TD >17.899</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[4]</TD>
-<TD >DATA_IO[2]</TD>
-<TD >18.381</TD>
-<TD >18.381</TD>
-<TD >18.381</TD>
-<TD >18.381</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[4]</TD>
-<TD >DATA_IO[4]</TD>
-<TD >17.456</TD>
-<TD >17.787</TD>
-<TD >17.787</TD>
-<TD >17.456</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[4]</TD>
-<TD >DATA_IO[5]</TD>
-<TD >18.150</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >18.150</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[4]</TD>
-<TD >DATA_IO[6]</TD>
-<TD >17.664</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >17.664</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[4]</TD>
-<TD >DATA_IO[7]</TD>
-<TD >17.977</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >17.977</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[4]</TD>
-<TD >DATA_IO[8]</TD>
-<TD >&nbsp;</TD>
-<TD >17.820</TD>
-<TD >17.820</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[4]</TD>
-<TD >DATA_OE_</TD>
-<TD >&nbsp;</TD>
-<TD >13.699</TD>
-<TD >13.699</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[5]</TD>
-<TD >DATA_IO[0]</TD>
-<TD >17.893</TD>
-<TD >17.274</TD>
-<TD >17.274</TD>
-<TD >17.893</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[5]</TD>
-<TD >DATA_IO[1]</TD>
-<TD >18.106</TD>
-<TD >17.384</TD>
-<TD >17.384</TD>
-<TD >18.106</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[5]</TD>
-<TD >DATA_IO[2]</TD>
-<TD >18.391</TD>
-<TD >18.588</TD>
-<TD >18.588</TD>
-<TD >18.391</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[5]</TD>
-<TD >DATA_IO[4]</TD>
-<TD >17.663</TD>
-<TD >17.044</TD>
-<TD >17.044</TD>
-<TD >17.663</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[5]</TD>
-<TD >DATA_IO[5]</TD>
-<TD >18.357</TD>
-<TD >17.738</TD>
-<TD >17.738</TD>
-<TD >18.357</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[5]</TD>
-<TD >DATA_IO[6]</TD>
-<TD >17.871</TD>
-<TD >17.252</TD>
-<TD >17.252</TD>
-<TD >17.871</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[5]</TD>
-<TD >DATA_IO[7]</TD>
-<TD >18.184</TD>
+<TD >&nbsp;DATA_IO[10]</TD>
+<TD >sclk</TD>
 <TD >17.565</TD>
 <TD >17.565</TD>
-<TD >18.184</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[5]</TD>
-<TD >DATA_IO[8]</TD>
-<TD >&nbsp;</TD>
-<TD >18.027</TD>
-<TD >18.027</TD>
-<TD >&nbsp;</TD>
+<TD >&nbsp;DATA_IO[11]</TD>
+<TD >sclk</TD>
+<TD >17.180</TD>
+<TD >17.180</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[5]</TD>
-<TD >DATA_OE_</TD>
-<TD >&nbsp;</TD>
-<TD >13.970</TD>
-<TD >13.970</TD>
-<TD >&nbsp;</TD>
+<TD >&nbsp;DATA_IO[12]</TD>
+<TD >sclk</TD>
+<TD >18.024</TD>
+<TD >18.024</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[6]</TD>
-<TD >DATA_IO[0]</TD>
-<TD >18.981</TD>
-<TD >18.073</TD>
-<TD >18.073</TD>
-<TD >18.981</TD>
+<TD >&nbsp;DATA_IO[13]</TD>
+<TD >sclk</TD>
+<TD >17.276</TD>
+<TD >17.276</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[6]</TD>
-<TD >DATA_IO[1]</TD>
-<TD >19.194</TD>
-<TD >18.286</TD>
-<TD >18.286</TD>
-<TD >19.194</TD>
+<TD >&nbsp;DATA_IO[14]</TD>
+<TD >sclk</TD>
+<TD >17.136</TD>
+<TD >17.136</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[6]</TD>
-<TD >DATA_IO[2]</TD>
-<TD >19.190</TD>
-<TD >19.676</TD>
-<TD >19.676</TD>
-<TD >19.190</TD>
+<TD >&nbsp;DATA_IO[15]</TD>
+<TD >sclk</TD>
+<TD >17.465</TD>
+<TD >17.465</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[6]</TD>
-<TD >DATA_IO[4]</TD>
-<TD >18.751</TD>
-<TD >17.843</TD>
-<TD >17.843</TD>
-<TD >18.751</TD>
+<TD >&nbsp;DATA_IO[16]</TD>
+<TD >sclk</TD>
+<TD >17.841</TD>
+<TD >17.841</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[6]</TD>
-<TD >DATA_IO[5]</TD>
-<TD >19.445</TD>
-<TD >18.537</TD>
-<TD >18.537</TD>
-<TD >19.445</TD>
+<TD >&nbsp;DATA_IO[17]</TD>
+<TD >sclk</TD>
+<TD >17.275</TD>
+<TD >17.275</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[6]</TD>
-<TD >DATA_IO[6]</TD>
-<TD >18.959</TD>
+<TD >&nbsp;DATA_IO[18]</TD>
+<TD >sclk</TD>
+<TD >17.822</TD>
+<TD >17.822</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >&nbsp;DATA_IO[19]</TD>
+<TD >sclk</TD>
+<TD >18.202</TD>
+<TD >18.202</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >&nbsp;DATA_IO[20]</TD>
+<TD >sclk</TD>
+<TD >18.385</TD>
+<TD >18.385</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >&nbsp;DATA_IO[21]</TD>
+<TD >sclk</TD>
+<TD >18.282</TD>
+<TD >18.282</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >&nbsp;DATA_IO[22]</TD>
+<TD >sclk</TD>
 <TD >18.051</TD>
 <TD >18.051</TD>
-<TD >18.959</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[6]</TD>
-<TD >DATA_IO[7]</TD>
-<TD >19.272</TD>
-<TD >18.364</TD>
-<TD >18.364</TD>
-<TD >19.272</TD>
+<TD >&nbsp;DATA_IO[23]</TD>
+<TD >sclk</TD>
+<TD >17.656</TD>
+<TD >17.656</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >ADDR[6]</TD>
-<TD >DATA_IO[8]</TD>
-<TD >&nbsp;</TD>
-<TD >19.115</TD>
-<TD >19.115</TD>
-<TD >&nbsp;</TD>
+<TD >&nbsp;DATA_IO[24]</TD>
+<TD >sclk</TD>
+<TD >17.524</TD>
+<TD >17.524</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >ADDR[6]</TD>
-<TD >DATA_OE_</TD>
-<TD >&nbsp;</TD>
-<TD >14.472</TD>
-<TD >14.472</TD>
-<TD >&nbsp;</TD>
+<TD >&nbsp;DATA_IO[25]</TD>
+<TD >sclk</TD>
+<TD >17.723</TD>
+<TD >17.723</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >DATA_IO[0]</TD>
-<TD >PD_PORT[0]</TD>
-<TD >19.220</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >19.220</TD>
+<TD >&nbsp;DATA_IO[26]</TD>
+<TD >sclk</TD>
+<TD >17.905</TD>
+<TD >17.905</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >DATA_IO[1]</TD>
-<TD >PD_PORT[1]</TD>
-<TD >17.941</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >17.941</TD>
+<TD >&nbsp;DATA_IO[27]</TD>
+<TD >sclk</TD>
+<TD >18.283</TD>
+<TD >18.283</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >DATA_IO[2]</TD>
-<TD >PD_PORT[2]</TD>
-<TD >18.873</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >18.873</TD>
+<TD >&nbsp;DATA_IO[28]</TD>
+<TD >sclk</TD>
+<TD >18.398</TD>
+<TD >18.398</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >DATA_IO[3]</TD>
-<TD >PD_PORT[3]</TD>
-<TD >19.953</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >19.953</TD>
+<TD >&nbsp;DATA_IO[29]</TD>
+<TD >sclk</TD>
+<TD >16.966</TD>
+<TD >16.966</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >DATA_IO[4]</TD>
-<TD >PD_PORT[4]</TD>
-<TD >18.020</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >18.020</TD>
+<TD >&nbsp;DATA_IO[30]</TD>
+<TD >sclk</TD>
+<TD >17.539</TD>
+<TD >17.539</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >DATA_IO[5]</TD>
-<TD >PD_PORT[5]</TD>
-<TD >19.356</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >19.356</TD>
+<TD >&nbsp;DATA_IO[31]</TD>
+<TD >sclk</TD>
+<TD >17.438</TD>
+<TD >17.438</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >DATA_IO[6]</TD>
-<TD >PD_PORT[6]</TD>
-<TD >18.506</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >18.506</TD>
+<TD >OWN</TD>
+<TD >sclk</TD>
+<TD >17.968</TD>
+<TD >17.968</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >DATA_IO[7]</TD>
-<TD >PD_PORT[7]</TD>
-<TD >19.401</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >19.401</TD>
+<TD >PDATA_OE_</TD>
+<TD >sclk</TD>
+<TD >16.134</TD>
+<TD >16.134</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >DATA_IO[16]</TD>
-<TD >PD_PORT[0]</TD>
-<TD >17.553</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >17.553</TD>
+<TD >PD_PORT[*]</TD>
+<TD >sclk</TD>
+<TD >17.306</TD>
+<TD >17.306</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >DATA_IO[17]</TD>
-<TD >PD_PORT[1]</TD>
-<TD >16.308</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >16.308</TD>
+<TD >&nbsp;PD_PORT[0]</TD>
+<TD >sclk</TD>
+<TD >17.900</TD>
+<TD >17.900</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >DATA_IO[18]</TD>
-<TD >PD_PORT[2]</TD>
-<TD >17.957</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >17.957</TD>
+<TD >&nbsp;PD_PORT[1]</TD>
+<TD >sclk</TD>
+<TD >17.321</TD>
+<TD >17.321</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >DATA_IO[19]</TD>
-<TD >PD_PORT[3]</TD>
-<TD >16.518</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >16.518</TD>
+<TD >&nbsp;PD_PORT[2]</TD>
+<TD >sclk</TD>
+<TD >17.316</TD>
+<TD >17.316</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >DATA_IO[20]</TD>
-<TD >PD_PORT[4]</TD>
-<TD >18.122</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >18.122</TD>
+<TD >&nbsp;PD_PORT[3]</TD>
+<TD >sclk</TD>
+<TD >17.306</TD>
+<TD >17.306</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >DATA_IO[21]</TD>
-<TD >PD_PORT[5]</TD>
-<TD >17.992</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >17.992</TD>
+<TD >&nbsp;PD_PORT[4]</TD>
+<TD >sclk</TD>
+<TD >17.961</TD>
+<TD >17.961</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >DATA_IO[22]</TD>
-<TD >PD_PORT[6]</TD>
-<TD >17.595</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >17.595</TD>
+<TD >&nbsp;PD_PORT[5]</TD>
+<TD >sclk</TD>
+<TD >18.355</TD>
+<TD >18.355</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >DATA_IO[23]</TD>
-<TD >PD_PORT[7]</TD>
-<TD >18.787</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >18.787</TD>
+<TD >&nbsp;PD_PORT[6]</TD>
+<TD >sclk</TD>
+<TD >17.673</TD>
+<TD >17.673</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >INTA</TD>
-<TD >_INT</TD>
-<TD >&nbsp;</TD>
-<TD >12.599</TD>
-<TD >12.599</TD>
-<TD >&nbsp;</TD>
+<TD >&nbsp;PD_PORT[7]</TD>
+<TD >sclk</TD>
+<TD >18.351</TD>
+<TD >18.351</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >PD_PORT[0]</TD>
-<TD >DATA_IO[8]</TD>
-<TD >16.429</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >16.429</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >PD_PORT[0]</TD>
-<TD >DATA_IO[24]</TD>
-<TD >16.252</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >16.252</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >PD_PORT[0]</TD>
-<TD >PD_PORT[0]</TD>
-<TD >18.121</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >18.121</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >PD_PORT[1]</TD>
-<TD >DATA_IO[9]</TD>
-<TD >16.663</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >16.663</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >PD_PORT[1]</TD>
-<TD >DATA_IO[25]</TD>
-<TD >17.314</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >17.314</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >PD_PORT[1]</TD>
-<TD >PD_PORT[1]</TD>
-<TD >16.669</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >16.669</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >PD_PORT[2]</TD>
-<TD >DATA_IO[10]</TD>
-<TD >16.873</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >16.873</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >PD_PORT[2]</TD>
-<TD >DATA_IO[26]</TD>
-<TD >17.229</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >17.229</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >PD_PORT[2]</TD>
-<TD >PD_PORT[2]</TD>
-<TD >17.985</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >17.985</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >PD_PORT[3]</TD>
-<TD >DATA_IO[11]</TD>
-<TD >14.897</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >14.897</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >PD_PORT[3]</TD>
-<TD >DATA_IO[27]</TD>
-<TD >16.784</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >16.784</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >PD_PORT[3]</TD>
-<TD >PD_PORT[3]</TD>
-<TD >16.772</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >16.772</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >PD_PORT[4]</TD>
-<TD >DATA_IO[12]</TD>
-<TD >16.252</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >16.252</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >PD_PORT[4]</TD>
-<TD >DATA_IO[28]</TD>
-<TD >16.192</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >16.192</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >PD_PORT[4]</TD>
-<TD >PD_PORT[4]</TD>
-<TD >17.109</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >17.109</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >PD_PORT[5]</TD>
-<TD >DATA_IO[13]</TD>
-<TD >15.901</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >15.901</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >PD_PORT[5]</TD>
-<TD >DATA_IO[29]</TD>
-<TD >17.228</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >17.228</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >PD_PORT[5]</TD>
-<TD >PD_PORT[5]</TD>
-<TD >18.247</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >18.247</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >PD_PORT[6]</TD>
-<TD >DATA_IO[14]</TD>
-<TD >16.115</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >16.115</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >PD_PORT[6]</TD>
-<TD >DATA_IO[30]</TD>
-<TD >16.600</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >16.600</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >PD_PORT[6]</TD>
-<TD >PD_PORT[6]</TD>
-<TD >17.300</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >17.300</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >PD_PORT[7]</TD>
-<TD >DATA_IO[15]</TD>
-<TD >15.836</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >15.836</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >PD_PORT[7]</TD>
-<TD >DATA_IO[31]</TD>
-<TD >15.964</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >15.964</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >PD_PORT[7]</TD>
-<TD >PD_PORT[7]</TD>
-<TD >18.733</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >18.733</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[0]</TD>
-<TD >12.110</TD>
-<TD >16.249</TD>
-<TD >16.249</TD>
-<TD >12.110</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[1]</TD>
-<TD >12.323</TD>
-<TD >16.462</TD>
-<TD >16.462</TD>
-<TD >12.323</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[2]</TD>
-<TD >16.578</TD>
-<TD >13.227</TD>
-<TD >13.227</TD>
-<TD >16.578</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[3]</TD>
-<TD >16.588</TD>
-<TD >16.588</TD>
-<TD >16.588</TD>
-<TD >16.588</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[4]</TD>
-<TD >11.880</TD>
-<TD >16.019</TD>
-<TD >16.019</TD>
-<TD >11.880</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[5]</TD>
-<TD >12.574</TD>
-<TD >16.206</TD>
-<TD >16.206</TD>
-<TD >12.574</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[6]</TD>
-<TD >12.088</TD>
-<TD >15.844</TD>
-<TD >15.844</TD>
-<TD >12.088</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[7]</TD>
-<TD >12.401</TD>
-<TD >16.206</TD>
-<TD >16.206</TD>
-<TD >12.401</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[8]</TD>
-<TD >15.844</TD>
-<TD >15.844</TD>
-<TD >15.844</TD>
-<TD >15.844</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[9]</TD>
-<TD >15.844</TD>
-<TD >15.844</TD>
-<TD >15.844</TD>
-<TD >15.844</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[10]</TD>
-<TD >15.413</TD>
-<TD >15.413</TD>
-<TD >15.413</TD>
-<TD >15.413</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[11]</TD>
-<TD >15.408</TD>
-<TD >15.408</TD>
-<TD >15.408</TD>
-<TD >15.408</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[12]</TD>
-<TD >15.442</TD>
-<TD >15.442</TD>
-<TD >15.442</TD>
-<TD >15.442</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[13]</TD>
-<TD >15.408</TD>
-<TD >15.408</TD>
-<TD >15.408</TD>
-<TD >15.408</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[14]</TD>
-<TD >15.413</TD>
-<TD >15.413</TD>
-<TD >15.413</TD>
-<TD >15.413</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[15]</TD>
-<TD >15.408</TD>
-<TD >15.408</TD>
-<TD >15.408</TD>
-<TD >15.408</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[16]</TD>
-<TD >15.753</TD>
-<TD >14.514</TD>
-<TD >14.514</TD>
-<TD >15.753</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[17]</TD>
-<TD >15.763</TD>
-<TD >14.763</TD>
-<TD >14.763</TD>
-<TD >15.763</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[18]</TD>
-<TD >16.175</TD>
-<TD >14.391</TD>
-<TD >14.391</TD>
-<TD >16.175</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[19]</TD>
-<TD >16.166</TD>
-<TD >15.180</TD>
-<TD >15.180</TD>
-<TD >16.166</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[20]</TD>
-<TD >16.175</TD>
-<TD >15.859</TD>
-<TD >15.859</TD>
-<TD >16.175</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[21]</TD>
-<TD >16.175</TD>
-<TD >14.378</TD>
-<TD >14.378</TD>
-<TD >16.175</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[22]</TD>
-<TD >16.366</TD>
-<TD >14.088</TD>
-<TD >14.088</TD>
-<TD >16.366</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[23]</TD>
-<TD >16.366</TD>
-<TD >14.153</TD>
-<TD >14.153</TD>
-<TD >16.366</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[24]</TD>
-<TD >16.495</TD>
-<TD >16.495</TD>
-<TD >16.495</TD>
-<TD >16.495</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[25]</TD>
-<TD >16.377</TD>
-<TD >16.377</TD>
-<TD >16.377</TD>
-<TD >16.377</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[26]</TD>
-<TD >15.487</TD>
-<TD >15.487</TD>
-<TD >15.487</TD>
-<TD >15.487</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[27]</TD>
-<TD >17.091</TD>
-<TD >17.091</TD>
-<TD >17.091</TD>
-<TD >17.091</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[28]</TD>
-<TD >15.487</TD>
-<TD >15.487</TD>
-<TD >15.487</TD>
-<TD >15.487</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[29]</TD>
-<TD >17.266</TD>
-<TD >17.266</TD>
-<TD >17.266</TD>
-<TD >17.266</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[30]</TD>
-<TD >17.266</TD>
-<TD >17.266</TD>
-<TD >17.266</TD>
-<TD >17.266</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >R_W_IO</TD>
-<TD >DATA_IO[31]</TD>
-<TD >17.276</TD>
-<TD >17.276</TD>
-<TD >17.276</TD>
-<TD >17.276</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >R_W_IO</TD>
-<TD >_LED_RD</TD>
-<TD >&nbsp;</TD>
-<TD >14.024</TD>
-<TD >14.024</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >R_W_IO</TD>
-<TD >_LED_WR</TD>
-<TD >13.705</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >13.705</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_AS_IO</TD>
-<TD >DATA_IO[0]</TD>
-<TD >13.638</TD>
-<TD >12.730</TD>
-<TD >12.730</TD>
-<TD >13.638</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_AS_IO</TD>
-<TD >DATA_IO[1]</TD>
-<TD >13.851</TD>
-<TD >12.943</TD>
-<TD >12.943</TD>
-<TD >13.851</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_AS_IO</TD>
-<TD >DATA_IO[2]</TD>
-<TD >13.847</TD>
-<TD >14.333</TD>
-<TD >14.333</TD>
-<TD >13.847</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_AS_IO</TD>
-<TD >DATA_IO[4]</TD>
-<TD >13.408</TD>
-<TD >12.500</TD>
-<TD >12.500</TD>
-<TD >13.408</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_AS_IO</TD>
-<TD >DATA_IO[5]</TD>
-<TD >14.102</TD>
-<TD >13.194</TD>
-<TD >13.194</TD>
-<TD >14.102</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_AS_IO</TD>
-<TD >DATA_IO[6]</TD>
-<TD >13.616</TD>
-<TD >12.708</TD>
-<TD >12.708</TD>
-<TD >13.616</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_AS_IO</TD>
-<TD >DATA_IO[7]</TD>
-<TD >13.929</TD>
-<TD >13.021</TD>
-<TD >13.021</TD>
-<TD >13.929</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_AS_IO</TD>
-<TD >DATA_IO[8]</TD>
-<TD >&nbsp;</TD>
-<TD >13.772</TD>
-<TD >13.772</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_AS_IO</TD>
-<TD >DATA_OE_</TD>
-<TD >12.580</TD>
-<TD >13.968</TD>
-<TD >13.968</TD>
-<TD >12.580</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_AS_IO</TD>
-<TD >_LED_RD</TD>
-<TD >14.904</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >14.904</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_AS_IO</TD>
-<TD >_LED_WR</TD>
-<TD >14.581</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >14.581</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
 <TD >_BGACK_IO</TD>
-<TD >DATA_OE_</TD>
-<TD >12.186</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >12.186</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_CS</TD>
-<TD >DATA_IO[0]</TD>
-<TD >15.793</TD>
-<TD >15.793</TD>
-<TD >15.793</TD>
-<TD >15.793</TD>
+<TD >sclk</TD>
+<TD >14.867</TD>
+<TD >14.867</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_CS</TD>
-<TD >DATA_IO[1]</TD>
-<TD >15.793</TD>
-<TD >15.793</TD>
-<TD >15.793</TD>
-<TD >15.793</TD>
+<TD >_CSS</TD>
+<TD >sclk</TD>
+<TD >14.838</TD>
+<TD >14.838</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_CS</TD>
-<TD >DATA_IO[2]</TD>
-<TD >15.793</TD>
-<TD >15.793</TD>
-<TD >15.793</TD>
-<TD >15.793</TD>
+<TD >_DACK</TD>
+<TD >sclk</TD>
+<TD >14.475</TD>
+<TD >14.475</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_CS</TD>
-<TD >DATA_IO[3]</TD>
-<TD >15.803</TD>
-<TD >15.803</TD>
-<TD >15.803</TD>
-<TD >15.803</TD>
+<TD >_DMAEN</TD>
+<TD >sclk</TD>
+<TD >17.968</TD>
+<TD >17.968</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_CS</TD>
-<TD >DATA_IO[4]</TD>
-<TD >15.804</TD>
-<TD >15.804</TD>
-<TD >15.804</TD>
-<TD >15.804</TD>
+<TD >_IOR</TD>
+<TD >sclk</TD>
+<TD >16.293</TD>
+<TD >16.293</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_CS</TD>
-<TD >DATA_IO[5]</TD>
-<TD >15.421</TD>
-<TD >15.421</TD>
-<TD >15.421</TD>
-<TD >15.421</TD>
+<TD >_IOW</TD>
+<TD >sclk</TD>
+<TD >15.813</TD>
+<TD >15.813</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_CS</TD>
-<TD >DATA_IO[6]</TD>
-<TD >15.059</TD>
-<TD >15.059</TD>
-<TD >15.059</TD>
-<TD >15.059</TD>
+<TD >_LED_DMA</TD>
+<TD >sclk</TD>
+<TD >18.173</TD>
+<TD >18.173</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_CS</TD>
-<TD >DATA_IO[7]</TD>
-<TD >15.421</TD>
-<TD >15.421</TD>
-<TD >15.421</TD>
-<TD >15.421</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_CS</TD>
-<TD >DATA_IO[8]</TD>
-<TD >15.059</TD>
-<TD >15.059</TD>
-<TD >15.059</TD>
-<TD >15.059</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_CS</TD>
-<TD >DATA_IO[9]</TD>
-<TD >15.059</TD>
-<TD >15.059</TD>
-<TD >15.059</TD>
-<TD >15.059</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_CS</TD>
-<TD >DATA_IO[10]</TD>
-<TD >14.628</TD>
-<TD >14.628</TD>
-<TD >14.628</TD>
-<TD >14.628</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_CS</TD>
-<TD >DATA_IO[11]</TD>
-<TD >14.623</TD>
-<TD >14.623</TD>
-<TD >14.623</TD>
-<TD >14.623</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_CS</TD>
-<TD >DATA_IO[12]</TD>
-<TD >14.657</TD>
-<TD >14.657</TD>
-<TD >14.657</TD>
-<TD >14.657</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_CS</TD>
-<TD >DATA_IO[13]</TD>
-<TD >14.623</TD>
-<TD >14.623</TD>
-<TD >14.623</TD>
-<TD >14.623</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_CS</TD>
-<TD >DATA_IO[14]</TD>
-<TD >14.628</TD>
-<TD >14.628</TD>
-<TD >14.628</TD>
-<TD >14.628</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_CS</TD>
-<TD >DATA_IO[15]</TD>
-<TD >14.623</TD>
-<TD >14.623</TD>
-<TD >14.623</TD>
-<TD >14.623</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_CS</TD>
-<TD >DATA_IO[16]</TD>
-<TD >13.729</TD>
-<TD >14.968</TD>
-<TD >14.968</TD>
-<TD >13.729</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_CS</TD>
-<TD >DATA_IO[17]</TD>
-<TD >13.978</TD>
-<TD >14.978</TD>
-<TD >14.978</TD>
-<TD >13.978</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_CS</TD>
-<TD >DATA_IO[18]</TD>
-<TD >13.606</TD>
-<TD >15.390</TD>
-<TD >15.390</TD>
-<TD >13.606</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_CS</TD>
-<TD >DATA_IO[19]</TD>
-<TD >14.395</TD>
-<TD >15.381</TD>
-<TD >15.381</TD>
-<TD >14.395</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_CS</TD>
-<TD >DATA_IO[20]</TD>
-<TD >15.074</TD>
-<TD >15.390</TD>
-<TD >15.390</TD>
-<TD >15.074</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_CS</TD>
-<TD >DATA_IO[21]</TD>
-<TD >13.593</TD>
-<TD >15.390</TD>
-<TD >15.390</TD>
-<TD >13.593</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_CS</TD>
-<TD >DATA_IO[22]</TD>
-<TD >13.303</TD>
-<TD >15.581</TD>
-<TD >15.581</TD>
-<TD >13.303</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_CS</TD>
-<TD >DATA_IO[23]</TD>
-<TD >13.368</TD>
-<TD >15.581</TD>
-<TD >15.581</TD>
-<TD >13.368</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_CS</TD>
-<TD >DATA_IO[24]</TD>
-<TD >15.710</TD>
-<TD >15.710</TD>
-<TD >15.710</TD>
-<TD >15.710</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_CS</TD>
-<TD >DATA_IO[25]</TD>
-<TD >15.592</TD>
-<TD >15.592</TD>
-<TD >15.592</TD>
-<TD >15.592</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_CS</TD>
-<TD >DATA_IO[26]</TD>
-<TD >14.702</TD>
-<TD >14.702</TD>
-<TD >14.702</TD>
-<TD >14.702</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_CS</TD>
-<TD >DATA_IO[27]</TD>
-<TD >16.306</TD>
-<TD >16.306</TD>
-<TD >16.306</TD>
-<TD >16.306</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_CS</TD>
-<TD >DATA_IO[28]</TD>
-<TD >14.702</TD>
-<TD >14.702</TD>
-<TD >14.702</TD>
-<TD >14.702</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_CS</TD>
-<TD >DATA_IO[29]</TD>
-<TD >16.481</TD>
-<TD >16.481</TD>
-<TD >16.481</TD>
-<TD >16.481</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_CS</TD>
-<TD >DATA_IO[30]</TD>
-<TD >16.481</TD>
-<TD >16.481</TD>
-<TD >16.481</TD>
-<TD >16.481</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_CS</TD>
-<TD >DATA_IO[31]</TD>
-<TD >16.491</TD>
-<TD >16.491</TD>
-<TD >16.491</TD>
-<TD >16.491</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_CS</TD>
-<TD >DATA_OE_</TD>
-<TD >12.756</TD>
-<TD >12.794</TD>
-<TD >12.794</TD>
-<TD >12.756</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_CS</TD>
 <TD >_LED_RD</TD>
-<TD >14.041</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >14.041</TD>
+<TD >sclk</TD>
+<TD >19.718</TD>
+<TD >19.718</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_CS</TD>
 <TD >_LED_WR</TD>
-<TD >13.718</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-<TD >13.718</TD>
+<TD >sclk</TD>
+<TD >19.769</TD>
+<TD >19.769</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[0]</TD>
-<TD >16.210</TD>
-<TD >16.210</TD>
-<TD >16.210</TD>
-<TD >16.210</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[1]</TD>
-<TD >16.210</TD>
-<TD >16.210</TD>
-<TD >16.210</TD>
-<TD >16.210</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[2]</TD>
-<TD >16.210</TD>
-<TD >16.210</TD>
-<TD >16.210</TD>
-<TD >16.210</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[3]</TD>
-<TD >16.220</TD>
-<TD >16.220</TD>
-<TD >16.220</TD>
-<TD >16.220</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[4]</TD>
-<TD >16.221</TD>
-<TD >16.221</TD>
-<TD >16.221</TD>
-<TD >16.221</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[5]</TD>
-<TD >15.838</TD>
-<TD >15.838</TD>
-<TD >15.838</TD>
-<TD >15.838</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[6]</TD>
-<TD >15.476</TD>
-<TD >15.476</TD>
-<TD >15.476</TD>
-<TD >15.476</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[7]</TD>
-<TD >15.838</TD>
-<TD >15.838</TD>
-<TD >15.838</TD>
-<TD >15.838</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[8]</TD>
-<TD >15.476</TD>
-<TD >15.476</TD>
-<TD >15.476</TD>
-<TD >15.476</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[9]</TD>
-<TD >15.476</TD>
-<TD >15.476</TD>
-<TD >15.476</TD>
-<TD >15.476</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[10]</TD>
-<TD >15.045</TD>
-<TD >15.045</TD>
-<TD >15.045</TD>
-<TD >15.045</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[11]</TD>
-<TD >15.040</TD>
-<TD >15.040</TD>
-<TD >15.040</TD>
-<TD >15.040</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[12]</TD>
-<TD >15.074</TD>
-<TD >15.074</TD>
-<TD >15.074</TD>
-<TD >15.074</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[13]</TD>
-<TD >15.040</TD>
-<TD >15.040</TD>
-<TD >15.040</TD>
-<TD >15.040</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[14]</TD>
-<TD >15.045</TD>
-<TD >15.045</TD>
-<TD >15.045</TD>
-<TD >15.045</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[15]</TD>
-<TD >15.040</TD>
-<TD >15.040</TD>
-<TD >15.040</TD>
-<TD >15.040</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[16]</TD>
-<TD >14.146</TD>
-<TD >15.385</TD>
-<TD >15.385</TD>
-<TD >14.146</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[17]</TD>
-<TD >14.395</TD>
-<TD >15.395</TD>
-<TD >15.395</TD>
-<TD >14.395</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[18]</TD>
-<TD >14.023</TD>
-<TD >15.807</TD>
-<TD >15.807</TD>
-<TD >14.023</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[19]</TD>
-<TD >14.812</TD>
-<TD >15.798</TD>
-<TD >15.798</TD>
-<TD >14.812</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[20]</TD>
-<TD >15.491</TD>
-<TD >15.807</TD>
-<TD >15.807</TD>
-<TD >15.491</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[21]</TD>
-<TD >14.010</TD>
-<TD >15.807</TD>
-<TD >15.807</TD>
-<TD >14.010</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[22]</TD>
-<TD >13.720</TD>
-<TD >15.998</TD>
-<TD >15.998</TD>
-<TD >13.720</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[23]</TD>
-<TD >13.785</TD>
-<TD >15.998</TD>
-<TD >15.998</TD>
-<TD >13.785</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[24]</TD>
-<TD >16.127</TD>
-<TD >16.127</TD>
-<TD >16.127</TD>
-<TD >16.127</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[25]</TD>
-<TD >16.009</TD>
-<TD >16.009</TD>
-<TD >16.009</TD>
-<TD >16.009</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[26]</TD>
-<TD >15.119</TD>
-<TD >15.119</TD>
-<TD >15.119</TD>
-<TD >15.119</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[27]</TD>
-<TD >16.723</TD>
-<TD >16.723</TD>
-<TD >16.723</TD>
-<TD >16.723</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[28]</TD>
-<TD >15.119</TD>
-<TD >15.119</TD>
-<TD >15.119</TD>
-<TD >15.119</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[29]</TD>
-<TD >16.898</TD>
-<TD >16.898</TD>
-<TD >16.898</TD>
-<TD >16.898</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[30]</TD>
-<TD >16.898</TD>
-<TD >16.898</TD>
-<TD >16.898</TD>
-<TD >16.898</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >_DS_IO</TD>
-<TD >DATA_IO[31]</TD>
-<TD >16.908</TD>
-<TD >16.908</TD>
-<TD >16.908</TD>
-<TD >16.908</TD>
+<TD >_SIZ1</TD>
+<TD >sclk</TD>
+<TD >15.879</TD>
+<TD >15.879</TD>
+<TD >Rise</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody></TABLE>
 

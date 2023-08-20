@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <HTML><HEAD>
-<TITLE>Input Pins</TITLE>
+<TITLE>Fitter Resource Usage Summary</TITLE>
 
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/base.css">
@@ -18,270 +18,168 @@
 <BODY>
 <TABLE>
 <thead><TR  bgcolor="#BFBFBF">
-<TH>Name</TH>
-<TH>Pin #</TH>
-<TH>I/O Bank</TH>
-<TH>X coordinate</TH>
-<TH>Y coordinate</TH>
-<TH>Cell number</TH>
-<TH>Combinational Fan-Out</TH>
-<TH>Registered Fan-Out</TH>
-<TH>Global</TH>
-<TH>Input Register</TH>
-<TH>Power Up High</TH>
-<TH>PCI I/O Enabled</TH>
-<TH>Bus Hold</TH>
-<TH>Weak Pull Up</TH>
-<TH>I/O Standard</TH>
-<TH>Termination</TH>
-<TH>Location assigned by</TH>
+<TH>Resource</TH>
+<TH>Usage</TH>
 </TR>
 </thead><tbody><TR >
-<TD >ADDR[2]</TD>
-<TD >97</TD>
-<TD >3</TD>
-<TD >28</TD>
-<TD >9</TD>
-<TD >0</TD>
-<TD >8</TD>
-<TD >0</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >Off</TD>
-<TD >3.3-V LVTTL</TD>
-<TD >Off</TD>
-<TD >User</TD>
+<TD >Total logic elements</TD>
+<TD >774 / 4,608 ( 17 % )</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >ADDR[3]</TD>
-<TD >100</TD>
-<TD >3</TD>
-<TD >28</TD>
-<TD >11</TD>
-<TD >1</TD>
-<TD >11</TD>
-<TD >0</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >Off</TD>
-<TD >3.3-V LVTTL</TD>
-<TD >Off</TD>
-<TD >User</TD>
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;-- Combinational with no register</TD>
+<TD >347</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >ADDR[4]</TD>
-<TD >93</TD>
-<TD >3</TD>
-<TD >28</TD>
-<TD >8</TD>
-<TD >0</TD>
-<TD >8</TD>
-<TD >0</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >Off</TD>
-<TD >3.3-V LVTTL</TD>
-<TD >Off</TD>
-<TD >User</TD>
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;-- Register only</TD>
+<TD >147</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >ADDR[5]</TD>
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;-- Combinational with a register</TD>
+<TD >280</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Logic element usage by number of LUT inputs</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;-- 4 input functions</TD>
+<TD >442</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;-- 3 input functions</TD>
+<TD >116</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;-- <=2 input functions</TD>
+<TD >69</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;-- Register only</TD>
+<TD >147</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Logic elements by mode</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;-- normal mode</TD>
+<TD >627</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;-- arithmetic mode</TD>
+<TD >0</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Total registers*</TD>
+<TD >427 / 4,851 ( 9 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;-- Dedicated logic registers</TD>
+<TD >427 / 4,608 ( 9 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;-- I/O registers</TD>
+<TD >0 / 243 ( 0 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Total LABs:&nbsp; partially or completely used</TD>
+<TD >59 / 288 ( 20 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Virtual pins</TD>
+<TD >0</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >I/O pins</TD>
+<TD >81 / 89 ( 91 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;-- Clock pins </TD>
+<TD >3 / 4 ( 75 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Global signals </TD>
+<TD >8</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >M4Ks</TD>
+<TD >0 / 26 ( 0 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Total block memory bits</TD>
+<TD >0 / 119,808 ( 0 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Total block memory implementation bits</TD>
+<TD >0 / 119,808 ( 0 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Embedded Multiplier 9-bit elements</TD>
+<TD >0 / 26 ( 0 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >PLLs</TD>
+<TD >1 / 2 ( 50 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Global clocks</TD>
+<TD >8 / 8 ( 100 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >JTAGs</TD>
+<TD >0 / 1 ( 0 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >ASMI blocks</TD>
+<TD >0 / 1 ( 0 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >CRC blocks</TD>
+<TD >0 / 1 ( 0 % )</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Average interconnect usage (total/H/V)</TD>
+<TD >6% / 6% / 6%</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Peak interconnect usage (total/H/V)</TD>
+<TD >8% / 8% / 8%</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Maximum fan-out</TD>
 <TD >99</TD>
-<TD >3</TD>
-<TD >28</TD>
-<TD >11</TD>
-<TD >2</TD>
-<TD >7</TD>
-<TD >0</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >Off</TD>
-<TD >3.3-V LVTTL</TD>
-<TD >Off</TD>
-<TD >User</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >ADDR[6]</TD>
-<TD >96</TD>
-<TD >3</TD>
-<TD >28</TD>
-<TD >9</TD>
-<TD >1</TD>
-<TD >5</TD>
-<TD >0</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >Off</TD>
-<TD >3.3-V LVTTL</TD>
-<TD >Off</TD>
-<TD >User</TD>
+<TD >Highest non-global fan-out</TD>
+<TD >99</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >INTA</TD>
-<TD >94</TD>
-<TD >3</TD>
-<TD >28</TD>
-<TD >9</TD>
-<TD >2</TD>
-<TD >2</TD>
-<TD >0</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >Off</TD>
-<TD >3.3-V LVTTL</TD>
-<TD >Off</TD>
-<TD >User</TD>
+<TD >Total fan-out</TD>
+<TD >3633</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >SCLK</TD>
-<TD >17</TD>
-<TD >1</TD>
-<TD >0</TD>
-<TD >6</TD>
-<TD >0</TD>
-<TD >5</TD>
-<TD >0</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >Off</TD>
-<TD >3.3-V LVTTL</TD>
-<TD >Off</TD>
-<TD >User</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_BERR</TD>
-<TD >53</TD>
-<TD >4</TD>
-<TD >9</TD>
-<TD >0</TD>
-<TD >1</TD>
-<TD >7</TD>
-<TD >0</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >Off</TD>
-<TD >3.3-V LVTTL</TD>
-<TD >Off</TD>
-<TD >User</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_BG</TD>
-<TD >101</TD>
-<TD >3</TD>
-<TD >28</TD>
-<TD >11</TD>
-<TD >0</TD>
-<TD >1</TD>
-<TD >0</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >Off</TD>
-<TD >3.3-V LVTTL</TD>
-<TD >Off</TD>
-<TD >User</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_CS</TD>
-<TD >92</TD>
-<TD >3</TD>
-<TD >28</TD>
-<TD >8</TD>
-<TD >1</TD>
-<TD >10</TD>
-<TD >0</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >Off</TD>
-<TD >3.3-V LVTTL</TD>
-<TD >Off</TD>
-<TD >User</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_DREQ</TD>
-<TD >88</TD>
-<TD >3</TD>
-<TD >28</TD>
-<TD >7</TD>
-<TD >3</TD>
-<TD >1</TD>
-<TD >0</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >Off</TD>
-<TD >3.3-V LVTTL</TD>
-<TD >Off</TD>
-<TD >User</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_RST</TD>
-<TD >73</TD>
-<TD >3</TD>
-<TD >28</TD>
-<TD >1</TD>
-<TD >1</TD>
-<TD >1</TD>
-<TD >0</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >Off</TD>
-<TD >3.3-V LVTTL</TD>
-<TD >Off</TD>
-<TD >User</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_STERM</TD>
-<TD >91</TD>
-<TD >3</TD>
-<TD >28</TD>
-<TD >7</TD>
-<TD >0</TD>
-<TD >25</TD>
-<TD >0</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >no</TD>
-<TD >Off</TD>
-<TD >3.3-V LVTTL</TD>
-<TD >Off</TD>
-<TD >User</TD>
+<TD >Average fan-out</TD>
+<TD >2.99</TD>
 </TR>
 </tbody></TABLE>
 

@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <HTML><HEAD>
-<TITLE>Inverted Register Statistics</TITLE>
+<TITLE>Registers Removed During Synthesis</TITLE>
 
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/base.css">
@@ -18,43 +18,43 @@
 <BODY>
 <TABLE>
 <thead><TR  bgcolor="#BFBFBF">
-<TH>Inverted Register</TH>
-<TH>Fan out</TH>
+<TH>Register name</TH>
+<TH>Reason for Removal</TH>
 </TR>
 </thead><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|BGRANT_</TD>
-<TD >4</TD>
+<TD >CPU_SM:u_CPU_SM|CCRESET_</TD>
+<TD >Merged with SCSI_SM:u_SCSI_SM|CRESET_</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|nCYCLEDONE</TD>
-<TD >4</TD>
+<TD >registers:u_registers|registers_istr:u_registers_istr|E_INT</TD>
+<TD >Merged with registers:u_registers|registers_istr:u_registers_istr|INT_F</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|DSACK_LATCHED_[0]</TD>
-<TD >7</TD>
+<TD >registers:u_registers|registers_istr:u_registers_istr|INTS</TD>
+<TD >Merged with registers:u_registers|registers_istr:u_registers_istr|INT_F</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|DSACK_LATCHED_[1]</TD>
-<TD >7</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg~4</TD>
+<TD >Lost fanout</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|CDREQ_</TD>
-<TD >4</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg~5</TD>
+<TD >Lost fanout</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|CDSACK_</TD>
-<TD >5</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg~6</TD>
+<TD >Lost fanout</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >registers:u_registers|registers_term:u_registers_term|REG_DSK_</TD>
-<TD >1</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg~7</TD>
+<TD >Lost fanout</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >registers:u_registers|registers_istr:u_registers_istr|FE</TD>
-<TD >1</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg~8</TD>
+<TD >Lost fanout</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >Total number of inverted registers = 8</TD>
+<TD >Total Number of Removed Registers = 8</TD>
 <TD >&nbsp;</TD>
 </TR>
 </tbody></TABLE>

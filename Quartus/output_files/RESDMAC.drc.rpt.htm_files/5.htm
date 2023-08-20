@@ -27,27 +27,31 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;Structure 1</TD>
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~2</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOFULL</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;Structure 1</TD>
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~_emulated</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Structure 1</TD>
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY_RST~0</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Structure 1</TD>
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~0</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Structure 1</TD>
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~1</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOFULL_RST~0</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >Rule A102: Register output should not drive its own control signal directly or through combinational logic - Structure 2</TD>
 <TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Structure 2</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[6]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Structure 2</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[7]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Structure 2</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP_RST</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Structure 2</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP_RST~0</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;Structure 2</TD>
@@ -75,23 +79,7 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;Structure 2</TD>
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP_RST</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Structure 2</TD>
 <TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP_RST~1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Structure 2</TD>
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP_RST~0</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Structure 2</TD>
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[6]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Structure 2</TD>
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[7]</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >Rule A102: Register output should not drive its own control signal directly or through combinational logic - Structure 3</TD>
@@ -99,19 +87,31 @@
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;Structure 3</TD>
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOFULL</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~2</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;Structure 3</TD>
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOFULL_RST~0</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY_RST~0</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Structure 3</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~_emulated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Structure 3</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~0</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Structure 3</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~1</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >Rule C101: Gated clock should be implemented according to the Altera standard scheme</TD>
-<TD >rtl~0</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|SET_DSACK</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >registers:u_registers|registers_term:u_registers_term|REG_DSK_</TD>
+<TD >SCSI_SM:u_SCSI_SM|nLS2CPU</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >Rule C101: Gated clock should be implemented according to the Altera standard scheme</TD>
@@ -120,6 +120,238 @@
 </tbody><tbody><TR >
 <TD >&nbsp;Gated clock destination node(s) list</TD>
 <TD >registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[8]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule C101: Gated clock should be implemented according to the Altera standard scheme</TD>
+<TD >INCNO</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[0]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule C101: Gated clock should be implemented according to the Altera standard scheme</TD>
+<TD >INCNI</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr|COUNT[0]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr|COUNT[2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr|COUNT[1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule C101: Gated clock should be implemented according to the Altera standard scheme</TD>
+<TD >fifo:int_fifo|fifo_write_strobes:u_write_strobes|UMWS</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[7][17]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[6][17]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[5][17]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[4][17]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[3][17]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[0][17]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[2][17]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[1][17]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[3][18]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[0][18]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule C101: Gated clock should be implemented according to the Altera standard scheme</TD>
+<TD >registers:u_registers|addr_decoder:u_addr_decoder|ACR_WR</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >registers:u_registers|A1</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule C101: Gated clock should be implemented according to the Altera standard scheme</TD>
+<TD >registers:u_registers|addr_decoder:u_addr_decoder|FLUSH_</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >registers:u_registers|FLUSHFIFO</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule C101: Gated clock should be implemented according to the Altera standard scheme</TD>
+<TD >fifo:int_fifo|fifo_write_strobes:u_write_strobes|LLWS</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[4][1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[5][1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[6][1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[7][1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[1][1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[0][1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[2][1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[3][1]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[3][2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[1][2]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule C101: Gated clock should be implemented according to the Altera standard scheme</TD>
+<TD >fifo:int_fifo|fifo_write_strobes:u_write_strobes|LMWS</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[3][9]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[0][9]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[2][9]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[1][9]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[7][9]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[5][9]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[4][9]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[6][9]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[3][10]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[0][10]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule C101: Gated clock should be implemented according to the Altera standard scheme</TD>
+<TD >fifo:int_fifo|fifo_write_strobes:u_write_strobes|UUWS</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[3][25]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[1][25]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[0][25]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[2][25]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[6][25]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[7][25]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[4][25]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[5][25]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[3][26]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|BUFFER[0][26]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule C101: Gated clock should be implemented according to the Altera standard scheme</TD>
+<TD >fifo:int_fifo|fifo_byte_ptr:u_byte_ptr|BO1_CLK</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >fifo:int_fifo|fifo_byte_ptr:u_byte_ptr|BO1</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >Rule C101: Gated clock should be implemented according to the Altera standard scheme</TD>
@@ -143,215 +375,11 @@
 </TR>
 </tbody><tbody><TR >
 <TD >Rule C101: Gated clock should be implemented according to the Altera standard scheme</TD>
-<TD >INCNO</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[2]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[1]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[0]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Rule C101: Gated clock should be implemented according to the Altera standard scheme</TD>
-<TD >INCNI</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr|COUNT[1]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr|COUNT[0]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr|COUNT[2]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Rule C101: Gated clock should be implemented according to the Altera standard scheme</TD>
-<TD >fifo:int_fifo|fifo_write_strobes:u_write_strobes|UUWS</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[7][25]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[5][25]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[4][25]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[6][25]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[0][25]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[2][25]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[1][25]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[3][25]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[1][28]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[3][28]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Rule C101: Gated clock should be implemented according to the Altera standard scheme</TD>
-<TD >fifo:int_fifo|fifo_write_strobes:u_write_strobes|LMWS</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[7][9]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[6][9]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[5][9]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[4][9]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[0][9]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[2][9]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[1][9]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[3][9]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[2][12]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[0][12]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Rule C101: Gated clock should be implemented according to the Altera standard scheme</TD>
-<TD >fifo:int_fifo|fifo_write_strobes:u_write_strobes|UMWS</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[7][17]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[5][17]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[4][17]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[6][17]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[2][17]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[0][17]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[1][17]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[3][17]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[2][20]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[0][20]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Rule C101: Gated clock should be implemented according to the Altera standard scheme</TD>
-<TD >fifo:int_fifo|fifo_write_strobes:u_write_strobes|LLWS</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[7][1]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[6][1]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[4][1]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[5][1]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[3][1]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[1][1]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[2][1]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[0][1]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[7][4]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|BUFFER[4][4]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Rule C101: Gated clock should be implemented according to the Altera standard scheme</TD>
 <TD >registers:u_registers|addr_decoder:u_addr_decoder|CONTR_WR</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;Gated clock destination node(s) list</TD>
+<TD >registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[2]</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >&nbsp;Gated clock destination node(s) list</TD>
@@ -360,42 +388,6 @@
 </tbody><tbody><TR >
 <TD >&nbsp;Gated clock destination node(s) list</TD>
 <TD >registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[4]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[2]</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Rule C101: Gated clock should be implemented according to the Altera standard scheme</TD>
-<TD >registers:u_registers|addr_decoder:u_addr_decoder|ACR_WR</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >registers:u_registers|A1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Rule C101: Gated clock should be implemented according to the Altera standard scheme</TD>
-<TD >registers:u_registers|addr_decoder:u_addr_decoder|FLUSH_</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >registers:u_registers|FLUSHFIFO</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Rule C101: Gated clock should be implemented according to the Altera standard scheme</TD>
-<TD >fifo:int_fifo|fifo_byte_ptr:u_byte_ptr|BO1_CLK</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >fifo:int_fifo|fifo_byte_ptr:u_byte_ptr|BO1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Rule C101: Gated clock should be implemented according to the Altera standard scheme</TD>
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|SET_DSACK</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;Gated clock destination node(s) list</TD>
-<TD >SCSI_SM:u_SCSI_SM|nLS2CPU</TD>
 </TR>
 </tbody></TABLE>
 

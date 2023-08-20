@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <HTML><HEAD>
-<TITLE>Pad To Core Delay Chain Fanout</TITLE>
+<TITLE>Delay Chain Summary</TITLE>
 
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/base.css">
@@ -18,1329 +18,660 @@
 <BODY>
 <TABLE>
 <thead><TR  bgcolor="#BFBFBF">
-<TH>Source Pin / Fanout</TH>
-<TH>Pad To Core Index</TH>
-<TH>Setting</TH>
+<TH>Name</TH>
+<TH>Pin Type</TH>
+<TH>Pad to Core 0</TH>
+<TH>Pad to Core 1</TH>
+<TH>Pad to Input Register</TH>
+<TH>TCO</TH>
 </TR>
 </thead><tbody><TR >
 <TD >PD_PORT[8]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
+<TD >Bidir</TD>
+<TD >(0) 170 ps</TD>
+<TD >(0) 170 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >PD_PORT[9]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
+<TD >Bidir</TD>
+<TD >(0) 171 ps</TD>
+<TD >(0) 171 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >PD_PORT[10]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
+<TD >Bidir</TD>
+<TD >(0) 171 ps</TD>
+<TD >(0) 171 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >PD_PORT[11]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
+<TD >Bidir</TD>
+<TD >(0) 171 ps</TD>
+<TD >(0) 171 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >PD_PORT[12]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
+<TD >Bidir</TD>
+<TD >(0) 171 ps</TD>
+<TD >(0) 171 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >PD_PORT[13]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
+<TD >Bidir</TD>
+<TD >(0) 170 ps</TD>
+<TD >(0) 170 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >PD_PORT[14]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
+<TD >Bidir</TD>
+<TD >(0) 170 ps</TD>
+<TD >(0) 170 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >PD_PORT[15]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
+<TD >Bidir</TD>
+<TD >(0) 171 ps</TD>
+<TD >(0) 171 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >R_W_IO</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- _LED_RD~0</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- _LED_WR~0</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|RE~1</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|WE~4</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|NEXT_STATE[3]~4</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|NEXT_STATE[1]~10</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|NEXT_STATE[4]~18</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|CONTR_WR</TD>
-<TD >1</TD>
-<TD >0</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|DOEL_~0</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DATA_IO[0]~69</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DATA_IO[1]~71</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|CONTR_RD_~1</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DATA_IO[4]~78</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|S2CPU~0</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|ISTR_RD_</TD>
-<TD >1</TD>
-<TD >0</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|ACR_WR</TD>
-<TD >1</TD>
-<TD >0</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DATA_IO[2]~143</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(0) 170 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >_AS_IO</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|ADDR_VALID~0</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|DSACK_LATCHED_[0]</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|DSACK_LATCHED_[1]</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|h_0C~0</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DATA_OE_~1</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|aCYCLEDONE_~0</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|WDREGREQ</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|SP_DMA~0</TD>
-<TD >0</TD>
-<TD >0</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- SCSI_SM:u_SCSI_SM|nLS2CPU</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|ST_DMA~0</TD>
-<TD >0</TD>
-<TD >0</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_term:u_registers_term|CYCLE_END~0</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[2]</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[1]</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[0]</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[1]~1</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[0]~2</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(0) 170 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >_DS_IO</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|DOEL_~0</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >_DSACK_IO[0]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DSK0_IN_~0</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|SIZE1_X~5</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|cpudff5:u_cpudff5|cpudff5_d~1</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|aCYCLEDONE_~0</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|FF~0</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >_DSACK_IO[1]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|cpudff5:u_cpudff5|cpudff5_d~0</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DSK1_IN_</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|aCYCLEDONE_~1</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2523 ps</TD>
+<TD >(6) 2523 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[0]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[0]~3</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[1]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[1]</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[1]~7</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[2]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[2]</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[2]~11</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[3]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[3]~15</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[4]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[4]~19</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[4]~feeder</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[5]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[5]~23</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[6]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[6]~27</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[7]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[7]~31</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[8]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[8]~33</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[9]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[9]~36</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[10]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[10]~39</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[11]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[11]~42</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[12]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[12]~45</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[13]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[13]~48</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[14]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[14]~51</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[15]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[15]~54</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[16]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[16]~0</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[0]</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[17]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[17]~5</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[1]</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[18]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[18]~9</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[2]</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[19]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[19]~13</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[3]</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[20]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[20]~17</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[4]</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[21]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[21]~21</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[5]</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[22]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[22]~25</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[6]</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2523 ps</TD>
+<TD >(6) 2523 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[23]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[23]~29</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[7]</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2523 ps</TD>
+<TD >(6) 2523 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[24]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[8]</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[24]~35</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2523 ps</TD>
+<TD >(6) 2523 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[25]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|A1</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- fifo:int_fifo|fifo_byte_ptr:u_byte_ptr|MUXZ~0</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[9]</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[25]~38</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2523 ps</TD>
+<TD >(6) 2523 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[26]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[10]</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[26]~41</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[27]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[11]</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[27]~44</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[28]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[12]</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[28]~47</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[29]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[13]</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[29]~50</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2523 ps</TD>
+<TD >(6) 2523 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[30]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[14]</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[30]~53</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2523 ps</TD>
+<TD >(6) 2523 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >DATA_IO[31]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[15]</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[31]~56</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2523 ps</TD>
+<TD >(6) 2523 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >_BGACK_IO</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DATA_OE_~1</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|aCYCLEDONE_~1</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2523 ps</TD>
+<TD >(6) 2523 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >PD_PORT[0]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[16]~0</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[0]~4</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[8]~34</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[24]~35</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[0]~0</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >PD_PORT[1]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[17]~5</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[1]~8</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[9]~37</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[25]~38</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[1]~1</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >PD_PORT[2]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[18]~9</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[2]~12</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[10]~40</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[26]~41</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[2]~2</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >PD_PORT[3]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[19]~13</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[3]~16</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[11]~43</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[27]~44</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[3]~3</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >PD_PORT[4]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[20]~17</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[4]~20</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[12]~46</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[28]~47</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[4]~4</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >PD_PORT[5]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[21]~21</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[5]~24</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[13]~49</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[29]~50</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[5]~5</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >PD_PORT[6]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[22]~25</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[6]~28</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[14]~52</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[30]~53</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[6]~6</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >PD_PORT[7]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
+<TD >Bidir</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[23]~29</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >INT</TD>
+<TD >Output</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[7]~32</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >_SIZ1</TD>
+<TD >Output</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[15]~55</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >BR</TD>
+<TD >Output</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_input:u_datapath_input|ID[31]~56</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >_DMAEN</TD>
+<TD >Output</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[7]~7</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >_DACK</TD>
+<TD >Output</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >_CS</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
+<TD >_CSS</TD>
+<TD >Output</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|ADDR_VALID~0</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >_IOR</TD>
+<TD >Output</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|h_0C</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >_IOW</TD>
+<TD >Output</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DATA_OE_~1</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >_LED_RD</TD>
+<TD >Output</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|WDREGREQ</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >_LED_WR</TD>
+<TD >Output</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|SP_DMA~0</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >_LED_DMA</TD>
+<TD >Output</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|DOEL_~0</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >OWN</TD>
+<TD >Output</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|ST_DMA~0</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >DATA_OE_</TD>
+<TD >Output</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_term:u_registers_term|CYCLE_END~0</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[1]~1</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[0]~2</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >PDATA_OE_</TD>
+<TD >Output</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >INTA</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
+<TD >Input</TD>
+<TD >(6) 2523 ps</TD>
+<TD >(6) 2523 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_istr:u_registers_istr|INT</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_istr:u_registers_istr|INT_F</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_STERM</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_BERR</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|cpudff5:u_cpudff5|cpudff5_d~0</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DSK0_IN_~0</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|SIZE1_X~5</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DSK1_IN_</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|cpudff5:u_cpudff5|cpudff5_d~1</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|aCYCLEDONE_~0</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|FF~0</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >_CS</TD>
+<TD >Input</TD>
+<TD >(6) 2523 ps</TD>
+<TD >(6) 2523 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >ADDR[2]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|h_0C</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|CONTR_WR</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|CONTR_RD_~0</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|FLUSH_</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|ISTR_RD_~0</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_istr:u_registers_istr|CLR_INT_~0</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|ACR_WR</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|ST_DMA</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Input</TD>
+<TD >(6) 2523 ps</TD>
+<TD >(6) 2523 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >ADDR[4]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|h_0C</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|CONTR_WR</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|CONTR_RD_~0</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|ST_DMA~1</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|ISTR_RD_~0</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_istr:u_registers_istr|CLR_INT_~0</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|ACR_WR</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|ST_DMA</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Input</TD>
+<TD >(6) 2523 ps</TD>
+<TD >(6) 2523 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >ADDR[5]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|h_0C~0</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|CLR_INT~0</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|CONTR_RD_~0</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|ST_DMA~1</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_cntr:u_registers_cntr|CLR_DMAENA~0</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|ISTR_RD_</TD>
-<TD >0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|ST_DMA</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Input</TD>
+<TD >(6) 2523 ps</TD>
+<TD >(6) 2523 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >ADDR[3]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|h_0C~0</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|SP_DMA~0</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector0~5</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector1~2</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector2~2</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector3~2</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector4~2</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector5~2</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector6~2</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector7~2</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|ST_DMA~0</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >Input</TD>
+<TD >(6) 2523 ps</TD>
+<TD >(6) 2523 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >ADDR[6]</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
+<TD >Input</TD>
+<TD >(6) 2523 ps</TD>
+<TD >(6) 2523 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|h_0C~0</TD>
-<TD >1</TD>
-<TD >6</TD>
+<TD >_STERM</TD>
+<TD >Input</TD>
+<TD >(0) 171 ps</TD>
+<TD >(0) 171 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|WDREGREQ</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|SP_DMA~0</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|addr_decoder:u_addr_decoder|ST_DMA~0</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- registers:u_registers|registers_term:u_registers_term|CYCLE_END~0</TD>
-<TD >1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_BG</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CPU_SM:u_CPU_SM|BGRANT_~0</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >_BERR</TD>
+<TD >Input</TD>
+<TD >(6) 2514 ps</TD>
+<TD >(6) 2514 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >_RST</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|pll</TD>
-<TD >0</TD>
-<TD >6</TD>
+<TD >Input</TD>
+<TD >(6) 2523 ps</TD>
+<TD >(6) 2523 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >SCLK</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
+<TD >Input</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >_BG</TD>
+<TD >Input</TD>
+<TD >(6) 2523 ps</TD>
+<TD >(6) 2523 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >_DREQ</TD>
-<TD >&nbsp;</TD>
-<TD >&nbsp;</TD>
+<TD >Input</TD>
+<TD >(0) 171 ps</TD>
+<TD >(0) 171 ps</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody></TABLE>
 

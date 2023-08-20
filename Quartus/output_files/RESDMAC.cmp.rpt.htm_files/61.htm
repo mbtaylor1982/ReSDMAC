@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <HTML><HEAD>
-<TITLE>Non-Global High Fan-Out Signals</TITLE>
+<TITLE>Control Signals</TITLE>
 
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/base.css">
@@ -19,4007 +19,503 @@
 <TABLE>
 <thead><TR  bgcolor="#BFBFBF">
 <TH>Name</TH>
+<TH>Location</TH>
 <TH>Fan-Out</TH>
+<TH>Usage</TH>
+<TH>Global</TH>
+<TH>Global Resource Used</TH>
+<TH>Global Line Name</TH>
+<TH>Enable Signal Source Name</TH>
 </TR>
 </thead><tbody><TR >
-<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[1]</TD>
-<TD >99</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[0]</TD>
-<TD >98</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|S2CPU_o</TD>
-<TD >53</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[0]~67</TD>
-<TD >44</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|STATE[3]</TD>
-<TD >43</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|S2F_o</TD>
-<TD >41</TD>
-</TR>
-</tbody><tbody><TR >
 <TD >CPU_SM:u_CPU_SM|BGACK</TD>
-<TD >39</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|STATE[1]</TD>
-<TD >38</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|STATE[4]</TD>
-<TD >36</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
-<TD >35</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[2]</TD>
-<TD >33</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_locked</TD>
-<TD >33</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Decoder0~7</TD>
-<TD >32</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Decoder0~6</TD>
-<TD >32</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Decoder0~5</TD>
-<TD >32</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Decoder0~4</TD>
-<TD >32</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Decoder0~3</TD>
-<TD >32</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Decoder0~2</TD>
-<TD >32</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Decoder0~1</TD>
-<TD >32</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Decoder0~0</TD>
-<TD >32</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|STATE[2]</TD>
-<TD >32</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|STATE[3]</TD>
-<TD >31</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|STATE[0]</TD>
-<TD >31</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|STATE[4]</TD>
-<TD >30</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|STATE[1]</TD>
-<TD >30</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|nLS2CPU</TD>
-<TD >26</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_STERM</TD>
-<TD >25</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|STATE[2]</TD>
-<TD >25</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|CPU2S_o</TD>
-<TD >22</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|F2CPUL</TD>
-<TD >20</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|STATE[0]</TD>
-<TD >18</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >R_W_IO~0</TD>
-<TD >17</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|BRIDGEIN</TD>
-<TD >17</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DS_O_</TD>
-<TD >17</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~2</TD>
-<TD >17</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_AS_IO~0</TD>
-<TD >16</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|bDIEL</TD>
-<TD >16</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[0]~1</TD>
-<TD >16</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|DIEH</TD>
-<TD >16</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|F2CPUH</TD>
-<TD >16</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|BRIDGEOUT</TD>
-<TD >16</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo_byte_ptr:u_byte_ptr|BO0</TD>
-<TD >14</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|F2S_o</TD>
-<TD >13</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOFULL</TD>
-<TD >12</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo_byte_ptr:u_byte_ptr|BO1</TD>
-<TD >12</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >ADDR[3]</TD>
+<TD >LCFF_X26_Y3_N5</TD>
 <TD >11</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr|COUNT[0]</TD>
-<TD >11</TD>
+<TD >Output enable</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >CPU_SM:u_CPU_SM|DECFIFO</TD>
+<TD >LCFF_X21_Y3_N15</TD>
 <TD >11</TD>
+<TD >Clock</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >CPU_SM:u_CPU_SM|INCFIFO</TD>
+<TD >LCFF_X21_Y3_N31</TD>
 <TD >11</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|nDSACK</TD>
-<TD >11</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|cpudff5:u_cpudff5|cpudff5_d~0</TD>
-<TD >11</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[1]</TD>
-<TD >11</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_CS</TD>
-<TD >10</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr|COUNT[1]</TD>
-<TD >10</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|DIEL</TD>
-<TD >10</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|DATA[15]~0</TD>
-<TD >10</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|DOEL_~0</TD>
-<TD >10</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[9]~66</TD>
-<TD >10</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr|COUNT[2]</TD>
-<TD >9</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[7]~32</TD>
-<TD >9</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[23]~29</TD>
-<TD >9</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[6]~28</TD>
-<TD >9</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[22]~25</TD>
-<TD >9</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[5]~24</TD>
-<TD >9</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[21]~21</TD>
-<TD >9</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[4]~20</TD>
-<TD >9</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[20]~17</TD>
-<TD >9</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[3]~16</TD>
-<TD >9</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[19]~13</TD>
-<TD >9</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[2]~12</TD>
-<TD >9</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[18]~9</TD>
-<TD >9</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[1]~8</TD>
-<TD >9</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[17]~5</TD>
-<TD >9</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[0]~4</TD>
-<TD >9</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[16]~0</TD>
-<TD >9</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E[50]~5</TD>
-<TD >9</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|Equal2~2</TD>
-<TD >9</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E[51]~0</TD>
-<TD >9</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >ADDR[4]</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >ADDR[2]</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[31]~56</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[15]~55</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[30]~53</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[14]~52</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[29]~50</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[13]~49</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[28]~47</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[12]~46</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[27]~44</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[11]~43</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[26]~41</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[10]~40</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[25]~38</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[9]~37</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[24]~35</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[8]~34</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP_RST</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Z[0]~0</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector0~3</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector0~2</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_24dec:u_datapath_24dec|Z2~1</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector0~0</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[8]~87</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E[43]~14</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E[46]~9</TD>
-<TD >8</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >ADDR[5]</TD>
-<TD >7</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_BERR</TD>
-<TD >7</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|Equal2~9</TD>
-<TD >7</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs|E~4</TD>
-<TD >7</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E[56]~6</TD>
-<TD >7</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|DSACK_LATCHED_[1]</TD>
-<TD >7</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|DSACK_LATCHED_[0]</TD>
-<TD >7</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|addr_decoder:u_addr_decoder|ISTR_RD_</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs|E~10</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|LASTWORD~0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E[50]~7</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E[61]~4</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E[46]~2</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|Equal2~4</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|Equal2~3</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DSK0_IN_~0</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|Equal2~1</TD>
-<TD >6</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCLK</TD>
-<TD >5</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >ADDR[6]</TD>
-<TD >5</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PD_PORT[7]~15</TD>
-<TD >5</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PD_PORT[6]~14</TD>
-<TD >5</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PD_PORT[5]~13</TD>
-<TD >5</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PD_PORT[4]~12</TD>
-<TD >5</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PD_PORT[3]~11</TD>
-<TD >5</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PD_PORT[2]~10</TD>
-<TD >5</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PD_PORT[1]~9</TD>
-<TD >5</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PD_PORT[0]~8</TD>
-<TD >5</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_DSACK_IO[0]~0</TD>
-<TD >5</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|addr_decoder:u_addr_decoder|CONTR_RD_~0</TD>
-<TD >5</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|CDSACK_</TD>
-<TD >5</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E[57]~21</TD>
-<TD >5</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|PLHW_d~0</TD>
-<TD >5</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_24dec:u_datapath_24dec|Z2~0</TD>
-<TD >5</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|Equal2~5</TD>
-<TD >5</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E[62]~3</TD>
-<TD >5</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[25]~27</TD>
-<TD >4</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[0]</TD>
-<TD >4</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|PLLW_d~1</TD>
-<TD >4</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[0]~69</TD>
-<TD >4</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|addr_decoder:u_addr_decoder|SP_DMA~0</TD>
-<TD >4</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~6</TD>
-<TD >4</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|cpudff3:u_cpudff3|cpudff3_d~1</TD>
-<TD >4</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|nE~1</TD>
-<TD >4</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DSK1_IN_</TD>
-<TD >4</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|cpudff2:u_cpudff2|p2c~0</TD>
-<TD >4</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|LASTWORD</TD>
-<TD >4</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E[12]~12</TD>
-<TD >4</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|Equal2~6</TD>
-<TD >4</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|INCFIFO_d~0</TD>
-<TD >4</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs|E[24]~13</TD>
-<TD >4</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs|E~8</TD>
-<TD >4</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs|E[7]~6</TD>
-<TD >4</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|CDREQ_</TD>
-<TD >4</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|SIZE1_X~8</TD>
-<TD >4</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|FLUSHFIFO</TD>
-<TD >4</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|Equal2~0</TD>
-<TD >4</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|nCYCLEDONE</TD>
-<TD >4</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|BGRANT_</TD>
-<TD >4</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|DACK_o</TD>
-<TD >4</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_DSACK_IO[1]~1</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[7]~29</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[6]~25</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[5]~21</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[4]~17</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[3]~13</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[2]~9</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[1]~5</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[0]~1</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~1</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >INCNI</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >INCNO</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo_write_strobes:u_write_strobes|LLWS~0</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[1]</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|FF~1</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY_RST~0</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~11</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~10</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~9</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~8</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[7]</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~7</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[5]~81</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|addr_decoder:u_addr_decoder|CONTR_WR</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|addr_decoder:u_addr_decoder|CLR_INT~0</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[8]</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs|E[27]~15</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|cpudff3:u_cpudff3|p3a~0</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|nE~2</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|PLLW_Y~1</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E[0]~24</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|INCFIFO_d~1</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E[35]~23</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|nE~0</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|DMAENA</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|cpudff1:u_cpudff1|p1c~0</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E[37]~20</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|Equal2~8</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E[61]~18</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|cpudff2:u_cpudff2|cpudff2_d~0</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|Equal2~7</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E[55]~11</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|addr_decoder:u_addr_decoder|h_0C</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|WE~4</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs|E~9</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs|E[13]~3</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs|E~2</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|CCPUREQ</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|SIZE1_X~6</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|SIZE1_Z~0</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E[51]~1</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|SIZE1_Y~0</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|addr_decoder:u_addr_decoder|ADDR_VALID~0</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|RE_o</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[4]</TD>
-<TD >3</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >INTA</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_BGACK_IO~0</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[31]~33</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[30]~32</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[29]~31</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[28]~30</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[27]~29</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[26]~28</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[24]~26</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[23]~25</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[22]~24</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[21]~23</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[20]~22</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[19]~21</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[18]~20</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[17]~19</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[16]~18</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[4]~6</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[2]~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[1]~3</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|WE~5</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >LHW</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >LLW</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[7]~7</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[6]~6</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[5]~5</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[4]~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[3]~3</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[2]~2</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[1]~1</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[0]~0</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[2]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|PAS_Y~3</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|addr_decoder:u_addr_decoder|ACR_WR</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|DIEH_d~0</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[7]~30</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[6]~26</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[5]~22</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[4]~18</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[3]~14</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[2]~10</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[1]~6</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[0]~2</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|registers_istr:u_registers_istr|CLR_INT_~0</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E[34]~27</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|F2CPUL_d~2</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs|E[3]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[0]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs|E[4]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs|E[4]~17</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|addr_decoder:u_addr_decoder|ISTR_RD_~0</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|addr_decoder:u_addr_decoder|ST_DMA~0</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[4]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[3]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[2]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[1]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[5]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux8~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux0~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux24~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux16~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux9~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux1~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux25~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux17~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux10~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux2~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux26~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux18~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux11~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux3~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux27~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux19~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux12~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux4~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux28~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux20~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux13~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux5~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux29~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux21~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux14~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux6~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux30~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux22~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux7~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux15~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux31~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux23~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[15]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[14]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[13]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[12]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[11]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[10]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[9]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[8]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[7]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[6]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[5]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[4]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[3]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[2]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[1]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[0]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_DSACK_IO~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[6]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|NEXT_STATE[0]~14</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs|E~16</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|NEXT_STATE[3]~1</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|PAS_Y~0</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|cpudff5:u_cpudff5|cpudff5_d~1</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|PLLW_d~0</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|Equal2~11</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|cpudff5:u_cpudff5|p5b~1</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|cpudff5:u_cpudff5|p5b~0</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E[8]~25</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|cpudff4:u_cpudff4|cpudff4_d~0</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|FLUSHFIFO</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|cpudff2:u_cpudff2|cpudff2_d~4</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|cpudff4:u_cpudff4|p4b~0</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|PLLW_Y~0</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|cpudff1:u_cpudff1|cpudff1_d~3</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E[43]~16</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E[21]~15</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|cpudff2:u_cpudff2|p2b~0</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E[27]~13</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|A1</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E~10</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs|E[18]~12</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs|E[13]~11</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|RDFIFO_o</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|RE~0</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs|E[16]~5</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|RIFIFO_o</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E[58]~8</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|SIZE1_X~5</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|registers_istr:u_registers_istr|INT</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[2]</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|SCSI_CS_o</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|INCBO_o</TD>
-<TD >2</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[0]~feeder</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|nLS2CPU~feeder</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|registers_term:u_registers_term|REG_DSK_~feeder</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|registers_cntr:u_registers_cntr|CNTR_O[8]~feeder</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|RDFIFO_o~feeder</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|RIFIFO_o~feeder</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|FLUSHFIFO~feeder</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_DREQ</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_RST</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_BG</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[15]~17</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[14]~16</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[13]~15</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[12]~14</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[11]~13</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[10]~12</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[9]~11</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[8]~10</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[7]~9</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[6]~8</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[5]~7</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[3]~5</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[0]~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_DS_IO~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr|COUNT[0]~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[0]~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DS_O_~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >AS_O_~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo_byte_ptr:u_byte_ptr|BO0~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|BGRANT_~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|SCSI_CS~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|SCSI_CS~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|NEXT_STATE[2]~22</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|NEXT_STATE[2]~21</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|SIZE1_X~9</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[2]~143</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|nBREQ_d~5</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|PLHW_d~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|INCNI~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|PLLW_d~4</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|PLLW_d~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|PLLW_d~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|PLHW</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|INCNO~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|INCNI_o</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|INCNI</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|PLLW</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[0]~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[1]~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[2]~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|INCNO_o</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|INCNO</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr|COUNT[2]~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr|COUNT[1]~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|SET_DSACK</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >rtl~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|PAS_d~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|PAS_d~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|PAS_d~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|PAS_d~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|PAS_Y~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|PAS_Y~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|addr_decoder:u_addr_decoder|ST_DMA</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|DOWN[6]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[15]~54</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[15]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[14]~51</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[14]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[13]~48</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[13]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[12]~45</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[12]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[11]~42</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[11]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[10]~39</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[10]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[9]~36</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[9]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|DIEL_d~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|nBRIDGEIN_d</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|nBRIDGEIN_d~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|DIEH_d~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|DIEH_Z~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|S2F~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|S2F~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[2]~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[1]~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[8]~33</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[8]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|CPU2S</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs|E[22]~19</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|F2S~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|F2S~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs|E[13]~18</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|F2CPUH_d~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|F2CPUL_d~6</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|F2CPUH_d~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|F2CPUH_d~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|F2CPUH_X~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|BRIDGEOUT_d~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|BRIDGEOUT_d~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|BRIDGEOUT_Y~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|BRIDGEOUT_d~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[7]~_emulated</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[6]~_emulated</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[5]~_emulated</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[4]~_emulated</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[3]~_emulated</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[2]~_emulated</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[1]~_emulated</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[0]~_emulated</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|F2CPUL_d~5</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|F2CPUL_d~4</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|F2CPUL_d~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|F2CPUL_d~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|F2CPUL_d~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|S2CPU~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|S2CPU~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >registers:u_registers|registers_term:u_registers_term|CYCLE_END~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|PDS</TD>
-<TD >1</TD>
+<TD >Clock</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >CPU_SM:u_CPU_SM|PAS</TD>
-<TD >1</TD>
+<TD >LCFF_X27_Y7_N7</TD>
+<TD >32</TD>
+<TD >Clock</TD>
+<TD >yes</TD>
+<TD >Global Clock</TD>
+<TD >GCLK7</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|DECFIFO_d~0</TD>
-<TD >1</TD>
+<TD >DS_O_</TD>
+<TD >LCFF_X9_Y6_N13</TD>
+<TD >17</TD>
+<TD >Clock</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP_RST~1</TD>
-<TD >1</TD>
+<TD >INCNI</TD>
+<TD >LCCOMB_X18_Y4_N26</TD>
+<TD >3</TD>
+<TD >Clock</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP_RST~0</TD>
-<TD >1</TD>
+<TD >INCNO</TD>
+<TD >LCCOMB_X21_Y3_N22</TD>
+<TD >3</TD>
+<TD >Clock</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|INCFIFO_d~2</TD>
-<TD >1</TD>
+<TD >PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk0</TD>
+<TD >PLL_1</TD>
+<TD >7</TD>
+<TD >Clock</TD>
+<TD >yes</TD>
+<TD >Global Clock</TD>
+<TD >GCLK3</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|FF~0</TD>
-<TD >1</TD>
+<TD >PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1</TD>
+<TD >PLL_1</TD>
+<TD >61</TD>
+<TD >Clock</TD>
+<TD >yes</TD>
+<TD >Global Clock</TD>
+<TD >GCLK2</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >registers:u_registers|registers_cntr:u_registers_cntr|CLR_DMAENA~0</TD>
-<TD >1</TD>
+<TD >PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk2</TD>
+<TD >PLL_1</TD>
+<TD >5</TD>
+<TD >Clock</TD>
+<TD >yes</TD>
+<TD >Global Clock</TD>
+<TD >GCLK1</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|nSTOPFLUSH_d~1</TD>
-<TD >1</TD>
+<TD >PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_locked</TD>
+<TD >PLL_1</TD>
+<TD >33</TD>
+<TD >Async. clear</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs|E[0]~26</TD>
-<TD >1</TD>
+<TD >SCLK</TD>
+<TD >PIN_17</TD>
+<TD >5</TD>
+<TD >Clock</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs|nSTOPFLUSH_d~0</TD>
-<TD >1</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >LCFF_X26_Y2_N3</TD>
+<TD >53</TD>
+<TD >Async. clear</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >registers:u_registers|addr_decoder:u_addr_decoder|FLUSH_</TD>
-<TD >1</TD>
+<TD >SCSI_SM:u_SCSI_SM|INCBO_o</TD>
+<TD >LCFF_X22_Y4_N31</TD>
+<TD >2</TD>
+<TD >Clock</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >registers:u_registers|addr_decoder:u_addr_decoder|ST_DMA~1</TD>
+<TD >SCSI_SM:u_SCSI_SM|RDFIFO_d</TD>
+<TD >LCFF_X21_Y4_N21</TD>
 <TD >1</TD>
+<TD >Clock</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|INCBO~0</TD>
+<TD >SCSI_SM:u_SCSI_SM|RDRST_~0</TD>
+<TD >LCCOMB_X21_Y3_N26</TD>
 <TD >1</TD>
+<TD >Async. clear</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo_byte_ptr:u_byte_ptr|BO1_CLK</TD>
+<TD >SCSI_SM:u_SCSI_SM|RIFIFO_d</TD>
+<TD >LCFF_X21_Y4_N15</TD>
 <TD >1</TD>
+<TD >Clock</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >SCSI_SM:u_SCSI_SM|RIRST_~0</TD>
+<TD >LCCOMB_X20_Y3_N0</TD>
+<TD >1</TD>
+<TD >Async. clear</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >SCSI_SM:u_SCSI_SM|S2CPU_o</TD>
+<TD >LCFF_X20_Y5_N9</TD>
+<TD >46</TD>
+<TD >Clock</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|SET_DSACK</TD>
+<TD >LCCOMB_X21_Y5_N30</TD>
+<TD >1</TD>
+<TD >Clock</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >SCSI_SM:u_SCSI_SM|nLS2CPU</TD>
+<TD >LCFF_X22_Y5_N31</TD>
+<TD >26</TD>
+<TD >Async. clear, Latch enable</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >_AS_IO~0</TD>
+<TD >PIN_72</TD>
+<TD >15</TD>
+<TD >Async. clear</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >_RST</TD>
+<TD >PIN_73</TD>
+<TD >1</TD>
+<TD >Async. clear</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|DATA[15]~3</TD>
+<TD >LCCOMB_X26_Y2_N4</TD>
+<TD >32</TD>
+<TD >Output enable</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Z[0]~0</TD>
+<TD >LCCOMB_X17_Y4_N2</TD>
+<TD >8</TD>
+<TD >Output enable</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >fifo:int_fifo|Decoder0~0</TD>
+<TD >LCCOMB_X18_Y4_N10</TD>
+<TD >32</TD>
+<TD >Clock enable</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >fifo:int_fifo|Decoder0~1</TD>
+<TD >LCCOMB_X18_Y4_N30</TD>
+<TD >32</TD>
+<TD >Clock enable</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >fifo:int_fifo|Decoder0~2</TD>
+<TD >LCCOMB_X18_Y4_N18</TD>
+<TD >32</TD>
+<TD >Clock enable</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >fifo:int_fifo|Decoder0~3</TD>
+<TD >LCCOMB_X18_Y4_N20</TD>
+<TD >32</TD>
+<TD >Clock enable</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >fifo:int_fifo|Decoder0~4</TD>
+<TD >LCCOMB_X18_Y4_N8</TD>
+<TD >32</TD>
+<TD >Clock enable</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >fifo:int_fifo|Decoder0~5</TD>
+<TD >LCCOMB_X18_Y4_N12</TD>
+<TD >32</TD>
+<TD >Clock enable</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >fifo:int_fifo|Decoder0~6</TD>
+<TD >LCCOMB_X18_Y4_N22</TD>
+<TD >32</TD>
+<TD >Clock enable</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >fifo:int_fifo|Decoder0~7</TD>
+<TD >LCCOMB_X18_Y4_N0</TD>
+<TD >32</TD>
+<TD >Clock enable</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody><tbody><TR >
 <TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~13</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~12</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|DOWN[2]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|DOWN[3]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|DOWN[4]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|DOWN[5]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|DOWN[1]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector7~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector7~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[7]~31</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[7]~30</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[7]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector7~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux8~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][23]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux8~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][23]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][23]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][23]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux8~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][23]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux8~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][23]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][23]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][23]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux0~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][31]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux0~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][31]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][31]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][31]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux0~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][31]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux0~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][31]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][31]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][31]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector7~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux24~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][7]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux24~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][7]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][7]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][7]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux24~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][7]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux24~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][7]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][7]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][7]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux16~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][15]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux16~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][15]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][15]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][15]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux16~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][15]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux16~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][15]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][15]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][15]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector6~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector6~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[6]~27</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[6]~26</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[6]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector6~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux9~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][22]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux9~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][22]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][22]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][22]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux9~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][22]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux9~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][22]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][22]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][22]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux1~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][30]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux1~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][30]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][30]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][30]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux1~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][30]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux1~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][30]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][30]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][30]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector6~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux25~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][6]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux25~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][6]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][6]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][6]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux25~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][6]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux25~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][6]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][6]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][6]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux17~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][14]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux17~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][14]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][14]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][14]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux17~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][14]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux17~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][14]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][14]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][14]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector5~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector5~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[5]~23</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[5]~22</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[5]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector5~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux10~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][21]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux10~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][21]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][21]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][21]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux10~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][21]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux10~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][21]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][21]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][21]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux2~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][29]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux2~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][29]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][29]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][29]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux2~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][29]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux2~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][29]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][29]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][29]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector5~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux26~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][5]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux26~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][5]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][5]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][5]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux26~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][5]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux26~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][5]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][5]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][5]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux18~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][13]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux18~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][13]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][13]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][13]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux18~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][13]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux18~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][13]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][13]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][13]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector4~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector4~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[4]~19</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[4]~18</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[4]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector4~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux11~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][20]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux11~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][20]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][20]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][20]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux11~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][20]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux11~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][20]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][20]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][20]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux3~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][28]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux3~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][28]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][28]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][28]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux3~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][28]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux3~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][28]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][28]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][28]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector4~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux27~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][4]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux27~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][4]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][4]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][4]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux27~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][4]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux27~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][4]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][4]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][4]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux19~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][12]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux19~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][12]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][12]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][12]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux19~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][12]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux19~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][12]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][12]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][12]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector3~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector3~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[3]~15</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[3]~14</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[3]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector3~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux12~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][19]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux12~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][19]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][19]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][19]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux12~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][19]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux12~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][19]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][19]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][19]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux4~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][27]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux4~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][27]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][27]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][27]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux4~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][27]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux4~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][27]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][27]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][27]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector3~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux28~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][3]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux28~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][3]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][3]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][3]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux28~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][3]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux28~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][3]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][3]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][3]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux20~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][11]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux20~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][11]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][11]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][11]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux20~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][11]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux20~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][11]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][11]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][11]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector2~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector2~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[2]~11</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[2]~10</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[2]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector2~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux13~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][18]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux13~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][18]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][18]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][18]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux13~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][18]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux13~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][18]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][18]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][18]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux5~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][26]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux5~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][26]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][26]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][26]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux5~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][26]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux5~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][26]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][26]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][26]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector2~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux29~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][2]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux29~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][2]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][2]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][2]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux29~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][2]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux29~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][2]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][2]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][2]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux21~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][10]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux21~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][10]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][10]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][10]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux21~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][10]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux21~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][10]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][10]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][10]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector1~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector1~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[1]~7</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[1]~6</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[1]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector1~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux14~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][17]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux14~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][17]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][17]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][17]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux14~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][17]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux14~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][17]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][17]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][17]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux6~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][25]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux6~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][25]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][25]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][25]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux6~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][25]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux6~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][25]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][25]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][25]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector1~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux30~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][1]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux30~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][1]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][1]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][1]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux30~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][1]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux30~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][1]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][1]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][1]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux22~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][9]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux22~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][9]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][9]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][9]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux22~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][9]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux22~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][9]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][9]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][9]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector0~6</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector0~5</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[0]~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|ID[0]~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_input:u_datapath_input|UD_LATCH[0]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector0~4</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux7~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][24]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux7~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][24]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][24]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][24]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux7~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][24]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux7~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][24]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][24]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][24]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux15~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][16]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux15~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][16]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][16]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][16]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux15~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][16]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux15~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][16]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][16]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][16]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector0~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux31~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][0]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux31~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][0]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][0]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][0]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux31~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][0]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux31~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][0]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][0]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][0]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux23~3</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[3][8]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux23~2</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[0][8]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[2][8]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[1][8]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux23~1</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[7][8]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|Mux23~0</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[4][8]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[5][8]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >fifo:int_fifo|BUFFER[6][8]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[31]~142</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[31]~141</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[31]~140</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[15]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[30]~139</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[30]~138</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[30]~137</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[14]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[29]~136</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[29]~135</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[29]~134</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[13]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[28]~133</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[28]~132</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[28]~131</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[12]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[27]~130</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[27]~129</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[27]~128</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[11]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[26]~127</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[26]~126</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[26]~125</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[10]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[25]~124</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[25]~123</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[25]~122</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[9]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[24]~121</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[24]~120</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[24]~119</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[8]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[23]~118</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[23]~117</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[7]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[22]~116</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[22]~115</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[6]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[21]~114</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[21]~113</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[5]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[20]~112</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[20]~111</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[4]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[19]~110</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[19]~109</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[3]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[18]~108</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[18]~107</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[2]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[17]~106</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[17]~105</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[1]</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[16]~104</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[16]~103</TD>
-<TD >1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[0]</TD>
-<TD >1</TD>
+<TD >LCCOMB_X22_Y3_N8</TD>
+<TD >1</TD>
+<TD >Async. clear</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOFULL_RST~0</TD>
+<TD >LCCOMB_X20_Y3_N12</TD>
+<TD >1</TD>
+<TD >Async. clear</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP_RST</TD>
+<TD >LCCOMB_X22_Y3_N28</TD>
+<TD >8</TD>
+<TD >Async. clear</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >fifo:int_fifo|fifo_byte_ptr:u_byte_ptr|BO1_CLK</TD>
+<TD >LCCOMB_X26_Y4_N30</TD>
+<TD >1</TD>
+<TD >Clock</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >fifo:int_fifo|fifo_write_strobes:u_write_strobes|LLWS</TD>
+<TD >LCCOMB_X24_Y4_N30</TD>
+<TD >64</TD>
+<TD >Clock</TD>
+<TD >yes</TD>
+<TD >Global Clock</TD>
+<TD >GCLK0</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >fifo:int_fifo|fifo_write_strobes:u_write_strobes|LMWS</TD>
+<TD >LCCOMB_X25_Y4_N24</TD>
+<TD >64</TD>
+<TD >Clock</TD>
+<TD >yes</TD>
+<TD >Global Clock</TD>
+<TD >GCLK5</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >fifo:int_fifo|fifo_write_strobes:u_write_strobes|UMWS</TD>
+<TD >LCCOMB_X25_Y4_N0</TD>
+<TD >64</TD>
+<TD >Clock</TD>
+<TD >yes</TD>
+<TD >Global Clock</TD>
+<TD >GCLK4</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >fifo:int_fifo|fifo_write_strobes:u_write_strobes|UUWS</TD>
+<TD >LCCOMB_X25_Y4_N18</TD>
+<TD >64</TD>
+<TD >Clock</TD>
+<TD >yes</TD>
+<TD >Global Clock</TD>
+<TD >GCLK6</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >registers:u_registers|CLR_FLUSHFIFO~0</TD>
+<TD >LCCOMB_X27_Y3_N6</TD>
+<TD >1</TD>
+<TD >Async. clear</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >registers:u_registers|addr_decoder:u_addr_decoder|ACR_WR</TD>
+<TD >LCCOMB_X27_Y4_N28</TD>
+<TD >2</TD>
+<TD >Clock</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >registers:u_registers|addr_decoder:u_addr_decoder|CONTR_WR</TD>
+<TD >LCCOMB_X26_Y4_N28</TD>
+<TD >3</TD>
+<TD >Clock</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >registers:u_registers|addr_decoder:u_addr_decoder|FLUSH_</TD>
+<TD >LCCOMB_X26_Y4_N16</TD>
+<TD >1</TD>
+<TD >Clock</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >registers:u_registers|addr_decoder:u_addr_decoder|ISTR_RD_</TD>
+<TD >LCCOMB_X27_Y4_N24</TD>
+<TD >6</TD>
+<TD >Clock</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >registers:u_registers|addr_decoder:u_addr_decoder|ST_DMA</TD>
+<TD >LCCOMB_X27_Y4_N0</TD>
+<TD >1</TD>
+<TD >Clock</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >registers:u_registers|registers_cntr:u_registers_cntr|CLR_DMAENA~0</TD>
+<TD >LCCOMB_X27_Y4_N8</TD>
+<TD >1</TD>
+<TD >Async. clear</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >registers:u_registers|registers_istr:u_registers_istr|CLR_INT_~0</TD>
+<TD >LCCOMB_X27_Y4_N26</TD>
+<TD >2</TD>
+<TD >Async. clear</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
 </TR>
 </tbody></TABLE>
 

@@ -1,0 +1,2 @@
+{ "" "" "" "(Medium) Rule R105: The reset signal that is generated in one clock domain and used in another clock domain should be synchronized. Found 1 node(s) related to this rule." {  } {  } 0 308027 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "(Medium) Rule C106: Clock signal source should not drive registers triggered by different clock edges. Found 1 node(s) related to this rule." {  } {  } 0 308022 "" 0 0 "Quartus II" 0 -1 0 ""}

@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <HTML><HEAD>
-<TITLE>Delay Chain Summary</TITLE>
+<TITLE>Fitter Resource Utilization by Entity</TITLE>
 
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/base.css">
@@ -18,660 +18,580 @@
 <BODY>
 <TABLE>
 <thead><TR  bgcolor="#BFBFBF">
-<TH>Name</TH>
-<TH>Pin Type</TH>
-<TH>Pad to Core 0</TH>
-<TH>Pad to Core 1</TH>
-<TH>Pad to Input Register</TH>
-<TH>TCO</TH>
+<TH>Compilation Hierarchy Node</TH>
+<TH>Logic Cells</TH>
+<TH>Dedicated Logic Registers</TH>
+<TH>I/O Registers</TH>
+<TH>Memory Bits</TH>
+<TH>M4Ks</TH>
+<TH>DSP Elements</TH>
+<TH>DSP 9x9</TH>
+<TH>DSP 18x18</TH>
+<TH>Pins</TH>
+<TH>Virtual Pins</TH>
+<TH>LUT-Only LCs</TH>
+<TH>Register-Only LCs</TH>
+<TH>LUT/Register LCs</TH>
+<TH>Full Hierarchy Name</TH>
+<TH>Library Name</TH>
 </TR>
 </thead><tbody><TR >
-<TD >_INT</TD>
-<TD >Output</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_BR</TD>
-<TD >Output</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_OE_</TD>
-<TD >Output</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PDATA_OE_</TD>
-<TD >Output</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PD_PORT[8]</TD>
-<TD >Bidir</TD>
-<TD >(0) 170 ps</TD>
-<TD >(0) 170 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PD_PORT[9]</TD>
-<TD >Bidir</TD>
-<TD >(0) 171 ps</TD>
-<TD >(0) 171 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PD_PORT[10]</TD>
-<TD >Bidir</TD>
-<TD >(0) 171 ps</TD>
-<TD >(0) 171 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PD_PORT[11]</TD>
-<TD >Bidir</TD>
-<TD >(0) 171 ps</TD>
-<TD >(0) 171 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PD_PORT[12]</TD>
-<TD >Bidir</TD>
-<TD >(0) 171 ps</TD>
-<TD >(0) 171 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PD_PORT[13]</TD>
-<TD >Bidir</TD>
-<TD >(0) 170 ps</TD>
-<TD >(0) 170 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PD_PORT[14]</TD>
-<TD >Bidir</TD>
-<TD >(0) 170 ps</TD>
-<TD >(0) 170 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PD_PORT[15]</TD>
-<TD >Bidir</TD>
-<TD >(0) 171 ps</TD>
-<TD >(0) 171 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >R_W_IO</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(0) 170 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_AS_IO</TD>
-<TD >Bidir</TD>
-<TD >(0) 170 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_DS_IO</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_DSACK_IO[0]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_DSACK_IO[1]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2523 ps</TD>
-<TD >(6) 2523 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[0]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[1]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[2]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[3]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[4]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[5]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[6]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[7]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[8]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[9]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[10]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[11]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[12]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[13]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[14]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[15]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[16]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[17]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[18]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[19]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[20]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[21]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[22]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2523 ps</TD>
-<TD >(6) 2523 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[23]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2523 ps</TD>
-<TD >(6) 2523 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[24]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2523 ps</TD>
-<TD >(6) 2523 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[25]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2523 ps</TD>
-<TD >(6) 2523 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[26]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[27]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[28]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[29]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2523 ps</TD>
-<TD >(6) 2523 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[30]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2523 ps</TD>
-<TD >(6) 2523 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >DATA_IO[31]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2523 ps</TD>
-<TD >(6) 2523 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_BGACK_IO</TD>
-<TD >Bidir</TD>
-<TD >(6) 2523 ps</TD>
-<TD >(6) 2523 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PD_PORT[0]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PD_PORT[1]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PD_PORT[2]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PD_PORT[3]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PD_PORT[4]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PD_PORT[5]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PD_PORT[6]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PD_PORT[7]</TD>
-<TD >Bidir</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SIZ1</TD>
-<TD >Output</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_DMAEN</TD>
-<TD >Output</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_DACK</TD>
-<TD >Output</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_CSS</TD>
-<TD >Output</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_IOR</TD>
-<TD >Output</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_IOW</TD>
-<TD >Output</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_LED_RD</TD>
-<TD >Output</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_LED_WR</TD>
-<TD >Output</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_LED_DMA</TD>
-<TD >Output</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >OWN_</TD>
-<TD >Output</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_CS</TD>
-<TD >Input</TD>
-<TD >(6) 2523 ps</TD>
-<TD >(6) 2523 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >INTA</TD>
-<TD >Input</TD>
-<TD >(6) 2523 ps</TD>
-<TD >(6) 2523 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_STERM</TD>
-<TD >Input</TD>
-<TD >(0) 171 ps</TD>
-<TD >(0) 171 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_BERR</TD>
-<TD >Input</TD>
-<TD >(6) 2514 ps</TD>
-<TD >(6) 2514 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >ADDR[2]</TD>
-<TD >Input</TD>
-<TD >(6) 2523 ps</TD>
-<TD >(6) 2523 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >ADDR[4]</TD>
-<TD >Input</TD>
-<TD >(6) 2523 ps</TD>
-<TD >(6) 2523 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >ADDR[5]</TD>
-<TD >Input</TD>
-<TD >(6) 2523 ps</TD>
-<TD >(6) 2523 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >ADDR[3]</TD>
-<TD >Input</TD>
-<TD >(6) 2523 ps</TD>
-<TD >(6) 2523 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >ADDR[6]</TD>
-<TD >Input</TD>
-<TD >(6) 2523 ps</TD>
-<TD >(6) 2523 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_BG</TD>
-<TD >Input</TD>
-<TD >(6) 2523 ps</TD>
-<TD >(6) 2523 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_RST</TD>
-<TD >Input</TD>
-<TD >(6) 2523 ps</TD>
-<TD >(6) 2523 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >SCLK</TD>
-<TD >Input</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-<TD >--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >_DREQ</TD>
-<TD >Input</TD>
-<TD >(0) 171 ps</TD>
-<TD >(0) 171 ps</TD>
-<TD >--</TD>
-<TD >--</TD>
+<TD >|RESDMAC</TD>
+<TD >774 (12)</TD>
+<TD >427 (4)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >81</TD>
+<TD >0</TD>
+<TD >347 (6)</TD>
+<TD >147 (1)</TD>
+<TD >280 (9)</TD>
+<TD >|RESDMAC</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;|CPU_SM:u_CPU_SM|</TD>
+<TD >180 (35)</TD>
+<TD >30 (30)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >149 (4)</TD>
+<TD >5 (5)</TD>
+<TD >26 (7)</TD>
+<TD >|RESDMAC|CPU_SM:u_CPU_SM</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|CPU_SM_inputs:u_CPU_SM_inputs|</TD>
+<TD >29 (29)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >29 (29)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >|RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|CPU_SM_outputs:u_CPU_SM_outputs|</TD>
+<TD >76 (76)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >62 (62)</TD>
+<TD >0 (0)</TD>
+<TD >14 (14)</TD>
+<TD >|RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|cpudff1:u_cpudff1|</TD>
+<TD >10 (10)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >9 (9)</TD>
+<TD >0 (0)</TD>
+<TD >1 (1)</TD>
+<TD >|RESDMAC|CPU_SM:u_CPU_SM|cpudff1:u_cpudff1</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|cpudff2:u_cpudff2|</TD>
+<TD >11 (11)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >10 (10)</TD>
+<TD >0 (0)</TD>
+<TD >1 (1)</TD>
+<TD >|RESDMAC|CPU_SM:u_CPU_SM|cpudff2:u_cpudff2</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|cpudff3:u_cpudff3|</TD>
+<TD >12 (12)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >11 (11)</TD>
+<TD >0 (0)</TD>
+<TD >1 (1)</TD>
+<TD >|RESDMAC|CPU_SM:u_CPU_SM|cpudff3:u_cpudff3</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|cpudff4:u_cpudff4|</TD>
+<TD >13 (13)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >12 (12)</TD>
+<TD >0 (0)</TD>
+<TD >1 (1)</TD>
+<TD >|RESDMAC|CPU_SM:u_CPU_SM|cpudff4:u_cpudff4</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|cpudff5:u_cpudff5|</TD>
+<TD >13 (13)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >12 (12)</TD>
+<TD >0 (0)</TD>
+<TD >1 (1)</TD>
+<TD >|RESDMAC|CPU_SM:u_CPU_SM|cpudff5:u_cpudff5</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;|PLL:u_PLL|</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >|RESDMAC|PLL:u_PLL</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|atpll:APLL_inst|</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >|RESDMAC|PLL:u_PLL|atpll:APLL_inst</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|altpll:altpll_component|</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >|RESDMAC|PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;|SCSI_SM:u_SCSI_SM|</TD>
+<TD >53 (22)</TD>
+<TD >42 (20)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >11 (2)</TD>
+<TD >8 (2)</TD>
+<TD >34 (6)</TD>
+<TD >|RESDMAC|SCSI_SM:u_SCSI_SM</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|</TD>
+<TD >43 (43)</TD>
+<TD >22 (22)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >9 (9)</TD>
+<TD >6 (6)</TD>
+<TD >28 (28)</TD>
+<TD >|RESDMAC|SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;|datapath:u_datapath|</TD>
+<TD >196 (2)</TD>
+<TD >56 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >128 (2)</TD>
+<TD >18 (0)</TD>
+<TD >50 (0)</TD>
+<TD >|RESDMAC|datapath:u_datapath</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|datapath_input:u_datapath_input|</TD>
+<TD >57 (57)</TD>
+<TD >16 (16)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >36 (36)</TD>
+<TD >0 (0)</TD>
+<TD >21 (21)</TD>
+<TD >|RESDMAC|datapath:u_datapath|datapath_input:u_datapath_input</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|datapath_output:u_datapath_output|</TD>
+<TD >72 (72)</TD>
+<TD >32 (32)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >36 (36)</TD>
+<TD >15 (15)</TD>
+<TD >21 (21)</TD>
+<TD >|RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|datapath_scsi:u_datapath_scsi|</TD>
+<TD >66 (28)</TD>
+<TD >8 (8)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >54 (16)</TD>
+<TD >3 (3)</TD>
+<TD >9 (9)</TD>
+<TD >|RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|datapath_24dec:u_datapath_24dec|</TD>
+<TD >2 (2)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >2 (2)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >|RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_24dec:u_datapath_24dec</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|datapath_8b_MUX:u_datapath_8b_MUX|</TD>
+<TD >36 (36)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >36 (36)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >|RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;|fifo:int_fifo|</TD>
+<TD >321 (278)</TD>
+<TD >281 (256)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >38 (21)</TD>
+<TD >115 (105)</TD>
+<TD >168 (152)</TD>
+<TD >|RESDMAC|fifo:int_fifo</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fifo_3bit_cntr:u_next_in_cntr|</TD>
+<TD >3 (3)</TD>
+<TD >3 (3)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >3 (3)</TD>
+<TD >|RESDMAC|fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fifo_3bit_cntr:u_next_out_cntr|</TD>
+<TD >3 (3)</TD>
+<TD >3 (3)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >3 (3)</TD>
+<TD >|RESDMAC|fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fifo__full_empty_ctr:u_full_empty_ctr|</TD>
+<TD >29 (29)</TD>
+<TD >17 (17)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >12 (12)</TD>
+<TD >10 (10)</TD>
+<TD >7 (7)</TD>
+<TD >|RESDMAC|fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fifo_byte_ptr:u_byte_ptr|</TD>
+<TD >3 (3)</TD>
+<TD >2 (2)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >1 (1)</TD>
+<TD >0 (0)</TD>
+<TD >2 (2)</TD>
+<TD >|RESDMAC|fifo:int_fifo|fifo_byte_ptr:u_byte_ptr</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fifo_write_strobes:u_write_strobes|</TD>
+<TD >5 (5)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >4 (4)</TD>
+<TD >0 (0)</TD>
+<TD >1 (1)</TD>
+<TD >|RESDMAC|fifo:int_fifo|fifo_write_strobes:u_write_strobes</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;|registers:u_registers|</TD>
+<TD >31 (3)</TD>
+<TD >14 (2)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >15 (1)</TD>
+<TD >0 (0)</TD>
+<TD >16 (2)</TD>
+<TD >|RESDMAC|registers:u_registers</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|addr_decoder:u_addr_decoder|</TD>
+<TD >16 (16)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >11 (11)</TD>
+<TD >0 (0)</TD>
+<TD >5 (5)</TD>
+<TD >|RESDMAC|registers:u_registers|addr_decoder:u_addr_decoder</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|registers_cntr:u_registers_cntr|</TD>
+<TD >5 (5)</TD>
+<TD >4 (4)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >1 (1)</TD>
+<TD >0 (0)</TD>
+<TD >4 (4)</TD>
+<TD >|RESDMAC|registers:u_registers|registers_cntr:u_registers_cntr</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|registers_istr:u_registers_istr|</TD>
+<TD >5 (5)</TD>
+<TD >4 (4)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >1 (1)</TD>
+<TD >0 (0)</TD>
+<TD >4 (4)</TD>
+<TD >|RESDMAC|registers:u_registers|registers_istr:u_registers_istr</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|registers_term:u_registers_term|</TD>
+<TD >5 (5)</TD>
+<TD >4 (4)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >1 (1)</TD>
+<TD >0 (0)</TD>
+<TD >4 (4)</TD>
+<TD >|RESDMAC|registers:u_registers|registers_term:u_registers_term</TD>
+<TD >work</TD>
 </TR>
 </tbody></TABLE>
 

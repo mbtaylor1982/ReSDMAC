@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <HTML><HEAD>
-<TITLE>Fitter Resource Utilization by Entity</TITLE>
+<TITLE>PLL Usage</TITLE>
 
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/base.css">
@@ -18,598 +18,64 @@
 <BODY>
 <TABLE>
 <thead><TR  bgcolor="#BFBFBF">
-<TH>Compilation Hierarchy Node</TH>
-<TH>Logic Cells</TH>
-<TH>Dedicated Logic Registers</TH>
-<TH>I/O Registers</TH>
-<TH>Memory Bits</TH>
-<TH>M4Ks</TH>
-<TH>DSP Elements</TH>
-<TH>DSP 9x9</TH>
-<TH>DSP 18x18</TH>
-<TH>Pins</TH>
-<TH>Virtual Pins</TH>
-<TH>LUT-Only LCs</TH>
-<TH>Register-Only LCs</TH>
-<TH>LUT/Register LCs</TH>
-<TH>Full Hierarchy Name</TH>
-<TH>Library Name</TH>
+<TH>Name</TH>
+<TH>Output Clock</TH>
+<TH>Mult</TH>
+<TH>Div</TH>
+<TH>Output Frequency</TH>
+<TH>Phase Shift</TH>
+<TH>Duty Cycle</TH>
+<TH>Counter</TH>
+<TH>Counter Value</TH>
+<TH>High / Low</TH>
+<TH>Initial</TH>
+<TH>VCO Tap</TH>
+<TH>SDC Pin Name</TH>
 </TR>
 </thead><tbody><TR >
-<TD >|RESDMAC</TD>
-<TD >830 (79)</TD>
-<TD >409 (4)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >81</TD>
-<TD >0</TD>
-<TD >421 (73)</TD>
-<TD >140 (1)</TD>
-<TD >269 (21)</TD>
-<TD >|RESDMAC</TD>
-<TD >work</TD>
+<TD >PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk0</TD>
+<TD >clock0</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >25.0 MHz</TD>
+<TD >23 (2500 ps)</TD>
+<TD >50/50</TD>
+<TD >C0</TD>
+<TD >30</TD>
+<TD >15/15 Even</TD>
+<TD >2</TD>
+<TD >7</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;|CPU_SM:u_CPU_SM|</TD>
-<TD >181 (33)</TD>
-<TD >29 (29)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >152 (4)</TD>
-<TD >6 (6)</TD>
-<TD >23 (3)</TD>
-<TD >|RESDMAC|CPU_SM:u_CPU_SM</TD>
-<TD >work</TD>
+<TD >PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1</TD>
+<TD >clock1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >25.0 MHz</TD>
+<TD >90 (10000 ps)</TD>
+<TD >50/50</TD>
+<TD >C1</TD>
+<TD >30</TD>
+<TD >15/15 Even</TD>
+<TD >8</TD>
+<TD >4</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|CPU_SM_inputs:u_CPU_SM_inputs|</TD>
-<TD >31 (31)</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >31 (31)</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >|RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|CPU_SM_outputs:u_CPU_SM_outputs|</TD>
-<TD >78 (78)</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >63 (63)</TD>
-<TD >0 (0)</TD>
-<TD >15 (15)</TD>
-<TD >|RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|cpudff1:u_cpudff1|</TD>
-<TD >10 (10)</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >9 (9)</TD>
-<TD >0 (0)</TD>
-<TD >1 (1)</TD>
-<TD >|RESDMAC|CPU_SM:u_CPU_SM|cpudff1:u_cpudff1</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|cpudff2:u_cpudff2|</TD>
-<TD >11 (11)</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >10 (10)</TD>
-<TD >0 (0)</TD>
-<TD >1 (1)</TD>
-<TD >|RESDMAC|CPU_SM:u_CPU_SM|cpudff2:u_cpudff2</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|cpudff3:u_cpudff3|</TD>
-<TD >12 (12)</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >11 (11)</TD>
-<TD >0 (0)</TD>
-<TD >1 (1)</TD>
-<TD >|RESDMAC|CPU_SM:u_CPU_SM|cpudff3:u_cpudff3</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|cpudff4:u_cpudff4|</TD>
-<TD >14 (14)</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >13 (13)</TD>
-<TD >0 (0)</TD>
-<TD >1 (1)</TD>
-<TD >|RESDMAC|CPU_SM:u_CPU_SM|cpudff4:u_cpudff4</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|cpudff5:u_cpudff5|</TD>
-<TD >12 (12)</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >11 (11)</TD>
-<TD >0 (0)</TD>
-<TD >1 (1)</TD>
-<TD >|RESDMAC|CPU_SM:u_CPU_SM|cpudff5:u_cpudff5</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;|PLL:u_PLL|</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >|RESDMAC|PLL:u_PLL</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|atpll:APLL_inst|</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >|RESDMAC|PLL:u_PLL|atpll:APLL_inst</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|altpll:altpll_component|</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >|RESDMAC|PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;|SCSI_SM:u_SCSI_SM|</TD>
-<TD >79 (27)</TD>
-<TD >25 (25)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >54 (2)</TD>
-<TD >4 (4)</TD>
-<TD >21 (6)</TD>
-<TD >|RESDMAC|SCSI_SM:u_SCSI_SM</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|scsi_sm_inputs:u_scsi_sm_inputs|</TD>
-<TD >22 (22)</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >22 (22)</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >|RESDMAC|SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|scsi_sm_outputs:u_scsi_sm_outputs|</TD>
-<TD >45 (45)</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >30 (30)</TD>
-<TD >0 (0)</TD>
-<TD >15 (15)</TD>
-<TD >|RESDMAC|SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;|datapath:u_datapath|</TD>
-<TD >156 (2)</TD>
-<TD >56 (0)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >86 (1)</TD>
-<TD >16 (0)</TD>
-<TD >54 (1)</TD>
-<TD >|RESDMAC|datapath:u_datapath</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|datapath_input:u_datapath_input|</TD>
-<TD >57 (57)</TD>
-<TD >16 (16)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >30 (30)</TD>
-<TD >0 (0)</TD>
-<TD >27 (27)</TD>
-<TD >|RESDMAC|datapath:u_datapath|datapath_input:u_datapath_input</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|datapath_output:u_datapath_output|</TD>
-<TD >33 (33)</TD>
-<TD >32 (32)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >1 (1)</TD>
-<TD >13 (13)</TD>
-<TD >19 (19)</TD>
-<TD >|RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|datapath_scsi:u_datapath_scsi|</TD>
-<TD >66 (28)</TD>
-<TD >8 (8)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >54 (20)</TD>
-<TD >3 (3)</TD>
-<TD >9 (5)</TD>
-<TD >|RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|datapath_24dec:u_datapath_24dec|</TD>
-<TD >2 (2)</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >2 (2)</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >|RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_24dec:u_datapath_24dec</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|datapath_8b_MUX:u_datapath_8b_MUX|</TD>
-<TD >36 (36)</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >32 (32)</TD>
-<TD >0 (0)</TD>
-<TD >4 (4)</TD>
-<TD >|RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;|fifo:int_fifo|</TD>
-<TD >326 (281)</TD>
-<TD >281 (256)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >38 (18)</TD>
-<TD >111 (99)</TD>
-<TD >177 (164)</TD>
-<TD >|RESDMAC|fifo:int_fifo</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fifo_3bit_cntr:u_next_in_cntr|</TD>
-<TD >3 (3)</TD>
-<TD >3 (3)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >3 (3)</TD>
-<TD >|RESDMAC|fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fifo_3bit_cntr:u_next_out_cntr|</TD>
-<TD >3 (3)</TD>
-<TD >3 (3)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >3 (3)</TD>
-<TD >|RESDMAC|fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fifo__full_empty_ctr:u_full_empty_ctr|</TD>
-<TD >31 (31)</TD>
-<TD >17 (17)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >14 (14)</TD>
-<TD >12 (12)</TD>
-<TD >5 (5)</TD>
-<TD >|RESDMAC|fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fifo_byte_ptr:u_byte_ptr|</TD>
-<TD >3 (3)</TD>
-<TD >2 (2)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >1 (1)</TD>
-<TD >0 (0)</TD>
-<TD >2 (2)</TD>
-<TD >|RESDMAC|fifo:int_fifo|fifo_byte_ptr:u_byte_ptr</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fifo_write_strobes:u_write_strobes|</TD>
-<TD >5 (5)</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >5 (5)</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >|RESDMAC|fifo:int_fifo|fifo_write_strobes:u_write_strobes</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;|registers:u_registers|</TD>
-<TD >33 (3)</TD>
-<TD >14 (2)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >18 (1)</TD>
-<TD >2 (0)</TD>
-<TD >13 (1)</TD>
-<TD >|RESDMAC|registers:u_registers</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|addr_decoder:u_addr_decoder|</TD>
-<TD >16 (16)</TD>
-<TD >0 (0)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >14 (14)</TD>
-<TD >0 (0)</TD>
-<TD >2 (2)</TD>
-<TD >|RESDMAC|registers:u_registers|addr_decoder:u_addr_decoder</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|registers_cntr:u_registers_cntr|</TD>
-<TD >5 (5)</TD>
-<TD >4 (4)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >1 (1)</TD>
-<TD >2 (2)</TD>
-<TD >2 (2)</TD>
-<TD >|RESDMAC|registers:u_registers|registers_cntr:u_registers_cntr</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|registers_istr:u_registers_istr|</TD>
-<TD >5 (5)</TD>
-<TD >4 (4)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >1 (1)</TD>
-<TD >0 (0)</TD>
-<TD >4 (4)</TD>
-<TD >|RESDMAC|registers:u_registers|registers_istr:u_registers_istr</TD>
-<TD >work</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|registers_term:u_registers_term|</TD>
-<TD >5 (5)</TD>
-<TD >4 (4)</TD>
-<TD >0 (0)</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >1 (1)</TD>
-<TD >0 (0)</TD>
-<TD >4 (4)</TD>
-<TD >|RESDMAC|registers:u_registers|registers_term:u_registers_term</TD>
-<TD >work</TD>
+<TD >PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk2</TD>
+<TD >clock2</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >25.0 MHz</TD>
+<TD >135 (15000 ps)</TD>
+<TD >50/50</TD>
+<TD >C2</TD>
+<TD >30</TD>
+<TD >15/15 Even</TD>
+<TD >12</TD>
+<TD >2</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
 </TR>
 </tbody></TABLE>
 

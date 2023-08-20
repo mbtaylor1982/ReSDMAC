@@ -1,5 +1,5 @@
 Analysis & Synthesis report for RESDMAC
-Tue Apr 11 22:24:19 2023
+Sun Aug 20 18:30:53 2023
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -14,17 +14,17 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Analysis & Synthesis IP Cores Summary
-  9. Registers Removed During Synthesis
- 10. General Register Statistics
- 11. Inverted Register Statistics
- 12. Multiplexer Restructuring Statistics (No Restructuring Performed)
- 13. Parameter Settings for User Entity Instance: PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component
- 14. altpll Parameter Settings by Entity Instance
- 15. Port Connectivity Checks: "registers:u_registers"
- 16. Elapsed Time Per Partition
- 17. Analysis & Synthesis Equations
- 18. Analysis & Synthesis Messages
- 19. Analysis & Synthesis Suppressed Messages
+  9. State Machine - |RESDMAC|SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg
+ 10. Registers Removed During Synthesis
+ 11. General Register Statistics
+ 12. Inverted Register Statistics
+ 13. Multiplexer Restructuring Statistics (No Restructuring Performed)
+ 14. Parameter Settings for User Entity Instance: PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component
+ 15. altpll Parameter Settings by Entity Instance
+ 16. Port Connectivity Checks: "registers:u_registers"
+ 17. Elapsed Time Per Partition
+ 18. Analysis & Synthesis Equations
+ 19. Analysis & Synthesis Messages
 
 
 
@@ -50,15 +50,15 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Apr 11 22:24:19 2023           ;
+; Analysis & Synthesis Status        ; Successful - Sun Aug 20 18:30:53 2023           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; RESDMAC                                         ;
 ; Top-level Entity Name              ; RESDMAC                                         ;
 ; Family                             ; Cyclone II                                      ;
-; Total logic elements               ; 950                                             ;
-;     Total combinational functions  ; 683                                             ;
-;     Dedicated logic registers      ; 409                                             ;
-; Total registers                    ; 409                                             ;
+; Total logic elements               ; 901                                             ;
+;     Total combinational functions  ; 621                                             ;
+;     Dedicated logic registers      ; 427                                             ;
+; Total registers                    ; 427                                             ;
 ; Total pins                         ; 81                                              ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
@@ -169,80 +169,79 @@ applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                            ;
-+-----------------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+---------+
-; File Name with User-Entered Path  ; Used in Netlist ; File Type                   ; File Name with Absolute Path                                        ; Library ;
-+-----------------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+---------+
-; ../RTL/PLL.v                      ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/PLL.v                          ;         ;
-; ../RTL/SCSI_SM/scsi_sm_outputs.v  ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/SCSI_SM/scsi_sm_outputs.v      ;         ;
-; ../RTL/SCSI_SM/scsi_sm_inputs.v   ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/SCSI_SM/scsi_sm_inputs.v       ;         ;
-; ../RTL/SCSI_SM/SCSI_SM.v          ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/SCSI_SM/SCSI_SM.v              ;         ;
-; ../RTL/Registers/registers_term.v ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/Registers/registers_term.v     ;         ;
-; ../RTL/Registers/registers_istr.v ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/Registers/registers_istr.v     ;         ;
-; ../RTL/Registers/registers_cntr.v ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/Registers/registers_cntr.v     ;         ;
-; ../RTL/Registers/registers.v      ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/Registers/registers.v          ;         ;
-; ../RTL/Registers/addr_decoder.v   ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/Registers/addr_decoder.v       ;         ;
-; ../RTL/FIFO/fifo_write_strobes.v  ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/FIFO/fifo_write_strobes.v      ;         ;
-; ../RTL/FIFO/fifo_full_empty_ctr.v ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/FIFO/fifo_full_empty_ctr.v     ;         ;
-; ../RTL/FIFO/fifo_byte_ptr.v       ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/FIFO/fifo_byte_ptr.v           ;         ;
-; ../RTL/FIFO/fifo_3bit_cntr.v      ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/FIFO/fifo_3bit_cntr.v          ;         ;
-; ../RTL/FIFO/fifo.v                ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/FIFO/fifo.v                    ;         ;
-; ../RTL/datapath/datapath_scsi.v   ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/datapath/datapath_scsi.v       ;         ;
-; ../RTL/datapath/datapath_output.v ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/datapath/datapath_output.v     ;         ;
-; ../RTL/datapath/datapath_input.v  ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/datapath/datapath_input.v      ;         ;
-; ../RTL/datapath/datapath_24dec.v  ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/datapath/datapath_24dec.v      ;         ;
-; ../RTL/datapath/datapath_8b_MUX.v ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/datapath/datapath_8b_MUX.v     ;         ;
-; ../RTL/datapath/datapath.v        ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/datapath/datapath.v            ;         ;
-; ../RTL/CPU_SM/cpudff5.v           ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/cpudff5.v               ;         ;
-; ../RTL/CPU_SM/cpudff4.v           ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/cpudff4.v               ;         ;
-; ../RTL/CPU_SM/cpudff3.v           ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/cpudff3.v               ;         ;
-; ../RTL/CPU_SM/cpudff2.v           ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/cpudff2.v               ;         ;
-; ../RTL/CPU_SM/cpudff1.v           ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/cpudff1.v               ;         ;
-; ../RTL/CPU_SM/CPU_SM_output.v     ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/CPU_SM_output.v         ;         ;
-; ../RTL/CPU_SM/CPU_SM_inputs.v     ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/CPU_SM_inputs.v         ;         ;
-; ../RTL/CPU_SM/CPU_SM.v            ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/CPU_SM.v                ;         ;
-; ../RTL/RESDMAC.v                  ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/RESDMAC.v                      ;         ;
-; atpll.v                           ; yes             ; User Wizard-Generated File  ; C:/Users/mbtay/SDMAC-Replacement/Quartus/atpll.v                    ;         ;
-; altpll.tdf                        ; yes             ; Megafunction                ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altpll.tdf        ;         ;
-; aglobal130.inc                    ; yes             ; Megafunction                ; c:/altera/13.0sp1/quartus/libraries/megafunctions/aglobal130.inc    ;         ;
-; stratix_pll.inc                   ; yes             ; Megafunction                ; c:/altera/13.0sp1/quartus/libraries/megafunctions/stratix_pll.inc   ;         ;
-; stratixii_pll.inc                 ; yes             ; Megafunction                ; c:/altera/13.0sp1/quartus/libraries/megafunctions/stratixii_pll.inc ;         ;
-; cycloneii_pll.inc                 ; yes             ; Megafunction                ; c:/altera/13.0sp1/quartus/libraries/megafunctions/cycloneii_pll.inc ;         ;
-+-----------------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+---------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                             ;
++------------------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+---------+
+; File Name with User-Entered Path   ; Used in Netlist ; File Type                   ; File Name with Absolute Path                                        ; Library ;
++------------------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+---------+
+; ../RTL/SCSI_SM/SCSI_SM_INTERNALS.v ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/SCSI_SM/SCSI_SM_INTERNALS.v    ;         ;
+; ../RTL/PLL.v                       ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/PLL.v                          ;         ;
+; ../RTL/SCSI_SM/SCSI_SM.v           ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/SCSI_SM/SCSI_SM.v              ;         ;
+; ../RTL/Registers/registers_term.v  ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/Registers/registers_term.v     ;         ;
+; ../RTL/Registers/registers_istr.v  ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/Registers/registers_istr.v     ;         ;
+; ../RTL/Registers/registers_cntr.v  ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/Registers/registers_cntr.v     ;         ;
+; ../RTL/Registers/registers.v       ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/Registers/registers.v          ;         ;
+; ../RTL/Registers/addr_decoder.v    ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/Registers/addr_decoder.v       ;         ;
+; ../RTL/FIFO/fifo_write_strobes.v   ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/FIFO/fifo_write_strobes.v      ;         ;
+; ../RTL/FIFO/fifo_full_empty_ctr.v  ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/FIFO/fifo_full_empty_ctr.v     ;         ;
+; ../RTL/FIFO/fifo_byte_ptr.v        ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/FIFO/fifo_byte_ptr.v           ;         ;
+; ../RTL/FIFO/fifo_3bit_cntr.v       ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/FIFO/fifo_3bit_cntr.v          ;         ;
+; ../RTL/FIFO/fifo.v                 ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/FIFO/fifo.v                    ;         ;
+; ../RTL/datapath/datapath_scsi.v    ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/datapath/datapath_scsi.v       ;         ;
+; ../RTL/datapath/datapath_output.v  ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/datapath/datapath_output.v     ;         ;
+; ../RTL/datapath/datapath_input.v   ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/datapath/datapath_input.v      ;         ;
+; ../RTL/datapath/datapath_24dec.v   ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/datapath/datapath_24dec.v      ;         ;
+; ../RTL/datapath/datapath_8b_MUX.v  ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/datapath/datapath_8b_MUX.v     ;         ;
+; ../RTL/datapath/datapath.v         ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/datapath/datapath.v            ;         ;
+; ../RTL/CPU_SM/cpudff5.v            ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/cpudff5.v               ;         ;
+; ../RTL/CPU_SM/cpudff4.v            ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/cpudff4.v               ;         ;
+; ../RTL/CPU_SM/cpudff3.v            ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/cpudff3.v               ;         ;
+; ../RTL/CPU_SM/cpudff2.v            ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/cpudff2.v               ;         ;
+; ../RTL/CPU_SM/cpudff1.v            ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/cpudff1.v               ;         ;
+; ../RTL/CPU_SM/CPU_SM_output.v      ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/CPU_SM_output.v         ;         ;
+; ../RTL/CPU_SM/CPU_SM_inputs.v      ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/CPU_SM_inputs.v         ;         ;
+; ../RTL/CPU_SM/CPU_SM.v             ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/CPU_SM.v                ;         ;
+; ../RTL/RESDMAC.v                   ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/RESDMAC.v                      ;         ;
+; atpll.v                            ; yes             ; User Wizard-Generated File  ; C:/Users/mbtay/SDMAC-Replacement/Quartus/atpll.v                    ;         ;
+; altpll.tdf                         ; yes             ; Megafunction                ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altpll.tdf        ;         ;
+; aglobal130.inc                     ; yes             ; Megafunction                ; c:/altera/13.0sp1/quartus/libraries/megafunctions/aglobal130.inc    ;         ;
+; stratix_pll.inc                    ; yes             ; Megafunction                ; c:/altera/13.0sp1/quartus/libraries/megafunctions/stratix_pll.inc   ;         ;
+; stratixii_pll.inc                  ; yes             ; Megafunction                ; c:/altera/13.0sp1/quartus/libraries/megafunctions/stratixii_pll.inc ;         ;
+; cycloneii_pll.inc                  ; yes             ; Megafunction                ; c:/altera/13.0sp1/quartus/libraries/megafunctions/cycloneii_pll.inc ;         ;
++------------------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+---------+
 
 
-+-----------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                                                         ;
-+---------------------------------------------+-------------------------------------------------------+
-; Resource                                    ; Usage                                                 ;
-+---------------------------------------------+-------------------------------------------------------+
-; Estimated Total logic elements              ; 950                                                   ;
-;                                             ;                                                       ;
-; Total combinational functions               ; 683                                                   ;
-; Logic element usage by number of LUT inputs ;                                                       ;
-;     -- 4 input functions                    ; 511                                                   ;
-;     -- 3 input functions                    ; 116                                                   ;
-;     -- <=2 input functions                  ; 56                                                    ;
-;                                             ;                                                       ;
-; Logic elements by mode                      ;                                                       ;
-;     -- normal mode                          ; 683                                                   ;
-;     -- arithmetic mode                      ; 0                                                     ;
-;                                             ;                                                       ;
-; Total registers                             ; 409                                                   ;
-;     -- Dedicated logic registers            ; 409                                                   ;
-;     -- I/O registers                        ; 0                                                     ;
-;                                             ;                                                       ;
-; I/O pins                                    ; 81                                                    ;
-; Embedded Multiplier 9-bit elements          ; 0                                                     ;
-; Total PLLs                                  ; 1                                                     ;
-;     -- PLLs                                 ; 1                                                     ;
-;                                             ;                                                       ;
-; Maximum fan-out node                        ; fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[1] ;
-; Maximum fan-out                             ; 99                                                    ;
-; Total fan-out                               ; 3757                                                  ;
-; Average fan-out                             ; 3.20                                                  ;
-+---------------------------------------------+-------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                                                           ;
++---------------------------------------------+---------------------------------------------------------+
+; Resource                                    ; Usage                                                   ;
++---------------------------------------------+---------------------------------------------------------+
+; Estimated Total logic elements              ; 901                                                     ;
+;                                             ;                                                         ;
+; Total combinational functions               ; 621                                                     ;
+; Logic element usage by number of LUT inputs ;                                                         ;
+;     -- 4 input functions                    ; 442                                                     ;
+;     -- 3 input functions                    ; 116                                                     ;
+;     -- <=2 input functions                  ; 63                                                      ;
+;                                             ;                                                         ;
+; Logic elements by mode                      ;                                                         ;
+;     -- normal mode                          ; 621                                                     ;
+;     -- arithmetic mode                      ; 0                                                       ;
+;                                             ;                                                         ;
+; Total registers                             ; 427                                                     ;
+;     -- Dedicated logic registers            ; 427                                                     ;
+;     -- I/O registers                        ; 0                                                       ;
+;                                             ;                                                         ;
+; I/O pins                                    ; 81                                                      ;
+; Embedded Multiplier 9-bit elements          ; 0                                                       ;
+; Total PLLs                                  ; 1                                                       ;
+;     -- PLLs                                 ; 1                                                       ;
+;                                             ;                                                         ;
+; Maximum fan-out node                        ; PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk0 ;
+; Maximum fan-out                             ; 105                                                     ;
+; Total fan-out                               ; 3549                                                    ;
+; Average fan-out                             ; 3.14                                                    ;
++---------------------------------------------+---------------------------------------------------------+
 
 
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -250,24 +249,23 @@ applicable agreement for further details.
 +-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                    ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                          ; Library Name ;
 +-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------+--------------+
-; |RESDMAC                                      ; 683 (94)          ; 409 (4)      ; 0           ; 0            ; 0       ; 0         ; 81   ; 0            ; |RESDMAC                                                                                     ; work         ;
-;    |CPU_SM:u_CPU_SM|                          ; 174 (6)           ; 29 (29)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM                                                                     ; work         ;
-;       |CPU_SM_inputs:u_CPU_SM_inputs|         ; 31 (31)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs                                       ; work         ;
-;       |CPU_SM_outputs:u_CPU_SM_outputs|       ; 78 (78)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs                                     ; work         ;
+; |RESDMAC                                      ; 621 (15)          ; 427 (4)      ; 0           ; 0            ; 0       ; 0         ; 81   ; 0            ; |RESDMAC                                                                                     ; work         ;
+;    |CPU_SM:u_CPU_SM|                          ; 170 (6)           ; 30 (30)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM                                                                     ; work         ;
+;       |CPU_SM_inputs:u_CPU_SM_inputs|         ; 29 (29)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs                                       ; work         ;
+;       |CPU_SM_outputs:u_CPU_SM_outputs|       ; 76 (76)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs                                     ; work         ;
 ;       |cpudff1:u_cpudff1|                     ; 10 (10)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff1:u_cpudff1                                                   ; work         ;
 ;       |cpudff2:u_cpudff2|                     ; 11 (11)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff2:u_cpudff2                                                   ; work         ;
 ;       |cpudff3:u_cpudff3|                     ; 12 (12)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff3:u_cpudff3                                                   ; work         ;
-;       |cpudff4:u_cpudff4|                     ; 14 (14)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff4:u_cpudff4                                                   ; work         ;
-;       |cpudff5:u_cpudff5|                     ; 12 (12)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff5:u_cpudff5                                                   ; work         ;
+;       |cpudff4:u_cpudff4|                     ; 13 (13)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff4:u_cpudff4                                                   ; work         ;
+;       |cpudff5:u_cpudff5|                     ; 13 (13)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff5:u_cpudff5                                                   ; work         ;
 ;    |PLL:u_PLL|                                ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|PLL:u_PLL                                                                           ; work         ;
 ;       |atpll:APLL_inst|                       ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|PLL:u_PLL|atpll:APLL_inst                                                           ; work         ;
 ;          |altpll:altpll_component|            ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component                                   ; work         ;
-;    |SCSI_SM:u_SCSI_SM|                        ; 69 (2)            ; 25 (25)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|SCSI_SM:u_SCSI_SM                                                                   ; work         ;
-;       |scsi_sm_inputs:u_scsi_sm_inputs|       ; 22 (22)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs                                   ; work         ;
-;       |scsi_sm_outputs:u_scsi_sm_outputs|     ; 45 (45)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs                                 ; work         ;
-;    |datapath:u_datapath|                      ; 122 (2)           ; 56 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath                                                                 ; work         ;
+;    |SCSI_SM:u_SCSI_SM|                        ; 34 (2)            ; 42 (20)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|SCSI_SM:u_SCSI_SM                                                                   ; work         ;
+;       |SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS| ; 32 (32)           ; 22 (22)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS                             ; work         ;
+;    |datapath:u_datapath|                      ; 177 (2)           ; 56 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath                                                                 ; work         ;
 ;       |datapath_input:u_datapath_input|       ; 57 (57)           ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_input:u_datapath_input                                 ; work         ;
-;       |datapath_output:u_datapath_output|     ; 1 (1)             ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output                               ; work         ;
+;       |datapath_output:u_datapath_output|     ; 56 (56)           ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output                               ; work         ;
 ;       |datapath_scsi:u_datapath_scsi|         ; 62 (24)           ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi                                   ; work         ;
 ;          |datapath_24dec:u_datapath_24dec|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_24dec:u_datapath_24dec   ; work         ;
 ;          |datapath_8b_MUX:u_datapath_8b_MUX|  ; 36 (36)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX ; work         ;
@@ -277,11 +275,11 @@ applicable agreement for further details.
 ;       |fifo__full_empty_ctr:u_full_empty_ctr| ; 18 (18)           ; 17 (17)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr                                 ; work         ;
 ;       |fifo_byte_ptr:u_byte_ptr|              ; 3 (3)             ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo_byte_ptr:u_byte_ptr                                              ; work         ;
 ;       |fifo_write_strobes:u_write_strobes|    ; 5 (5)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo_write_strobes:u_write_strobes                                    ; work         ;
-;    |registers:u_registers|                    ; 24 (1)            ; 14 (2)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers                                                               ; work         ;
+;    |registers:u_registers|                    ; 25 (1)            ; 14 (2)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers                                                               ; work         ;
 ;       |addr_decoder:u_addr_decoder|           ; 16 (16)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|addr_decoder:u_addr_decoder                                   ; work         ;
 ;       |registers_cntr:u_registers_cntr|       ; 1 (1)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|registers_cntr:u_registers_cntr                               ; work         ;
 ;       |registers_istr:u_registers_istr|       ; 2 (2)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|registers_istr:u_registers_istr                               ; work         ;
-;       |registers_term:u_registers_term|       ; 4 (4)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|registers_term:u_registers_term                               ; work         ;
+;       |registers_term:u_registers_term|       ; 5 (5)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|registers_term:u_registers_term                               ; work         ;
 +-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -295,17 +293,52 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------+--------------+---------+--------------+--------------+------------------------------------+--------------------------------------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                                                    ;
-+-------------------------------------------------------------+-------------------------------------------------------------------------+
-; Register name                                               ; Reason for Removal                                                      ;
-+-------------------------------------------------------------+-------------------------------------------------------------------------+
-; CPU_SM:u_CPU_SM|CCRESET_                                    ; Merged with SCSI_SM:u_SCSI_SM|CRESET_                                   ;
-; CPU_SM:u_CPU_SM|DREQ_                                       ; Merged with SCSI_SM:u_SCSI_SM|CDREQ_                                    ;
-; registers:u_registers|registers_istr:u_registers_istr|E_INT ; Merged with registers:u_registers|registers_istr:u_registers_istr|INT_F ;
-; registers:u_registers|registers_istr:u_registers_istr|INTS  ; Merged with registers:u_registers|registers_istr:u_registers_istr|INT_F ;
-; Total Number of Removed Registers = 4                       ;                                                                         ;
-+-------------------------------------------------------------+-------------------------------------------------------------------------+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |RESDMAC|SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg                                                                                                                                                                                                                                                                            ;
++---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+
+; Name          ; state_reg.s30 ; state_reg.s28 ; state_reg.s26 ; state_reg.s25 ; state_reg.s24 ; state_reg.s22 ; state_reg.s20 ; state_reg.s19 ; state_reg.s18 ; state_reg.s17 ; state_reg.s16 ; state_reg.s14 ; state_reg.s12 ; state_reg.s10 ; state_reg.s9 ; state_reg.s8 ; state_reg.s6 ; state_reg.s4 ; state_reg.s3 ; state_reg.s2 ; state_reg.s1 ; state_reg.s0 ;
++---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+
+; state_reg.s0  ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ;
+; state_reg.s1  ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 1            ;
+; state_reg.s2  ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 1            ;
+; state_reg.s3  ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 1            ;
+; state_reg.s4  ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 1            ;
+; state_reg.s6  ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_reg.s8  ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_reg.s9  ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_reg.s10 ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 1             ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_reg.s12 ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 1             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_reg.s14 ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 1             ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_reg.s16 ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 1             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_reg.s17 ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 1             ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_reg.s18 ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 1             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_reg.s19 ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 1             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_reg.s20 ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 1             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_reg.s22 ; 0             ; 0             ; 0             ; 0             ; 0             ; 1             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_reg.s24 ; 0             ; 0             ; 0             ; 0             ; 1             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_reg.s25 ; 0             ; 0             ; 0             ; 1             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_reg.s26 ; 0             ; 0             ; 1             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_reg.s28 ; 0             ; 1             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_reg.s30 ; 1             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
++---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                            ;
++---------------------------------------------------------------------+-------------------------------------------------------------------------+
+; Register name                                                       ; Reason for Removal                                                      ;
++---------------------------------------------------------------------+-------------------------------------------------------------------------+
+; CPU_SM:u_CPU_SM|CCRESET_                                            ; Merged with SCSI_SM:u_SCSI_SM|CRESET_                                   ;
+; registers:u_registers|registers_istr:u_registers_istr|E_INT         ; Merged with registers:u_registers|registers_istr:u_registers_istr|INT_F ;
+; registers:u_registers|registers_istr:u_registers_istr|INTS          ; Merged with registers:u_registers|registers_istr:u_registers_istr|INT_F ;
+; SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg~4 ; Lost fanout                                                             ;
+; SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg~5 ; Lost fanout                                                             ;
+; SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg~6 ; Lost fanout                                                             ;
+; SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg~7 ; Lost fanout                                                             ;
+; SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg~8 ; Lost fanout                                                             ;
+; Total Number of Removed Registers = 8                               ;                                                                         ;
++---------------------------------------------------------------------+-------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -313,10 +346,10 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 409   ;
-; Number of registers using Synchronous Clear  ; 1     ;
+; Total registers                              ; 427   ;
+; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 87    ;
+; Number of registers using Asynchronous Clear ; 105   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 256   ;
 ; Number of registers using Preset             ; 0     ;
@@ -330,13 +363,14 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------------------------+---------+
 ; CPU_SM:u_CPU_SM|BGRANT_                                        ; 4       ;
 ; CPU_SM:u_CPU_SM|nCYCLEDONE                                     ; 4       ;
-; CPU_SM:u_CPU_SM|DSACK_LATCHED_[0]                              ; 7       ;
-; CPU_SM:u_CPU_SM|DSACK_LATCHED_[1]                              ; 7       ;
-; SCSI_SM:u_SCSI_SM|CDREQ_                                       ; 4       ;
-; SCSI_SM:u_SCSI_SM|CDSACK_                                      ; 5       ;
-; registers:u_registers|registers_term:u_registers_term|REG_DSK_ ; 1       ;
+; CPU_SM:u_CPU_SM|DSACK_LATCHED_[0]                              ; 9       ;
+; CPU_SM:u_CPU_SM|DSACK_LATCHED_[1]                              ; 9       ;
+; SCSI_SM:u_SCSI_SM|CDREQ_                                       ; 2       ;
+; CPU_SM:u_CPU_SM|DREQ_                                          ; 2       ;
+; SCSI_SM:u_SCSI_SM|CDSACK_                                      ; 3       ;
+; registers:u_registers|registers_term:u_registers_term|REG_DSK_ ; 2       ;
 ; registers:u_registers|registers_istr:u_registers_istr|FE       ; 1       ;
-; Total number of inverted registers = 8                         ;         ;
+; Total number of inverted registers = 9                         ;         ;
 +----------------------------------------------------------------+---------+
 
 
@@ -346,11 +380,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                             ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------------------------+
 ; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[15]                                ;
-; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[27]                                ;
-; 8:1                ; 32 bits   ; 160 LEs       ; 160 LEs              ; 0 LEs                  ; No         ; |RESDMAC|fifo:int_fifo|Mux21                                                                           ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[19]                                ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[1]                                 ;
-; 6:1                ; 8 bits    ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector6 ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[30]                                ;
+; 8:1                ; 32 bits   ; 160 LEs       ; 160 LEs              ; 0 LEs                  ; No         ; |RESDMAC|fifo:int_fifo|Mux17                                                                           ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[17]                                ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[4]                                 ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector3 ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |RESDMAC|SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|Selector9                             ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------------------------+
 
 
@@ -776,9 +811,13 @@ The equations can be found in C:/Users/mbtay/SDMAC-Replacement/Quartus/output_fi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Tue Apr 11 22:24:17 2023
+    Info: Processing started: Sun Aug 20 18:30:51 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off RESDMAC -c RESDMAC
 Info (11104): Parallel Compilation has detected 12 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 6 of the 6 physical processors detected instead.
+Info (12021): Found 1 design units, including 1 entities, in source file /users/mbtay/sdmac-replacement/rtl/scsi_sm/scsi_sm_internals1.v
+    Info (12023): Found entity 1: SCSI_SM_INTERNALS1
+Info (12021): Found 1 design units, including 1 entities, in source file /users/mbtay/sdmac-replacement/rtl/scsi_sm/scsi_sm_internals.v
+    Info (12023): Found entity 1: SCSI_SM_INTERNALS
 Info (12021): Found 1 design units, including 1 entities, in source file /users/mbtay/sdmac-replacement/rtl/pll.v
     Info (12023): Found entity 1: PLL
 Info (12021): Found 1 design units, including 1 entities, in source file /users/mbtay/sdmac-replacement/rtl/scsi_sm/scsi_sm_outputs.v
@@ -839,11 +878,10 @@ Info (12021): Found 1 design units, including 1 entities, in source file /users/
     Info (12023): Found entity 1: RESDMAC
 Info (12021): Found 1 design units, including 1 entities, in source file atpll.v
     Info (12023): Found entity 1: atpll
+Warning (10236): Verilog HDL Implicit Net warning at SCSI_SM.v(111): created implicit net for "RDFIFO"
+Warning (10236): Verilog HDL Implicit Net warning at SCSI_SM.v(113): created implicit net for "RIFIFO"
 Info (12127): Elaborating entity "RESDMAC" for the top level hierarchy
-Warning (10858): Verilog HDL warning at RESDMAC.v(76): object DATA_O used but never assigned
-Warning (10036): Verilog HDL or VHDL warning at RESDMAC.v(91): object "_DS" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at RESDMAC.v(101): object "DATA" assigned a value but never read
-Warning (10030): Net "DATA_O" at RESDMAC.v(76) has no driver or initial value, using a default initial value '0'
+Warning (10036): Verilog HDL or VHDL warning at RESDMAC.v(90): object "_DS" assigned a value but never read
 Info (12128): Elaborating entity "registers" for hierarchy "registers:u_registers"
 Info (12128): Elaborating entity "addr_decoder" for hierarchy "registers:u_registers|addr_decoder:u_addr_decoder"
 Info (12128): Elaborating entity "registers_istr" for hierarchy "registers:u_registers|registers_istr:u_registers_istr"
@@ -874,8 +912,7 @@ Info (12128): Elaborating entity "cpudff4" for hierarchy "CPU_SM:u_CPU_SM|cpudff
 Info (12128): Elaborating entity "cpudff5" for hierarchy "CPU_SM:u_CPU_SM|cpudff5:u_cpudff5"
 Info (12128): Elaborating entity "CPU_SM_outputs" for hierarchy "CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs"
 Info (12128): Elaborating entity "SCSI_SM" for hierarchy "SCSI_SM:u_SCSI_SM"
-Info (12128): Elaborating entity "scsi_sm_inputs" for hierarchy "SCSI_SM:u_SCSI_SM|scsi_sm_inputs:u_scsi_sm_inputs"
-Info (12128): Elaborating entity "scsi_sm_outputs" for hierarchy "SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs"
+Info (12128): Elaborating entity "SCSI_SM_INTERNALS" for hierarchy "SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS"
 Info (12128): Elaborating entity "fifo" for hierarchy "fifo:int_fifo"
 Info (12128): Elaborating entity "fifo_write_strobes" for hierarchy "fifo:int_fifo|fifo_write_strobes:u_write_strobes"
 Info (12128): Elaborating entity "fifo__full_empty_ctr" for hierarchy "fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr"
@@ -1036,8 +1073,6 @@ Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
     Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[29]" feeding internal logic into a wire
     Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[30]" feeding internal logic into a wire
     Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[31]" feeding internal logic into a wire
-Warning (19016): Clock multiplexers are found and protected
-    Warning (19017): Found clock multiplexer SCSI_SM:u_SCSI_SM|scsi_sm_outputs:u_scsi_sm_outputs|SET_DSACK~synth
 Info (17026): Resynthesizing 0 WYSIWYG logic cells and I/Os using "speed" technology mapper which leaves 0 WYSIWYG logic cells and I/Os untouched
 Warning (13039): The following bidir pins have no drivers
     Warning (13040): Bidir "PD_PORT[8]" has no driver
@@ -1103,25 +1138,19 @@ Warning (13004): Presettable and clearable registers converted to equivalent cir
     Warning (13310): Register "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[6]" is converted into an equivalent circuit using register "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[6]~_emulated" and latch "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[6]~25"
     Warning (13310): Register "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[7]" is converted into an equivalent circuit using register "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[7]~_emulated" and latch "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[7]~29"
 Info (286030): Timing-Driven Synthesis is running
-Info (144001): Generated suppressed messages file C:/Users/mbtay/SDMAC-Replacement/Quartus/output_files/RESDMAC.map.smsg
+Info (17049): 5 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 1118 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1072 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 13 input pins
     Info (21059): Implemented 14 output pins
     Info (21060): Implemented 54 bidirectional pins
-    Info (21061): Implemented 1036 logic cells
+    Info (21061): Implemented 990 logic cells
     Info (21065): Implemented 1 PLLs
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 164 warnings
-    Info: Peak virtual memory: 4645 megabytes
-    Info: Processing ended: Tue Apr 11 22:24:19 2023
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 161 warnings
+    Info: Peak virtual memory: 4658 megabytes
+    Info: Processing ended: Sun Aug 20 18:30:53 2023
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
-
-
-+------------------------------------------+
-; Analysis & Synthesis Suppressed Messages ;
-+------------------------------------------+
-The suppressed messages can be found in C:/Users/mbtay/SDMAC-Replacement/Quartus/output_files/RESDMAC.map.smsg.
 
 

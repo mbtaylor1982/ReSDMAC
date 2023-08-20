@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <HTML><HEAD>
-<TITLE>Slow Model Minimum Pulse Width: &apos;u_PLL|APLL_inst|altpll_component|pll|clk[0]&apos;</TITLE>
+<TITLE>Slow Model Removal: &apos;u_PLL|APLL_inst|altpll_component|pll|clk[1]&apos;</TITLE>
 
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/base.css">
@@ -19,264 +19,493 @@
 <TABLE>
 <thead><TR  bgcolor="#BFBFBF">
 <TH>Slack</TH>
-<TH>Actual Width</TH>
-<TH>Required Width</TH>
-<TH>Type</TH>
-<TH>Clock</TH>
-<TH>Clock Edge</TH>
-<TH>Target</TH>
+<TH>From Node</TH>
+<TH>To Node</TH>
+<TH>Launch Clock</TH>
+<TH>Latch Clock</TH>
+<TH>Relationship</TH>
+<TH>Clock Skew</TH>
+<TH>Data Delay</TH>
 </TR>
 </thead><tbody><TR  bgcolor="#FFFFFF">
-<TD >18.758</TD>
-<TD >20.000</TD>
-<TD >1.242</TD>
-<TD >High Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Fall</TD>
-<TD >CPU_SM:u_CPU_SM|DSACK_LATCHED_[0]</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >18.758</TD>
-<TD >20.000</TD>
-<TD >1.242</TD>
-<TD >Low Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Fall</TD>
-<TD >CPU_SM:u_CPU_SM|DSACK_LATCHED_[0]</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >18.758</TD>
-<TD >20.000</TD>
-<TD >1.242</TD>
-<TD >High Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Fall</TD>
-<TD >CPU_SM:u_CPU_SM|DSACK_LATCHED_[1]</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >18.758</TD>
-<TD >20.000</TD>
-<TD >1.242</TD>
-<TD >Low Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Fall</TD>
-<TD >CPU_SM:u_CPU_SM|DSACK_LATCHED_[1]</TD>
-</TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >18.758</TD>
-<TD >20.000</TD>
-<TD >1.242</TD>
-<TD >High Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Fall</TD>
+<TD >14.566</TD>
 <TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >CPU_SM:u_CPU_SM|DIEL</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.003</TD>
+<TD >2.369</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >18.758</TD>
-<TD >20.000</TD>
-<TD >1.242</TD>
-<TD >Low Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Fall</TD>
+<TD >14.566</TD>
 <TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[3]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.003</TD>
+<TD >2.369</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >18.758</TD>
-<TD >20.000</TD>
-<TD >1.242</TD>
-<TD >High Pulse Width</TD>
+<TD >14.566</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[0]</TD>
 <TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Fall</TD>
-<TD >registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.003</TD>
+<TD >2.369</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >18.758</TD>
-<TD >20.000</TD>
-<TD >1.242</TD>
-<TD >Low Pulse Width</TD>
+<TD >14.920</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|CCPUREQ</TD>
 <TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Fall</TD>
-<TD >registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.003</TD>
+<TD >2.723</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >18.758</TD>
-<TD >20.000</TD>
-<TD >1.242</TD>
-<TD >High Pulse Width</TD>
+<TD >14.920</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >CPU_SM:u_CPU_SM|BGACK</TD>
 <TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Fall</TD>
-<TD >registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.003</TD>
+<TD >2.723</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >18.758</TD>
-<TD >20.000</TD>
-<TD >1.242</TD>
-<TD >Low Pulse Width</TD>
+<TD >14.920</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >CPU_SM:u_CPU_SM|STOPFLUSH</TD>
 <TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Fall</TD>
-<TD >registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.003</TD>
+<TD >2.723</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >18.758</TD>
-<TD >20.000</TD>
-<TD >1.242</TD>
-<TD >High Pulse Width</TD>
+<TD >14.970</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[1]</TD>
 <TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Fall</TD>
-<TD >registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[2]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.009</TD>
+<TD >2.767</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >18.758</TD>
-<TD >20.000</TD>
-<TD >1.242</TD>
-<TD >Low Pulse Width</TD>
+<TD >14.970</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >CPU_SM:u_CPU_SM|BREQ</TD>
 <TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Fall</TD>
-<TD >registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[2]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.009</TD>
+<TD >2.767</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >High Pulse Width</TD>
+<TD >14.972</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >CPU_SM:u_CPU_SM|DIEH</TD>
 <TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_CPU_SM|DSACK_LATCHED_[0]|clk</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.007</TD>
+<TD >2.771</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >Low Pulse Width</TD>
+<TD >14.972</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >CPU_SM:u_CPU_SM|PLHW</TD>
 <TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_CPU_SM|DSACK_LATCHED_[0]|clk</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.007</TD>
+<TD >2.771</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >High Pulse Width</TD>
+<TD >14.972</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >CPU_SM:u_CPU_SM|PDS</TD>
 <TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_CPU_SM|DSACK_LATCHED_[1]|clk</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.007</TD>
+<TD >2.771</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >Low Pulse Width</TD>
+<TD >14.972</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >CPU_SM:u_CPU_SM|PLLW</TD>
 <TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_CPU_SM|DSACK_LATCHED_[1]|clk</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.007</TD>
+<TD >2.771</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >High Pulse Width</TD>
+<TD >14.972</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[4]</TD>
 <TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_PLL|APLL_inst|altpll_component|_clk0~clkctrl|inclk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.007</TD>
+<TD >2.771</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >Low Pulse Width</TD>
+<TD >14.979</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >CPU_SM:u_CPU_SM|F2CPUH</TD>
 <TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_PLL|APLL_inst|altpll_component|_clk0~clkctrl|inclk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.010</TD>
+<TD >2.775</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >High Pulse Width</TD>
+<TD >14.981</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >CPU_SM:u_CPU_SM|BRIDGEOUT</TD>
 <TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_PLL|APLL_inst|altpll_component|_clk0~clkctrl|outclk</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.010</TD>
+<TD >2.777</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >Low Pulse Width</TD>
+<TD >14.981</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >CPU_SM:u_CPU_SM|F2CPUL</TD>
 <TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_PLL|APLL_inst|altpll_component|_clk0~clkctrl|outclk</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.010</TD>
+<TD >2.777</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >High Pulse Width</TD>
+<TD >14.981</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >CPU_SM:u_CPU_SM|STATE[2]</TD>
 <TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_SCSI_SM|CRESET_|clk</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.010</TD>
+<TD >2.777</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >Low Pulse Width</TD>
+<TD >14.981</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >CPU_SM:u_CPU_SM|SIZE1</TD>
 <TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_SCSI_SM|CRESET_|clk</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.010</TD>
+<TD >2.777</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >High Pulse Width</TD>
+<TD >15.329</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|CDREQ_</TD>
 <TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_registers|u_registers_term|TERM_COUNTER[0]|clk</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.011</TD>
+<TD >3.124</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >Low Pulse Width</TD>
+<TD >15.329</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg.s24</TD>
 <TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_registers|u_registers_term|TERM_COUNTER[0]|clk</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.011</TD>
+<TD >3.124</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >High Pulse Width</TD>
+<TD >15.329</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg.s4</TD>
 <TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_registers|u_registers_term|TERM_COUNTER[1]|clk</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.011</TD>
+<TD >3.124</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >Low Pulse Width</TD>
+<TD >15.329</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg.s20</TD>
 <TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_registers|u_registers_term|TERM_COUNTER[1]|clk</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.011</TD>
+<TD >3.124</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >High Pulse Width</TD>
+<TD >15.329</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg.s12</TD>
 <TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_registers|u_registers_term|TERM_COUNTER[2]|clk</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.011</TD>
+<TD >3.124</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >Low Pulse Width</TD>
+<TD >15.329</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|CDSACK_</TD>
 <TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_registers|u_registers_term|TERM_COUNTER[2]|clk</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.011</TD>
+<TD >3.124</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >15.329</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg.s25</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.011</TD>
+<TD >3.124</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >15.329</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg.s28</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.011</TD>
+<TD >3.124</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >15.329</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg.s2</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.011</TD>
+<TD >3.124</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >15.329</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg.s18</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.011</TD>
+<TD >3.124</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >15.329</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg.s1</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.011</TD>
+<TD >3.124</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >15.329</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg.s16</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.011</TD>
+<TD >3.124</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >15.329</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg.s14</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.011</TD>
+<TD >3.124</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >15.329</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg.s0</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.011</TD>
+<TD >3.124</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >15.329</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg.s8</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.011</TD>
+<TD >3.124</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >15.332</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.020</TD>
+<TD >3.118</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >15.338</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >CPU_SM:u_CPU_SM|INCNI</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.014</TD>
+<TD >3.130</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >15.354</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg.s9</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.015</TD>
+<TD >3.145</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >15.354</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg.s17</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.015</TD>
+<TD >3.145</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >15.354</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg.s26</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.015</TD>
+<TD >3.145</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >15.354</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg.s6</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.015</TD>
+<TD >3.145</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >15.354</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg.s22</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.015</TD>
+<TD >3.145</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >15.354</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg.s10</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.015</TD>
+<TD >3.145</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >15.354</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg.s30</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.015</TD>
+<TD >3.145</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >15.354</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg.s3</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.015</TD>
+<TD >3.145</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >15.354</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg.s19</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.015</TD>
+<TD >3.145</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >15.391</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >CPU_SM:u_CPU_SM|INCNO</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.006</TD>
+<TD >3.191</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >15.391</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >CPU_SM:u_CPU_SM|BRIDGEIN</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.006</TD>
+<TD >3.191</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >15.391</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >CPU_SM:u_CPU_SM|INCFIFO</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.006</TD>
+<TD >3.191</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >15.391</TD>
+<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >CPU_SM:u_CPU_SM|DECFIFO</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >-12.500</TD>
+<TD >-0.006</TD>
+<TD >3.191</TD>
 </TR>
 </tbody></TABLE>
 

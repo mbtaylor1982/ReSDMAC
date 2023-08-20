@@ -39,17 +39,23 @@ wire CYCLE_ACTIVE;
 `endif   
 
 always @(posedge nCPUCLK or posedge AS_) begin
-  if (CYCLE_ACTIVE == 1'b1) 
-    TERM_COUNTER <=  TERM_COUNTER + 1'b1;
   if (AS_)
     TERM_COUNTER <= 3'b000;
+  else begin
+    if (CYCLE_ACTIVE == 1'b1) 
+      TERM_COUNTER <=  TERM_COUNTER + 1'b1;
+  end
 end
 
 always @(negedge nCPUCLK or posedge AS_) begin
-  if (TERM_COUNTER == 3'd3)
-    REG_DSK_ <= 1'b0; 
   if (AS_)
     REG_DSK_ <= 1'b1;
+  else begin
+    if (TERM_COUNTER == 3'd3)
+      REG_DSK_ <= 1'b0;   
+  end
+  
+  
 end
 
 endmodule
