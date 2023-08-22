@@ -169,7 +169,7 @@ registers u_registers(
     .DMAC_     (_CS       ),
     .AS_       (_AS       ),
     .RW        (R_W       ),
-    .nCPUCLK   (nCLK      ),
+    .CLK       (nCLK      ),
     .MID       (MID       ),
     .STOPFLUSH (STOPFLUSH ),
     .RST_      (PLLLOCKED ),

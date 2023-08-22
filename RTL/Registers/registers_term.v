@@ -18,7 +18,7 @@
  */ 
 
 module registers_term(
-    input nCPUCLK,
+    input CLK,
     input AS_,
     input DMAC_,
     input WDREGREQ,
@@ -38,16 +38,16 @@ wire CYCLE_ACTIVE;
   assign CYCLE_ACTIVE = ~(AS_| DMAC_ | WDREGREQ | h_0C);
 `endif   
 
-always @(posedge nCPUCLK or posedge AS_) begin
+always @(posedge CLK or posedge AS_) begin
   if (AS_)
     TERM_COUNTER <= 3'b000;
   else begin
-    if (CYCLE_ACTIVE == 1'b1) 
+    if (CYCLE_ACTIVE) 
       TERM_COUNTER <=  TERM_COUNTER + 1'b1;
   end
 end
 
-always @(negedge nCPUCLK or posedge AS_) begin
+always @(negedge CLK or posedge AS_) begin
   if (AS_)
     REG_DSK_ <= 1'b1;
   else begin
