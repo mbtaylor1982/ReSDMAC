@@ -77,6 +77,8 @@ wire S2F;       // Enable SCSI to FIFO datapath.
 wire SCSI_CS;   // Chip select to WD33C93 IC.
 wire SET_DSACK; // Signal to latch SCSI data for CPU and terminate CPU Cycle.
 wire WE;        // Write enable line for WD33C93 IC.
+wire RDFIFO;
+wire RIFIFO;
 
 reg nLS2CPU;    //Inverted signal to idicate when to latch the SCSI data for CPU cycle.
 
