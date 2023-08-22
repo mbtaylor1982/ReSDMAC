@@ -158,24 +158,24 @@ always @(posedge BCLK) begin
     WE_o        <= WE;
 end
 
-always @(posedge RDFIFO_d or negedge RDRST_) begin
+always @(posedge BBCLK or negedge RDRST_) begin
     if (RDRST_ == 1'b0) 
         RDFIFO_o <= 1'b0;
-    else
+    else if (RDFIFO_d)
         RDFIFO_o <= 1'b1;
 end
 
-always @(posedge RIFIFO_d or negedge RIRST_) begin
+always @(posedge BBCLK or negedge RIRST_) begin
     if (RIRST_ == 1'b0) 
         RIFIFO_o <= 1'b0;
-    else
+    else if (RIFIFO_d)
         RIFIFO_o <= 1'b1;
 end
 
-always @(posedge SET_DSACK or negedge nAS_) begin
+always @(posedge BBCLK or negedge nAS_) begin
     if (nAS_ == 1'b0)
         nLS2CPU <= 1'b0;
-    else
+    else if (SET_DSACK)
         nLS2CPU <= 1'b1;
 end
 
