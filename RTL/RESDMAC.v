@@ -369,7 +369,14 @@ assign DSK0_IN_ = _BERR & _DSACK_IO[0];
 assign DSK1_IN_ = _BERR & _DSACK_IO[1];
 
 assign A3 = ADDR[3];
-assign DATA_OE_ = ((_AS | _CS | H_0C) & _BGACK_IO);
+
+`ifdef __ICARUS__ 
+  //allows DATA_OE_ for writes to ACR in Ramsey for testing
+    assign DATA_OE_ = ((_AS | _CS) & _BGACK_IO);
+`else
+    assign DATA_OE_ = ((_AS | _CS | H_0C) & _BGACK_IO);
+`endif 
+
 assign PDATA_OE_ = (_DACK & _CSS);
 
 assign BnDS_O_ = ~DS_O_;
