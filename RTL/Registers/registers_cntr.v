@@ -32,28 +32,21 @@ module registers_cntr(
   output reg DMAENA
 );
 
-//DMA Enable Control
-wire CLR_DMAENA;
-assign CLR_DMAENA = ~(~SP_DMA & RESET_);
 
-always @(posedge CLK or posedge CLR_DMAENA) begin
-    if (CLR_DMAENA == 1'b1)
-        DMAENA <= 1'b0;
-    else if (ST_DMA)
-        DMAENA <= 1'b1;    
-end
-
-//PRESET, INTENA, DMADIR
 always @(posedge CLK or negedge RESET_) begin
     if (RESET_ == 1'b0) begin
         DMADIR <= 1'b0;
         INTENA <= 1'b0; 
-        PRESET <= 1'b0;    
+        PRESET <= 1'b0;
+		    DMAENA <= 1'b0;		  
     end else if (CONTR_WR) begin
         DMADIR <= MID[1];
         INTENA <= MID[2];
         PRESET <= MID[4];
-    end
+    end else if (ST_DMA)
+		    DMAENA <= 1'b1;
+	 else if (SP_DMA)
+		    DMAENA <= 1'b0; 	
 end
 
 assign CNTR_O = {DMAENA, 1'b0, 1'b0, 1'b0, PRESET, 1'b0, INTENA, DMADIR, 1'b0};
