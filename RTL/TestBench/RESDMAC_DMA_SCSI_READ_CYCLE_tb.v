@@ -250,8 +250,23 @@ module RESDMAC_DMA_READ_tb;
         //_BG <= 1'b0;
         wait_n_clko(190);
         DMA <= 1'b0;
-        wait_n_clko(60);
+        wait_n_clko(45);
 
+        //Stop DMA Cycle.
+        wait_n_clko(2);
+        ADDR <= 32'h00DD003C;
+        DATA_i <= 32'h00000001; 
+        wait_n_clko(1);
+        _AS_i = 1'b0;
+        R_W_i = 1'b0;
+        wait_n_clko(1);
+        _DS_i = 1'b0;
+        wait_n_clko(2);        
+        R_W_i = 1;
+        wait_n_clko(2);
+        ADDR <= 32'h00000000;
+        DATA_i <= 32'hzzzzzzzz;
+        wait_n_clko(1);
 
          //FLush DMA Cycle.
         wait_n_clko(2);
@@ -268,7 +283,7 @@ module RESDMAC_DMA_READ_tb;
         ADDR <= 32'h00000000;
         DATA_i <= 32'hzzzzzzzz;
         wait_n_clko(1);
-        
+
         $finish;
     end
     always @(posedge SCLK) begin

@@ -250,10 +250,10 @@ module RESDMAC_DMA_WRITE_tb;
         //_BG <= 1'b0;
         wait_n_clko(230);
         DMA <= 1'b0;
-        
-        //FLush DMA Cycle.
+    
+        //Stop DMA Cycle.
         wait_n_clko(2);
-        ADDR <= 32'h00DD0014;
+        ADDR <= 32'h00DD003C;
         DATA_i <= 32'h00000001; 
         wait_n_clko(1);
         _AS_i = 1'b0;
@@ -267,10 +267,9 @@ module RESDMAC_DMA_WRITE_tb;
         DATA_i <= 32'hzzzzzzzz;
         wait_n_clko(1);
 
-
-        //Stop DMA Cycle.
+        //FLush DMA Cycle.
         wait_n_clko(2);
-        ADDR <= 32'h00DD003C;
+        ADDR <= 32'h00DD0014;
         DATA_i <= 32'h00000001; 
         wait_n_clko(1);
         _AS_i = 1'b0;
