@@ -163,7 +163,6 @@ module RESDMAC_DMA_READ_tb;
         R_W_i = 1;
         _AS_i = 1'b1;
         _DS_i = 1;
-        //_CS = 1;
         _BG = 1;
         _DREQ = 1;
         INTA = 0;
@@ -176,13 +175,40 @@ module RESDMAC_DMA_READ_tb;
         DATA_i <= 32'hzzzzzzzz;
         PD_i <= 8'hAA;
         DMA <= 1'b0;
-        
-
     end
 //------------------------------------------------------------------------------
 //  simulation tasks
 //------------------------------------------------------------------------------
+// Task to perform 68030 Write Cycyle
+    task Write ;
+        input [31:0] Address;
+        input [31:0 ]Data;
+        begin
+            wait_n_clko(2);
+            ADDR <= Address;
+            DATA_i <= Data; 
+            wait_n_clko(1);
+            _AS_i = 1'b0;
+            R_W_i = 1'b0;
+            wait_n_clko(1);
+            _DS_i = 1'b0;
+            wait_n_clko(2);        
+            R_W_i = 1;
+            wait_n_clko(2);
+            ADDR <= 32'h00000000;
+            DATA_i <= 32'hzzzzzzzz;
+            wait_n_clko(1);    
+        end
+    endtask
 
+    task Reset;
+        begin
+            wait_n_clk(1);
+            _RST = 0;
+            wait_n_clko(1);
+            _RST = 1;
+        end
+    endtask
 //------------------------------------------------------------------------------
 //  run simulation
 //------------------------------------------------------------------------------
@@ -191,101 +217,36 @@ module RESDMAC_DMA_READ_tb;
         $dumpfile("../VCD/RESDMAC_DMA_SCSI_READ_CYCLE_tb.vcd");
         $dumpvars(0, RESDMAC_DMA_READ_tb);
         // -------- RESET --------
-        wait_n_clk(1);
-        _RST = 0;
-        wait_n_clko(1);
-        _RST = 1;
+        Reset;
 
         //Setup DMA Direction to Read from SCSI write to Memory
-        wait_n_clko(2);
-        ADDR <= 32'h00DD0008;
-        DATA_i <= 32'h00000006; 
-        wait_n_clko(1);
-        _AS_i = 1'b0;
-        R_W_i = 1'b0;
-        wait_n_clko(1);
-        _DS_i = 1'b0;
-        wait_n_clko(2);        
-        R_W_i = 1;
-        wait_n_clko(2);
-        ADDR <= 32'hffffffff;
-        DATA_i <= 32'hzzzzzzzz;
+        Write(32'h00DD0008, 32'h00000006);       
         
         //Write Source Addr to the ACR in Ramsey.
-        wait_n_clko(2);
-        ADDR <= 32'h00DD000C;
-        DATA_i <= 32'h00000008; 
-        wait_n_clko(1);
-        _AS_i = 1'b0;
-        R_W_i = 1'b0;
-        wait_n_clko(1);
-        _DS_i = 1'b0;
-        wait_n_clko(2);        
-        R_W_i = 1;
-        wait_n_clko(2);
-        ADDR <= 32'hffffffff;
-        DATA_i <= 32'hzzzzzzzz;
+        Write(32'h00DD000C, 32'h00000008);    
 
         _DREQ = 1;
 
         //Start DMA Cycle.
-        wait_n_clko(2);
-        ADDR <= 32'h00DD0010;
-        DATA_i <= 32'h00000001; 
-        wait_n_clko(1);
-        _AS_i = 1'b0;
-        R_W_i = 1'b0;
-        wait_n_clko(1);
-        _DS_i = 1'b0;
-        wait_n_clko(2);        
-        R_W_i = 1;
-        wait_n_clko(2);
-        ADDR <= 32'h00000000;
-        DATA_i <= 32'hzzzzzzzz;
-        wait_n_clko(1);
+        Write(32'h00DD0010, 32'h00000001);
+       
         ADDR <= 32'h08000000;
         DATA_i <= 32'h00ABCDEF;
-        DMA <= 1'b1;
-
-        //_BG <= 1'b0;
+        DMA <= 1'b1;  
+        
         wait_n_clko(190);
         DMA <= 1'b0;
         wait_n_clko(45);
 
         //Stop DMA Cycle.
-        wait_n_clko(2);
-        ADDR <= 32'h00DD003C;
-        DATA_i <= 32'h00000001; 
-        wait_n_clko(1);
-        _AS_i = 1'b0;
-        R_W_i = 1'b0;
-        wait_n_clko(1);
-        _DS_i = 1'b0;
-        wait_n_clko(2);        
-        R_W_i = 1;
-        wait_n_clko(2);
-        ADDR <= 32'h00000000;
-        DATA_i <= 32'hzzzzzzzz;
-        wait_n_clko(1);
+        Write(32'h00DD003C, 32'h00000001);      
 
-         //FLush DMA Cycle.
-        wait_n_clko(2);
-        ADDR <= 32'h00DD0014;
-        DATA_i <= 32'h00000001; 
-        wait_n_clko(1);
-        _AS_i = 1'b0;
-        R_W_i = 1'b0;
-        wait_n_clko(1);
-        _DS_i = 1'b0;
-        wait_n_clko(2);        
-        R_W_i = 1;
-        wait_n_clko(2);
-        ADDR <= 32'h00000000;
-        DATA_i <= 32'hzzzzzzzz;
-        wait_n_clko(1);
+        //FLush DMA Cycle.
+        Write(32'h00DD0014, 32'h00000001);
 
         $finish;
     end
+
     always @(posedge SCLK) begin
         if ((_DSACK_IO[0] & _DSACK_IO[1])  == 1'b0) 
         begin
@@ -295,8 +256,7 @@ module RESDMAC_DMA_READ_tb;
     end
 
     always @(ADDR) begin
-        _CS <= ~(~ADDR[31] & ~ADDR[30] & ~ADDR[29] & ~ADDR[28]  & ~ADDR[27] & ~ADDR[26] & ~ADDR[25]  & ~ADDR[24] & ADDR[23]  
-        & ADDR[22] & ~ADDR[21] & ADDR[20]  & ADDR[19] & ADDR[18] & ~ADDR[17]  & ADDR[16]);
+        _CS <= (ADDR[31:16] == 32'h00DD) ? 1'b0 : 1'b1;  
     end
 
     always @(negedge sclk_delayed) begin
@@ -319,8 +279,7 @@ module RESDMAC_DMA_READ_tb;
             _DREQ <= 1'b1;
         end
         else if (DMA == 1'b1) 
-            _DREQ <= 1'b0;
-        
+            _DREQ <= 1'b0;        
             
     end
 
@@ -350,9 +309,5 @@ module RESDMAC_DMA_READ_tb;
     always @(posedge _DREQ) begin
         PD_i <= PD_i + 1'b1;
     end
-
-    
-
-
 //------------------------------------------------------------------------------
 endmodule
