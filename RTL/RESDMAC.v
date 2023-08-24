@@ -266,6 +266,9 @@ SCSI_SM u_SCSI_SM(
 );
 
 fifo int_fifo(
+    .CLK         (SCLK      ), 
+    .BCLK        (BCLK      ), 
+    .BBCLK       (BBCLK     ), 
     .LLWORD      (LLW       ),
     .LHWORD      (LHW       ),
     .LBYTE_      (LBYTE_    ),

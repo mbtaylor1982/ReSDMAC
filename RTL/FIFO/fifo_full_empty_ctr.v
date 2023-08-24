@@ -17,6 +17,7 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 module fifo__full_empty_ctr(
+    input CLK,
     input INCFIFO,
     input DECFIFO,
     input RST_FIFO_,    
@@ -35,8 +36,8 @@ always @(posedge INCFIFO, negedge UP_RST)
 begin
   if (UP_RST == 0)
     UP <= 8'b00000000;
-  else
-  begin
+  else if (INCFIFO)
+  begin 
     UP[0] <= 1'b1;
     UP[1] <= (UP[0] | DOWN[6]);
     UP[2] <= (UP[1] | DOWN[5]);
@@ -55,7 +56,7 @@ begin
   begin
     DOWN <= 7'b0000000;
   end
-  else
+  else if (DECFIFO)
   begin
     DOWN[0] <= UP[7];
     DOWN[1] <= (UP[6] | DOWN[0]); 
@@ -73,7 +74,7 @@ begin
 		FIFOEMPTY <= 1'b0;
 	else if (RST_FIFO_ == 0) 
     FIFOEMPTY <= 1'b1;
-  else
+  else if (DECFIFO)
 		FIFOEMPTY <= ~( (UP[1] | DOWN[5]) |(UP[2] | DOWN[4])|(UP[3] | DOWN[3])|(UP[4] | DOWN[2])|(UP[5] | DOWN[1])|(UP[6] | DOWN[0])| UP[7]);
 end
 
@@ -81,7 +82,7 @@ always @(posedge INCFIFO, negedge FIFOFULL_RST)
 begin
 	if (FIFOFULL_RST == 0) 
 		FIFOFULL <= 1'b0;
-	else
+	else if (INCFIFO)
 		FIFOFULL <= (UP[6] | DOWN[0]); 	
 end
 

@@ -18,15 +18,16 @@
  */
 module fifo_3bit_cntr(
     input CLK,
-    input RST_FIFO_,    
+    input ClKEN,
+    input RST_,    
 
     output reg [2:0] COUNT    
 );
 
-always @(posedge CLK or negedge RST_FIFO_) begin
-    if (RST_FIFO_ == 1'b0)
+always @(posedge CLK or negedge RST_) begin
+    if (RST_ == 1'b0)
         COUNT <= 3'b000;
-    else
+    else if(ClKEN) 
       COUNT <= COUNT + 1'b1;
 end
 

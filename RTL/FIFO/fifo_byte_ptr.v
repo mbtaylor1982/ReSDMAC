@@ -17,11 +17,12 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 module fifo_byte_ptr(
+    input CLK,
     input INCBO,
     input MID25,
     input ACR_WR,
     input H_0C,
-    input RST_FIFO_,    
+    input RST_FIFO_,        
 
     output wire [1:0] PTR    
 );
@@ -30,17 +31,17 @@ wire MUXZ;
 wire BO1_CLK;
 reg BO0, BO1;
 
-always @(posedge INCBO or negedge RST_FIFO_) begin
+always @(posedge CLK or negedge RST_FIFO_) begin
     if (RST_FIFO_ == 1'b0)
         BO0 <= 1'b0;
-    else
+    else if (INCBO)
         BO0 <= ~BO0;    
 end
 
-always @(posedge BO1_CLK or negedge RST_FIFO_) begin
+always @(posedge CLK or negedge RST_FIFO_) begin
     if (RST_FIFO_ == 1'b0)
         BO1 <= 1'b0;
-    else
+    else if (BO1_CLK)
         BO1 <= MUXZ;
 end
 

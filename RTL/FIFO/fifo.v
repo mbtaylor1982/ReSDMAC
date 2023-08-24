@@ -25,6 +25,8 @@
 
 module fifo(
     
+    input CLK, BCLK, BBCLK, //Clocks
+
     input LLWORD,       //Load Lower Word strobe from CPU sm
     input LHWORD,       //Load Higher Word strobe from CPU sm
     
@@ -77,6 +79,7 @@ fifo_write_strobes u_write_strobes(
 );
 
 fifo__full_empty_ctr u_full_empty_ctr(
+    .CLK       (BBCLK     ),
     .INCFIFO   (INCFIFO   ),
     .DECFIFO   (DECFIFO   ),
     .RST_FIFO_ (RST_FIFO_ ),
@@ -86,26 +89,29 @@ fifo__full_empty_ctr u_full_empty_ctr(
 
 //Next In Write Counter
 fifo_3bit_cntr u_next_in_cntr(
-    .CLK       (INCNI     ),
-    .RST_FIFO_ (RST_FIFO_ ),
+    .CLK       (BBCLK     ),
+    .ClKEN     (INCNI     ),
+    .RST_      (RST_FIFO_ ),
     .COUNT     (WRITE_PTR )
 );
 
 //Next Out Read Counter
 fifo_3bit_cntr u_next_out_cntr(
-    .CLK       (INCNO     ),
-    .RST_FIFO_ (RST_FIFO_ ),
+    .CLK       (BBCLK     ),
+    .ClKEN     (INCNO     ),
+    .RST_      (RST_FIFO_ ),
     .COUNT     (READ_PTR  )
 );
 
 //BYTE POINTER
 fifo_byte_ptr u_byte_ptr(
+  .CLK       (BBCLK     ),
   .INCBO     (INCBO     ),
   .MID25     (MID25     ),
   .ACR_WR    (ACR_WR    ),
   .H_0C      (H_0C      ),
   .RST_FIFO_ (RST_FIFO_ ),
-  .PTR       (BYTE_PTR   )
+  .PTR       (BYTE_PTR  )
 );
 
 assign BO0 = BYTE_PTR[0];
@@ -119,19 +125,23 @@ reg [31:0] BUFFER [7:0];
 
 //WRITE DATA TO FIFO BUFFER
 always @(negedge UUWS) begin
-  BUFFER[WRITE_PTR][31:24] <= ID[31:24];
+  if (~UUWS)
+    BUFFER[WRITE_PTR][31:24] <= ID[31:24];
 end
 
 always @(negedge UMWS) begin
-  BUFFER[WRITE_PTR][23:16] <= ID[23:16];
+  if (~UMWS)
+    BUFFER[WRITE_PTR][23:16] <= ID[23:16];
 end
 
 always @(negedge LMWS) begin
-  BUFFER[WRITE_PTR][15:8] <= ID[15:8];
+  if (~LMWS)
+    BUFFER[WRITE_PTR][15:8] <= ID[15:8];
 end
 
 always @(negedge LLWS) begin
-  BUFFER[WRITE_PTR][7:0] <= ID[7:0];
+  if (~LLWS)
+    BUFFER[WRITE_PTR][7:0] <= ID[7:0];
 end
 
 //always @(READ_PTR, BUFFER[READ_PTR]) begin
