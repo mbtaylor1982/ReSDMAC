@@ -28,8 +28,8 @@ module registers_istr(
   input INTA_I,
   
   
-  output [8:0] ISTR_O,
-  output INT_O_
+  output reg [8:0] ISTR_O,
+  output reg INT_O_
 );
 
 reg INT_F;
@@ -40,14 +40,14 @@ reg FF;
 reg FE;
 
 wire CLR_INT_;
-assign CLR_INT_ = ~(CLR_INT | ~RESET_);
+assign CLR_INT_ = ~CLR_INT;
 
 wire INT;
 assign INT = (INTENA & INTA_I);
 
 
-always @(posedge CLK or negedge CLR_INT_) begin
-  if (CLR_INT_ == 1'b0) begin
+always @(posedge CLK, negedge RESET_) begin
+  if (~RESET_) begin
     INT_F   <= 1'b0;
     INTS    <= 1'b0;
     E_INT   <= 1'b0;
@@ -63,9 +63,23 @@ always @(posedge CLK or negedge CLR_INT_) begin
     FF      <= FIFOFULL;
     FE      <= FIFOEMPTY;
   end
+  else if (~CLR_INT_) begin
+    INT_F   <= 1'b0;
+    INTS    <= 1'b0;
+    E_INT   <= 1'b0;
+    INT_P   <= 1'b0;
+    FF      <= 1'b0;
+    FE      <= 1'b1;
+  end
+
 end
 
-assign ISTR_O = {1'b0, INT_F, INTS, E_INT, INT_P , 1'b0, 1'b0, FF, FE};
-assign INT_O_ = INT ? 1'b0 : 1'b1;
+always @(posedge CLK) begin
+	ISTR_O <= {1'b0, INT_F, INTS, E_INT, INT_P , 1'b0, 1'b0, FF, FE};
+	INT_O_ <= INT ? 1'b0 : 1'b1;
+end
+
+//assign ISTR_O = {1'b0, INT_F, INTS, E_INT, INT_P , 1'b0, 1'b0, FF, FE};
+//assign INT_O_ = INT ? 1'b0 : 1'b1;
 
 endmodule

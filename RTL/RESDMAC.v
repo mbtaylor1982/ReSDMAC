@@ -296,7 +296,7 @@ datapath u_datapath(
     .BCLK      (BCLK        ), 
     .BBCLK     (BBCLK       ), 
     .DATA_IO   (DATA_IO     ),
-    .PD        (PD_PORT[7:0]),
+    .PD        (PD_PORT     ),
     .OD        (OD          ),
     .MOD       (MOD         ),
     .PAS       (PAS         ),

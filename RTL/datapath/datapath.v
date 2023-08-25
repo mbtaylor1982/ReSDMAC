@@ -26,7 +26,7 @@
 module datapath (
     input CLK, BCLK, BBCLK,
     inout [31:0] DATA_IO, 
-    inout [7:0] PD,
+    inout [15:0] PD,
 
     input [31:0] OD,    
     input [31:0] MOD,

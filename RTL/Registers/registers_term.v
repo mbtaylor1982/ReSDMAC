@@ -38,24 +38,18 @@ wire CYCLE_ACTIVE;
   assign CYCLE_ACTIVE = ~(AS_| DMAC_ | WDREGREQ | h_0C);
 `endif   
 
-always @(posedge CLK or posedge AS_) begin
+always @(posedge CLK) begin
   if (AS_)
     TERM_COUNTER <= 3'b000;
-  else begin
-    if (CYCLE_ACTIVE) 
+  else if (CYCLE_ACTIVE) 
       TERM_COUNTER <=  TERM_COUNTER + 1'b1;
-  end
 end
 
 always @(negedge CLK or posedge AS_) begin
   if (AS_)
     REG_DSK_ <= 1'b1;
-  else begin
-    if (TERM_COUNTER == 3'd3)
+  else if (TERM_COUNTER == 3'd3)
       REG_DSK_ <= 1'b0;   
-  end
-  
-  
 end
 
 endmodule

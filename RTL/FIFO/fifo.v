@@ -56,7 +56,7 @@ module fifo(
     input INCNO,        //Inc Next Out (Write Pointer)
     input INCNI,        //Inc Next In (Read Pointer)
 
-    output  [31:0] OD    //FIFO Data Output
+    output reg [31:0] OD    //FIFO Data Output
 );
 
 wire [2:0] WRITE_PTR;
@@ -145,12 +145,8 @@ always @(posedge CLK) begin
     BUFFER[WRITE_PTR][7:0] <= ID[7:0];
 end
 
-//always @(READ_PTR, BUFFER[READ_PTR]) begin
-//always @(READ_PTR) begin
-//  OD <= BUFFER[READ_PTR];
-//end
-
-//ASYNCH READ ACCESS TO FIFO DATA BUFFER
-assign OD = (BUFFER[READ_PTR]);
+always @(posedge CLK) begin
+    OD <= BUFFER[READ_PTR];
+end
 
 endmodule

@@ -25,7 +25,7 @@ module registers_cntr(
   input SP_DMA,
   input [8:0] MID,
     
-  output [8:0] CNTR_O,
+  output reg [8:0] CNTR_O,
   output reg INTENA,
   output reg PRESET,
   output reg DMADIR,
@@ -38,17 +38,21 @@ always @(posedge CLK or negedge RESET_) begin
         DMADIR <= 1'b0;
         INTENA <= 1'b0; 
         PRESET <= 1'b0;
-		    DMAENA <= 1'b0;		  
+		  DMAENA <= 1'b0;		  
     end else if (CONTR_WR) begin
         DMADIR <= MID[1];
         INTENA <= MID[2];
         PRESET <= MID[4];
     end else if (ST_DMA)
-		    DMAENA <= 1'b1;
+		  DMAENA <= 1'b1;
 	 else if (SP_DMA)
-		    DMAENA <= 1'b0; 	
+		  DMAENA <= 1'b0; 	
 end
 
-assign CNTR_O = {DMAENA, 1'b0, 1'b0, 1'b0, PRESET, 1'b0, INTENA, DMADIR, 1'b0};
+always @(*) begin
+	CNTR_O <= {DMAENA, 1'b0, 1'b0, 1'b0, PRESET, 1'b0, INTENA, DMADIR, 1'b0};
+end
+
+
 
 endmodule

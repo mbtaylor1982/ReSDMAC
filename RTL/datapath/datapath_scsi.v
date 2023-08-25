@@ -24,7 +24,7 @@
 
 module datapath_scsi (
     input CLK,
-    inout [7:0] SCSI_DATA,
+    inout [15:0] SCSI_DATA,
     inout [31:0] ID,
 
     input [31:0] OD,
@@ -80,10 +80,10 @@ datapath_8b_MUX u_datapath_8b_MUX(
     .Z (SCSI_DATA_TX) //output
 );
 
-assign SCSI_DATA = SCSI_OUT ? SCSI_DATA_TX : 8'hzz;
+assign SCSI_DATA = SCSI_OUT ? {SCSI_DATA_TX, SCSI_DATA_TX} : 16'hzzzz;
 
 
-assign SCSI_DATA_RX = SCSI_IN ? SCSI_DATA : 8'hzz;
+assign SCSI_DATA_RX = SCSI_IN ? SCSI_DATA[7:0] : 8'hzz;
 
 always @(negedge CLK, negedge S2CPU) begin
     if (~S2CPU)

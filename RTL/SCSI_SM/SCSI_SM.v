@@ -158,18 +158,22 @@ always @(posedge BCLK) begin
     WE_o        <= WE;
 end
 
-always @(posedge BBCLK or negedge RDRST_) begin
-    if (RDRST_ == 1'b0) 
+always @(posedge BBCLK or negedge RESET_ ) begin
+    if (~RESET_) 
         RDFIFO_o <= 1'b0;
     else if (RDFIFO_d)
         RDFIFO_o <= 1'b1;
+    else if (DECFIFO)
+        RDFIFO_o <= 1'b0;
 end
 
-always @(posedge BBCLK or negedge RIRST_) begin
-    if (RIRST_ == 1'b0) 
+always @(posedge BBCLK or negedge RESET_ ) begin
+    if (~RESET_) 
         RIFIFO_o <= 1'b0;
     else if (RIFIFO_d)
         RIFIFO_o <= 1'b1;
+    else if (INCFIFO)
+        RIFIFO_o <= 1'b0;
 end
 
 always @(posedge BBCLK or negedge nAS_) begin
@@ -182,8 +186,5 @@ end
 assign LS2CPU = ~nLS2CPU;
 assign DSACK_ = LS2CPU;
 assign LBYTE_ = ~(DACK_o & RE_o);
-
-assign RDRST_ = ~(~RESET_ | DECFIFO);
-assign RIRST_ = ~(~RESET_ | INCFIFO);
 
 endmodule
