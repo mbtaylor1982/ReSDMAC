@@ -80,6 +80,7 @@ fifo_write_strobes u_write_strobes(
 
 fifo__full_empty_ctr u_full_empty_ctr(
     .CLK       (BBCLK     ),
+    .BCLK      (~CLK      ), 
     .INCFIFO   (INCFIFO   ),
     .DECFIFO   (DECFIFO   ),
     .RST_FIFO_ (RST_FIFO_ ),
@@ -124,23 +125,23 @@ assign BOEQ3 = (BYTE_PTR == 2'b11);
 reg [31:0] BUFFER [7:0]; 
 
 //WRITE DATA TO FIFO BUFFER
-always @(negedge UUWS) begin
-  if (~UUWS)
+always @(posedge CLK) begin
+  if (UUWS)
     BUFFER[WRITE_PTR][31:24] <= ID[31:24];
 end
 
-always @(negedge UMWS) begin
-  if (~UMWS)
+always @(posedge CLK) begin
+  if (UMWS)
     BUFFER[WRITE_PTR][23:16] <= ID[23:16];
 end
 
-always @(negedge LMWS) begin
-  if (~LMWS)
+always @(posedge CLK) begin
+  if (LMWS)
     BUFFER[WRITE_PTR][15:8] <= ID[15:8];
 end
 
-always @(negedge LLWS) begin
-  if (~LLWS)
+always @(posedge CLK) begin
+  if (LLWS)
     BUFFER[WRITE_PTR][7:0] <= ID[7:0];
 end
 

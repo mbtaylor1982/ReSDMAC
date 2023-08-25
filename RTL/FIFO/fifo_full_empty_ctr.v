@@ -17,7 +17,7 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 module fifo__full_empty_ctr(
-    input CLK,
+    input CLK, BCLK,
     input INCFIFO,
     input DECFIFO,
     input RST_FIFO_,    
@@ -32,9 +32,9 @@ wire FIFOEMPTY_RST;
 wire FIFOFULL_RST;
 wire UP_RST;
 
-always @(posedge INCFIFO, negedge UP_RST)
+always @(posedge CLK, negedge RST_FIFO_)
 begin
-  if (UP_RST == 0)
+  if (RST_FIFO_ == 0)
     UP <= 8'b00000000;
   else if (INCFIFO)
   begin 
@@ -47,10 +47,14 @@ begin
     UP[6] <= (UP[5] | DOWN[1]);
     UP[7] <= (UP[6] | DOWN[0]);
   end
+  else if (DECFIFO) begin
+    if (UP >= 8'h01) 
+      UP <= 8'b00000000;  
+  end
 end
 
 
-always @(posedge DECFIFO, negedge RST_FIFO_)
+always @(posedge CLK, negedge RST_FIFO_)
 begin
   if (RST_FIFO_ == 0)
   begin
@@ -68,26 +72,20 @@ begin
 	end
 end
 
-always @(posedge DECFIFO, negedge FIFOEMPTY_RST, negedge RST_FIFO_)
+always @(posedge BCLK, negedge RST_FIFO_)
 begin
-	if (FIFOEMPTY_RST == 0) 
-		FIFOEMPTY <= 1'b0;
-	else if (RST_FIFO_ == 0) 
+  if (RST_FIFO_ == 0) 
     FIFOEMPTY <= 1'b1;
-  else if (DECFIFO)
-		FIFOEMPTY <= ~( (UP[1] | DOWN[5]) |(UP[2] | DOWN[4])|(UP[3] | DOWN[3])|(UP[4] | DOWN[2])|(UP[5] | DOWN[1])|(UP[6] | DOWN[0])| UP[7]);
+  else
+		FIFOEMPTY <= ((UP == 8'h00) & (DOWN == 7'h00));
 end
 
-always @(posedge INCFIFO, negedge FIFOFULL_RST)
+always @(posedge BCLK, negedge RST_FIFO_)
 begin
-	if (FIFOFULL_RST == 0) 
+	if (RST_FIFO_ == 0) 
 		FIFOFULL <= 1'b0;
-	else if (INCFIFO)
-		FIFOFULL <= (UP[6] | DOWN[0]); 	
+	else 
+		FIFOFULL <= (UP == 8'hff);
 end
-
-assign FIFOEMPTY_RST = ~(RST_FIFO_ & FIFOEMPTY & INCFIFO);
-assign FIFOFULL_RST = ~(~RST_FIFO_| ~(~FIFOFULL|~DECFIFO));
-assign UP_RST = (RST_FIFO_& ~((UP[0]|UP[1]|UP[2]|UP[3]|UP[4]|UP[5]|UP[6]|UP[7]) & DECFIFO));
 
 endmodule

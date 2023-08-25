@@ -292,6 +292,9 @@ fifo int_fifo(
 );
 
 datapath u_datapath(
+    .CLK       (SCLK        ), 
+    .BCLK      (BCLK        ), 
+    .BBCLK     (BBCLK       ), 
     .DATA_IO   (DATA_IO     ),
     .PD        (PD_PORT[7:0]),
     .OD        (OD          ),
