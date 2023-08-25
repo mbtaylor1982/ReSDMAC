@@ -97,6 +97,12 @@ wire nR_W;
 assign  nR_W = ~R_W_IO;
 assign R_W = ~nR_W;
 
+wire [31:0] DATA_I;
+wire [31:0] DATA_O;
+assign DATA_I = DATA_IO;
+assign DATA_IO = DATA_OE_ ? DATA_O : 32'hzzzzzzzz;
+
+
 wire LBYTE_;
 wire RE_o;
 wire DACK_o;
@@ -295,7 +301,8 @@ datapath u_datapath(
     .CLK       (SCLK        ), 
     .BCLK      (BCLK        ), 
     .BBCLK     (BBCLK       ), 
-    .DATA_IO   (DATA_IO     ),
+    .DATA_I    (DATA_I      ),
+    .DATA_O    (DATA_O      ),
     .PD        (PD_PORT     ),
     .OD        (OD          ),
     .MOD       (MOD         ),
@@ -321,7 +328,8 @@ datapath u_datapath(
     .ID        (ID          ),
     .F2CPUL    (F2CPUL      ),
     .F2CPUH    (F2CPUH      ),
-    .BnDS_O_   (BnDS_O_     )
+    .BnDS_O_   (BnDS_O_     ),
+    .DATA_OE_  (DATA_OE_    )
 );
 
 PLL u_PLL (
@@ -375,13 +383,6 @@ assign DSK0_IN_ = _BERR & _DSACK_IO[0];
 assign DSK1_IN_ = _BERR & _DSACK_IO[1];
 
 assign A3 = ADDR[3];
-
-`ifdef __ICARUS__ 
-  //allows DATA_OE_ for writes to ACR in Ramsey for testing
-    assign DATA_OE_ = ((_AS | _CS) & _BGACK_IO);
-`else
-    assign DATA_OE_ = ((_AS | _CS | H_0C) & _BGACK_IO);
-`endif 
 
 assign PDATA_OE_ = (_DACK & _CSS);
 

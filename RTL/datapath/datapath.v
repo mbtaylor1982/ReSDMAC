@@ -25,7 +25,8 @@
 
 module datapath (
     input CLK, BCLK, BBCLK,
-    inout [31:0] DATA_IO, 
+    input [31:0] DATA_I,
+    
     inout [15:0] PD,
 
     input [31:0] OD,    
@@ -63,7 +64,9 @@ module datapath (
     input BnDS_O_,
   
     output [31:0] MID,
-    output [31:0] ID
+    output [31:0] ID,
+    output [31:0] DATA_O,
+    output DATA_OE_
 );
 wire [31:0] MOD_SCSI;
 wire [31:0] MOD_TX;
@@ -77,7 +80,7 @@ wire bDIEL;
 
 datapath_input u_datapath_input(
     .CLK       (BCLK      ),
-    .DATA      (DATA_IO   ),
+    .DATA      (DATA_I    ),
     .bBRIDGEIN (bBRIDGEIN ),
     .bDIEH     (bDIEH     ),
     .bDIEL     (bDIEL     ),
@@ -88,7 +91,7 @@ datapath_input u_datapath_input(
 
 datapath_output u_datapath_output(
     .CLK        (BBCLK      ),
-    .DATA       (DATA_IO    ),
+    .DATA       (DATA_O     ),
     .OD         (OD         ),
     .MOD        (MOD_TX     ),
     .BRIDGEOUT  (BRIDGEOUT  ),
@@ -118,6 +121,7 @@ datapath_scsi u_datapath_scsi(
 
 assign DOEL_ = (~(nDS_ & nDMAC_ & RW) & ~(nOWN_ & DMADIR));
 assign DOEH_ = DOEL_;
+assign DATA_OE_ = ~DOEH_;
 
 assign bBRIDGEIN = BRIDGEIN;
 assign bDIEH = DIEH;
