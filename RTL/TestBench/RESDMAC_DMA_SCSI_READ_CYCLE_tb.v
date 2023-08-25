@@ -57,7 +57,7 @@ module RESDMAC_DMA_READ_tb;
     reg [7:0] PD_i;
     wire [7:0] PD_o;
     assign PD_o = PD_PORT;
-    assign PD_PORT = _IOR ? 8'bz : PD_i;
+    assign PD_PORT = (_IOR & _DACK) ? 8'bz : PD_i;
 
     reg DMA;
 
@@ -128,7 +128,11 @@ module RESDMAC_DMA_READ_tb;
 //------------------------------------------------------------------------------
 //  localparam
 //------------------------------------------------------------------------------
-
+    localparam SDMAC_CONTR_REG      = 32'h00DD0008;
+    localparam RAMSEY_ACR_REG       = 32'h00DD000C;
+    localparam SDMAC_ST_DMA_STROBE  = 32'h00DD0010;
+    localparam SDMAC_SP_DMA_STROBE  = 32'h00DD003C;
+    localparam SDMAC_FLUSH_STROBE   = 32'h00DD0014;
 //------------------------------------------------------------------------------
 //  clk
 //------------------------------------------------------------------------------
@@ -173,7 +177,7 @@ module RESDMAC_DMA_READ_tb;
         _DS_i = 1;
         ADDR <= 32'hffffffff;
         DATA_i <= 32'hzzzzzzzz;
-        PD_i <= 8'hAA;
+        PD_i <= 8'h00;
         DMA <= 1'b0;
     end
 //------------------------------------------------------------------------------
@@ -184,6 +188,7 @@ module RESDMAC_DMA_READ_tb;
         input [31:0] Address;
         input [31:0 ]Data;
         begin
+            $display("Writing 0x%0h to 0x%0h", Data, Address);
             wait_n_clko(2);
             ADDR <= Address;
             DATA_i <= Data; 
@@ -203,6 +208,7 @@ module RESDMAC_DMA_READ_tb;
 
     task Reset;
         begin
+            $display("System Reset");
             wait_n_clk(1);
             _RST = 0;
             wait_n_clko(1);
@@ -220,18 +226,17 @@ module RESDMAC_DMA_READ_tb;
         Reset;
 
         //Setup DMA Direction to Read from SCSI write to Memory
-        Write(32'h00DD0008, 32'h00000006);       
+        Write(SDMAC_CONTR_REG, 32'h00000006);       
         
-        //Write Source Addr to the ACR in Ramsey.
-        Write(32'h00DD000C, 32'h00000008);    
-
-        _DREQ = 1;
+        //Write Destination Addr to the ACR in Ramsey.
+        Write(RAMSEY_ACR_REG, 32'h00000008);    
 
         //Start DMA Cycle.
-        Write(32'h00DD0010, 32'h00000001);
+        Write(SDMAC_ST_DMA_STROBE, 32'h00000001);
        
+        _DREQ = 1;
         ADDR <= 32'h08000000;
-        DATA_i <= 32'h00ABCDEF;
+        PD_i <= 8'hAA;//DATA_i <= 32'h00ABCDEF;
         DMA <= 1'b1;  
         
         wait_n_clko(190);
@@ -239,14 +244,15 @@ module RESDMAC_DMA_READ_tb;
         wait_n_clko(45);
 
         //Stop DMA Cycle.
-        Write(32'h00DD003C, 32'h00000001);      
+        Write(SDMAC_SP_DMA_STROBE, 32'h00000001);      
 
         //FLush DMA Cycle.
-        Write(32'h00DD0014, 32'h00000001);
+        Write(SDMAC_FLUSH_STROBE, 32'h00000001);
 
         $finish;
     end
 
+    //Negate cycle strobes when cycle ends.
     always @(posedge SCLK) begin
         if ((_DSACK_IO[0] & _DSACK_IO[1])  == 1'b0) 
         begin
@@ -255,10 +261,12 @@ module RESDMAC_DMA_READ_tb;
         end
     end
 
+    //Generate chip select for SDMAC (Based on equation for SCSI_ given in Fat Gary Spec)
     always @(ADDR) begin
         _CS <= (ADDR[31:16] == 32'h00DD) ? 1'b0 : 1'b1;  
     end
 
+    //SDMAC releases bus
     always @(negedge sclk_delayed) begin
         if (_BGACK_IO == 1'b0) 
         begin
@@ -266,6 +274,7 @@ module RESDMAC_DMA_READ_tb;
         end
     end
 
+    //Grant bus master to SDMAC when requested
     always @(negedge sclk_delayed) begin
         if ((BR  == 1'b1) && (_BGACK_IO == 1'b1) && (_AS_i == 1'b1)) 
         begin
@@ -273,6 +282,7 @@ module RESDMAC_DMA_READ_tb;
         end
     end
 
+    //DREQ acknoledgement
     always @(negedge SCLK) begin
         if ((_DACK | (_IOR & _IOW)) == 1'b0)
         begin
@@ -283,6 +293,7 @@ module RESDMAC_DMA_READ_tb;
             
     end
 
+    //DMA address generation and Cycle Termination
     always @(sclk_delayed, posedge AS_DELAYED) begin
         if (_BGACK_IO == 1'b0) 
         begin
@@ -306,7 +317,8 @@ module RESDMAC_DMA_READ_tb;
         else Count <= 3'b000;
     end
 
-    always @(posedge _DREQ) begin
+    //Inc mock value from scsi IC for each DREQ
+    always @(posedge _DACK) begin
         PD_i <= PD_i + 1'b1;
     end
 //------------------------------------------------------------------------------
