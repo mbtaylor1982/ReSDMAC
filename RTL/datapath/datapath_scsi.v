@@ -23,6 +23,7 @@
 `endif
 
 module datapath_scsi (
+    input CLK,
     inout [7:0] SCSI_DATA,
     inout [31:0] ID,
 
@@ -84,13 +85,11 @@ assign SCSI_DATA = SCSI_OUT ? SCSI_DATA_TX : 8'hzz;
 
 assign SCSI_DATA_RX = SCSI_IN ? SCSI_DATA : 8'hzz;
 
-always @(negedge LS2CPU, posedge S2CPU) begin
-    if (LS2CPU == 1'b0) begin 
+always @(negedge CLK, negedge S2CPU) begin
+    if (~S2CPU)
+        SCSI_DATA_LATCHED <= 8'h00;
+    else if (~LS2CPU) 
         SCSI_DATA_LATCHED <= SCSI_DATA_RX;
-    end
-    else begin
-        SCSI_DATA_LATCHED <= 8'h00;    
-    end    
 end
 
 

@@ -24,6 +24,7 @@
 `endif
 
 module datapath (
+    input CLK, BCLK, BBCLK,
     inout [31:0] DATA_IO, 
     inout [7:0] PD,
 
@@ -75,6 +76,7 @@ wire bDIEH;
 wire bDIEL;
 
 datapath_input u_datapath_input(
+    .CLK       (BCLK      ),
     .DATA      (DATA_IO   ),
     .bBRIDGEIN (bBRIDGEIN ),
     .bDIEH     (bDIEH     ),
@@ -85,6 +87,7 @@ datapath_input u_datapath_input(
 );
 
 datapath_output u_datapath_output(
+    .CLK        (BBCLK      ),
     .DATA       (DATA_IO    ),
     .OD         (OD         ),
     .MOD        (MOD_TX     ),
@@ -98,6 +101,7 @@ datapath_output u_datapath_output(
 );
 
 datapath_scsi u_datapath_scsi(
+    .CLK       (CLK       ), 
     .SCSI_DATA (PD        ),
     .ID        (ID        ),
     .OD        (OD        ),

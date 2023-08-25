@@ -17,6 +17,7 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 module datapath_output (
+    input CLK,
     output [31:0] DATA,  
     
     input [31:0] OD,
@@ -43,12 +44,14 @@ reg [15:0] LD_LATCH;
 reg [15:0] UD_LATCH;
 
 
-always @(posedge LOD1_F2CPU) begin
-    LD_LATCH <= LOWER_INPUT_DATA;
+always @(posedge CLK) begin
+    if (LOD1_F2CPU)
+        LD_LATCH <= LOWER_INPUT_DATA;
 end
 
-always @(posedge LOD2_F2CPU) begin
-    UD_LATCH <= UPPER_INPUT_DATA;
+always @(posedge CLK) begin
+    if (LOD2_F2CPU)
+        UD_LATCH <= UPPER_INPUT_DATA;
 end
 
 assign LOD1_F2CPU = PAS;
