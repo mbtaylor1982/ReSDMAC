@@ -57,7 +57,7 @@ module RESDMAC_DMA_WRITE_tb;
     reg [7:0] PD_i;
     wire [7:0] PD_o;
     assign PD_o = PD_PORT;
-    assign PD_PORT = _IOR ? 8'bz : PD_i;
+    assign PD_PORT = (_IOR & _DACK) ? 8'bz : PD_i;
 
     reg DMA;
 
@@ -75,9 +75,9 @@ module RESDMAC_DMA_WRITE_tb;
     reg         _RST     ;  // System Reset
     reg         _BERR    ;  // Bus Error 
     reg  [31:0] ADDR     ;  // CPU address Bus, bits are actually [6:2]
-    tri0        BR       ;  // Bus Request
+    tri0         BR      ;  // Bus Request
     reg         _BG      ;  // Bus Grant
-    tri1        _BGACK_IO; // Bus Grant Acknoledge
+    tri1        _BGACK_IO;  // Bus Grant Acknoledge
     wire        _DMAEN   ;  // Low =  Enable Address Generator in Ramsey
     reg         _DREQ    ;  // 
     wire        _DACK    ;  // 
@@ -95,7 +95,7 @@ module RESDMAC_DMA_WRITE_tb;
     // module
     RESDMAC uut (
         .INT        (INT        ),
-        ._SIZ1      (_SIZ1      ),
+        ._SIZ1      (_SIZ1       ),
         .R_W_IO     (R_W_IO     ),
         ._AS_IO     (_AS_IO     ),
         ._DS_IO     (_DS_IO     ),
@@ -109,7 +109,7 @@ module RESDMAC_DMA_WRITE_tb;
         .ADDR       (ADDR[6:2]  ),
         .BR         (BR         ),
         ._BG        (_BG        ),
-        ._BGACK_IO   (_BGACK_IO ),
+        ._BGACK_IO  (_BGACK_IO  ),
         ._DMAEN     (_DMAEN     ),
         ._DREQ      (_DREQ      ),
         ._DACK      (_DACK      ),
@@ -128,7 +128,11 @@ module RESDMAC_DMA_WRITE_tb;
 //------------------------------------------------------------------------------
 //  localparam
 //------------------------------------------------------------------------------
-
+    localparam SDMAC_CONTR_REG      = 32'h00DD0008;
+    localparam RAMSEY_ACR_REG       = 32'h00DD000C;
+    localparam SDMAC_ST_DMA_STROBE  = 32'h00DD0010;
+    localparam SDMAC_SP_DMA_STROBE  = 32'h00DD003C;
+    localparam SDMAC_FLUSH_STROBE   = 32'h00DD0014;
 //------------------------------------------------------------------------------
 //  clk
 //------------------------------------------------------------------------------
@@ -163,7 +167,6 @@ module RESDMAC_DMA_WRITE_tb;
         R_W_i = 1;
         _AS_i = 1'b1;
         _DS_i = 1;
-        //_CS = 1;
         _BG = 1;
         _DREQ = 1;
         INTA = 0;
@@ -174,130 +177,94 @@ module RESDMAC_DMA_WRITE_tb;
         _DS_i = 1;
         ADDR <= 32'hffffffff;
         DATA_i <= 32'hzzzzzzzz;
-        PD_i <= 8'hAA;
+        PD_i <= 8'hzz;
         DMA <= 1'b0;
-        
-
     end
 //------------------------------------------------------------------------------
 //  simulation tasks
 //------------------------------------------------------------------------------
+// Task to perform 68030 Write Cycyle
+    task Write ;
+        input [31:0] Address;
+        input [31:0 ]Data;
+        begin
+            $display("Writing 0x%0h to 0x%0h", Data, Address);
+            wait_n_clko(2);
+            ADDR <= Address;
+            DATA_i <= Data; 
+            wait_n_clko(1);
+            _AS_i = 1'b0;
+            R_W_i = 1'b0;
+            wait_n_clko(1);
+            _DS_i = 1'b0;
+            wait_n_clko(2);        
+            R_W_i = 1;
+            wait_n_clko(2);
+            ADDR <= 32'h00000000;
+            DATA_i <= 32'hzzzzzzzz;
+            wait_n_clko(1);    
+        end
+    endtask
 
+    task Reset;
+        begin
+            $display("System Reset");
+            wait_n_clk(1);
+            _RST = 0;
+            wait_n_clko(1);
+            _RST = 1;
+        end
+    endtask
 //------------------------------------------------------------------------------
 //  run simulation
 //------------------------------------------------------------------------------
     initial begin
-        $display("*Testing RESDMAC TOP Module Write to SCSI DMA CYCLE*");
+        $display("*Testing RESDMAC TOP Module Write from SCSI DMA CYCLE*");
         $dumpfile("../VCD/RESDMAC_DMA_SCSI_WRITE_CYCLE_tb.vcd");
         $dumpvars(0, RESDMAC_DMA_WRITE_tb);
         // -------- RESET --------
-        wait_n_clk(1);
-        _RST = 0;
-        wait_n_clko(1);
-        _RST = 1;
+        Reset;
 
-        //Setup DMA Direction to write to SCSI read from Memory
-        wait_n_clko(2);
-        ADDR <= 32'h00DD0008;
-        DATA_i <= 32'h00000004; 
-        wait_n_clko(1);
-        _AS_i = 1'b0;
-        R_W_i = 1'b0;
-        wait_n_clko(1);
-        _DS_i = 1'b0;
-        wait_n_clko(2);        
-        R_W_i = 1;
-        wait_n_clko(2);
-        ADDR <= 32'hffffffff;
-        DATA_i <= 32'hzzzzzzzz;
+        //Setup DMA Direction to Read from SCSI write to Memory
+        Write(SDMAC_CONTR_REG, 32'h00000004);       
         
-        //Write Source Addr to the ACR in Ramsey.
-        wait_n_clko(2);
-        ADDR <= 32'h00DD000C;
-        DATA_i <= 32'h00000008; 
-        wait_n_clko(1);
-        _AS_i = 1'b0;
-        R_W_i = 1'b0;
-        wait_n_clko(1);
-        _DS_i = 1'b0;
-        wait_n_clko(2);        
-        R_W_i = 1;
-        wait_n_clko(2);
-        ADDR <= 32'hffffffff;
-        DATA_i <= 32'hzzzzzzzz;
-
-        _DREQ = 1;
+        //Write Destination Addr to the ACR in Ramsey.
+        Write(RAMSEY_ACR_REG, 32'h00000008);    
 
         //Start DMA Cycle.
-        wait_n_clko(2);
-        ADDR <= 32'h00DD0010;
-        DATA_i <= 32'h00000001; 
-        wait_n_clko(1);
-        _AS_i = 1'b0;
-        R_W_i = 1'b0;
-        wait_n_clko(1);
-        _DS_i = 1'b0;
-        wait_n_clko(2);        
-        R_W_i = 1;
-        wait_n_clko(2);
-        ADDR <= 32'h00000000;
-        DATA_i <= 32'hzzzzzzzz;
-        wait_n_clko(1);
+        Write(SDMAC_ST_DMA_STROBE, 32'h00000001);
+       
+        _DREQ = 1;
         ADDR <= 32'h08000000;
         DATA_i <= 32'h00ABCDEF;
         DMA <= 1'b1;
-
-        //_BG <= 1'b0;
         wait_n_clko(230);
         DMA <= 1'b0;
-    
+
         //Stop DMA Cycle.
-        wait_n_clko(2);
-        ADDR <= 32'h00DD003C;
-        DATA_i <= 32'h00000001; 
-        wait_n_clko(1);
-        _AS_i = 1'b0;
-        R_W_i = 1'b0;
-        wait_n_clko(1);
-        _DS_i = 1'b0;
-        wait_n_clko(2);        
-        R_W_i = 1;
-        wait_n_clko(2);
-        ADDR <= 32'h00000000;
-        DATA_i <= 32'hzzzzzzzz;
-        wait_n_clko(1);
+        Write(SDMAC_SP_DMA_STROBE, 32'h00000001);      
 
         //FLush DMA Cycle.
-        wait_n_clko(2);
-        ADDR <= 32'h00DD0014;
-        DATA_i <= 32'h00000001; 
-        wait_n_clko(1);
-        _AS_i = 1'b0;
-        R_W_i = 1'b0;
-        wait_n_clko(1);
-        _DS_i = 1'b0;
-        wait_n_clko(2);        
-        R_W_i = 1;
-        wait_n_clko(2);
-        ADDR <= 32'h00000000;
-        DATA_i <= 32'hzzzzzzzz;
-        wait_n_clko(1);
-         
+        Write(SDMAC_FLUSH_STROBE, 32'h00000001);
+
         $finish;
     end
+
+    //Negate cycle strobes when cycle ends.
     always @(posedge SCLK) begin
-        if (~(_DSACK_IO[0] & _DSACK_IO[1])  == 1'b1) 
+        if ((_DSACK_IO[0] & _DSACK_IO[1])  == 1'b0) 
         begin
             _AS_i <= 1'b1;
             _DS_i <= 1'b1;    
         end
     end
 
+    //Generate chip select for SDMAC (Based on equation for SCSI_ given in Fat Gary Spec)
     always @(ADDR) begin
-        _CS <= ~(~ADDR[31] & ~ADDR[30] & ~ADDR[29] & ~ADDR[28]  & ~ADDR[27] & ~ADDR[26] & ~ADDR[25]  & ~ADDR[24] & ADDR[23]  
-        & ADDR[22] & ~ADDR[21] & ADDR[20]  & ADDR[19] & ADDR[18] & ~ADDR[17]  & ADDR[16]);
+        _CS <= (ADDR[31:16] == 16'h00DD) ? 1'b0 : 1'b1;  
     end
 
+    //SDMAC releases bus
     always @(negedge sclk_delayed) begin
         if (_BGACK_IO == 1'b0) 
         begin
@@ -305,6 +272,7 @@ module RESDMAC_DMA_WRITE_tb;
         end
     end
 
+    //Grant bus master to SDMAC when requested
     always @(negedge sclk_delayed) begin
         if ((BR  == 1'b1) && (_BGACK_IO == 1'b1) && (_AS_i == 1'b1)) 
         begin
@@ -312,16 +280,18 @@ module RESDMAC_DMA_WRITE_tb;
         end
     end
 
+    //DREQ acknoledgement
     always @(negedge SCLK) begin
         if ((_DACK | (_IOR & _IOW)) == 1'b0)
         begin
             _DREQ <= 1'b1;
         end
-        else if (DMA == 1'b1)
-            _DREQ <= 1'b0;
+        else if (DMA == 1'b1) 
+            _DREQ <= 1'b0;        
             
     end
 
+    //DMA address generation and Cycle Termination
     always @(sclk_delayed, posedge AS_DELAYED) begin
         if (_BGACK_IO == 1'b0) 
         begin
@@ -339,13 +309,13 @@ module RESDMAC_DMA_WRITE_tb;
                 _STERM <= 1'b1;
                 ADDR <= ADDR + 32'h4;
                 DATA_i <= DATA_i + 32'h11000000;
-
+                Count <= 3'b000; 
             end
         end
+        else Count <= 3'b000;
     end
-
-    
 
 
 //------------------------------------------------------------------------------
 endmodule
+ 
