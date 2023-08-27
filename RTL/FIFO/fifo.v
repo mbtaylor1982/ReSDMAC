@@ -37,7 +37,7 @@ module fifo(
     input RST_FIFO_,    //Reset FIFO
     input MID25,        //think this may be checking A1 in the ACR to make sure BYTE PTR is initialised to the correct value.
 
-    input [31:0] ID,    //FIFO Data Input
+    input [31:0] FIFO_ID,    //FIFO Data Input
 
     output FIFOFULL,    //Signal FIFO is FULL
     output FIFOEMPTY,   //Signal FIFO is Empty
@@ -56,7 +56,7 @@ module fifo(
     input INCNO,        //Inc Next Out (Write Pointer)
     input INCNI,        //Inc Next In (Read Pointer)
 
-    output reg [31:0] OD    //FIFO Data Output
+    output reg [31:0] FIFO_OD    //FIFO Data Output
 );
 
 wire [2:0] WRITE_PTR;
@@ -127,26 +127,26 @@ reg [31:0] BUFFER [7:0];
 //WRITE DATA TO FIFO BUFFER
 always @(posedge CLK) begin
   if (UUWS)
-    BUFFER[WRITE_PTR][31:24] <= ID[31:24];
+    BUFFER[WRITE_PTR][31:24] <= FIFO_ID[31:24];
 end
 
 always @(posedge CLK) begin
   if (UMWS)
-    BUFFER[WRITE_PTR][23:16] <= ID[23:16];
+    BUFFER[WRITE_PTR][23:16] <= FIFO_ID[23:16];
 end
 
 always @(posedge CLK) begin
   if (LMWS)
-    BUFFER[WRITE_PTR][15:8] <= ID[15:8];
+    BUFFER[WRITE_PTR][15:8] <= FIFO_ID[15:8];
 end
 
 always @(posedge CLK) begin
   if (LLWS)
-    BUFFER[WRITE_PTR][7:0] <= ID[7:0];
+    BUFFER[WRITE_PTR][7:0] <= FIFO_ID[7:0];
 end
 
 always @(posedge CLK) begin
-    OD <= BUFFER[READ_PTR];
+    FIFO_OD <= BUFFER[READ_PTR];
 end
 
 endmodule

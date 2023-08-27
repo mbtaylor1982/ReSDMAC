@@ -26,7 +26,7 @@ module datapath_input (
     input BnDS_O_,
 
     output [31:0] MID,
-    output [31:0] ID
+    output [31:0] CPU_OD
 );
 
 wire [15:0] LOWER_INPUT_DATA;
@@ -45,9 +45,10 @@ end
 assign LOWER_INPUT_DATA = DATA[15:0];
 assign UPPDER_INTPUT_DATA = DATA[31:16];
 
-assign UPPDER_OUTPUT_DATA = bDIEH ? UPPDER_INTPUT_DATA : 16'hzzzz;
-assign LOWER_OUTPUT_DATA = bDIEL ? LOWER_INPUT_DATA : (bBRIDGEIN ? UD_LATCH : 16'hzzzz);
-assign ID = {UPPDER_OUTPUT_DATA, LOWER_OUTPUT_DATA};
+assign UPPDER_OUTPUT_DATA = bDIEH ? UPPDER_INTPUT_DATA : 16'h0000;
+assign LOWER_OUTPUT_DATA = bDIEL ? LOWER_INPUT_DATA : (bBRIDGEIN ? UD_LATCH : 16'h0000);
+assign CPU_OD = {UPPDER_OUTPUT_DATA, LOWER_OUTPUT_DATA};
+
 assign MID = DATA;
 
 endmodule

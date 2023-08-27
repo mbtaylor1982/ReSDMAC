@@ -27,10 +27,12 @@ module datapath (
     input CLK, BCLK, BBCLK,
     input [31:0] DATA_I,
     
-    inout [15:0] PD,
+    input [15:0] PD_IN,
+    output [15:0] PD_OUT,
 
-    input [31:0] OD,    
-    input [31:0] MOD,
+
+    input [31:0] FIFO_OD,    
+    input [31:0] REG_OD,
 
     input PAS,
     input nDS_,
@@ -64,12 +66,14 @@ module datapath (
     input BnDS_O_,
   
     output [31:0] MID,
-    output [31:0] ID,
+    output [31:0] FIFO_ID,
     output [31:0] DATA_O,
     output DATA_OE_
 );
 wire [31:0] MOD_SCSI;
 wire [31:0] MOD_TX;
+wire [31:0] CPU_OD;
+wire [31:0] SCSI_OD;
 
 
 wire DOEL_;
@@ -86,13 +90,13 @@ datapath_input u_datapath_input(
     .bDIEL     (bDIEL     ),
     .BnDS_O_   (BnDS_O_   ),
     .MID       (MID       ),
-    .ID        (ID        )
+    .CPU_OD    (CPU_OD    )
 );
 
 datapath_output u_datapath_output(
     .CLK        (BBCLK      ),
     .DATA       (DATA_O     ),
-    .OD         (OD         ),
+    .OD         (FIFO_OD    ),
     .MOD        (MOD_TX     ),
     .BRIDGEOUT  (BRIDGEOUT  ),
     .DOEH_      (DOEH_      ),
@@ -104,19 +108,21 @@ datapath_output u_datapath_output(
 );
 
 datapath_scsi u_datapath_scsi(
-    .CLK       (CLK       ), 
-    .SCSI_DATA (PD        ),
-    .ID        (ID        ),
-    .OD        (OD        ),
-    .CPU2S     (CPU2S     ),
-    .S2CPU     (S2CPU     ),
-    .S2F       (S2F       ),
-    .F2S       (F2S       ),
-    .A3        (A3        ),
-    .BO0       (BO0       ),
-    .BO1       (BO1       ),
-    .LS2CPU    (LS2CPU    ),
-    .MOD       (MOD_SCSI  )
+    .CLK            (CLK       ), 
+    .SCSI_DATA_IN   (PD_IN     ),
+    .SCSI_DATA_OUT  (PD_OUT    ),
+    .SCSI_OD        (SCSI_OD   ),
+    .FIFO_OD        (FIFO_OD   ),
+    .CPU_OD         (CPU_OD    ),
+    .CPU2S          (CPU2S     ),
+    .S2CPU          (S2CPU     ),
+    .S2F            (S2F       ),
+    .F2S            (F2S       ),
+    .A3             (A3        ),
+    .BO0            (BO0       ),
+    .BO1            (BO1       ),
+    .LS2CPU         (LS2CPU    ),
+    .MOD_SCSI       (MOD_SCSI  )
 );
 
 assign DOEL_ = (~(nDS_ & nDMAC_ & RW) & ~(nOWN_ & DMADIR));
@@ -128,6 +134,8 @@ assign bDIEH = DIEH;
 
 assign bDIEL = (DIEL|CPU2S);
 
-assign MOD_TX = S2CPU ? MOD_SCSI : MOD;
+
+assign MOD_TX = S2CPU ? MOD_SCSI : REG_OD;
+assign FIFO_ID = S2F ? SCSI_OD: CPU_OD;
 
 endmodule

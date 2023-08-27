@@ -77,10 +77,10 @@ reg LLW;
 reg LHW;
 
 wire [31:0] MID;
-wire [31:0] MOD;
+wire [31:0] REG_OD;
 
-wire [31:0] ID;
-wire [31:0] OD;
+wire [31:0] FIFO_ID;
+wire [31:0] FIFO_OD;
 
 wire _AS;
 wire n_AS;
@@ -101,6 +101,11 @@ wire [31:0] DATA_I;
 wire [31:0] DATA_O;
 assign DATA_I = DATA_IO;
 assign DATA_IO = DATA_OE_ ? DATA_O : 32'hzzzzzzzz;
+
+wire [15:0] PDATA_I;
+wire [15:0] PDATA_O;
+assign PDATA_I = PD_PORT;
+assign PD_PORT = PDATA_OE_ ? PDATA_O : 16'hzzzz;
 
 
 wire LBYTE_;
@@ -182,7 +187,7 @@ registers u_registers(
     .FIFOEMPTY (FIFOEMPTY ),
     .FIFOFULL  (FIFOFULL  ),
     .INTA_I    (INTA      ),
-    .MOD       (MOD       ),
+    .REG_OD    (REG_OD    ),
     .PRESET    (PRESET    ),
     .FLUSHFIFO (FLUSHFIFO ),
     .ACR_WR    (ACR_WR    ),
@@ -282,7 +287,7 @@ fifo int_fifo(
     .ACR_WR      (ACR_WR    ),
     .RST_FIFO_   (PLLLOCKED ),
     .MID25       (MID[25]   ),
-    .ID          (ID        ),
+    .FIFO_ID     (FIFO_ID   ),
     .FIFOFULL    (FIFOFULL  ),
     .FIFOEMPTY   (FIFOEMPTY ),
     .INCFIFO     (INCFIFO   ),
@@ -294,7 +299,7 @@ fifo int_fifo(
     .BO1         (BO1       ),
     .INCNO       (INCNO     ),
     .INCNI       (INCNI     ),
-    .OD          (OD        )
+    .FIFO_OD     (FIFO_OD   )
 );
 
 datapath u_datapath(
@@ -303,9 +308,10 @@ datapath u_datapath(
     .BBCLK     (BBCLK       ), 
     .DATA_I    (DATA_I      ),
     .DATA_O    (DATA_O      ),
-    .PD        (PD_PORT     ),
-    .OD        (OD          ),
-    .MOD       (MOD         ),
+    .PD_IN     (PDATA_I     ),
+    .PD_OUT    (PDATA_O     ),
+    .FIFO_OD   (FIFO_OD     ),
+    .REG_OD    (REG_OD      ),
     .PAS       (PAS         ),
     .nDS_      (n_DS        ),
     .nDMAC_    (~_CS        ),
@@ -325,7 +331,7 @@ datapath u_datapath(
     .BO1       (BO1         ),
     .A3        (A3          ),
     .MID       (MID         ),
-    .ID        (ID          ),
+    .FIFO_ID   (FIFO_ID     ),
     .F2CPUL    (F2CPUL      ),
     .F2CPUH    (F2CPUH      ),
     .BnDS_O_   (BnDS_O_     ),

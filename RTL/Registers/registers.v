@@ -38,7 +38,7 @@ module registers(
   input INTA_I,
   
 
-  output [31:0] MOD,    //DATA OUT.
+  output [31:0] REG_OD,    //DATA OUT.
   output PRESET,        //Peripheral Reset.
   output reg FLUSHFIFO, //Flush FIFO.
   output ACR_WR,        //input to FIFO_byte_ptr.
@@ -152,10 +152,10 @@ always @(posedge CLK or negedge RST_) begin
 end
 
 //drive output data onto bus.
-assign WTC  = WTC_RD_   ? 32'hzzzzzzzz  : {32'h00000004};
+assign WTC  = WTC_RD_   ? 32'h00000000  : {32'h00000004};
 assign ISTR = ISTR_RD_  ? (WTC)  : {13'h0, ISTR_O};
 assign CNTR = CONTR_RD_ ? (ISTR) : {23'h0, CNTR_O};
 
-assign MOD[31:0] = CNTR;
+assign REG_OD[31:0] = CNTR;
 
 endmodule

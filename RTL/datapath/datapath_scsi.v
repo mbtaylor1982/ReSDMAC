@@ -24,10 +24,11 @@
 
 module datapath_scsi (
     input CLK,
-    inout [15:0] SCSI_DATA,
-    inout [31:0] ID,
-
-    input [31:0] OD,
+    input [15:0] SCSI_DATA_IN,
+    output [15:0] SCSI_DATA_OUT,
+    
+    input [31:0] FIFO_OD,
+    input [31:0] CPU_OD,
     input CPU2S,
     input S2CPU,
     input S2F,
@@ -37,7 +38,8 @@ module datapath_scsi (
     input BO1,
     input LS2CPU,
 
-    output [31:0] MOD
+    output [31:0] MOD_SCSI,
+    output [31:0] SCSI_OD
 );
 
 wire F2S_UUD;
@@ -59,7 +61,7 @@ assign SCSI_IN  = (S2F | S2CPU);
 datapath_24dec u_datapath_24dec(
     .A  (BO0     ),
     .B  (BO1     ),
-    .G  (F2S    ),
+    .G  (F2S     ),
     .Z0 (F2S_UUD ),
     .Z1 (F2S_UMD ),
     .Z2 (F2S_LMD ),
@@ -68,22 +70,20 @@ datapath_24dec u_datapath_24dec(
 
 datapath_8b_MUX u_datapath_8b_MUX(
     //inputs
-    .A (OD[7:0]),
-    .B (OD[15:8]),
-    .C (OD[23:16]),
-    .D (OD[31:24]),
-    .E (ID[23:16]),
-    .F (ID[7:0]),
+    .A (FIFO_OD[7:0]    ),
+    .B (FIFO_OD[15:8]   ),
+    .C (FIFO_OD[23:16]  ),
+    .D (FIFO_OD[31:24]  ),
+    .E (CPU_OD[23:16]  ),
+    .F (CPU_OD[7:0]    ),
     //selects
     .S ({(CPU2S & ~A3), (CPU2S & A3), F2S_UUD, F2S_UMD, F2S_LMD, F2S_LLD}), 
     
     .Z (SCSI_DATA_TX) //output
 );
 
-assign SCSI_DATA = SCSI_OUT ? {SCSI_DATA_TX, SCSI_DATA_TX} : 16'hzzzz;
-
-
-assign SCSI_DATA_RX = SCSI_IN ? SCSI_DATA[7:0] : 8'hzz;
+assign SCSI_DATA_OUT = SCSI_OUT ? {SCSI_DATA_TX, SCSI_DATA_TX} : 16'h0000;
+assign SCSI_DATA_RX = SCSI_IN ? SCSI_DATA_IN[7:0] : 8'h00;
 
 always @(negedge CLK, negedge S2CPU) begin
     if (~S2CPU)
@@ -92,9 +92,7 @@ always @(negedge CLK, negedge S2CPU) begin
         SCSI_DATA_LATCHED <= SCSI_DATA_RX;
 end
 
-
-assign MOD = S2CPU ? {SCSI_DATA_LATCHED, 8'hzz , SCSI_DATA_LATCHED, 8'hzz}: 32'hzzzzzzzz;
-
-assign ID = S2F ? {SCSI_DATA_RX, SCSI_DATA_RX, SCSI_DATA_RX, SCSI_DATA_RX}: 32'hzzzzzzzz;
+assign MOD_SCSI = {SCSI_DATA_LATCHED, 8'h00 , SCSI_DATA_LATCHED, 8'h00};
+assign SCSI_OD = {SCSI_DATA_RX, SCSI_DATA_RX, SCSI_DATA_RX, SCSI_DATA_RX};
 
 endmodule
