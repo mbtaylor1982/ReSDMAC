@@ -1,5 +1,9 @@
 <?xml version="1.0" ?>
 <LOG_ROOT>
 	<PROJECT NAME="RESDMAC">
+		<CBX_INST_ENTRY INSTANCE_NAME="|RESDMAC|fifo:int_fifo|altsyncram:BUFFER[0][15]__3" CBX_FILE_NAME="altsyncram_4ig1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|RESDMAC|fifo:int_fifo|altsyncram:BUFFER[0][23]__2" CBX_FILE_NAME="altsyncram_4ig1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|RESDMAC|fifo:int_fifo|altsyncram:BUFFER[0][31]__1" CBX_FILE_NAME="altsyncram_4ig1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|RESDMAC|fifo:int_fifo|altsyncram:BUFFER[0][7]__4" CBX_FILE_NAME="altsyncram_4ig1.tdf"/>
 	</PROJECT>
 </LOG_ROOT>

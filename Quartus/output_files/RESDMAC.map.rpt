@@ -1,5 +1,5 @@
 Analysis & Synthesis report for RESDMAC
-Sun Aug 20 18:30:53 2023
+Sun Aug 27 14:19:45 2023
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -13,18 +13,29 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. Analysis & Synthesis IP Cores Summary
-  9. State Machine - |RESDMAC|SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg
- 10. Registers Removed During Synthesis
- 11. General Register Statistics
- 12. Inverted Register Statistics
- 13. Multiplexer Restructuring Statistics (No Restructuring Performed)
- 14. Parameter Settings for User Entity Instance: PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component
- 15. altpll Parameter Settings by Entity Instance
- 16. Port Connectivity Checks: "registers:u_registers"
- 17. Elapsed Time Per Partition
- 18. Analysis & Synthesis Equations
- 19. Analysis & Synthesis Messages
+  8. Analysis & Synthesis RAM Summary
+  9. Analysis & Synthesis IP Cores Summary
+ 10. State Machine - |RESDMAC|SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg
+ 11. Registers Removed During Synthesis
+ 12. General Register Statistics
+ 13. Inverted Register Statistics
+ 14. Multiplexer Restructuring Statistics (No Restructuring Performed)
+ 15. Source assignments for fifo:int_fifo|altsyncram:BUFFER[0][31]__1|altsyncram_4ig1:auto_generated
+ 16. Source assignments for fifo:int_fifo|altsyncram:BUFFER[0][23]__2|altsyncram_4ig1:auto_generated
+ 17. Source assignments for fifo:int_fifo|altsyncram:BUFFER[0][15]__3|altsyncram_4ig1:auto_generated
+ 18. Source assignments for fifo:int_fifo|altsyncram:BUFFER[0][7]__4|altsyncram_4ig1:auto_generated
+ 19. Parameter Settings for User Entity Instance: fifo:int_fifo|altsyncram:BUFFER[0][31]__1
+ 20. Parameter Settings for User Entity Instance: fifo:int_fifo|altsyncram:BUFFER[0][23]__2
+ 21. Parameter Settings for User Entity Instance: fifo:int_fifo|altsyncram:BUFFER[0][15]__3
+ 22. Parameter Settings for User Entity Instance: fifo:int_fifo|altsyncram:BUFFER[0][7]__4
+ 23. Parameter Settings for User Entity Instance: PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component
+ 24. altsyncram Parameter Settings by Entity Instance
+ 25. altpll Parameter Settings by Entity Instance
+ 26. Port Connectivity Checks: "registers:u_registers"
+ 27. Elapsed Time Per Partition
+ 28. Analysis & Synthesis Equations
+ 29. Analysis & Synthesis Messages
+ 30. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -50,18 +61,18 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Aug 20 18:30:53 2023           ;
+; Analysis & Synthesis Status        ; Successful - Sun Aug 27 14:19:45 2023           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; RESDMAC                                         ;
 ; Top-level Entity Name              ; RESDMAC                                         ;
 ; Family                             ; Cyclone II                                      ;
-; Total logic elements               ; 901                                             ;
-;     Total combinational functions  ; 621                                             ;
-;     Dedicated logic registers      ; 427                                             ;
-; Total registers                    ; 427                                             ;
+; Total logic elements               ; 484                                             ;
+;     Total combinational functions  ; 420                                             ;
+;     Dedicated logic registers      ; 176                                             ;
+; Total registers                    ; 176                                             ;
 ; Total pins                         ; 81                                              ;
 ; Total virtual pins                 ; 0                                               ;
-; Total memory bits                  ; 0                                               ;
+; Total memory bits                  ; 256                                             ;
 ; Embedded Multiplier 9-bit elements ; 0                                               ;
 ; Total PLLs                         ; 1                                               ;
 +------------------------------------+-------------------------------------------------+
@@ -161,54 +172,64 @@ applicable agreement for further details.
 ; Maximum allowed            ; 6           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
+; Maximum used               ; 2           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-12        ;   0.0%      ;
+;     Processor 2            ; < 0.1%      ;
+;     Processors 3-12        ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                             ;
-+------------------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+---------+
-; File Name with User-Entered Path   ; Used in Netlist ; File Type                   ; File Name with Absolute Path                                        ; Library ;
-+------------------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+---------+
-; ../RTL/SCSI_SM/SCSI_SM_INTERNALS.v ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/SCSI_SM/SCSI_SM_INTERNALS.v    ;         ;
-; ../RTL/PLL.v                       ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/PLL.v                          ;         ;
-; ../RTL/SCSI_SM/SCSI_SM.v           ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/SCSI_SM/SCSI_SM.v              ;         ;
-; ../RTL/Registers/registers_term.v  ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/Registers/registers_term.v     ;         ;
-; ../RTL/Registers/registers_istr.v  ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/Registers/registers_istr.v     ;         ;
-; ../RTL/Registers/registers_cntr.v  ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/Registers/registers_cntr.v     ;         ;
-; ../RTL/Registers/registers.v       ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/Registers/registers.v          ;         ;
-; ../RTL/Registers/addr_decoder.v    ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/Registers/addr_decoder.v       ;         ;
-; ../RTL/FIFO/fifo_write_strobes.v   ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/FIFO/fifo_write_strobes.v      ;         ;
-; ../RTL/FIFO/fifo_full_empty_ctr.v  ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/FIFO/fifo_full_empty_ctr.v     ;         ;
-; ../RTL/FIFO/fifo_byte_ptr.v        ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/FIFO/fifo_byte_ptr.v           ;         ;
-; ../RTL/FIFO/fifo_3bit_cntr.v       ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/FIFO/fifo_3bit_cntr.v          ;         ;
-; ../RTL/FIFO/fifo.v                 ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/FIFO/fifo.v                    ;         ;
-; ../RTL/datapath/datapath_scsi.v    ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/datapath/datapath_scsi.v       ;         ;
-; ../RTL/datapath/datapath_output.v  ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/datapath/datapath_output.v     ;         ;
-; ../RTL/datapath/datapath_input.v   ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/datapath/datapath_input.v      ;         ;
-; ../RTL/datapath/datapath_24dec.v   ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/datapath/datapath_24dec.v      ;         ;
-; ../RTL/datapath/datapath_8b_MUX.v  ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/datapath/datapath_8b_MUX.v     ;         ;
-; ../RTL/datapath/datapath.v         ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/datapath/datapath.v            ;         ;
-; ../RTL/CPU_SM/cpudff5.v            ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/cpudff5.v               ;         ;
-; ../RTL/CPU_SM/cpudff4.v            ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/cpudff4.v               ;         ;
-; ../RTL/CPU_SM/cpudff3.v            ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/cpudff3.v               ;         ;
-; ../RTL/CPU_SM/cpudff2.v            ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/cpudff2.v               ;         ;
-; ../RTL/CPU_SM/cpudff1.v            ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/cpudff1.v               ;         ;
-; ../RTL/CPU_SM/CPU_SM_output.v      ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/CPU_SM_output.v         ;         ;
-; ../RTL/CPU_SM/CPU_SM_inputs.v      ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/CPU_SM_inputs.v         ;         ;
-; ../RTL/CPU_SM/CPU_SM.v             ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/CPU_SM.v                ;         ;
-; ../RTL/RESDMAC.v                   ; yes             ; User Verilog HDL File       ; C:/Users/mbtay/SDMAC-Replacement/RTL/RESDMAC.v                      ;         ;
-; atpll.v                            ; yes             ; User Wizard-Generated File  ; C:/Users/mbtay/SDMAC-Replacement/Quartus/atpll.v                    ;         ;
-; altpll.tdf                         ; yes             ; Megafunction                ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altpll.tdf        ;         ;
-; aglobal130.inc                     ; yes             ; Megafunction                ; c:/altera/13.0sp1/quartus/libraries/megafunctions/aglobal130.inc    ;         ;
-; stratix_pll.inc                    ; yes             ; Megafunction                ; c:/altera/13.0sp1/quartus/libraries/megafunctions/stratix_pll.inc   ;         ;
-; stratixii_pll.inc                  ; yes             ; Megafunction                ; c:/altera/13.0sp1/quartus/libraries/megafunctions/stratixii_pll.inc ;         ;
-; cycloneii_pll.inc                  ; yes             ; Megafunction                ; c:/altera/13.0sp1/quartus/libraries/megafunctions/cycloneii_pll.inc ;         ;
-+------------------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+---------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                  ;
++------------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path   ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                            ; Library ;
++------------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------+---------+
+; ../RTL/SCSI_SM/SCSI_SM_INTERNALS.v ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/SCSI_SM/SCSI_SM_INTERNALS.v        ;         ;
+; ../RTL/PLL.v                       ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/PLL.v                              ;         ;
+; ../RTL/SCSI_SM/SCSI_SM.v           ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/SCSI_SM/SCSI_SM.v                  ;         ;
+; ../RTL/Registers/registers_term.v  ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/Registers/registers_term.v         ;         ;
+; ../RTL/Registers/registers_istr.v  ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/Registers/registers_istr.v         ;         ;
+; ../RTL/Registers/registers_cntr.v  ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/Registers/registers_cntr.v         ;         ;
+; ../RTL/Registers/registers.v       ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/Registers/registers.v              ;         ;
+; ../RTL/Registers/addr_decoder.v    ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/Registers/addr_decoder.v           ;         ;
+; ../RTL/FIFO/fifo_write_strobes.v   ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/FIFO/fifo_write_strobes.v          ;         ;
+; ../RTL/FIFO/fifo_full_empty_ctr.v  ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/FIFO/fifo_full_empty_ctr.v         ;         ;
+; ../RTL/FIFO/fifo_byte_ptr.v        ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/FIFO/fifo_byte_ptr.v               ;         ;
+; ../RTL/FIFO/fifo_3bit_cntr.v       ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/FIFO/fifo_3bit_cntr.v              ;         ;
+; ../RTL/FIFO/fifo.v                 ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/FIFO/fifo.v                        ;         ;
+; ../RTL/datapath/datapath_scsi.v    ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/datapath/datapath_scsi.v           ;         ;
+; ../RTL/datapath/datapath_output.v  ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/datapath/datapath_output.v         ;         ;
+; ../RTL/datapath/datapath_input.v   ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/datapath/datapath_input.v          ;         ;
+; ../RTL/datapath/datapath_24dec.v   ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/datapath/datapath_24dec.v          ;         ;
+; ../RTL/datapath/datapath_8b_MUX.v  ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/datapath/datapath_8b_MUX.v         ;         ;
+; ../RTL/datapath/datapath.v         ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/datapath/datapath.v                ;         ;
+; ../RTL/CPU_SM/cpudff5.v            ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/cpudff5.v                   ;         ;
+; ../RTL/CPU_SM/cpudff4.v            ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/cpudff4.v                   ;         ;
+; ../RTL/CPU_SM/cpudff3.v            ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/cpudff3.v                   ;         ;
+; ../RTL/CPU_SM/cpudff2.v            ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/cpudff2.v                   ;         ;
+; ../RTL/CPU_SM/cpudff1.v            ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/cpudff1.v                   ;         ;
+; ../RTL/CPU_SM/CPU_SM_output.v      ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/CPU_SM_output.v             ;         ;
+; ../RTL/CPU_SM/CPU_SM_inputs.v      ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/CPU_SM_inputs.v             ;         ;
+; ../RTL/CPU_SM/CPU_SM.v             ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/CPU_SM/CPU_SM.v                    ;         ;
+; ../RTL/RESDMAC.v                   ; yes             ; User Verilog HDL File        ; C:/Users/mbtay/SDMAC-Replacement/RTL/RESDMAC.v                          ;         ;
+; atpll.v                            ; yes             ; User Wizard-Generated File   ; C:/Users/mbtay/SDMAC-Replacement/Quartus/atpll.v                        ;         ;
+; altsyncram.tdf                     ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altsyncram.tdf        ;         ;
+; stratix_ram_block.inc              ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/stratix_ram_block.inc ;         ;
+; lpm_mux.inc                        ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_mux.inc           ;         ;
+; lpm_decode.inc                     ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_decode.inc        ;         ;
+; aglobal130.inc                     ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/aglobal130.inc        ;         ;
+; a_rdenreg.inc                      ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/a_rdenreg.inc         ;         ;
+; altrom.inc                         ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altrom.inc            ;         ;
+; altram.inc                         ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altram.inc            ;         ;
+; altdpram.inc                       ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altdpram.inc          ;         ;
+; db/altsyncram_4ig1.tdf             ; yes             ; Auto-Generated Megafunction  ; C:/Users/mbtay/SDMAC-Replacement/Quartus/db/altsyncram_4ig1.tdf         ;         ;
+; altpll.tdf                         ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altpll.tdf            ;         ;
+; stratix_pll.inc                    ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/stratix_pll.inc       ;         ;
+; stratixii_pll.inc                  ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/stratixii_pll.inc     ;         ;
+; cycloneii_pll.inc                  ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/cycloneii_pll.inc     ;         ;
++------------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------+---------+
 
 
 +-------------------------------------------------------------------------------------------------------+
@@ -216,72 +237,92 @@ applicable agreement for further details.
 +---------------------------------------------+---------------------------------------------------------+
 ; Resource                                    ; Usage                                                   ;
 +---------------------------------------------+---------------------------------------------------------+
-; Estimated Total logic elements              ; 901                                                     ;
+; Estimated Total logic elements              ; 484                                                     ;
 ;                                             ;                                                         ;
-; Total combinational functions               ; 621                                                     ;
+; Total combinational functions               ; 420                                                     ;
 ; Logic element usage by number of LUT inputs ;                                                         ;
-;     -- 4 input functions                    ; 442                                                     ;
-;     -- 3 input functions                    ; 116                                                     ;
-;     -- <=2 input functions                  ; 63                                                      ;
+;     -- 4 input functions                    ; 294                                                     ;
+;     -- 3 input functions                    ; 84                                                      ;
+;     -- <=2 input functions                  ; 42                                                      ;
 ;                                             ;                                                         ;
 ; Logic elements by mode                      ;                                                         ;
-;     -- normal mode                          ; 621                                                     ;
+;     -- normal mode                          ; 420                                                     ;
 ;     -- arithmetic mode                      ; 0                                                       ;
 ;                                             ;                                                         ;
-; Total registers                             ; 427                                                     ;
-;     -- Dedicated logic registers            ; 427                                                     ;
+; Total registers                             ; 176                                                     ;
+;     -- Dedicated logic registers            ; 176                                                     ;
 ;     -- I/O registers                        ; 0                                                       ;
 ;                                             ;                                                         ;
 ; I/O pins                                    ; 81                                                      ;
+; Total memory bits                           ; 256                                                     ;
 ; Embedded Multiplier 9-bit elements          ; 0                                                       ;
 ; Total PLLs                                  ; 1                                                       ;
 ;     -- PLLs                                 ; 1                                                       ;
 ;                                             ;                                                         ;
 ; Maximum fan-out node                        ; PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk0 ;
-; Maximum fan-out                             ; 105                                                     ;
-; Total fan-out                               ; 3549                                                    ;
-; Average fan-out                             ; 3.14                                                    ;
+; Maximum fan-out                             ; 164                                                     ;
+; Total fan-out                               ; 2403                                                    ;
+; Average fan-out                             ; 3.38                                                    ;
 +---------------------------------------------+---------------------------------------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                     ;
-+-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------+--------------+
-; Compilation Hierarchy Node                    ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                          ; Library Name ;
-+-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------+--------------+
-; |RESDMAC                                      ; 621 (15)          ; 427 (4)      ; 0           ; 0            ; 0       ; 0         ; 81   ; 0            ; |RESDMAC                                                                                     ; work         ;
-;    |CPU_SM:u_CPU_SM|                          ; 170 (6)           ; 30 (30)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM                                                                     ; work         ;
-;       |CPU_SM_inputs:u_CPU_SM_inputs|         ; 29 (29)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs                                       ; work         ;
-;       |CPU_SM_outputs:u_CPU_SM_outputs|       ; 76 (76)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs                                     ; work         ;
-;       |cpudff1:u_cpudff1|                     ; 10 (10)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff1:u_cpudff1                                                   ; work         ;
-;       |cpudff2:u_cpudff2|                     ; 11 (11)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff2:u_cpudff2                                                   ; work         ;
-;       |cpudff3:u_cpudff3|                     ; 12 (12)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff3:u_cpudff3                                                   ; work         ;
-;       |cpudff4:u_cpudff4|                     ; 13 (13)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff4:u_cpudff4                                                   ; work         ;
-;       |cpudff5:u_cpudff5|                     ; 13 (13)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff5:u_cpudff5                                                   ; work         ;
-;    |PLL:u_PLL|                                ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|PLL:u_PLL                                                                           ; work         ;
-;       |atpll:APLL_inst|                       ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|PLL:u_PLL|atpll:APLL_inst                                                           ; work         ;
-;          |altpll:altpll_component|            ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component                                   ; work         ;
-;    |SCSI_SM:u_SCSI_SM|                        ; 34 (2)            ; 42 (20)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|SCSI_SM:u_SCSI_SM                                                                   ; work         ;
-;       |SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS| ; 32 (32)           ; 22 (22)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS                             ; work         ;
-;    |datapath:u_datapath|                      ; 177 (2)           ; 56 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath                                                                 ; work         ;
-;       |datapath_input:u_datapath_input|       ; 57 (57)           ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_input:u_datapath_input                                 ; work         ;
-;       |datapath_output:u_datapath_output|     ; 56 (56)           ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output                               ; work         ;
-;       |datapath_scsi:u_datapath_scsi|         ; 62 (24)           ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi                                   ; work         ;
-;          |datapath_24dec:u_datapath_24dec|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_24dec:u_datapath_24dec   ; work         ;
-;          |datapath_8b_MUX:u_datapath_8b_MUX|  ; 36 (36)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX ; work         ;
-;    |fifo:int_fifo|                            ; 200 (168)         ; 281 (256)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo                                                                       ; work         ;
-;       |fifo_3bit_cntr:u_next_in_cntr|         ; 3 (3)             ; 3 (3)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr                                         ; work         ;
-;       |fifo_3bit_cntr:u_next_out_cntr|        ; 3 (3)             ; 3 (3)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr                                        ; work         ;
-;       |fifo__full_empty_ctr:u_full_empty_ctr| ; 18 (18)           ; 17 (17)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr                                 ; work         ;
-;       |fifo_byte_ptr:u_byte_ptr|              ; 3 (3)             ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo_byte_ptr:u_byte_ptr                                              ; work         ;
-;       |fifo_write_strobes:u_write_strobes|    ; 5 (5)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo_write_strobes:u_write_strobes                                    ; work         ;
-;    |registers:u_registers|                    ; 25 (1)            ; 14 (2)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers                                                               ; work         ;
-;       |addr_decoder:u_addr_decoder|           ; 16 (16)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|addr_decoder:u_addr_decoder                                   ; work         ;
-;       |registers_cntr:u_registers_cntr|       ; 1 (1)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|registers_cntr:u_registers_cntr                               ; work         ;
-;       |registers_istr:u_registers_istr|       ; 2 (2)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|registers_istr:u_registers_istr                               ; work         ;
-;       |registers_term:u_registers_term|       ; 5 (5)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|registers_term:u_registers_term                               ; work         ;
-+-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------+--------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                   ;
++-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                    ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                        ; Library Name ;
++-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------+--------------+
+; |RESDMAC                                      ; 420 (12)          ; 176 (4)      ; 256         ; 0            ; 0       ; 0         ; 81   ; 0            ; |RESDMAC                                                                                   ; work         ;
+;    |CPU_SM:u_CPU_SM|                          ; 161 (6)           ; 30 (30)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM                                                                   ; work         ;
+;       |CPU_SM_inputs:u_CPU_SM_inputs|         ; 28 (28)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs                                     ; work         ;
+;       |CPU_SM_outputs:u_CPU_SM_outputs|       ; 73 (73)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|CPU_SM_outputs:u_CPU_SM_outputs                                   ; work         ;
+;       |cpudff1:u_cpudff1|                     ; 9 (9)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff1:u_cpudff1                                                 ; work         ;
+;       |cpudff2:u_cpudff2|                     ; 11 (11)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff2:u_cpudff2                                                 ; work         ;
+;       |cpudff3:u_cpudff3|                     ; 11 (11)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff3:u_cpudff3                                                 ; work         ;
+;       |cpudff4:u_cpudff4|                     ; 11 (11)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff4:u_cpudff4                                                 ; work         ;
+;       |cpudff5:u_cpudff5|                     ; 12 (12)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|CPU_SM:u_CPU_SM|cpudff5:u_cpudff5                                                 ; work         ;
+;    |PLL:u_PLL|                                ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|PLL:u_PLL                                                                         ; work         ;
+;       |atpll:APLL_inst|                       ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|PLL:u_PLL|atpll:APLL_inst                                                         ; work         ;
+;          |altpll:altpll_component|            ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component                                 ; work         ;
+;    |SCSI_SM:u_SCSI_SM|                        ; 36 (4)            ; 42 (20)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|SCSI_SM:u_SCSI_SM                                                                 ; work         ;
+;       |SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS| ; 32 (32)           ; 22 (22)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS                           ; work         ;
+;    |datapath:u_datapath|                      ; 142 (43)          ; 56 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath                                                               ; work         ;
+;       |datapath_input:u_datapath_input|       ; 9 (9)             ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_input:u_datapath_input                               ; work         ;
+;       |datapath_output:u_datapath_output|     ; 57 (57)           ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output                             ; work         ;
+;       |datapath_scsi:u_datapath_scsi|         ; 33 (32)           ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi                                 ; work         ;
+;          |datapath_24dec:u_datapath_24dec|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_24dec:u_datapath_24dec ; work         ;
+;    |fifo:int_fifo|                            ; 39 (0)            ; 25 (0)       ; 256         ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo                                                                     ; work         ;
+;       |altsyncram:BUFFER[0][15]__3|           ; 0 (0)             ; 0 (0)        ; 64          ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|altsyncram:BUFFER[0][15]__3                                         ; work         ;
+;          |altsyncram_4ig1:auto_generated|     ; 0 (0)             ; 0 (0)        ; 64          ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|altsyncram:BUFFER[0][15]__3|altsyncram_4ig1:auto_generated          ; work         ;
+;       |altsyncram:BUFFER[0][23]__2|           ; 0 (0)             ; 0 (0)        ; 64          ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|altsyncram:BUFFER[0][23]__2                                         ; work         ;
+;          |altsyncram_4ig1:auto_generated|     ; 0 (0)             ; 0 (0)        ; 64          ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|altsyncram:BUFFER[0][23]__2|altsyncram_4ig1:auto_generated          ; work         ;
+;       |altsyncram:BUFFER[0][31]__1|           ; 0 (0)             ; 0 (0)        ; 64          ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|altsyncram:BUFFER[0][31]__1                                         ; work         ;
+;          |altsyncram_4ig1:auto_generated|     ; 0 (0)             ; 0 (0)        ; 64          ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|altsyncram:BUFFER[0][31]__1|altsyncram_4ig1:auto_generated          ; work         ;
+;       |altsyncram:BUFFER[0][7]__4|            ; 0 (0)             ; 0 (0)        ; 64          ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|altsyncram:BUFFER[0][7]__4                                          ; work         ;
+;          |altsyncram_4ig1:auto_generated|     ; 0 (0)             ; 0 (0)        ; 64          ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|altsyncram:BUFFER[0][7]__4|altsyncram_4ig1:auto_generated           ; work         ;
+;       |fifo_3bit_cntr:u_next_in_cntr|         ; 4 (4)             ; 3 (3)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr                                       ; work         ;
+;       |fifo_3bit_cntr:u_next_out_cntr|        ; 4 (4)             ; 3 (3)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr                                      ; work         ;
+;       |fifo__full_empty_ctr:u_full_empty_ctr| ; 23 (23)           ; 17 (17)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr                               ; work         ;
+;       |fifo_byte_ptr:u_byte_ptr|              ; 3 (3)             ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo_byte_ptr:u_byte_ptr                                            ; work         ;
+;       |fifo_write_strobes:u_write_strobes|    ; 5 (5)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|fifo:int_fifo|fifo_write_strobes:u_write_strobes                                  ; work         ;
+;    |registers:u_registers|                    ; 30 (2)            ; 19 (2)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers                                                             ; work         ;
+;       |addr_decoder:u_addr_decoder|           ; 8 (8)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|addr_decoder:u_addr_decoder                                 ; work         ;
+;       |registers_cntr:u_registers_cntr|       ; 7 (7)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|registers_cntr:u_registers_cntr                             ; work         ;
+;       |registers_istr:u_registers_istr|       ; 7 (7)             ; 9 (9)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|registers_istr:u_registers_istr                             ; work         ;
+;       |registers_term:u_registers_term|       ; 6 (6)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RESDMAC|registers:u_registers|registers_term:u_registers_term                             ; work         ;
++-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                        ;
++-------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+; Name                                                                                ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF  ;
++-------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+; fifo:int_fifo|altsyncram:BUFFER[0][15]__3|altsyncram_4ig1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 8            ; 8            ; 8            ; 8            ; 64   ; None ;
+; fifo:int_fifo|altsyncram:BUFFER[0][23]__2|altsyncram_4ig1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 8            ; 8            ; 8            ; 8            ; 64   ; None ;
+; fifo:int_fifo|altsyncram:BUFFER[0][31]__1|altsyncram_4ig1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 8            ; 8            ; 8            ; 8            ; 64   ; None ;
+; fifo:int_fifo|altsyncram:BUFFER[0][7]__4|altsyncram_4ig1:auto_generated|ALTSYNCRAM  ; AUTO ; Simple Dual Port ; 8            ; 8            ; 8            ; 8            ; 64   ; None ;
++-------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
 
 
 +-------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -324,21 +365,23 @@ Encoding Type:  One-Hot
 +---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                                                            ;
-+---------------------------------------------------------------------+-------------------------------------------------------------------------+
-; Register name                                                       ; Reason for Removal                                                      ;
-+---------------------------------------------------------------------+-------------------------------------------------------------------------+
-; CPU_SM:u_CPU_SM|CCRESET_                                            ; Merged with SCSI_SM:u_SCSI_SM|CRESET_                                   ;
-; registers:u_registers|registers_istr:u_registers_istr|E_INT         ; Merged with registers:u_registers|registers_istr:u_registers_istr|INT_F ;
-; registers:u_registers|registers_istr:u_registers_istr|INTS          ; Merged with registers:u_registers|registers_istr:u_registers_istr|INT_F ;
-; SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg~4 ; Lost fanout                                                             ;
-; SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg~5 ; Lost fanout                                                             ;
-; SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg~6 ; Lost fanout                                                             ;
-; SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg~7 ; Lost fanout                                                             ;
-; SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg~8 ; Lost fanout                                                             ;
-; Total Number of Removed Registers = 8                               ;                                                                         ;
-+---------------------------------------------------------------------+-------------------------------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                ;
++---------------------------------------------------------------------+-----------------------------------------------------------------------------+
+; Register name                                                       ; Reason for Removal                                                          ;
++---------------------------------------------------------------------+-----------------------------------------------------------------------------+
+; registers:u_registers|registers_istr:u_registers_istr|ISTR_O[2,3,8] ; Stuck at GND due to stuck port data_in                                      ;
+; CPU_SM:u_CPU_SM|CCRESET_                                            ; Merged with SCSI_SM:u_SCSI_SM|CRESET_                                       ;
+; registers:u_registers|registers_istr:u_registers_istr|INTS          ; Merged with registers:u_registers|registers_istr:u_registers_istr|INT_F     ;
+; registers:u_registers|registers_istr:u_registers_istr|E_INT         ; Merged with registers:u_registers|registers_istr:u_registers_istr|INT_F     ;
+; registers:u_registers|registers_istr:u_registers_istr|ISTR_O[6,7]   ; Merged with registers:u_registers|registers_istr:u_registers_istr|ISTR_O[5] ;
+; SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg~4 ; Lost fanout                                                                 ;
+; SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg~5 ; Lost fanout                                                                 ;
+; SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg~6 ; Lost fanout                                                                 ;
+; SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg~7 ; Lost fanout                                                                 ;
+; SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg~8 ; Lost fanout                                                                 ;
+; Total Number of Removed Registers = 13                              ;                                                                             ;
++---------------------------------------------------------------------+-----------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -346,12 +389,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 427   ;
+; Total registers                              ; 176   ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 105   ;
+; Number of registers using Asynchronous Clear ; 102   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 256   ;
+; Number of registers using Clock Enable       ; 68    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -363,30 +406,317 @@ Encoding Type:  One-Hot
 +----------------------------------------------------------------+---------+
 ; CPU_SM:u_CPU_SM|BGRANT_                                        ; 4       ;
 ; CPU_SM:u_CPU_SM|nCYCLEDONE                                     ; 4       ;
-; CPU_SM:u_CPU_SM|DSACK_LATCHED_[0]                              ; 9       ;
-; CPU_SM:u_CPU_SM|DSACK_LATCHED_[1]                              ; 9       ;
+; CPU_SM:u_CPU_SM|DSACK_LATCHED_[0]                              ; 8       ;
+; CPU_SM:u_CPU_SM|DSACK_LATCHED_[1]                              ; 8       ;
+; fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY  ; 14      ;
 ; SCSI_SM:u_SCSI_SM|CDREQ_                                       ; 2       ;
 ; CPU_SM:u_CPU_SM|DREQ_                                          ; 2       ;
 ; SCSI_SM:u_SCSI_SM|CDSACK_                                      ; 3       ;
 ; registers:u_registers|registers_term:u_registers_term|REG_DSK_ ; 2       ;
 ; registers:u_registers|registers_istr:u_registers_istr|FE       ; 1       ;
-; Total number of inverted registers = 9                         ;         ;
+; Total number of inverted registers = 10                        ;         ;
 +----------------------------------------------------------------+---------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (No Restructuring Performed)                                                                                                                                                    ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                             ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------------------------+
-; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[15]                                ;
-; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[30]                                ;
-; 8:1                ; 32 bits   ; 160 LEs       ; 160 LEs              ; 0 LEs                  ; No         ; |RESDMAC|fifo:int_fifo|Mux17                                                                           ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[17]                                ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[4]                                 ;
-; 6:1                ; 8 bits    ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi|datapath_8b_MUX:u_datapath_8b_MUX|Selector3 ;
-; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |RESDMAC|SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|Selector9                             ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (No Restructuring Performed)                                                                                                                            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------+
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |RESDMAC|registers:u_registers|registers_istr:u_registers_istr|INT_F           ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |RESDMAC|registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[2] ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |RESDMAC|fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[6]             ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[7]         ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[9]         ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[18]        ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[29]        ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|FIFO_ID[26]                                       ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_input:u_datapath_input|CPU_OD[7]         ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|FIFO_ID[9]                                        ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |RESDMAC|datapath:u_datapath|datapath_output:u_datapath_output|DATA[4]         ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |RESDMAC|SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|Selector9     ;
+; 65:1               ; 8 bits    ; 344 LEs       ; 64 LEs               ; 280 LEs                ; No         ; |RESDMAC|datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_OUT[1]    ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------+
+; Source assignments for fifo:int_fifo|altsyncram:BUFFER[0][31]__1|altsyncram_4ig1:auto_generated ;
++---------------------------------+--------------------+------+-----------------------------------+
+; Assignment                      ; Value              ; From ; To                                ;
++---------------------------------+--------------------+------+-----------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                 ;
++---------------------------------+--------------------+------+-----------------------------------+
+
+
++-------------------------------------------------------------------------------------------------+
+; Source assignments for fifo:int_fifo|altsyncram:BUFFER[0][23]__2|altsyncram_4ig1:auto_generated ;
++---------------------------------+--------------------+------+-----------------------------------+
+; Assignment                      ; Value              ; From ; To                                ;
++---------------------------------+--------------------+------+-----------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                 ;
++---------------------------------+--------------------+------+-----------------------------------+
+
+
++-------------------------------------------------------------------------------------------------+
+; Source assignments for fifo:int_fifo|altsyncram:BUFFER[0][15]__3|altsyncram_4ig1:auto_generated ;
++---------------------------------+--------------------+------+-----------------------------------+
+; Assignment                      ; Value              ; From ; To                                ;
++---------------------------------+--------------------+------+-----------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                 ;
++---------------------------------+--------------------+------+-----------------------------------+
+
+
++------------------------------------------------------------------------------------------------+
+; Source assignments for fifo:int_fifo|altsyncram:BUFFER[0][7]__4|altsyncram_4ig1:auto_generated ;
++---------------------------------+--------------------+------+----------------------------------+
+; Assignment                      ; Value              ; From ; To                               ;
++---------------------------------+--------------------+------+----------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                ;
++---------------------------------+--------------------+------+----------------------------------+
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fifo:int_fifo|altsyncram:BUFFER[0][31]__1 ;
++------------------------------------+----------------------+----------------------------+
+; Parameter Name                     ; Value                ; Type                       ;
++------------------------------------+----------------------+----------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                    ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                 ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY               ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE               ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE             ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                    ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                    ;
+; WIDTH_A                            ; 8                    ; Untyped                    ;
+; WIDTHAD_A                          ; 3                    ; Untyped                    ;
+; NUMWORDS_A                         ; 8                    ; Untyped                    ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                    ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                    ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                    ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                    ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                    ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                    ;
+; WIDTH_B                            ; 8                    ; Untyped                    ;
+; WIDTHAD_B                          ; 3                    ; Untyped                    ;
+; NUMWORDS_B                         ; 8                    ; Untyped                    ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                    ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                    ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                    ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                    ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                    ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                    ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                    ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                    ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                    ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                    ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                    ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                    ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                    ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                    ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                    ;
+; BYTE_SIZE                          ; 8                    ; Untyped                    ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA             ; Untyped                    ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                    ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                    ;
+; INIT_FILE                          ; UNUSED               ; Untyped                    ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                    ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                    ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                    ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                    ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                    ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                    ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                    ;
+; DEVICE_FAMILY                      ; Cyclone II           ; Untyped                    ;
+; CBXI_PARAMETER                     ; altsyncram_4ig1      ; Untyped                    ;
++------------------------------------+----------------------+----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fifo:int_fifo|altsyncram:BUFFER[0][23]__2 ;
++------------------------------------+----------------------+----------------------------+
+; Parameter Name                     ; Value                ; Type                       ;
++------------------------------------+----------------------+----------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                    ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                 ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY               ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE               ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE             ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                    ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                    ;
+; WIDTH_A                            ; 8                    ; Untyped                    ;
+; WIDTHAD_A                          ; 3                    ; Untyped                    ;
+; NUMWORDS_A                         ; 8                    ; Untyped                    ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                    ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                    ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                    ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                    ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                    ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                    ;
+; WIDTH_B                            ; 8                    ; Untyped                    ;
+; WIDTHAD_B                          ; 3                    ; Untyped                    ;
+; NUMWORDS_B                         ; 8                    ; Untyped                    ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                    ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                    ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                    ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                    ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                    ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                    ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                    ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                    ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                    ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                    ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                    ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                    ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                    ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                    ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                    ;
+; BYTE_SIZE                          ; 8                    ; Untyped                    ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA             ; Untyped                    ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                    ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                    ;
+; INIT_FILE                          ; UNUSED               ; Untyped                    ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                    ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                    ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                    ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                    ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                    ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                    ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                    ;
+; DEVICE_FAMILY                      ; Cyclone II           ; Untyped                    ;
+; CBXI_PARAMETER                     ; altsyncram_4ig1      ; Untyped                    ;
++------------------------------------+----------------------+----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fifo:int_fifo|altsyncram:BUFFER[0][15]__3 ;
++------------------------------------+----------------------+----------------------------+
+; Parameter Name                     ; Value                ; Type                       ;
++------------------------------------+----------------------+----------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                    ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                 ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY               ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE               ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE             ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                    ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                    ;
+; WIDTH_A                            ; 8                    ; Untyped                    ;
+; WIDTHAD_A                          ; 3                    ; Untyped                    ;
+; NUMWORDS_A                         ; 8                    ; Untyped                    ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                    ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                    ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                    ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                    ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                    ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                    ;
+; WIDTH_B                            ; 8                    ; Untyped                    ;
+; WIDTHAD_B                          ; 3                    ; Untyped                    ;
+; NUMWORDS_B                         ; 8                    ; Untyped                    ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                    ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                    ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                    ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                    ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                    ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                    ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                    ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                    ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                    ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                    ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                    ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                    ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                    ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                    ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                    ;
+; BYTE_SIZE                          ; 8                    ; Untyped                    ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA             ; Untyped                    ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                    ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                    ;
+; INIT_FILE                          ; UNUSED               ; Untyped                    ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                    ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                    ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                    ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                    ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                    ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                    ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                    ;
+; DEVICE_FAMILY                      ; Cyclone II           ; Untyped                    ;
+; CBXI_PARAMETER                     ; altsyncram_4ig1      ; Untyped                    ;
++------------------------------------+----------------------+----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fifo:int_fifo|altsyncram:BUFFER[0][7]__4 ;
++------------------------------------+----------------------+---------------------------+
+; Parameter Name                     ; Value                ; Type                      ;
++------------------------------------+----------------------+---------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                   ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY              ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE              ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE            ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                   ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                   ;
+; WIDTH_A                            ; 8                    ; Untyped                   ;
+; WIDTHAD_A                          ; 3                    ; Untyped                   ;
+; NUMWORDS_A                         ; 8                    ; Untyped                   ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                   ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                   ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                   ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                   ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                   ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                   ;
+; WIDTH_B                            ; 8                    ; Untyped                   ;
+; WIDTHAD_B                          ; 3                    ; Untyped                   ;
+; NUMWORDS_B                         ; 8                    ; Untyped                   ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                   ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                   ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                   ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                   ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                   ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                   ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                   ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                   ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                   ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                   ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                   ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                   ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                   ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                   ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                   ;
+; BYTE_SIZE                          ; 8                    ; Untyped                   ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA             ; Untyped                   ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                   ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                   ;
+; INIT_FILE                          ; UNUSED               ; Untyped                   ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                   ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                   ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                   ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                   ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                   ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                   ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                   ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                   ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                   ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                   ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                   ;
+; DEVICE_FAMILY                      ; Cyclone II           ; Untyped                   ;
+; CBXI_PARAMETER                     ; altsyncram_4ig1      ; Untyped                   ;
++------------------------------------+----------------------+---------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +------------------------------------------------------------------------------------------------+
@@ -451,7 +781,7 @@ Encoding Type:  One-Hot
 ; CLK3_PHASE_SHIFT              ; 0                       ; Untyped                              ;
 ; CLK2_PHASE_SHIFT              ; 15000                   ; Untyped                              ;
 ; CLK1_PHASE_SHIFT              ; 10000                   ; Untyped                              ;
-; CLK0_PHASE_SHIFT              ; 2500                    ; Untyped                              ;
+; CLK0_PHASE_SHIFT              ; 5000                    ; Untyped                              ;
 ; CLK5_TIME_DELAY               ; 0                       ; Untyped                              ;
 ; CLK4_TIME_DELAY               ; 0                       ; Untyped                              ;
 ; CLK3_TIME_DELAY               ; 0                       ; Untyped                              ;
@@ -763,6 +1093,59 @@ Encoding Type:  One-Hot
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
++---------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                      ;
++-------------------------------------------+-------------------------------------------+
+; Name                                      ; Value                                     ;
++-------------------------------------------+-------------------------------------------+
+; Number of entity instances                ; 4                                         ;
+; Entity Instance                           ; fifo:int_fifo|altsyncram:BUFFER[0][31]__1 ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                 ;
+;     -- WIDTH_A                            ; 8                                         ;
+;     -- NUMWORDS_A                         ; 8                                         ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                              ;
+;     -- WIDTH_B                            ; 8                                         ;
+;     -- NUMWORDS_B                         ; 8                                         ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                    ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                              ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                      ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA                                  ;
+; Entity Instance                           ; fifo:int_fifo|altsyncram:BUFFER[0][23]__2 ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                 ;
+;     -- WIDTH_A                            ; 8                                         ;
+;     -- NUMWORDS_A                         ; 8                                         ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                              ;
+;     -- WIDTH_B                            ; 8                                         ;
+;     -- NUMWORDS_B                         ; 8                                         ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                    ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                              ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                      ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA                                  ;
+; Entity Instance                           ; fifo:int_fifo|altsyncram:BUFFER[0][15]__3 ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                 ;
+;     -- WIDTH_A                            ; 8                                         ;
+;     -- NUMWORDS_A                         ; 8                                         ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                              ;
+;     -- WIDTH_B                            ; 8                                         ;
+;     -- NUMWORDS_B                         ; 8                                         ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                    ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                              ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                      ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA                                  ;
+; Entity Instance                           ; fifo:int_fifo|altsyncram:BUFFER[0][7]__4  ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                 ;
+;     -- WIDTH_A                            ; 8                                         ;
+;     -- NUMWORDS_A                         ; 8                                         ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                              ;
+;     -- WIDTH_B                            ; 8                                         ;
+;     -- NUMWORDS_B                         ; 8                                         ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                    ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                              ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                      ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA                                  ;
++-------------------------------------------+-------------------------------------------+
+
+
 +-----------------------------------------------------------------------------------+
 ; altpll Parameter Settings by Entity Instance                                      ;
 +-------------------------------+---------------------------------------------------+
@@ -795,7 +1178,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:00     ;
 +----------------+--------------+
 
 
@@ -811,7 +1194,7 @@ The equations can be found in C:/Users/mbtay/SDMAC-Replacement/Quartus/output_fi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Sun Aug 20 18:30:51 2023
+    Info: Processing started: Sun Aug 27 14:19:42 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off RESDMAC -c RESDMAC
 Info (11104): Parallel Compilation has detected 12 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 6 of the 6 physical processors detected instead.
 Info (12021): Found 1 design units, including 1 entities, in source file /users/mbtay/sdmac-replacement/rtl/scsi_sm/scsi_sm_internals1.v
@@ -878,8 +1261,6 @@ Info (12021): Found 1 design units, including 1 entities, in source file /users/
     Info (12023): Found entity 1: RESDMAC
 Info (12021): Found 1 design units, including 1 entities, in source file atpll.v
     Info (12023): Found entity 1: atpll
-Warning (10236): Verilog HDL Implicit Net warning at SCSI_SM.v(111): created implicit net for "RDFIFO"
-Warning (10236): Verilog HDL Implicit Net warning at SCSI_SM.v(113): created implicit net for "RIFIFO"
 Info (12127): Elaborating entity "RESDMAC" for the top level hierarchy
 Warning (10036): Verilog HDL or VHDL warning at RESDMAC.v(90): object "_DS" assigned a value but never read
 Info (12128): Elaborating entity "registers" for hierarchy "registers:u_registers"
@@ -889,22 +1270,6 @@ Info (12128): Elaborating entity "registers_cntr" for hierarchy "registers:u_reg
 Info (12128): Elaborating entity "registers_term" for hierarchy "registers:u_registers|registers_term:u_registers_term"
 Info (12128): Elaborating entity "CPU_SM" for hierarchy "CPU_SM:u_CPU_SM"
 Info (12128): Elaborating entity "CPU_SM_inputs" for hierarchy "CPU_SM:u_CPU_SM|CPU_SM_inputs:u_CPU_SM_inputs"
-Warning (10034): Output port "E[59]" at CPU_SM_inputs.v(35) has no driver
-Warning (10034): Output port "E[54]" at CPU_SM_inputs.v(35) has no driver
-Warning (10034): Output port "E[52]" at CPU_SM_inputs.v(35) has no driver
-Warning (10034): Output port "E[49]" at CPU_SM_inputs.v(35) has no driver
-Warning (10034): Output port "E[47]" at CPU_SM_inputs.v(35) has no driver
-Warning (10034): Output port "E[44]" at CPU_SM_inputs.v(35) has no driver
-Warning (10034): Output port "E[41]" at CPU_SM_inputs.v(35) has no driver
-Warning (10034): Output port "E[38]" at CPU_SM_inputs.v(35) has no driver
-Warning (10034): Output port "nE[59]" at CPU_SM_inputs.v(37) has no driver
-Warning (10034): Output port "nE[54]" at CPU_SM_inputs.v(37) has no driver
-Warning (10034): Output port "nE[52]" at CPU_SM_inputs.v(37) has no driver
-Warning (10034): Output port "nE[49]" at CPU_SM_inputs.v(37) has no driver
-Warning (10034): Output port "nE[47]" at CPU_SM_inputs.v(37) has no driver
-Warning (10034): Output port "nE[44]" at CPU_SM_inputs.v(37) has no driver
-Warning (10034): Output port "nE[41]" at CPU_SM_inputs.v(37) has no driver
-Warning (10034): Output port "nE[38]" at CPU_SM_inputs.v(37) has no driver
 Info (12128): Elaborating entity "cpudff1" for hierarchy "CPU_SM:u_CPU_SM|cpudff1:u_cpudff1"
 Info (12128): Elaborating entity "cpudff2" for hierarchy "CPU_SM:u_CPU_SM|cpudff2:u_cpudff2"
 Info (12128): Elaborating entity "cpudff3" for hierarchy "CPU_SM:u_CPU_SM|cpudff3:u_cpudff3"
@@ -918,6 +1283,27 @@ Info (12128): Elaborating entity "fifo_write_strobes" for hierarchy "fifo:int_fi
 Info (12128): Elaborating entity "fifo__full_empty_ctr" for hierarchy "fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr"
 Info (12128): Elaborating entity "fifo_3bit_cntr" for hierarchy "fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr"
 Info (12128): Elaborating entity "fifo_byte_ptr" for hierarchy "fifo:int_fifo|fifo_byte_ptr:u_byte_ptr"
+Info (12128): Elaborating entity "altsyncram" for hierarchy "fifo:int_fifo|altsyncram:BUFFER[0][31]__1"
+Info (12130): Elaborated megafunction instantiation "fifo:int_fifo|altsyncram:BUFFER[0][31]__1"
+Info (12133): Instantiated megafunction "fifo:int_fifo|altsyncram:BUFFER[0][31]__1" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "8"
+    Info (12134): Parameter "WIDTHAD_A" = "3"
+    Info (12134): Parameter "NUMWORDS_A" = "8"
+    Info (12134): Parameter "WIDTH_B" = "8"
+    Info (12134): Parameter "WIDTHAD_B" = "3"
+    Info (12134): Parameter "NUMWORDS_B" = "8"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "READ_DURING_WRITE_MODE_MIXED_PORTS" = "OLD_DATA"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_4ig1.tdf
+    Info (12023): Found entity 1: altsyncram_4ig1
+Info (12128): Elaborating entity "altsyncram_4ig1" for hierarchy "fifo:int_fifo|altsyncram:BUFFER[0][31]__1|altsyncram_4ig1:auto_generated"
 Info (12128): Elaborating entity "datapath" for hierarchy "datapath:u_datapath"
 Info (12128): Elaborating entity "datapath_input" for hierarchy "datapath:u_datapath|datapath_input:u_datapath_input"
 Info (12128): Elaborating entity "datapath_output" for hierarchy "datapath:u_datapath|datapath_output:u_datapath_output"
@@ -933,7 +1319,7 @@ Info (12133): Instantiated megafunction "PLL:u_PLL|atpll:APLL_inst|altpll:altpll
     Info (12134): Parameter "clk0_divide_by" = "1"
     Info (12134): Parameter "clk0_duty_cycle" = "50"
     Info (12134): Parameter "clk0_multiply_by" = "1"
-    Info (12134): Parameter "clk0_phase_shift" = "2500"
+    Info (12134): Parameter "clk0_phase_shift" = "5000"
     Info (12134): Parameter "clk1_divide_by" = "1"
     Info (12134): Parameter "clk1_duty_cycle" = "50"
     Info (12134): Parameter "clk1_multiply_by" = "1"
@@ -992,165 +1378,31 @@ Info (12133): Instantiated megafunction "PLL:u_PLL|atpll:APLL_inst|altpll:altpll
     Info (12134): Parameter "port_extclk2" = "PORT_UNUSED"
     Info (12134): Parameter "port_extclk3" = "PORT_UNUSED"
     Info (12134): Parameter "valid_lock_multiplier" = "1"
-Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[0]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[1]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[2]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[3]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[4]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[5]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[6]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[7]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[8]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[9]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[10]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[11]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[12]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[13]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[14]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[15]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[16]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[17]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[18]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[19]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[20]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[21]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[22]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[23]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[24]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[25]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[26]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[27]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[28]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[29]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[30]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|MOD[31]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[0]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[1]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[2]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[3]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[4]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[5]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[6]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[7]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[8]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[9]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[10]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[11]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[12]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[13]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[14]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "datapath:u_datapath|datapath_output:u_datapath_output|UPPER_OUTPUT_DATA[15]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[0]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[1]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[2]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[3]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[4]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[5]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[6]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[7]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[8]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[9]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[10]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[11]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[12]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[13]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[14]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[15]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[16]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[17]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[18]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[19]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[20]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[21]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[22]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[23]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[24]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[25]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[26]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[27]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[28]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[29]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[30]" feeding internal logic into a wire
-    Warning (13049): Converted tri-state buffer "registers:u_registers|WTC[31]" feeding internal logic into a wire
 Info (17026): Resynthesizing 0 WYSIWYG logic cells and I/Os using "speed" technology mapper which leaves 0 WYSIWYG logic cells and I/Os untouched
-Warning (13039): The following bidir pins have no drivers
-    Warning (13040): Bidir "PD_PORT[8]" has no driver
-    Warning (13040): Bidir "PD_PORT[9]" has no driver
-    Warning (13040): Bidir "PD_PORT[10]" has no driver
-    Warning (13040): Bidir "PD_PORT[11]" has no driver
-    Warning (13040): Bidir "PD_PORT[12]" has no driver
-    Warning (13040): Bidir "PD_PORT[13]" has no driver
-    Warning (13040): Bidir "PD_PORT[14]" has no driver
-    Warning (13040): Bidir "PD_PORT[15]" has no driver
-Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[0]" to the node "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[0]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[1]" to the node "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[1]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[2]" to the node "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[2]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[3]" to the node "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[3]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[4]" to the node "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[4]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[5]" to the node "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[5]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[6]" to the node "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[6]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_RX[7]" to the node "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[7]" into an OR gate
-Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[16]" to the node "fifo:int_fifo|BUFFER[7][16]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[0]" to the node "fifo:int_fifo|BUFFER[7][0]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[17]" to the node "fifo:int_fifo|BUFFER[7][17]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[1]" to the node "fifo:int_fifo|BUFFER[7][1]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[18]" to the node "fifo:int_fifo|BUFFER[7][18]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[2]" to the node "fifo:int_fifo|BUFFER[7][2]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[19]" to the node "fifo:int_fifo|BUFFER[7][19]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[3]" to the node "fifo:int_fifo|BUFFER[7][3]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[20]" to the node "fifo:int_fifo|BUFFER[7][20]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[4]" to the node "fifo:int_fifo|BUFFER[7][4]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[21]" to the node "fifo:int_fifo|BUFFER[7][21]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[5]" to the node "fifo:int_fifo|BUFFER[7][5]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[22]" to the node "fifo:int_fifo|BUFFER[7][22]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[6]" to the node "fifo:int_fifo|BUFFER[7][6]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[23]" to the node "fifo:int_fifo|BUFFER[7][23]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[7]" to the node "fifo:int_fifo|BUFFER[7][7]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[8]" to the node "fifo:int_fifo|BUFFER[7][8]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[9]" to the node "fifo:int_fifo|BUFFER[7][9]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[10]" to the node "fifo:int_fifo|BUFFER[7][10]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[11]" to the node "fifo:int_fifo|BUFFER[7][11]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[12]" to the node "fifo:int_fifo|BUFFER[7][12]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[13]" to the node "fifo:int_fifo|BUFFER[7][13]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[14]" to the node "fifo:int_fifo|BUFFER[7][14]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[15]" to the node "fifo:int_fifo|BUFFER[7][15]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[24]" to the node "fifo:int_fifo|BUFFER[7][24]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[25]" to the node "fifo:int_fifo|BUFFER[7][25]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[26]" to the node "fifo:int_fifo|BUFFER[7][26]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[27]" to the node "fifo:int_fifo|BUFFER[7][27]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[28]" to the node "fifo:int_fifo|BUFFER[7][28]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[29]" to the node "fifo:int_fifo|BUFFER[7][29]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[30]" to the node "fifo:int_fifo|BUFFER[7][30]" into an OR gate
-    Warning (13047): Converted the fan-out from the tri-state buffer "datapath:u_datapath|datapath_input:u_datapath_input|ID[31]" to the node "fifo:int_fifo|BUFFER[7][31]" into an OR gate
 Info (13000): Registers with preset signals will power-up high
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
-Warning (13004): Presettable and clearable registers converted to equivalent circuits with latches. Registers power-up to an undefined state, and DEVCLRn places the registers in an undefined state.
-    Warning (13310): Register "fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY" is converted into an equivalent circuit using register "fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~_emulated" and latch "fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|FIFOEMPTY~1"
-    Warning (13310): Register "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[0]" is converted into an equivalent circuit using register "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[0]~_emulated" and latch "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[0]~1"
-    Warning (13310): Register "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[1]" is converted into an equivalent circuit using register "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[1]~_emulated" and latch "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[1]~5"
-    Warning (13310): Register "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[2]" is converted into an equivalent circuit using register "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[2]~_emulated" and latch "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[2]~9"
-    Warning (13310): Register "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[3]" is converted into an equivalent circuit using register "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[3]~_emulated" and latch "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[3]~13"
-    Warning (13310): Register "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[4]" is converted into an equivalent circuit using register "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[4]~_emulated" and latch "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[4]~17"
-    Warning (13310): Register "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[5]" is converted into an equivalent circuit using register "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[5]~_emulated" and latch "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[5]~21"
-    Warning (13310): Register "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[6]" is converted into an equivalent circuit using register "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[6]~_emulated" and latch "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[6]~25"
-    Warning (13310): Register "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[7]" is converted into an equivalent circuit using register "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[7]~_emulated" and latch "datapath:u_datapath|datapath_scsi:u_datapath_scsi|SCSI_DATA_LATCHED[7]~29"
 Info (286030): Timing-Driven Synthesis is running
 Info (17049): 5 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file C:/Users/mbtay/SDMAC-Replacement/Quartus/output_files/RESDMAC.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 1072 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 609 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 13 input pins
     Info (21059): Implemented 14 output pins
     Info (21060): Implemented 54 bidirectional pins
-    Info (21061): Implemented 990 logic cells
+    Info (21061): Implemented 495 logic cells
+    Info (21064): Implemented 32 RAM segments
     Info (21065): Implemented 1 PLLs
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 161 warnings
-    Info: Peak virtual memory: 4658 megabytes
-    Info: Processing ended: Sun Aug 20 18:30:53 2023
-    Info: Elapsed time: 00:00:02
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 4678 megabytes
+    Info: Processing ended: Sun Aug 27 14:19:45 2023
+    Info: Elapsed time: 00:00:03
     Info: Total CPU time (on all processors): 00:00:02
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in C:/Users/mbtay/SDMAC-Replacement/Quartus/output_files/RESDMAC.map.smsg.
 
 

@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <HTML><HEAD>
-<TITLE>Fast Model Minimum Pulse Width: &apos;u_PLL|APLL_inst|altpll_component|pll|clk[0]&apos;</TITLE>
+<TITLE>Fast Model Setup: &apos;u_PLL|APLL_inst|altpll_component|pll|clk[2]&apos;</TITLE>
 
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/base.css">
@@ -19,300 +19,1013 @@
 <TABLE>
 <thead><TR  bgcolor="#BFBFBF">
 <TH>Slack</TH>
-<TH>Actual Width</TH>
-<TH>Required Width</TH>
-<TH>Type</TH>
-<TH>Clock</TH>
-<TH>Clock Edge</TH>
-<TH>Target</TH>
+<TH>From Node</TH>
+<TH>To Node</TH>
+<TH>Launch Clock</TH>
+<TH>Latch Clock</TH>
+<TH>Relationship</TH>
+<TH>Clock Skew</TH>
+<TH>Data Delay</TH>
 </TR>
 </thead><tbody><TR  bgcolor="#FFFFFF">
-<TD >19.000</TD>
-<TD >20.000</TD>
-<TD >1.000</TD>
-<TD >High Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Fall</TD>
-<TD >CPU_SM:u_CPU_SM|DSACK_LATCHED_[0]</TD>
+<TD >4.012</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[9]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.002</TD>
+<TD >1.018</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >19.000</TD>
-<TD >20.000</TD>
-<TD >1.000</TD>
-<TD >Low Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Fall</TD>
-<TD >CPU_SM:u_CPU_SM|DSACK_LATCHED_[0]</TD>
+<TD >4.012</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[15]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.002</TD>
+<TD >1.018</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >19.000</TD>
-<TD >20.000</TD>
-<TD >1.000</TD>
-<TD >High Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Fall</TD>
-<TD >CPU_SM:u_CPU_SM|DSACK_LATCHED_[1]</TD>
+<TD >4.061</TD>
+<TD >CPU_SM:u_CPU_SM|INCFIFO</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[2]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.001</TD>
+<TD >0.970</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >19.000</TD>
-<TD >20.000</TD>
-<TD >1.000</TD>
-<TD >Low Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Fall</TD>
-<TD >CPU_SM:u_CPU_SM|DSACK_LATCHED_[1]</TD>
+<TD >4.061</TD>
+<TD >CPU_SM:u_CPU_SM|INCFIFO</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[3]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.001</TD>
+<TD >0.970</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >19.000</TD>
-<TD >20.000</TD>
-<TD >1.000</TD>
-<TD >High Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Fall</TD>
-<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >4.061</TD>
+<TD >CPU_SM:u_CPU_SM|INCFIFO</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[4]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.001</TD>
+<TD >0.970</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >19.000</TD>
-<TD >20.000</TD>
-<TD >1.000</TD>
-<TD >Low Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Fall</TD>
-<TD >SCSI_SM:u_SCSI_SM|CRESET_</TD>
+<TD >4.061</TD>
+<TD >CPU_SM:u_CPU_SM|INCFIFO</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[5]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.001</TD>
+<TD >0.970</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >19.000</TD>
-<TD >20.000</TD>
-<TD >1.000</TD>
-<TD >High Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >registers:u_registers|registers_term:u_registers_term|REG_DSK_</TD>
+<TD >4.061</TD>
+<TD >CPU_SM:u_CPU_SM|INCFIFO</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[6]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.001</TD>
+<TD >0.970</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >19.000</TD>
-<TD >20.000</TD>
-<TD >1.000</TD>
-<TD >Low Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >registers:u_registers|registers_term:u_registers_term|REG_DSK_</TD>
+<TD >4.061</TD>
+<TD >CPU_SM:u_CPU_SM|INCFIFO</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[7]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.001</TD>
+<TD >0.970</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >19.000</TD>
-<TD >20.000</TD>
-<TD >1.000</TD>
-<TD >High Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Fall</TD>
-<TD >registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[0]</TD>
+<TD >4.061</TD>
+<TD >CPU_SM:u_CPU_SM|INCFIFO</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.001</TD>
+<TD >0.970</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >19.000</TD>
-<TD >20.000</TD>
-<TD >1.000</TD>
-<TD >Low Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Fall</TD>
-<TD >registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[0]</TD>
+<TD >4.061</TD>
+<TD >CPU_SM:u_CPU_SM|INCFIFO</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.001</TD>
+<TD >0.970</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >19.000</TD>
-<TD >20.000</TD>
-<TD >1.000</TD>
-<TD >High Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Fall</TD>
-<TD >registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[1]</TD>
+<TD >4.109</TD>
+<TD >CPU_SM:u_CPU_SM|DECFIFO</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[2]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.001</TD>
+<TD >0.922</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >19.000</TD>
-<TD >20.000</TD>
-<TD >1.000</TD>
-<TD >Low Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Fall</TD>
-<TD >registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[1]</TD>
+<TD >4.109</TD>
+<TD >CPU_SM:u_CPU_SM|DECFIFO</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[3]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.001</TD>
+<TD >0.922</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >19.000</TD>
-<TD >20.000</TD>
-<TD >1.000</TD>
-<TD >High Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Fall</TD>
-<TD >registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[2]</TD>
+<TD >4.109</TD>
+<TD >CPU_SM:u_CPU_SM|DECFIFO</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[4]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.001</TD>
+<TD >0.922</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >19.000</TD>
-<TD >20.000</TD>
-<TD >1.000</TD>
-<TD >Low Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Fall</TD>
-<TD >registers:u_registers|registers_term:u_registers_term|TERM_COUNTER[2]</TD>
+<TD >4.109</TD>
+<TD >CPU_SM:u_CPU_SM|DECFIFO</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[5]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.001</TD>
+<TD >0.922</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >High Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_CPU_SM|DSACK_LATCHED_[0]|clk</TD>
+<TD >4.109</TD>
+<TD >CPU_SM:u_CPU_SM|DECFIFO</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[6]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.001</TD>
+<TD >0.922</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >Low Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_CPU_SM|DSACK_LATCHED_[0]|clk</TD>
+<TD >4.109</TD>
+<TD >CPU_SM:u_CPU_SM|DECFIFO</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[7]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.001</TD>
+<TD >0.922</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >High Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_CPU_SM|DSACK_LATCHED_[1]|clk</TD>
+<TD >4.109</TD>
+<TD >CPU_SM:u_CPU_SM|DECFIFO</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.001</TD>
+<TD >0.922</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >Low Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_CPU_SM|DSACK_LATCHED_[1]|clk</TD>
+<TD >4.109</TD>
+<TD >CPU_SM:u_CPU_SM|DECFIFO</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|UP[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.001</TD>
+<TD >0.922</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >High Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_PLL|APLL_inst|altpll_component|_clk0~clkctrl|inclk[0]</TD>
+<TD >4.129</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[8]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.005</TD>
+<TD >0.898</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >Low Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_PLL|APLL_inst|altpll_component|_clk0~clkctrl|inclk[0]</TD>
+<TD >4.129</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[10]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.005</TD>
+<TD >0.898</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >High Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_PLL|APLL_inst|altpll_component|_clk0~clkctrl|outclk</TD>
+<TD >4.129</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[11]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.005</TD>
+<TD >0.898</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >Low Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_PLL|APLL_inst|altpll_component|_clk0~clkctrl|outclk</TD>
+<TD >4.129</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[12]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.005</TD>
+<TD >0.898</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >High Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_SCSI_SM|CRESET_|clk</TD>
+<TD >4.129</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[13]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.005</TD>
+<TD >0.898</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >Low Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_SCSI_SM|CRESET_|clk</TD>
+<TD >4.129</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[14]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.005</TD>
+<TD >0.898</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >High Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_registers|u_registers_term|REG_DSK_|clk</TD>
+<TD >4.129</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[15]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.005</TD>
+<TD >0.898</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >Low Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_registers|u_registers_term|REG_DSK_|clk</TD>
+<TD >4.129</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[8]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.005</TD>
+<TD >0.898</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >High Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_registers|u_registers_term|TERM_COUNTER[0]|clk</TD>
+<TD >4.129</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[10]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.005</TD>
+<TD >0.898</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >Low Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_registers|u_registers_term|TERM_COUNTER[0]|clk</TD>
+<TD >4.129</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[11]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.005</TD>
+<TD >0.898</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >High Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_registers|u_registers_term|TERM_COUNTER[1]|clk</TD>
+<TD >4.129</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[12]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.005</TD>
+<TD >0.898</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >Low Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_registers|u_registers_term|TERM_COUNTER[1]|clk</TD>
+<TD >4.129</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[13]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.005</TD>
+<TD >0.898</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >20.000</TD>
-<TD >20.000</TD>
-<TD >0.000</TD>
-<TD >High Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_registers|u_registers_term|TERM_COUNTER[2]|clk</TD>
+<TD >4.129</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[14]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.005</TD>
+<TD >0.898</TD>
 </TR>
 </tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >20.000</TD>
-<TD >20.000</TD>
+<TD >4.129</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[9]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.005</TD>
+<TD >0.898</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.140</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[4]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.003</TD>
+<TD >0.895</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.147</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.003</TD>
+<TD >0.888</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.147</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[2]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.003</TD>
+<TD >0.888</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.147</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[3]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.003</TD>
+<TD >0.888</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.147</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[3]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.003</TD>
+<TD >0.888</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.147</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[2]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.003</TD>
+<TD >0.888</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.147</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.003</TD>
+<TD >0.888</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.156</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[4]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.012</TD>
+<TD >0.888</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.231</TD>
+<TD >CPU_SM:u_CPU_SM|BRIDGEOUT</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[9]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.005</TD>
+<TD >0.796</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.232</TD>
+<TD >CPU_SM:u_CPU_SM|BRIDGEOUT</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[10]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.005</TD>
+<TD >0.795</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.232</TD>
+<TD >CPU_SM:u_CPU_SM|BRIDGEOUT</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[13]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.005</TD>
+<TD >0.795</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.233</TD>
+<TD >CPU_SM:u_CPU_SM|BRIDGEOUT</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[11]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.005</TD>
+<TD >0.794</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.233</TD>
+<TD >CPU_SM:u_CPU_SM|BRIDGEOUT</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[12]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.005</TD>
+<TD >0.794</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.233</TD>
+<TD >CPU_SM:u_CPU_SM|BRIDGEOUT</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[15]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.005</TD>
+<TD >0.794</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.268</TD>
+<TD >CPU_SM:u_CPU_SM|BRIDGEOUT</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[2]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.003</TD>
+<TD >0.767</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.270</TD>
+<TD >CPU_SM:u_CPU_SM|BRIDGEOUT</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.003</TD>
+<TD >0.765</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.312</TD>
+<TD >CPU_SM:u_CPU_SM|BRIDGEOUT</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[4]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.012</TD>
+<TD >0.732</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.354</TD>
+<TD >CPU_SM:u_CPU_SM|BRIDGEOUT</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[14]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.005</TD>
+<TD >0.673</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.358</TD>
+<TD >SCSI_SM:u_SCSI_SM|INCBO_o</TD>
+<TD >fifo:int_fifo|fifo_byte_ptr:u_byte_ptr|BO1</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
 <TD >0.000</TD>
-<TD >Low Pulse Width</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
-<TD >Rise</TD>
-<TD >u_registers|u_registers_term|TERM_COUNTER[2]|clk</TD>
+<TD >0.674</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.362</TD>
+<TD >CPU_SM:u_CPU_SM|BRIDGEOUT</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[8]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.005</TD>
+<TD >0.665</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.366</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[5]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.666</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.366</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[5]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.666</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.366</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[6]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.666</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.366</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[6]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.666</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.366</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[7]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.666</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.366</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[7]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.666</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.366</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.666</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.366</TD>
+<TD >CPU_SM:u_CPU_SM|PAS</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.666</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.395</TD>
+<TD >CPU_SM:u_CPU_SM|BRIDGEOUT</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[3]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.003</TD>
+<TD >0.640</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.403</TD>
+<TD >CPU_SM:u_CPU_SM|DECFIFO</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|DOWN[5]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.001</TD>
+<TD >0.630</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.403</TD>
+<TD >CPU_SM:u_CPU_SM|DECFIFO</TD>
+<TD >SCSI_SM:u_SCSI_SM|RIFIFO_o</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.001</TD>
+<TD >0.630</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.404</TD>
+<TD >CPU_SM:u_CPU_SM|DECFIFO</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|DOWN[2]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.001</TD>
+<TD >0.629</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.405</TD>
+<TD >CPU_SM:u_CPU_SM|DECFIFO</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|DOWN[4]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.001</TD>
+<TD >0.628</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.406</TD>
+<TD >CPU_SM:u_CPU_SM|DECFIFO</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|DOWN[3]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.001</TD>
+<TD >0.627</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.406</TD>
+<TD >CPU_SM:u_CPU_SM|DECFIFO</TD>
+<TD >SCSI_SM:u_SCSI_SM|RDFIFO_o</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.001</TD>
+<TD >0.627</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.425</TD>
+<TD >CPU_SM:u_CPU_SM|INCFIFO</TD>
+<TD >SCSI_SM:u_SCSI_SM|RDFIFO_o</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.001</TD>
+<TD >0.608</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.428</TD>
+<TD >CPU_SM:u_CPU_SM|INCFIFO</TD>
+<TD >SCSI_SM:u_SCSI_SM|RIFIFO_o</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.001</TD>
+<TD >0.605</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.471</TD>
+<TD >SCSI_SM:u_SCSI_SM|RDFIFO_d</TD>
+<TD >SCSI_SM:u_SCSI_SM|RIFIFO_o</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.561</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.492</TD>
+<TD >CPU_SM:u_CPU_SM|DECFIFO</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|DOWN[6]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.540</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.493</TD>
+<TD >SCSI_SM:u_SCSI_SM|INCNO_o</TD>
+<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.539</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.493</TD>
+<TD >SCSI_SM:u_SCSI_SM|INCNO_o</TD>
+<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[2]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.539</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.494</TD>
+<TD >SCSI_SM:u_SCSI_SM|INCNI_o</TD>
+<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr|COUNT[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.538</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.495</TD>
+<TD >CPU_SM:u_CPU_SM|DECFIFO</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|DOWN[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.537</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.495</TD>
+<TD >CPU_SM:u_CPU_SM|BRIDGEOUT</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[5]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.537</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.496</TD>
+<TD >SCSI_SM:u_SCSI_SM|INCNO_o</TD>
+<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.536</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.496</TD>
+<TD >CPU_SM:u_CPU_SM|BRIDGEOUT</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.536</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.497</TD>
+<TD >CPU_SM:u_CPU_SM|DECFIFO</TD>
+<TD >fifo:int_fifo|fifo__full_empty_ctr:u_full_empty_ctr|DOWN[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.535</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.497</TD>
+<TD >CPU_SM:u_CPU_SM|BRIDGEOUT</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[6]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.535</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.497</TD>
+<TD >SCSI_SM:u_SCSI_SM|INCNI_o</TD>
+<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr|COUNT[2]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.535</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.497</TD>
+<TD >CPU_SM:u_CPU_SM|BRIDGEOUT</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[7]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.535</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.498</TD>
+<TD >SCSI_SM:u_SCSI_SM|INCNI_o</TD>
+<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr|COUNT[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.534</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.502</TD>
+<TD >SCSI_SM:u_SCSI_SM|RIFIFO_d</TD>
+<TD >SCSI_SM:u_SCSI_SM|RIFIFO_o</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.530</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.513</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg.s19</TD>
+<TD >SCSI_SM:u_SCSI_SM|nLS2CPU</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.519</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.519</TD>
+<TD >SCSI_SM:u_SCSI_SM|INCBO_o</TD>
+<TD >fifo:int_fifo|fifo_byte_ptr:u_byte_ptr|BO0</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.513</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.538</TD>
+<TD >CPU_SM:u_CPU_SM|INCNO</TD>
+<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.002</TD>
+<TD >0.492</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.538</TD>
+<TD >CPU_SM:u_CPU_SM|INCNO</TD>
+<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[2]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.002</TD>
+<TD >0.492</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.540</TD>
+<TD >CPU_SM:u_CPU_SM|INCNO</TD>
+<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_out_cntr|COUNT[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.002</TD>
+<TD >0.490</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.551</TD>
+<TD >SCSI_SM:u_SCSI_SM|SCSI_SM_INTERNALS:u_SCSI_SM_INTERNALS|state_reg.s6</TD>
+<TD >SCSI_SM:u_SCSI_SM|nLS2CPU</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.001</TD>
+<TD >0.480</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.554</TD>
+<TD >CPU_SM:u_CPU_SM|INCNI</TD>
+<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr|COUNT[2]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.002</TD>
+<TD >0.476</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.555</TD>
+<TD >CPU_SM:u_CPU_SM|INCNI</TD>
+<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr|COUNT[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.002</TD>
+<TD >0.475</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >4.556</TD>
+<TD >CPU_SM:u_CPU_SM|INCNI</TD>
+<TD >fifo:int_fifo|fifo_3bit_cntr:u_next_in_cntr|COUNT[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >-0.002</TD>
+<TD >0.474</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >4.637</TD>
+<TD >SCSI_SM:u_SCSI_SM|RDFIFO_d</TD>
+<TD >SCSI_SM:u_SCSI_SM|RDFIFO_o</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >5.000</TD>
+<TD >0.000</TD>
+<TD >0.395</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >10.768</TD>
+<TD >fifo:int_fifo|altsyncram:BUFFER[0][15]__3|altsyncram_4ig1:auto_generated|ram_block1a0~portb_address_reg0</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[15]</TD>
+<TD >sclk</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >15.000</TD>
+<TD >-1.618</TD>
+<TD >2.646</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >10.768</TD>
+<TD >fifo:int_fifo|altsyncram:BUFFER[0][15]__3|altsyncram_4ig1:auto_generated|ram_block1a0~portb_address_reg1</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[15]</TD>
+<TD >sclk</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >15.000</TD>
+<TD >-1.618</TD>
+<TD >2.646</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >10.768</TD>
+<TD >fifo:int_fifo|altsyncram:BUFFER[0][15]__3|altsyncram_4ig1:auto_generated|ram_block1a0~portb_address_reg2</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|LD_LATCH[15]</TD>
+<TD >sclk</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >15.000</TD>
+<TD >-1.618</TD>
+<TD >2.646</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >10.779</TD>
+<TD >fifo:int_fifo|altsyncram:BUFFER[0][31]__1|altsyncram_4ig1:auto_generated|ram_block1a0~portb_address_reg0</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[11]</TD>
+<TD >sclk</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >15.000</TD>
+<TD >-1.635</TD>
+<TD >2.618</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >10.779</TD>
+<TD >fifo:int_fifo|altsyncram:BUFFER[0][31]__1|altsyncram_4ig1:auto_generated|ram_block1a0~portb_address_reg1</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[11]</TD>
+<TD >sclk</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >15.000</TD>
+<TD >-1.635</TD>
+<TD >2.618</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >10.779</TD>
+<TD >fifo:int_fifo|altsyncram:BUFFER[0][31]__1|altsyncram_4ig1:auto_generated|ram_block1a0~portb_address_reg2</TD>
+<TD >datapath:u_datapath|datapath_output:u_datapath_output|UD_LATCH[11]</TD>
+<TD >sclk</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >15.000</TD>
+<TD >-1.635</TD>
+<TD >2.618</TD>
 </TR>
 </tbody></TABLE>
 

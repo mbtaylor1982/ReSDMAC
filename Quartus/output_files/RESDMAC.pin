@@ -122,18 +122,18 @@ DATA_OE_                     : 55        : output : 3.3-V LVTTL       :         
 GND                          : 56        : gnd    :                   :         :           :                
 DATA_IO[26]                  : 57        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
 DATA_IO[28]                  : 58        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
-OWN                          : 59        : output : 3.3-V LVTTL       :         : 4         : N              
+_SIZ1                        : 59        : output : 3.3-V LVTTL       :         : 4         : Y              
 _DMAEN                       : 60        : output : 3.3-V LVTTL       :         : 4         : Y              
 GND                          : 61        : gnd    :                   :         :           :                
 VCCINT                       : 62        : power  :                   : 1.2V    :           :                
 PDATA_OE_                    : 63        : output : 3.3-V LVTTL       :         : 4         : Y              
-BR                           : 64        : output : 3.3-V LVTTL       :         : 4         : N              
+INT                          : 64        : output : 3.3-V LVTTL       :         : 4         : Y              
 PD_PORT[14]                  : 65        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
 VCCIO4                       : 66        : power  :                   : 3.3V    : 4         :                
 PD_PORT[13]                  : 67        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
 GND                          : 68        : gnd    :                   :         :           :                
 R_W_IO                       : 69        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
-_SIZ1                        : 70        : output : 3.3-V LVTTL       :         : 4         : N              
+OWN                          : 70        : output : 3.3-V LVTTL       :         : 4         : Y              
 _DS_IO                       : 71        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
 _AS_IO                       : 72        : bidir  : 3.3-V LVTTL       :         : 4         : Y              
 _RST                         : 73        : input  : 3.3-V LVTTL       :         : 3         : Y              
@@ -150,7 +150,7 @@ CONF_DONE                    : 83        :        :                   :         
 MSEL1                        : 84        :        :                   :         : 3         :                
 MSEL0                        : 85        :        :                   :         : 3         :                
 _IOR                         : 86        : output : 3.3-V LVTTL       :         : 3         : Y              
-INT                          : 87        : output : 3.3-V LVTTL       :         : 3         : N              
+BR                           : 87        : output : 3.3-V LVTTL       :         : 3         : Y              
 _DREQ                        : 88        : input  : 3.3-V LVTTL       :         : 3         : Y              
 GND+                         : 89        :        :                   :         : 3         :                
 GND+                         : 90        :        :                   :         : 3         :                

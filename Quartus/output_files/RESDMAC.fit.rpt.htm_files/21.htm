@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <HTML><HEAD>
-<TITLE>PLL Summary</TITLE>
+<TITLE>PLL Usage</TITLE>
 
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/base.css">
@@ -19,107 +19,63 @@
 <TABLE>
 <thead><TR  bgcolor="#BFBFBF">
 <TH>Name</TH>
-<TH bgcolor="#FFFFFF" style="color: #000000">PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|pll</TH>
+<TH>Output Clock</TH>
+<TH>Mult</TH>
+<TH>Div</TH>
+<TH>Output Frequency</TH>
+<TH>Phase Shift</TH>
+<TH>Duty Cycle</TH>
+<TH>Counter</TH>
+<TH>Counter Value</TH>
+<TH>High / Low</TH>
+<TH>Initial</TH>
+<TH>VCO Tap</TH>
+<TH>SDC Pin Name</TH>
 </TR>
 </thead><tbody><TR >
-<TD >SDC pin name</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">u_PLL|APLL_inst|altpll_component|pll</TD>
+<TD >PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk0</TD>
+<TD >clock0</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >25.0 MHz</TD>
+<TD >45 (5000 ps)</TD>
+<TD >50/50</TD>
+<TD >C0</TD>
+<TD >30</TD>
+<TD >15/15 Even</TD>
+<TD >4</TD>
+<TD >6</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >PLL mode</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">Normal</TD>
+<TD >PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1</TD>
+<TD >clock1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >25.0 MHz</TD>
+<TD >90 (10000 ps)</TD>
+<TD >50/50</TD>
+<TD >C1</TD>
+<TD >30</TD>
+<TD >15/15 Even</TD>
+<TD >8</TD>
+<TD >4</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >Compensate clock</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">clock0</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Compensated input/output pins</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Self reset on gated loss of lock</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">Off</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Gate lock counter</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Input frequency 0</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">25.0 MHz</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Input frequency 1</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Nominal PFD frequency</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">25.0 MHz</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Nominal VCO frequency</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">750.2 MHz</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >VCO post scale K counter</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >VCO multiply</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >VCO divide</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Freq min lock</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">16.67 MHz</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Freq max lock</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">33.33 MHz</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >M VCO Tap</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">0</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >M Initial</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >M value</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">30</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >N value</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Preserve PLL counter order</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">Off</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >PLL location</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">PLL_1</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Inclk0 signal</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">SCLK</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Inclk1 signal</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">--</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Inclk0 signal type</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">Dedicated Pin</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Inclk1 signal type</TD>
-<TD  bgcolor="#FFFFFF" style="color: #000000">--</TD>
+<TD >PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk2</TD>
+<TD >clock2</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >25.0 MHz</TD>
+<TD >135 (15000 ps)</TD>
+<TD >50/50</TD>
+<TD >C2</TD>
+<TD >30</TD>
+<TD >15/15 Even</TD>
+<TD >12</TD>
+<TD >2</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
 </TR>
 </tbody></TABLE>
 

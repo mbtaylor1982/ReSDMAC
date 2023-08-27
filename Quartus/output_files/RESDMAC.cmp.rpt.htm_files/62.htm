@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <HTML><HEAD>
-<TITLE>Global &amp; Other Fast Signals</TITLE>
+<TITLE>Input Pins</TITLE>
 
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/base.css">
@@ -19,75 +19,269 @@
 <TABLE>
 <thead><TR  bgcolor="#BFBFBF">
 <TH>Name</TH>
-<TH>Location</TH>
-<TH>Fan-Out</TH>
-<TH>Global Resource Used</TH>
-<TH>Global Line Name</TH>
-<TH>Enable Signal Source Name</TH>
+<TH>Pin #</TH>
+<TH>I/O Bank</TH>
+<TH>X coordinate</TH>
+<TH>Y coordinate</TH>
+<TH>Cell number</TH>
+<TH>Combinational Fan-Out</TH>
+<TH>Registered Fan-Out</TH>
+<TH>Global</TH>
+<TH>Input Register</TH>
+<TH>Power Up High</TH>
+<TH>PCI I/O Enabled</TH>
+<TH>Bus Hold</TH>
+<TH>Weak Pull Up</TH>
+<TH>I/O Standard</TH>
+<TH>Termination</TH>
+<TH>Location assigned by</TH>
 </TR>
 </thead><tbody><TR >
-<TD >CPU_SM:u_CPU_SM|PAS</TD>
-<TD >LCFF_X27_Y7_N7</TD>
-<TD >32</TD>
-<TD >Global Clock</TD>
-<TD >GCLK7</TD>
-<TD >--</TD>
+<TD >ADDR[2]</TD>
+<TD >97</TD>
+<TD >3</TD>
+<TD >28</TD>
+<TD >9</TD>
+<TD >0</TD>
+<TD >8</TD>
+<TD >0</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >Off</TD>
+<TD >3.3-V LVTTL</TD>
+<TD >Off</TD>
+<TD >User</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk0</TD>
-<TD >PLL_1</TD>
-<TD >7</TD>
-<TD >Global Clock</TD>
-<TD >GCLK3</TD>
-<TD >--</TD>
+<TD >ADDR[3]</TD>
+<TD >100</TD>
+<TD >3</TD>
+<TD >28</TD>
+<TD >11</TD>
+<TD >1</TD>
+<TD >11</TD>
+<TD >0</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >Off</TD>
+<TD >3.3-V LVTTL</TD>
+<TD >Off</TD>
+<TD >User</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk1</TD>
-<TD >PLL_1</TD>
-<TD >61</TD>
-<TD >Global Clock</TD>
-<TD >GCLK2</TD>
-<TD >--</TD>
+<TD >ADDR[4]</TD>
+<TD >93</TD>
+<TD >3</TD>
+<TD >28</TD>
+<TD >8</TD>
+<TD >0</TD>
+<TD >8</TD>
+<TD >0</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >Off</TD>
+<TD >3.3-V LVTTL</TD>
+<TD >Off</TD>
+<TD >User</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >PLL:u_PLL|atpll:APLL_inst|altpll:altpll_component|_clk2</TD>
-<TD >PLL_1</TD>
+<TD >ADDR[5]</TD>
+<TD >99</TD>
+<TD >3</TD>
+<TD >28</TD>
+<TD >11</TD>
+<TD >2</TD>
+<TD >4</TD>
+<TD >0</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >Off</TD>
+<TD >3.3-V LVTTL</TD>
+<TD >Off</TD>
+<TD >User</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >ADDR[6]</TD>
+<TD >96</TD>
+<TD >3</TD>
+<TD >28</TD>
+<TD >9</TD>
+<TD >1</TD>
 <TD >5</TD>
-<TD >Global Clock</TD>
-<TD >GCLK1</TD>
-<TD >--</TD>
+<TD >0</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >Off</TD>
+<TD >3.3-V LVTTL</TD>
+<TD >Off</TD>
+<TD >User</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo_write_strobes:u_write_strobes|LLWS</TD>
-<TD >LCCOMB_X24_Y4_N30</TD>
-<TD >64</TD>
-<TD >Global Clock</TD>
-<TD >GCLK0</TD>
-<TD >--</TD>
+<TD >INTA</TD>
+<TD >94</TD>
+<TD >3</TD>
+<TD >28</TD>
+<TD >9</TD>
+<TD >2</TD>
+<TD >2</TD>
+<TD >0</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >Off</TD>
+<TD >3.3-V LVTTL</TD>
+<TD >Off</TD>
+<TD >User</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo_write_strobes:u_write_strobes|LMWS</TD>
-<TD >LCCOMB_X25_Y4_N24</TD>
-<TD >64</TD>
-<TD >Global Clock</TD>
-<TD >GCLK5</TD>
-<TD >--</TD>
+<TD >SCLK</TD>
+<TD >17</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >6</TD>
+<TD >0</TD>
+<TD >2</TD>
+<TD >0</TD>
+<TD >yes</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >Off</TD>
+<TD >3.3-V LVTTL</TD>
+<TD >Off</TD>
+<TD >User</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo_write_strobes:u_write_strobes|UMWS</TD>
-<TD >LCCOMB_X25_Y4_N0</TD>
-<TD >64</TD>
-<TD >Global Clock</TD>
-<TD >GCLK4</TD>
-<TD >--</TD>
+<TD >_BERR</TD>
+<TD >53</TD>
+<TD >4</TD>
+<TD >9</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >8</TD>
+<TD >0</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >Off</TD>
+<TD >3.3-V LVTTL</TD>
+<TD >Off</TD>
+<TD >User</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >fifo:int_fifo|fifo_write_strobes:u_write_strobes|UUWS</TD>
-<TD >LCCOMB_X25_Y4_N18</TD>
-<TD >64</TD>
-<TD >Global Clock</TD>
-<TD >GCLK6</TD>
-<TD >--</TD>
+<TD >_BG</TD>
+<TD >101</TD>
+<TD >3</TD>
+<TD >28</TD>
+<TD >11</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >Off</TD>
+<TD >3.3-V LVTTL</TD>
+<TD >Off</TD>
+<TD >User</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >_CS</TD>
+<TD >92</TD>
+<TD >3</TD>
+<TD >28</TD>
+<TD >8</TD>
+<TD >1</TD>
+<TD >5</TD>
+<TD >0</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >Off</TD>
+<TD >3.3-V LVTTL</TD>
+<TD >Off</TD>
+<TD >User</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >_DREQ</TD>
+<TD >88</TD>
+<TD >3</TD>
+<TD >28</TD>
+<TD >7</TD>
+<TD >3</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >Off</TD>
+<TD >3.3-V LVTTL</TD>
+<TD >Off</TD>
+<TD >User</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >_RST</TD>
+<TD >73</TD>
+<TD >3</TD>
+<TD >28</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >Off</TD>
+<TD >3.3-V LVTTL</TD>
+<TD >Off</TD>
+<TD >User</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >_STERM</TD>
+<TD >91</TD>
+<TD >3</TD>
+<TD >28</TD>
+<TD >7</TD>
+<TD >0</TD>
+<TD >25</TD>
+<TD >0</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >no</TD>
+<TD >Off</TD>
+<TD >3.3-V LVTTL</TD>
+<TD >Off</TD>
+<TD >User</TD>
 </TR>
 </tbody></TABLE>
 

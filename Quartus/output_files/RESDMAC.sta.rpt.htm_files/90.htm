@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <HTML><HEAD>
-<TITLE>Unconstrained Paths</TITLE>
+<TITLE>Recovery Transfers</TITLE>
 
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/base.css">
@@ -18,39 +18,36 @@
 <BODY>
 <TABLE>
 <thead><TR  bgcolor="#BFBFBF">
-<TH>Property</TH>
-<TH>Setup</TH>
-<TH>Hold</TH>
+<TH>From Clock</TH>
+<TH>To Clock</TH>
+<TH>RR Paths</TH>
+<TH>FR Paths</TH>
+<TH>RF Paths</TH>
+<TH>FF Paths</TH>
 </TR>
 </thead><tbody><TR >
-<TD >Illegal Clocks</TD>
-<TD >0</TD>
-<TD >0</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >sclk</TD>
+<TD  bgcolor="#999999" style="color: #000000">0</TD>
+<TD  bgcolor="#999999" style="color: #000000">0</TD>
+<TD >8</TD>
+<TD  bgcolor="#999999" style="color: #000000">0</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >Unconstrained Clocks</TD>
-<TD >15</TD>
-<TD >15</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD  bgcolor="#999999" style="color: #000000">0</TD>
+<TD >48</TD>
+<TD  bgcolor="#999999" style="color: #000000">0</TD>
+<TD  bgcolor="#999999" style="color: #000000">0</TD>
 </TR>
 </tbody><tbody><TR >
-<TD >Unconstrained Input Ports</TD>
-<TD >57</TD>
-<TD >57</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Unconstrained Input Port Paths</TD>
-<TD >884</TD>
-<TD >884</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Unconstrained Output Ports</TD>
-<TD >60</TD>
-<TD >60</TD>
-</TR>
-</tbody><tbody><TR >
-<TD >Unconstrained Output Port Paths</TD>
-<TD >853</TD>
-<TD >853</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD  bgcolor="#999999" style="color: #000000">0</TD>
+<TD >5</TD>
+<TD  bgcolor="#999999" style="color: #000000">0</TD>
+<TD  bgcolor="#999999" style="color: #000000">0</TD>
 </TR>
 </tbody></TABLE>
 

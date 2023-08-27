@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <HTML><HEAD>
-<TITLE>Slow Model Setup: &apos;sclk&apos;</TITLE>
+<TITLE>Clocks</TITLE>
 
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/base.css">
@@ -18,54 +18,99 @@
 <BODY>
 <TABLE>
 <thead><TR  bgcolor="#BFBFBF">
-<TH>Slack</TH>
-<TH>From Node</TH>
-<TH>To Node</TH>
-<TH>Launch Clock</TH>
-<TH>Latch Clock</TH>
-<TH>Relationship</TH>
-<TH>Clock Skew</TH>
-<TH>Data Delay</TH>
+<TH>Clock Name</TH>
+<TH>Type</TH>
+<TH>Period</TH>
+<TH>Frequency</TH>
+<TH>Rise</TH>
+<TH>Fall</TH>
+<TH>Duty Cycle</TH>
+<TH>Divide by</TH>
+<TH>Multiply by</TH>
+<TH>Phase</TH>
+<TH>Offset</TH>
+<TH>Edge List</TH>
+<TH>Edge Shift</TH>
+<TH>Inverted</TH>
+<TH>Master</TH>
+<TH>Source</TH>
+<TH>Targets</TH>
 </TR>
-</thead><tbody><TR  bgcolor="#FFFFFF">
-<TD >9.735</TD>
-<TD >CPU_SM:u_CPU_SM|PDS</TD>
-<TD >DS_O_</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
-<TD >sclk</TD>
-<TD >10.000</TD>
-<TD >2.948</TD>
-<TD >3.253</TD>
+</thead><tbody><TR >
+<TD  style="color: #0000FF">sclk</TD>
+<TD >Base</TD>
+<TD >40.000</TD>
+<TD >25.0 MHz</TD>
+<TD >0.000</TD>
+<TD >20.000</TD>
+<TD  bgcolor="#999999" style="color: #000000">&nbsp;</TD>
+<TD  bgcolor="#999999" style="color: #000000">&nbsp;</TD>
+<TD  bgcolor="#999999" style="color: #000000">&nbsp;</TD>
+<TD  bgcolor="#999999" style="color: #000000">&nbsp;</TD>
+<TD  bgcolor="#999999" style="color: #000000">&nbsp;</TD>
+<TD  bgcolor="#999999" style="color: #000000">&nbsp;</TD>
+<TD  bgcolor="#999999" style="color: #000000">&nbsp;</TD>
+<TD  bgcolor="#999999" style="color: #000000">&nbsp;</TD>
+<TD >&nbsp;</TD>
+<TD >&nbsp;</TD>
+<TD >{ SCLK }</TD>
 </TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >11.229</TD>
-<TD >CPU_SM:u_CPU_SM|PAS</TD>
-<TD >AS_O_</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</tbody><tbody><TR >
+<TD  style="color: #0000FF">u_PLL|APLL_inst|altpll_component|pll|clk[0]</TD>
+<TD >Generated</TD>
+<TD >40.000</TD>
+<TD >25.0 MHz</TD>
+<TD >5.000</TD>
+<TD >25.000</TD>
+<TD >50.00</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >45.0</TD>
+<TD >&nbsp;</TD>
+<TD >&nbsp;</TD>
+<TD >&nbsp;</TD>
+<TD >false</TD>
 <TD >sclk</TD>
-<TD >10.000</TD>
-<TD >3.737</TD>
-<TD >2.548</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|inclk[0]</TD>
+<TD >{ u_PLL|APLL_inst|altpll_component|pll|clk[0] }</TD>
 </TR>
-</tbody><tbody><TR  bgcolor="#FFFFFF">
-<TD >12.462</TD>
-<TD >CPU_SM:u_CPU_SM|PLLW</TD>
-<TD >LLW</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
-<TD >sclk</TD>
+</tbody><tbody><TR >
+<TD  style="color: #0000FF">u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+<TD >Generated</TD>
+<TD >40.000</TD>
+<TD >25.0 MHz</TD>
 <TD >10.000</TD>
-<TD >3.631</TD>
-<TD >1.209</TD>
+<TD >30.000</TD>
+<TD >50.00</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >90.0</TD>
+<TD >&nbsp;</TD>
+<TD >&nbsp;</TD>
+<TD >&nbsp;</TD>
+<TD >false</TD>
+<TD >sclk</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|inclk[0]</TD>
+<TD >{ u_PLL|APLL_inst|altpll_component|pll|clk[1] }</TD>
 </TR>
-</tbody><tbody><TR  bgcolor="#EDEDED">
-<TD >12.620</TD>
-<TD >CPU_SM:u_CPU_SM|PLHW</TD>
-<TD >LHW</TD>
-<TD >u_PLL|APLL_inst|altpll_component|pll|clk[1]</TD>
+</tbody><tbody><TR >
+<TD  style="color: #0000FF">u_PLL|APLL_inst|altpll_component|pll|clk[2]</TD>
+<TD >Generated</TD>
+<TD >40.000</TD>
+<TD >25.0 MHz</TD>
+<TD >15.000</TD>
+<TD >35.000</TD>
+<TD >50.00</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >135.0</TD>
+<TD >&nbsp;</TD>
+<TD >&nbsp;</TD>
+<TD >&nbsp;</TD>
+<TD >false</TD>
 <TD >sclk</TD>
-<TD >10.000</TD>
-<TD >3.631</TD>
-<TD >1.051</TD>
+<TD >u_PLL|APLL_inst|altpll_component|pll|inclk[0]</TD>
+<TD >{ u_PLL|APLL_inst|altpll_component|pll|clk[2] }</TD>
 </TR>
 </tbody></TABLE>
 

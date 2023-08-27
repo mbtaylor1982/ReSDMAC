@@ -39,7 +39,4 @@ derive_pll_clocks -create_base_clocks
 
 # tpd constraints
 
-set_max_delay 5.000ns -from [get_ports {_CS}] -to [get_ports {DATA_OE_}]
-set_min_delay 40.000ns -from [get_ports {_CS}] -to [get_ports {DATA_OE_}]
-
 

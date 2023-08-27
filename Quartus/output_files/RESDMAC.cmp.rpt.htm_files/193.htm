@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <HTML><HEAD>
-<TITLE>Flow Suppressed Messages</TITLE>
+<TITLE>Design Assistant Settings</TITLE>
 
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/base.css">
@@ -16,7 +16,203 @@
 </HEAD>
 
 <BODY>
-<a href="../Flow Messages are not contained in a QMSG file.smsg">Flow Suppressed Messages</a><BR>
+<TABLE>
+<thead><TR  bgcolor="#BFBFBF">
+<TH>Option</TH>
+<TH>Setting</TH>
+<TH>To</TH>
+</TR>
+</thead><tbody><TR >
+<TD >Design Assistant mode</TD>
+<TD >Post-Fitting</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Threshold value for clock net not mapped to clock spines rule</TD>
+<TD >25</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Minimum number of clock port feed by gated clocks</TD>
+<TD >30</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Minimum number of node fan-out</TD>
+<TD >30</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Maximum number of nodes to report</TD>
+<TD >50</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule C101: Gated clock should be implemented according to the Altera standard scheme</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule C102: Logic cell should not be used to generate an inverted clock signal</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule C103: Gated clock does not feed at least a pre-defined number of clock ports to effectively save power</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule C104: Clock signal source should drive only clock input ports</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule C105: Clock signal should be a global signal (Rule applies during post-fitting analysis. This rule applies during both post-fitting analysis and post-synthesis analysis if the design targets a MAX 3000 or MAX 7000 device. For more information, see the Help for the rule.)</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule C106: Clock signal source should not drive registers triggered by different clock edges</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule R101: Combinational logic used as a reset signal should be synchronized</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule R102: External reset signals should be synchronized using two cascaded registers</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule R103: External reset signal should be correctly synchronized</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule R104: The reset signal that is generated in one clock domain and used in another clock domain should be correctly synchronized</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule R105: The reset signal that is generated in one clock domain and used in another clock domain should be synchronized</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule T101: Nodes with more than the specified number of fan-outs</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule T102: Top nodes with the highest number of fan-outs</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule A101: Design should not contain combinational loops</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule A102: Register output should not drive its own control signal directly or through combinational logic</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule A103: Design should not contain delay chains</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule A104: Design should not contain ripple clock structures</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule A105: Pulses should not be implemented asynchronously</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule A106: Multiple pulses should not be generated in design</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule A107: Design should not contain SR latches</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule A108: Design should not contain latches</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S101: Output enable and input of the same tri-state node should not be driven by same signal source</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S102: Synchronous port and asynchronous port of the same register should not be driven by the same signal source</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S103: More than one asynchronous port of a register should not be driven by the same signal source</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule S104: Clock port and any other port of a register should not be driven by the same signal source</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D102: Multiple data bits that are transferred across asynchronous clock domains are synchronized, but not all bits may be aligned in the receiving clock domain</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule D103: Data bits are not correctly synchronized when transferred between asynchronous clock domains</TD>
+<TD >On</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule M101: Data bits are not synchronized when transferred to the state machine of asynchronous clock domains</TD>
+<TD >Off</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule M102: No reset signal defined to initialize the state machine</TD>
+<TD >Off</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule M103: State machine should not contain an unreachable state</TD>
+<TD >Off</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule M104: State machine should not contain a deadlock state</TD>
+<TD >Off</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >Rule M105: State machine should not contain a dead transition</TD>
+<TD >Off</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody></TABLE>
 
 <noscript>JavaScript must be enabled to view the report.</noscript>
 </BODY>

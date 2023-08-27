@@ -1,2 +1,2 @@
 Warning (308022): (Medium) Rule C106: Clock signal source should not drive registers triggered by different clock edges. Found 1 node(s) related to this rule.
-Warning (308027): (Medium) Rule R105: The reset signal that is generated in one clock domain and used in another clock domain should be synchronized. Found 1 node(s) related to this rule.
+Warning (308027): (Medium) Rule R105: The reset signal that is generated in one clock domain and used in another clock domain should be synchronized. Found 2 node(s) related to this rule.

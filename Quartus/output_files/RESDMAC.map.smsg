@@ -1,1 +1,16 @@
-Warning (10273): Verilog HDL warning at RESDMAC.v(349): extended using "x" or "z"
+Warning (10034): Output port "E[59]" at CPU_SM_inputs.v(35) has no driver
+Warning (10034): Output port "E[54]" at CPU_SM_inputs.v(35) has no driver
+Warning (10034): Output port "E[52]" at CPU_SM_inputs.v(35) has no driver
+Warning (10034): Output port "E[49]" at CPU_SM_inputs.v(35) has no driver
+Warning (10034): Output port "E[47]" at CPU_SM_inputs.v(35) has no driver
+Warning (10034): Output port "E[44]" at CPU_SM_inputs.v(35) has no driver
+Warning (10034): Output port "E[41]" at CPU_SM_inputs.v(35) has no driver
+Warning (10034): Output port "E[38]" at CPU_SM_inputs.v(35) has no driver
+Warning (10034): Output port "nE[59]" at CPU_SM_inputs.v(37) has no driver
+Warning (10034): Output port "nE[54]" at CPU_SM_inputs.v(37) has no driver
+Warning (10034): Output port "nE[52]" at CPU_SM_inputs.v(37) has no driver
+Warning (10034): Output port "nE[49]" at CPU_SM_inputs.v(37) has no driver
+Warning (10034): Output port "nE[47]" at CPU_SM_inputs.v(37) has no driver
+Warning (10034): Output port "nE[44]" at CPU_SM_inputs.v(37) has no driver
+Warning (10034): Output port "nE[41]" at CPU_SM_inputs.v(37) has no driver
+Warning (10034): Output port "nE[38]" at CPU_SM_inputs.v(37) has no driver
