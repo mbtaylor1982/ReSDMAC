@@ -10,14 +10,14 @@ module PLL (
 
 `ifdef __ICARUS__ 
 // simulate a PLL with 25MHZ input clk
-// and 3 output 22.5,90 and 135 deg phase shifted clks
+// and 3 output 45,90 and 135 deg phase shifted clks
     reg c1 = 1'b0;
     reg c2 = 1'b0;
     reg c3 = 1'b0;
 	 reg Slocked;
  
     always @(CPUCLK_I) begin
-            c1 <= #2.5 CPUCLK_I;  //22.5 deg
+            c1 <= #5 CPUCLK_I;  //45 deg
             c2 <= #10 CPUCLK_I;  //90 deg
             c3 <= #15 CPUCLK_I; //135 deg
     end

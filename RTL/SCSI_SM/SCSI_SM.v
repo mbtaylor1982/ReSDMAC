@@ -158,23 +158,21 @@ always @(posedge BCLK) begin
     WE_o        <= WE;
 end
 
-always @(posedge BBCLK or negedge RESET_ ) begin
-    if (~RESET_) 
+always @(posedge BBCLK or negedge RESET_) begin
+    if (~RESET_) begin
         RDFIFO_o <= 1'b0;
-    else if (RDFIFO_d)
-        RDFIFO_o <= 1'b1;
+	    RIFIFO_o <= 1'b0;
+	end
     else if (DECFIFO)
         RDFIFO_o <= 1'b0;
+	else if (INCFIFO)
+        RIFIFO_o <= 1'b0;
+	else if (RDFIFO_d)
+        RDFIFO_o <= 1'b1;
+	else if (RIFIFO_d)
+        RIFIFO_o <= 1'b1;
 end
 
-always @(posedge BBCLK or negedge RESET_ ) begin
-    if (~RESET_) 
-        RIFIFO_o <= 1'b0;
-    else if (RIFIFO_d)
-        RIFIFO_o <= 1'b1;
-    else if (INCFIFO)
-        RIFIFO_o <= 1'b0;
-end
 
 always @(posedge BBCLK or negedge nAS_) begin
     if (nAS_ == 1'b0)

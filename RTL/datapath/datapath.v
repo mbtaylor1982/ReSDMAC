@@ -125,7 +125,7 @@ datapath_scsi u_datapath_scsi(
     .MOD_SCSI       (MOD_SCSI  )
 );
 
-assign DOEL_ = (~(nDS_ & nDMAC_ & RW) & ~(nOWN_ & DMADIR));
+assign DOEL_ = ~((nDS_ & nDMAC_ & RW) | (nOWN_ & DMADIR));
 assign DOEH_ = DOEL_;
 assign DATA_OE_ = ~DOEH_;
 

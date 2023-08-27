@@ -263,7 +263,7 @@ module RESDMAC_DMA_READ_tb;
 
     //Generate chip select for SDMAC (Based on equation for SCSI_ given in Fat Gary Spec)
     always @(ADDR) begin
-        _CS <= (ADDR[31:16] == 32'h00DD) ? 1'b0 : 1'b1;  
+        _CS <= (ADDR[31:16] == 16'h00DD) ? 1'b0 : 1'b1;  
     end
 
     //SDMAC releases bus
