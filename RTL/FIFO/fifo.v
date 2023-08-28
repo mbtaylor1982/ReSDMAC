@@ -25,7 +25,7 @@
 
 module fifo(
     
-    input CLK, BCLK, BBCLK, //Clocks
+    input CLK, CLK90, CLK135, //Clocks
 
     input LLWORD,       //Load Lower Word strobe from CPU sm
     input LHWORD,       //Load Higher Word strobe from CPU sm
@@ -79,8 +79,8 @@ fifo_write_strobes u_write_strobes(
 );
 
 fifo__full_empty_ctr u_full_empty_ctr(
-    .CLK       (BBCLK     ),
-    .BCLK      (~CLK      ), 
+    .CLK       (CLK       ),
+    .CLK135    (CLK135    ),
     .INCFIFO   (INCFIFO   ),
     .DECFIFO   (DECFIFO   ),
     .RST_FIFO_ (RST_FIFO_ ),
@@ -90,7 +90,7 @@ fifo__full_empty_ctr u_full_empty_ctr(
 
 //Next In Write Counter
 fifo_3bit_cntr u_next_in_cntr(
-    .CLK       (BBCLK     ),
+    .CLK       (CLK135    ),
     .ClKEN     (INCNI     ),
     .RST_      (RST_FIFO_ ),
     .COUNT     (WRITE_PTR )
@@ -98,7 +98,7 @@ fifo_3bit_cntr u_next_in_cntr(
 
 //Next Out Read Counter
 fifo_3bit_cntr u_next_out_cntr(
-    .CLK       (BBCLK     ),
+    .CLK       (CLK135    ),
     .ClKEN     (INCNO     ),
     .RST_      (RST_FIFO_ ),
     .COUNT     (READ_PTR  )
@@ -106,7 +106,7 @@ fifo_3bit_cntr u_next_out_cntr(
 
 //BYTE POINTER
 fifo_byte_ptr u_byte_ptr(
-  .CLK       (BBCLK     ),
+  .CLK       (CLK135    ),
   .INCBO     (INCBO     ),
   .MID25     (MID25     ),
   .ACR_WR    (ACR_WR    ),

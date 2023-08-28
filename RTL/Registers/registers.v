@@ -134,7 +134,7 @@ registers_term u_registers_term(
 wire CLR_FLUSHFIFO;
 assign CLR_FLUSHFIFO = ~STOPFLUSH;
 
-always @(posedge CLK or negedge RST_) begin
+always @(negedge CLK or negedge RST_) begin
     if (~RST_)
         FLUSHFIFO <= 1'b0;
     else if (~FLUSH_)
@@ -144,7 +144,7 @@ always @(posedge CLK or negedge RST_) begin
 end
 
 //Store value of A1 loaded into ACR
-always @(posedge CLK or negedge RST_) begin
+always @(negedge CLK or negedge RST_) begin
     if (RST_ == 1'b0)
         A1 <= 1'b0;
     else if (ACR_WR) 

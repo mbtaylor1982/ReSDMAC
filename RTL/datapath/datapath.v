@@ -24,7 +24,7 @@
 `endif
 
 module datapath (
-    input CLK, BCLK, BBCLK,
+    input CLK, CLK90, CLK135,
     input [31:0] DATA_I,
     
     input [15:0] PD_IN,
@@ -83,7 +83,7 @@ wire bDIEH;
 wire bDIEL;
 
 datapath_input u_datapath_input(
-    .CLK       (BCLK      ),
+    .CLK       (CLK90     ),
     .DATA      (DATA_I    ),
     .bBRIDGEIN (bBRIDGEIN ),
     .bDIEH     (bDIEH     ),
@@ -94,7 +94,7 @@ datapath_input u_datapath_input(
 );
 
 datapath_output u_datapath_output(
-    .CLK        (BBCLK      ),
+    .CLK        (CLK135     ),
     .DATA       (DATA_O     ),
     .OD         (FIFO_OD    ),
     .MOD        (MOD_TX     ),

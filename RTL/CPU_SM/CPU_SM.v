@@ -37,9 +37,9 @@ module CPU_SM(
     input aRESET_,
     input BOEQ0,
     input BOEQ3,
-    input nCLK,             //CPUClk Inverted 1 time for delay.
-    input BCLK,             //CPUCLK Inverted 4 times for delay.
-    input BBCLK,            //CPUCLK Inverted 6 times for delay.    
+    input CLK45,             //CPUCLK pahse shifted 45 deg
+    input CLK90,             //CPUCLK pahse shifted 90 deg.
+    input CLK135,            //CPUCLK pahse shifted 135 deg.    
     input DMADIR,
     input DSACK0_,   
     input DSACK1_,
@@ -224,12 +224,12 @@ CPU_SM_outputs u_CPU_SM_outputs(
 );
 
 //clocked reset
-always @(posedge nCLK) begin
+always @(negedge CLK45) begin
     CCRESET_ <= aRESET_;   
 end
 
 //clocked inputs.
-always @(posedge  BBCLK or negedge CCRESET_) begin
+always @(posedge  CLK135 or negedge CCRESET_) begin
     if (CCRESET_ == 1'b0) begin
         BGRANT_     <= 1'b1;
         DMAENA      <= 1'b0;
@@ -247,7 +247,7 @@ always @(posedge  BBCLK or negedge CCRESET_) begin
 end
 
 //clocked outputs
-always @(posedge BCLK or negedge CCRESET_) begin
+always @(posedge CLK90 or negedge CCRESET_) begin
     if (CCRESET_ == 1'b0) begin
         BGACK       <= 1'b0;
         PAS         <= 1'b0;
@@ -290,14 +290,14 @@ always @(posedge BCLK or negedge CCRESET_) begin
     end
 end
 
-always @(posedge BCLK or negedge CCRESET_) begin
+always @(posedge CLK90 or negedge CCRESET_) begin
     if (CCRESET_ == 1'b0) 
         STATE <= 5'b00000;
     else 
         STATE <= NEXT_STATE;
 end
 
-always @(posedge nCLK or negedge nAS_) begin
+always @(negedge CLK45 or negedge nAS_) begin
     if (nAS_ == 1'b0)
         DSACK_LATCHED_ <= 2'b11;
     else 

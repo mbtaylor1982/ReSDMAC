@@ -46,7 +46,7 @@ wire INT;
 assign INT = (INTENA & INTA_I);
 
 
-always @(posedge CLK, negedge RESET_) begin
+always @(negedge CLK, negedge RESET_) begin
   if (~RESET_) begin
     INT_F   <= 1'b0;
     INTS    <= 1'b0;
@@ -74,7 +74,7 @@ always @(posedge CLK, negedge RESET_) begin
 
 end
 
-always @(posedge CLK) begin
+always @(negedge CLK) begin
 	ISTR_O <= {1'b0, INT_F, INTS, E_INT, INT_P , 1'b0, 1'b0, FF, FE};
 	INT_O_ <= INT ? 1'b0 : 1'b1;
 end

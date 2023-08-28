@@ -104,7 +104,7 @@ assign DATA_IO = DATA_OE_ ? DATA_O : 32'hzzzzzzzz;
 wire [15:0] PDATA_I;
 wire [15:0] PDATA_O;
 assign PDATA_I = PD_PORT;
-assign PD_PORT = PDATA_OE_ ? PDATA_O : 16'hzzzz;
+assign PD_PORT =  ~_IOW ? PDATA_O : 16'hzzzz;
 
 
 wire LBYTE_;
@@ -125,7 +125,7 @@ wire _INT;
 
 wire DSACK_CPU_SM;
 
-wire nCLK, BCLK, BBCLK, CLK45;
+wire CLK45, CLK90, CLK135;
 wire PLLLOCKED;
 
 wire STOPFLUSH;
@@ -179,7 +179,7 @@ registers u_registers(
     .DMAC_     (_CS       ),
     .AS_       (_AS       ),
     .RW        (R_W       ),
-    .CLK       (nCLK      ),
+    .CLK       (CLK45     ),
     .MID       (MID       ),
     .STOPFLUSH (STOPFLUSH ),
     .RST_      (PLLLOCKED ),
@@ -210,9 +210,9 @@ CPU_SM u_CPU_SM(
     .iSTERM_       (_STERM      ),
     .DSACK0_       (DSK0_IN_    ),
     .DSACK1_       (DSK1_IN_    ),
-    .nCLK          (nCLK        ), 
-    .BCLK          (BCLK        ), 
-    .BBCLK         (BBCLK       ), 
+    .CLK45         (CLK45       ), 
+    .CLK90         (CLK90       ), 
+    .CLK135        (CLK135      ), 
     .DMADIR        (DMADIR      ),
     .A1            (A1          ),
     .F2CPUL        (F2CPUL      ),
@@ -251,9 +251,9 @@ SCSI_SM u_SCSI_SM(
     .DECFIFO   (DECFIFO     ),
     .RESET_    (PLLLOCKED   ),
     .BOEQ3     (BOEQ3       ),
-    .nCLK      (nCLK        ), 
-    .BCLK      (BCLK        ), 
-    .BBCLK     (BBCLK       ), 
+    .CLK45     (CLK45       ), 
+    .CLK90     (CLK90       ), 
+    .CLK135    (CLK135      ), 
     .DREQ_     (DREQ_       ),
     .FIFOFULL  (FIFOFULL    ),
     .FIFOEMPTY (FIFOEMPTY   ),
@@ -277,8 +277,8 @@ SCSI_SM u_SCSI_SM(
 
 fifo int_fifo(
     .CLK         (SCLK      ), 
-    .BCLK        (BCLK      ), 
-    .BBCLK       (BBCLK     ), 
+    .CLK90       (CLK90     ), 
+    .CLK135      (CLK135    ), 
     .LLWORD      (LLW       ),
     .LHWORD      (LHW       ),
     .LBYTE_      (LBYTE_    ),
@@ -303,8 +303,8 @@ fifo int_fifo(
 
 datapath u_datapath(
     .CLK       (SCLK        ), 
-    .BCLK      (BCLK        ), 
-    .BBCLK     (BBCLK       ), 
+    .CLK90     (CLK90       ), 
+    .CLK135    (CLK135      ), 
     .DATA_I    (DATA_I      ),
     .DATA_O    (DATA_O      ),
     .PD_IN     (PDATA_I     ),
@@ -341,8 +341,8 @@ PLL u_PLL (
     .RST        (~_RST    ),
     .CLK        (SCLK     ),
     .CLK45      (CLK45    ),
-    .CLK90      (BCLK     ),
-    .CLK135     (BBCLK    ),
+    .CLK90      (CLK90    ),
+    .CLK135     (CLK135   ),
     .LOCKED     (PLLLOCKED)
 );
 
@@ -354,7 +354,6 @@ always @(negedge SCLK) begin
     LHW     <= PLHW;
 end
 
-assign nCLK = ~CLK45;
 assign OWN = CPUSM_BGACK; 
 assign _BGACK_I =  _BGACK_IO;
 

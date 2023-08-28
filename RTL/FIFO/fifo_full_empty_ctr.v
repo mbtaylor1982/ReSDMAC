@@ -17,7 +17,7 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 module fifo__full_empty_ctr(
-    input CLK, BCLK,
+    input CLK, CLK135,
     input INCFIFO,
     input DECFIFO,
     input RST_FIFO_,    
@@ -32,7 +32,7 @@ wire FIFOEMPTY_RST;
 wire FIFOFULL_RST;
 wire UP_RST;
 
-always @(posedge CLK, negedge RST_FIFO_)
+always @(posedge CLK135, negedge RST_FIFO_)
 begin
   if (RST_FIFO_ == 0)
     UP <= 8'b00000000;
@@ -54,7 +54,7 @@ begin
 end
 
 
-always @(posedge CLK, negedge RST_FIFO_)
+always @(posedge CLK135, negedge RST_FIFO_)
 begin
   if (RST_FIFO_ == 0)
   begin
@@ -72,7 +72,7 @@ begin
 	end
 end
 
-always @(posedge BCLK, negedge RST_FIFO_)
+always @(negedge CLK, negedge RST_FIFO_)
 begin
   if (RST_FIFO_ == 0) 
     FIFOEMPTY <= 1'b1;
@@ -80,7 +80,7 @@ begin
 		FIFOEMPTY <= ((UP == 8'h00) & (DOWN == 7'h00));
 end
 
-always @(posedge BCLK, negedge RST_FIFO_)
+always @(negedge CLK, negedge RST_FIFO_)
 begin
 	if (RST_FIFO_ == 0) 
 		FIFOFULL <= 1'b0;

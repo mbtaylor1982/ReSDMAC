@@ -24,9 +24,9 @@
 module SCSI_SM
 
 (   input BOEQ3,            //Asserted when transfering Byte 3
-    input nCLK,             //CPUClk Inverted 1 time for delay.
-    input BCLK,             //CPUCLK Inverted 4 times for delay.
-    input BBCLK,            //CPUCLK Inverted 6 times for delay.
+    input CLK45,            //CPUClk phase shifted 45 deg.
+    input CLK90,            //CPUCLK phase shifted 90 deg.
+    input CLK135,           //CPUCLK phase shifted 135 deg
     input CPUREQ,           //Request CPU access to SCSI registers.
     input DECFIFO,          //Decrement FIFO pointer
     input DMADIR,           //Control Direction Of DMA transfer.
@@ -92,7 +92,7 @@ reg RIFIFO_d;   // Signal CPU SM to Write to FIFO?
     2.Standard verilog form fsm = SCSI_SM_INTERNALS
 */
 SCSI_SM_INTERNALS u_SCSI_SM_INTERNALS (
-    .CLK        (BCLK       ),  // input, (wire), CLK
+    .CLK        (CLK90      ),  // input, (wire), CLK
     .nRESET     (CRESET_    ),  // input, (wire), Active low reset
     .BOEQ3      (BOEQ3      ),  // input, (wire), Asserted when transfering Byte 3                
     .CCPUREQ    (CCPUREQ    ),  // input, (wire), Request CPU access to SCSI registers.
@@ -121,12 +121,12 @@ SCSI_SM_INTERNALS u_SCSI_SM_INTERNALS (
 );
 
 //clocked reset
-always @(posedge  nCLK) begin
+always @(negedge  CLK45) begin
     CRESET_ <= RESET_;
 end
 
 //clocked inputs.
-always @(posedge  BCLK or negedge CRESET_) begin
+always @(posedge  CLK90 or negedge CRESET_) begin
     if (CRESET_ == 1'b0)
     begin 
         CDSACK_ <= 1'b1;
@@ -142,7 +142,7 @@ always @(posedge  BCLK or negedge CRESET_) begin
 end
 
 //Clocked outputs.
-always @(posedge BCLK) begin
+always @(posedge CLK90) begin
     CPU2S_o     <= CPU2S;   
     DACK_o      <= DACK;
     F2S_o       <= F2S;
@@ -158,7 +158,7 @@ always @(posedge BCLK) begin
     WE_o        <= WE;
 end
 
-always @(posedge BBCLK or negedge RESET_) begin
+always @(posedge CLK135 or negedge RESET_) begin
     if (~RESET_) begin
         RDFIFO_o <= 1'b0;
 	    RIFIFO_o <= 1'b0;
@@ -174,7 +174,7 @@ always @(posedge BBCLK or negedge RESET_) begin
 end
 
 
-always @(posedge BBCLK or negedge nAS_) begin
+always @(posedge CLK135 or negedge nAS_) begin
     if (nAS_ == 1'b0)
         nLS2CPU <= 1'b0;
     else if (SET_DSACK)
