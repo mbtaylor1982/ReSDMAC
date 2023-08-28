@@ -87,10 +87,9 @@ wire n_AS;
 assign n_AS = ~_AS_IO; 
 assign _AS = ~n_AS;
 
-wire _DS;
 wire n_DS;
 assign n_DS = ~_DS_IO;
-assign _DS = ~n_DS;
+
 
 wire R_W;
 wire nR_W;
@@ -126,7 +125,7 @@ wire _INT;
 
 wire DSACK_CPU_SM;
 
-wire QnCPUCLK, nCLK, BCLK, BBCLK;
+wire nCLK, BCLK, BBCLK, CLK45;
 wire PLLLOCKED;
 
 wire STOPFLUSH;
@@ -339,23 +338,23 @@ datapath u_datapath(
 );
 
 PLL u_PLL (
-        .rst         (~_RST    ),
-        .CPUCLK_I    (SCLK     ),
-        .nCLK        (nCLK     ),
-        .BCLK        (BCLK     ),
-        .BBCLK       (BBCLK    ),
-        .QnCPUCLK    (QnCPUCLK ),
-        .locked      (PLLLOCKED)
-    );
+    .RST        (~_RST    ),
+    .CLK        (SCLK     ),
+    .CLK45      (CLK45    ),
+    .CLK90      (BCLK     ),
+    .CLK135     (BBCLK    ),
+    .LOCKED     (PLLLOCKED)
+);
 
 
-always @(posedge QnCPUCLK) begin
+always @(negedge SCLK) begin
     AS_O_   <= ~PAS;    
     DS_O_   <= ~PDS; 
     LLW     <= PLLW;
     LHW     <= PLHW;
 end
 
+assign nCLK = ~CLK45;
 assign OWN = CPUSM_BGACK; 
 assign _BGACK_I =  _BGACK_IO;
 

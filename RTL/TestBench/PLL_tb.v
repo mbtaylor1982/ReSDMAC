@@ -20,13 +20,12 @@ module PLL_tb;
     wire    locked;  // 
     // module
     PLL uut (
-        .rst         (rst      ),
-        .CPUCLK_I    (CPUCLK_I ),
-        .nCLK        (nCLK     ),
-        .BCLK        (BCLK     ),
-        .BBCLK       (BBCLK    ),
-        .QnCPUCLK    (QnCPUCLK ),
-        .locked      (locked   )
+        .RST        (rst      ),
+        .CLK        (CPUCLK_I ),
+        .CLK45      (nCLK     ),
+        .CLK90      (BCLK     ),
+        .CLK135     (BBCLK    ),
+        .LOCKED     (locked   )
     );
 //------------------------------------------------------------------------------
 //  localparam
@@ -84,5 +83,7 @@ module PLL_tb;
         wait_n_clko(20);
         $finish;
     end
+
+    assign QnCPUCLK = ~CPUCLK_I;
 //------------------------------------------------------------------------------
 endmodule
