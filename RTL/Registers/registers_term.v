@@ -42,14 +42,14 @@ always @(negedge CLK) begin
   if (AS_)
     TERM_COUNTER <= 3'b000;
   else if (CYCLE_ACTIVE) 
-      TERM_COUNTER <=  TERM_COUNTER + 1'b1;
+    TERM_COUNTER <=  TERM_COUNTER + 1'b1;
 end
 
 always @(posedge CLK or posedge AS_) begin
   if (AS_)
     REG_DSK_ <= 1'b1;
   else if (TERM_COUNTER == 3'd3)
-      REG_DSK_ <= 1'b0;   
+    REG_DSK_ <= 1'b0;   
 end
 
 endmodule

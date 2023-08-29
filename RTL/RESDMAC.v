@@ -32,7 +32,10 @@ module RESDMAC(
     inout tri1 R_W_IO,              //Read Write from CPU
     inout tri1 _AS_IO,              //Address Strobe
     inout tri1 _DS_IO,              //Data Strobe 
-    inout tri1 [1:0] _DSACK_IO,     //Dynamic size and DATA ack.
+    
+    input tri1 [1:0] DSACK_I_,      //Dynamic size and DATA ack input.
+    output tri0 [1:0] DSACK_O,      //Dynamic size and DATA ack output.
+   
     inout tri1 [31:0] DATA_IO,      // CPU side data bus 32bit wide
 
     input tri1 _STERM,              //static/synchronous data ack.
@@ -72,29 +75,18 @@ module RESDMAC(
 );
 
 reg AS_O_;
+wire AS_I_;
+assign AS_I_ = _AS_IO; 
+assign _AS_IO = CPUSM_BGACK ? AS_O_: 1'bz;
+
 reg DS_O_;
-reg LLW;
-reg LHW;
-
-wire [31:0] MID;
-wire [31:0] REG_OD;
-
-wire [31:0] FIFO_ID;
-wire [31:0] FIFO_OD;
-
-wire _AS;
-wire n_AS;
-assign n_AS = ~_AS_IO; 
-assign _AS = ~n_AS;
-
-wire n_DS;
-assign n_DS = ~_DS_IO;
-
+wire DS_I_;
+assign DS_I_ = _DS_IO;
+assign _DS_IO = CPUSM_BGACK ? DS_O_ : 1'bz;
 
 wire R_W;
-wire nR_W;
-assign  nR_W = ~R_W_IO;
-assign R_W = ~nR_W;
+assign R_W = R_W_IO;
+assign  R_W_IO = CPUSM_BGACK ? ~DMADIR : 1'bz;
 
 wire [31:0] DATA_I;
 wire [31:0] DATA_O;
@@ -107,6 +99,18 @@ assign PDATA_I = PD_PORT;
 assign PD_PORT =  ~_IOW ? PDATA_O : 16'hzzzz;
 
 
+reg LLW;
+reg LHW;
+
+wire [31:0] MID;
+wire [31:0] REG_OD;
+
+wire [31:0] FIFO_ID;
+wire [31:0] FIFO_OD;
+
+wire CLK45, CLK90, CLK135;
+wire PLLLOCKED;
+
 wire LBYTE_;
 wire RE_o;
 wire DACK_o;
@@ -115,19 +119,12 @@ wire PRESET; // Peripherial Reset Sets IOR_ and IOW_ active to reset SCSI IC
 wire WE;
 wire RE;
 wire SCSI_CS;
-wire nREG_DSK_;
 wire LS2CPU;
 wire DREQ_;
-wire nDMAENA;
 wire INCNO;
 wire INCNI;
 wire _INT;
-
 wire DSACK_CPU_SM;
-
-wire CLK45, CLK90, CLK135;
-wire PLLLOCKED;
-
 wire STOPFLUSH;
 wire FIFOEMPTY;
 wire FIFOFULL;
@@ -177,7 +174,7 @@ wire BnDS_O_;
 registers u_registers(
     .ADDR      ({1'b0, ADDR, 2'b00}),
     .DMAC_     (_CS       ),
-    .AS_       (_AS       ),
+    .AS_       (AS_I_       ),
     .RW        (R_W       ),
     .CLK       (CLK45     ),
     .MID       (MID       ),
@@ -237,7 +234,7 @@ CPU_SM u_CPU_SM(
     .aDMAENA       (DMAENA      ),
     .PLLW          (PLLW        ),
     .PLHW          (PLHW        ),
-    .AS_           (_AS         ),
+    .AS_           (AS_I_         ),
     .BGACK_I_      (_BGACK_I    )
 
 );
@@ -256,7 +253,7 @@ SCSI_SM u_SCSI_SM(
     .DREQ_     (DREQ_       ),
     .FIFOFULL  (FIFOFULL    ),
     .FIFOEMPTY (FIFOEMPTY   ),
-    .AS_       (_AS        ),
+    .AS_       (AS_I_        ),
     .RDFIFO_o  (RDFIFO_o    ),
     .RIFIFO_o  (RIFIFO_o    ),
     .RE_o      (RE          ),
@@ -311,7 +308,7 @@ datapath u_datapath(
     .FIFO_OD   (FIFO_OD     ),
     .REG_OD    (REG_OD      ),
     .PAS       (PAS         ),
-    .nDS_      (n_DS        ),
+    .DS_       (DS_I_       ),
     .nDMAC_    (~_CS        ),
     .RW        (R_W         ),
     .nOWN_     (CPUSM_BGACK ),
@@ -357,14 +354,13 @@ assign OWN = CPUSM_BGACK;
 assign _BGACK_I =  _BGACK_IO;
 
 //System Outputs
-assign  R_W_IO = ~CPUSM_BGACK ? 1'bz : ~DMADIR;
-assign _AS_IO = ~CPUSM_BGACK ? 1'bz : AS_O_;
-assign _DS_IO = ~CPUSM_BGACK ? 1'bz : DS_O_;
 assign _DMAEN = ~CPUSM_BGACK;
 assign  BR = BREQ ?  1'b1 : 1'b0;
-assign _SIZ1 = ~CPUSM_BGACK ? 1'b1 : ~SIZE1_CPUSM;
-assign _DSACK_IO = (REG_DSK_ & LS2CPU) ? 2'bzz : 2'b00;
 assign _BGACK_IO = ~CPUSM_BGACK ? 1'bz : 1'b0;
+assign _SIZ1 = ~CPUSM_BGACK ? 1'b1 : ~SIZE1_CPUSM;
+
+assign DSACK_O = (REG_DSK_ & LS2CPU) ? 2'b00 : 2'b11;
+
 
 //SCSI outputs
 assign _IOR = ~(PRESET | RE);
@@ -373,8 +369,8 @@ assign _CSS = ~ SCSI_CS;
 assign _DACK = ~ DACK_o;
 
 //Diagnostic LEDs
-assign _LED_WR = ~CPUSM_BGACK ? (R_W | _AS | _CS) : DMADIR;
-assign _LED_RD = ~CPUSM_BGACK ? (~R_W | _AS | _CS): ~DMADIR;
+assign _LED_WR = ~CPUSM_BGACK ? (R_W | AS_I_ | _CS) : DMADIR;
+assign _LED_RD = ~CPUSM_BGACK ? (~R_W | AS_I_ | _CS): ~DMADIR;
 assign _LED_DMA = ~CPUSM_BGACK; 
 
 //internal connections
@@ -382,8 +378,8 @@ assign DREQ_ = (~DMAENA | _DREQ);
 assign INCNO = (INCNO_CPU | INCNO_SCSI);
 assign INCNI = (INCNI_CPU | INCNI_SCSI);
 
-assign DSK0_IN_ = _BERR & _DSACK_IO[0];
-assign DSK1_IN_ = _BERR & _DSACK_IO[1];
+assign DSK0_IN_ = _BERR & DSACK_I_[0];
+assign DSK1_IN_ = _BERR & DSACK_I_[1];
 
 assign A3 = ADDR[3];
 
