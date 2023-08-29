@@ -238,7 +238,6 @@ CPU_SM u_CPU_SM(
     .PLLW          (PLLW        ),
     .PLHW          (PLHW        ),
     .AS_           (_AS         ),
-    .nAS_          (n_AS        ),
     .BGACK_I_      (_BGACK_I    )
 
 );

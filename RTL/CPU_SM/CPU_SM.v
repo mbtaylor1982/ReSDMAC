@@ -49,7 +49,6 @@ module CPU_SM(
     input RIFIFO_,    
     input iSTERM_,
     input AS_,
-    input nAS_,
     input BGACK_I_,
 
     output reg BGACK,
@@ -297,8 +296,8 @@ always @(posedge CLK90 or negedge CCRESET_) begin
         STATE <= NEXT_STATE;
 end
 
-always @(negedge CLK45 or negedge nAS_) begin
-    if (nAS_ == 1'b0)
+always @(negedge CLK45 or posedge AS_) begin
+    if (AS_ == 1'b1)
         DSACK_LATCHED_ <= 2'b11;
     else 
         DSACK_LATCHED_ <= {DSACK1_, DSACK0_};
