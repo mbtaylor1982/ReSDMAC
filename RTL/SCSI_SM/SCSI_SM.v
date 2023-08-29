@@ -34,7 +34,7 @@ module SCSI_SM
     input FIFOEMPTY,        //FIFOFULL flag
     input FIFOFULL,         //FIFOEMPTY flag
     input INCFIFO,          //Increment FIFO pointer
-    input nAS_,             //Inverted CPU Address Strobe
+    input AS_,              //CPU Address Strobe
     input RESET_,           //System Reset
     input RW,               //CPU RW signal
 
@@ -174,8 +174,8 @@ always @(posedge CLK135 or negedge RESET_) begin
 end
 
 
-always @(posedge CLK135 or negedge nAS_) begin
-    if (nAS_ == 1'b0)
+always @(posedge CLK135 or posedge AS_) begin
+    if (AS_ == 1'b1)
         nLS2CPU <= 1'b0;
     else if (SET_DSACK)
         nLS2CPU <= 1'b1;

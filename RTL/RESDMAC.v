@@ -256,7 +256,7 @@ SCSI_SM u_SCSI_SM(
     .DREQ_     (DREQ_       ),
     .FIFOFULL  (FIFOFULL    ),
     .FIFOEMPTY (FIFOEMPTY   ),
-    .nAS_      (n_AS        ),
+    .AS_       (_AS        ),
     .RDFIFO_o  (RDFIFO_o    ),
     .RIFIFO_o  (RIFIFO_o    ),
     .RE_o      (RE          ),
