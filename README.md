@@ -35,50 +35,27 @@ TODO:
 Once the schmatics have been transfered to Logisim they can be simulated and the behaviour can be observed and documented.
 
 ### Code
-When the behaviour is understood for each module will be coded in verilog and relevent test bench code written to verify the code performs the same as the simulation. To write the Code i will be using VS Code and Xilinx ISE to build it using a modified version of [Xilinx-ISE-Makefile](https://github.com/mbtaylor1982/Xilinx-ISE-Makefile)
+When the behaviour is understood for each module will be coded in verilog and relevent test bench code written to verify the code performs the same as the simulation. 
 
-### Early Prototype Board.
+To write the Code i will be using VS Code and Quartus to build using  [Quartus docker image](https://github.com/raetro/sdk-docker-fpga)
 
-Long before the schmatics where available and early prototype board was created in order to test some early verilog code, below are the deatils for building this.  
+### Prototype Board REV D.
 
-**This may not be anything like the finished board as the verilog code may not fit in the CPLD used here**
-
-Eagle CAD prototype and Verilog code to replace the Commodore SDMAC found in the A3000
-
-![SDMAC](/assets/SDMAC_lmqs0c2ja.png)
+![SDMAC](/assets/Photo View_2023-08-30.svg)
 
 #Partlist
 
-Exported from SDMAC.sch at 20/02/2022 16:39
-
-EAGLE Version 9.6.2 Copyright (c) 1988-2020 Autodesk, Inc.
-
-Assembly variant: 
-
-| Part | Value               | Device                   | Package      | Library       | Sheet |
-| ---- | ------------------- | ------------------------ | ------------ | ------------- | ----- |
-| A12  |                     | JP1E                     | JP1          | jumper        | 3     |
-| C1   | 10uF                | C_CHIP-0805(2012-METRIC) | CAPC2012X110 | Capacitor     | 3     |
-| C10  | 0.1uF               | C_CHIP-0805(2012-METRIC) | CAPC2012X110 | Capacitor     | 3     |
-| C11  | 0.1uF               | C_CHIP-0805(2012-METRIC) | CAPC2012X110 | Capacitor     | 3     |
-| C12  | 0.1uF               | C_CHIP-0805(2012-METRIC) | CAPC2012X110 | Capacitor     | 3     |
-| C13  | 10uF                | T491A106K010AT           | A            | Volks73-Kemet | 3     |
-| C3   | 0.1uF               | C_CHIP-0805(2012-METRIC) | CAPC2012X110 | Capacitor     | 3     |
-| C4   | 0.1uF               | C_CHIP-0805(2012-METRIC) | CAPC2012X110 | Capacitor     | 3     |
-| C5   | 0.1uF               | C_CHIP-0805(2012-METRIC) | CAPC2012X110 | Capacitor     | 3     |
-| C6   | 0.1uF               | C_CHIP-0805(2012-METRIC) | CAPC2012X110 | Capacitor     | 3     |
-| C7   | 0.1uF               | C_CHIP-0805(2012-METRIC) | CAPC2012X110 | Capacitor     | 3     |
-| C8   | 0.1uF               | C_CHIP-0805(2012-METRIC) | CAPC2012X110 | Capacitor     | 3     |
-| C9   | 0.1uF               | C_CHIP-0805(2012-METRIC) | CAPC2012X110 | Capacitor     | 3     |
-| DMA  |                     | LEDSML0805               | SML0805      | led           | 3     |
-| IC1  | SUPER_DMAC_THT      | SUPER_DMAC_THT           | PLCC84_T     | Amiga         | 2     |
-| PWR  |                     | LEDSML0805               | SML0805      | led           | 3     |
-| R1   | 430                 | R-EU_R0805               | R0805        | rcl           | 3     |
-| R2   | 430                 | R-EU_R0805               | R0805        | rcl           | 3     |
-| R3   | 430                 | R-EU_R0805               | R0805        | rcl           | 3     |
-| R4   | 430                 | R-EU_R0805               | R0805        | rcl           | 3     |
-| RD   |                     | LEDSML0805               | SML0805      | led           | 3     |
-| SV1  |                     | MA06-1                   | MA06-1       | con-lstb      | 1     |
-| U1   | XC95288XL-10TQG144C | XC95288XL-10TQG144C      | 144-TQFP_XIL | XilinxXC95288 | 1     |
-| U2   | NCP1117ST33T3G      | NCP1117ST33T3G           | SOT-223      | IC            | 3     |
-| WR   |                     | LEDSML0805               | SML0805      | led           | 3     |
+| ID  | Name                        | Designator                     | Footprint                                    | Quantity |
+| --- | --------------------------- | ------------------------------ | -------------------------------------------- | -------- |
+| 1   | 0.1u                        | C1,C2,C3,C4,C5,C6,C7,C8,C9,C10 | C0603                                        | 10       |
+| 2   | TP1                         | CLK                            | TESTPAD                                      | 1        |
+| 3   | TP3                         | DBOE_                          | TESTPAD                                      | 1        |
+| 4   | HDR-M-2.54_1x2              | J1                             | HDR-M-2.54_1X2                               | 1        |
+| 5   | TP5                         | OWN                            | TESTPAD                                      | 1        |
+| 6   | X5521WV-2X14-C46D46-1220    | P1,P2,P3,P4                    | HDR-TH_28P-P2.54-V-M-R2-C14-S2.54            | 4        |
+| 7   | 2N7002-7-F                  | Q1,Q2,Q3,Q4,Q5                 | SOT-23_L2.9-W1.3-P1.90-LS2.4-BR              | 5        |
+| 8   | 1k                          | R1,R2,R3                       | R0603                                        | 3        |
+| 9   | TP2                         | RST                            | TESTPAD                                      | 1        |
+| 10  | TP4                         | RW                             | TESTPAD                                      | 1        |
+| 11  | SN74ALVC164245DGGR          | U2,U3,U4,U5,U6                 | TSSOP-48_L12.6-W6.2-P0.50-LS8.1-BL           | 5        |
+| 12  | Amiga SDMAC PLCC-TH-REVERSE | U7                             | PLCC-TH-84P-P2.54-R13-C13-W36_SOCKET-REVERSE | 1        |
