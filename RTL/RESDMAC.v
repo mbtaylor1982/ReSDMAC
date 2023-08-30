@@ -385,7 +385,7 @@ assign A3 = ADDR[3];
 
 assign PDATA_OE_ = (_DACK & _CSS);
 
-assign BnDS_O_ = ~DS_O_
+assign BnDS_O_ = ~DS_O_;
 assign INT = ~_INT;
 
 endmodule
