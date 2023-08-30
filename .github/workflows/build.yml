@@ -19,7 +19,7 @@ jobs:
     steps:
       # 1 - Checkout repository
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       # 2 - RTL synthesis
       - name: Run compilation flow
         run: quartus_sh --flow compile Quartus/RESDMAC.qpf
@@ -28,4 +28,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: OutputFiles.zip
-          path: output_files/
+          path: Quartus/output_files/
