@@ -42,6 +42,7 @@ To write the Code i will be using VS Code and Quartus to build using  [Quartus d
 
 ### Prototype Board REV D.
 
+<img src="assets/Photo View_2023-08-30.svg">
 
 #Partlist
 
