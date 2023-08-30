@@ -1,0 +1,31 @@
+name: Test Build
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  synthesis:
+    runs-on: ubuntu-latest
+    container: raetro/quartus:13.0sp1
+    steps:
+      # 1 - Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      # 2 - RTL synthesis
+      - name: Run compilation flow
+        run: quartus_sh --flow compile Quartus/RESDMAC.qpf
+      # 3 - Upload artifacts
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: OutputFiles.zip
+          path: output_files/
