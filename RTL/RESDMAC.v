@@ -96,7 +96,7 @@ assign DATA_IO = DATA_OE_ ? DATA_O : 32'hzzzzzzzz;
 wire [15:0] PDATA_I;
 wire [15:0] PDATA_O;
 assign PDATA_I = PD_PORT;
-assign PD_PORT =  ~_IOW ? PDATA_O : 16'hzzzz;
+assign PD_PORT = _IOW ? 16'hzzzz: PDATA_O;
 
 
 reg LLW;
@@ -385,7 +385,7 @@ assign A3 = ADDR[3];
 
 assign PDATA_OE_ = (_DACK & _CSS);
 
-assign BnDS_O_ = ~DS_O_;
+assign BnDS_O_ = ~DS_O_
 assign INT = ~_INT;
 
 endmodule
