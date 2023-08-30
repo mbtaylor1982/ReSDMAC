@@ -1,4 +1,7 @@
 # SDMAC-Replacement
+
+[![build](https://github.com/mbtaylor1982/RE-SDMAC/actions/workflows/build.yml/badge.svg)](https://github.com/mbtaylor1982/RE-SDMAC/actions/workflows/build.yml)
+
 ## Introduction
 
 This project is an exercise in reverse engineering the Commodore SDMAC 390537 as found in the Amiga 3000
