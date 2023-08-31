@@ -36,7 +36,8 @@ jobs:
       ##########################################################################
       - name: Get the version
         id: version
-        run: echo ::set-output name=version::${GITHUB_REF#refs/tags/} # Get the version from the tag
+        run: echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+        #run: echo ::set-output name=version::${GITHUB_REF#refs/tags/} # Get the version from the tag
         #run: echo "::set-output name=version::$(date +'%Y%m%d')"     # Use date as version
       ##########################################################################
       ## 4 - Upload artifacts
@@ -44,7 +45,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: OutputFiles_${{ steps.version.outputs.version }}
+          name: RESDMAC_${{ steps.version.outputs.version }}.zip
           path: Quartus/output_files/
           retention-days: 14
       ##########################################################################
@@ -53,8 +54,8 @@ jobs:
       - name: Copy, tag with version and create SHA256 checksum
         run: |
           mkdir -p releases
-          cp Quartus/output_files/my_project.rbf releases/my_project_${{ steps.version.outputs.version }}.rbf
-          ( cd Quartus/output_files && sha256sum my_project.rbf > ../releases/my_project_${{ steps.version.outputs.version }}.rbf.sha256 )
+          cp Quartus/output_files/RESDMAC.pof releases/RESDMAC_${{ steps.version.outputs.version }}.pof
+          ( cd Quartus/output_files && sha256sum RESDMAC.pof > ../releases/RESDMAC_${{ steps.version.outputs.version }}.pof.sha256 )
       ##########################################################################
       ## 6 - Create a new GitHub release and upload the distribution artifacts
       ##########################################################################
@@ -63,8 +64,8 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            releases/my_project_${{ steps.version.outputs.version }}.rbf
-            releases/my_project_${{ steps.version.outputs.version }}.rbf.sha256
+            releases/RESDMAC_${{ steps.version.outputs.version }}.pof
+            releases/RESDMAC_${{ steps.version.outputs.version }}.pof.sha256
       ##########################################################################
       ## 7 - Don't ever commit binary files to Git! But if this is what you want to do.
       ##########################################################################
