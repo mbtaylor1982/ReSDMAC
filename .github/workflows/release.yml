@@ -55,7 +55,7 @@ jobs:
         run: |
           mkdir -p releases
           cp Quartus/output_files/RESDMAC.pof releases/RESDMAC_${{ steps.version.outputs.version }}.pof
-          ( cd Quartus/output_files && sha256sum RESDMAC.pof > ../releases/RESDMAC_${{ steps.version.outputs.version }}.pof.sha256 )
+          ( cd Quartus/output_files && sha256sum RESDMAC.pof > ../../releases/RESDMAC_${{ steps.version.outputs.version }}.pof.sha256 )
       ##########################################################################
       ## 6 - Create a new GitHub release and upload the distribution artifacts
       ##########################################################################
