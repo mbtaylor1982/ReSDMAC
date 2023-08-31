@@ -13,7 +13,7 @@ on:
       - '**.md'
 
 jobs:
-  synthesis:
+  testing:
     runs-on: ubuntu-latest
     container: hdlc/iverilog:latest
     steps:
@@ -23,6 +23,6 @@ jobs:
       # 2 - Run TestBench 
       - name: Run testbench
         run: |
-            iverilog   -o RTL\build\RESDMAC_DMA_SCSI_READ_CYCLE_tb.v.out RTL\TestBench\RESDMAC_DMA_SCSI_READ_CYCLE_tb.v 
+            iverilog   -o RTL/build/RESDMAC_DMA_SCSI_READ_CYCLE_tb.v.out RTL/TestBench/RESDMAC_DMA_SCSI_READ_CYCLE_tb.v 
             vvp RESDMAC_DMA_SCSI_READ_CYCLE_tb.v.out 
     
