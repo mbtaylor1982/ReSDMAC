@@ -1,4 +1,4 @@
-# SDMAC-Replacement
+# ReSDMAC
 
 [![build](https://github.com/mbtaylor1982/RE-SDMAC/actions/workflows/build.yml/badge.svg)](https://github.com/mbtaylor1982/RE-SDMAC/actions/workflows/build.yml)
 
