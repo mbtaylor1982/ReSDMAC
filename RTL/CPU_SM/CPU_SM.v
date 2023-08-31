@@ -294,6 +294,7 @@ always @(posedge CLK90 or negedge CCRESET_) begin
         STATE <= 5'b00000;
     else 
         STATE <= NEXT_STATE;
+    $monitor("STATE=%d,NEXT_STATE=%d,aDMAENA=%d,DMADIR=%d,FIFOEMPTY=%d,FIFOFULL=%d \n",STATE,NEXT_STATE,aDMAENA, DMADIR, FIFOEMPTY, FIFOFULL);
 end
 
 always @(negedge CLK45 or posedge AS_) begin

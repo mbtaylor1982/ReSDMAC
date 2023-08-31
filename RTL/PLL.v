@@ -13,7 +13,7 @@ module PLL (
     reg c1 = 1'b0;
     reg c2 = 1'b0;
     reg c3 = 1'b0;
-	reg Slocked;
+	reg Slocked = 1'b0;
  
     always @(CLK) begin
             c1 <= #5 CLK;   //45 deg
@@ -49,7 +49,5 @@ wire c1, c2, c3;
     );
 
 `endif
-
-
 
 endmodule

@@ -11,21 +11,20 @@ module PLL_tb;
 //  UUT
 //------------------------------------------------------------------------------
     // ports
-    reg     rst   ;  // 
-    reg     CPUCLK_I   ;  // 
-    wire    nCLK   ;  // 
-    wire    BCLK   ;  // 
-    wire    BBCLK  ;  // 
-    wire    QnCPUCLK;
-    wire    locked;  // 
+    reg     RST     ;  // 
+    reg     CLK     ;  // 
+    wire    CLK45   ;  // 
+    wire    CLK90   ;  // 
+    wire    CLK135  ;  // 
+    wire    LOCKED  ;  // 
     // module
     PLL uut (
-        .RST        (rst      ),
-        .CLK        (CPUCLK_I ),
-        .CLK45      (nCLK     ),
-        .CLK90      (BCLK     ),
-        .CLK135     (BBCLK    ),
-        .LOCKED     (locked   )
+        .RST        (RST      ),
+        .CLK        (CLK      ),
+        .CLK45      (CLK45    ),
+        .CLK90      (CLK90    ),
+        .CLK135     (CLK135   ),
+        .LOCKED     (LOCKED   )
     );
 //------------------------------------------------------------------------------
 //  localparam
@@ -37,8 +36,8 @@ module PLL_tb;
     localparam CLK_FREQ = 25_000_000;
     localparam PERIOD = 1E9/CLK_FREQ;
     initial begin
-        CPUCLK_I = 0;
-        forever #(PERIOD/2) CPUCLK_I = ~ CPUCLK_I;
+        CLK = 0;
+        forever #(PERIOD/2) CLK = ~ CLK;
     end
 //------------------------------------------------------------------------------
 //  general tasks and functions
@@ -46,13 +45,13 @@ module PLL_tb;
     // -------- wait n periods of clock --------
     task wait_n_clk(input integer i);
         begin
-            repeat(i) @(posedge CPUCLK_I);
+            repeat(i) @(posedge CLK);
         end
     endtask
     // -------- wait n periods of clock (with Tcko) --------
     task wait_n_clko(input integer i);
         begin
-            repeat(i) @(posedge CPUCLK_I);
+            repeat(i) @(posedge CLK);
             #1;
         end
     endtask
@@ -60,9 +59,8 @@ module PLL_tb;
 //  initial values
 //------------------------------------------------------------------------------
     initial begin
-        rst = 1;
+        RST = 1;
         // -------- input --------
-
     end
 //------------------------------------------------------------------------------
 //  simulation tasks
@@ -77,13 +75,11 @@ module PLL_tb;
         $dumpvars(0, PLL_tb);
         // -------- RESET --------
         wait_n_clk(2);
-        rst = 1;
+        RST = 1;
         wait_n_clko(2);
-        rst = 0;
+        RST = 0;
         wait_n_clko(20);
         $finish;
     end
-
-    assign QnCPUCLK = ~CPUCLK_I;
 //------------------------------------------------------------------------------
 endmodule

@@ -1,5 +1,5 @@
 $date
-	Mon Aug 21 19:21:00 2023
+	Thu Aug 31 23:10:15 2023
 $end
 $version
 	Icarus Verilog
@@ -14,435 +14,474 @@ $var wire 1 # PLLW $end
 $var wire 1 $ PLHW $end
 $var wire 1 % PDS $end
 $var wire 1 & PAS $end
-$var wire 1 ' INCNO $end
-$var wire 1 ( INCNI $end
-$var wire 1 ) INCFIFO $end
-$var wire 1 * F2CPUL $end
-$var wire 1 + F2CPUH $end
-$var wire 1 , DIEL $end
-$var wire 1 - DIEH $end
-$var wire 1 . DECFIFO $end
-$var wire 1 / BRIDGEOUT $end
-$var wire 1 0 BRIDGEIN $end
-$var wire 1 1 BREQ $end
-$var wire 1 2 BGACK $end
-$var parameter 32 3 CLK_FREQ $end
-$var real 1 4 PERIOD $end
-$var reg 1 5 A1 $end
-$var reg 1 6 AS_ $end
-$var reg 1 7 BGACK_I_ $end
-$var reg 1 8 BOEQ0 $end
-$var reg 1 9 BOEQ3 $end
-$var reg 1 : CLK $end
-$var reg 1 ; DMADIR $end
-$var reg 1 < DSACK0_ $end
-$var reg 1 = DSACK1_ $end
-$var reg 1 > FIFOEMPTY $end
-$var reg 1 ? FIFOFULL $end
-$var reg 1 @ RDFIFO_ $end
-$var reg 1 A RIFIFO_ $end
-$var reg 1 B STERM_ $end
-$var reg 1 C aBGRANT_ $end
-$var reg 1 D aDMAENA $end
-$var reg 1 E aDREQ_ $end
-$var reg 1 F aFLUSHFIFO $end
-$var reg 1 G aRESET_ $end
+$var wire 1 ' LOCKED $end
+$var wire 1 ( INCNO $end
+$var wire 1 ) INCNI $end
+$var wire 1 * INCFIFO $end
+$var wire 1 + F2CPUL $end
+$var wire 1 , F2CPUH $end
+$var wire 1 - DIEL $end
+$var wire 1 . DIEH $end
+$var wire 1 / DECFIFO $end
+$var wire 1 0 CLK90 $end
+$var wire 1 1 CLK45 $end
+$var wire 1 2 CLK135 $end
+$var wire 1 3 BRIDGEOUT $end
+$var wire 1 4 BRIDGEIN $end
+$var wire 1 5 BREQ $end
+$var wire 1 6 BGACK $end
+$var parameter 32 7 CLK_FREQ $end
+$var real 1 8 PERIOD $end
+$var parameter 1 9 RESET_LEVEL $end
+$var reg 1 : A1 $end
+$var reg 1 ; AS_ $end
+$var reg 1 < BGACK_I_ $end
+$var reg 1 = BOEQ0 $end
+$var reg 1 > BOEQ3 $end
+$var reg 1 ? DMADIR $end
+$var reg 1 @ DSACK0_ $end
+$var reg 1 A DSACK1_ $end
+$var reg 1 B FIFOEMPTY $end
+$var reg 1 C FIFOFULL $end
+$var reg 1 D RDFIFO_ $end
+$var reg 1 E RIFIFO_ $end
+$var reg 1 F aBGRANT_ $end
+$var reg 1 G aDMAENA $end
+$var reg 1 H aDREQ_ $end
+$var reg 1 I aFLUSHFIFO $end
+$var reg 1 J aRESET_ $end
+$var reg 1 K iSTERM_ $end
+$var reg 800 L sim_msg [1:800] $end
+$var reg 1 M tb_clk $end
+$var reg 1 N tb_rst $end
+$scope module u_PLL $end
+$var wire 1 M CLK $end
+$var wire 1 2 CLK135 $end
+$var wire 1 1 CLK45 $end
+$var wire 1 0 CLK90 $end
+$var wire 1 ' LOCKED $end
+$var wire 1 O RST $end
+$var reg 1 P Slocked $end
+$var reg 1 Q c1 $end
+$var reg 1 R c2 $end
+$var reg 1 S c3 $end
+$upscope $end
 $scope module uut $end
-$var wire 1 5 A1 $end
-$var wire 1 6 AS_ $end
-$var wire 1 : BBCLK $end
-$var wire 1 : BCLK $end
-$var wire 1 7 BGACK_I_ $end
-$var wire 1 8 BOEQ0 $end
-$var wire 1 9 BOEQ3 $end
-$var wire 1 H CYCLEDONE $end
-$var wire 1 ; DMADIR $end
-$var wire 1 I DSACK $end
-$var wire 1 < DSACK0_ $end
-$var wire 1 = DSACK1_ $end
-$var wire 1 > FIFOEMPTY $end
-$var wire 1 ? FIFOFULL $end
-$var wire 1 J LASTWORD $end
-$var wire 1 @ RDFIFO_ $end
-$var wire 1 A RIFIFO_ $end
-$var wire 1 K STERM_ $end
-$var wire 1 C aBGRANT_ $end
-$var wire 1 L aCYCLEDONE_ $end
-$var wire 1 D aDMAENA $end
-$var wire 1 E aDREQ_ $end
-$var wire 1 F aFLUSHFIFO $end
-$var wire 1 G aRESET_ $end
-$var wire 1 M iDSACK $end
-$var wire 1 B iSTERM_ $end
-$var wire 1 N nAS_ $end
-$var wire 1 : nCLK $end
-$var wire 1 O nDSACK $end
-$var wire 1 P nSTERM_ $end
-$var wire 1 Q nSTOPFLUSH_d $end
-$var wire 1 R nINCNI_d $end
-$var wire 63 S nE [62:0] $end
-$var wire 1 T nBRIDGEIN_d $end
-$var wire 1 U nBREQ_d $end
-$var wire 1 V cpudff5_d $end
-$var wire 1 W cpudff4_d $end
-$var wire 1 X cpudff3_d $end
-$var wire 1 Y cpudff2_d $end
-$var wire 1 Z cpudff1_d $end
-$var wire 1 [ SIZE1_d $end
-$var wire 1 \ PLLW_d $end
-$var wire 1 ] PLHW_d $end
-$var wire 1 ^ PDS_d $end
-$var wire 1 _ PAS_d $end
-$var wire 5 ` NEXT_STATE [4:0] $end
-$var wire 1 a INCNO_d $end
-$var wire 1 b INCFIFO_d $end
-$var wire 1 c F2CPUL_d $end
-$var wire 1 d F2CPUH_d $end
-$var wire 63 e E [62:0] $end
-$var wire 1 f DIEL_d $end
-$var wire 1 g DIEH_d $end
-$var wire 1 h DECFIFO_d $end
-$var wire 1 i BRIDGEOUT_d $end
-$var wire 1 j BGACK_d $end
-$var reg 1 2 BGACK $end
-$var reg 1 k BGRANT_ $end
-$var reg 1 1 BREQ $end
-$var reg 1 0 BRIDGEIN $end
-$var reg 1 / BRIDGEOUT $end
-$var reg 1 l CCRESET_ $end
-$var reg 1 . DECFIFO $end
-$var reg 1 - DIEH $end
-$var reg 1 , DIEL $end
-$var reg 1 m DMAENA $end
-$var reg 1 n DREQ_ $end
-$var reg 2 o DSACK_LATCHED_ [1:0] $end
-$var reg 1 + F2CPUH $end
-$var reg 1 * F2CPUL $end
-$var reg 1 p FLUSHFIFO $end
-$var reg 1 ) INCFIFO $end
-$var reg 1 ( INCNI $end
-$var reg 1 ' INCNO $end
+$var wire 1 : A1 $end
+$var wire 1 ; AS_ $end
+$var wire 1 < BGACK_I_ $end
+$var wire 1 = BOEQ0 $end
+$var wire 1 > BOEQ3 $end
+$var wire 1 2 CLK135 $end
+$var wire 1 1 CLK45 $end
+$var wire 1 0 CLK90 $end
+$var wire 1 T CYCLEDONE $end
+$var wire 1 ? DMADIR $end
+$var wire 1 U DSACK $end
+$var wire 1 @ DSACK0_ $end
+$var wire 1 A DSACK1_ $end
+$var wire 1 B FIFOEMPTY $end
+$var wire 1 C FIFOFULL $end
+$var wire 1 V LASTWORD $end
+$var wire 1 D RDFIFO_ $end
+$var wire 1 E RIFIFO_ $end
+$var wire 1 W STERM_ $end
+$var wire 1 F aBGRANT_ $end
+$var wire 1 X aCYCLEDONE_ $end
+$var wire 1 G aDMAENA $end
+$var wire 1 H aDREQ_ $end
+$var wire 1 I aFLUSHFIFO $end
+$var wire 1 ' aRESET_ $end
+$var wire 1 Y iDSACK $end
+$var wire 1 K iSTERM_ $end
+$var wire 1 Z nDSACK $end
+$var wire 1 [ nSTERM_ $end
+$var wire 1 \ nSTOPFLUSH_d $end
+$var wire 1 ] nINCNI_d $end
+$var wire 63 ^ nE [62:0] $end
+$var wire 1 _ nBRIDGEIN_d $end
+$var wire 1 ` nBREQ_d $end
+$var wire 1 a cpudff5_d $end
+$var wire 1 b cpudff4_d $end
+$var wire 1 c cpudff3_d $end
+$var wire 1 d cpudff2_d $end
+$var wire 1 e cpudff1_d $end
+$var wire 1 f SIZE1_d $end
+$var wire 1 g PLLW_d $end
+$var wire 1 h PLHW_d $end
+$var wire 1 i PDS_d $end
+$var wire 1 j PAS_d $end
+$var wire 5 k NEXT_STATE [4:0] $end
+$var wire 1 l INCNO_d $end
+$var wire 1 m INCFIFO_d $end
+$var wire 1 n F2CPUL_d $end
+$var wire 1 o F2CPUH_d $end
+$var wire 63 p E [62:0] $end
+$var wire 1 q DIEL_d $end
+$var wire 1 r DIEH_d $end
+$var wire 1 s DECFIFO_d $end
+$var wire 1 t BRIDGEOUT_d $end
+$var wire 1 u BGACK_d $end
+$var reg 1 6 BGACK $end
+$var reg 1 v BGRANT_ $end
+$var reg 1 5 BREQ $end
+$var reg 1 4 BRIDGEIN $end
+$var reg 1 3 BRIDGEOUT $end
+$var reg 1 w CCRESET_ $end
+$var reg 1 / DECFIFO $end
+$var reg 1 . DIEH $end
+$var reg 1 - DIEL $end
+$var reg 1 x DMAENA $end
+$var reg 1 y DREQ_ $end
+$var reg 2 z DSACK_LATCHED_ [1:0] $end
+$var reg 1 , F2CPUH $end
+$var reg 1 + F2CPUL $end
+$var reg 1 { FLUSHFIFO $end
+$var reg 1 * INCFIFO $end
+$var reg 1 ) INCNI $end
+$var reg 1 ( INCNO $end
 $var reg 1 & PAS $end
 $var reg 1 % PDS $end
 $var reg 1 $ PLHW $end
 $var reg 1 # PLLW $end
 $var reg 1 " SIZE1 $end
-$var reg 5 q STATE [4:0] $end
+$var reg 5 | STATE [4:0] $end
 $var reg 1 ! STOPFLUSH $end
-$var reg 1 r nCYCLEDONE $end
+$var reg 1 } nCYCLEDONE $end
 $scope module u_CPU_SM_inputs $end
-$var wire 1 5 A1 $end
-$var wire 1 s BGRANT $end
-$var wire 1 k BGRANT_ $end
-$var wire 1 9 BOEQ3 $end
-$var wire 1 H CYCLEDONE $end
-$var wire 1 ; DMADIR $end
-$var wire 1 m DMAENA $end
-$var wire 1 t DREQ $end
-$var wire 1 n DREQ_ $end
-$var wire 1 u DSACK0 $end
-$var wire 1 < DSACK0_ $end
-$var wire 1 v DSACK1 $end
-$var wire 1 = DSACK1_ $end
-$var wire 1 > FIFOEMPTY $end
-$var wire 1 ? FIFOFULL $end
-$var wire 1 p FLUSHFIFO $end
-$var wire 1 J LASTWORD $end
-$var wire 5 w STATE [4:0] $end
-$var wire 1 x nA1 $end
-$var wire 1 y nBOEQ3 $end
-$var wire 1 z nCYCLEDONE $end
-$var wire 1 { nDMADIR $end
-$var wire 1 | nDMAENA $end
-$var wire 1 } nFIFOEMPTY $end
-$var wire 1 ~ nFIFOFULL $end
-$var wire 1 !" nLASTWORD $end
-$var wire 63 "" nE [62:0] $end
-$var wire 63 #" E [62:0] $end
+$var wire 1 : A1 $end
+$var wire 1 v BGRANT_ $end
+$var wire 1 > BOEQ3 $end
+$var wire 1 T CYCLEDONE $end
+$var wire 1 ? DMADIR $end
+$var wire 1 x DMAENA $end
+$var wire 1 y DREQ_ $end
+$var wire 1 @ DSACK0_ $end
+$var wire 1 A DSACK1_ $end
+$var wire 1 B FIFOEMPTY $end
+$var wire 1 C FIFOFULL $end
+$var wire 1 { FLUSHFIFO $end
+$var wire 1 V LASTWORD $end
+$var wire 5 ~ STATE [4:0] $end
+$var wire 1 !" nA1 $end
+$var wire 1 "" nBGRANT_ $end
+$var wire 1 #" nBOEQ3 $end
+$var wire 1 $" nCYCLEDONE $end
+$var wire 1 %" nDMADIR $end
+$var wire 1 &" nDMAENA $end
+$var wire 1 '" nDREQ_ $end
+$var wire 1 (" nDSACK0_ $end
+$var wire 1 )" nDSACK1_ $end
+$var wire 1 *" nFIFOEMPTY $end
+$var wire 1 +" nFIFOFULL $end
+$var wire 1 ," nLASTWORD $end
+$var wire 63 -" nE [62:0] $end
+$var wire 63 ." E [62:0] $end
 $upscope $end
 $scope module u_CPU_SM_outputs $end
-$var wire 1 $" AA $end
-$var wire 1 %" BB $end
-$var wire 1 &" BGACK_W $end
-$var wire 1 '" BGACK_X $end
-$var wire 1 j BGACK_d $end
-$var wire 1 k BGRANT_ $end
-$var wire 1 (" BRIDGEOUT_X $end
-$var wire 1 )" BRIDGEOUT_Y $end
-$var wire 1 *" BRIDGEOUT_Z $end
-$var wire 1 i BRIDGEOUT_d $end
-$var wire 1 +" CC $end
-$var wire 1 H CYCLEDONE $end
-$var wire 1 ," DD $end
-$var wire 1 h DECFIFO_d $end
-$var wire 1 -" DIEH_X $end
-$var wire 1 ." DIEH_Y $end
-$var wire 1 /" DIEH_Z $end
-$var wire 1 g DIEH_d $end
-$var wire 1 0" DIEL_X $end
-$var wire 1 1" DIEL_Y $end
-$var wire 1 2" DIEL_Z $end
-$var wire 1 f DIEL_d $end
-$var wire 1 I DSACK $end
-$var wire 63 3" E [62:0] $end
-$var wire 1 4" EE $end
-$var wire 1 5" F2CPUH_X $end
-$var wire 1 6" F2CPUH_Y $end
-$var wire 1 7" F2CPUH_Z $end
-$var wire 1 d F2CPUH_d $end
-$var wire 1 8" F2CPUL_X $end
-$var wire 1 9" F2CPUL_Y $end
-$var wire 1 :" F2CPUL_Z $end
-$var wire 1 c F2CPUL_d $end
-$var wire 1 ;" FF $end
-$var wire 1 b INCFIFO_d $end
-$var wire 1 a INCNO_d $end
-$var wire 1 <" PAS_X $end
-$var wire 1 =" PAS_Y $end
-$var wire 1 _ PAS_d $end
-$var wire 1 >" PDS_X $end
-$var wire 1 ?" PDS_Y $end
-$var wire 1 ^ PDS_d $end
-$var wire 1 ] PLHW_d $end
-$var wire 1 @" PLLW_X $end
-$var wire 1 A" PLLW_Y $end
-$var wire 1 \ PLLW_d $end
-$var wire 1 @ RDFIFO_ $end
-$var wire 1 A RIFIFO_ $end
-$var wire 1 B" S2ORS8 $end
-$var wire 1 C" SIZE1_X $end
-$var wire 1 D" SIZE1_Y $end
-$var wire 1 E" SIZE1_Z $end
-$var wire 1 [ SIZE1_d $end
-$var wire 5 F" STATE [4:0] $end
-$var wire 1 K STERM_ $end
-$var wire 1 U nBREQ_d $end
-$var wire 1 T nBRIDGEIN_d $end
-$var wire 1 O nDSACK $end
-$var wire 63 G" nE [62:0] $end
-$var wire 1 R nINCNI_d $end
-$var wire 1 P nSTERM_ $end
-$var wire 1 Q nSTOPFLUSH_d $end
+$var wire 1 /" AA $end
+$var wire 1 0" BB $end
+$var wire 1 1" BGACK_W $end
+$var wire 1 2" BGACK_X $end
+$var wire 1 u BGACK_d $end
+$var wire 1 v BGRANT_ $end
+$var wire 1 3" BRIDGEOUT_X $end
+$var wire 1 4" BRIDGEOUT_Y $end
+$var wire 1 5" BRIDGEOUT_Z $end
+$var wire 1 t BRIDGEOUT_d $end
+$var wire 1 6" CC $end
+$var wire 1 T CYCLEDONE $end
+$var wire 1 7" DD $end
+$var wire 1 s DECFIFO_d $end
+$var wire 1 8" DIEH_X $end
+$var wire 1 9" DIEH_Y $end
+$var wire 1 :" DIEH_Z $end
+$var wire 1 r DIEH_d $end
+$var wire 1 ;" DIEL_X $end
+$var wire 1 <" DIEL_Y $end
+$var wire 1 =" DIEL_Z $end
+$var wire 1 q DIEL_d $end
+$var wire 1 U DSACK $end
+$var wire 63 >" E [62:0] $end
+$var wire 1 ?" EE $end
+$var wire 1 @" F2CPUH_X $end
+$var wire 1 A" F2CPUH_Y $end
+$var wire 1 B" F2CPUH_Z $end
+$var wire 1 o F2CPUH_d $end
+$var wire 1 C" F2CPUL_X $end
+$var wire 1 D" F2CPUL_Y $end
+$var wire 1 E" F2CPUL_Z $end
+$var wire 1 n F2CPUL_d $end
+$var wire 1 F" FF $end
+$var wire 1 m INCFIFO_d $end
+$var wire 1 l INCNO_d $end
+$var wire 1 G" PAS_X $end
+$var wire 1 H" PAS_Y $end
+$var wire 1 j PAS_d $end
+$var wire 1 I" PDS_X $end
+$var wire 1 J" PDS_Y $end
+$var wire 1 i PDS_d $end
+$var wire 1 h PLHW_d $end
+$var wire 1 K" PLLW_X $end
+$var wire 1 L" PLLW_Y $end
+$var wire 1 g PLLW_d $end
+$var wire 1 D RDFIFO_ $end
+$var wire 1 E RIFIFO_ $end
+$var wire 1 M" S2ORS8 $end
+$var wire 1 N" SIZE1_X $end
+$var wire 1 O" SIZE1_Y $end
+$var wire 1 P" SIZE1_Z $end
+$var wire 1 f SIZE1_d $end
+$var wire 5 Q" STATE [4:0] $end
+$var wire 1 W STERM_ $end
+$var wire 1 ` nBREQ_d $end
+$var wire 1 _ nBRIDGEIN_d $end
+$var wire 1 Z nDSACK $end
+$var wire 63 R" nE [62:0] $end
+$var wire 1 ] nINCNI_d $end
+$var wire 1 [ nSTERM_ $end
+$var wire 1 \ nSTOPFLUSH_d $end
 $upscope $end
 $scope module u_cpudff1 $end
-$var wire 1 I DSACK $end
-$var wire 63 H" E [62:0] $end
-$var wire 1 K STERM_ $end
-$var wire 1 Z cpudff1_d $end
-$var wire 1 O nDSACK $end
-$var wire 63 I" nE [62:0] $end
-$var wire 1 P nSTERM_ $end
-$var wire 1 J" p1a $end
-$var wire 1 K" p1b $end
-$var wire 1 L" p1c $end
+$var wire 1 U DSACK $end
+$var wire 63 S" E [62:0] $end
+$var wire 1 W STERM_ $end
+$var wire 1 e cpudff1_d $end
+$var wire 1 Z nDSACK $end
+$var wire 63 T" nE [62:0] $end
+$var wire 1 [ nSTERM_ $end
+$var wire 1 U" p1a $end
+$var wire 1 V" p1b $end
+$var wire 1 W" p1c $end
 $upscope $end
 $scope module u_cpudff2 $end
-$var wire 1 I DSACK $end
-$var wire 63 M" E [62:0] $end
-$var wire 1 K STERM_ $end
-$var wire 1 Y cpudff2_d $end
-$var wire 1 O nDSACK $end
-$var wire 63 N" nE [62:0] $end
-$var wire 1 P nSTERM_ $end
-$var wire 1 O" p2a $end
-$var wire 1 P" p2b $end
-$var wire 1 Q" p2c $end
+$var wire 1 U DSACK $end
+$var wire 63 X" E [62:0] $end
+$var wire 1 W STERM_ $end
+$var wire 1 d cpudff2_d $end
+$var wire 1 Z nDSACK $end
+$var wire 63 Y" nE [62:0] $end
+$var wire 1 [ nSTERM_ $end
+$var wire 1 Z" p2a $end
+$var wire 1 [" p2b $end
+$var wire 1 \" p2c $end
 $upscope $end
 $scope module u_cpudff3 $end
-$var wire 1 I DSACK $end
-$var wire 63 R" E [62:0] $end
-$var wire 1 K STERM_ $end
-$var wire 1 X cpudff3_d $end
-$var wire 1 O nDSACK $end
-$var wire 63 S" nE [62:0] $end
-$var wire 1 P nSTERM_ $end
-$var wire 1 T" p3a $end
-$var wire 1 U" p3b $end
-$var wire 1 V" p3c $end
+$var wire 1 U DSACK $end
+$var wire 63 ]" E [62:0] $end
+$var wire 1 W STERM_ $end
+$var wire 1 c cpudff3_d $end
+$var wire 1 Z nDSACK $end
+$var wire 63 ^" nE [62:0] $end
+$var wire 1 [ nSTERM_ $end
+$var wire 1 _" p3a $end
+$var wire 1 `" p3b $end
+$var wire 1 a" p3c $end
 $upscope $end
 $scope module u_cpudff4 $end
-$var wire 1 I DSACK $end
-$var wire 63 W" E [62:0] $end
-$var wire 1 K STERM_ $end
-$var wire 1 W cpudff4_d $end
-$var wire 1 O nDSACK $end
-$var wire 63 X" nE [62:0] $end
-$var wire 1 P nSTERM_ $end
-$var wire 1 Y" p4a $end
-$var wire 1 Z" p4b $end
-$var wire 1 [" p4c $end
+$var wire 1 U DSACK $end
+$var wire 63 b" E [62:0] $end
+$var wire 1 W STERM_ $end
+$var wire 1 b cpudff4_d $end
+$var wire 1 Z nDSACK $end
+$var wire 63 c" nE [62:0] $end
+$var wire 1 [ nSTERM_ $end
+$var wire 1 d" p4a $end
+$var wire 1 e" p4b $end
+$var wire 1 f" p4c $end
 $upscope $end
 $scope module u_cpudff5 $end
-$var wire 1 I DSACK $end
-$var wire 63 \" E [62:0] $end
-$var wire 1 K STERM_ $end
-$var wire 1 V cpudff5_d $end
-$var wire 1 O nDSACK $end
-$var wire 63 ]" nE [62:0] $end
-$var wire 1 P nSTERM_ $end
-$var wire 1 ^" p5a $end
-$var wire 1 _" p5b $end
-$var wire 1 `" p5c $end
+$var wire 1 U DSACK $end
+$var wire 63 g" E [62:0] $end
+$var wire 1 W STERM_ $end
+$var wire 1 a cpudff5_d $end
+$var wire 1 Z nDSACK $end
+$var wire 63 h" nE [62:0] $end
+$var wire 1 [ nSTERM_ $end
+$var wire 1 i" p5a $end
+$var wire 1 j" p5b $end
+$var wire 1 k" p5c $end
 $upscope $end
 $upscope $end
-$scope task wait_n_clk $end
-$var integer 32 a" i [31:0] $end
+$scope task show_sim_message $end
+$var reg 800 l" msg [1:800] $end
+$scope begin break $end
 $upscope $end
-$scope task wait_n_clko $end
-$var integer 32 b" i [31:0] $end
+$upscope $end
+$scope task sim_reset $end
+$var integer 32 m" n [31:0] $end
+$upscope $end
+$scope task wait_ncc $end
+$var integer 32 n" n [31:0] $end
+$upscope $end
+$scope task wait_ncco $end
+$var integer 32 o" n [31:0] $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 $comment Show the parameter values. $end
 $dumpall
-r40 4
-b1011111010111100001000000 3
+09
+r40 8
+b1011111010111100001000000 7
 $end
 #0
 $dumpvars
-bx b"
-b1 a"
-x`"
-1_"
-x^"
-bxzxxxxzxzxxzxzxxzxxzxxzxxx1x111x1x11x1x11xxxx111x1x111111111x ]"
-bxzxxxxzxzxxzxzxxzxxzxxzxxx0x000x0x00x0x00xxxx000x0x000000000x \"
-x["
-1Z"
-xY"
-bxzxxxxzxzxxzxzxxzxxzxxzxxx1x111x1x11x1x11xxxx111x1x111111111x X"
-bxzxxxxzxzxxzxzxxzxxzxxzxxx0x000x0x00x0x00xxxx000x0x000000000x W"
-xV"
-1U"
-xT"
-bxzxxxxzxzxxzxzxxzxxzxxzxxx1x111x1x11x1x11xxxx111x1x111111111x S"
-bxzxxxxzxzxxzxzxxzxxzxxzxxx0x000x0x00x0x00xxxx000x0x000000000x R"
-xQ"
-1P"
-xO"
-bxzxxxxzxzxxzxzxxzxxzxxzxxx1x111x1x11x1x11xxxx111x1x111111111x N"
-bxzxxxxzxzxxzxzxxzxxzxxzxxx0x000x0x00x0x00xxxx000x0x000000000x M"
+bx o"
+bx n"
+b10 m"
+b111001001100101011100110110010101110100 l"
+xk"
+1j"
+xi"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx1x111x1x11x1x11xxxx1xx1x11x111111x1 h"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx0x000x0x00x0x00xxxx0xx0x00x000000x0 g"
+xf"
+1e"
+xd"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx1x111x1x11x1x11xxxx1xx1x11x111111x1 c"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx0x000x0x00x0x00xxxx0xx0x00x000000x0 b"
+xa"
+1`"
+x_"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx1x111x1x11x1x11xxxx1xx1x11x111111x1 ^"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx0x000x0x00x0x00xxxx0xx0x00x000000x0 ]"
+x\"
+1["
+xZ"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx1x111x1x11x1x11xxxx1xx1x11x111111x1 Y"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx0x000x0x00x0x00xxxx0xx0x00x000000x0 X"
+xW"
+1V"
+xU"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx1x111x1x11x1x11xxxx1xx1x11x111111x1 T"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx0x000x0x00x0x00xxxx0xx0x00x000000x0 S"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx1x111x1x11x1x11xxxx1xx1x11x111111x1 R"
+bx Q"
+xP"
+1O"
+xN"
+xM"
 xL"
-1K"
+xK"
 xJ"
-bxzxxxxzxzxxzxzxxzxxzxxzxxx1x111x1x11x1x11xxxx111x1x111111111x I"
-bxzxxxxzxzxxzxzxxzxxzxxzxxx0x000x0x00x0x00xxxx000x0x000000000x H"
-bxzxxxxzxzxxzxzxxzxxzxxzxxx1x111x1x11x1x11xxxx111x1x111111111x G"
-bx F"
+xI"
+xH"
+xG"
+1F"
 xE"
 1D"
 xC"
 xB"
-xA"
+1A"
 x@"
-x?"
-x>"
+1?"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx0x000x0x00x0x00xxxx0xx0x00x000000x0 >"
 x="
-x<"
-1;"
+1<"
+x;"
 x:"
 19"
 x8"
-x7"
+17"
 16"
 x5"
 14"
-bxzxxxxzxzxxzxzxxzxxzxxzxxx0x000x0x00x0x00xxxx000x0x000000000x 3"
+x3"
 x2"
-11"
+x1"
 x0"
-x/"
-1."
-x-"
+1/"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx0x000x0x00x0x00xxxx0xx0x00x000000x0 ."
+bxzxxxxzxzxxzxzxxzxxzxxzxxx1x111x1x11x1x11xxxx1xx1x11x111111x1 -"
 1,"
 1+"
-x*"
-1)"
-x("
+0*"
+0)"
+0("
 x'"
 x&"
-x%"
-1$"
-bxzxxxxzxzxxzxzxxzxxzxxzxxx0x000x0x00x0x00xxxx000x0x000000000x #"
-bxzxxxxzxzxxzxzxxzxxzxxzxxx1x111x1x11x1x11xxxx111x1x111111111x ""
+1%"
+x$"
+1#"
+x""
 1!"
-1~
-0}
-x|
-0{
-xz
-0y
-0x
-bx w
-0v
-0u
+bx ~
+x}
+bx |
+x{
+b11 z
+xy
+xx
+xw
+xv
+xu
 xt
-xs
+0s
 xr
-bx q
-xp
-bx o
+xq
+bxzxxxxzxzxxzxzxxzxxzxxzxxx0x000x0x00x0x00xxxx0xx0x00x000000x0 p
+xo
 xn
 xm
-xl
-xk
+0l
+bx k
 xj
 xi
-0h
+xh
 xg
 xf
-bxzxxxxzxzxxzxzxxzxxzxxzxxx0x000x0x00x0x00xxxx000x0x000000000x e
+xe
 xd
 xc
 xb
-0a
-bx `
+xa
+x`
 x_
-x^
+bxzxxxxzxzxxzxzxxzxxzxxzxxx1x111x1x11x1x11xxxx1xx1x11x111111x1 ^
 x]
 x\
-x[
-xZ
-xY
-xX
-xW
-xV
-xU
+0[
+1Z
+0Y
+0X
+1W
+0V
+0U
 xT
-bxzxxxxzxzxxzxzxxzxxzxxzxxx1x111x1x11x1x11xxxx111x1x111111111x S
-xR
-xQ
+0S
+0R
+0Q
 0P
-xO
-zN
-xM
-1L
+0O
+1N
+0M
+b1110010011001010111001101100101011101000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 L
 1K
 0J
-xI
-xH
-0G
-0F
-0E
-0D
-1C
+1I
+0H
+1G
+1F
+1E
+1D
+0C
 1B
 1A
 1@
 0?
-1>
+0>
 1=
 1<
 1;
 0:
-19
-08
-x7
-06
-15
-x2
-x1
-x0
+x6
+x5
+x4
+x3
+02
+01
+00
 x/
 x.
 x-
@@ -451,7 +490,7 @@ x+
 x*
 x)
 x(
-x'
+0'
 x&
 x%
 x$
@@ -460,2943 +499,1171 @@ x"
 x!
 $end
 #200
-17
-0W
-0V
-1Y"
-0Z
-0Y
-b0 `
-0X
-1L"
-1^"
-0^
-1Q"
-0_
-0g
-1J"
-1E"
-1O"
-1[
-1T"
-1="
-1?"
-0c
-1V"
-1<"
-0\
-0d
-1-"
-1U
-1:"
-0i
-1A"
-1["
-0b
-1T
-0C"
-1@"
-18"
-17"
-1`"
-0f
-15"
-1*"
-0]
-1>"
-1R
-1/"
-12"
-1%"
-10"
+1M
+#250
+11
 1Q
-0j
-1("
-0'"
-0B"
-b0 q
-b0 w
-b0 F"
-0!
-0"
-0#
-0$
+#300
+1'
+1P
 0(
-0)
-0*
-0+
-0,
-0-
 0/
-00
-01
-0%
-0&
-02
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 e
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 #"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 3"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 H"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 M"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 R"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 W"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 \"
-1O
-0I
-0M
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 S
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ""
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 G"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 I"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 N"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 S"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 X"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ]"
+10
+1R
+#350
+01"
+0$"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx1x111x1x11x11111x1x11x11111111111x1 ^
+bxzxxxxzxzxxzxzxxzxxzxxzxxx1x111x1x11x11111x1x11x11111111111x1 -"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx1x111x1x11x11111x1x11x11111111111x1 R"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx1x111x1x11x11111x1x11x11111111111x1 T"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx1x111x1x11x11111x1x11x11111111111x1 Y"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx1x111x1x11x11111x1x11x11111111111x1 ^"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx1x111x1x11x11111x1x11x11111111111x1 c"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx1x111x1x11x11111x1x11x11111111111x1 h"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx0x000x0x00x00000x0x00x00000000000x0 p
+bxzxxxxzxzxxzxzxxzxxzxxzxxx0x000x0x00x00000x0x00x00000000000x0 ."
+bxzxxxxzxzxxzxzxxzxxzxxzxxx0x000x0x00x00000x0x00x00000000000x0 >"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx0x000x0x00x00000x0x00x00000000000x0 S"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx0x000x0x00x00000x0x00x00000000000x0 X"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx0x000x0x00x00000x0x00x00000000000x0 ]"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx0x000x0x00x00000x0x00x00000000000x0 b"
+bxzxxxxzxzxxzxzxxzxxzxxzxxx0x000x0x00x00000x0x00x00000000000x0 g"
+1T
+1'"
 0&"
-1z
-0H
-0t
-1|
-0s
-b11 o
-1r
-0p
-1n
-0m
-1k
-0'
-0.
-0l
-b1 b"
-1G
-1:
+0""
+0}
+1{
+0y
+1x
+1v
+12
+1S
 #400
-0:
-#600
-1l
-1:
-#610
-b10 b"
-1D
-#800
-0:
-#1000
-b1 `
-1Z
-0L"
-1_
-1^
-0="
-0?"
-1c
-1d
-0:"
-07"
-1j
-b0z0000z0z00z0z00z00z01z00000000000001000000000000000000000000 e
-b0z0000z0z00z0z00z00z01z00000000000001000000000000000000000000 #"
-b0z0000z0z00z0z00z00z01z00000000000001000000000000000000000000 3"
-b0z0000z0z00z0z00z00z01z00000000000001000000000000000000000000 H"
-b0z0000z0z00z0z00z00z01z00000000000001000000000000000000000000 M"
-b0z0000z0z00z0z00z00z01z00000000000001000000000000000000000000 R"
-b0z0000z0z00z0z00z00z01z00000000000001000000000000000000000000 W"
-b0z0000z0z00z0z00z00z01z00000000000001000000000000000000000000 \"
-b111z1111z1z11z1z11z11z10z11111111111110111111111111111111111111 S
-b111z1111z1z11z1z11z11z10z11111111111110111111111111111111111111 ""
-b111z1111z1z11z1z11z11z10z11111111111110111111111111111111111111 G"
-b111z1111z1z11z1z11z11z10z11111111111110111111111111111111111111 I"
-b111z1111z1z11z1z11z11z10z11111111111110111111111111111111111111 N"
-b111z1111z1z11z1z11z11z10z11111111111110111111111111111111111111 S"
-b111z1111z1z11z1z11z11z10z11111111111110111111111111111111111111 X"
-b111z1111z1z11z1z11z11z10z11111111111110111111111111111111111111 ]"
-1t
-0|
-b1 q
-b1 w
-b1 F"
-1"
-0n
-1m
-1:
-#1200
-0:
-#1400
-07
-0Z
-1L"
-0_
-0^
-b10 `
-1Y
-1="
-1?"
-0c
-0d
-1:"
-0O"
-0U
-17"
-0j
-b0z0000z0z00z0z00z00z00z00000000000000000000110000000000000000 e
-b0z0000z0z00z0z00z00z00z00000000000000000000110000000000000000 #"
-b0z0000z0z00z0z00z00z00z00000000000000000000110000000000000000 3"
-b0z0000z0z00z0z00z00z00z00000000000000000000110000000000000000 H"
-b0z0000z0z00z0z00z00z00z00000000000000000000110000000000000000 M"
-b0z0000z0z00z0z00z00z00z00000000000000000000110000000000000000 R"
-b0z0000z0z00z0z00z00z00z00000000000000000000110000000000000000 W"
-b0z0000z0z00z0z00z00z00z00000000000000000000110000000000000000 \"
-1'"
-b111z1111z1z11z1z11z11z11z11111111111111111111001111111111111111 S
-b111z1111z1z11z1z11z11z11z11111111111111111111001111111111111111 ""
-b111z1111z1z11z1z11z11z11z11111111111111111111001111111111111111 G"
-b111z1111z1z11z1z11z11z11z11111111111111111111001111111111111111 I"
-b111z1111z1z11z1z11z11z11z11111111111111111111001111111111111111 N"
-b111z1111z1z11z1z11z11z11z11111111111111111111001111111111111111 S"
-b111z1111z1z11z1z11z11z11z11111111111111111111001111111111111111 X"
-b111z1111z1z11z1z11z11z11z11111111111111111111001111111111111111 ]"
-1B"
-1%
-1&
-1*
-1+
-12
-b10 q
-b10 w
-b10 F"
-1:
-#1410
-16
-#1600
-0:
-#1800
-0L
-17
-b11 `
-1Z
-0L"
-1_
-1^
-0E"
-0="
-0?"
-1c
-0Q"
-1O"
-1U
-0:"
-1i
-0*"
-1j
-b0z0000z0z00z0z00z01z00z00000000100000000000000000000000000000 e
-b0z0000z0z00z0z00z01z00z00000000100000000000000000000000000000 #"
-b0z0000z0z00z0z00z01z00z00000000100000000000000000000000000000 3"
-b0z0000z0z00z0z00z01z00z00000000100000000000000000000000000000 H"
-b0z0000z0z00z0z00z01z00z00000000100000000000000000000000000000 M"
-b0z0000z0z00z0z00z01z00z00000000100000000000000000000000000000 R"
-b0z0000z0z00z0z00z01z00z00000000100000000000000000000000000000 W"
-b0z0000z0z00z0z00z01z00z00000000100000000000000000000000000000 \"
-0'"
-b111z1111z1z11z1z11z10z11z11111111011111111111111111111111111111 S
-b111z1111z1z11z1z11z10z11z11111111011111111111111111111111111111 ""
-b111z1111z1z11z1z11z10z11z11111111011111111111111111111111111111 G"
-b111z1111z1z11z1z11z10z11z11111111011111111111111111111111111111 I"
-b111z1111z1z11z1z11z10z11z11111111011111111111111111111111111111 N"
-b111z1111z1z11z1z11z10z11z11111111011111111111111111111111111111 S"
-b111z1111z1z11z1z11z10z11z11111111011111111111111111111111111111 X"
-b111z1111z1z11z1z11z10z11z11111111011111111111111111111111111111 ]"
-0B"
-b11 q
-b11 w
-b11 F"
-0%
-0&
-0*
-0+
-11
-02
-1:
-#2000
-0:
-#2200
-1L
-07
-0[
-1L"
-0^
-0Y
-1E"
-1="
-1?"
-1Q"
-b10001 `
-1V
-1:"
-0<"
-1*"
-08"
-0J"
-0^"
-1C"
-0("
-b0z0000z1z00z0z00z00z00z00000000000000000000000000000000000000 e
-b0z0000z1z00z0z00z00z00z00000000000000000000000000000000000000 #"
-b0z0000z1z00z0z00z00z00z00000000000000000000000000000000000000 3"
-b0z0000z1z00z0z00z00z00z00000000000000000000000000000000000000 H"
-b0z0000z1z00z0z00z00z00z00000000000000000000000000000000000000 M"
-b0z0000z1z00z0z00z00z00z00000000000000000000000000000000000000 R"
-b0z0000z1z00z0z00z00z00z00000000000000000000000000000000000000 W"
-b0z0000z1z00z0z00z00z00z00000000000000000000000000000000000000 \"
-0z
-1H
-b111z1111z0z11z1z11z11z11z11111111111111111111111111111111111111 S
-b111z1111z0z11z1z11z11z11z11111111111111111111111111111111111111 ""
-b111z1111z0z11z1z11z11z11z11111111111111111111111111111111111111 G"
-b111z1111z0z11z1z11z11z11z11111111111111111111111111111111111111 I"
-b111z1111z0z11z1z11z11z11z11111111111111111111111111111111111111 N"
-b111z1111z0z11z1z11z11z11z11111111111111111111111111111111111111 S"
-b111z1111z0z11z1z11z11z11z11111111111111111111111111111111111111 X"
-b111z1111z0z11z1z11z11z11z11111111111111111111111111111111111111 ]"
-0r
-1%
-1&
-1*
-1/
+0M
+#450
+1w
 01
-12
-b100 q
-b100 w
-b100 F"
-1:
-#2210
-b1 b"
-0C
-#2400
-0:
-#2600
-0c
-0V
-1g
-b101 `
-1X
-18"
-1^"
-1^
-1\
-0i
-0>"
-0@"
-0-"
-0T"
-0T
-1("
-1z
-b0z0000z0z01z0z00z00z00z00000000000000000000000000000000000000 e
-b0z0000z0z01z0z00z00z00z00000000000000000000000000000000000000 #"
-b0z0000z0z01z0z00z00z00z00000000000000000000000000000000000000 3"
-b0z0000z0z01z0z00z00z00z00000000000000000000000000000000000000 H"
-b0z0000z0z01z0z00z00z00z00000000000000000000000000000000000000 M"
-b0z0000z0z01z0z00z00z00z00000000000000000000000000000000000000 R"
-b0z0000z0z01z0z00z00z00z00000000000000000000000000000000000000 W"
-b0z0000z0z01z0z00z00z00z00000000000000000000000000000000000000 \"
-b111z1111z1z10z1z11z11z11z11111111111111111111111111111111111111 S
-b111z1111z1z10z1z11z11z11z11111111111111111111111111111111111111 ""
-b111z1111z1z10z1z11z11z11z11111111111111111111111111111111111111 G"
-b111z1111z1z10z1z11z11z11z11111111111111111111111111111111111111 I"
-b111z1111z1z10z1z11z11z11z11111111111111111111111111111111111111 N"
-b111z1111z1z10z1z11z11z11z11111111111111111111111111111111111111 S"
-b111z1111z1z10z1z11z11z11z11111111111111111111111111111111111111 X"
-b111z1111z1z10z1z11z11z11z11111111111111111111111111111111111111 ]"
-0H
-1s
-b101 q
-b101 w
-b101 F"
-0"
-0%
-1r
-0k
-1:
-#2610
-b110010 b"
-#2800
-0:
-#3000
-1W
-0Y"
-1Y
-0O"
-1b
-1[
-1Z
-0g
-b1011 `
-0X
-0_
-0^
-0\
-0%"
-0C"
-0J"
-1<"
-1>"
-1@"
-1-"
-1T"
-0T
-b111z1110z1z11z1z11z11z11z11111111111111111111111111111111111111 S
-b111z1110z1z11z1z11z11z11z11111111111111111111111111111111111111 ""
-b111z1110z1z11z1z11z11z11z11111111111111111111111111111111111111 G"
-b111z1110z1z11z1z11z11z11z11111111111111111111111111111111111111 I"
-b111z1110z1z11z1z11z11z11z11111111111111111111111111111111111111 N"
-b111z1110z1z11z1z11z11z11z11111111111111111111111111111111111111 S"
-b111z1110z1z11z1z11z11z11z11111111111111111111111111111111111111 X"
-b111z1110z1z11z1z11z11z11z11111111111111111111111111111111111111 ]"
-b0z0001z0z00z0z00z00z00z00000000000000000000000000000000000000 e
-b0z0001z0z00z0z00z00z00z00000000000000000000000000000000000000 #"
-b0z0001z0z00z0z00z00z00z00000000000000000000000000000000000000 3"
-b0z0001z0z00z0z00z00z00z00000000000000000000000000000000000000 H"
-b0z0001z0z00z0z00z00z00z00000000000000000000000000000000000000 M"
-b0z0001z0z00z0z00z00z00z00000000000000000000000000000000000000 R"
-b0z0001z0z00z0z00z00z00z00000000000000000000000000000000000000 W"
-b0z0001z0z00z0z00z00z00z00000000000000000000000000000000000000 \"
-1#
-1%
-0*
-1-
-0/
-10
-b110 q
-b110 w
-b110 F"
-1:
-#3200
-0:
-#3400
-0W
-1Y"
-1Z
-0L"
-0Q"
-b111 `
-1X
-0E"
-1_
-1^
-1O"
-0V"
-1J"
-0="
-0?"
-1c
-1d
-0b
-1T
-0:"
-07"
-1%"
-b0z0000z0z00z0z00z00z00z00001000000000000000000000000000000000 e
-b0z0000z0z00z0z00z00z00z00001000000000000000000000000000000000 #"
-b0z0000z0z00z0z00z00z00z00001000000000000000000000000000000000 3"
-b0z0000z0z00z0z00z00z00z00001000000000000000000000000000000000 H"
-b0z0000z0z00z0z00z00z00z00001000000000000000000000000000000000 M"
-b0z0000z0z00z0z00z00z00z00001000000000000000000000000000000000 R"
-b0z0000z0z00z0z00z00z00z00001000000000000000000000000000000000 W"
-b0z0000z0z00z0z00z00z00z00001000000000000000000000000000000000 \"
-b111z1111z1z11z1z11z11z11z11110111111111111111111111111111111111 S
-b111z1111z1z11z1z11z11z11z11110111111111111111111111111111111111 ""
-b111z1111z1z11z1z11z11z11z11110111111111111111111111111111111111 G"
-b111z1111z1z11z1z11z11z11z11110111111111111111111111111111111111 I"
-b111z1111z1z11z1z11z11z11z11110111111111111111111111111111111111 N"
-b111z1111z1z11z1z11z11z11z11110111111111111111111111111111111111 S"
-b111z1111z1z11z1z11z11z11z11110111111111111111111111111111111111 X"
-b111z1111z1z11z1z11z11z11z11110111111111111111111111111111111111 ]"
-b111 q
-b111 w
-b111 F"
-1"
-0#
-0%
-0&
-1)
-0-
-1:
-#3600
-0:
-#3800
-1W
-0Z
-0Y
-1L"
-1Q"
-b1000 `
-0X
-0Y"
-1E"
-0_
-0^
-1V"
-1="
-1?"
-0c
-0d
-1:"
-17"
-0U
-0j
-b0z0000z0z00z0z00z00z00z00000000000000000010000000000000000000 e
-b0z0000z0z00z0z00z00z00z00000000000000000010000000000000000000 #"
-b0z0000z0z00z0z00z00z00z00000000000000000010000000000000000000 3"
-b0z0000z0z00z0z00z00z00z00000000000000000010000000000000000000 H"
-b0z0000z0z00z0z00z00z00z00000000000000000010000000000000000000 M"
-b0z0000z0z00z0z00z00z00z00000000000000000010000000000000000000 R"
-b0z0000z0z00z0z00z00z00z00000000000000000010000000000000000000 W"
-b0z0000z0z00z0z00z00z00z00000000000000000010000000000000000000 \"
-1&"
-b111z1111z1z11z1z11z11z11z11111111111111111101111111111111111111 S
-b111z1111z1z11z1z11z11z11z11111111111111111101111111111111111111 ""
-b111z1111z1z11z1z11z11z11z11111111111111111101111111111111111111 G"
-b111z1111z1z11z1z11z11z11z11111111111111111101111111111111111111 I"
-b111z1111z1z11z1z11z11z11z11111111111111111101111111111111111111 N"
-b111z1111z1z11z1z11z11z11z11111111111111111101111111111111111111 S"
-b111z1111z1z11z1z11z11z11z11111111111111111101111111111111111111 X"
-b111z1111z1z11z1z11z11z11z11111111111111111101111111111111111111 ]"
-1B"
-1%
-1&
-0)
-1*
-1+
-00
-b1000 q
-b1000 w
-b1000 F"
-1:
-#4000
-0:
-#4200
-0L
-1C
-17
-0W
-0[
-1V
-1_
-1X
-1Y"
-1g
-1C"
-0<"
-b10101 `
-1Z
-0^"
-1^
-0T"
-0-"
-1f
-0>"
-0J"
-1\
-1U
-00"
-0@"
-1j
-b11z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 S
-b11z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ""
-b11z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 G"
-b11z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 I"
-b11z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 N"
-b11z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 S"
-b11z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 X"
-b11z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ]"
-0&"
-b100z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 e
-b100z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 #"
-b100z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 3"
-b100z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 H"
-b100z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 M"
-b100z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 R"
-b100z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 W"
-b100z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 \"
-0B"
-b1001 q
-b1001 w
-b1001 F"
-0%
-0&
-0*
-0+
-11
-02
-1:
-#4400
-0:
-#4600
-1L
-07
-1W
-0Y"
-0X
-1g
-1Y
-b11010 `
-0Z
-1T"
-0-"
-0f
-0O"
-1J"
-1\
-10"
-0T
-0@"
-b101z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 S
-b101z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ""
-b101z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 G"
-b101z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 I"
-b101z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 N"
-b101z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 S"
-b101z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 X"
-b101z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ]"
-0z
-1H
-0s
-b10z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 e
-b10z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 #"
-b10z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 3"
-b10z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 H"
-b10z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 M"
-b10z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 R"
-b10z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 W"
-b10z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 \"
-0r
-1k
-0"
-1#
-1%
-1&
-1,
-1-
-01
-12
-b1010 q
-b1010 w
-b1010 F"
-1:
-#4800
-0:
-#5000
-1[
-1Z
-0C"
-b11001 `
-0Y
-0J"
-1]
-1\
-1O"
-1f
-0R
-0@"
-1T
-00"
-b111z1111z1z11z0z11z11z11z11111111111111111111111111111111111111 S
-b111z1111z1z11z0z11z11z11z11111111111111111111111111111111111111 ""
-b111z1111z1z11z0z11z11z11z11111111111111111111111111111111111111 G"
-b111z1111z1z11z0z11z11z11z11111111111111111111111111111111111111 I"
-b111z1111z1z11z0z11z11z11z11111111111111111111111111111111111111 N"
-b111z1111z1z11z0z11z11z11z11111111111111111111111111111111111111 S"
-b111z1111z1z11z0z11z11z11z11111111111111111111111111111111111111 X"
-b111z1111z1z11z0z11z11z11z11111111111111111111111111111111111111 ]"
-1z
-b0z0000z0z00z1z00z00z00z00000000000000000000000000000000000000 e
-b0z0000z0z00z1z00z00z00z00000000000000000000000000000000000000 #"
-b0z0000z0z00z1z00z00z00z00000000000000000000000000000000000000 3"
-b0z0000z0z00z1z00z00z00z00000000000000000000000000000000000000 H"
-b0z0000z0z00z1z00z00z00z00000000000000000000000000000000000000 M"
-b0z0000z0z00z1z00z00z00z00000000000000000000000000000000000000 R"
-b0z0000z0z00z1z00z00z00z00000000000000000000000000000000000000 W"
-b0z0000z0z00z1z00z00z00z00000000000000000000000000000000000000 \"
-0H
-b1011 q
-b1011 w
-b1011 F"
-0,
-10
-1r
-1:
-#5200
-0:
-#5400
-0W
-b1 `
-0V
-1Y"
-1<"
-0\
-1J"
-1^"
-0="
-0?"
-1c
-0L"
-0g
-0]
-1d
-1^
-1@"
-0f
-0:"
-1R
-07"
-1>"
-1-"
-10"
-b111z1111z1z11z1z11z11z11z01111111111111111111111111111111111111 S
-b111z1111z1z11z1z11z11z11z01111111111111111111111111111111111111 ""
-b111z1111z1z11z1z11z11z11z01111111111111111111111111111111111111 G"
-b111z1111z1z11z1z11z11z11z01111111111111111111111111111111111111 I"
-b111z1111z1z11z1z11z11z11z01111111111111111111111111111111111111 N"
-b111z1111z1z11z1z11z11z11z01111111111111111111111111111111111111 S"
-b111z1111z1z11z1z11z11z11z01111111111111111111111111111111111111 X"
-b111z1111z1z11z1z11z11z11z01111111111111111111111111111111111111 ]"
-b0z0000z0z00z0z00z00z00z10000000000000000000000000000000000000 e
-b0z0000z0z00z0z00z00z00z10000000000000000000000000000000000000 #"
-b0z0000z0z00z0z00z00z00z10000000000000000000000000000000000000 3"
-b0z0000z0z00z0z00z00z00z10000000000000000000000000000000000000 H"
-b0z0000z0z00z0z00z00z00z10000000000000000000000000000000000000 M"
-b0z0000z0z00z0z00z00z00z10000000000000000000000000000000000000 R"
-b0z0000z0z00z0z00z00z00z10000000000000000000000000000000000000 W"
-b0z0000z0z00z0z00z00z00z10000000000000000000000000000000000000 \"
-1"
-1$
-1(
-1,
-00
-b1100 q
-b1100 w
-b1100 F"
-1:
-#5600
-0:
-#5800
-1V
-0^"
-1f
-0[
-1g
-b10101 `
-1X
-1\
-00"
-1C"
-0J"
-0<"
-0>"
-0@"
-0-"
-0T"
-0T
-b11z1111z1z10z1z11z11z11z01111111111111111111111111111111111111 S
-b11z1111z1z10z1z11z11z11z01111111111111111111111111111111111111 ""
-b11z1111z1z10z1z11z11z11z01111111111111111111111111111111111111 G"
-b11z1111z1z10z1z11z11z11z01111111111111111111111111111111111111 I"
-b11z1111z1z10z1z11z11z11z01111111111111111111111111111111111111 N"
-b11z1111z1z10z1z11z11z11z01111111111111111111111111111111111111 S"
-b11z1111z1z10z1z11z11z11z01111111111111111111111111111111111111 X"
-b11z1111z1z10z1z11z11z11z01111111111111111111111111111111111111 ]"
-b100z0000z0z01z0z00z00z00z10000000000000000000000000000000000000 e
-b100z0000z0z01z0z00z00z00z10000000000000000000000000000000000000 #"
-b100z0000z0z01z0z00z00z00z10000000000000000000000000000000000000 3"
-b100z0000z0z01z0z00z00z00z10000000000000000000000000000000000000 H"
-b100z0000z0z01z0z00z00z00z10000000000000000000000000000000000000 M"
-b100z0000z0z01z0z00z00z00z10000000000000000000000000000000000000 R"
-b100z0000z0z01z0z00z00z00z10000000000000000000000000000000000000 W"
-b100z0000z0z01z0z00z00z00z10000000000000000000000000000000000000 \"
-b1101 q
-b1101 w
-b1101 F"
-0#
-0$
-0(
-1*
-1+
-0,
-0-
-1:
-#6000
-0:
-#6200
-0Y"
-1[
-1W
-b11111 `
-1Y
-0Q"
-1T"
-0E"
-0A"
-0V"
-0["
-1b
-0-"
-0c
-0O"
-0J"
-0d
-1:"
-1\
-0/"
-02"
-0%"
-10"
-17"
-0@"
-b101z1110z1z01z1z11z11z11z11111111111111111111111111111111111111 S
-b101z1110z1z01z1z11z11z11z11111111111111111111111111111111111111 ""
-b101z1110z1z01z1z11z11z11z11111111111111111111111111111111111111 G"
-b101z1110z1z01z1z11z11z11z11111111111111111111111111111111111111 I"
-b101z1110z1z01z1z11z11z11z11111111111111111111111111111111111111 N"
-b101z1110z1z01z1z11z11z11z11111111111111111111111111111111111111 S"
-b101z1110z1z01z1z11z11z11z11111111111111111111111111111111111111 X"
-b101z1110z1z01z1z11z11z11z11111111111111111111111111111111111111 ]"
-b10z0001z0z10z0z00z00z00z00000000000000000000000000000000000000 e
-b10z0001z0z10z0z00z00z00z00000000000000000000000000000000000000 #"
-b10z0001z0z10z0z00z00z00z00000000000000000000000000000000000000 3"
-b10z0001z0z10z0z00z00z00z00000000000000000000000000000000000000 H"
-b10z0001z0z10z0z00z00z00z00000000000000000000000000000000000000 M"
-b10z0001z0z10z0z00z00z00z00000000000000000000000000000000000000 R"
-b10z0001z0z10z0z00z00z00z00000000000000000000000000000000000000 W"
-b10z0001z0z10z0z00z00z00z00000000000000000000000000000000000000 \"
-0"
-1#
-1,
-1-
-10
-b1110 q
-b1110 w
-b1110 F"
-1:
-#6400
-0:
-#6600
-1Y"
-b1111 `
-0V
-1O"
-1J"
-0C"
-1<"
-1^"
-1-"
-0b
-1T
-1>"
-1%"
-1@"
-b111z1111z1z01z1z11z11z11z11111111111111111111111111111111111111 S
-b111z1111z1z01z1z11z11z11z11111111111111111111111111111111111111 ""
-b111z1111z1z01z1z11z11z11z11111111111111111111111111111111111111 G"
-b111z1111z1z01z1z11z11z11z11111111111111111111111111111111111111 I"
-b111z1111z1z01z1z11z11z11z11111111111111111111111111111111111111 N"
-b111z1111z1z01z1z11z11z11z11111111111111111111111111111111111111 S"
-b111z1111z1z01z1z11z11z11z11111111111111111111111111111111111111 X"
-b111z1111z1z01z1z11z11z11z11111111111111111111111111111111111111 ]"
-b0z0000z0z10z0z00z00z00z00000000000000000000000000000000000000 e
-b0z0000z0z10z0z00z00z00z00000000000000000000000000000000000000 #"
-b0z0000z0z10z0z00z00z00z00000000000000000000000000000000000000 3"
-b0z0000z0z10z0z00z00z00z00000000000000000000000000000000000000 H"
-b0z0000z0z10z0z00z00z00z00000000000000000000000000000000000000 M"
-b0z0000z0z10z0z00z00z00z00000000000000000000000000000000000000 R"
-b0z0000z0z10z0z00z00z00z00000000000000000000000000000000000000 W"
-b0z0000z0z10z0z00z00z00z00000000000000000000000000000000000000 \"
-b1111 q
-b1111 w
-b1111 F"
-1"
-1)
-0*
-0+
-1:
-#6800
-0:
-#7000
-0Y
-0\
-0Z
-0X
-b0 `
-0W
-1Q"
-1E"
-1A"
-1L"
-1V"
-1["
-0_
-0^
-0g
-0f
-1="
-1?"
-1/"
-12"
-0j
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 S
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ""
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 G"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 I"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 N"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 S"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 X"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ]"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 e
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 #"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 3"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 H"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 M"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 R"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 W"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 \"
-0)
-00
-b10000 q
-b10000 w
-b10000 F"
-1:
-#7200
-0:
-#7400
-0L
-17
-1_
-1^
-1Z
-0="
-0?"
-1c
-0L"
-b11 `
-1Y
-0E"
-0:"
-1i
-0Q"
-0*"
-1j
-b0z0000z0z00z0z00z00z10z00000000000000000000000000000000000000 e
-b0z0000z0z00z0z00z00z10z00000000000000000000000000000000000000 #"
-b0z0000z0z00z0z00z00z10z00000000000000000000000000000000000000 3"
-b0z0000z0z00z0z00z00z10z00000000000000000000000000000000000000 H"
-b0z0000z0z00z0z00z00z10z00000000000000000000000000000000000000 M"
-b0z0000z0z00z0z00z00z10z00000000000000000000000000000000000000 R"
-b0z0000z0z00z0z00z00z10z00000000000000000000000000000000000000 W"
-b0z0000z0z00z0z00z00z10z00000000000000000000000000000000000000 \"
-b111z1111z1z11z1z11z11z01z11111111111111111111111111111111111111 S
-b111z1111z1z11z1z11z11z01z11111111111111111111111111111111111111 ""
-b111z1111z1z11z1z11z11z01z11111111111111111111111111111111111111 G"
-b111z1111z1z11z1z11z11z01z11111111111111111111111111111111111111 I"
-b111z1111z1z11z1z11z11z01z11111111111111111111111111111111111111 N"
-b111z1111z1z11z1z11z11z01z11111111111111111111111111111111111111 S"
-b111z1111z1z11z1z11z11z01z11111111111111111111111111111111111111 X"
-b111z1111z1z11z1z11z11z01z11111111111111111111111111111111111111 ]"
-b10001 q
-b10001 w
-b10001 F"
-0#
-0%
-0&
-0,
-0-
-02
-1:
-#7600
-0:
-#7800
-1L
-07
-1W
-0Y"
-1g
-1V
-1="
-1?"
-0c
-0<"
-0-"
-1L"
-b11001 `
-0Y
-1\
-1f
-0J"
-0^"
-1E"
-1:"
-0i
-1Q"
-0>"
-0@"
-1*"
-00"
-1]
-0z
-1H
-b110z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 S
-b110z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ""
-b110z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 G"
-b110z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 I"
-b110z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 N"
-b110z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 S"
-b110z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 X"
-b110z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ]"
-b1z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 e
-b1z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 #"
-b1z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 3"
-b1z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 H"
-b1z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 M"
-b1z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 R"
-b1z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 W"
-b1z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 \"
-0r
-1%
-1&
-1*
-1/
-12
-b10010 q
-b10010 w
-b10010 F"
-1:
-#8000
-0:
-#8200
-0W
-1Y"
-0g
-0V
-1Y
-0L"
-1<"
-1-"
-0="
-0?"
-1c
-1d
-0Q"
-b111 `
-1X
-1^
-0\
-0f
-1J"
-1^"
-0E"
-0:"
-07"
-0V"
-1>"
-1@"
-10"
-0]
-1z
-b111z1111z1z11z1z11z11z11z10111111111111111111111111111111111111 S
-b111z1111z1z11z1z11z11z11z10111111111111111111111111111111111111 ""
-b111z1111z1z11z1z11z11z11z10111111111111111111111111111111111111 G"
-b111z1111z1z11z1z11z11z11z10111111111111111111111111111111111111 I"
-b111z1111z1z11z1z11z11z11z10111111111111111111111111111111111111 N"
-b111z1111z1z11z1z11z11z11z10111111111111111111111111111111111111 S"
-b111z1111z1z11z1z11z11z11z10111111111111111111111111111111111111 X"
-b111z1111z1z11z1z11z11z11z10111111111111111111111111111111111111 ]"
-b0z0000z0z00z0z00z00z00z01000000000000000000000000000000000000 e
-b0z0000z0z00z0z00z00z00z01000000000000000000000000000000000000 #"
-b0z0000z0z00z0z00z00z00z01000000000000000000000000000000000000 3"
-b0z0000z0z00z0z00z00z00z01000000000000000000000000000000000000 H"
-b0z0000z0z00z0z00z00z00z01000000000000000000000000000000000000 M"
-b0z0000z0z00z0z00z00z00z01000000000000000000000000000000000000 R"
-b0z0000z0z00z0z00z00z00z01000000000000000000000000000000000000 W"
-b0z0000z0z00z0z00z00z00z01000000000000000000000000000000000000 \"
-0H
-b10011 q
-b10011 w
-b10011 F"
-1#
-1$
-0*
-1,
-1-
-0/
-1r
-1:
-#8400
-0:
-#8600
-0[
-0^
-1V
-1L"
-1C"
-0J"
-1="
-1?"
-1c
-1d
-1Q"
-b10011 `
-0X
-0<"
-08"
-0O"
-1E"
-05"
-0^"
-1:"
-17"
-1V"
-b111z0111z1z11z1z11z11z11z11111111111111111111111111111111111111 S
-b111z0111z1z11z1z11z11z11z11111111111111111111111111111111111111 ""
-b111z0111z1z11z1z11z11z11z11111111111111111111111111111111111111 G"
-b111z0111z1z11z1z11z11z11z11111111111111111111111111111111111111 I"
-b111z0111z1z11z1z11z11z11z11111111111111111111111111111111111111 N"
-b111z0111z1z11z1z11z11z11z11111111111111111111111111111111111111 S"
-b111z0111z1z11z1z11z11z11z11111111111111111111111111111111111111 X"
-b111z0111z1z11z1z11z11z11z11111111111111111111111111111111111111 ]"
-b0z1000z0z00z0z00z00z00z00000000000000000000000000000000000000 e
-b0z1000z0z00z0z00z00z00z00000000000000000000000000000000000000 #"
-b0z1000z0z00z0z00z00z00z00000000000000000000000000000000000000 3"
-b0z1000z0z00z0z00z00z00z00000000000000000000000000000000000000 H"
-b0z1000z0z00z0z00z00z00z00000000000000000000000000000000000000 M"
-b0z1000z0z00z0z00z00z00z00000000000000000000000000000000000000 R"
-b0z1000z0z00z0z00z00z00z00000000000000000000000000000000000000 W"
-b0z1000z0z00z0z00z00z00z00000000000000000000000000000000000000 \"
-0#
-0$
-1*
-1+
-0,
-0-
-b10100 q
-b10100 w
-b10100 F"
-1:
-#8800
-0:
-#9000
-0c
-0d
-0V
-0C"
-1J"
-1<"
-18"
-1O"
-15"
-1^"
-1[
-1^
-1\
-1g
-1f
-1X
-b1111 `
-1W
-0L"
-0Q"
-0E"
-0="
-0?"
-0A"
-0/"
-02"
-0V"
-0["
-b111z1111z1z11z1z01z11z11z11111111111111111111111111111111111111 S
-b111z1111z1z11z1z01z11z11z11111111111111111111111111111111111111 ""
-b111z1111z1z11z1z01z11z11z11111111111111111111111111111111111111 G"
-b111z1111z1z11z1z01z11z11z11111111111111111111111111111111111111 I"
-b111z1111z1z11z1z01z11z11z11111111111111111111111111111111111111 N"
-b111z1111z1z11z1z01z11z11z11111111111111111111111111111111111111 S"
-b111z1111z1z11z1z01z11z11z11111111111111111111111111111111111111 X"
-b111z1111z1z11z1z01z11z11z11111111111111111111111111111111111111 ]"
-b0z0000z0z00z0z10z00z00z00000000000000000000000000000000000000 e
-b0z0000z0z00z0z10z00z00z00000000000000000000000000000000000000 #"
-b0z0000z0z00z0z10z00z00z00000000000000000000000000000000000000 3"
-b0z0000z0z00z0z10z00z00z00000000000000000000000000000000000000 H"
-b0z0000z0z00z0z10z00z00z00000000000000000000000000000000000000 M"
-b0z0000z0z00z0z10z00z00z00000000000000000000000000000000000000 R"
-b0z0000z0z00z0z10z00z00z00000000000000000000000000000000000000 W"
-b0z0000z0z00z0z10z00z00z00000000000000000000000000000000000000 \"
-b10101 q
-b10101 w
-b10101 F"
-0"
-0%
-1:
-#9200
-0:
-#9400
-0Y"
-0[
-1c
-1d
-1V
-1C"
-0-"
-0<"
-08"
-0O"
-0J"
-1Z
-1Y
-1b
-0T
-05"
-0^"
-1_
-1^
-1\
-1g
-1f
-0X
-b11011 `
-1W
-0>"
-0@"
-1L"
-1Q"
-00"
-1E"
-1="
-1?"
-1A"
-1/"
-12"
-1V"
-1["
-0%"
-1]
-b110z0110z1z11z1z11z11z11z11111111111111111111111111111111111111 S
-b110z0110z1z11z1z11z11z11z11111111111111111111111111111111111111 ""
-b110z0110z1z11z1z11z11z11z11111111111111111111111111111111111111 G"
-b110z0110z1z11z1z11z11z11z11111111111111111111111111111111111111 I"
-b110z0110z1z11z1z11z11z11z11111111111111111111111111111111111111 N"
-b110z0110z1z11z1z11z11z11z11111111111111111111111111111111111111 S"
-b110z0110z1z11z1z11z11z11z11111111111111111111111111111111111111 X"
-b110z0110z1z11z1z11z11z11z11111111111111111111111111111111111111 ]"
-b1z1001z0z00z0z00z00z00z00000000000000000000000000000000000000 e
-b1z1001z0z00z0z00z00z00z00000000000000000000000000000000000000 #"
-b1z1001z0z00z0z00z00z00z00000000000000000000000000000000000000 3"
-b1z1001z0z00z0z00z00z00z00000000000000000000000000000000000000 H"
-b1z1001z0z00z0z00z00z00z00000000000000000000000000000000000000 M"
-b1z1001z0z00z0z00z00z00z00000000000000000000000000000000000000 R"
-b1z1001z0z00z0z00z00z00z00000000000000000000000000000000000000 W"
-b1z1001z0z00z0z00z00z00z00000000000000000000000000000000000000 \"
-1"
-1#
-1%
-0*
-0+
-1,
-1-
-b10110 q
-b10110 w
-b10110 F"
-1:
-#9600
-0:
-#9800
-0W
-1Y"
-0Y
-1[
-0Z
-0g
-0c
-1O"
-0_
-0d
-b0 `
-0V
-0C"
-1J"
-1-"
-1<"
-18"
-0^
-0\
-0f
-0b
-1T
-15"
-1^"
-1>"
-1@"
-10"
-1%"
-0]
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 S
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ""
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 G"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 I"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 N"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 S"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 X"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ]"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 e
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 #"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 3"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 H"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 M"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 R"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 W"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 \"
-b10111 q
-b10111 w
-b10111 F"
-0"
-1$
-1)
-1*
-1+
-10
-1:
-#10000
-0:
-#10200
-1X
-1_
-b1100 `
-1W
-1c
-1d
-0<"
-0T"
-0Y"
-08"
-05"
-b0z0000z0z00z0z01z00z00z00000000000000000000000000000000000000 e
-b0z0000z0z00z0z01z00z00z00000000000000000000000000000000000000 #"
-b0z0000z0z00z0z01z00z00z00000000000000000000000000000000000000 3"
-b0z0000z0z00z0z01z00z00z00000000000000000000000000000000000000 H"
-b0z0000z0z00z0z01z00z00z00000000000000000000000000000000000000 M"
-b0z0000z0z00z0z01z00z00z00000000000000000000000000000000000000 R"
-b0z0000z0z00z0z01z00z00z00000000000000000000000000000000000000 W"
-b0z0000z0z00z0z01z00z00z00000000000000000000000000000000000000 \"
-b111z1111z1z11z1z10z11z11z11111111111111111111111111111111111111 S
-b111z1111z1z11z1z10z11z11z11111111111111111111111111111111111111 ""
-b111z1111z1z11z1z10z11z11z11111111111111111111111111111111111111 G"
-b111z1111z1z11z1z10z11z11z11111111111111111111111111111111111111 I"
-b111z1111z1z11z1z10z11z11z11111111111111111111111111111111111111 N"
-b111z1111z1z11z1z10z11z11z11111111111111111111111111111111111111 S"
-b111z1111z1z11z1z10z11z11z11111111111111111111111111111111111111 X"
-b111z1111z1z11z1z10z11z11z11111111111111111111111111111111111111 ]"
-1"
-0#
-0$
-0%
-0&
-0)
-0*
-0+
-0,
-0-
-00
-b11000 q
-b11000 w
-b11000 F"
-1:
-#10400
-0:
-#10600
-0X
-1Y
-0c
-0d
-1^
-1<"
-1T"
-1\
-1g
-1f
-1Z
-0Q"
-1Y"
-0="
-0?"
-1]
-b11011 `
-1V
-18"
-15"
-0A"
-0/"
-02"
-0L"
-0["
-0`"
-b111z1011z1z11z1z11z01z11z11111111111111111111111111111111111111 S
-b111z1011z1z11z1z11z01z11z11111111111111111111111111111111111111 ""
-b111z1011z1z11z1z11z01z11z11111111111111111111111111111111111111 G"
-b111z1011z1z11z1z11z01z11z11111111111111111111111111111111111111 I"
-b111z1011z1z11z1z11z01z11z11111111111111111111111111111111111111 N"
-b111z1011z1z11z1z11z01z11z11111111111111111111111111111111111111 S"
-b111z1011z1z11z1z11z01z11z11111111111111111111111111111111111111 X"
-b111z1011z1z11z1z11z01z11z11111111111111111111111111111111111111 ]"
-b0z0100z0z00z0z00z10z00z00000000000000000000000000000000000000 e
-b0z0100z0z00z0z00z10z00z00000000000000000000000000000000000000 #"
-b0z0100z0z00z0z00z10z00z00000000000000000000000000000000000000 3"
-b0z0100z0z00z0z00z10z00z00000000000000000000000000000000000000 H"
-b0z0100z0z00z0z00z10z00z00000000000000000000000000000000000000 M"
-b0z0100z0z00z0z00z10z00z00000000000000000000000000000000000000 R"
-b0z0100z0z00z0z00z10z00z00000000000000000000000000000000000000 W"
-b0z0100z0z00z0z00z10z00z00000000000000000000000000000000000000 \"
-b11001 q
-b11001 w
-b11001 F"
-1&
-1*
-1+
-1:
-#10800
-0:
-#11000
-0Y
-1X
-0[
-1Q"
-0W
-0<"
-1L"
-b101 `
-0V
-0J"
-0T"
-1_
-1A"
-1["
-1C"
-0@"
-1g
-0f
-1`"
-1="
-1?"
-0]
-0-"
-0T
-1/"
-12"
-0>"
-b111z1101z1z11z1z11z11z11z11111111111111111111111111111111111111 S
-b111z1101z1z11z1z11z11z11z11111111111111111111111111111111111111 ""
-b111z1101z1z11z1z11z11z11z11111111111111111111111111111111111111 G"
-b111z1101z1z11z1z11z11z11z11111111111111111111111111111111111111 I"
-b111z1101z1z11z1z11z11z11z11111111111111111111111111111111111111 N"
-b111z1101z1z11z1z11z11z11z11111111111111111111111111111111111111 S"
-b111z1101z1z11z1z11z11z11z11111111111111111111111111111111111111 X"
-b111z1101z1z11z1z11z11z11z11111111111111111111111111111111111111 ]"
-b0z0010z0z00z0z00z00z00z00000000000000000000000000000000000000 e
-b0z0010z0z00z0z00z00z00z00000000000000000000000000000000000000 #"
-b0z0010z0z00z0z00z00z00z00000000000000000000000000000000000000 3"
-b0z0010z0z00z0z00z00z00z00000000000000000000000000000000000000 H"
-b0z0010z0z00z0z00z00z00z00000000000000000000000000000000000000 M"
-b0z0010z0z00z0z00z00z00z00000000000000000000000000000000000000 R"
-b0z0010z0z00z0z00z00z00z00000000000000000000000000000000000000 W"
-b0z0010z0z00z0z00z00z00z00000000000000000000000000000000000000 \"
-1#
-1$
-1%
-0*
-0+
-1,
-1-
-b11010 q
-b11010 w
-b11010 F"
-1:
-#11200
-0:
-#11400
-1Y
-0X
-1[
-0Q"
-1W
-1<"
-0L"
-b11011 `
-1V
-1J"
-1T"
-0A"
-0["
-0C"
-1@"
-1f
-0`"
-0="
-0?"
-1]
-1^
-1-"
-1T
-0/"
-02"
-1>"
-b111z1111z1z11z1z11z01z11z11111111111111111111111111111111111111 S
-b111z1111z1z11z1z11z01z11z11111111111111111111111111111111111111 ""
-b111z1111z1z11z1z11z01z11z11111111111111111111111111111111111111 G"
-b111z1111z1z11z1z11z01z11z11111111111111111111111111111111111111 I"
-b111z1111z1z11z1z11z01z11z11111111111111111111111111111111111111 N"
-b111z1111z1z11z1z11z01z11z11111111111111111111111111111111111111 S"
-b111z1111z1z11z1z11z01z11z11111111111111111111111111111111111111 X"
-b111z1111z1z11z1z11z01z11z11111111111111111111111111111111111111 ]"
-b0z0000z0z00z0z00z10z00z00000000000000000000000000000000000000 e
-b0z0000z0z00z0z00z10z00z00000000000000000000000000000000000000 #"
-b0z0000z0z00z0z00z10z00z00000000000000000000000000000000000000 3"
-b0z0000z0z00z0z00z10z00z00000000000000000000000000000000000000 H"
-b0z0000z0z00z0z00z10z00z00000000000000000000000000000000000000 M"
-b0z0000z0z00z0z00z10z00z00000000000000000000000000000000000000 R"
-b0z0000z0z00z0z00z10z00z00000000000000000000000000000000000000 W"
-b0z0000z0z00z0z00z10z00z00000000000000000000000000000000000000 \"
-b11011 q
-b11011 w
-b11011 F"
-0"
-0$
-0,
-10
-1:
-#11600
-0:
-#11800
-1X
-1Y
-0J"
-0O"
-0^"
-1Z
-0T"
-0\
-1Q"
-0W
-1L"
-b10111 `
-1V
-0_
-0^
-1A"
-1["
-0g
-0f
-1`"
-1="
-1?"
-0]
-1/"
-12"
 0Q
-b111z1111z1z11z1z11z11z11z11111111110111111111111111111111111111 S
-b111z1111z1z11z1z11z11z11z11111111110111111111111111111111111111 ""
-b111z1111z1z11z1z11z11z11z11111111110111111111111111111111111111 G"
-b111z1111z1z11z1z11z11z11z11111111110111111111111111111111111111 I"
-b111z1111z1z11z1z11z11z11z11111111110111111111111111111111111111 N"
-b111z1111z1z11z1z11z11z11z11111111110111111111111111111111111111 S"
-b111z1111z1z11z1z11z11z11z11111111110111111111111111111111111111 X"
-b111z1111z1z11z1z11z11z11z11111111110111111111111111111111111111 ]"
-b0z0000z0z00z0z00z00z00z00000000001000000000000000000000000000 e
-b0z0000z0z00z0z00z00z00z00000000001000000000000000000000000000 #"
-b0z0000z0z00z0z00z00z00z00000000001000000000000000000000000000 3"
-b0z0000z0z00z0z00z00z00z00000000001000000000000000000000000000 H"
-b0z0000z0z00z0z00z00z00z00000000001000000000000000000000000000 M"
-b0z0000z0z00z0z00z00z00z00000000001000000000000000000000000000 R"
-b0z0000z0z00z0z00z00z00z00000000001000000000000000000000000000 W"
-b0z0000z0z00z0z00z00z00z00000000001000000000000000000000000000 \"
-1"
-1$
-1,
+#500
 00
-b11100 q
-b11100 w
-b11100 F"
-1:
-#12000
-0:
-#12200
-1_
-1^
-1\
-1g
-1f
-b11111 `
-1W
-0Q"
-1]
-0E"
-0="
-0?"
-0V"
-0A"
-0/"
-02"
-0L"
-0["
-0`"
-b111z1011z1z11z1z01z11z11z11111111110111111111111111111111111111 S
-b111z1011z1z11z1z01z11z11z11111111110111111111111111111111111111 ""
-b111z1011z1z11z1z01z11z11z11111111110111111111111111111111111111 G"
-b111z1011z1z11z1z01z11z11z11111111110111111111111111111111111111 I"
-b111z1011z1z11z1z01z11z11z11111111110111111111111111111111111111 N"
-b111z1011z1z11z1z01z11z11z11111111110111111111111111111111111111 S"
-b111z1011z1z11z1z01z11z11z11111111110111111111111111111111111111 X"
-b111z1011z1z11z1z01z11z11z11111111110111111111111111111111111111 ]"
-b0z0100z0z00z0z10z00z00z00000000001000000000000000000000000000 e
-b0z0100z0z00z0z10z00z00z00000000001000000000000000000000000000 #"
-b0z0100z0z00z0z10z00z00z00000000001000000000000000000000000000 3"
-b0z0100z0z00z0z10z00z00z00000000001000000000000000000000000000 H"
-b0z0100z0z00z0z10z00z00z00000000001000000000000000000000000000 M"
-b0z0100z0z00z0z10z00z00z00000000001000000000000000000000000000 R"
-b0z0100z0z00z0z10z00z00z00000000001000000000000000000000000000 W"
-b0z0100z0z00z0z10z00z00z00000000001000000000000000000000000000 \"
-b11101 q
-b11101 w
-b11101 F"
-1!
-0#
-0$
-0%
-0&
-0,
-0-
-1:
-#12400
-0:
-#12600
-0V
-0Y"
-1^"
-0[
-0<"
-1C"
-0@"
-1_
-1b
-0-"
-1\
-1g
-0f
-b1111 `
-1W
-0T
-1L"
-1Q"
-0]
+0R
+#550
+02
+0S
+#600
+1M
+#610
+0'
+0P
+1O
+0N
+#650
+11
 1Q
-1E"
-1="
-1?"
-1V"
-0>"
-1A"
-1/"
-12"
-1["
-0%"
-1`"
-0j
-b111z1100z1z11z1z11z11z11z11011111111111111111111111111111111111 S
-b111z1100z1z11z1z11z11z11z11011111111111111111111111111111111111 ""
-b111z1100z1z11z1z11z11z11z11011111111111111111111111111111111111 G"
-b111z1100z1z11z1z11z11z11z11011111111111111111111111111111111111 I"
-b111z1100z1z11z1z11z11z11z11011111111111111111111111111111111111 N"
-b111z1100z1z11z1z11z11z11z11011111111111111111111111111111111111 S"
-b111z1100z1z11z1z11z11z11z11011111111111111111111111111111111111 X"
-b111z1100z1z11z1z11z11z11z11011111111111111111111111111111111111 ]"
-b0z0011z0z00z0z00z00z00z00100000000000000000000000000000000000 e
-b0z0011z0z00z0z00z00z00z00100000000000000000000000000000000000 #"
-b0z0011z0z00z0z00z00z00z00100000000000000000000000000000000000 3"
-b0z0011z0z00z0z00z00z00z00100000000000000000000000000000000000 H"
-b0z0011z0z00z0z00z00z00z00100000000000000000000000000000000000 M"
-b0z0011z0z00z0z00z00z00z00100000000000000000000000000000000000 R"
-b0z0011z0z00z0z00z00z00z00100000000000000000000000000000000000 W"
-b0z0011z0z00z0z00z00z00z00100000000000000000000000000000000000 \"
-1#
-1$
-1%
-1&
-1,
-1-
-b11110 q
-b11110 w
-b11110 F"
-1:
-#12800
-0:
-#13000
-0L
-17
-0W
-1Y"
-0_
-b110 `
-0Z
-1[
-1<"
-0g
-1J"
-0C"
+#700
+10
+1R
+#750
+12
+1S
+#800
+0M
+#850
 0b
-0^
-1-"
-1>"
-1%"
-1j
-b111z1111z1z11z1z11z11z11z11011111111111111111111111111111111111 S
-b111z1111z1z11z1z11z11z11z11011111111111111111111111111111111111 ""
-b111z1111z1z11z1z11z11z11z11011111111111111111111111111111111111 G"
-b111z1111z1z11z1z11z11z11z11011111111111111111111111111111111111 I"
-b111z1111z1z11z1z11z11z11z11011111111111111111111111111111111111 N"
-b111z1111z1z11z1z11z11z11z11011111111111111111111111111111111111 S"
-b111z1111z1z11z1z11z11z11z11011111111111111111111111111111111111 X"
-b111z1111z1z11z1z11z11z11z11011111111111111111111111111111111111 ]"
-b0z0000z0z00z0z00z00z00z00100000000000000000000000000000000000 e
-b0z0000z0z00z0z00z00z00z00100000000000000000000000000000000000 #"
-b0z0000z0z00z0z00z00z00z00100000000000000000000000000000000000 3"
-b0z0000z0z00z0z00z00z00z00100000000000000000000000000000000000 H"
-b0z0000z0z00z0z00z00z00z00100000000000000000000000000000000000 M"
-b0z0000z0z00z0z00z00z00z00100000000000000000000000000000000000 R"
-b0z0000z0z00z0z00z00z00z00100000000000000000000000000000000000 W"
-b0z0000z0z00z0z00z00z00z00100000000000000000000000000000000000 \"
-b11111 q
-b11111 w
-b11111 F"
+0a
+1d"
+1i"
+0e
+0d
+b0 k
+0c
+1W"
+0i
+1\"
+0j
+0r
+1U"
+1P"
+1Z"
+1f
+1_"
+1H"
+1J"
+0n
+1a"
+1G"
+0g
+0o
+18"
+1`
+1E"
+0t
+1L"
+1f"
+0m
+1_
+0N"
+1K"
+1C"
+1B"
+1k"
+0q
+1@"
+15"
+0h
+1I"
+1]
+1:"
+1="
+10"
+1;"
+1\
+0u
+13"
+02"
+1$"
+b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ^
+b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 -"
+b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 R"
+b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 T"
+b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 Y"
+b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ^"
+b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 c"
+b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 h"
+b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 p
+b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 ."
+b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 >"
+b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 S"
+b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 X"
+b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 ]"
+b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 b"
+b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 g"
+0M"
+0T
+0'"
+1&"
 0!
 0"
+0#
 0$
-1)
+0)
+0*
+0+
 0,
-10
-02
-1:
-#13200
-0:
-#13400
-1L
-07
-0Y
-b0 `
-0X
-0\
-1O"
-1T"
-1@"
-1T
-0j
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 S
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ""
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 G"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 I"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 N"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 S"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 X"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ]"
-0z
-1H
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 e
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 #"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 3"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 H"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 M"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 R"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 W"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 \"
-0r
-1"
-0%
-0&
-0)
 0-
-12
-b0 q
-b0 w
-b0 F"
-1:
-#13600
-0:
-#13800
-0L
-17
-b1 `
-1Z
-0L"
-1_
-1^
-0="
-0?"
-1c
-1d
-0:"
-07"
-1j
-b0z0000z0z00z0z00z00z01z00000000000001000000000000000000000000 e
-b0z0000z0z00z0z00z00z01z00000000000001000000000000000000000000 #"
-b0z0000z0z00z0z00z00z01z00000000000001000000000000000000000000 3"
-b0z0000z0z00z0z00z00z01z00000000000001000000000000000000000000 H"
-b0z0000z0z00z0z00z00z01z00000000000001000000000000000000000000 M"
-b0z0000z0z00z0z00z00z01z00000000000001000000000000000000000000 R"
-b0z0000z0z00z0z00z00z01z00000000000001000000000000000000000000 W"
-b0z0000z0z00z0z00z00z01z00000000000001000000000000000000000000 \"
-1z
-b111z1111z1z11z1z11z11z10z11111111111110111111111111111111111111 S
-b111z1111z1z11z1z11z11z10z11111111111110111111111111111111111111 ""
-b111z1111z1z11z1z11z11z10z11111111111110111111111111111111111111 G"
-b111z1111z1z11z1z11z11z10z11111111111110111111111111111111111111 I"
-b111z1111z1z11z1z11z11z10z11111111111110111111111111111111111111 N"
-b111z1111z1z11z1z11z11z10z11111111111110111111111111111111111111 S"
-b111z1111z1z11z1z11z11z10z11111111111110111111111111111111111111 X"
-b111z1111z1z11z1z11z11z10z11111111111110111111111111111111111111 ]"
-0H
-b1 q
-b1 w
-b1 F"
-0#
-00
-02
-1r
-1:
-#14000
-0:
-#14200
-1L
-07
-0Z
-1L"
-0_
-0^
-b10 `
-1Y
-1="
-1?"
-0c
-0d
-1:"
-0O"
-0U
-17"
-0j
-b0z0000z0z00z0z00z00z00z00000000000000000000010000000000000000 e
-b0z0000z0z00z0z00z00z00z00000000000000000000010000000000000000 #"
-b0z0000z0z00z0z00z00z00z00000000000000000000010000000000000000 3"
-b0z0000z0z00z0z00z00z00z00000000000000000000010000000000000000 H"
-b0z0000z0z00z0z00z00z00z00000000000000000000010000000000000000 M"
-b0z0000z0z00z0z00z00z00z00000000000000000000010000000000000000 R"
-b0z0000z0z00z0z00z00z00z00000000000000000000010000000000000000 W"
-b0z0000z0z00z0z00z00z00z00000000000000000000010000000000000000 \"
-0z
-1'"
-1H
-b111z1111z1z11z1z11z11z11z11111111111111111111101111111111111111 S
-b111z1111z1z11z1z11z11z11z11111111111111111111101111111111111111 ""
-b111z1111z1z11z1z11z11z11z11111111111111111111101111111111111111 G"
-b111z1111z1z11z1z11z11z11z11111111111111111111101111111111111111 I"
-b111z1111z1z11z1z11z11z11z11111111111111111111101111111111111111 N"
-b111z1111z1z11z1z11z11z11z11111111111111111111101111111111111111 S"
-b111z1111z1z11z1z11z11z11z11111111111111111111101111111111111111 X"
-b111z1111z1z11z1z11z11z11z11111111111111111111101111111111111111 ]"
-1B"
-0r
-1%
-1&
-1*
-1+
-12
-b10 q
-b10 w
-b10 F"
-1:
-#14400
-0:
-#14600
-0L
-17
-b11 `
-1Z
-0L"
-1_
-1^
-0E"
-0="
-0?"
-1c
-0Q"
-1O"
-1U
-0:"
-1i
-0*"
-1j
-b0z0000z0z00z0z00z01z00z00000000100000000000000000000000000000 e
-b0z0000z0z00z0z00z01z00z00000000100000000000000000000000000000 #"
-b0z0000z0z00z0z00z01z00z00000000100000000000000000000000000000 3"
-b0z0000z0z00z0z00z01z00z00000000100000000000000000000000000000 H"
-b0z0000z0z00z0z00z01z00z00000000100000000000000000000000000000 M"
-b0z0000z0z00z0z00z01z00z00000000100000000000000000000000000000 R"
-b0z0000z0z00z0z00z01z00z00000000100000000000000000000000000000 W"
-b0z0000z0z00z0z00z01z00z00000000100000000000000000000000000000 \"
-0'"
-1z
-b111z1111z1z11z1z11z10z11z11111111011111111111111111111111111111 S
-b111z1111z1z11z1z11z10z11z11111111011111111111111111111111111111 ""
-b111z1111z1z11z1z11z10z11z11111111011111111111111111111111111111 G"
-b111z1111z1z11z1z11z10z11z11111111011111111111111111111111111111 I"
-b111z1111z1z11z1z11z10z11z11111111011111111111111111111111111111 N"
-b111z1111z1z11z1z11z10z11z11111111011111111111111111111111111111 S"
-b111z1111z1z11z1z11z10z11z11111111011111111111111111111111111111 X"
-b111z1111z1z11z1z11z10z11z11111111011111111111111111111111111111 ]"
-0B"
-0H
-b11 q
-b11 w
-b11 F"
+0.
+03
+04
+05
 0%
 0&
-0*
-0+
-11
-02
-1r
-1:
-#14800
-0:
-#15000
-1L
-07
-0[
-1L"
-0^
-0Y
-1E"
-1="
-1?"
-1Q"
-b10001 `
-1V
-1:"
-0<"
-1*"
-08"
-0J"
-0^"
-1C"
-0("
-b0z0000z1z00z0z00z00z00z00000000000000000000000000000000000000 e
-b0z0000z1z00z0z00z00z00z00000000000000000000000000000000000000 #"
-b0z0000z1z00z0z00z00z00z00000000000000000000000000000000000000 3"
-b0z0000z1z00z0z00z00z00z00000000000000000000000000000000000000 H"
-b0z0000z1z00z0z00z00z00z00000000000000000000000000000000000000 M"
-b0z0000z1z00z0z00z00z00z00000000000000000000000000000000000000 R"
-b0z0000z1z00z0z00z00z00z00000000000000000000000000000000000000 W"
-b0z0000z1z00z0z00z00z00z00000000000000000000000000000000000000 \"
-0z
-1H
-b111z1111z0z11z1z11z11z11z11111111111111111111111111111111111111 S
-b111z1111z0z11z1z11z11z11z11111111111111111111111111111111111111 ""
-b111z1111z0z11z1z11z11z11z11111111111111111111111111111111111111 G"
-b111z1111z0z11z1z11z11z11z11111111111111111111111111111111111111 I"
-b111z1111z0z11z1z11z11z11z11111111111111111111111111111111111111 N"
-b111z1111z0z11z1z11z11z11z11111111111111111111111111111111111111 S"
-b111z1111z0z11z1z11z11z11z11111111111111111111111111111111111111 X"
-b111z1111z0z11z1z11z11z11z11111111111111111111111111111111111111 ]"
-0r
-1%
-1&
-1*
-1/
+06
+b0 |
+b0 ~
+b0 Q"
+1}
+0{
+1y
+0x
+0w
 01
-12
-b100 q
-b100 w
-b100 F"
-1:
-#15200
-0:
-#15400
-0c
-0V
-1g
-b101 `
-1X
-18"
-1^"
-1^
-1\
-0i
-0>"
-0@"
-0-"
-0T"
-0T
-1("
-1z
-b0z0000z0z01z0z00z00z00z00000000000000000000000000000000000000 e
-b0z0000z0z01z0z00z00z00z00000000000000000000000000000000000000 #"
-b0z0000z0z01z0z00z00z00z00000000000000000000000000000000000000 3"
-b0z0000z0z01z0z00z00z00z00000000000000000000000000000000000000 H"
-b0z0000z0z01z0z00z00z00z00000000000000000000000000000000000000 M"
-b0z0000z0z01z0z00z00z00z00000000000000000000000000000000000000 R"
-b0z0000z0z01z0z00z00z00z00000000000000000000000000000000000000 W"
-b0z0000z0z01z0z00z00z00z00000000000000000000000000000000000000 \"
-b111z1111z1z10z1z11z11z11z11111111111111111111111111111111111111 S
-b111z1111z1z10z1z11z11z11z11111111111111111111111111111111111111 ""
-b111z1111z1z10z1z11z11z11z11111111111111111111111111111111111111 G"
-b111z1111z1z10z1z11z11z11z11111111111111111111111111111111111111 I"
-b111z1111z1z10z1z11z11z11z11111111111111111111111111111111111111 N"
-b111z1111z1z10z1z11z11z11z11111111111111111111111111111111111111 S"
-b111z1111z1z10z1z11z11z11z11111111111111111111111111111111111111 X"
-b111z1111z1z10z1z11z11z11z11111111111111111111111111111111111111 ]"
-0H
-b101 q
-b101 w
-b101 F"
-0"
-0%
-1r
-1:
-#15600
-0:
-#15800
-1W
-0Y"
-1Y
-0O"
-1b
-1[
-1Z
-0g
-b1011 `
-0X
-0_
-0^
-0\
-0%"
-0C"
-0J"
-1<"
-1>"
-1@"
-1-"
-1T"
-0T
-b111z1110z1z11z1z11z11z11z11111111111111111111111111111111111111 S
-b111z1110z1z11z1z11z11z11z11111111111111111111111111111111111111 ""
-b111z1110z1z11z1z11z11z11z11111111111111111111111111111111111111 G"
-b111z1110z1z11z1z11z11z11z11111111111111111111111111111111111111 I"
-b111z1110z1z11z1z11z11z11z11111111111111111111111111111111111111 N"
-b111z1110z1z11z1z11z11z11z11111111111111111111111111111111111111 S"
-b111z1110z1z11z1z11z11z11z11111111111111111111111111111111111111 X"
-b111z1110z1z11z1z11z11z11z11111111111111111111111111111111111111 ]"
-b0z0001z0z00z0z00z00z00z00000000000000000000000000000000000000 e
-b0z0001z0z00z0z00z00z00z00000000000000000000000000000000000000 #"
-b0z0001z0z00z0z00z00z00z00000000000000000000000000000000000000 3"
-b0z0001z0z00z0z00z00z00z00000000000000000000000000000000000000 H"
-b0z0001z0z00z0z00z00z00z00000000000000000000000000000000000000 M"
-b0z0001z0z00z0z00z00z00z00000000000000000000000000000000000000 R"
-b0z0001z0z00z0z00z00z00z00000000000000000000000000000000000000 W"
-b0z0001z0z00z0z00z00z00z00000000000000000000000000000000000000 \"
-1#
-1%
-0*
-1-
-0/
-10
-b110 q
-b110 w
-b110 F"
-1:
-#16000
-0:
-#16200
-0W
-1Y"
-1Z
-0L"
-0Q"
-b111 `
-1X
-0E"
-1_
-1^
-1O"
-0V"
-1J"
-0="
-0?"
-1c
-1d
-0b
-1T
-0:"
-07"
-1%"
-b0z0000z0z00z0z00z00z00z00001000000000000000000000000000000000 e
-b0z0000z0z00z0z00z00z00z00001000000000000000000000000000000000 #"
-b0z0000z0z00z0z00z00z00z00001000000000000000000000000000000000 3"
-b0z0000z0z00z0z00z00z00z00001000000000000000000000000000000000 H"
-b0z0000z0z00z0z00z00z00z00001000000000000000000000000000000000 M"
-b0z0000z0z00z0z00z00z00z00001000000000000000000000000000000000 R"
-b0z0000z0z00z0z00z00z00z00001000000000000000000000000000000000 W"
-b0z0000z0z00z0z00z00z00z00001000000000000000000000000000000000 \"
-b111z1111z1z11z1z11z11z11z11110111111111111111111111111111111111 S
-b111z1111z1z11z1z11z11z11z11110111111111111111111111111111111111 ""
-b111z1111z1z11z1z11z11z11z11110111111111111111111111111111111111 G"
-b111z1111z1z11z1z11z11z11z11110111111111111111111111111111111111 I"
-b111z1111z1z11z1z11z11z11z11110111111111111111111111111111111111 N"
-b111z1111z1z11z1z11z11z11z11110111111111111111111111111111111111 S"
-b111z1111z1z11z1z11z11z11z11110111111111111111111111111111111111 X"
-b111z1111z1z11z1z11z11z11z11110111111111111111111111111111111111 ]"
-b111 q
-b111 w
-b111 F"
-1"
-0#
-0%
-0&
-1)
-0-
-1:
-#16400
-0:
-#16600
-1W
-0Z
-0Y
-1L"
-1Q"
-b1000 `
-0X
-0Y"
-1E"
-0_
-0^
-1V"
-1="
-1?"
-0c
-0d
-1:"
-17"
-0U
-0j
-b0z0000z0z00z0z00z00z00z00000000000000000011000000000000000000 e
-b0z0000z0z00z0z00z00z00z00000000000000000011000000000000000000 #"
-b0z0000z0z00z0z00z00z00z00000000000000000011000000000000000000 3"
-b0z0000z0z00z0z00z00z00z00000000000000000011000000000000000000 H"
-b0z0000z0z00z0z00z00z00z00000000000000000011000000000000000000 M"
-b0z0000z0z00z0z00z00z00z00000000000000000011000000000000000000 R"
-b0z0000z0z00z0z00z00z00z00000000000000000011000000000000000000 W"
-b0z0000z0z00z0z00z00z00z00000000000000000011000000000000000000 \"
-1'"
-b111z1111z1z11z1z11z11z11z11111111111111111100111111111111111111 S
-b111z1111z1z11z1z11z11z11z11111111111111111100111111111111111111 ""
-b111z1111z1z11z1z11z11z11z11111111111111111100111111111111111111 G"
-b111z1111z1z11z1z11z11z11z11111111111111111100111111111111111111 I"
-b111z1111z1z11z1z11z11z11z11111111111111111100111111111111111111 N"
-b111z1111z1z11z1z11z11z11z11111111111111111100111111111111111111 S"
-b111z1111z1z11z1z11z11z11z11111111111111111100111111111111111111 X"
-b111z1111z1z11z1z11z11z11z11111111111111111100111111111111111111 ]"
-1B"
-1%
-1&
-0)
-1*
-1+
+0Q
+#900
 00
-b1000 q
-b1000 w
-b1000 F"
-1:
-#16800
-0:
-#17000
-0L
-17
-0W
-0[
-1V
-1Y"
-1_
-1X
-1g
-1C"
-0<"
-b10101 `
-1Z
-0^"
-1^
-0T"
-0-"
-1f
-0>"
-0J"
-1U
-1\
-00"
-0@"
-1j
-b11z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 S
-b11z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ""
-b11z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 G"
-b11z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 I"
-b11z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 N"
-b11z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 S"
-b11z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 X"
-b11z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ]"
-0'"
-b100z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 e
-b100z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 #"
-b100z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 3"
-b100z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 H"
-b100z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 M"
-b100z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 R"
-b100z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 W"
-b100z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 \"
-0B"
-b1001 q
-b1001 w
-b1001 F"
-0%
-0&
-0*
-0+
-11
-02
-1:
-#17200
-0:
-#17400
-1L
-07
-1W
-0Y"
-0X
-1g
-1Y
-b11010 `
-0Z
-1T"
-0-"
-0f
-0O"
-1J"
-1\
-10"
-0T
-0@"
-b101z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 S
-b101z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ""
-b101z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 G"
-b101z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 I"
-b101z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 N"
-b101z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 S"
-b101z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 X"
-b101z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ]"
-0z
-1H
-b10z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 e
-b10z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 #"
-b10z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 3"
-b10z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 H"
-b10z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 M"
-b10z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 R"
-b10z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 W"
-b10z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 \"
-0r
-0"
-1#
-1%
-1&
-1,
-1-
-01
-12
-b1010 q
-b1010 w
-b1010 F"
-1:
-#17600
-0:
-#17800
-1[
-1Z
-0C"
-b11001 `
-0Y
-0J"
-1]
-1\
-1O"
-1f
 0R
-0@"
-1T
-00"
-b111z1111z1z11z0z11z11z11z11111111111111111111111111111111111111 S
-b111z1111z1z11z0z11z11z11z11111111111111111111111111111111111111 ""
-b111z1111z1z11z0z11z11z11z11111111111111111111111111111111111111 G"
-b111z1111z1z11z0z11z11z11z11111111111111111111111111111111111111 I"
-b111z1111z1z11z0z11z11z11z11111111111111111111111111111111111111 N"
-b111z1111z1z11z0z11z11z11z11111111111111111111111111111111111111 S"
-b111z1111z1z11z0z11z11z11z11111111111111111111111111111111111111 X"
-b111z1111z1z11z0z11z11z11z11111111111111111111111111111111111111 ]"
-1z
-b0z0000z0z00z1z00z00z00z00000000000000000000000000000000000000 e
-b0z0000z0z00z1z00z00z00z00000000000000000000000000000000000000 #"
-b0z0000z0z00z1z00z00z00z00000000000000000000000000000000000000 3"
-b0z0000z0z00z1z00z00z00z00000000000000000000000000000000000000 H"
-b0z0000z0z00z1z00z00z00z00000000000000000000000000000000000000 M"
-b0z0000z0z00z1z00z00z00z00000000000000000000000000000000000000 R"
-b0z0000z0z00z1z00z00z00z00000000000000000000000000000000000000 W"
-b0z0000z0z00z1z00z00z00z00000000000000000000000000000000000000 \"
-0H
-b1011 q
-b1011 w
-b1011 F"
-0,
-10
-1r
-1:
-#18000
-0:
-#18200
-0W
-b1 `
-0V
-1Y"
-1<"
-0\
-1J"
-1^"
-0="
-0?"
-1c
-0L"
-0g
-0]
-1d
-1^
-1@"
-0f
-0:"
-1R
-07"
-1>"
-1-"
-10"
-b111z1111z1z11z1z11z11z11z01111111111111111111111111111111111111 S
-b111z1111z1z11z1z11z11z11z01111111111111111111111111111111111111 ""
-b111z1111z1z11z1z11z11z11z01111111111111111111111111111111111111 G"
-b111z1111z1z11z1z11z11z11z01111111111111111111111111111111111111 I"
-b111z1111z1z11z1z11z11z11z01111111111111111111111111111111111111 N"
-b111z1111z1z11z1z11z11z11z01111111111111111111111111111111111111 S"
-b111z1111z1z11z1z11z11z11z01111111111111111111111111111111111111 X"
-b111z1111z1z11z1z11z11z11z01111111111111111111111111111111111111 ]"
-b0z0000z0z00z0z00z00z00z10000000000000000000000000000000000000 e
-b0z0000z0z00z0z00z00z00z10000000000000000000000000000000000000 #"
-b0z0000z0z00z0z00z00z00z10000000000000000000000000000000000000 3"
-b0z0000z0z00z0z00z00z00z10000000000000000000000000000000000000 H"
-b0z0000z0z00z0z00z00z00z10000000000000000000000000000000000000 M"
-b0z0000z0z00z0z00z00z00z10000000000000000000000000000000000000 R"
-b0z0000z0z00z0z00z00z00z10000000000000000000000000000000000000 W"
-b0z0000z0z00z0z00z00z00z10000000000000000000000000000000000000 \"
-1"
-1$
-1(
-1,
-00
-b1100 q
-b1100 w
-b1100 F"
-1:
-#18400
-0:
-#18600
-1V
-0^"
-1f
-0[
-1g
-b10101 `
-1X
-1\
-00"
-1C"
-0J"
-0<"
-0>"
-0@"
-0-"
-0T"
-0T
-b11z1111z1z10z1z11z11z11z01111111111111111111111111111111111111 S
-b11z1111z1z10z1z11z11z11z01111111111111111111111111111111111111 ""
-b11z1111z1z10z1z11z11z11z01111111111111111111111111111111111111 G"
-b11z1111z1z10z1z11z11z11z01111111111111111111111111111111111111 I"
-b11z1111z1z10z1z11z11z11z01111111111111111111111111111111111111 N"
-b11z1111z1z10z1z11z11z11z01111111111111111111111111111111111111 S"
-b11z1111z1z10z1z11z11z11z01111111111111111111111111111111111111 X"
-b11z1111z1z10z1z11z11z11z01111111111111111111111111111111111111 ]"
-b100z0000z0z01z0z00z00z00z10000000000000000000000000000000000000 e
-b100z0000z0z01z0z00z00z00z10000000000000000000000000000000000000 #"
-b100z0000z0z01z0z00z00z00z10000000000000000000000000000000000000 3"
-b100z0000z0z01z0z00z00z00z10000000000000000000000000000000000000 H"
-b100z0000z0z01z0z00z00z00z10000000000000000000000000000000000000 M"
-b100z0000z0z01z0z00z00z00z10000000000000000000000000000000000000 R"
-b100z0000z0z01z0z00z00z00z10000000000000000000000000000000000000 W"
-b100z0000z0z01z0z00z00z00z10000000000000000000000000000000000000 \"
-b1101 q
-b1101 w
-b1101 F"
-0#
-0$
-0(
-1*
-1+
-0,
-0-
-1:
-#18800
-0:
-#19000
-0Y"
-1[
-1W
-b11111 `
-1Y
-0Q"
-1T"
-0E"
-0A"
-0V"
-0["
-1b
-0-"
-0c
-0O"
-0J"
-0d
-1:"
-1\
-0/"
-02"
-0%"
-10"
-17"
-0@"
-b101z1110z1z01z1z11z11z11z11111111111111111111111111111111111111 S
-b101z1110z1z01z1z11z11z11z11111111111111111111111111111111111111 ""
-b101z1110z1z01z1z11z11z11z11111111111111111111111111111111111111 G"
-b101z1110z1z01z1z11z11z11z11111111111111111111111111111111111111 I"
-b101z1110z1z01z1z11z11z11z11111111111111111111111111111111111111 N"
-b101z1110z1z01z1z11z11z11z11111111111111111111111111111111111111 S"
-b101z1110z1z01z1z11z11z11z11111111111111111111111111111111111111 X"
-b101z1110z1z01z1z11z11z11z11111111111111111111111111111111111111 ]"
-b10z0001z0z10z0z00z00z00z00000000000000000000000000000000000000 e
-b10z0001z0z10z0z00z00z00z00000000000000000000000000000000000000 #"
-b10z0001z0z10z0z00z00z00z00000000000000000000000000000000000000 3"
-b10z0001z0z10z0z00z00z00z00000000000000000000000000000000000000 H"
-b10z0001z0z10z0z00z00z00z00000000000000000000000000000000000000 M"
-b10z0001z0z10z0z00z00z00z00000000000000000000000000000000000000 R"
-b10z0001z0z10z0z00z00z00z00000000000000000000000000000000000000 W"
-b10z0001z0z10z0z00z00z00z00000000000000000000000000000000000000 \"
-0"
-1#
-1,
-1-
-10
-b1110 q
-b1110 w
-b1110 F"
-1:
-#19200
-0:
-#19400
-1Y"
-b1111 `
-0V
-1O"
-1J"
-0C"
-1<"
-1^"
-1-"
-0b
-1T
-1>"
-1%"
-1@"
-b111z1111z1z01z1z11z11z11z11111111111111111111111111111111111111 S
-b111z1111z1z01z1z11z11z11z11111111111111111111111111111111111111 ""
-b111z1111z1z01z1z11z11z11z11111111111111111111111111111111111111 G"
-b111z1111z1z01z1z11z11z11z11111111111111111111111111111111111111 I"
-b111z1111z1z01z1z11z11z11z11111111111111111111111111111111111111 N"
-b111z1111z1z01z1z11z11z11z11111111111111111111111111111111111111 S"
-b111z1111z1z01z1z11z11z11z11111111111111111111111111111111111111 X"
-b111z1111z1z01z1z11z11z11z11111111111111111111111111111111111111 ]"
-b0z0000z0z10z0z00z00z00z00000000000000000000000000000000000000 e
-b0z0000z0z10z0z00z00z00z00000000000000000000000000000000000000 #"
-b0z0000z0z10z0z00z00z00z00000000000000000000000000000000000000 3"
-b0z0000z0z10z0z00z00z00z00000000000000000000000000000000000000 H"
-b0z0000z0z10z0z00z00z00z00000000000000000000000000000000000000 M"
-b0z0000z0z10z0z00z00z00z00000000000000000000000000000000000000 R"
-b0z0000z0z10z0z00z00z00z00000000000000000000000000000000000000 W"
-b0z0000z0z10z0z00z00z00z00000000000000000000000000000000000000 \"
-b1111 q
-b1111 w
-b1111 F"
-1"
-1)
-0*
-0+
-1:
-#19600
-0:
-#19800
-0Y
-0\
-0Z
-0X
-b0 `
-0W
-1Q"
-1E"
-1A"
-1L"
-1V"
-1["
-0_
-0^
-0g
-0f
-1="
-1?"
-1/"
-12"
-0j
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 S
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ""
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 G"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 I"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 N"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 S"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 X"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ]"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 e
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 #"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 3"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 H"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 M"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 R"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 W"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 \"
-0)
-00
-b10000 q
-b10000 w
-b10000 F"
-1:
-#20000
-0:
-#20200
-0L
-17
-1_
-1^
-1Z
-0="
-0?"
-1c
-0L"
-b11 `
-1Y
-0E"
-0:"
-1i
-0Q"
-0*"
-1j
-b0z0000z0z00z0z00z00z10z00000000000000000000000000000000000000 e
-b0z0000z0z00z0z00z00z10z00000000000000000000000000000000000000 #"
-b0z0000z0z00z0z00z00z10z00000000000000000000000000000000000000 3"
-b0z0000z0z00z0z00z00z10z00000000000000000000000000000000000000 H"
-b0z0000z0z00z0z00z00z10z00000000000000000000000000000000000000 M"
-b0z0000z0z00z0z00z00z10z00000000000000000000000000000000000000 R"
-b0z0000z0z00z0z00z00z10z00000000000000000000000000000000000000 W"
-b0z0000z0z00z0z00z00z10z00000000000000000000000000000000000000 \"
-b111z1111z1z11z1z11z11z01z11111111111111111111111111111111111111 S
-b111z1111z1z11z1z11z11z01z11111111111111111111111111111111111111 ""
-b111z1111z1z11z1z11z11z01z11111111111111111111111111111111111111 G"
-b111z1111z1z11z1z11z11z01z11111111111111111111111111111111111111 I"
-b111z1111z1z11z1z11z11z01z11111111111111111111111111111111111111 N"
-b111z1111z1z11z1z11z11z01z11111111111111111111111111111111111111 S"
-b111z1111z1z11z1z11z11z01z11111111111111111111111111111111111111 X"
-b111z1111z1z11z1z11z11z01z11111111111111111111111111111111111111 ]"
-b10001 q
-b10001 w
-b10001 F"
-0#
-0%
-0&
-0,
-0-
+#950
 02
-1:
-#20400
-0:
-#20600
-1L
-07
-1W
-0Y"
-1g
-1V
-1="
-1?"
-0c
-0<"
-0-"
-1L"
-b11001 `
-0Y
-1\
-1f
-0J"
-0^"
-1E"
-1:"
-0i
-1Q"
-0>"
-0@"
-1*"
-00"
-1]
-0z
-1H
-b110z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 S
-b110z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ""
-b110z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 G"
-b110z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 I"
-b110z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 N"
-b110z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 S"
-b110z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 X"
-b110z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ]"
-b1z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 e
-b1z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 #"
-b1z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 3"
-b1z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 H"
-b1z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 M"
-b1z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 R"
-b1z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 W"
-b1z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 \"
-0r
-1%
-1&
-1*
-1/
-12
-b10010 q
-b10010 w
-b10010 F"
-1:
-#20800
-0:
-#21000
-0W
-1Y"
-0g
-0V
-1Y
-0L"
-1<"
-1-"
-0="
-0?"
-1c
-1d
-0Q"
-b111 `
-1X
-1^
-0\
-0f
-1J"
-1^"
-0E"
-0:"
-07"
-0V"
-1>"
-1@"
-10"
-0]
-1z
-b111z1111z1z11z1z11z11z11z10111111111111111111111111111111111111 S
-b111z1111z1z11z1z11z11z11z10111111111111111111111111111111111111 ""
-b111z1111z1z11z1z11z11z11z10111111111111111111111111111111111111 G"
-b111z1111z1z11z1z11z11z11z10111111111111111111111111111111111111 I"
-b111z1111z1z11z1z11z11z11z10111111111111111111111111111111111111 N"
-b111z1111z1z11z1z11z11z11z10111111111111111111111111111111111111 S"
-b111z1111z1z11z1z11z11z11z10111111111111111111111111111111111111 X"
-b111z1111z1z11z1z11z11z11z10111111111111111111111111111111111111 ]"
-b0z0000z0z00z0z00z00z00z01000000000000000000000000000000000000 e
-b0z0000z0z00z0z00z00z00z01000000000000000000000000000000000000 #"
-b0z0000z0z00z0z00z00z00z01000000000000000000000000000000000000 3"
-b0z0000z0z00z0z00z00z00z01000000000000000000000000000000000000 H"
-b0z0000z0z00z0z00z00z00z01000000000000000000000000000000000000 M"
-b0z0000z0z00z0z00z00z00z01000000000000000000000000000000000000 R"
-b0z0000z0z00z0z00z00z00z01000000000000000000000000000000000000 W"
-b0z0000z0z00z0z00z00z00z01000000000000000000000000000000000000 \"
-0H
-b10011 q
-b10011 w
-b10011 F"
-1#
-1$
-0*
-1,
-1-
-0/
-1r
-1:
-#21200
-0:
-#21400
-0[
-0^
-1V
-1L"
-1C"
-0J"
-1="
-1?"
-1c
-1d
-1Q"
-b10011 `
-0X
-0<"
-08"
-0O"
-1E"
-05"
-0^"
-1:"
-17"
-1V"
-b111z0111z1z11z1z11z11z11z11111111111111111111111111111111111111 S
-b111z0111z1z11z1z11z11z11z11111111111111111111111111111111111111 ""
-b111z0111z1z11z1z11z11z11z11111111111111111111111111111111111111 G"
-b111z0111z1z11z1z11z11z11z11111111111111111111111111111111111111 I"
-b111z0111z1z11z1z11z11z11z11111111111111111111111111111111111111 N"
-b111z0111z1z11z1z11z11z11z11111111111111111111111111111111111111 S"
-b111z0111z1z11z1z11z11z11z11111111111111111111111111111111111111 X"
-b111z0111z1z11z1z11z11z11z11111111111111111111111111111111111111 ]"
-b0z1000z0z00z0z00z00z00z00000000000000000000000000000000000000 e
-b0z1000z0z00z0z00z00z00z00000000000000000000000000000000000000 #"
-b0z1000z0z00z0z00z00z00z00000000000000000000000000000000000000 3"
-b0z1000z0z00z0z00z00z00z00000000000000000000000000000000000000 H"
-b0z1000z0z00z0z00z00z00z00000000000000000000000000000000000000 M"
-b0z1000z0z00z0z00z00z00z00000000000000000000000000000000000000 R"
-b0z1000z0z00z0z00z00z00z00000000000000000000000000000000000000 W"
-b0z1000z0z00z0z00z00z00z00000000000000000000000000000000000000 \"
-0#
-0$
-1*
-1+
-0,
-0-
-b10100 q
-b10100 w
-b10100 F"
-1:
-#21600
-0:
-#21800
-0c
-0d
-0V
-0C"
-1J"
-1<"
-18"
-1O"
-15"
-1^"
-1[
-1^
-1\
-1g
-1f
-1X
-b1111 `
-1W
-0L"
-0Q"
-0E"
-0="
-0?"
-0A"
-0/"
-02"
-0V"
-0["
-b111z1111z1z11z1z01z11z11z11111111111111111111111111111111111111 S
-b111z1111z1z11z1z01z11z11z11111111111111111111111111111111111111 ""
-b111z1111z1z11z1z01z11z11z11111111111111111111111111111111111111 G"
-b111z1111z1z11z1z01z11z11z11111111111111111111111111111111111111 I"
-b111z1111z1z11z1z01z11z11z11111111111111111111111111111111111111 N"
-b111z1111z1z11z1z01z11z11z11111111111111111111111111111111111111 S"
-b111z1111z1z11z1z01z11z11z11111111111111111111111111111111111111 X"
-b111z1111z1z11z1z01z11z11z11111111111111111111111111111111111111 ]"
-b0z0000z0z00z0z10z00z00z00000000000000000000000000000000000000 e
-b0z0000z0z00z0z10z00z00z00000000000000000000000000000000000000 #"
-b0z0000z0z00z0z10z00z00z00000000000000000000000000000000000000 3"
-b0z0000z0z00z0z10z00z00z00000000000000000000000000000000000000 H"
-b0z0000z0z00z0z10z00z00z00000000000000000000000000000000000000 M"
-b0z0000z0z00z0z10z00z00z00000000000000000000000000000000000000 R"
-b0z0000z0z00z0z10z00z00z00000000000000000000000000000000000000 W"
-b0z0000z0z00z0z10z00z00z00000000000000000000000000000000000000 \"
-b10101 q
-b10101 w
-b10101 F"
-0"
-0%
-1:
-#22000
-0:
-#22200
-0Y"
-0[
-1c
-1d
-1V
-1C"
-0-"
-0<"
-08"
-0O"
-0J"
-1Z
-1Y
-1b
-0T
-05"
-0^"
-1_
-1^
-1\
-1g
-1f
-0X
-b11011 `
-1W
-0>"
-0@"
-1L"
-1Q"
-00"
-1E"
-1="
-1?"
-1A"
-1/"
-12"
-1V"
-1["
-0%"
-1]
-b110z0110z1z11z1z11z11z11z11111111111111111111111111111111111111 S
-b110z0110z1z11z1z11z11z11z11111111111111111111111111111111111111 ""
-b110z0110z1z11z1z11z11z11z11111111111111111111111111111111111111 G"
-b110z0110z1z11z1z11z11z11z11111111111111111111111111111111111111 I"
-b110z0110z1z11z1z11z11z11z11111111111111111111111111111111111111 N"
-b110z0110z1z11z1z11z11z11z11111111111111111111111111111111111111 S"
-b110z0110z1z11z1z11z11z11z11111111111111111111111111111111111111 X"
-b110z0110z1z11z1z11z11z11z11111111111111111111111111111111111111 ]"
-b1z1001z0z00z0z00z00z00z00000000000000000000000000000000000000 e
-b1z1001z0z00z0z00z00z00z00000000000000000000000000000000000000 #"
-b1z1001z0z00z0z00z00z00z00000000000000000000000000000000000000 3"
-b1z1001z0z00z0z00z00z00z00000000000000000000000000000000000000 H"
-b1z1001z0z00z0z00z00z00z00000000000000000000000000000000000000 M"
-b1z1001z0z00z0z00z00z00z00000000000000000000000000000000000000 R"
-b1z1001z0z00z0z00z00z00z00000000000000000000000000000000000000 W"
-b1z1001z0z00z0z00z00z00z00000000000000000000000000000000000000 \"
-1"
-1#
-1%
-0*
-0+
-1,
-1-
-b10110 q
-b10110 w
-b10110 F"
-1:
-#22400
-0:
-#22600
-0W
-1Y"
-0Y
-1[
-0Z
-0g
-0c
-1O"
-0_
-0d
-b0 `
-0V
-0C"
-1J"
-1-"
-1<"
-18"
-0^
-0\
-0f
-0b
-1T
-15"
-1^"
-1>"
-1@"
-10"
-1%"
-0]
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 S
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ""
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 G"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 I"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 N"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 S"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 X"
-b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111111 ]"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 e
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 #"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 3"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 H"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 M"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 R"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 W"
-b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000000 \"
-b10111 q
-b10111 w
-b10111 F"
-0"
-1$
-1)
-1*
-1+
+0S
+#1000
+1M
+#1050
+11
+1Q
+#1100
 10
-1:
-#22610
+1R
+#1150
+12
+1S
+#1200
+0M
+#1250
+01
+0Q
+#1300
+00
+0R
+#1350
+02
+0S
+#1400
+1M
+#1410
+0O
+b100 o"
+1N
+#1450
+11
+1Q
+#1500
+1'
+1P
+10
+1R
+#1550
+12
+1S
+#1600
+0M
+#1650
+1w
+01
+0Q
+#1700
+00
+0R
+#1750
+02
+0S
+#1800
+1M
+#1850
+11
+1Q
+#1900
+1"
+10
+1R
+#1950
+b10000 k
+1a
+0i"
+b0z0000z0z00z0z00z00z00z00000000000000000000000010000000000000 p
+b0z0000z0z00z0z00z00z00z00000000000000000000000010000000000000 ."
+b0z0000z0z00z0z00z00z00z00000000000000000000000010000000000000 >"
+b0z0000z0z00z0z00z00z00z00000000000000000000000010000000000000 S"
+b0z0000z0z00z0z00z00z00z00000000000000000000000010000000000000 X"
+b0z0000z0z00z0z00z00z00z00000000000000000000000010000000000000 ]"
+b0z0000z0z00z0z00z00z00z00000000000000000000000010000000000000 b"
+b0z0000z0z00z0z00z00z00z00000000000000000000000010000000000000 g"
+0$"
+b111z1111z1z11z1z11z11z11z11111111111111111111111101111111111111 ^
+b111z1111z1z11z1z11z11z11z11111111111111111111111101111111111111 -"
+b111z1111z1z11z1z11z11z11z11111111111111111111111101111111111111 R"
+b111z1111z1z11z1z11z11z11z11111111111111111111111101111111111111 T"
+b111z1111z1z11z1z11z11z11z11111111111111111111111101111111111111 Y"
+b111z1111z1z11z1z11z11z11z11111111111111111111111101111111111111 ^"
+b111z1111z1z11z1z11z11z11z11111111111111111111111101111111111111 c"
+b111z1111z1z11z1z11z11z11z11111111111111111111111101111111111111 h"
+1T
+1'"
+0&"
+0}
+1{
+0y
+1x
+12
+1S
+#2000
+0M
+#2050
+01
+0Q
+#2100
+00
+0R
+#2150
+02
+0S
+#2200
+1M
+#2250
+11
+1Q
+#2300
+1d
+b10 k
+0a
+0Z"
+1i"
+b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000010 p
+b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000010 ."
+b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000010 >"
+b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000010 S"
+b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000010 X"
+b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000010 ]"
+b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000010 b"
+b0z0000z0z00z0z00z00z00z00000000000000000000000000000000000010 g"
+b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111101 ^
+b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111101 -"
+b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111101 R"
+b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111101 T"
+b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111101 Y"
+b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111101 ^"
+b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111101 c"
+b111z1111z1z11z1z11z11z11z11111111111111111111111111111111111101 h"
+b10000 |
+b10000 ~
+b10000 Q"
+10
+1R
+#2350
+12
+1S
+#2400
+0M
+#2450
+01
+0Q
+#2500
+00
+0R
+#2550
+02
+0S
+#2600
+1M
+#2650
+11
+1Q
+#2700
+0`
+b0z0000z0z00z0z00z00z00z00000000000000000000010000000000000000 p
+b0z0000z0z00z0z00z00z00z00000000000000000000010000000000000000 ."
+b0z0000z0z00z0z00z00z00z00000000000000000000010000000000000000 >"
+b0z0000z0z00z0z00z00z00z00000000000000000000010000000000000000 S"
+b0z0000z0z00z0z00z00z00z00000000000000000000010000000000000000 X"
+b0z0000z0z00z0z00z00z00z00000000000000000000010000000000000000 ]"
+b0z0000z0z00z0z00z00z00z00000000000000000000010000000000000000 b"
+b0z0000z0z00z0z00z00z00z00000000000000000000010000000000000000 g"
+b111z1111z1z11z1z11z11z11z11111111111111111111101111111111111111 ^
+b111z1111z1z11z1z11z11z11z11111111111111111111101111111111111111 -"
+b111z1111z1z11z1z11z11z11z11111111111111111111101111111111111111 R"
+b111z1111z1z11z1z11z11z11z11111111111111111111101111111111111111 T"
+b111z1111z1z11z1z11z11z11z11111111111111111111101111111111111111 Y"
+b111z1111z1z11z1z11z11z11z11111111111111111111101111111111111111 ^"
+b111z1111z1z11z1z11z11z11z11111111111111111111101111111111111111 c"
+b111z1111z1z11z1z11z11z11z11111111111111111111101111111111111111 h"
+12"
+1M"
+b10 |
+b10 ~
+b10 Q"
+10
+1R
+#2750
+12
+1S
+#2800
+0M
+#2850
+01
+0Q
+#2900
+00
+0R
+#2950
+02
+0S
+#3000
+1M
+#3050
+11
+1Q
+#3100
+15
+10
+1R
+#3150
+12
+1S
+#3200
+0M
+#3250
+01
+0Q
+#3300
+00
+0R
+#3350
+02
+0S
+#3400
+1M
+#3450
+11
+1Q
+#3500
+10
+1R
+#3550
+12
+1S
+#3600
+0M
+#3650
+01
+0Q
+#3700
+00
+0R
+#3750
+02
+0S
+#3800
+1M
+#3850
+11
+1Q
+#3900
+10
+1R
+#3950
+12
+1S
+#4000
+0M
+#4050
+01
+0Q
+#4100
+00
+0R
+#4150
+02
+0S
+#4200
+1M
+#4250
+11
+1Q
+#4300
+10
+1R
+#4350
+12
+1S
+#4400
+0M
+#4450
+01
+0Q
+#4500
+00
+0R
+#4550
+02
+0S
+#4600
+1M
+#4610
+b100000 o"
+#4650
+11
+1Q
+#4700
+10
+1R
+#4750
+12
+1S
+#4800
+0M
+#4850
+01
+0Q
+#4900
+00
+0R
+#4950
+02
+0S
+#5000
+1M
+#5050
+11
+1Q
+#5100
+10
+1R
+#5150
+12
+1S
+#5200
+0M
+#5250
+01
+0Q
+#5300
+00
+0R
+#5350
+02
+0S
+#5400
+1M
+#5450
+11
+1Q
+#5500
+10
+1R
+#5550
+12
+1S
+#5600
+0M
+#5650
+01
+0Q
+#5700
+00
+0R
+#5750
+02
+0S
+#5800
+1M
+#5850
+11
+1Q
+#5900
+10
+1R
+#5950
+12
+1S
+#6000
+0M
+#6050
+01
+0Q
+#6100
+00
+0R
+#6150
+02
+0S
+#6200
+1M
+#6250
+11
+1Q
+#6300
+10
+1R
+#6350
+12
+1S
+#6400
+0M
+#6450
+01
+0Q
+#6500
+00
+0R
+#6550
+02
+0S
+#6600
+1M
+#6650
+11
+1Q
+#6700
+10
+1R
+#6750
+12
+1S
+#6800
+0M
+#6850
+01
+0Q
+#6900
+00
+0R
+#6950
+02
+0S
+#7000
+1M
+#7050
+11
+1Q
+#7100
+10
+1R
+#7150
+12
+1S
+#7200
+0M
+#7250
+01
+0Q
+#7300
+00
+0R
+#7350
+02
+0S
+#7400
+1M
+#7450
+11
+1Q
+#7500
+10
+1R
+#7550
+12
+1S
+#7600
+0M
+#7650
+01
+0Q
+#7700
+00
+0R
+#7750
+02
+0S
+#7800
+1M
+#7850
+11
+1Q
+#7900
+10
+1R
+#7950
+12
+1S
+#8000
+0M
+#8050
+01
+0Q
+#8100
+00
+0R
+#8150
+02
+0S
+#8200
+1M
+#8250
+11
+1Q
+#8300
+10
+1R
+#8350
+12
+1S
+#8400
+0M
+#8450
+01
+0Q
+#8500
+00
+0R
+#8550
+02
+0S
+#8600
+1M
+#8650
+11
+1Q
+#8700
+10
+1R
+#8750
+12
+1S
+#8800
+0M
+#8850
+01
+0Q
+#8900
+00
+0R
+#8950
+02
+0S
+#9000
+1M
+#9050
+11
+1Q
+#9100
+10
+1R
+#9150
+12
+1S
+#9200
+0M
+#9250
+01
+0Q
+#9300
+00
+0R
+#9350
+02
+0S
+#9400
+1M
+#9450
+11
+1Q
+#9500
+10
+1R
+#9550
+12
+1S
+#9600
+0M
+#9650
+01
+0Q
+#9700
+00
+0R
+#9750
+02
+0S
+#9800
+1M
+#9850
+11
+1Q
+#9900
+10
+1R
+#9950
+12
+1S
+#10000
+0M
+#10050
+01
+0Q
+#10100
+00
+0R
+#10150
+02
+0S
+#10200
+1M
+#10250
+11
+1Q
+#10300
+10
+1R
+#10350
+12
+1S
+#10400
+0M
+#10450
+01
+0Q
+#10500
+00
+0R
+#10550
+02
+0S
+#10600
+1M
+#10650
+11
+1Q
+#10700
+10
+1R
+#10750
+12
+1S
+#10800
+0M
+#10850
+01
+0Q
+#10900
+00
+0R
+#10950
+02
+0S
+#11000
+1M
+#11050
+11
+1Q
+#11100
+10
+1R
+#11150
+12
+1S
+#11200
+0M
+#11250
+01
+0Q
+#11300
+00
+0R
+#11350
+02
+0S
+#11400
+1M
+#11450
+11
+1Q
+#11500
+10
+1R
+#11550
+12
+1S
+#11600
+0M
+#11650
+01
+0Q
+#11700
+00
+0R
+#11750
+02
+0S
+#11800
+1M
+#11850
+11
+1Q
+#11900
+10
+1R
+#11950
+12
+1S
+#12000
+0M
+#12050
+01
+0Q
+#12100
+00
+0R
+#12150
+02
+0S
+#12200
+1M
+#12250
+11
+1Q
+#12300
+10
+1R
+#12350
+12
+1S
+#12400
+0M
+#12450
+01
+0Q
+#12500
+00
+0R
+#12550
+02
+0S
+#12600
+1M
+#12650
+11
+1Q
+#12700
+10
+1R
+#12750
+12
+1S
+#12800
+0M
+#12850
+01
+0Q
+#12900
+00
+0R
+#12950
+02
+0S
+#13000
+1M
+#13050
+11
+1Q
+#13100
+10
+1R
+#13150
+12
+1S
+#13200
+0M
+#13250
+01
+0Q
+#13300
+00
+0R
+#13350
+02
+0S
+#13400
+1M
+#13450
+11
+1Q
+#13500
+10
+1R
+#13550
+12
+1S
+#13600
+0M
+#13650
+01
+0Q
+#13700
+00
+0R
+#13750
+02
+0S
+#13800
+1M
+#13850
+11
+1Q
+#13900
+10
+1R
+#13950
+12
+1S
+#14000
+0M
+#14050
+01
+0Q
+#14100
+00
+0R
+#14150
+02
+0S
+#14200
+1M
+#14250
+11
+1Q
+#14300
+10
+1R
+#14350
+12
+1S
+#14400
+0M
+#14450
+01
+0Q
+#14500
+00
+0R
+#14550
+02
+0S
+#14600
+1M
+#14650
+11
+1Q
+#14700
+10
+1R
+#14750
+12
+1S
+#14800
+0M
+#14850
+01
+0Q
+#14900
+00
+0R
+#14950
+02
+0S
+#15000
+1M
+#15050
+11
+1Q
+#15100
+10
+1R
+#15150
+12
+1S
+#15200
+0M
+#15250
+01
+0Q
+#15300
+00
+0R
+#15350
+02
+0S
+#15400
+1M
+#15450
+11
+1Q
+#15500
+10
+1R
+#15550
+12
+1S
+#15600
+0M
+#15650
+01
+0Q
+#15700
+00
+0R
+#15750
+02
+0S
+#15800
+1M
+#15850
+11
+1Q
+#15900
+10
+1R
+#15950
+12
+1S
+#16000
+0M
+#16050
+01
+0Q
+#16100
+00
+0R
+#16150
+02
+0S
+#16200
+1M
+#16250
+11
+1Q
+#16300
+10
+1R
+#16350
+12
+1S
+#16400
+0M
+#16450
+01
+0Q
+#16500
+00
+0R
+#16550
+02
+0S
+#16600
+1M
+#16650
+11
+1Q
+#16700
+10
+1R
+#16750
+12
+1S
+#16800
+0M
+#16850
+01
+0Q
+#16900
+00
+0R
+#16950
+02
+0S
+#17000
+1M
+#17050
+11
+1Q
+#17100
+10
+1R
+#17150
+12
+1S
+#17200
+0M
+#17250
+01
+0Q
+#17300
+00
+0R
+#17350
+02
+0S
+#17400
+1M
+#17410
+b1000101010011100100010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 L
+b10001010100111001000100 l"
