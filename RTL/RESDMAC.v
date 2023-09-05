@@ -308,7 +308,7 @@ datapath u_datapath(
     .FIFO_OD   (FIFO_OD     ),
     .REG_OD    (REG_OD      ),
     .PAS       (PAS         ),
-    .DS_       (DS_I_       ),
+    .DS_I_     (DS_I_       ),
     .nDMAC_    (~_CS        ),
     .RW        (R_W         ),
     .nOWN_     (CPUSM_BGACK ),
@@ -329,7 +329,7 @@ datapath u_datapath(
     .FIFO_ID   (FIFO_ID     ),
     .F2CPUL    (F2CPUL      ),
     .F2CPUH    (F2CPUH      ),
-    .BnDS_O_   (BnDS_O_     ),
+    .DS_O_     (DS_O_       ),
     .DATA_OE_  (DATA_OE_    )
 );
 

@@ -31,6 +31,27 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "Run Testbench",
+            "type": "shell",
+            "command": "docker run --rm -v ${pwd}:/test -w /test -it mbtaylor1982/cocotb-iverilog:latest ./makefile",
+            "detail": "Run Testbench",
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "group": {
+                "kind": "test",
+                "isDefault": true,
+
+            }
+            
+            
         }
                     
     ]

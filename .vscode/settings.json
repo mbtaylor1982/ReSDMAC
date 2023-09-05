@@ -15,6 +15,11 @@
     "licenser.author": "Mike Taylor",
     "licenser.disableAutoHeaderInsertion": true,
     "licenser.disableAutoSave": true,
+    "verilog.icarusTestbenchIncludePwd": false,
+    "verilog.icarusCompileArguments": "",
+    "verilog.icarusTestbenchIncludes": [
+
+    ],
 
 }
 

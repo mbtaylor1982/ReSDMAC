@@ -35,7 +35,7 @@ module datapath (
     input [31:0] REG_OD,
 
     input PAS,
-    input DS_,
+    input DS_I_,
     input nDMAC_,
     input RW,
     input nOWN_,
@@ -63,7 +63,7 @@ module datapath (
     input F2CPUL,
     input F2CPUH,
 
-    input BnDS_O_,
+    input DS_O_,
   
     output [31:0] MID,
     output [31:0] FIFO_ID,
@@ -88,7 +88,7 @@ datapath_input u_datapath_input(
     .bBRIDGEIN (bBRIDGEIN ),
     .bDIEH     (bDIEH     ),
     .bDIEL     (bDIEL     ),
-    .BnDS_O_   (BnDS_O_   ),
+    .DS_O_     (DS_O_     ),
     .MID       (MID       ),
     .CPU_OD    (CPU_OD    )
 );
@@ -125,7 +125,7 @@ datapath_scsi u_datapath_scsi(
     .MOD_SCSI       (MOD_SCSI  )
 );
 
-assign DOEL_ = ~((~DS_ & nDMAC_ & RW) | (nOWN_ & DMADIR));
+assign DOEL_ = ~((~DS_I_ & nDMAC_ & RW) | (nOWN_ & DMADIR));
 assign DOEH_ = DOEL_;
 assign DATA_OE_ = ~DOEH_;
 

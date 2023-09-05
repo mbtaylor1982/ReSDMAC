@@ -26,6 +26,7 @@ module RESDMAC_DMA_READ_tb;
 //  UUT
 //------------------------------------------------------------------------------
     // ports
+
     reg [2:0] Count = 3'b000;
 
     wire sclk_delayed;
@@ -101,6 +102,7 @@ module RESDMAC_DMA_READ_tb;
         ._AS_IO     (_AS_IO     ),
         ._DS_IO     (_DS_IO     ),
         .DSACK_O    (DSACK_O    ),
+        .DSACK_I_   (DSACK_I_   ),
         .DATA_IO    (DATA_IO    ),
         ._STERM     (_STERM     ),
         .SCLK       (SCLK       ),
@@ -223,6 +225,7 @@ module RESDMAC_DMA_READ_tb;
     initial begin
         $display("*Testing RESDMAC TOP Module Read from SCSI DMA CYCLE*");
         $dumpfile("../VCD/RESDMAC_DMA_SCSI_READ_CYCLE_tb.vcd");
+        
         $dumpvars(0, RESDMAC_DMA_READ_tb);
         // -------- RESET --------
         Reset;
@@ -231,7 +234,7 @@ module RESDMAC_DMA_READ_tb;
         Write(SDMAC_CONTR_REG, 32'h00000006);       
         
         //Write Destination Addr to the ACR in Ramsey.
-        Write(RAMSEY_ACR_REG, 32'h00000008);    
+        Write(RAMSEY_ACR_REG, 32'h0000008);    
 
         //Start DMA Cycle.
         Write(SDMAC_ST_DMA_STROBE, 32'h00000001);
@@ -304,13 +307,13 @@ module RESDMAC_DMA_READ_tb;
                  Count <= Count +1'b1;
                  if (Count == 3'b100)
                  begin
-                    _STERM <= 1'b0;
+                    DSACK_I_ <= 2'b00;                    
                     Count <= 3'b000;        
                  end 
             end
-            else if (_STERM == 1'b0)
+            else if (DSACK_I_ != 2'b11)
             begin 
-                _STERM <= 1'b1;
+                DSACK_I_ <= 2'b11;
                 ADDR <= ADDR + 32'h4;
                 DATA_i <= DATA_i + 32'h11000000;
                 Count <= 3'b000; 

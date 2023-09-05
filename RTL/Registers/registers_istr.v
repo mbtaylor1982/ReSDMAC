@@ -45,7 +45,6 @@ assign CLR_INT_ = ~CLR_INT;
 wire INT;
 assign INT = (INTENA & INTA_I);
 
-
 always @(negedge CLK, negedge RESET_) begin
   if (~RESET_) begin
     INT_F   <= 1'b0;
@@ -74,12 +73,9 @@ always @(negedge CLK, negedge RESET_) begin
 
 end
 
-always @(negedge CLK) begin
+always @(*) begin
 	ISTR_O <= {1'b0, INT_F, INTS, E_INT, INT_P , 1'b0, 1'b0, FF, FE};
 	INT_O_ <= INT ? 1'b0 : 1'b1;
 end
-
-//assign ISTR_O = {1'b0, INT_F, INTS, E_INT, INT_P , 1'b0, 1'b0, FF, FE};
-//assign INT_O_ = INT ? 1'b0 : 1'b1;
 
 endmodule

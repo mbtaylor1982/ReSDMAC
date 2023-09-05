@@ -19,17 +19,17 @@
 module datapath_24dec ( 
     input A,
     input B,
-    input G,
+    input En,
 
-    output Z0,
-    output Z1,
-    output Z2,
-    output Z3
+    output D0,
+    output D1,
+    output D2,
+    output D3
 );
 
-assign Z0 = ~A & ~B & G;
-assign Z1 = ~A & B & G;
-assign Z2 = A & ~B & G;
-assign Z3 = A & B & G;
+assign D0 = ~A & ~B & En;
+assign D1 = ~A & B & En;
+assign D2 = A & ~B & En;
+assign D3 = A & B & En;
 
 endmodule

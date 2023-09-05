@@ -23,7 +23,7 @@ module datapath_input (
     input bBRIDGEIN,
     input bDIEH,
     input bDIEL,
-    input BnDS_O_,
+    input DS_O_,
 
     output [31:0] MID,
     output [31:0] CPU_OD
@@ -38,7 +38,7 @@ wire [15:0] UPPDER_OUTPUT_DATA;
 reg [15:0] UD_LATCH;
 
 always @(negedge CLK) begin
-    if (BnDS_O_)
+    if (~DS_O_)
         UD_LATCH <= UPPDER_INTPUT_DATA;   
 end
 
