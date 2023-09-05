@@ -1,6 +1,7 @@
 # ReSDMAC
 
 [![build](https://github.com/mbtaylor1982/RE-SDMAC/actions/workflows/build.yml/badge.svg)](https://github.com/mbtaylor1982/RE-SDMAC/actions/workflows/build.yml)
+[![test](https://github.com/mbtaylor1982/ReSDMAC/actions/workflows/test.yml/badge.svg)](https://github.com/mbtaylor1982/ReSDMAC/actions/workflows/test.yml)
 
 ## Introduction
 
@@ -25,8 +26,8 @@ The FIFO is implmented with an 8 x 32 bit long word buffer, each long word can b
 #### CPU State Machine
 TODO:
 #### SCSI State Machine!
+[Details here](RTL/SCSI_SM/README.md)
 
-TODO:
 #### Resgisters
 TODO:
 #### Datapath

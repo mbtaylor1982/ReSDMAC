@@ -23,3 +23,4 @@ jobs:
       # 2 - Run TestBench 
       - name: Run testbench
         run: make
+
