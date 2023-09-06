@@ -20,9 +20,10 @@ jobs:
       # 1 - Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
-      # 2 - Run TestBench 
-      - name: Run testbench
+      # 2 - Change to cocotb test dtirectory 
+      - name: Change to cocotb test dtirectory 
         run: cd /RTL/cocotb
+      - name: run pytest
         uses: pavelzw/pytest-action@v2
         with:
           emoji: false
