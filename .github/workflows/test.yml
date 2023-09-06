@@ -22,5 +22,10 @@ jobs:
         uses: actions/checkout@v3
       # 2 - Run TestBench 
       - name: Run testbench
-        run: make
+        run: cd /RTL/cocotb
+        uses: pavelzw/pytest-action@v2
+        with:
+          emoji: false
+          verbose: false
+          job-summary: true
 
