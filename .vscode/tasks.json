@@ -24,7 +24,7 @@
                   "severity": 1,
                   "message": 3,
                   "file": 4,
-                  "line": 5                  
+                  "line": 5 
                 }
             },
             "group": {
@@ -35,12 +35,12 @@
         {
             "label": "Run Testbench",
             "type": "shell",
-            "command": "docker run --rm -v ${pwd}:/test -w /test -it mbtaylor1982/cocotb-iverilog:latest ./makefile",
+            "command": "docker run --rm -v ${pwd}:/test -w /test/RTL/cocotb/ -it mbtaylor1982/cocotb-iverilog:latest pytest",//./makefile",
             "detail": "Run Testbench",
             "presentation": {
                 "echo": true,
-                "reveal": "silent",
-                "focus": false,
+                "reveal": "always",
+                "focus": true,
                 "panel": "dedicated",
                 "showReuseMessage": false,
                 "clear": true
