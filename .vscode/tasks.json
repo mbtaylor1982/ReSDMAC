@@ -35,7 +35,7 @@
         {
             "label": "Run Testbench",
             "type": "shell",
-            "command": "docker run --rm -v ${pwd}:/test -w /test/RTL/cocotb/ -it mbtaylor1982/cocotb-iverilog:latest pytest",//./makefile",
+            "command": "docker run --rm -v ${pwd}:/test -w /test/RTL/cocotb/ -it mbtaylor1982/cocotb-iverilog:latest pytest",
             "detail": "Run Testbench",
             "presentation": {
                 "echo": true,
