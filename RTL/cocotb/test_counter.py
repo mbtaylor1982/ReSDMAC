@@ -5,7 +5,7 @@ import cocotb
 
 hdl_dir = os.path.dirname(__file__)
 
-def test_ounter():
+def test_counter():
     run(
         toplevel_lang="verilog",
         verilog_sources=[os.path.join("RTL/FIFO/", "fifo_3bit_cntr.v")],
