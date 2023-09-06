@@ -36,6 +36,6 @@ async def fifo_3bit_cntr_test(dut):
     
     
     await RisingEdge(dut.CLK)
-    assert dut.COUNT.value == 1, "output COUNT did not return to zero"
+    assert dut.COUNT.value == 0, "output COUNT did not return to zero"
 
     
