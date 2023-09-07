@@ -17,7 +17,7 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 `ifdef __ICARUS__
-  `include "RTL/mux2.v"
+  `include "mux2.v"
 `endif
 module fifo_byte_ptr(
     input CLK,

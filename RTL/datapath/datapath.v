@@ -18,9 +18,9 @@
  */
 
 `ifdef __ICARUS__ 
-    `include "RTL/datapath/datapath_scsi.v"
-    `include "RTL/datapath/datapath_input.v"
-    `include "RTL/datapath/datapath_output.v"
+    `include "datapath_scsi.v"
+    `include "datapath_input.v"
+    `include "datapath_output.v"
 `endif
 
 module datapath (

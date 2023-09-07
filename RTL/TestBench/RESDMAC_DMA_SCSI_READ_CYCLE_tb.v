@@ -19,7 +19,7 @@
 
 `timescale 1ns/100ps
 
-`include "RTL/RESDMAC.v"
+`include "RESDMAC.v"
 
 module RESDMAC_DMA_READ_tb;
 //------------------------------------------------------------------------------

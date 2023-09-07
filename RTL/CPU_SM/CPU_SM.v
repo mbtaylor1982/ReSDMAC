@@ -19,13 +19,13 @@
 
  `ifdef __ICARUS__ 
 
-  `include "RTL/CPU_SM/cpudff1.v"
-  `include "RTL/CPU_SM/cpudff2.v"
-  `include "RTL/CPU_SM/cpudff3.v"
-  `include "RTL/CPU_SM/cpudff4.v"
-  `include "RTL/CPU_SM/cpudff5.v"
-  `include "RTL/CPU_SM/CPU_SM_inputs.v"  
-  `include "RTL/CPU_SM/CPU_SM_output.v"  
+  `include "cpudff1.v"
+  `include "cpudff2.v"
+  `include "cpudff3.v"
+  `include "cpudff4.v"
+  `include "cpudff5.v"
+  `include "CPU_SM_inputs.v"  
+  `include "CPU_SM_output.v"  
 `endif
 
 module CPU_SM(

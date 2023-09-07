@@ -17,8 +17,8 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
  `ifdef __ICARUS__ 
-    `include "RTL/SCSI_SM/scsi_sm_inputs.v"
-    `include "RTL/SCSI_SM/scsi_sm_outputs.v"
+    `include "scsi_sm_inputs.v"
+    `include "scsi_sm_outputs.v"
 `endif
 
 module SCSI_SM_INTERNALS1(   

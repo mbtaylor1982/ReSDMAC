@@ -17,12 +17,12 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
  `ifdef __ICARUS__ 
-    `include "RTL/SCSI_SM/SCSI_SM.v"
-    `include "RTL/FIFO/fifo.v"
-    `include "RTL/CPU_SM/CPU_SM.v"
-    `include "RTL/Registers/registers.v"
-    `include "RTL/datapath/datapath.v"
-    `include "RTL/PLL.v"
+    `include "SCSI_SM.v"
+    `include "fifo.v"
+    `include "CPU_SM.v"
+    `include "registers.v"
+    `include "datapath.v"
+    `include "PLL.v"
 `endif
 
 module RESDMAC(

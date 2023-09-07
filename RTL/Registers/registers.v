@@ -18,10 +18,10 @@
  */ 
 
 `ifdef __ICARUS__ 
-    `include "RTL/Registers/addr_decoder.v"
-    `include "RTL/Registers/registers_istr.v"
-    `include "RTL/Registers/registers_cntr.v"
-    `include "RTL/Registers/registers_term.v"
+    `include "addr_decoder.v"
+    `include "registers_istr.v"
+    `include "registers_cntr.v"
+    `include "registers_term.v"
 `endif
 
 module registers(

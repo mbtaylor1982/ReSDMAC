@@ -15,9 +15,26 @@
     "licenser.author": "Mike Taylor",
     "licenser.disableAutoHeaderInsertion": true,
     "licenser.disableAutoSave": true,
-    "verilog.icarusTestbenchIncludePwd": false,
+    "verilog.icarusTestbenchIncludePwd": true,
     "verilog.icarusCompileArguments": "",
     "verilog.icarusTestbenchIncludes": [
+        "RTL/",
+        "RTL/SCSI_SM",
+        "RTL/CPU_SM",
+        "RTL/datapath",
+        "RTL/FIFO",
+        "RTL/Registers"
+    ],
+    "verilog.linting.verilator.runAtFileLocation": false,
+    "verilog.linting.linter": "iverilog",
+    "verilog.linting.iverilog.runAtFileLocation": true,
+    "verilog.linting.iverilog.includePath": [
+        "RTL/",
+        "RTL/SCSI_SM",
+        "RTL/CPU_SM",
+        "RTL/datapath",
+        "RTL/FIFO",
+        "RTL/Registers"
 
     ],
 

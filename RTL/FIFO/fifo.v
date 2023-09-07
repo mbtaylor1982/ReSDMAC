@@ -17,10 +17,10 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
  `ifdef __ICARUS__ 
-  `include "RTL/FIFO/fifo_write_strobes.v"
-  `include "RTL/FIFO/fifo_full_empty_ctr.v"
-  `include "RTL/FIFO/fifo_3bit_cntr.v"
-  `include "RTL/FIFO/fifo_byte_ptr.v"
+  `include "fifo_write_strobes.v"
+  `include "fifo_full_empty_ctr.v"
+  `include "fifo_3bit_cntr.v"
+  `include "fifo_byte_ptr.v"
 `endif
 
 module fifo(
@@ -126,27 +126,15 @@ reg [31:0] BUFFER [7:0];
 
 //WRITE DATA TO FIFO BUFFER
 always @(posedge CLK) begin
+  FIFO_OD <= BUFFER[READ_PTR];
   if (UUWS)
     BUFFER[WRITE_PTR][31:24] <= FIFO_ID[31:24];
-end
-
-always @(posedge CLK) begin
   if (UMWS)
     BUFFER[WRITE_PTR][23:16] <= FIFO_ID[23:16];
-end
-
-always @(posedge CLK) begin
   if (LMWS)
     BUFFER[WRITE_PTR][15:8] <= FIFO_ID[15:8];
-end
-
-always @(posedge CLK) begin
   if (LLWS)
     BUFFER[WRITE_PTR][7:0] <= FIFO_ID[7:0];
-end
-
-always @(posedge CLK) begin
-    FIFO_OD <= BUFFER[READ_PTR];
 end
 
 endmodule

@@ -18,8 +18,8 @@
  */
 
 `ifdef __ICARUS__ 
-  `include "RTL/datapath/datapath_24dec.v"
-  `include "RTL/datapath/datapath_8b_MUX.v"
+  `include "datapath_24dec.v"
+  `include "datapath_8b_MUX.v"
 `endif
 
 module datapath_scsi (
