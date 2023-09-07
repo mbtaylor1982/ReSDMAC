@@ -169,7 +169,6 @@ wire A3;
 wire DSK0_IN_;
 wire DSK1_IN_;
 tri1 _BGACK_I;
-wire BnDS_O_;
 
 registers u_registers(
     .ADDR      ({1'b0, ADDR, 2'b00}),
@@ -280,7 +279,7 @@ fifo int_fifo(
     .LBYTE_      (LBYTE_    ),
     .H_0C        (H_0C      ),
     .ACR_WR      (ACR_WR    ),
-    .RST_FIFO_   (PLLLOCKED ),
+    .RST_FIFO_   (DMAENA    ),
     .MID25       (MID[25]   ),
     .FIFO_ID     (FIFO_ID   ),
     .FIFOFULL    (FIFOFULL  ),
@@ -385,7 +384,6 @@ assign A3 = ADDR[3];
 
 assign PDATA_OE_ = (_DACK & _CSS);
 
-assign BnDS_O_ = ~DS_O_;
 assign INT = ~_INT;
 
 endmodule

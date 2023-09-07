@@ -232,12 +232,13 @@ module RESDMAC_DMA_READ_tb;
 
         //Setup DMA Direction to Read from SCSI write to Memory
         Write(SDMAC_CONTR_REG, 32'h00000006);       
-        
-        //Write Destination Addr to the ACR in Ramsey.
-        Write(RAMSEY_ACR_REG, 32'h0000008);    
 
         //Start DMA Cycle.
         Write(SDMAC_ST_DMA_STROBE, 32'h00000001);
+
+        //Write Destination Addr to the ACR in Ramsey.
+        Write(RAMSEY_ACR_REG, 32'h0000008);    
+
        
         _DREQ = 1;
         ADDR <= 32'h08000000;

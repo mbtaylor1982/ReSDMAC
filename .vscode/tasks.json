@@ -10,8 +10,8 @@
             "detail": "Trigger build using raetro/quartus:13.0sp1 Docker image",
             "presentation": {
                 "echo": true,
-                "reveal": "silent",
-                "focus": false,
+                "reveal": "always",
+                "focus": true,
                 "panel": "dedicated",
                 "showReuseMessage": false,
                 "clear": true

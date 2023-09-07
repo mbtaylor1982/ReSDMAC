@@ -1,0 +1,20 @@
+<session jtag_chain="Disabled" sof_file="">
+  <display_tree gui_logging_enabled="1"/>
+  <global_info>
+    <multi attribute="jtag widget size" size="2" value="398,252"/>
+    <single attribute="active instance" value="0"/>
+    <multi attribute="frame size" size="2" value="1920,1111"/>
+    <single attribute="jtag widget visible" value="1"/>
+    <single attribute="instance widget visible" value="1"/>
+    <single attribute="config widget visible" value="1"/>
+    <single attribute="hierarchy widget visible" value="1"/>
+    <single attribute="data log widget visible" value="1"/>
+  </global_info>
+  <instance entity_name="sld_signaltap" is_auto_node="yes" name="auto_signaltap_0" source_file="sld_signaltap.vhd">
+    <node_ip_info instance_id="0" mfg_id="110" node_id="0" version="6"/>
+    <position_info>
+      <single attribute="active tab" value="1"/>
+    </position_info>
+  </instance>
+  <mnemonics/>
+</session>

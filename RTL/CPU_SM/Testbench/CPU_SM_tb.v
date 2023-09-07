@@ -44,7 +44,7 @@ module CPU_SM_tb;
     // -------- reset --------
     task sim_reset(input integer n);
         begin
-            $display("sim_reset");
+            //$display("sim_reset");
             tb_rst = ~RESET_LEVEL;
             repeat(n) @(posedge tb_clk);
             #1;
@@ -100,10 +100,9 @@ module CPU_SM_tb;
     wire    LOCKED    ;  //
     wire    CLK45     ;  // CPUCLK pahse shifted 45 deg
     wire    CLK90     ;  // CPUCLK pahse shifted 90 deg.
-    wire    CLK135    ;  // CPUCLK pahse shifted 135 deg.    
+    wire    CLK135    ;  // CPUCLK pahse shifted 135 deg.     
     
     // module
-
     PLL u_PLL (
         .RST    (~tb_rst ),  // input, (wire), 
         .CLK    (tb_clk ),  // input, (wire), 
@@ -176,7 +175,7 @@ module CPU_SM_tb;
         RIFIFO_     <= 1'b1;  // 
         iSTERM_     <= 1'b1;  // 
         AS_         <= 1'b1;  // 
-        BGACK_I_    <= 1'b1; //
+        BGACK_I_    <= 1'b1;  //
     end
  
 //==============================================================================
@@ -223,8 +222,14 @@ module CPU_SM_tb;
         $display("*Testing SDMAC CPU_SM.v Module*");
         $dumpfile("../CPU_SM/VCD/CPU_SM_tb.vcd");
         $dumpvars(0, CPU_SM_tb);
+
+        $display("  Time, STATE, NEXT_STATE, aDMAENA, DMADIR, FIFOEMPTY, FIFOFULL, aFLUSHFIFO, BOEQ0");
+        $monitor("%6d, %5d, %10d, %7b, %6b, %9b, %8b, %10b, %5b", $time, uut.STATE, uut.NEXT_STATE, aDMAENA, DMADIR, FIFOEMPTY, FIFOFULL, aFLUSHFIFO, BOEQ0); 
+    
+    
         // -------- RESET --------
-        show_sim_message("reset");
+        //show_sim_message("reset");
+        
         sim_reset(2);    
         // --------  --------
         wait_ncco(4);
@@ -240,7 +245,7 @@ module CPU_SM_tb;
         wait_ncco(32);
 
         // -------- END --------
-        show_sim_message("END");    
+        //show_sim_message("END");    
         $finish;
     end
 //------------------------------------------------------------------------------
