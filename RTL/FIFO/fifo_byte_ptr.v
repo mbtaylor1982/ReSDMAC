@@ -16,37 +16,57 @@
 // You should have received a copy of the GNU General Public License
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
+`ifdef __ICARUS__
+  `include "RTL/mux2.v"
+`endif
 module fifo_byte_ptr(
     input CLK,
     input INCBO,
     input MID25,
     input ACR_WR,
     input H_0C,
-    input RST_FIFO_,        
+    input RST_FIFO_,
 
-    output wire [1:0] PTR    
+    output reg [1:0] PTR
 );
 
-wire MUXZ;
-wire BO1_CLK;
-reg BO0, BO1;
+    MUX2 u_MUX2 (
+        .A  (A),  // input A,
+        .B  (B),  // input B,
+        .S  (S),  // select,
+        .Z  (Z)   // output,
+    );
 
-always @(posedge CLK or negedge RST_FIFO_) begin
-    if (RST_FIFO_ == 1'b0)
-        BO0 <= 1'b0;
-    else if (INCBO)
-        BO0 <= ~BO0;    
+wire A;
+wire Z;
+reg B;
+reg S;
+
+assign A = ~(PTR[0] ^ PTR[1]);
+
+//added to eliminate glitches in the signals B and S.
+always @(negedge CLK or negedge RST_FIFO_) begin
+    if (~RST_FIFO_) begin
+        B <= 1'b0;
+        S <= 1'b0;
+    end
+    else begin
+        B <= ~MID25;
+        S <= H_0C;
+    end
 end
 
 always @(posedge CLK or negedge RST_FIFO_) begin
-    if (RST_FIFO_ == 1'b0)
-        BO1 <= 1'b0;
-    else if (BO1_CLK)
-        BO1 <= MUXZ;
+    if (~RST_FIFO_) begin
+        PTR <= 2'b00;
+    end
+    else begin
+        if (INCBO) begin
+            PTR <= {Z, ~PTR[0]};
+        end
+        if (ACR_WR)
+            PTR <= {Z, PTR[0]};
+    end
 end
-
-assign MUXZ = (H_0C) ? ~MID25 : (BO0 ^ ~BO1);
-assign BO1_CLK = (INCBO | ACR_WR);
-assign PTR = {BO1, BO0};
 
 endmodule
