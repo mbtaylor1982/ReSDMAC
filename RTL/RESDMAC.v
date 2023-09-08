@@ -386,6 +386,15 @@ assign PDATA_OE_ = (_DACK & _CSS);
 
 assign INT = ~_INT;
 
+// the "macro" to dump signals
+`ifdef COCOTB_SIM
+initial begin
+  $dumpfile ("resdmac.vcd");
+  $dumpvars (0, RESDMAC);
+  #1;
+end
+`endif
+
 endmodule
 
 

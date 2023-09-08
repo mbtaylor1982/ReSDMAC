@@ -16,7 +16,7 @@
     "licenser.disableAutoHeaderInsertion": true,
     "licenser.disableAutoSave": true,
     "verilog.icarusTestbenchIncludePwd": true,
-    "verilog.icarusCompileArguments": "",
+    "verilog.icarusCompileArguments": "-W all",
     "verilog.icarusTestbenchIncludes": [
         "RTL/",
         "RTL/SCSI_SM",

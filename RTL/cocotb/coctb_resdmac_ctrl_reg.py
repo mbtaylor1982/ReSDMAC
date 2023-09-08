@@ -45,8 +45,47 @@ async def resdmac_ctrl_reg_test(dut):
     await reset_dut(dut._id("_RST", extended=False) , 50)
     dut._log.debug("After reset")
     
-    await write_data(dut, 0x3,0x00000006)
+    assert dut.u_registers.u_registers_cntr.DMAENA.value == 0 ,"DMAENA != 0  after reset"
+    assert dut.u_registers.u_registers_cntr.DMADIR.value == 0 ,"DMADIR != 0  after reset"
+    assert dut.u_registers.u_registers_cntr.INTENA.value == 0 ,"INTENA != 0  after reset"
+    assert dut.u_registers.u_registers_cntr.PRESET.value == 0 ,"PRESET != 0  after reset"
     
-
+    dut._id("_CS",extended=False).value = 0
+    
+    await write_data(dut, 0x2,2)
+    assert dut.u_registers.u_registers_cntr.DMAENA.value == 0 ,"DMAENA != 0  after writing to CTRL reg"
+    assert dut.u_registers.u_registers_cntr.DMADIR.value == 1 ,"DMADIR != 1  after writing to CTRL reg"
+    assert dut.u_registers.u_registers_cntr.INTENA.value == 0 ,"INTENA != 0  after writing to CTRL reg"
+    assert dut.u_registers.u_registers_cntr.PRESET.value == 0 ,"PRESET != 0  after writing to CTRL reg"
+    
+    await write_data(dut, 0x2,4)
+    assert dut.u_registers.u_registers_cntr.DMAENA.value == 0 ,"DMAENA != 0  after writing to CTRL reg"
+    assert dut.u_registers.u_registers_cntr.DMADIR.value == 0 ,"DMADIR != 0  after writing to CTRL reg"
+    assert dut.u_registers.u_registers_cntr.INTENA.value == 1 ,"INTENA != 1  after writing to CTRL reg"
+    assert dut.u_registers.u_registers_cntr.PRESET.value == 0 ,"PRESET != 0  after writing to CTRL reg"
+    
+    await write_data(dut, 0x2,16)
+    assert dut.u_registers.u_registers_cntr.DMAENA.value == 0 ,"DMAENA != 0  after writing to CTRL reg"
+    assert dut.u_registers.u_registers_cntr.DMADIR.value == 0 ,"DMADIR != 0  after writing to CTRL reg"
+    assert dut.u_registers.u_registers_cntr.INTENA.value == 0 ,"INTENA != 0  after writing to CTRL reg"
+    assert dut.u_registers.u_registers_cntr.PRESET.value == 1 ,"PRESET != 1  after writing to CTRL reg"
+    
+    await write_data(dut, 0x2,0)
+    assert dut.u_registers.u_registers_cntr.DMAENA.value == 0 ,"DMAENA != 0  after writing to CTRL reg"
+    assert dut.u_registers.u_registers_cntr.DMADIR.value == 0 ,"DMADIR != 0  after writing to CTRL reg"
+    assert dut.u_registers.u_registers_cntr.INTENA.value == 0 ,"INTENA != 0  after writing to CTRL reg"
+    assert dut.u_registers.u_registers_cntr.PRESET.value == 0 ,"PRESET != 0  after writing to CTRL reg"
+    
+    await write_data(dut, 0x4,0)
+    assert dut.u_registers.u_registers_cntr.DMAENA.value == 1 ,"DMAENA != 1  after writing to CTRL reg"
+    assert dut.u_registers.u_registers_cntr.DMADIR.value == 0 ,"DMADIR != 0  after writing to CTRL reg"
+    assert dut.u_registers.u_registers_cntr.INTENA.value == 0 ,"INTENA != 0  after writing to CTRL reg"
+    assert dut.u_registers.u_registers_cntr.PRESET.value == 0 ,"PRESET != 0  after writing to CTRL reg"
+    
+    await write_data(dut, 0xF,0)
+    assert dut.u_registers.u_registers_cntr.DMAENA.value == 0 ,"DMAENA != 0  after writing to CTRL reg"
+    assert dut.u_registers.u_registers_cntr.DMADIR.value == 0 ,"DMADIR != 0  after writing to CTRL reg"
+    assert dut.u_registers.u_registers_cntr.INTENA.value == 0 ,"INTENA != 0  after writing to CTRL reg"
+    assert dut.u_registers.u_registers_cntr.PRESET.value == 0 ,"PRESET != 0  after writing to CTRL reg"
     
    

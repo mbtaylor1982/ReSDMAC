@@ -30,17 +30,17 @@ module fifo_byte_ptr(
     output reg [1:0] PTR
 );
 
+wire A;
+wire Z;
+reg B;
+reg S;
+
     MUX2 u_MUX2 (
         .A  (A),  // input A,
         .B  (B),  // input B,
         .S  (S),  // select,
         .Z  (Z)   // output,
     );
-
-wire A;
-wire Z;
-reg B;
-reg S;
 
 assign A = ~(PTR[0] ^ PTR[1]);
 
