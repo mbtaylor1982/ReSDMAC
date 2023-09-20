@@ -19,7 +19,7 @@
 ## PROGRAM "Quartus II"
 ## VERSION "Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
 
-## DATE    "Thu Sep 07 11:50:39 2023"
+## DATE    "Fri Sep 08 18:25:32 2023"
 
 ##
 ## DEVICE  "EP2C5T144C8"
@@ -38,6 +38,7 @@ set_time_format -unit ns -decimal_places 3
 # Create Clock
 #**************************************************************
 
+create_clock -name {altera_reserved_tck} -period 100.000 -waveform { 0.000 50.000 } [get_ports {altera_reserved_tck}]
 create_clock -name {sclk} -period 40.000 -waveform { 0.000 20.000 } [get_ports {SCLK}]
 
 
@@ -72,18 +73,150 @@ create_generated_clock -name {clk135} -source [get_pins {u_PLL|APLL_inst|altpll_
 # Set Output Delay
 #**************************************************************
 
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {BR}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[0]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[1]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[2]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[3]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[4]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[5]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[6]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[7]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[8]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[9]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[10]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[11]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[12]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[13]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[14]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[15]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[16]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[17]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[18]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[19]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[20]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[21]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[22]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[23]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[24]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[25]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[26]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[27]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[28]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[29]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[30]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_IO[31]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DATA_OE_}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DSACK_O[0]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {DSACK_O[1]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {INT}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {OWN}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {PDATA_OE_}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {PD_PORT[0]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {PD_PORT[1]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {PD_PORT[2]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {PD_PORT[3]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {PD_PORT[4]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {PD_PORT[5]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {PD_PORT[6]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {PD_PORT[7]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {PD_PORT[8]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {PD_PORT[9]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {PD_PORT[10]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {PD_PORT[11]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {PD_PORT[12]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {PD_PORT[13]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {PD_PORT[14]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {PD_PORT[15]}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {R_W_IO}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {_AS_IO}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {_BGACK_IO}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {_DACK}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {_DMAEN}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {_DS_IO}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {_IOR}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {_IOW}]
+set_output_delay -add_delay -rise -min -clock [get_clocks {sclk}]  -4.000 [get_ports {_SIZ1}]
+
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {BR}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[0]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[1]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[2]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[3]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[4]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[5]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[6]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[7]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[8]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[9]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[10]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[11]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[12]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[13]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[14]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[15]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[16]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[17]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[18]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[19]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[20]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[21]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[22]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[23]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[24]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[25]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[26]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[27]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[28]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[29]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[30]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_IO[31]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DATA_OE_}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DSACK_O[0]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {DSACK_O[1]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {INT}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {OWN}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {PDATA_OE_}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {PD_PORT[0]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {PD_PORT[1]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {PD_PORT[2]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {PD_PORT[3]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {PD_PORT[4]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {PD_PORT[5]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {PD_PORT[6]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {PD_PORT[7]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {PD_PORT[8]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {PD_PORT[9]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {PD_PORT[10]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {PD_PORT[11]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {PD_PORT[12]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {PD_PORT[13]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {PD_PORT[14]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {PD_PORT[15]}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {R_W_IO}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {_AS_IO}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {_BGACK_IO}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {_DACK}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {_DMAEN}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {_DS_IO}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {_IOR}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {_IOW}]
+set_output_delay -add_delay -rise -max -clock [get_clocks {sclk}]  4.000 [get_ports {_SIZ1}]
+
 
 
 #**************************************************************
 # Set Clock Groups
 #**************************************************************
 
+set_clock_groups -asynchronous -group [get_clocks {altera_reserved_tck}] 
 
 
 #**************************************************************
 # Set False Path
 #**************************************************************
 
+set_false_path -to [get_ports {_LED_DMA _LED_RD _LED_WR}]
 
 
 #**************************************************************

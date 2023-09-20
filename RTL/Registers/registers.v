@@ -56,6 +56,8 @@ wire CONTR_WR;
 wire ISTR_RD_;
 wire WTC_RD_;
 wire INTENA;
+wire SSPBDAT_RD_;
+wire SSPBDAT_WR;
 
 //Action strobes
 wire ST_DMA;    //Start DMA 
@@ -71,24 +73,28 @@ wire [31:0] WTC;
 wire [31:0] CNTR;
 wire [31:0] ISTR;
 
+reg [7:0] SSPBDAT = 8'h55;
+
 //Address Decoding and Strobes
 addr_decoder u_addr_decoder(
-    .ADDR      (ADDR      ),
-    .DMAC_     (DMAC_     ),
-    .AS_       (AS_       ),
-    .RW        (RW        ),
-    .DMADIR    (DMADIR    ),
-    .h_0C      (h_0C      ),
-    .WDREGREQ  (WDREGREQ  ),
-    .WTC_RD_   (WTC_RD_   ), 
-    .CONTR_RD_ (CONTR_RD_ ),
-    .CONTR_WR  (CONTR_WR  ),
-    .ISTR_RD_  (ISTR_RD_  ),
-    .ACR_WR    (ACR_WR    ),
-    .ST_DMA    (ST_DMA    ),
-    .SP_DMA    (SP_DMA    ),
-    .CLR_INT   (CLR_INT   ),
-    .FLUSH_    (FLUSH_    )
+    .ADDR       (ADDR      ),
+    .DMAC_      (DMAC_     ),
+    .AS_        (AS_       ),
+    .RW         (RW        ),
+    .DMADIR     (DMADIR    ),
+    .h_0C       (h_0C      ),
+    .WDREGREQ   (WDREGREQ  ),
+    .WTC_RD_    (WTC_RD_   ), 
+    .CONTR_RD_  (CONTR_RD_ ),
+    .CONTR_WR   (CONTR_WR  ),
+    .ISTR_RD_   (ISTR_RD_  ),
+    .ACR_WR     (ACR_WR    ),
+    .ST_DMA     (ST_DMA    ),
+    .SP_DMA     (SP_DMA    ),
+    .CLR_INT    (CLR_INT   ),
+    .FLUSH_     (FLUSH_    ),
+    .SSPBDAT_WR (SSPBDAT_WR),
+    .SSPBDAT_RD_ (SSPBDAT_RD_)
 );
 
 //Interupt Status Register
@@ -151,11 +157,18 @@ always @(negedge CLK or negedge RST_) begin
         A1 <= MID[25];
 end
 
+always @(negedge CLK or negedge RST_) begin
+    if (RST_ == 1'b0)
+        SSPBDAT <= 8'b0;
+    else if (SSPBDAT_WR) 
+        SSPBDAT <= MID[7:0];
+end
+
 //drive output data onto bus.
 assign WTC  = WTC_RD_   ? 32'h00000000  : {32'h00000004};
 assign ISTR = ISTR_RD_  ? (WTC)  : {13'h0, ISTR_O};
 assign CNTR = CONTR_RD_ ? (ISTR) : {23'h0, CNTR_O};
 
-assign REG_OD[31:0] = CNTR;
+assign REG_OD[31:0] = SSPBDAT_RD_ ? CNTR: {24'h0,SSPBDAT} ;
 
 endmodule

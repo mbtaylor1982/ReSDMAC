@@ -83,8 +83,8 @@ wire RIFIFO;
 reg nLS2CPU;    //Inverted signal to idicate when to latch the SCSI data for CPU cycle.
 
 //*not sure on these  Miket 2023-01-28*
-reg RDFIFO_d;   // Signal CPU SM to read FIFO? 
-reg RIFIFO_d;   // Signal CPU SM to Write to FIFO? 
+reg RDFIFO_d;   // Signal CPU SM to read FIFO?
+reg RIFIFO_d;   // Signal CPU SM to Write to FIFO?
 
 /*
 --To swap between the FSM implmanetions instsiate the different modules--
@@ -94,15 +94,15 @@ reg RIFIFO_d;   // Signal CPU SM to Write to FIFO?
 SCSI_SM_INTERNALS u_SCSI_SM_INTERNALS (
     .CLK        (CLK90      ),  // input, (wire), CLK
     .nRESET     (CRESET_    ),  // input, (wire), Active low reset
-    .BOEQ3      (BOEQ3      ),  // input, (wire), Asserted when transfering Byte 3                
+    .BOEQ3      (BOEQ3      ),  // input, (wire), Asserted when transfering Byte 3
     .CCPUREQ    (CCPUREQ    ),  // input, (wire), Request CPU access to SCSI registers.
     .CDREQ_     (CDREQ_     ),  // input, (wire), Data transfer request from SCSI IC.
-    .CDSACK_    (CDSACK_    ),  // input, (wire), DSACK 
+    .CDSACK_    (CDSACK_    ),  // input, (wire), DSACK
     .DMADIR     (DMADIR     ),  // input, (wire), Control Direction Of DMA transfer.
     .FIFOEMPTY  (FIFOEMPTY  ),  // input, (wire), FIFOFULL flag
     .FIFOFULL   (FIFOFULL   ),  // input, (wire), FIFOEMPTY flag
-    .RDFIFO_o   (RDFIFO_o   ),  // input, (wire), 
-    .RIFIFO_o   (RIFIFO_o   ),  // input, (wire), 
+    .RDFIFO_o   (RDFIFO_o   ),  // input, (wire),
+    .RIFIFO_o   (RIFIFO_o   ),  // input, (wire),
     .RW         (RW         ),  // input, (wire), CPU RW signal
     .CPU2S      (CPU2S      ),  // output, reg, Indicate CPU to SCSI Transfer
     .DACK       (DACK       ),  // output, reg, SCSI IC Data request Acknowledge
@@ -117,7 +117,7 @@ SCSI_SM_INTERNALS u_SCSI_SM_INTERNALS (
     .S2F        (S2F        ),  // output, reg, Indicate SCSI to FIFO Transfer
     .SCSI_CS    (SCSI_CS    ),  // output, reg, Chip Select for SCSI IC
     .WE         (WE         ),  // output, reg, Write indicator to SCSI IC
-    .SET_DSACK  (SET_DSACK  )   // output, reg, 
+    .SET_DSACK  (SET_DSACK  )   // output, reg,
 );
 
 //clocked reset
@@ -127,35 +127,54 @@ end
 
 //clocked inputs.
 always @(posedge  CLK90 or negedge CRESET_) begin
-    if (CRESET_ == 1'b0)
-    begin 
+    if (~CRESET_)
+    begin
         CDSACK_ <= 1'b1;
         CCPUREQ <= 1'b0;
         CDREQ_  <= 1'b1;
     end
-    else 
+    else
     begin
         CCPUREQ <= CPUREQ;
         CDREQ_  <= DREQ_;
-        CDSACK_ <= DSACK_;   
+        CDSACK_ <= DSACK_;
     end
 end
 
 //Clocked outputs.
-always @(posedge CLK90) begin
-    CPU2S_o     <= CPU2S;   
-    DACK_o      <= DACK;
-    F2S_o       <= F2S;
-    INCBO_o     <= INCBO;
-    INCNI_o     <= INCNI;
-    INCNO_o     <= INCNO;
-    RDFIFO_d    <= RDFIFO;
-    RE_o        <= RE;
-    RIFIFO_d    <= RIFIFO;
-    S2CPU_o     <= S2CPU;
-    S2F_o       <= S2F;
-    SCSI_CS_o   <= SCSI_CS;
-    WE_o        <= WE;
+always @(posedge CLK90 or negedge CRESET_) begin
+     if (~CRESET_)
+    begin
+        CPU2S_o     <= 1'b0;
+        DACK_o      <= 1'b0;
+        F2S_o       <= 1'b0;
+        INCBO_o     <= 1'b0;
+        INCNI_o     <= 1'b0;
+        INCNO_o     <= 1'b0;
+        RDFIFO_d    <= 1'b0;
+        RE_o        <= 1'b0;
+        RIFIFO_d    <= 1'b0;
+        S2CPU_o     <= 1'b0;
+        S2F_o       <= 1'b0;
+        SCSI_CS_o   <= 1'b0;
+        WE_o        <= 1'b0;
+    end
+    else
+    begin
+        CPU2S_o     <= CPU2S;
+        DACK_o      <= DACK;
+        F2S_o       <= F2S;
+        INCBO_o     <= INCBO;
+        INCNI_o     <= INCNI;
+        INCNO_o     <= INCNO;
+        RDFIFO_d    <= RDFIFO;
+        RE_o        <= RE;
+        RIFIFO_d    <= RIFIFO;
+        S2CPU_o     <= S2CPU;
+        S2F_o       <= S2F;
+        SCSI_CS_o   <= SCSI_CS;
+        WE_o        <= WE;
+    end
 end
 
 always @(posedge CLK135 or negedge RESET_) begin
@@ -175,7 +194,7 @@ end
 
 
 always @(posedge CLK135 or posedge AS_) begin
-    if (AS_ == 1'b1)
+    if (AS_)
         nLS2CPU <= 1'b0;
     else if (SET_DSACK)
         nLS2CPU <= 1'b1;

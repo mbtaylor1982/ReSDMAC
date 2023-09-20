@@ -36,7 +36,10 @@ module addr_decoder(
   output ST_DMA,
   output SP_DMA,
   output CLR_INT,
-  output FLUSH_
+  output FLUSH_,
+
+  output SSPBDAT_WR,
+  output SSPBDAT_RD_
 );
 
 //wire h_00;
@@ -48,6 +51,7 @@ wire h_14;
 wire h_18;
 wire h_1C;
 wire h_3C;
+wire h_58;
 
 wire ADDR_VALID;
 assign ADDR_VALID = ~(DMAC_ | AS_);
@@ -61,18 +65,20 @@ assign h_14 = ADDR_VALID & (ADDR == 8'h14);
 assign h_18 = ADDR_VALID & (ADDR == 8'h18);
 assign h_1C = ADDR_VALID & (ADDR == 8'h1C);
 assign h_3C = ADDR_VALID & (ADDR == 8'h3C);
+assign h_58 = ADDR_VALID & (ADDR == 8'h58);
 
-assign WDREGREQ = ADDR_VALID & (ADDR >= 8'h40);
+assign WDREGREQ = ADDR_VALID & (ADDR[7:4] == 4'h4);
 
 //Register Read and Write Strobes
 //assign DAWR_WR    = ~(h_00 & RW);
 assign WTC_RD_    = ~(h_04 & RW);
 assign CONTR_RD_  = ~(h_08 & RW);
 assign ISTR_RD_   = ~(h_1C & RW);
+assign SSPBDAT_RD_ = ~(h_58 & RW);
 
 assign CONTR_WR   = (h_08 & ~RW);
 assign ACR_WR     = (h_0C & ~RW);
-
+assign SSPBDAT_WR = (h_58 & ~RW);
 
 //action strobes
 assign ST_DMA   = h_10;

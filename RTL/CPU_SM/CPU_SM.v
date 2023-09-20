@@ -37,6 +37,7 @@ module CPU_SM(
     input aRESET_,
     input BOEQ0,
     input BOEQ3,
+    input CLK,
     input CLK45,             //CPUCLK pahse shifted 45 deg
     input CLK90,             //CPUCLK pahse shifted 90 deg.
     input CLK135,            //CPUCLK pahse shifted 135 deg.    
@@ -223,8 +224,8 @@ CPU_SM_outputs u_CPU_SM_outputs(
 );
 
 //clocked reset
-always @(negedge CLK45) begin
-    CCRESET_ <= aRESET_;   
+always @(negedge CLK) begin
+    CCRESET_ <= aRESET_;
 end
 
 //clocked inputs.

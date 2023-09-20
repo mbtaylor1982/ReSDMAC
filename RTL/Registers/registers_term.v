@@ -48,7 +48,7 @@ end
 always @(posedge CLK or posedge AS_) begin
   if (AS_)
     REG_DSK_ <= 1'b1;
-  else if (TERM_COUNTER == 3'd3)
+  else if (TERM_COUNTER == 3'd2)
     REG_DSK_ <= 1'b0;   
 end
 
