@@ -77,8 +77,7 @@ datapath_8b_MUX u_datapath_8b_MUX(
     .E (CPU_OD[23:16]  ),
     .F (CPU_OD[7:0]    ),
     //selects
-    .S ({(CPU2S & ~A3), (CPU2S & A3), F2S_UUD, F2S_UMD, F2S_LMD, F2S_LLD}), 
-    
+    .S ({(CPU2S & ~A3), (CPU2S & A3), F2S_UUD, F2S_UMD, F2S_LMD, F2S_LLD}),
     .Z (SCSI_DATA_TX) //output
 );
 
@@ -88,11 +87,11 @@ assign SCSI_DATA_RX = SCSI_IN ? SCSI_DATA_IN[7:0] : 8'h00;
 always @(negedge CLK, negedge S2CPU) begin
     if (~S2CPU)
         SCSI_DATA_LATCHED <= 8'h00;
-    else if (~LS2CPU) 
+    else if (~LS2CPU)
         SCSI_DATA_LATCHED <= SCSI_DATA_RX;
 end
 
-assign MOD_SCSI = {SCSI_DATA_LATCHED, 8'h00 , SCSI_DATA_LATCHED, 8'h00};
+assign MOD_SCSI = {8'h00 , SCSI_DATA_LATCHED, 8'h00, SCSI_DATA_LATCHED};
 assign SCSI_OD = {SCSI_DATA_RX, SCSI_DATA_RX, SCSI_DATA_RX, SCSI_DATA_RX};
 
 endmodule
