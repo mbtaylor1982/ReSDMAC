@@ -29,26 +29,25 @@ module registers(
   input DMAC_,          // SDMAC Chip Select !SCSI from Fat Garry.
   input AS_,            // CPU Address Strobe.
   input RW,             // CPU Read Write Control Line.
-  input CLK,
-  input [31:0] MID,     //DATA IN
-  input STOPFLUSH,
-  input RST_,
-  input FIFOEMPTY,
-  input FIFOFULL,
-  input INTA_I,
-  
+  input CLK,            // System Clock
+  input [31:0] MID,     // DATA IN
+  input STOPFLUSH,      //
+  input RST_,           // System Reset
+  input FIFOEMPTY,      // FIFO Emtpty Flag
+  input FIFOFULL,       // FIFO Full Flag
+  input INTA_I,         //
 
-  output [31:0] REG_OD,    //DATA OUT.
-  output PRESET,        //Peripheral Reset.
-  output reg FLUSHFIFO, //Flush FIFO.
-  output ACR_WR,        //input to FIFO_byte_ptr.
-  output h_0C,          //input to FIFO_byte_ptr.
-  output reg A1,        //Store value of A1 written to ACR.  
-  output INT_O_,        //INT_2 Output.
-  output DMADIR,        //DMA Direction
-  output DMAENA,         //DMA Enabled.  
-  output REG_DSK_,
-  output WDREGREQ
+  output [31:0] REG_OD,     //DATA OUT.
+  output PRESET,            //Peripheral Reset.
+  output reg FLUSHFIFO,     //Flush FIFO.
+  output ACR_WR,            //input to FIFO_byte_ptr.
+  output h_0C,              //input to FIFO_byte_ptr.
+  output reg A1,            //Store value of A1 written to ACR.
+  output INT_O_,            //INT_2 Output.
+  output DMADIR,            //DMA Direction
+  output DMAENA,            //DMA Enabled.
+  output REG_DSK_,          //Register Cycle Term.
+  output WDREGREQ           //SCSI IC Cycle Term.
 );
 
 wire CONTR_RD_;
@@ -68,12 +67,12 @@ wire FLUSH_;    //Flush FIFO
 //Registers
 wire [8:0] ISTR_O;  //Interrupt Status Register
 wire [8:0] CNTR_O;  //Control Register
+reg [31:0] SSPBDAT;  //Fake Synchronous Serial Peripheral Bus Data Register (used to test SDMAC rev 4 in the test toll by CDH)
 
 wire [31:0] WTC;
 wire [31:0] CNTR;
 wire [31:0] ISTR;
 
-reg [7:0] SSPBDAT = 8'h55;
 
 //Address Decoding and Strobes
 addr_decoder u_addr_decoder(
@@ -145,7 +144,7 @@ always @(negedge CLK or negedge RST_) begin
         FLUSHFIFO <= 1'b0;
     else if (~FLUSH_)
         FLUSHFIFO <= 1'b1;
-	 else	if (~CLR_FLUSHFIFO)  
+	 else	if (~CLR_FLUSHFIFO)
 		FLUSHFIFO <= 1'b0;
 end
 
@@ -153,15 +152,16 @@ end
 always @(negedge CLK or negedge RST_) begin
     if (RST_ == 1'b0)
         A1 <= 1'b0;
-    else if (ACR_WR) 
+    else if (ACR_WR)
         A1 <= MID[25];
 end
 
+//Fake SSPBDAT register (only used for testing read and write cycles)
 always @(negedge CLK or negedge RST_) begin
     if (RST_ == 1'b0)
-        SSPBDAT <= 8'b0;
-    else if (SSPBDAT_WR) 
-        SSPBDAT <= MID[7:0];
+        SSPBDAT <= 32'b0;
+    else if (SSPBDAT_WR)
+        SSPBDAT <= MID[31:0];
 end
 
 //drive output data onto bus.
@@ -169,6 +169,6 @@ assign WTC  = WTC_RD_   ? 32'h00000000  : {32'h00000004};
 assign ISTR = ISTR_RD_  ? (WTC)  : {13'h0, ISTR_O};
 assign CNTR = CONTR_RD_ ? (ISTR) : {23'h0, CNTR_O};
 
-assign REG_OD[31:0] = SSPBDAT_RD_ ? CNTR: {24'h0,SSPBDAT} ;
+assign REG_OD = SSPBDAT_RD_ ? CNTR : SSPBDAT;
 
 endmodule

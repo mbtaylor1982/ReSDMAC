@@ -15,41 +15,41 @@
 // 
 // You should have received a copy of the GNU General Public License
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
- */ 
+ */
 
 module registers_term(
     input CLK,
     input AS_,
     input DMAC_,
     input WDREGREQ,
-    input h_0C, 
+    input h_0C,
 
     output reg REG_DSK_
 );
 
-reg [2:0] TERM_COUNTER;
+reg [1:0] TERM_COUNTER;
 
 wire CYCLE_ACTIVE;
 
-`ifdef __ICARUS__ 
+`ifdef __ICARUS__
   //allows sdmac to terminate writes to ACR in Ramsey for testing
   assign CYCLE_ACTIVE = ~(AS_| DMAC_ | WDREGREQ);
 `else
   assign CYCLE_ACTIVE = ~(AS_| DMAC_ | WDREGREQ | h_0C);
-`endif   
-
-always @(negedge CLK) begin
-  if (AS_)
-    TERM_COUNTER <= 3'b000;
-  else if (CYCLE_ACTIVE) 
-    TERM_COUNTER <=  TERM_COUNTER + 1'b1;
-end
+`endif
 
 always @(posedge CLK or posedge AS_) begin
-  if (AS_)
+  if (AS_) begin
+    TERM_COUNTER <= 2'd0;
     REG_DSK_ <= 1'b1;
-  else if (TERM_COUNTER == 3'd2)
-    REG_DSK_ <= 1'b0;   
+  end
+  else if (CYCLE_ACTIVE) begin
+    if (TERM_COUNTER == 2'd1)
+      REG_DSK_ <= 1'b0;
+    else if (TERM_COUNTER == 2'd2)
+      REG_DSK_ <= 1'b1;
+    TERM_COUNTER <= TERM_COUNTER + 1'b1;
+  end
 end
 
 endmodule

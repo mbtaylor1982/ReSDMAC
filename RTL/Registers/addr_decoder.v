@@ -22,30 +22,27 @@ module addr_decoder(
   input AS_,        // CPU Address Strobe.
   input RW,         // CPU Read Write Control Line.
   input DMADIR,     // DMADIR from bit from Control Register.
-  
-  output h_0C,
-  output WDREGREQ,
+
+  output h_0C,      // RAMSEY ACR Address Decode
+  output WDREGREQ,  // WD33C93  Address Decode
 
   output CONTR_RD_,
-  output CONTR_WR,
   output ISTR_RD_,
-  output ACR_WR, 
-  //output DAWR_WR,
   output WTC_RD_,
-  
+  output SSPBDAT_RD_,
+
+  output CONTR_WR,
+  output ACR_WR,
+  output SSPBDAT_WR,
+
   output ST_DMA,
   output SP_DMA,
   output CLR_INT,
-  output FLUSH_,
-
-  output SSPBDAT_WR,
-  output SSPBDAT_RD_
+  output FLUSH_
 );
 
-//wire h_00;
 wire h_04;
 wire h_08;
-//wire h_0C;
 wire h_10;
 wire h_14;
 wire h_18;
@@ -56,7 +53,6 @@ wire h_58;
 wire ADDR_VALID;
 assign ADDR_VALID = ~(DMAC_ | AS_);
 
-//assign h_00 = ADDR_VALID & (ADDR == 8'h00);
 assign h_04 = ADDR_VALID & (ADDR == 8'h04);
 assign h_08 = ADDR_VALID & (ADDR == 8'h08);
 assign h_0C = ADDR_VALID & (ADDR == 8'h0C);
@@ -70,15 +66,14 @@ assign h_58 = ADDR_VALID & (ADDR == 8'h58);
 assign WDREGREQ = ADDR_VALID & (ADDR[7:4] == 4'h4);
 
 //Register Read and Write Strobes
-//assign DAWR_WR    = ~(h_00 & RW);
-assign WTC_RD_    = ~(h_04 & RW);
-assign CONTR_RD_  = ~(h_08 & RW);
-assign ISTR_RD_   = ~(h_1C & RW);
-assign SSPBDAT_RD_ = ~(h_58 & RW);
+assign WTC_RD_      = ~(h_04 & RW);
+assign CONTR_RD_    = ~(h_08 & RW);
+assign ISTR_RD_     = ~(h_1C & RW);
+assign SSPBDAT_RD_  = ~(h_58 & RW);
 
-assign CONTR_WR   = (h_08 & ~RW);
-assign ACR_WR     = (h_0C & ~RW);
-assign SSPBDAT_WR = (h_58 & ~RW);
+assign CONTR_WR     = (h_08 & ~RW);
+assign ACR_WR       = (h_0C & ~RW);
+assign SSPBDAT_WR   = (h_58 & ~RW);
 
 //action strobes
 assign ST_DMA   = h_10;

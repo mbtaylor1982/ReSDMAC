@@ -70,7 +70,7 @@ module RESDMAC(
 	
     //level shifters control signals
     output OWN,                     //Active high signal to show SDMAC is bus master, This can be used to set direction on level shifters for control signals.
-    output reg DATA_OE_,                //Active low ouput enable for DBUS level shifters.
+    output DATA_OE_,                //Active low ouput enable for DBUS level shifters.
     output PDATA_OE_                //Active low ouput enable for Peripheral BUS level shifters.
 );
 
@@ -346,18 +346,17 @@ PLL u_PLL (
 
 
 always @(negedge SCLK) begin
-    AS_O_   <= ~PAS;    
-    DS_O_   <= ~PDS; 
+    AS_O_   <= ~PAS;
+    DS_O_   <= ~PDS;
     LLW     <= PLLW;
     LHW     <= PLHW;
 end
 
 always @(posedge SCLK) begin
      DATA_DIR <= (R_W ^ OWN);
-     DATA_OE_ <= ((_CS | (H_0C & R_W)) & _BGACK_IO);
 end
 
-
+assign DATA_OE_ = ((AS_I_ | _CS | ~ACR_WR) & (AS_I_ | _CS | H_0C) & _BGACK_IO);
 assign _BGACK_I =  _BGACK_IO;
 
 //System Outputs
@@ -375,9 +374,9 @@ assign _CSS = ~ SCSI_CS;
 assign _DACK = ~ DACK_o;
 
 //Diagnostic LEDs
-assign _LED_WR = OWN ? DMADIR  : ( R_W | AS_I_ | _CS);
-assign _LED_RD = OWN ? ~DMADIR : (~R_W | AS_I_ | _CS);
-assign _LED_DMA = ~OWN;
+assign _LED_WR  = OWN ? DMADIR  : ( R_W | AS_I_ | _CS | H_0C);
+assign _LED_RD  = OWN ? ~DMADIR : (~R_W | AS_I_ | _CS | H_0C);
+assign _LED_DMA = OWN ? 1'b0    : 1'b1;
 
 //internal connections
 assign DREQ_ = (~DMAENA | _DREQ);
