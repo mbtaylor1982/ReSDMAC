@@ -26,8 +26,7 @@ module registers_istr(
   input ISTR_RD_,
   input INTENA,
   input INTA_I,
-  
-  
+
   output reg [8:0] ISTR_O,
   output reg INT_O_
 );
@@ -52,12 +51,12 @@ always @(negedge CLK, negedge RESET_) begin
     E_INT   <= 1'b0;
     INT_P   <= 1'b0;
     FF      <= 1'b0;
-    FE      <= 1'b1;    
+    FE      <= 1'b1;
   end
   else if (~ISTR_RD_) begin
-    INT_F   <= INTA_I;
-    INTS    <= INTA_I;
-    E_INT   <= INTA_I;
+    INT_F   <= ~INTA_I;
+    INTS    <= ~INTA_I;
+    E_INT   <= ~INTA_I;
     INT_P   <= INT;
     FF      <= FIFOFULL;
     FE      <= FIFOEMPTY;
