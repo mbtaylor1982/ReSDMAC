@@ -165,7 +165,7 @@ always @(negedge CLK or negedge RST_) begin
 end
 
 //drive output data onto bus.
-assign WTC  = WTC_RD_   ? 32'h00000000  : {32'h00000004};
+assign WTC  = WTC_RD_   ? 32'h00000000  : {32'h00000000};
 assign ISTR = ISTR_RD_  ? (WTC)  : {13'h0, ISTR_O};
 assign CNTR = CONTR_RD_ ? (ISTR) : {23'h0, CNTR_O};
 
