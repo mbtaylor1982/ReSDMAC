@@ -130,7 +130,7 @@ assign DOEH_ = DOEL_;
 assign DATA_OE_ = ~DOEH_;
 
 assign bBRIDGEIN = BRIDGEIN;
-assign bDIEH = DIEH;
+assign bDIEH = (DIEH|CPU2S);
 
 assign bDIEL = (DIEL|CPU2S);
 
