@@ -87,7 +87,7 @@ begin
 end 
 
 
-always @(*) begin 
+always @(posedge CLK) begin 
     // default state_next
     state_next  = state_reg; 
     
@@ -123,7 +123,7 @@ always @(*) begin
             INCBO   = 1;
             INCNO   = BOEQ3;
             RDFIFO  = BOEQ3;
-            state_next = s16;    
+            state_next = s16;
         end
         s2 : begin
             WE      = 1;
@@ -135,6 +135,7 @@ always @(*) begin
             RE      = 1;
             S2CPU   = 1;
             SCSI_CS = 1;
+            SET_DSACK   = 1;
             state_next = s19;
         end
         s4 : begin
@@ -191,8 +192,8 @@ always @(*) begin
             end
             else if (CCPUREQ)
                 state_next = s8;
-            else    
-                state_next = s0;        
+            else
+                state_next = s0;
         end
         s17 : begin
             WE      = 1;
@@ -209,7 +210,7 @@ always @(*) begin
         s19 : begin
             RE          = 1;
             S2CPU       = 1;
-            SET_DSACK   = 1;
+            //SET_DSACK   = 1;
             state_next = s9;
         end
         s20 : begin

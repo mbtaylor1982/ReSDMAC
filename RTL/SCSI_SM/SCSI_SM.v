@@ -24,6 +24,7 @@
 module SCSI_SM
 
 (   input BOEQ3,            //Asserted when transfering Byte 3
+    input CLK,               //CPUClk.
     input CLK45,            //CPUClk phase shifted 45 deg.
     input CLK90,            //CPUCLK phase shifted 90 deg.
     input CLK135,           //CPUCLK phase shifted 135 deg
@@ -92,7 +93,7 @@ reg RIFIFO_d;   // Signal CPU SM to Write to FIFO?
     2.Standard verilog form fsm = SCSI_SM_INTERNALS
 */
 SCSI_SM_INTERNALS u_SCSI_SM_INTERNALS (
-    .CLK        (CLK90      ),  // input, (wire), CLK
+    .CLK        (CLK        ),  // input, (wire), CLK
     .nRESET     (CRESET_    ),  // input, (wire), Active low reset
     .BOEQ3      (BOEQ3      ),  // input, (wire), Asserted when transfering Byte 3
     .CCPUREQ    (CCPUREQ    ),  // input, (wire), Request CPU access to SCSI registers.
@@ -121,12 +122,12 @@ SCSI_SM_INTERNALS u_SCSI_SM_INTERNALS (
 );
 
 //clocked reset
-always @(negedge  CLK45) begin
+always @(negedge  CLK90) begin
     CRESET_ <= RESET_;
 end
 
 //clocked inputs.
-always @(posedge  CLK90 or negedge CRESET_) begin
+always @(negedge  CLK135 or negedge CRESET_) begin
     if (~CRESET_)
     begin
         CDSACK_ <= 1'b1;
@@ -177,7 +178,7 @@ always @(posedge CLK90 or negedge CRESET_) begin
     end
 end
 
-always @(posedge CLK135 or negedge RESET_) begin
+always @(posedge CLK90 or negedge RESET_) begin
     if (~RESET_) begin
         RDFIFO_o <= 1'b0;
 	    RIFIFO_o <= 1'b0;
@@ -193,11 +194,11 @@ always @(posedge CLK135 or negedge RESET_) begin
 end
 
 
-always @(posedge CLK135 or posedge AS_) begin
+always @(posedge CLK90 or posedge AS_) begin
     if (AS_)
         nLS2CPU <= 1'b0;
-    else if (SET_DSACK)
-        nLS2CPU <= 1'b1;
+    else //if (SET_DSACK)
+        nLS2CPU <= (LS2CPU & SET_DSACK);
 end
 
 assign LS2CPU = ~nLS2CPU;
