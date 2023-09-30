@@ -77,22 +77,22 @@ module RESDMAC(
 reg AS_O_;
 wire AS_I_;
 assign AS_I_ = _AS_IO; 
-//assign _AS_IO = OWN ? AS_O_: 1'bz;
+assign _AS_IO = OWN ? AS_O_: 1'bz;
 
 
 reg DS_O_;
 wire DS_I_;
 assign DS_I_ = _DS_IO;
-//assign _DS_IO = OWN ? DS_O_ : 1'bz;
+assign _DS_IO = OWN ? DS_O_ : 1'bz;
 
 wire R_W;
 assign R_W = R_W_IO;
-//assign  R_W_IO = OWN ? ~DMADIR : 1'bz;
+assign  R_W_IO = OWN ? ~DMADIR : 1'bz;
 
 wire [31:0] DATA_I;
 wire [31:0] DATA_O;
 assign DATA_I = DATA_IO;
-assign DATA_IO = (R_W & ~H_0C) ? DATA_O : 32'hzzzzzzzz;
+assign DATA_IO = ((R_W & ~H_0C) | OWN) ? DATA_O : 32'hzzzzzzzz;
 
 wire [15:0] PDATA_I;
 wire [15:0] PDATA_O;
@@ -247,15 +247,16 @@ SCSI_SM u_SCSI_SM(
     .DMADIR    (DMADIR      ),
     .INCFIFO   (INCFIFO     ),
     .DECFIFO   (DECFIFO     ),
-    .RESET_    (_RST   ),
+    .RESET_    (_RST        ),
     .BOEQ3     (BOEQ3       ),
-    .CLK45     (CLK45       ), 
-    .CLK90     (CLK90       ), 
-    .CLK135    (CLK135      ), 
+    .CLK       (SCLK        ),
+    .CLK45     (CLK45       ),
+    .CLK90     (CLK90       ),
+    .CLK135    (CLK135      ),
     .DREQ_     (DREQ_       ),
     .FIFOFULL  (FIFOFULL    ),
     .FIFOEMPTY (FIFOEMPTY   ),
-    .AS_       (AS_I_        ),
+    .AS_       (AS_I_       ),
     .RDFIFO_o  (RDFIFO_o    ),
     .RIFIFO_o  (RIFIFO_o    ),
     .RE_o      (RE          ),
@@ -274,9 +275,9 @@ SCSI_SM u_SCSI_SM(
 );
 
 fifo int_fifo(
-    .CLK         (SCLK      ), 
-    .CLK90       (CLK90     ), 
-    .CLK135      (CLK135    ), 
+    .CLK         (SCLK      ),
+    .CLK90       (CLK90     ),
+    .CLK135      (CLK135    ),
     .LLWORD      (LLW       ),
     .LHWORD      (LHW       ),
     .LBYTE_      (LBYTE_    ),
@@ -300,9 +301,9 @@ fifo int_fifo(
 );
 
 datapath u_datapath(
-    .CLK       (SCLK        ), 
-    .CLK90     (CLK90       ), 
-    .CLK135    (CLK135      ), 
+    .CLK       (SCLK        ),
+    .CLK90     (CLK90       ),
+    .CLK135    (CLK135      ),
     .DATA_I    (DATA_I      ),
     .DATA_O    (DATA_O      ),
     .PD_IN     (PDATA_I     ),
