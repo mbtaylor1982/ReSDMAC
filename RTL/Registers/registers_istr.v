@@ -54,9 +54,9 @@ always @(negedge CLK, negedge RESET_) begin
     FE      <= 1'b1;
   end
   else if (~ISTR_RD_) begin
-    INT_F   <= ~INTA_I;
-    INTS    <= ~INTA_I;
-    E_INT   <= ~INTA_I;
+    INT_F   <= INTA_I;
+    INTS    <= INTA_I;
+    E_INT   <= INTA_I;
     INT_P   <= INT;
     FF      <= FIFOFULL;
     FE      <= FIFOEMPTY;
