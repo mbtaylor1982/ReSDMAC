@@ -9,13 +9,14 @@
  </systemtable>
  <clocktable>
   <columns>
-   <clockname preferredWidth="400" />
-   <clocksource preferredWidth="399" />
-   <frequency preferredWidth="380" />
+   <clockname preferredWidth="372" />
+   <clocksource preferredWidth="371" />
+   <frequency preferredWidth="354" />
   </columns>
  </clocktable>
  <library
-   expandedCategories="Library/Bridges/Memory-Mapped,Project,Library/Bridges and Adapters,Library/Bridges/Streaming,Library/Bridges,Library/Bridges and Adapters/DMA,Library" />
+   expandedCategories="Library,Library/Peripherals,Project,Library/Clock and Reset,Library/Peripherals/Debug and Performance" />
  <window width="1699" height="903" x="0" y="0" />
  <hdlexample language="VERILOG" />
+ <generation simulation="VERILOG" />
 </preferences>

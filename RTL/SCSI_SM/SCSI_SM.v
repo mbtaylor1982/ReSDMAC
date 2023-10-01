@@ -93,7 +93,7 @@ reg RIFIFO_d;   // Signal CPU SM to Write to FIFO?
     2.Standard verilog form fsm = SCSI_SM_INTERNALS
 */
 SCSI_SM_INTERNALS u_SCSI_SM_INTERNALS (
-    .CLK        (CLK        ),  // input, (wire), CLK
+    .CLK        (CLK90      ),  // input, (wire), CLK
     .nRESET     (CRESET_    ),  // input, (wire), Active low reset
     .BOEQ3      (BOEQ3      ),  // input, (wire), Asserted when transfering Byte 3
     .CCPUREQ    (CCPUREQ    ),  // input, (wire), Request CPU access to SCSI registers.
@@ -122,7 +122,7 @@ SCSI_SM_INTERNALS u_SCSI_SM_INTERNALS (
 );
 
 //clocked reset
-always @(negedge  CLK90) begin
+always @(negedge  CLK) begin
     CRESET_ <= RESET_;
 end
 
@@ -178,7 +178,7 @@ always @(posedge CLK90 or negedge CRESET_) begin
     end
 end
 
-always @(posedge CLK90 or negedge RESET_) begin
+always @(posedge CLK135 or negedge RESET_) begin
     if (~RESET_) begin
         RDFIFO_o <= 1'b0;
 	    RIFIFO_o <= 1'b0;
@@ -194,7 +194,7 @@ always @(posedge CLK90 or negedge RESET_) begin
 end
 
 
-always @(posedge CLK90 or posedge AS_) begin
+always @(posedge CLK135 or posedge AS_) begin
     if (AS_)
         nLS2CPU <= 1'b0;
     else //if (SET_DSACK)

@@ -71,14 +71,14 @@ module RESDMAC(
     //level shifters control signals
     output OWN,                     //Active high signal to show SDMAC is bus master, This can be used to set direction on level shifters for control signals.
     output DATA_OE_,                //Active low ouput enable for DBUS level shifters.
-    output PDATA_OE_                //Active low ouput enable for Peripheral BUS level shifters.
+    output PDATA_OE_,                //Active low ouput enable for Peripheral BUS level shifters.
+    output DATA_DIR
 );
 
 reg AS_O_;
 wire AS_I_;
 assign AS_I_ = _AS_IO; 
 assign _AS_IO = OWN ? AS_O_: 1'bz;
-
 
 reg DS_O_;
 wire DS_I_;
@@ -99,10 +99,8 @@ wire [15:0] PDATA_O;
 assign PDATA_I = PD_PORT;
 assign PD_PORT = _IOW ? 16'hzzzz: PDATA_O;
 
-
 reg LLW;
 reg LHW;
-reg DATA_DIR;
 
 wire [31:0] MID;
 wire [31:0] REG_OD;
@@ -353,9 +351,7 @@ always @(negedge SCLK) begin
     LHW     <= PLHW;
 end
 
-always @(posedge SCLK) begin
-     DATA_DIR <= (R_W ^ OWN);
-end
+assign DATA_DIR = (R_W ^ OWN);
 
 assign DATA_OE_ = ((AS_I_ | _CS | ~ACR_WR) & (AS_I_ | _CS | H_0C) & _BGACK_IO);
 assign _BGACK_I =  _BGACK_IO;
