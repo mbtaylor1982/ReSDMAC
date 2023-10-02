@@ -17,19 +17,19 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-module SCSI_SM_INTERNALS(   
+module SCSI_SM_INTERNALS(
 
     input CLK,              //CLK
     input nRESET,           //Active low reset
-                  
-    input BOEQ3,            //Asserted when transfering Byte 3                
+
+    input BOEQ3,            //Asserted when transfering Byte 3
     input CCPUREQ,          //Request CPU access to SCSI registers.
     input CDREQ_,           //Data transfer request from SCSI IC.
-    input CDSACK_,          //DSACK 
+    input CDSACK_,          //DSACK feedback for cycle termination
     input DMADIR,           //Control Direction Of DMA transfer.
     input FIFOEMPTY,        //FIFOFULL flag
     input FIFOFULL,         //FIFOEMPTY flag
-    input RDFIFO_o,         
+    input RDFIFO_o,
     input RIFIFO_o,
     input RW,               //CPU RW signal
 
@@ -46,219 +46,297 @@ module SCSI_SM_INTERNALS(
     output reg S2F,         //Indicate SCSI to FIFO Transfer
     output reg SCSI_CS,     //Chip Select for SCSI IC
     output reg WE,          //Write indicator to SCSI IC
-    output reg SET_DSACK
-    
+    output reg SET_DSACK    //Signal cycle termination for C2S & S2C
+
 );
 
-localparam [4:0] 
-    s0 = 0, // IDLE/DMA-RE
-    s1 = 1, // F2S-4
-    s2 = 2, // F2S-2
-    s3 = 3, // S2C-3
-    s4 = 4, // S2F-2
-    s6 = 6, // C2S-3
-    s8 = 8, // CPUREQ
-    s9 = 9, // S2C-5
-    s10 = 10, // S2C-1
-    s12 = 12, // S2F-4
-    s14 = 14, // C2S-5
-    s16 = 16, // DMA-WR
-    s17 = 17, // C2S-1
-    s18 = 18, // F2S-3
-    s19 = 19, // S2C-4
-    s20 = 20, // S2F-3
-    s22 = 22, // C2S-4
-    s24 = 24, // S2F-1
-    s25 = 25, // S2C-6
-    s26 = 26, // C2S-2
-    s28 = 28, // F2S-1
-    s30 = 30; // S2C-2
-    
+localparam [4:0]
+    IDLE_DMA_RD = 0,  // Idle state / start of DMA read
+    CPUREQ      = 8,  // Idle state / start of CPU <-> SCSI transfer
+    IDLE_DMA_WR = 16, // Idle state / start of DMA write
+
+    //CPU to SCSI States
+    C2S_1   = 17,
+    C2S_2   = 26,
+    C2S_3   = 6,
+    C2S_4   = 22,
+    C2S_5   = 14,
+
+    //FIFO to SCSI States
+    F2S_1   = 28,
+    F2S_2   = 2,
+    F2S_3   = 18,
+    F2S_4   = 1,
+
+    //SCSI to CPU States
+    S2C_1   = 10,
+    S2C_2   = 30,
+    S2C_3   = 3,
+    S2C_4   = 19,
+    S2C_5   = 9,
+    S2C_6   = 25,
+
+    //SCSI to FIFO States
+    S2F_1   = 24,
+    S2F_2   = 4,
+    S2F_3   = 20,
+    S2F_4   = 12;
+
     reg [4:0] state_reg, state_next;
 
 always @(posedge CLK or negedge nRESET)
 begin
     if (~nRESET) begin
-        state_reg <= s0;
+        state_reg <= IDLE_DMA_RD;
     end
     else begin
         state_reg <= state_next;
     end
 end 
 
-
-always @(posedge CLK) begin 
-    // default state_next
-    state_next  = state_reg; 
-    
-    // default outputs
-    CPU2S       = 0;   
-    DACK        = 0;
-    F2S         = 0;
-    INCBO       = 0;   
-    INCNI       = 0;   
-    INCNO       = 0;   
-    RDFIFO      = 0;  
-    RE          = 0;      
-    RIFIFO      = 0;  
-    S2CPU       = 0;   
-    S2F         = 0;     
-    SCSI_CS     = 0; 
-    WE          = 0;      
-    SET_DSACK   = 0;
-    
+always @(*)
+begin
     case (state_reg)
-        s0 : begin
-            if (~CDREQ_ & ~FIFOFULL & DMADIR & ~CCPUREQ & ~RIFIFO_o) begin
-                DACK = 1;
-                state_next = s24;
-            end
-            else if (CCPUREQ) 
-                state_next = s8;
-            else if (~DMADIR & ~CCPUREQ)
-                state_next = s16; 
-        end
-        s1 : begin
-            F2S     = 1;
-            INCBO   = 1;
-            INCNO   = BOEQ3;
-            RDFIFO  = BOEQ3;
-            state_next = s16;
-        end
-        s2 : begin
-            WE      = 1;
-            F2S     = 1;
-            DACK    = 1;
-            state_next = s18;
-        end
-        s3 : begin
-            RE      = 1;
-            S2CPU   = 1;
-            SCSI_CS = 1;
-            SET_DSACK   = 1;
-            state_next = s19;
-        end
-        s4 : begin
-            RE      = 1;
-            S2F     = 1;
-            DACK    = 1;
-            state_next = s20;
-        end
-        s6 : begin
-            CPU2S       = 1;
-            SET_DSACK   = 1;
-            SCSI_CS     = 1;
-            state_next = s22;
-        end
-        s8 : begin
-            SCSI_CS = 1;
-
-            if (RW) begin
-                RE      = 1;
-                S2CPU   = 1;
-                state_next = s10;
-            end 
-            else begin
-                WE      = 1;
-                CPU2S   = 1;
-                state_next = s17;
-            end
-        end
-        s9 : begin
-            S2CPU = 1;
-            state_next = s25;
-        end
-        s10: begin
-            RE      = 1;
-            S2CPU   = 1;
-            SCSI_CS = 1;
-            state_next = s30;
-        end 
-        s12 : begin
-            INCBO   = 1;
-            S2F     = 1;
-            INCNI   = BOEQ3;
-            RIFIFO  = BOEQ3;
-            state_next = s0;    
-        end
-        s14 : begin
-            if (CDSACK_)
-                state_next = s0;
-        end
-        s16 : begin
-            if (~CDREQ_ & ~FIFOEMPTY & ~DMADIR & ~CCPUREQ & ~RDFIFO_o) begin
-                DACK = 1;
-                state_next = s28;
-            end
+        IDLE_DMA_RD: begin
+            if (~CDREQ_ & ~FIFOFULL & DMADIR & ~CCPUREQ & ~RIFIFO_o)
+                state_next <= S2F_1;
             else if (CCPUREQ)
-                state_next = s8;
+                state_next <= CPUREQ;
+            else if (~DMADIR & ~CCPUREQ)
+                state_next <= IDLE_DMA_WR;
+        end
+        IDLE_DMA_WR: begin
+            if (~CDREQ_ & ~FIFOEMPTY & ~DMADIR & ~CCPUREQ & ~RDFIFO_o)
+                state_next <= F2S_1;
+            else if (CCPUREQ)
+                state_next <= CPUREQ;
             else
-                state_next = s0;
+                state_next <= IDLE_DMA_RD;
         end
-        s17 : begin
-            WE      = 1;
-            CPU2S   = 1;
-            SCSI_CS = 1;
-            state_next = s26;    
+        CPUREQ: begin
+            if (RW)
+                state_next <= S2C_1;
+            else
+                state_next <= C2S_1;
         end
-        s18 : begin
-            WE      = 1;
-            F2S     = 1;
-            DACK    = 1;
-            state_next = s1;    
+        //CPU to SCSI
+        C2S_1: begin
+            state_next <= C2S_2;
         end
-        s19 : begin
-            RE          = 1;
-            S2CPU       = 1;
-            //SET_DSACK   = 1;
-            state_next = s9;
+        C2S_2: begin
+            state_next <= C2S_3;
         end
-        s20 : begin
-            RE      = 1;
-            S2F     = 1;
-            DACK    = 1;
-            state_next = s12;
+        C2S_3: begin
+            state_next <= C2S_4;
         end
-        s22 : begin
-            state_next = s14;    
+        C2S_4: begin
+            state_next <= C2S_5;
         end
-        s24 : begin
-            if (FIFOFULL) begin
-                INCNI = 1;
-                INCNO = 1;    
-            end 
-            else begin
-                RE = 1;
-                S2F = 1;
-                DACK = 1;
-            end   
-            state_next = s4;
-        end
-        s25 : begin
-            S2CPU = 1;
+        C2S_5: begin
             if (CDSACK_)
-                state_next = s0;
+                state_next <= IDLE_DMA_RD;
+            else
+                state_next <= C2S_5;
         end
-        s26 : begin
-            WE      = 1;
-            CPU2S   = 1;
-            SCSI_CS = 1;
-            state_next = s6;
+        //FIFO to SCSI
+        F2S_1: begin
+            state_next <= F2S_2;
         end
-        s28 : begin
-            WE      = 1;
-            F2S     = 1;
-            DACK    = 1;    
-            state_next = s2;
+        F2S_2: begin
+            state_next <= F2S_3;
         end
-        s30 : begin
-            RE          = 1;
-            S2CPU       = 1;
-            SCSI_CS     = 1;    
-            state_next = s3;
+        F2S_3: begin
+            state_next <= F2S_4;
         end
-
+        F2S_4: begin
+            state_next <= IDLE_DMA_WR;
+        end
+        //SCSI to CPU
+        S2C_1: begin
+            state_next <= S2C_2;
+        end
+        S2C_2: begin
+            state_next <= S2C_3;
+        end
+        S2C_3: begin
+            state_next <= S2C_4;
+        end
+        S2C_4: begin
+            state_next <= S2C_5;
+        end
+        S2C_5: begin
+            state_next <= S2C_6;
+        end
+        S2C_6: begin
+            if (CDSACK_)
+                state_next <= IDLE_DMA_RD;
+            else
+                state_next <= S2C_6;
+        end
+        //SCSI to FIFO
+        S2F_1: begin
+            state_next <= S2F_2;
+        end
+        S2F_2: begin
+            state_next <= S2F_3;
+        end
+        S2F_3: begin
+            state_next <= S2F_4;
+        end
+        S2F_4: begin
+            state_next <= IDLE_DMA_RD;
+        end
     endcase
-end      
 
-endmodule 
+end
+
+task SetOutputDefaults();
+    begin
+        CPU2S       <= 1'b0;
+        DACK        <= 1'b0;
+        F2S         <= 1'b0;
+        INCBO       <= 1'b0;
+        INCNI       <= 1'b0;
+        INCNO       <= 1'b0;
+        RDFIFO      <= 1'b0;
+        RE          <= 1'b0;
+        RIFIFO      <= 1'b0;
+        S2CPU       <= 1'b0;
+        S2F         <= 1'b0;
+        SCSI_CS     <= 1'b0;
+        WE          <= 1'b0;
+        SET_DSACK   <= 1'b0;
+    end
+endtask
+
+always @(*)
+begin
+    SetOutputDefaults();
+
+    case (state_reg)
+        IDLE_DMA_RD: begin
+            if (~CDREQ_ & ~FIFOFULL & DMADIR & ~CCPUREQ & ~RIFIFO_o)
+                DACK    <= 1'b1;
+        end
+        IDLE_DMA_WR: begin
+            if (~CDREQ_ & ~FIFOEMPTY & ~DMADIR & ~CCPUREQ & ~RDFIFO_o)
+                DACK    <= 1'b1;
+        end
+        CPUREQ: begin
+            SCSI_CS     <= 1'b1;
+            if (RW) begin
+                RE      <= 1'b1;
+                S2CPU   <= 1'b1;
+            end
+            else begin
+                WE      <= 1'b1;
+                CPU2S   <= 1'b1;
+            end
+        end
+        //CPU to SCSI
+        C2S_1: begin
+            SCSI_CS     <= 1'b1;
+            CPU2S       <= 1'b1;
+            WE          <= 1'b1;
+        end
+        C2S_2: begin
+            SCSI_CS     <= 1'b1;
+            CPU2S       <= 1'b1;
+            WE          <= 1'b1;
+        end
+        C2S_3: begin
+            SCSI_CS     <= 1'b1;
+            CPU2S       <= 1'b1;
+            SET_DSACK   <= 1'b1;
+        end
+        C2S_4: begin
+        end
+        C2S_5: begin
+        end
+        //FIFO to SCSI
+        F2S_1: begin
+            WE          <= 1'b1;
+            F2S         <= 1'b1;
+            DACK        <= 1'b1;
+        end
+        F2S_2: begin
+            WE          <= 1'b1;
+            F2S         <= 1'b1;
+            DACK        <= 1'b1;
+        end
+        F2S_3: begin
+            WE          <= 1'b1;
+            F2S         <= 1'b1;
+            DACK        <= 1'b1;
+        end
+        F2S_4: begin
+            F2S         <= 1'b1;
+            INCBO       <= 1'b1;
+            if (BOEQ3) begin
+                INCNO   <= 1'b1;
+                RDFIFO  <= 1'b1;
+            end
+        end
+        //SCSI to CPU
+        S2C_1: begin
+            RE          <= 1'b1;
+            S2CPU       <= 1'b1;
+            SCSI_CS     <= 1'b1;
+        end
+        S2C_2: begin
+            RE          <= 1'b1;
+            S2CPU       <= 1'b1;
+            SCSI_CS     <= 1'b1;
+        end
+        S2C_3: begin
+            RE          <= 1'b1;
+            S2CPU       <= 1'b1;
+            SCSI_CS     <= 1'b1;
+            //SET_DSACK   <= 1'b1;
+        end
+        S2C_4: begin
+            RE          <= 1'b1;
+            S2CPU       <= 1'b1;
+            SET_DSACK   <= 1'b1;  //moved to S2C_3 so DSACK is asserted earlier
+        end
+        S2C_5: begin
+            S2CPU       <= 1'b1;
+        end
+        S2C_6: begin
+            S2CPU       <= 1'b1;
+        end
+        //SCSI to FIFO
+        S2F_1: begin
+            if (FIFOFULL) begin
+                INCNI   <= 1'b1;
+                INCNO   <= 1'b1;
+            end
+            else begin
+                RE      <= 1'b1;
+                S2F     <= 1'b1;
+                DACK    <= 1'b1;
+            end
+        end
+        S2F_2: begin
+            RE          <= 1'b1;
+            RE          <= 1'b1;
+            S2F         <= 1'b1;
+            DACK        <= 1'b1;
+        end
+        S2F_3: begin
+            RE          <= 1'b1;
+            S2F         <= 1'b1;
+            DACK        <= 1'b1;
+        end
+        S2F_4: begin
+            INCBO       <= 1'b1;
+            S2F         <= 1'b1;
+            if (BOEQ3) begin
+                INCNI   <= 1'b1;
+                RIFIFO  <= 1'b1;
+            end
+        end
+    endcase
+end
+
+endmodule
