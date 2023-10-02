@@ -308,8 +308,8 @@ module RESDMAC_DMA_READ_tb;
                  Count <= Count +1'b1;
                  if (Count == 3'b100)
                  begin
-                    DSACK_I_ <= 2'b00;                    
-                    Count <= 3'b000;        
+                    DSACK_I_ <= 2'b00;
+                    Count <= 3'b000;
                  end 
             end
             else if (DSACK_I_ != 2'b11)
