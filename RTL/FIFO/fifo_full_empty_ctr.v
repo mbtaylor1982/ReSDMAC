@@ -20,7 +20,7 @@ module fifo__full_empty_ctr(
     input CLK, CLK135,
     input INCFIFO,
     input DECFIFO,
-    input RST_FIFO_,    
+    input RST_FIFO_,
 
     output reg FIFOEMPTY,
     output reg FIFOFULL
@@ -28,16 +28,16 @@ module fifo__full_empty_ctr(
 reg [7:0] UP;
 reg [6:0] DOWN;
 
-wire FIFOEMPTY_RST;
-wire FIFOFULL_RST;
-wire UP_RST;
-
-always @(posedge CLK135, negedge RST_FIFO_)
+always @(posedge CLK, negedge RST_FIFO_)
 begin
-  if (RST_FIFO_ == 0)
-    UP <= 8'b00000000;
+  if (~RST_FIFO_)
+    UP <= 8'h0;
+  else if (DECFIFO) begin
+    if (UP != 8'h0)
+      UP <= 8'h0;
+  end
   else if (INCFIFO)
-  begin 
+  begin
     UP[0] <= 1'b1;
     UP[1] <= (UP[0] | DOWN[6]);
     UP[2] <= (UP[1] | DOWN[5]);
@@ -47,23 +47,20 @@ begin
     UP[6] <= (UP[5] | DOWN[1]);
     UP[7] <= (UP[6] | DOWN[0]);
   end
-  else if (DECFIFO) begin
-    if (UP >= 8'h01) 
-      UP <= 8'b00000000;  
-  end
+  
 end
 
 
-always @(posedge CLK135, negedge RST_FIFO_)
+always @(posedge CLK, negedge RST_FIFO_)
 begin
-  if (RST_FIFO_ == 0)
+  if (~RST_FIFO_)
   begin
     DOWN <= 7'b0000000;
   end
   else if (DECFIFO)
   begin
     DOWN[0] <= UP[7];
-    DOWN[1] <= (UP[6] | DOWN[0]); 
+    DOWN[1] <= (UP[6] | DOWN[0]);
     DOWN[2] <= (UP[5] | DOWN[1]);
     DOWN[3] <= (UP[4] | DOWN[2]);
     DOWN[4] <= (UP[3] | DOWN[3]);
@@ -74,18 +71,22 @@ end
 
 always @(negedge CLK, negedge RST_FIFO_)
 begin
-  if (RST_FIFO_ == 0) 
+  if (~RST_FIFO_)
     FIFOEMPTY <= 1'b1;
-  else
-		FIFOEMPTY <= ((UP == 8'h00) & (DOWN == 7'h00));
+  else if (INCFIFO & FIFOEMPTY)
+    FIFOEMPTY <= 1'b0;
+  else if (DECFIFO)
+		FIFOEMPTY <=  ~((UP[1] | DOWN[5]) | (UP[2] | DOWN[4]) | (UP[3] | DOWN[3]) | (UP[4] | DOWN[2]) | (UP[5] | DOWN[1]) | (UP[6] | DOWN[0]) | UP[7]);
 end
 
 always @(negedge CLK, negedge RST_FIFO_)
 begin
-	if (RST_FIFO_ == 0) 
+	if (~RST_FIFO_)
 		FIFOFULL <= 1'b0;
-	else 
-		FIFOFULL <= (UP == 8'hff);
+  else if (DECFIFO & FIFOFULL)
+    FIFOFULL <= 1'b0;
+	else if (INCFIFO)
+		FIFOFULL <= (UP[6] | DOWN[0]);
 end
 
 endmodule
