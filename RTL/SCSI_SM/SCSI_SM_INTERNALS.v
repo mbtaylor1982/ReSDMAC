@@ -82,111 +82,57 @@ localparam [4:0]
     S2F_3   = 20,
     S2F_4   = 12;
 
-    reg [4:0] state_reg, state_next;
+reg [4:0] state_reg;
 
 always @(posedge CLK or negedge nRESET)
 begin
     if (~nRESET) begin
         state_reg <= IDLE_DMA_RD;
     end
-    else begin
-        state_reg <= state_next;
-    end
-end 
-
-always @(*)
-begin
-    case (state_reg)
-        IDLE_DMA_RD: begin
-            if (~CDREQ_ & ~FIFOFULL & DMADIR & ~CCPUREQ & ~RIFIFO_o)
-                state_next <= S2F_1;
-            else if (CCPUREQ)
-                state_next <= CPUREQ;
-            else if (~DMADIR & ~CCPUREQ)
-                state_next <= IDLE_DMA_WR;
-        end
-        IDLE_DMA_WR: begin
-            if (~CDREQ_ & ~FIFOEMPTY & ~DMADIR & ~CCPUREQ & ~RDFIFO_o)
-                state_next <= F2S_1;
-            else if (CCPUREQ)
-                state_next <= CPUREQ;
-            else
-                state_next <= IDLE_DMA_RD;
-        end
-        CPUREQ: begin
-            if (RW)
-                state_next <= S2C_1;
-            else
-                state_next <= C2S_1;
-        end
-        //CPU to SCSI
-        C2S_1: begin
-            state_next <= C2S_2;
-        end
-        C2S_2: begin
-            state_next <= C2S_3;
-        end
-        C2S_3: begin
-            state_next <= C2S_4;
-        end
-        C2S_4: begin
-            state_next <= C2S_5;
-        end
-        C2S_5: begin
-            if (CDSACK_)
-                state_next <= IDLE_DMA_RD;
-            else
-                state_next <= C2S_5;
-        end
-        //FIFO to SCSI
-        F2S_1: begin
-            state_next <= F2S_2;
-        end
-        F2S_2: begin
-            state_next <= F2S_3;
-        end
-        F2S_3: begin
-            state_next <= F2S_4;
-        end
-        F2S_4: begin
-            state_next <= IDLE_DMA_WR;
-        end
-        //SCSI to CPU
-        S2C_1: begin
-            state_next <= S2C_2;
-        end
-        S2C_2: begin
-            state_next <= S2C_3;
-        end
-        S2C_3: begin
-            state_next <= S2C_4;
-        end
-        S2C_4: begin
-            state_next <= S2C_5;
-        end
-        S2C_5: begin
-            state_next <= S2C_6;
-        end
-        S2C_6: begin
-            if (CDSACK_)
-                state_next <= IDLE_DMA_RD;
-            else
-                state_next <= S2C_6;
-        end
-        //SCSI to FIFO
-        S2F_1: begin
-            state_next <= S2F_2;
-        end
-        S2F_2: begin
-            state_next <= S2F_3;
-        end
-        S2F_3: begin
-            state_next <= S2F_4;
-        end
-        S2F_4: begin
-            state_next <= IDLE_DMA_RD;
-        end
-    endcase
+	else begin
+        case (state_reg)
+            IDLE_DMA_RD: begin
+                if (~CDREQ_ & ~FIFOFULL & DMADIR & ~CCPUREQ & ~RIFIFO_o)
+                    state_reg <= S2F_1;
+                else if (CCPUREQ)
+                    state_reg <= CPUREQ;
+                else if (~DMADIR & ~CCPUREQ)
+                    state_reg <= IDLE_DMA_WR;
+            end
+            IDLE_DMA_WR: begin
+                if (~CDREQ_ & ~FIFOEMPTY & ~DMADIR & ~CCPUREQ & ~RDFIFO_o)
+                    state_reg <= F2S_1;
+                else if (CCPUREQ)
+                    state_reg <= CPUREQ;
+                else
+                    state_reg <= IDLE_DMA_RD;
+            end
+            CPUREQ: state_reg <= RW ? S2C_1 : C2S_1;
+            //CPU to SCSI
+            C2S_1: state_reg <= C2S_2;
+            C2S_2: state_reg <= C2S_3;
+            C2S_3: state_reg <= C2S_4;
+            C2S_4: state_reg <= C2S_5;
+            C2S_5: state_reg <= CDSACK_ ? IDLE_DMA_RD : C2S_5;
+            //FIFO to SCSI
+            F2S_1: state_reg <= F2S_2;
+            F2S_2: state_reg <= F2S_3;
+            F2S_3: state_reg <= F2S_4;
+            F2S_4: state_reg <= IDLE_DMA_WR;
+            //SCSI to CPU
+            S2C_1: state_reg <= S2C_2;
+            S2C_2: state_reg <= S2C_3;
+            S2C_3: state_reg <= S2C_4;
+            S2C_4: state_reg <= S2C_5;
+            S2C_5: state_reg <= S2C_6;
+            S2C_6: state_reg <= CDSACK_ ? IDLE_DMA_RD : S2C_6;
+            //SCSI to FIFO
+            S2F_1: state_reg <= S2F_2;
+            S2F_2: state_reg <= S2F_3;
+            S2F_3: state_reg <= S2F_4;
+            S2F_4: state_reg <= IDLE_DMA_RD;
+        endcase
+	end
 
 end
 
@@ -212,7 +158,6 @@ endtask
 always @(*)
 begin
     SetOutputDefaults();
-
     case (state_reg)
         IDLE_DMA_RD: begin
             if (~CDREQ_ & ~FIFOFULL & DMADIR & ~CCPUREQ & ~RIFIFO_o)
@@ -292,12 +237,12 @@ begin
             RE          <= 1'b1;
             S2CPU       <= 1'b1;
             SCSI_CS     <= 1'b1;
-            //SET_DSACK   <= 1'b1;
+            SET_DSACK   <= 1'b1;
         end
         S2C_4: begin
             RE          <= 1'b1;
             S2CPU       <= 1'b1;
-            SET_DSACK   <= 1'b1;  //moved to S2C_3 so DSACK is asserted earlier
+            //SET_DSACK   <= 1'b1;  //moved to S2C_3 so DSACK is asserted earlier
         end
         S2C_5: begin
             S2CPU       <= 1'b1;
