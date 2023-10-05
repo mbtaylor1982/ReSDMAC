@@ -28,29 +28,34 @@ module cpudff1 (
 
   assign p1a = 
   (
-    ~(DSACK & ~(nE[25] & nE[50] & nE[6])) & 
-    ~(nDSACK & E[50]) & 
-    ~(
-      ~(nE[12] & nE[26] & nE[53]) | 
-      ~(nE[27] & nE[32] & nE[48] & nE[55]) | 
-      ~(nE[56] & nE[58] & nE[60] & nE[62])
-    )
+    (DSACK & (E[25] | E[50] | E[6])) |
+    (nDSACK & E[50]) | 
+    E[12] |
+    E[26] |
+    E[53] |
+    E[27] |
+    E[32] |
+    E[48] |
+    E[55] |
+    E[56] |
+    E[58] |
+    E[60] |
+    E[62]
   );
   
-  assign p1b = ~(nSTERM_ & ~(nE[43] & nE[46] & nE[51]));
+  assign p1b = (nSTERM_ & (E[43] | E[46] | E[51]));
 
   assign p1c = 
-  ~(
+  (
     STERM_ &
     (
       (E[36] | E[37] | E[40] | E[46] | E[57]) |
-      ~(
-        ~(DSACK & E[23]) & 
-        ~(nDSACK &  (E[24]| E[29] | E[33] | E[43] | E[51]))
-      ) 
+      (DSACK & E[23]) |
+      (nDSACK &  (E[24]| E[29] | E[33] | E[43] | E[51]))
+       
     ) 
   );
 
-  assign cpudff1_d = (~(p1a & p1b & p1c));
+  assign cpudff1_d = ((p1a | p1b | p1c));
 
 endmodule
