@@ -144,10 +144,7 @@ CPU_SM_inputs u_CPU_SM_inputs(
 );
 cpudff1 u_cpudff1(
     .DSACK        (DSACK        ),
-    .nDSACK       (nDSACK       ),
     .STERM_       (STERM_       ),
-    .nSTERM_      (nSTERM_      ),
-    .nE           (nE           ),
     .E            (E            ),
     .cpudff1_d    (cpudff1_d    )
 );
