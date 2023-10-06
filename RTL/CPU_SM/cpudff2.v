@@ -17,39 +17,39 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 module cpudff2 (
-  input DSACK, nDSACK,
-  input STERM_, nSTERM_,
+  input DSACK,
+  input STERM_,
   input [62:0]E,
-  input [62:0]nE,
-    
+
   output cpudff2_d
 );
-wire p2a, p2b, p2c;
 
-assign p2a = 
-(
-  ~( 
-    ~(nE[1] & nE[11] & nE[16] & nE[17]) | 
-    ~(nE[26] & nE[27] & nE[31] & nE[32]) | 
-    ~(nE[35] & nE[55] & nE[58] & nE[61]) 
-  ) & 
-  ~(DSACK & ~(nE[25] & nE[50]))
-);
-
-assign p2b = ~(nSTERM_ & ~(nE[43] & nE[46] & nE[51]));
-
-assign p2c = 
-~(
-  STERM_ &
-  (
-    (E[36] | E[57] | E[46] | E[40]) |
-    ~(
-      ~(DSACK & E[23]) & 
-      ~(nDSACK & (E[33] | E[43] | E[51] | E[29]))
-    )    
-  ) 
-);
-
-assign cpudff2_d = (~(p2a & p2b & p2c));
+assign cpudff2_d =
+  E[1] |
+  E[11] |
+  E[16] |
+  E[17] |
+  E[26] |
+  E[27] |
+  E[31] |
+  E[32] |
+  E[35] |
+  E[55] |
+  E[58] |
+  E[61] |
+  (E[25] & DSACK) |
+  (E[50] & DSACK) |
+  (E[43]  & ~STERM_) |
+  (E[46]  & ~STERM_) |
+  (E[51]  & ~STERM_) |
+  (E[36] & STERM_) |
+  (E[57] & STERM_) |
+  (E[46] & STERM_) |
+  (E[40] & STERM_) |
+  (E[23] & DSACK & STERM_) |
+  (E[33] & ~DSACK & STERM_) |
+  (E[43] & ~DSACK & STERM_) |
+  (E[51] & ~DSACK & STERM_) |
+  (E[29] & ~DSACK & STERM_);
 
 endmodule

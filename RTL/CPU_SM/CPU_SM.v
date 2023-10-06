@@ -151,10 +151,7 @@ cpudff1 u_cpudff1(
 
 cpudff2 u_cpudff2(
     .DSACK        (DSACK        ),
-    .nDSACK       (nDSACK       ),
     .STERM_       (STERM_       ),
-    .nSTERM_      (nSTERM_      ),
-    .nE           (nE           ),
     .E            (E            ),
     .cpudff2_d    (cpudff2_d    )
 );
@@ -294,7 +291,7 @@ always @(posedge CLK90 or negedge CCRESET_) begin
         STATE <= NEXT_STATE;
 end
 
-always @(negedge CLK45 or posedge AS_) begin
+always @(negedge CLK or posedge AS_) begin
     if (AS_ == 1'b1)
         DSACK_LATCHED_ <= 2'b11;
     else 

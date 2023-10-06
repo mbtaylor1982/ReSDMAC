@@ -23,35 +23,35 @@ module cpudff1 (
 
     output cpudff1_d
 );
-  assign cpudff1_d =
+  assign cpudff1_d = 
     E[12] |
     E[26] |
-    E[53] |
-    E[27] |
-    E[32] |
-    E[48] |
-    E[55] |
-    E[56] |
+    E[53] | 
+    E[27] | 
+    E[32] | 
+    E[48] | 
+    E[55] | 
+    E[56] | 
     E[58] |
-    E[60] |
+    E[60] | 
     E[62] |
     (E[6] & DSACK) |
-    (E[25] & DSACK) |
-    (E[50] & DSACK) |
-    (E[50] & ~DSACK) |
-    (E[43] & ~STERM_) |
-    (E[46] & ~STERM_) |
+    (E[25] & DSACK) | 
+    (E[50] & DSACK) | 
+    (E[50] & ~DSACK) | 
+    (E[43] & ~STERM_) | 
+    (E[46] & ~STERM_) | 
     (E[51] & ~STERM_) |
-    (E[36] & STERM_) |
-    (E[37] & STERM_) |
-    (E[40] & STERM_) |
-    (E[46] & STERM_) |
+    (E[36] & STERM_) | 
+    (E[37] & STERM_) | 
+    (E[40] & STERM_) | 
+    (E[46] & STERM_) | 
     (E[57] & STERM_) |
     (E[23] & DSACK & STERM_) |
-    (E[24] & ~DSACK & STERM_) |
-    (E[29] & ~DSACK & STERM_) |
-    (E[33] & ~DSACK & STERM_) |
-    (E[43] & ~DSACK & STERM_) |
+    (E[24] & ~DSACK & STERM_) | 
+    (E[29] & ~DSACK & STERM_) | 
+    (E[33] & ~DSACK & STERM_) | 
+    (E[43] & ~DSACK & STERM_) | 
     (E[51] & ~DSACK & STERM_);
 
 endmodule
