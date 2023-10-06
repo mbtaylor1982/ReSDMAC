@@ -53,7 +53,7 @@ module RESDMAC_DMA_WRITE_tb;
     reg [31:0] DATA_i ;
     wire [31:0] DATA_o;
     assign DATA_o = DATA_IO;
-    assign DATA_IO = (R_W_IO ^ ~OWN) ? DATA_i : 32'hzzzzzzzz;
+    assign DATA_IO = (R_W_i ^ ~OWN) ? DATA_i : 32'hzzzzzzzz;
 
     reg [7:0] PD_i;
     wire [7:0] PD_o;
@@ -94,6 +94,7 @@ module RESDMAC_DMA_WRITE_tb;
     wire        OWN      ;  // Active low signal to show SDMAC is bus master, This can be used to set direction on level shifters for control signals.
     wire        DATA_OE_ ;  // Active low ouput enable for DBUS level shifters.
     wire        PDATA_OE_;  // Active low ouput enable for Peripheral BUS level shifters.
+    wire        DATA_DIR ;
     // module
     RESDMAC uut (
         .INT        (INT        ),
@@ -126,7 +127,8 @@ module RESDMAC_DMA_WRITE_tb;
         ._LED_DMA   (_LED_DMA   ),
         .OWN        (OWN        ),
         .DATA_OE_   (DATA_OE_   ),
-        .PDATA_OE_  (PDATA_OE_  )
+        .PDATA_OE_  (PDATA_OE_  ),
+        .DATA_DIR   (DATA_DIR)
     );
 //------------------------------------------------------------------------------
 //  localparam
@@ -237,10 +239,10 @@ module RESDMAC_DMA_WRITE_tb;
 
         //Start DMA Cycle.
         Write(SDMAC_ST_DMA_STROBE, 32'h00000001);
-       
         _DREQ = 1;
         ADDR <= 32'h08000000;
         DATA_i <= 32'h00ABCDEF;
+       
         DMA <= 1'b1;
         wait_n_clko(230);
         DMA <= 1'b0;
@@ -288,7 +290,7 @@ module RESDMAC_DMA_WRITE_tb;
     always @(negedge SCLK) begin
         if ((_DACK | (_IOR & _IOW)) == 1'b0)
         begin
-            _DREQ <= 1'b1;
+                _DREQ <= 1'b1;
         end
         else if (DMA == 1'b1) 
             _DREQ <= 1'b0;        

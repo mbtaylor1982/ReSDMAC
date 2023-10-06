@@ -52,7 +52,8 @@ module RESDMAC_tb;
     tri1        R_W_IO   ;  // Read Write from CPU
     tri1        _AS_IO   ;  // Address Strobe
     tri1        _DS_IO   ;  // Data Strobe 
-    tri1 [1:0] _DSACK_IO ;  // Dynamic size and DATA ack.
+    tri0 [1:0]  DSACK_O  ;  // Dynamic size and DATA ack output.
+    reg  [1:0]  DSACK_I_ ;  // Dynamic size and DATA ack input
     tri1 [31:0] DATA_IO  ;  // CPU side data bus 32bit wide
     reg         _STERM   ;  // static/synchronous data ack.
     reg         SCLK     ;  // CPUCLKB
@@ -84,7 +85,8 @@ module RESDMAC_tb;
         .R_W_IO     (R_W_IO     ),
         ._AS_IO     (_AS_IO     ),
         ._DS_IO     (_DS_IO     ),
-        ._DSACK_IO  (_DSACK_IO  ),
+        .DSACK_O    (DSACK_O    ),
+        .DSACK_I_   (DSACK_I_   ),
         .DATA_IO    (DATA_IO    ),
         ._STERM     (_STERM     ),
         .SCLK       (SCLK       ),
@@ -207,8 +209,9 @@ module RESDMAC_tb;
         wait_n_clko(2);
         $finish;
     end
-    always @(negedge SCLK) begin
-        if (~(_DSACK_IO[0] & _DSACK_IO[1])  == 1'b1) 
+    //Negate cycle strobes when cycle ends.
+    always @(posedge SCLK) begin
+        if ((DSACK_O[0] & DSACK_O[1])  == 1'b1) 
         begin
             _AS_i <= 1'b1;
             _DS_i <= 1'b1;    

@@ -245,7 +245,7 @@ module RESDMAC_DMA_READ_tb;
         PD_i <= 8'hAA;//DATA_i <= 32'h00ABCDEF;
         DMA <= 1'b1;  
         
-        wait_n_clko(190);
+        wait_n_clko(167);
         DMA <= 1'b0;
         wait_n_clko(45);
 
