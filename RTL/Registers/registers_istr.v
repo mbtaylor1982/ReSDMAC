@@ -41,11 +41,8 @@ reg FE;
 wire CLR_INT_;
 assign CLR_INT_ = ~CLR_INT;
 
-wire INT;
-assign INT = (INTENA & INTA_I);
-
-always @(negedge CLK, negedge RESET_) begin
-  if (~RESET_) begin
+always @(negedge CLK, negedge RESET_, negedge CLR_INT_) begin
+  if (~RESET_ | ~CLR_INT_) begin
     INT_F   <= 1'b0;
     INTS    <= 1'b0;
     E_INT   <= 1'b0;
@@ -57,24 +54,15 @@ always @(negedge CLK, negedge RESET_) begin
     INT_F   <= INTA_I;
     INTS    <= INTA_I;
     E_INT   <= INTA_I;
-    INT_P   <= INT;
+    INT_P   <= INTENA ? INTA_I: 1'b0;
     FF      <= FIFOFULL;
     FE      <= FIFOEMPTY;
   end
-  else if (~CLR_INT_) begin
-    INT_F   <= 1'b0;
-    INTS    <= 1'b0;
-    E_INT   <= 1'b0;
-    INT_P   <= 1'b0;
-    FF      <= 1'b0;
-    FE      <= 1'b1;
-  end
-
 end
 
 always @(*) begin
 	ISTR_O <= {1'b0, INT_F, INTS, E_INT, INT_P , 1'b0, 1'b0, FF, FE};
-	INT_O_ <= INT ? 1'b0 : 1'b1;
+	INT_O_ <= INTENA ? ~INTA_I : 1'b1;
 end
 
 endmodule
