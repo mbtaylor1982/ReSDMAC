@@ -17,39 +17,38 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 module cpudff3 (
-  input DSACK, nDSACK,
-  input STERM_, nSTERM_,
+  input DSACK,
+  input STERM_,
   input [62:0]E,
-  input [62:0]nE,
 
   output cpudff3_d
 );
-wire p3a, p3b, p3c;
 
-assign p3a = 
-( 
-  ~(
-    ~(nE[4] & nE[10] & nE[21] & nE[27]) | 
-    ~(nE[34] & nE[32] & nE[35]) | 
-    ~(nE[56] & nE[62] & nE[45])
-  ) & 
-  ~(DSACK & ~(nE[20] & nE[28] & nE[30])) & 
-  ~(nDSACK & E[50])
-);
-
-assign p3b = ~(nSTERM_ & ~(nE[36] & nE[33] & nE[39] & nE[40] & nE[42] & nE[37]));
-
-assign p3c = 
-~(STERM_ &
-  ( 
-    (E[36] | E[46]) |
-    ~(
-      ~(DSACK & E[23]) & 
-      ~(nDSACK & (E[33] | E[51])) 
-    )
-  )
-);
-
-assign cpudff3_d = (~(p3a & p3b & p3c));
+assign cpudff3_d =
+  E[4] |
+  E[10] |
+  E[21] |
+  E[27] |
+  E[34] |
+  E[32] |
+  E[35] |
+  E[56] |
+  E[62] |
+  E[45] |
+  (E[20] & DSACK) |
+  (E[28] & DSACK) |
+  (E[30] & DSACK) |
+  (E[50] & ~DSACK) |
+  (E[36] & ~STERM_) |
+  (E[33] & ~STERM_) |
+  (E[39] & ~STERM_) |
+  (E[40] & ~STERM_) |
+  (E[42] & ~STERM_) |
+  (E[37] & ~STERM_) |
+  (E[36] & STERM_) |
+  (E[46] & STERM_) |
+  (E[23] & STERM_ & DSACK) |
+  (E[33] & ~DSACK & STERM_) |
+  (E[51] & ~DSACK & STERM_);
 
 endmodule
