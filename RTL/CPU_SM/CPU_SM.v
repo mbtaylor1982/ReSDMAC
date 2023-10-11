@@ -142,6 +142,7 @@ CPU_SM_inputs u_CPU_SM_inputs(
     .nE           (nE),
     .E            (E)
 );
+/*
 cpudff1 u_cpudff1(
     .DSACK        (DSACK        ),
     .STERM_       (STERM_       ),
@@ -176,6 +177,7 @@ cpudff5 u_cpudff5(
     .E            (E            ),
     .cpudff5_d    (cpudff5_d    )
 );
+*/
 CPU_SM_outputs u_CPU_SM_outputs(
     .DSACK        (DSACK        ),
     .nDSACK       (nDSACK       ),
@@ -205,7 +207,8 @@ CPU_SM_outputs u_CPU_SM_outputs(
     .DIEH_d       (DIEH_d       ),
     .DIEL_d       (DIEL_d       ),
     .nBRIDGEIN_d  (nBRIDGEIN_d  ),
-    .BGACK_d      (BGACK_d      )
+    .BGACK_d      (BGACK_d      ),
+    .NEXT_STATE   (NEXT_STATE   )
 );
 
 //clocked reset
@@ -293,7 +296,7 @@ assign  aCYCLEDONE_ = ~(BGACK_I_ & AS_ & DSACK0_ & DSACK1_ & iSTERM_);
 
 assign LASTWORD = (~BOEQ0 & aFLUSHFIFO & FIFOEMPTY);
 
-assign NEXT_STATE = {cpudff5_d, cpudff4_d, cpudff3_d, cpudff2_d, cpudff1_d};
+//assign NEXT_STATE = {cpudff5_d, cpudff4_d, cpudff3_d, cpudff2_d, cpudff1_d};
 
 
 assign CYCLEDONE = ~nCYCLEDONE;
