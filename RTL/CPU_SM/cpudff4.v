@@ -17,54 +17,48 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 module cpudff4 (
-  input DSACK, nDSACK,
-  input STERM_, nSTERM_,
+  input DSACK,
+  input STERM_,
   input [62:0]E,
-  input [62:0]nE,
-   
+
   output cpudff4_d
 );
-wire p4a, p4b, p4c;
 
-assign p4a = 
-(
-  ~(
-    ~(nE[61] & nE[60] & nE[2] & nE[3] & nE[5] & nE[7] & nE[12] & nE[8]) | 
-    ~(nE[55] & nE[18] & nE[19] & nE[48] & nE[21] & nE[31] & nE[34] & nE[45])
-  ) & 
-  ~(
-    ~(nE[50] & nE[9] & nE[25] & nE[28] & nE[30]) 
-    & DSACK
-  )
-);
-
-assign p4b = 
-(
-  ~(nSTERM_ & 
-      (
-        ~(nE[51] & nE[46] & nE[36]) | 
-        ~(nE[33] & nE[39] & nE[40]) | 
-        ~(nE[42] & nE[43] & nE[37])
-      )
-  )
-);
-
-assign p4c = 
-(
-  ~(
-    (
-      ~(
-        ~(E[23] & DSACK) & 
-        ~(nDSACK & 
-          (E[51] | E[43])
-        )
-      ) | 
-      (E[57] | E[46])
-    )& 
-    STERM_
-  )
-);
-
-assign cpudff4_d = (~(p4a & p4b & p4c));
+assign cpudff4_d =
+  E[2] |
+  E[3] |
+  E[5] |
+  E[7] |
+  E[8] |
+  E[12] |
+  E[18] |
+  E[19] |
+  E[21] |
+  E[31] |
+  E[34] |
+  E[45] |
+  E[48] |
+  E[55] |
+  E[60] |
+  E[61] |
+  (E[9] & DSACK) |
+  (E[50] & DSACK) |
+  (E[25] & DSACK) |
+  (E[28] & DSACK) |
+  (E[30] & DSACK) |
+  (E[51] & ~STERM_) |
+  (E[46] & ~STERM_) |
+  (E[36] & ~STERM_) |
+  (E[33] & ~STERM_) |
+  (E[39] & ~STERM_) |
+  (E[40] & ~STERM_) |
+  (E[42] & ~STERM_) |
+  (E[43] & ~STERM_) |
+  (E[37] & ~STERM_) |
+  (E[57] & STERM_) |
+  (E[46] & STERM_) |
+  (E[23] & DSACK & STERM_) |
+  (E[51] & ~DSACK & STERM_) |
+  (E[43] & ~DSACK & STERM_);
 
 endmodule

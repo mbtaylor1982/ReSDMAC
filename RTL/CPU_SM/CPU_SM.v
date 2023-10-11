@@ -165,10 +165,7 @@ cpudff3 u_cpudff3(
 
 cpudff4 u_cpudff4(
     .DSACK        (DSACK        ),
-    .nDSACK       (nDSACK       ),
     .STERM_       (STERM_       ),
-    .nSTERM_      (nSTERM_      ),
-    .nE           (nE           ),
     .E            (E            ),
     .cpudff4_d    (cpudff4_d    )
 );
