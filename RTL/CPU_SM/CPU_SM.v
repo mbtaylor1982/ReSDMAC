@@ -172,10 +172,7 @@ cpudff4 u_cpudff4(
 
 cpudff5 u_cpudff5(
     .DSACK        (DSACK        ),
-    .nDSACK       (nDSACK       ),
     .STERM_       (STERM_       ),
-    .nSTERM_      (nSTERM_      ),
-    .nE           (nE           ),
     .E            (E            ),
     .cpudff5_d    (cpudff5_d    )
 );

@@ -17,47 +17,42 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 module cpudff5 (
-  input DSACK, nDSACK,
-  input STERM_, nSTERM_,
+  input DSACK,
+  input STERM_,
   input [62:0]E,
-  input [62:0]nE,
-  
+
   output cpudff5_d
 );
 
-wire p5a, p5b, p5c;
-
-assign p5a = 
-(
-  ~(
-    ~(nE[26] & nE[5] & nE[4] & nE[27] & nE[8] & nE[11]) | 
-    ~(nE[32] & nE[13] & nE[14] & nE[15] & nE[22] & nE[60]) | 
-    ~(nE[61] & nE[62] & nE[48] & nE[53] & nE[58])
-  ) & 
-  ~(~(nE[30] & nE[9] & nE[28]) & DSACK)
-);
-
-assign p5b = 
-(
-  ~(nSTERM_& 
-    ~(nE[36] & nE[33] & nE[39] & nE[40] & nE[42] & nE[37])
-  )
-);
-
-assign p5c = 
-(
-  ~(
-    (
-      ~(
-        ~(E[23] & DSACK) & 
-        ~(nDSACK & E[43]) 
-      ) | 
-      E[57]
-    )& 
-    STERM_
-  )
-);
-
-assign cpudff5_d = (~(p5a & p5b & p5c));
+assign cpudff5_d =
+  E[5] |
+  E[4] |
+  E[8] |
+  E[11] |
+  E[26] |
+  E[27] |
+  E[32] |
+  E[13] |
+  E[14] |
+  E[15] |
+  E[22] |
+  E[60] |
+  E[61] |
+  E[62] |
+  E[48] |
+  E[53] |
+  E[58] |
+  (E[9] & DSACK) |
+  (E[30] & DSACK) |
+  (E[28] & DSACK) |
+  (E[36] & ~STERM_) |
+  (E[33] & ~STERM_) |
+  (E[39] & ~STERM_) |
+  (E[40] & ~STERM_) |
+  (E[42] & ~STERM_) |
+  (E[37] & ~STERM_) |
+  (E[23] & DSACK & STERM_) |
+  (E[43] & ~DSACK & & STERM_) |
+  (E[57] & STERM_);
 
 endmodule
