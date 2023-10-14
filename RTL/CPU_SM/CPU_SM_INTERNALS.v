@@ -93,15 +93,27 @@ localparam [4:0]
 
 reg [4:0] state;
 
+wire DMA_RD = DMAEN & ~DMADIR;
+wire DMA_WR = DMAEN & DMADIR;
+
+wire a = DMAENA & DMADIR & FIFOEMPTY & nFIFOFULL & FLUSHFIFO & nLASTWORD)
+wire b = DMAENA & DMADIR &(FIFOFULL | (FLUSHFIFO & LASTWORD) | (~FIFOEMPTY & FLUSHFIFO))
+
+
 always @(posedge CLK or negedge nRESET)
 begin
     if (~nRESET) begin
-        state <= IDLE_DMA_RD;
+        state <= s0;
     end
 	else begin
         case (state_reg)
-            s0: state_reg <= s1;
-            s1: state_reg <= s0;
+            s0: state_reg <= DMA_RD ? s16 :(a ? s0 : s8)  
+            
+            S8:
+
+            s16:
+
+            s24: state_reg <= s12;
         endcase
 	end
 

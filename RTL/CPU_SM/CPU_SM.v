@@ -18,19 +18,13 @@
  */ 
 
  `ifdef __ICARUS__ 
-
-  `include "cpudff1.v"
-  `include "cpudff2.v"
-  `include "cpudff3.v"
-  `include "cpudff4.v"
-  `include "cpudff5.v"
-  `include "CPU_SM_inputs.v"  
-  `include "CPU_SM_output.v"  
+  `include "CPU_SM_inputs.v"
+  `include "CPU_SM_output.v"
 `endif
 
 module CPU_SM(
     input A1,
-    input aBGRANT_,   
+    input aBGRANT_,
     input aDMAENA,
     input aDREQ_,
     input aFLUSHFIFO,
@@ -40,14 +34,14 @@ module CPU_SM(
     input CLK,
     input CLK45,             //CPUCLK pahse shifted 45 deg
     input CLK90,             //CPUCLK pahse shifted 90 deg.
-    input CLK135,            //CPUCLK pahse shifted 135 deg.    
+    input CLK135,            //CPUCLK pahse shifted 135 deg.
     input DMADIR,
-    input DSACK0_,   
+    input DSACK0_,
     input DSACK1_,
     input FIFOEMPTY,
     input FIFOFULL,
     input RDFIFO_,
-    input RIFIFO_,    
+    input RIFIFO_,
     input iSTERM_,
     input AS_,
     input BGACK_I_,
@@ -100,21 +94,19 @@ wire DECFIFO_d;
 wire DIEH_d;
 wire DIEL_d;
 wire iDSACK;
-wire DSACK; 
+wire DSACK;
 
 wire [62:0] E;
-wire [62:0] nE;
-
 
 wire F2CPUH_d;
 wire F2CPUL_d;
 wire INCFIFO_d;
 wire INCNO_d;
-wire nBREQ_d;
-wire nBRIDGEIN_d;
+wire BREQ_d;
+wire BRIDGEIN_d;
 wire nDSACK;
-wire nINCNI_d;
-wire nSTOPFLUSH_d;
+wire INCNI_d;
+wire STOPFLUSH_d;
 wire PAS_d;
 wire PDS_d;
 wire PLHW_d;
@@ -139,59 +131,20 @@ CPU_SM_inputs u_CPU_SM_inputs(
     .FLUSHFIFO    (FLUSHFIFO    ),
     .LASTWORD     (LASTWORD     ),
     .STATE        (STATE        ),
-    .nE           (nE),
     .E            (E)
 );
-/*
-cpudff1 u_cpudff1(
-    .DSACK        (DSACK        ),
-    .STERM_       (STERM_       ),
-    .E            (E            ),
-    .cpudff1_d    (cpudff1_d    )
-);
 
-cpudff2 u_cpudff2(
-    .DSACK        (DSACK        ),
-    .STERM_       (STERM_       ),
-    .E            (E            ),
-    .cpudff2_d    (cpudff2_d    )
-);
-
-cpudff3 u_cpudff3(
-    .DSACK        (DSACK        ),
-    .STERM_       (STERM_       ),
-    .E            (E            ),
-    .cpudff3_d    (cpudff3_d    )
-);
-
-cpudff4 u_cpudff4(
-    .DSACK        (DSACK        ),
-    .STERM_       (STERM_       ),
-    .E            (E            ),
-    .cpudff4_d    (cpudff4_d    )
-);
-
-cpudff5 u_cpudff5(
-    .DSACK        (DSACK        ),
-    .STERM_       (STERM_       ),
-    .E            (E            ),
-    .cpudff5_d    (cpudff5_d    )
-);
-*/
 CPU_SM_outputs u_CPU_SM_outputs(
     .DSACK        (DSACK        ),
-    .nDSACK       (nDSACK       ),
     .STERM_       (STERM_       ),
-    .nSTERM_      (nSTERM_      ),
-    .nE           (nE           ),
     .E            (E            ),
     .RDFIFO_      (RDFIFO_      ),
     .RIFIFO_      (RIFIFO_      ),
     .BGRANT_      (BGRANT_      ),
     .CYCLEDONE    (CYCLEDONE    ),
     .STATE        (STATE        ),
-    .nINCNI_d     (nINCNI_d     ),
-    .nBREQ_d      (nBREQ_d      ),
+    .INCNI_d      (INCNI_d      ),
+    .BREQ_d       (BREQ_d       ),
     .SIZE1_d      (SIZE1_d      ),
     .PAS_d        (PAS_d        ),
     .PDS_d        (PDS_d        ),
@@ -203,10 +156,10 @@ CPU_SM_outputs u_CPU_SM_outputs(
     .INCFIFO_d    (INCFIFO_d    ),
     .DECFIFO_d    (DECFIFO_d    ),
     .INCNO_d      (INCNO_d      ),
-    .nSTOPFLUSH_d (nSTOPFLUSH_d ),
+    .STOPFLUSH_d  (STOPFLUSH_d  ),
     .DIEH_d       (DIEH_d       ),
     .DIEL_d       (DIEL_d       ),
-    .nBRIDGEIN_d  (nBRIDGEIN_d  ),
+    .BRIDGEIN_d   (BRIDGEIN_d   ),
     .BGACK_d      (BGACK_d      ),
     .NEXT_STATE   (NEXT_STATE   )
 );
@@ -258,8 +211,8 @@ always @(posedge CLK90 or negedge CCRESET_) begin
     end
     else begin
         BGACK       <= BGACK_d;
-        BREQ        <= ~nBREQ_d;
-        BRIDGEIN    <= ~nBRIDGEIN_d;
+        BREQ        <= BREQ_d;
+        BRIDGEIN    <= BRIDGEIN_d;
         BRIDGEOUT   <= BRIDGEOUT_d;
         DECFIFO     <= DECFIFO_d;
         DIEH        <= DIEH_d;
@@ -267,37 +220,34 @@ always @(posedge CLK90 or negedge CCRESET_) begin
         F2CPUH      <= F2CPUH_d;
         F2CPUL      <= F2CPUL_d;
         INCFIFO     <= INCFIFO_d;
-        INCNI       <= ~nINCNI_d;
+        INCNI       <= INCNI_d;
         INCNO       <= INCNO_d;
         PAS         <= PAS_d;
         PDS         <= PDS_d;
         PLHW        <= PLHW_d;
         PLLW        <= PLLW_d;
         SIZE1       <= SIZE1_d;
-        STOPFLUSH   <= ~nSTOPFLUSH_d;
+        STOPFLUSH   <= STOPFLUSH_d;
     end
 end
 
 always @(posedge CLK90 or negedge CCRESET_) begin
-    if (CCRESET_ == 1'b0) 
+    if (CCRESET_ == 1'b0)
         STATE <= 5'b00000;
-    else 
+    else
         STATE <= NEXT_STATE;
 end
 
 always @(negedge CLK or posedge AS_) begin
     if (AS_ == 1'b1)
         DSACK_LATCHED_ <= 2'b11;
-    else 
+    else
         DSACK_LATCHED_ <= {DSACK1_, DSACK0_};
 end
 
 assign  aCYCLEDONE_ = ~(BGACK_I_ & AS_ & DSACK0_ & DSACK1_ & iSTERM_);
 
 assign LASTWORD = (~BOEQ0 & aFLUSHFIFO & FIFOEMPTY);
-
-//assign NEXT_STATE = {cpudff5_d, cpudff4_d, cpudff3_d, cpudff2_d, cpudff1_d};
-
 
 assign CYCLEDONE = ~nCYCLEDONE;
 assign iDSACK = ~(DSACK_LATCHED_[0] & DSACK_LATCHED_[1]);
@@ -306,7 +256,5 @@ assign DSACK = iDSACK;
 assign nDSACK = ~iDSACK;
 assign STERM_ = iSTERM_;
 assign nSTERM_ = ~iSTERM_;
-
-
 
 endmodule
