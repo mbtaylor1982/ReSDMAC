@@ -68,11 +68,6 @@ set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath_input.v
 set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath_24dec.v
 set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath_8b_MUX.v
 set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath.v
-set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/cpudff5.v
-set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/cpudff4.v
-set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/cpudff3.v
-set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/cpudff2.v
-set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/cpudff1.v
 set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/CPU_SM_output.v
 set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/CPU_SM_inputs.v
 set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/CPU_SM.v
@@ -231,7 +226,7 @@ set_global_assignment -name ENABLE_DRC_SETTINGS ON
 
 # SignalTap II Assignments
 # ========================
-set_global_assignment -name ENABLE_SIGNALTAP ON
+set_global_assignment -name ENABLE_SIGNALTAP OFF
 set_global_assignment -name USE_SIGNALTAP_FILE ReSDMAC.stp
 
 # Power Estimation Assignments
@@ -254,20 +249,6 @@ set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda
 
 	# SignalTap II Assignments
 	# ========================
-set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id ReSDMAC
-set_global_assignment -name SLD_NODE_ENTITY_NAME sld_signaltap -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to SCLK -section_id ReSDMAC
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_INFO=805334528" -section_id ReSDMAC
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_INVERSION_MASK_LENGTH=0" -section_id ReSDMAC
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ATTRIBUTE_MEM_MODE=OFF" -section_id ReSDMAC
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL=1" -section_id ReSDMAC
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=basic,1," -section_id ReSDMAC
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL_PIPELINE=1" -section_id ReSDMAC
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=0" -section_id ReSDMAC
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_FLOW_USE_GENERATED=0" -section_id ReSDMAC
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_BITS=11" -section_id ReSDMAC
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_BUFFER_FULL_STOP=1" -section_id ReSDMAC
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_CURRENT_RESOURCE_WIDTH=1" -section_id ReSDMAC
 
 # end AUTO_INSERT_SLD_NODE_ENTITY(ReSDMAC)
 # ----------------------------------------
@@ -365,229 +346,9 @@ set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 
 # end ENTITY(RESDMAC)
 # -------------------
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_POWER_UP_TRIGGER=0" -section_id ReSDMAC
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_IN_ENABLED=0" -section_id ReSDMAC
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to DSACK_O[1]
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SEGMENT_SIZE=512" -section_id ReSDMAC
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=512" -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[0] -to BR -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[0] -to BR -section_id ReSDMAC
 set_global_assignment -name CYCLONEII_RESERVE_NCEO_AFTER_CONFIGURATION "USE AS REGULAR IO"
 set_global_assignment -name RESERVE_ASDO_AFTER_CONFIGURATION "USE AS REGULAR IO"
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[1] -to DATA_DIR -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[2] -to DATA_IO[0] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[3] -to DATA_IO[10] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[4] -to DATA_IO[11] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[5] -to DATA_IO[12] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[6] -to DATA_IO[13] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[7] -to DATA_IO[14] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[8] -to DATA_IO[15] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[9] -to DATA_IO[16] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[10] -to DATA_IO[17] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[11] -to DATA_IO[18] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[12] -to DATA_IO[19] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[13] -to DATA_IO[1] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[14] -to DATA_IO[20] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[15] -to DATA_IO[21] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[16] -to DATA_IO[22] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[17] -to DATA_IO[23] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[18] -to DATA_IO[24] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[19] -to DATA_IO[25] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[20] -to DATA_IO[26] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[21] -to DATA_IO[27] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[22] -to DATA_IO[28] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[23] -to DATA_IO[29] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[24] -to DATA_IO[2] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[25] -to DATA_IO[30] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[26] -to DATA_IO[31] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[27] -to DATA_IO[3] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[28] -to DATA_IO[4] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[29] -to DATA_IO[5] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[30] -to DATA_IO[6] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[31] -to DATA_IO[7] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[32] -to DATA_IO[8] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[33] -to DATA_IO[9] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[34] -to DATA_OE_ -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[35] -to DSACK_I_[0] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[36] -to DSACK_I_[1] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[37] -to DSACK_O[0] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[38] -to DSACK_O[1] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[39] -to INT -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[40] -to INTA -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[41] -to OWN -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[42] -to PDATA_OE_ -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[43] -to PD_PORT[0] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[44] -to PD_PORT[10] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[45] -to PD_PORT[11] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[46] -to PD_PORT[12] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[47] -to PD_PORT[13] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[48] -to PD_PORT[14] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[49] -to PD_PORT[15] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[50] -to PD_PORT[1] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[51] -to PD_PORT[2] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[52] -to PD_PORT[3] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[53] -to PD_PORT[4] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[54] -to PD_PORT[5] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[55] -to PD_PORT[6] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[56] -to PD_PORT[7] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[57] -to PD_PORT[8] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[58] -to PD_PORT[9] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[59] -to R_W_IO -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[60] -to _AS_IO -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[61] -to _BG -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[62] -to _BGACK_IO -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[63] -to _CS -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[64] -to _DACK -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[65] -to _DMAEN -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[66] -to _DREQ -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[67] -to _DS_IO -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[68] -to _IOR -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[69] -to _IOW -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[70] -to _RST -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[71] -to _SIZ1 -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[72] -to _STERM -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[73] -to "fifo:int_fifo|FIFOEMPTY" -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[74] -to "fifo:int_fifo|FIFOFULL" -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[75] -to "registers:u_registers|addr_decoder:u_addr_decoder|ADDR[0]" -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[76] -to "registers:u_registers|addr_decoder:u_addr_decoder|ADDR[1]" -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[77] -to "registers:u_registers|addr_decoder:u_addr_decoder|ADDR[2]" -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[78] -to "registers:u_registers|addr_decoder:u_addr_decoder|ADDR[3]" -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[79] -to "registers:u_registers|addr_decoder:u_addr_decoder|ADDR[4]" -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[80] -to "registers:u_registers|addr_decoder:u_addr_decoder|ADDR[5]" -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[81] -to "registers:u_registers|addr_decoder:u_addr_decoder|ADDR[6]" -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[82] -to "registers:u_registers|addr_decoder:u_addr_decoder|ADDR[7]" -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[83] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s0 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[84] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s1 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[85] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s10 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[86] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s12 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[87] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s14 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[88] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s16 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[89] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s17 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[90] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s18 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[91] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s19 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[92] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s2 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[93] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s20 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[94] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s22 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[95] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s24 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[96] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s25 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[97] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s26 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[98] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s28 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[99] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s3 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[100] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s30 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[101] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s4 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[102] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s6 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[103] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s8 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[104] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s9 -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[1] -to DATA_DIR -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[2] -to DATA_IO[0] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[3] -to DATA_IO[10] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[4] -to DATA_IO[11] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[5] -to DATA_IO[12] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[6] -to DATA_IO[13] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[7] -to DATA_IO[14] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[8] -to DATA_IO[15] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[9] -to DATA_IO[16] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[10] -to DATA_IO[17] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[11] -to DATA_IO[18] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[12] -to DATA_IO[19] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[13] -to DATA_IO[1] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[14] -to DATA_IO[20] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[15] -to DATA_IO[21] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[16] -to DATA_IO[22] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[17] -to DATA_IO[23] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[18] -to DATA_IO[24] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[19] -to DATA_IO[25] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[20] -to DATA_IO[26] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[21] -to DATA_IO[27] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[22] -to DATA_IO[28] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[23] -to DATA_IO[29] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[24] -to DATA_IO[2] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[25] -to DATA_IO[30] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[26] -to DATA_IO[31] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[27] -to DATA_IO[3] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[28] -to DATA_IO[4] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[29] -to DATA_IO[5] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[30] -to DATA_IO[6] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[31] -to DATA_IO[7] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[32] -to DATA_IO[8] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[33] -to DATA_IO[9] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[34] -to DATA_OE_ -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[35] -to DSACK_I_[0] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[36] -to DSACK_I_[1] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[37] -to DSACK_O[0] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[38] -to DSACK_O[1] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[39] -to INT -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[40] -to INTA -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[41] -to OWN -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[42] -to PDATA_OE_ -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[43] -to PD_PORT[0] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[44] -to PD_PORT[10] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[45] -to PD_PORT[11] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[46] -to PD_PORT[12] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[47] -to PD_PORT[13] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[48] -to PD_PORT[14] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[49] -to PD_PORT[15] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[50] -to PD_PORT[1] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[51] -to PD_PORT[2] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[52] -to PD_PORT[3] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[53] -to PD_PORT[4] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[54] -to PD_PORT[5] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[55] -to PD_PORT[6] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[56] -to PD_PORT[7] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[57] -to PD_PORT[8] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[58] -to PD_PORT[9] -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[59] -to R_W_IO -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[60] -to _AS_IO -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[61] -to _BG -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[62] -to _BGACK_IO -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[63] -to _CS -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[64] -to _DACK -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[65] -to _DMAEN -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[66] -to _DREQ -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[67] -to _DS_IO -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[68] -to _IOR -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[69] -to _IOW -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[70] -to _RST -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[71] -to _SIZ1 -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[72] -to _STERM -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[73] -to "fifo:int_fifo|FIFOEMPTY" -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[74] -to "fifo:int_fifo|FIFOFULL" -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[75] -to "registers:u_registers|addr_decoder:u_addr_decoder|ADDR[0]" -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[76] -to "registers:u_registers|addr_decoder:u_addr_decoder|ADDR[1]" -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[77] -to "registers:u_registers|addr_decoder:u_addr_decoder|ADDR[2]" -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[78] -to "registers:u_registers|addr_decoder:u_addr_decoder|ADDR[3]" -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[79] -to "registers:u_registers|addr_decoder:u_addr_decoder|ADDR[4]" -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[80] -to "registers:u_registers|addr_decoder:u_addr_decoder|ADDR[5]" -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[81] -to "registers:u_registers|addr_decoder:u_addr_decoder|ADDR[6]" -section_id ReSDMAC
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[82] -to "registers:u_registers|addr_decoder:u_addr_decoder|ADDR[7]" -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[83] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s0 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[84] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s1 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[85] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s10 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[86] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s12 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[87] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s14 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[88] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s16 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[89] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s17 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[90] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s18 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[91] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s19 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[92] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s2 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[93] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s20 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[94] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s22 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[95] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s24 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[96] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s25 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[97] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s26 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[98] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s28 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[99] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s3 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[100] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s30 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[101] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s4 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[102] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s6 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[103] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s8 -section_id ReSDMAC
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[104] -to u_SCSI_SM|u_SCSI_SM_INTERNALS|state_reg.s9 -section_id ReSDMAC
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=105" -section_id ReSDMAC
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=105" -section_id ReSDMAC
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" -section_id ReSDMAC
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=338" -section_id ReSDMAC
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=17241" -section_id ReSDMAC
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=49310" -section_id ReSDMAC
 set_global_assignment -name RESERVE_ALL_UNUSED_PINS_NO_OUTPUT_GND "AS INPUT TRI-STATED"
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name SLD_FILE "C:/Users/mbtay/SDMAC-Replacement/Quartus/ReSDMAC_auto_stripped.stp"
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

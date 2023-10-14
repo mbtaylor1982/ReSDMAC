@@ -3,3 +3,5 @@
 /Eagle/SDMAC.s#*
 /Eagle/SDMAC.b#*
 /RTL/build
+Quartus/db/*.tdf
+/sim_build
