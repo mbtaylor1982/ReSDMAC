@@ -18,8 +18,7 @@
  */ 
 
  `ifdef __ICARUS__ 
-  `include "CPU_SM_inputs.v"
-  `include "CPU_SM_output.v"
+  `include "CPU_SM_INTERNALS1.v"
 `endif
 
 module CPU_SM(
@@ -66,9 +65,6 @@ module CPU_SM(
     output reg STOPFLUSH
 );
 
-reg [4:0] STATE;
-wire [4:0] NEXT_STATE;
-
 //clocked inputs
 reg BGRANT_;
 reg CCRESET_;
@@ -81,22 +77,13 @@ reg nCYCLEDONE;
 wire aCYCLEDONE_;
 wire BGACK_d;
 wire BRIDGEOUT_d;
-
-wire cpudff1_d;
-wire cpudff2_d;
-wire cpudff3_d;
-wire cpudff4_d;
-wire cpudff5_d;
-
 wire CYCLEDONE;
-
 wire DECFIFO_d;
 wire DIEH_d;
 wire DIEL_d;
 wire iDSACK;
 wire DSACK;
 
-wire [62:0] E;
 
 wire F2CPUH_d;
 wire F2CPUL_d;
@@ -104,7 +91,6 @@ wire INCFIFO_d;
 wire INCNO_d;
 wire BREQ_d;
 wire BRIDGEIN_d;
-wire nDSACK;
 wire INCNI_d;
 wire STOPFLUSH_d;
 wire PAS_d;
@@ -112,56 +98,47 @@ wire PDS_d;
 wire PLHW_d;
 wire PLLW_d;
 wire SIZE1_d;
-wire nSTERM_;
 wire STERM_;
 wire LASTWORD;
 
-CPU_SM_inputs u_CPU_SM_inputs(
-    .A1           (A1           ),
-    .BGRANT_      (BGRANT_      ),
-    .BOEQ3        (BOEQ3        ),
-    .CYCLEDONE    (CYCLEDONE    ),
-    .DMADIR       (DMADIR       ),
-    .DMAENA       (DMAENA       ),
-    .DREQ_        (DREQ_        ),
-    .DSACK0_      (DSACK0_      ),
-    .DSACK1_      (DSACK1_      ),
-    .FIFOEMPTY    (FIFOEMPTY    ),
-    .FIFOFULL     (FIFOFULL     ),
-    .FLUSHFIFO    (FLUSHFIFO    ),
-    .LASTWORD     (LASTWORD     ),
-    .STATE        (STATE        ),
-    .E            (E)
-);
-
-CPU_SM_outputs u_CPU_SM_outputs(
-    .DSACK        (DSACK        ),
-    .STERM_       (STERM_       ),
-    .E            (E            ),
-    .RDFIFO_      (RDFIFO_      ),
-    .RIFIFO_      (RIFIFO_      ),
-    .BGRANT_      (BGRANT_      ),
-    .CYCLEDONE    (CYCLEDONE    ),
-    .STATE        (STATE        ),
-    .INCNI_d      (INCNI_d      ),
-    .BREQ_d       (BREQ_d       ),
-    .SIZE1_d      (SIZE1_d      ),
-    .PAS_d        (PAS_d        ),
-    .PDS_d        (PDS_d        ),
-    .F2CPUL_d     (F2CPUL_d     ),
-    .F2CPUH_d     (F2CPUH_d     ),
-    .BRIDGEOUT_d  (BRIDGEOUT_d  ),
-    .PLLW_d       (PLLW_d       ),
-    .PLHW_d       (PLHW_d       ),
-    .INCFIFO_d    (INCFIFO_d    ),
-    .DECFIFO_d    (DECFIFO_d    ),
-    .INCNO_d      (INCNO_d      ),
-    .STOPFLUSH_d  (STOPFLUSH_d  ),
-    .DIEH_d       (DIEH_d       ),
-    .DIEL_d       (DIEL_d       ),
-    .BRIDGEIN_d   (BRIDGEIN_d   ),
-    .BGACK_d      (BGACK_d      ),
-    .NEXT_STATE   (NEXT_STATE   )
+CPU_SM_INTERNALS1 u_CPU_SM_INTERNALS1 (
+    .CLK            (CLK90          ),  // input, (wire), CLK
+    .nRESET         (CCRESET_       ),  // input, (wire), Active low reset
+    .A1             (A1             ),  // input, (wire), 
+    .BGRANT_        (BGRANT_        ),  // input, (wire), 
+    .BOEQ3          (BOEQ3          ),  // input, (wire), 
+    .CYCLEDONE      (CYCLEDONE      ),  // input, (wire), 
+    .DMADIR         (DMADIR         ),  // input, (wire), 
+    .DMAENA         (DMAENA         ),  // input, (wire), 
+    .DREQ_          (DREQ_          ),  // input, (wire), 
+    .DSACK0_        (DSACK0_        ),  // input, (wire), 
+    .DSACK1_        (DSACK1_        ),  // input, (wire), 
+    .FIFOEMPTY      (FIFOEMPTY      ),  // input, (wire), 
+    .FIFOFULL       (FIFOFULL       ),  // input, (wire), 
+    .FLUSHFIFO      (FLUSHFIFO      ),  // input, (wire), 
+    .LASTWORD       (LASTWORD       ),  // input, (wire), 
+    .DSACK          (DSACK          ),  // input, (wire), 
+    .STERM_         (STERM_         ),  // input, (wire), 
+    .RDFIFO_        (RDFIFO_        ),  // input, (wire), 
+    .RIFIFO_        (RIFIFO_        ),  // input, (wire), 
+    .INCNI_d        (INCNI_d        ),  // output, (wire), 
+    .BREQ_d         (BREQ_d         ),  // output, (wire), 
+    .SIZE1_d        (SIZE1_d        ),  // output, (wire), 
+    .PAS_d          (PAS_d          ),  // output, (wire), 
+    .PDS_d          (PDS_d          ),  // output, (wire), 
+    .F2CPUL_d       (F2CPUL_d       ),  // output, (wire), 
+    .F2CPUH_d       (F2CPUH_d       ),  // output, (wire), 
+    .BRIDGEOUT_d    (BRIDGEOUT_d    ),  // output, (wire), 
+    .PLLW_d         (PLLW_d         ),  // output, (wire), 
+    .PLHW_d         (PLHW_d         ),  // output, (wire), 
+    .INCFIFO_d      (INCFIFO_d      ),  // output, (wire), 
+    .DECFIFO_d      (DECFIFO_d      ),  // output, (wire), 
+    .INCNO_d        (INCNO_d        ),  // output, (wire), 
+    .STOPFLUSH_d    (STOPFLUSH_d    ),  // output, (wire), 
+    .DIEH_d         (DIEH_d         ),  // output, (wire), 
+    .DIEL_d         (DIEL_d         ),  // output, (wire), 
+    .BRIDGEIN_d     (BRIDGEIN_d     ),  // output, (wire), 
+    .BGACK_d        (BGACK_d        )   // output, (wire), 
 );
 
 //clocked reset
@@ -231,13 +208,6 @@ always @(posedge CLK90 or negedge CCRESET_) begin
     end
 end
 
-always @(posedge CLK90 or negedge CCRESET_) begin
-    if (CCRESET_ == 1'b0)
-        STATE <= 5'b00000;
-    else
-        STATE <= NEXT_STATE;
-end
-
 always @(negedge CLK or posedge AS_) begin
     if (AS_ == 1'b1)
         DSACK_LATCHED_ <= 2'b11;
@@ -245,16 +215,12 @@ always @(negedge CLK or posedge AS_) begin
         DSACK_LATCHED_ <= {DSACK1_, DSACK0_};
 end
 
-assign  aCYCLEDONE_ = ~(BGACK_I_ & AS_ & DSACK0_ & DSACK1_ & iSTERM_);
-
+assign aCYCLEDONE_ = ~(BGACK_I_ & AS_ & DSACK0_ & DSACK1_ & iSTERM_);
 assign LASTWORD = (~BOEQ0 & aFLUSHFIFO & FIFOEMPTY);
-
 assign CYCLEDONE = ~nCYCLEDONE;
 assign iDSACK = ~(DSACK_LATCHED_[0] & DSACK_LATCHED_[1]);
-
 assign DSACK = iDSACK;
-assign nDSACK = ~iDSACK;
 assign STERM_ = iSTERM_;
-assign nSTERM_ = ~iSTERM_;
+
 
 endmodule
