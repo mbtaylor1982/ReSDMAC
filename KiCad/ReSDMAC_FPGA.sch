@@ -146,7 +146,7 @@ INTA_FPGA
 Text GLabel 5850 2850 2    50   Output ~ 0
 BGACK_FPGA
 Text GLabel 5850 3250 2    50   BiDi ~ 0
-DRD14_FPGA
+NOT_USED_A6_FPGA
 Text GLabel 4700 1250 1    50   BiDi ~ 0
 D0_FPGA
 Text GLabel 5850 3450 2    50   Input ~ 0
@@ -167,10 +167,10 @@ Text GLabel 950  2150 0    50   Input ~ 0
 DREQ_FPGA
 Text GLabel 4050 6150 3    50   BiDi ~ 0
 D7_FPGA
-Text GLabel 950  4750 0    50   BiDi ~ 0
+Text GLabel 950  3550 0    50   BiDi ~ 0
 D20_FPGA
-Text GLabel 950  3550 0    50   Input ~ 0
-WE_FPGA
+Text GLabel 950  4750 0    50   Input ~ 0
+NOT_USED_K1_FPGA
 Text GLabel 950  4950 0    50   BiDi ~ 0
 D19_FPGA
 Text GLabel 950  4350 0    50   BiDi ~ 0
@@ -205,10 +205,10 @@ Text GLabel 2650 6150 3    50   BiDi ~ 0
 D9_FPGA
 Text GLabel 2950 6150 3    50   BiDi ~ 0
 D8_FPGA
-Text GLabel 950  2050 0    50   Input ~ 0
-PD15_FPGA
 Text GLabel 4900 1250 1    50   Input ~ 0
-A4_VCC_FPGA
+PD15_FPGA
+Text GLabel 950  2050 0    50   Input ~ 0
+NOT_USED_E3_FPGA
 Text GLabel 950  2450 0    50   BiDi ~ 0
 PD14_FPGA
 Text GLabel 5850 3550 2    50   BiDi ~ 0
