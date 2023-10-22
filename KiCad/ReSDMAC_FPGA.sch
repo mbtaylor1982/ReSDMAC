@@ -257,8 +257,8 @@ Text GLabel 4150 6150 3    50   Input ~ 0
 DSACK1_FPGA
 Text GLabel 5850 3650 2    50   Input ~ 0
 INTB_FPGA
-Text GLabel 3750 6150 3    50   Output ~ 0
-DRA0_FPGA
+Text GLabel 3750 6150 3    50   Input ~ 0
+DSACK0_FPGA
 Text GLabel 3650 6150 3    50   Input ~ 0
 STERM_FPGA
 Text GLabel 2250 6150 3    50   BiDi ~ 0
@@ -796,43 +796,6 @@ Wire Wire Line
 Connection ~ 8100 1500
 Wire Wire Line
 	8100 1500 8500 1500
-Text GLabel 7650 2650 0    50   Input ~ 0
-DSACK0
-$Comp
-L ReSDMAC:74LVC1G07 U7
-U 1 1 6335B2C0
-P 8100 2650
-F 0 "U7" H 8100 3165 50  0000 C CNN
-F 1 "74LVC1G07" H 8100 3074 50  0000 C CNN
-F 2 "ReSDMAC:SOT-353_SC-70-5_Custom_Handsoldering" H 8600 3600 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/sn74lvc1g07-q1.pdf" H 8600 3600 50  0001 C CNN
-	1    8100 2650
-	1    0    0    -1  
-$EndComp
-Text GLabel 7650 2850 0    50   Input ~ 0
-GND
-Text GLabel 9100 2850 2    50   Output ~ 0
-nNTSC_8372_FPGA
-Text GLabel 8550 2450 2    50   Input ~ 0
-3V3
-Text GLabel 8900 2650 1    50   Input ~ 0
-3V3
-$Comp
-L Device:R_Small R1
-U 1 1 6336CA8C
-P 8900 2750
-F 0 "R1" H 8959 2750 50  0000 L CNN
-F 1 "10k" H 8959 2705 50  0001 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 8900 2750 50  0001 C CNN
-F 3 "~" H 8900 2750 50  0001 C CNN
-	1    8900 2750
-	1    0    0    -1  
-$EndComp
-Connection ~ 8900 2850
-Wire Wire Line
-	8900 2850 9100 2850
-Wire Wire Line
-	8550 2850 8900 2850
 Text GLabel 3250 6150 3    50   Input ~ 0
 nNTSC_8372_FPGA
 Wire Wire Line

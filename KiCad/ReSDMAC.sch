@@ -337,8 +337,8 @@ Text GLabel 9200 4400 0    50   Input ~ 0
 DSACK1
 Text GLabel 9200 4800 0    50   Input ~ 0
 STERM
-Text GLabel 9200 4700 0    50   Output ~ 0
-DRA0
+Text GLabel 9200 4700 0    50   Input ~ 0
+DSACK0
 Text GLabel 9200 5600 0    50   BiDi ~ 0
 D26
 Text GLabel 10200 3250 2    50   BiDi ~ 0
@@ -467,8 +467,8 @@ Text GLabel 10200 4600 2    50   Output ~ 0
 DSACK1_FPGA
 Text GLabel 10200 4700 2    50   Output ~ 0
 INTB_FPGA
-Text GLabel 10200 4800 2    50   Input ~ 0
-DRA0_FPGA
+Text GLabel 10200 4800 2    50   Output ~ 0
+DSACK0_FPGA
 Text GLabel 10200 4900 2    50   Output ~ 0
 STERM_FPGA
 Text GLabel 10200 5000 2    50   BiDi ~ 0
@@ -723,8 +723,6 @@ Text GLabel 3900 1650 0    50   Input ~ 0
 DSACK1
 Text GLabel 950  1750 0    50   Output ~ 0
 DSACK0
-Text GLabel -150 1750 2    50   Output ~ 0
-GND|nNTSC_8372
 Text GLabel 3900 1750 0    50   Input ~ 0
 DSACK0
 Text GLabel 950  1850 0    50   Output ~ 0
@@ -795,8 +793,6 @@ Text GLabel 5700 5800 2    50   Input ~ 0
 GND
 Text GLabel 6100 5550 2    50   Output ~ 0
 WE
-Text GLabel 6100 5800 2    50   Input ~ 0
-DRA0
 Text GLabel 2750 2650 2    50   BiDi ~ 0
 PD12
 Text GLabel 5700 2650 2    50   BiDi ~ 0
