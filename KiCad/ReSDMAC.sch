@@ -253,9 +253,9 @@ Text GLabel 7150 5800 0    50   Input ~ 0
 BERR
 Text GLabel 7150 5700 0    50   Input ~ 0
 IORST
-Text GLabel 7150 5600 0    50   Input ~ 0
-SCSI
 Text GLabel 7150 5500 0    50   Input ~ 0
+SCSI
+Text GLabel 7150 5600 0    50   Input ~ 0
 CPUCLK
 Text GLabel 9200 3150 0    50   BiDi ~ 0
 D8
@@ -433,9 +433,9 @@ Text GLabel 8150 5200 2    50   BiDi ~ 0
 PD4_FPGA
 Text GLabel 8150 5300 2    50   BiDi ~ 0
 PD3_FPGA
-Text GLabel 8150 5500 2    50   Output ~ 0
-CPUCLK_FPGA
 Text GLabel 8150 5600 2    50   Output ~ 0
+CPUCLK_FPGA
+Text GLabel 8150 5500 2    50   Output ~ 0
 SCSI_FPGA
 Text GLabel 8150 5700 2    50   Output ~ 0
 IORST_FPGA

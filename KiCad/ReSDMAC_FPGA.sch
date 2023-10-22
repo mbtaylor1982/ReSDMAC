@@ -231,9 +231,9 @@ Text GLabel 5850 5250 2    50   BiDi ~ 0
 PD4_FPGA
 Text GLabel 5850 5650 2    50   Input ~ 0
 PD3_FPGA
-Text GLabel 5850 4350 2    50   Input ~ 0
-CPUCLK_FPGA
 Text GLabel 5850 3850 2    50   Input ~ 0
+CPUCLK_FPGA
+Text GLabel 5850 4350 2    50   Input ~ 0
 SCSI_FPGA
 Text GLabel 5050 6150 3    50   Input ~ 0
 IORST_FPGA
