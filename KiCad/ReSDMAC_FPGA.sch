@@ -132,163 +132,155 @@ Connection ~ 4100 1250
 Wire Wire Line
 	4100 1250 4200 1250
 Text GLabel 5850 4750 2    50   Input ~ 0
-A18_FPGA
-Text GLabel 5850 5350 2    50   Input ~ 0
-LPEN_FPGA
+A3_FPGA
 Text GLabel 5850 2550 2    50   Input ~ 0
-A17_FPGA
-Text GLabel 5850 4950 2    50   BiDi ~ 0
-VSYNC_FPGA
-Text GLabel 5850 2250 2    50   Output ~ 0
-CSYNC_FPGA
-Text GLabel 5850 2350 2    50   BiDi ~ 0
-HSYNC_FPGA
-Text GLabel 5850 2150 2    50   Input ~ 0
-A16_FPGA
-Text GLabel 5850 1950 2    50   Input ~ 0
-A15_FPGA
+A2_FPGA
+Text GLabel 5850 2350 2    50   Output ~ 0
+SBR_FPGA
+Text GLabel 5850 2150 2    50   Output ~ 0
+DMAEN_FPGA
+Text GLabel 5850 1950 2    50   Output ~ 0
+INC_ADD_FPGA
 Text GLabel 5850 3050 2    50   Input ~ 0
-A14_FPGA
-Text GLabel 5850 2850 2    50   BiDi ~ 0
-DRD15_FPGA
+INTA_FPGA
+Text GLabel 5850 2850 2    50   Output ~ 0
+BGACK_FPGA
 Text GLabel 5850 3250 2    50   BiDi ~ 0
 DRD14_FPGA
 Text GLabel 4700 1250 1    50   BiDi ~ 0
-DRD13_FPGA
+D0_FPGA
 Text GLabel 5850 3450 2    50   Input ~ 0
-A13_FPGA
-Text GLabel 5300 1250 1    50   Input ~ 0
-A12_FPGA
-Text GLabel 4500 1250 1    50   Input ~ 0
-A11_FPGA
-Text GLabel 4400 1250 1    50   Input ~ 0
-A10_FPGA
-Text GLabel 950  1850 0    50   Input ~ 0
-A9_FPGA
-Text GLabel 950  1750 0    50   Input ~ 0
-A8_FPGA
-Text GLabel 950  1650 0    50   Input ~ 0
-A7_FPGA
+IORDY_FPGA
+Text GLabel 5300 1250 1    50   Output ~ 0
+CSX1_FPGA
+Text GLabel 4500 1250 1    50   Output ~ 0
+CSX0_FPGA
+Text GLabel 4400 1250 1    50   Output ~ 0
+IOR_FPGA
+Text GLabel 950  1850 0    50   Output ~ 0
+IOW_FPGA
+Text GLabel 950  1750 0    50   Output ~ 0
+CSS_FPGA
+Text GLabel 950  1650 0    50   Output ~ 0
+DACK_FPGA
 Text GLabel 950  2150 0    50   Input ~ 0
-A6_FPGA
+DREQ_FPGA
 Text GLabel 4050 6150 3    50   BiDi ~ 0
-DRD6_FPGA
-Text GLabel 950  4750 0    50   Output ~ 0
-RW_FPGA
+D7_FPGA
+Text GLabel 950  4750 0    50   BiDi ~ 0
+D20_FPGA
 Text GLabel 950  3550 0    50   Input ~ 0
 WE_FPGA
-Text GLabel 950  4950 0    50   Output ~ 0
-BLIT_FPGA
-Text GLabel 950  4350 0    50   Input ~ 0
-BLISS_FPGA
-Text GLabel 950  3950 0    50   Input ~ 0
-DMAL_FPGA
-Text GLabel 950  4150 0    50   Output ~ 0
-INTR_FPGA
+Text GLabel 950  4950 0    50   BiDi ~ 0
+D19_FPGA
+Text GLabel 950  4350 0    50   BiDi ~ 0
+D18_FPGA
+Text GLabel 950  3950 0    50   BiDi ~ 0
+D17_FPGA
+Text GLabel 950  4150 0    50   BiDi ~ 0
+D16_FPGA
 Text GLabel 950  4650 0    50   BiDi ~ 0
-DRD12_FPGA
+D1_FPGA
 Text GLabel 950  5550 0    50   BiDi ~ 0
-DRD11_FPGA
+D2_FPGA
 Text GLabel 950  5750 0    50   BiDi ~ 0
-DRD10_FPGA
+D3_FPGA
 Text GLabel 1550 6150 3    50   BiDi ~ 0
-DRD9_FPGA
+D4_FPGA
 Text GLabel 1650 6150 3    50   BiDi ~ 0
-DRD8_FPGA
-Text GLabel 1850 6150 3    50   Input ~ 0
-RESET_FPGA
+D5_FPGA
+Text GLabel 1850 6150 3    50   BiDi ~ 0
+D15_FPGA
 Text GLabel 3050 6150 3    50   BiDi ~ 0
-DRD7_FPGA
+D6_FPGA
 Text GLabel 3550 6150 3    50   BiDi ~ 0
-DRD0_FPGA
+D13_FPGA
 Text GLabel 2850 6150 3    50   BiDi ~ 0
-DRD1_FPGA
+D12_FPGA
 Text GLabel 3150 6150 3    50   BiDi ~ 0
-DRD2_FPGA
+D11_FPGA
 Text GLabel 2450 6150 3    50   BiDi ~ 0
-DRD3_FPGA
+D10_FPGA
 Text GLabel 2650 6150 3    50   BiDi ~ 0
-DRD4_FPGA
+D9_FPGA
 Text GLabel 2950 6150 3    50   BiDi ~ 0
-DRD5_FPGA
+D8_FPGA
 Text GLabel 950  2050 0    50   Input ~ 0
-A5_FPGA
+PD15_FPGA
 Text GLabel 4900 1250 1    50   Input ~ 0
-A4_FPGA
-Text GLabel 950  2450 0    50   Input ~ 0
-A3_FPGA
-Text GLabel 5850 3550 2    50   Input ~ 0
-A2_FPGA
-Text GLabel 5000 1250 1    50   Input ~ 0
-A1_FPGA
-Text GLabel 5850 3350 2    50   Input ~ 0
-A19_FPGA
-Text GLabel 5850 4250 2    50   Output ~ 0
-RAS0_FPGA
-Text GLabel 5850 2050 2    50   Output ~ 0
-RAS1_FPGA
-Text GLabel 5850 2450 2    50   Output ~ 0
-DRA9_FPGA
-Text GLabel 5850 1850 2    50   Output ~ 0
-CASU_FPGA
-Text GLabel 5850 4450 2    50   Output ~ 0
-CASL_FPGA
-Text GLabel 5850 5250 2    50   Input ~ 0
-UDS_FPGA
+A4_VCC_FPGA
+Text GLabel 950  2450 0    50   BiDi ~ 0
+PD14_FPGA
+Text GLabel 5850 3550 2    50   BiDi ~ 0
+PD13_FPGA
+Text GLabel 5000 1250 1    50   BiDi ~ 0
+PD12_FPGA
+Text GLabel 5850 3350 2    50   BiDi ~ 0
+PD11_FPGA
+Text GLabel 5850 4250 2    50   BiDi ~ 0
+PD9_FPGA
+Text GLabel 5850 2050 2    50   BiDi ~ 0
+PD8_FPGA
+Text GLabel 5850 2450 2    50   BiDi ~ 0
+PD7_FPGA
+Text GLabel 5850 1850 2    50   BiDi ~ 0
+PD6_FPGA
+Text GLabel 5850 4450 2    50   BiDi ~ 0
+PD5_FPGA
+Text GLabel 5850 5250 2    50   BiDi ~ 0
+PD4_FPGA
 Text GLabel 5850 5650 2    50   Input ~ 0
-LDS_FPGA
-Text GLabel 5850 4350 2    50   Output ~ 0
-DRA2_FPGA
-Text GLabel 5850 3850 2    50   Output ~ 0
-DRA3_FPGA
-Text GLabel 5050 6150 3    50   Output ~ 0
-DRA4_FPGA
+PD3_FPGA
+Text GLabel 5850 4350 2    50   Input ~ 0
+CPUCLK_FPGA
+Text GLabel 5850 3850 2    50   Input ~ 0
+SCSI_FPGA
+Text GLabel 5050 6150 3    50   Input ~ 0
+IORST_FPGA
 Text GLabel 5850 4050 2    50   Output ~ 0
-DRA5_FPGA
-Text GLabel 5850 5050 2    50   Output ~ 0
-DRA6_FPGA
-Text GLabel 5850 4550 2    50   Output ~ 0
-DRA7_FPGA
-Text GLabel 5850 5150 2    50   Output ~ 0
-DRA8_FPGA
+BERR_FPGA
+Text GLabel 5850 5050 2    50   BiDi ~ 0
+PD0_FPGA
+Text GLabel 5850 4550 2    50   BiDi ~ 0
+PD1_FPGA
+Text GLabel 5850 5150 2    50   BiDi ~ 0
+PD2_FPGA
 Text GLabel 2750 6150 3    50   Output ~ 0
-CDAC_FPGA
-Text GLabel 4250 6150 3    50   Input ~ 0
-A20_FPGA
+SIZ1_FPGA
+Text GLabel 4250 6150 3    50   Output ~ 0
+INT2_FPGA
 Text GLabel 4850 6150 3    50   Output ~ 0
-CCKQ_FPGA
+AS_FPGA
 Text GLabel 4450 6150 3    50   Output ~ 0
-CCK_FPGA
-Text GLabel 4150 6150 3    50   Output ~ 0
-14M_FPGA
+DS_FPGA
+Text GLabel 4150 6150 3    50   Input ~ 0
+DSACK1_FPGA
 Text GLabel 5850 3650 2    50   Input ~ 0
-28M_FPGA
+INTB_FPGA
 Text GLabel 3750 6150 3    50   Output ~ 0
 DRA0_FPGA
-Text GLabel 3650 6150 3    50   Output ~ 0
-DRA1_FPGA
-Text GLabel 2250 6150 3    50   Output ~ 0
-RGA1_FPGA
-Text GLabel 2050 6150 3    50   Output ~ 0
-RGA2_FPGA
-Text GLabel 3450 6150 3    50   Output ~ 0
-RGA3_FPGA
-Text GLabel 1750 6150 3    50   Output ~ 0
-RGA4_FPGA
+Text GLabel 3650 6150 3    50   Input ~ 0
+STERM_FPGA
+Text GLabel 2250 6150 3    50   BiDi ~ 0
+D31_FPGA
+Text GLabel 2050 6150 3    50   BiDi ~ 0
+D30_FPGA
+Text GLabel 3450 6150 3    50   BiDi ~ 0
+D29_FPGA
 Text GLabel 4650 6150 3    50   Output ~ 0
-7M_FPGA
-Text GLabel 950  5350 0    50   Output ~ 0
-RGA5_FPGA
-Text GLabel 950  5050 0    50   Output ~ 0
-RGA7_FPGA
-Text GLabel 950  5250 0    50   Output ~ 0
-RGA8_FPGA
-Text GLabel 950  4550 0    50   Input ~ 0
-RAMEN_FPGA
-Text GLabel 950  3250 0    50   Input ~ 0
-AS_FPGA
-Text GLabel 950  3750 0    50   Input ~ 0
-REGEN_FPGA
+RW_FPGA
+Text GLabel 950  5350 0    50   BiDi ~ 0
+D27_FPGA
+Text GLabel 950  5050 0    50   BiDi ~ 0
+D25_FPGA
+Text GLabel 950  5250 0    50   BiDi ~ 0
+D24_FPGA
+Text GLabel 950  4550 0    50   BiDi ~ 0
+D23_FPGA
+Text GLabel 950  3250 0    50   BiDi ~ 0
+D22_FPGA
+Text GLabel 950  3750 0    50   BiDi ~ 0
+D21_FPGA
 $Comp
 L ReSDMAC:LM1117-3.3 U2
 U 1 1 60C4BF35
@@ -454,8 +446,8 @@ Text GLabel 4600 1250 1    50   Input ~ 0
 CONF_DONE
 Text GLabel 950  3350 0    50   Input ~ 0
 3V3
-Text GLabel 950  5150 0    50   Output ~ 0
-RGA6_FPGA
+Text GLabel 950  5150 0    50   BiDi ~ 0
+D26_FPGA
 NoConn ~ 950  5450
 NoConn ~ 950  5650
 NoConn ~ 1950 6150
@@ -805,7 +797,7 @@ Connection ~ 8100 1500
 Wire Wire Line
 	8100 1500 8500 1500
 Text GLabel 7650 2650 0    50   Input ~ 0
-GND|nNTSC_8372
+DSACK0
 $Comp
 L ReSDMAC:74LVC1G07 U7
 U 1 1 6335B2C0
@@ -888,4 +880,12 @@ Text GLabel 950  3150 0    50   Input ~ 0
 3V3
 Text GLabel 950  3450 0    50   Input ~ 0
 3V3
+Text GLabel 1750 6150 3    50   BiDi ~ 0
+D28_FPGA
+Text GLabel 5850 2250 2    50   Input ~ 0
+A6_FPGA
+Text GLabel 5850 4950 2    50   Input ~ 0
+A5_FPGA
+Text GLabel 5850 5350 2    50   Input ~ 0
+A4_FPGA
 $EndSCHEMATC
