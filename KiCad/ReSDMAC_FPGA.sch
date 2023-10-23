@@ -796,8 +796,8 @@ Wire Wire Line
 Connection ~ 8100 1500
 Wire Wire Line
 	8100 1500 8500 1500
-Text GLabel 3250 6150 3    50   Input ~ 0
-nNTSC_8372_FPGA
+Text GLabel 3250 6750 0    50   Input ~ 0
+TP1
 Wire Wire Line
 	3400 1250 3500 1250
 Connection ~ 3400 1250
@@ -851,4 +851,17 @@ Text GLabel 5850 4950 2    50   Input ~ 0
 A5_FPGA
 Text GLabel 5850 5350 2    50   Input ~ 0
 A4_FPGA
+$Comp
+L Connector:TestPoint_Small TP1
+U 1 1 655D4DC6
+P 3250 6950
+F 0 "TP1" H 3298 6950 50  0000 L CNN
+F 1 "TestPoint_Small" H 3298 6905 50  0001 L CNN
+F 2 "TestPoint:TestPoint_Pad_1.5x1.5mm" H 3450 6950 50  0001 C CNN
+F 3 "~" H 3450 6950 50  0001 C CNN
+	1    3250 6950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3250 6150 3250 6950
 $EndSCHEMATC
