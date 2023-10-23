@@ -627,13 +627,13 @@ Text Notes 7500 3500 0    50   ~ 0
 Text Notes 7500 4200 0    50   ~ 0
 0805
 Text GLabel 9250 1750 0    50   Input ~ 0
-nNTSC
+JP1
 Text GLabel 10450 1250 3    50   Input ~ 0
-nNTSC
+JP1
 Wire Wire Line
 	10350 850  10450 850 
 Text GLabel 950  2350 0    50   Input ~ 0
-nNTSC
+JP1
 Text GLabel 9750 1750 2    50   Input ~ 0
 DEBUG_PIN
 Text GLabel 950  1950 0    50   Input ~ 0
