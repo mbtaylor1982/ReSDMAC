@@ -255,7 +255,7 @@ Text GLabel 7150 5700 0    50   Input ~ 0
 IORST
 Text GLabel 7150 5500 0    50   Input ~ 0
 SCSI
-Text GLabel 7150 5600 0    50   Input ~ 0
+Text GLabel 6500 5600 0    50   Input ~ 0
 CPUCLK
 Text GLabel 9200 3150 0    50   BiDi ~ 0
 D8
@@ -923,4 +923,19 @@ Text GLabel 7150 3900 0    50   Input ~ 0
 GND
 Text GLabel 7150 2150 0    50   Input ~ 0
 GND
+$Comp
+L Device:R_Small R1
+U 1 1 655C696F
+P 6700 5600
+F 0 "R1" V 6596 5600 50  0000 C CNN
+F 1 "R_Small" V 6595 5600 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" H 6700 5600 50  0001 C CNN
+F 3 "~" H 6700 5600 50  0001 C CNN
+	1    6700 5600
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6500 5600 6600 5600
+Wire Wire Line
+	6800 5600 7150 5600
 $EndSCHEMATC
