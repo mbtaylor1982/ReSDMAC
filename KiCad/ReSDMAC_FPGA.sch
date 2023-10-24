@@ -143,7 +143,7 @@ Text GLabel 5850 1950 2    50   Output ~ 0
 INC_ADD_FPGA
 Text GLabel 5850 3050 2    50   Input ~ 0
 INTA_FPGA
-Text GLabel 5850 2850 2    50   Output ~ 0
+Text GLabel 5850 2850 2    50   BiDi ~ 0
 BGACK_FPGA
 Text GLabel 5850 3250 2    50   BiDi ~ 0
 NOT_USED_A6_FPGA
@@ -249,15 +249,15 @@ Text GLabel 2750 6150 3    50   Output ~ 0
 SIZ1_FPGA
 Text GLabel 4250 6150 3    50   Output ~ 0
 INT2_FPGA
-Text GLabel 4850 6150 3    50   Output ~ 0
+Text GLabel 4850 6150 3    50   BiDi ~ 0
 AS_FPGA
-Text GLabel 4450 6150 3    50   Output ~ 0
+Text GLabel 4450 6150 3    50   BiDi ~ 0
 DS_FPGA
-Text GLabel 4150 6150 3    50   Input ~ 0
+Text GLabel 4150 6150 3    50   BiDi ~ 0
 DSACK1_FPGA
 Text GLabel 5850 3650 2    50   Input ~ 0
 INTB_FPGA
-Text GLabel 3750 6150 3    50   Input ~ 0
+Text GLabel 3750 6150 3    50   BiDi ~ 0
 DSACK0_FPGA
 Text GLabel 3650 6150 3    50   Input ~ 0
 STERM_FPGA
@@ -267,7 +267,7 @@ Text GLabel 2050 6150 3    50   BiDi ~ 0
 D30_FPGA
 Text GLabel 3450 6150 3    50   BiDi ~ 0
 D29_FPGA
-Text GLabel 4650 6150 3    50   Output ~ 0
+Text GLabel 4650 6150 3    50   BiDi ~ 0
 RW_FPGA
 Text GLabel 950  5350 0    50   BiDi ~ 0
 D27_FPGA
