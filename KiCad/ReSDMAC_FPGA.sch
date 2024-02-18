@@ -438,8 +438,8 @@ Wire Wire Line
 	7950 3900 8300 3900
 Text GLabel 7250 4600 0    50   Input ~ 0
 3V3
-Text GLabel 5850 2950 2    50   Input ~ 0
-CONFIG_SEL
+Text GLabel 5850 2650 2    50   Input ~ 0
+nCONFIG
 Text GLabel 4800 1250 1    50   Input ~ 0
 nSTATUS
 Text GLabel 4600 1250 1    50   Input ~ 0
@@ -466,7 +466,6 @@ NoConn ~ 5250 6150
 NoConn ~ 5850 5750
 NoConn ~ 5850 5550
 NoConn ~ 5850 4150
-NoConn ~ 5850 2650
 Connection ~ 8300 3600
 Wire Wire Line
 	9000 3900 9350 3900
@@ -512,12 +511,8 @@ Text GLabel 10650 2700 3    50   Input ~ 0
 CONF_DONE
 Text GLabel 10550 2700 3    50   Input ~ 0
 nSTATUS
-Text GLabel 5850 3150 2    50   Input ~ 0
-3V3
 Text GLabel 10750 2700 3    50   Input ~ 0
-CONFIG_SEL
-Text GLabel 10750 2300 1    50   Input ~ 0
-GND
+nCONFIG
 Text GLabel 10450 2300 1    50   Input ~ 0
 3V3
 Wire Wire Line
@@ -864,4 +859,11 @@ F 3 "~" H 3450 6950 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	3250 6150 3250 6950
+Text GLabel 5850 2950 2    50   Input ~ 0
+GND
+Wire Wire Line
+	10650 2300 10750 2300
+Connection ~ 10650 2300
+Text GLabel 5850 3150 2    50   Input ~ 0
+nCONFIG
 $EndSCHEMATC
