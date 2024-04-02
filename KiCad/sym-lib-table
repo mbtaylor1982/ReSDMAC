@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name ReSDMAC)(type Legacy)(uri ${KIPRJMOD}/ReSDMAC.lib)(options "")(descr ""))
+)

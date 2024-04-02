@@ -72,7 +72,9 @@ module RESDMAC(
     output OWN,                     //Active high signal to show SDMAC is bus master, This can be used to set direction on level shifters for control signals.
     output DATA_OE_,                //Active low ouput enable for DBUS level shifters.
     output PDATA_OE_,                //Active low ouput enable for Peripheral BUS level shifters.
-    output reg DATA_DIR
+    output reg DATA_DIR,
+
+    input TEST // used to force data into the unit for testing in cocotb
 );
 
 reg AS_O_;
@@ -91,7 +93,7 @@ assign  R_W_IO = OWN ? ~DMADIR : 1'bz;
 
 wire [31:0] DATA_I;
 wire [31:0] DATA_O;
-assign DATA_I = DATA_IO;
+assign DATA_I = TEST ? DATA_I :DATA_IO;
 assign DATA_IO = ((R_W & ~H_0C) | OWN) ? DATA_O : 32'hzzzzzzzz;
 
 wire [15:0] PDATA_I;

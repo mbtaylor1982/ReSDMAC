@@ -20,7 +20,7 @@ def test_ReSDMAC_ctrl_reg():
         "RTL/datapath",
         "RTL/FIFO",
         "RTL/Registers"],
-        #waves="1"
+        waves="1"
     )
     
 def test_fifo_3bit_cntr():

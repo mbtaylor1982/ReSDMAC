@@ -15,13 +15,14 @@ async def reset_dut(reset_n, duration_ns):
 
 
 async def write_data(dut, addr, data):
-    dut._log.info("Writing 0x%0h to 0x%0h", data, addr)
+    dut._log.info("Writing 0x%dh to 0x%dh", data, addr)
     await ClockCycles(dut.SCLK, 2, True)
     dut.ADDR.value = addr
-    dut.DATA_IO.value = data
+    dut.DATA_I.value = data
     await ClockCycles(dut.SCLK, 1, True)
     dut._id("_AS_IO", extended=False).value = 0
     dut.R_W_IO.value = 0
+    dut.DATA_I.value = data
     await ClockCycles(dut.SCLK, 1, True)
     dut._id("_DS_IO", extended=False).value = 0
     await ClockCycles(dut.SCLK, 2, True)
@@ -42,6 +43,8 @@ async def resdmac_ctrl_reg_test(dut):
     # Start the clock. Start it low to avoid issues on the first RisingEdge
     cocotb.start_soon(clock.start(start_high=False))
     
+    dut.TEST.value = 1
+    
     await reset_dut(dut._id("_RST", extended=False) , 50)
     dut._log.debug("After reset")
     
@@ -52,7 +55,7 @@ async def resdmac_ctrl_reg_test(dut):
     
     dut._id("_CS",extended=False).value = 0
     
-    await write_data(dut, 0x2,2)
+    await write_data(dut, 2,2)
     assert dut.u_registers.u_registers_cntr.DMAENA.value == 0 ,"DMAENA != 0  after writing to CTRL reg"
     assert dut.u_registers.u_registers_cntr.DMADIR.value == 1 ,"DMADIR != 1  after writing to CTRL reg"
     assert dut.u_registers.u_registers_cntr.INTENA.value == 0 ,"INTENA != 0  after writing to CTRL reg"
