@@ -54,4 +54,13 @@ always @(*) begin
   CNTR_O <= {DMAENA, 1'b0, 1'b0, 1'b0, PRESET, 1'b0, INTENA, DMADIR, 1'b0};
 end
 
+// the "macro" to dump signals
+`ifdef COCOTB_SIM
+initial begin
+  $dumpfile ("registers_cntr.vcd");
+  $dumpvars (0, registers_cntr);
+  #1;
+end
+`endif
+
 endmodule

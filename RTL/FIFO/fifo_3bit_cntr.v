@@ -31,4 +31,13 @@ always @(posedge CLK or negedge RST_) begin
       COUNT <= COUNT + 1'b1;
 end
 
+// the "macro" to dump signals
+`ifdef COCOTB_SIM
+initial begin
+  $dumpfile ("fifo_3bit_cntr.vcd");
+  $dumpvars (0, fifo_3bit_cntr);
+  #1;
+end
+`endif
+
 endmodule
