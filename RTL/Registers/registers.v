@@ -35,7 +35,7 @@ module registers(
   input RST_,           // System Reset
   input FIFOEMPTY,      // FIFO Emtpty Flag
   input FIFOFULL,       // FIFO Full Flag
-  input INTA_I,         //
+  input INTA_I,         // Interupt input
 
   output [31:0] REG_OD,     //DATA OUT.
   output PRESET,            //Peripheral Reset.
@@ -43,7 +43,7 @@ module registers(
   output ACR_WR,            //input to FIFO_byte_ptr.
   output h_0C,              //input to FIFO_byte_ptr.
   output reg A1,            //Store value of A1 written to ACR.
-  output INT_O_,            //INT_2 Output.
+  output INT_O_,            //INT_2 Output. (maskable by negating INTENA in the control register)
   output DMADIR,            //DMA Direction
   output DMAENA,            //DMA Enabled.
   output REG_DSK_,          //Register Cycle Term.

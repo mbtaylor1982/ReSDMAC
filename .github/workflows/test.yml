@@ -23,6 +23,7 @@ jobs:
       # 2 - Change to cocotb test dtirectory 
       - name: Change to cocotb test dtirectory 
         run: cd RTL/cocotb
+      # 3 - Run cocotb tests using pytest
       - name: run pytest
         uses: pavelzw/pytest-action@v2
         with:
@@ -30,5 +31,12 @@ jobs:
           verbose: true
           job-summary: true
           click-to-expand: false
-          
+      # 4 Upload VCD Files
+      - name: upload vcd files
+        uses: actions/upload-artifact@v3
+        with:
+          name: SimulationResults.zip
+          path: sim_build
+          retention-days: 14
+
 

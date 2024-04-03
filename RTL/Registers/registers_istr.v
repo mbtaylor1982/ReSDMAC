@@ -65,4 +65,13 @@ always @(*) begin
 	INT_O_ <= INTENA ? ~INTA_I : 1'b1;
 end
 
+// the "macro" to dump signals
+`ifdef COCOTB_SIM
+initial begin
+  $dumpfile ("registers_istr.vcd");
+  $dumpvars (0, registers_istr);
+  #1;
+end
+`endif
+
 endmodule

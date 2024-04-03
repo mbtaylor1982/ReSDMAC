@@ -33,8 +33,7 @@ async def fifo_3bit_cntr_test(dut):
     for i in range(0,8):
         await RisingEdge(dut.CLK)
         assert dut.COUNT.value == i, "Count was not incremented with clk edge when CLKEN = 1"
-    
-    
+
     await RisingEdge(dut.CLK)
     assert dut.COUNT.value == 0, "output COUNT did not return to zero"
 
