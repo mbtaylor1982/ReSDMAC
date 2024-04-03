@@ -33,10 +33,10 @@ jobs:
           click-to-expand: false
       # 4 Upload VCD Files
       - name: upload vcd files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: SimulationResults.zip
-          path: sim_build
+          name: SimulationResults
+          path: sim_build/*.vcd
           retention-days: 14
 
 
