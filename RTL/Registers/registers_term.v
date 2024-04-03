@@ -31,12 +31,7 @@ reg [1:0] TERM_COUNTER;
 
 wire CYCLE_ACTIVE;
 
-`ifdef __ICARUS__
-  //allows sdmac to terminate writes to ACR in Ramsey for testing
-  assign CYCLE_ACTIVE = ~(AS_| DMAC_ | WDREGREQ);
-`else
-  assign CYCLE_ACTIVE = ~(AS_| DMAC_ | WDREGREQ | h_0C);
-`endif
+assign CYCLE_ACTIVE = ~(AS_| DMAC_ | WDREGREQ | h_0C);
 
 always @(posedge CLK or posedge AS_) begin
   if (AS_) begin
@@ -46,10 +41,20 @@ always @(posedge CLK or posedge AS_) begin
   else if (CYCLE_ACTIVE) begin
     if (TERM_COUNTER == 2'd1)
       REG_DSK_ <= 1'b0;
-    else if (TERM_COUNTER == 2'd2)
-      REG_DSK_ <= 1'b1;
+    //else if (TERM_COUNTER == 2'd2)
+    //  REG_DSK_ <= 1'b1;
+    if (TERM_COUNTER < 2'd3)
     TERM_COUNTER <= TERM_COUNTER + 1'b1;
   end
 end
+
+// the "macro" to dump signals
+`ifdef COCOTB_SIM
+initial begin
+  $dumpfile ("registers_term.vcd");
+  $dumpvars (0, registers_term);
+  #1;
+end
+`endif
 
 endmodule

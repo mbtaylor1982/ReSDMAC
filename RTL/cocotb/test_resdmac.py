@@ -41,9 +41,26 @@ def test_registers_istr(caplog):
         "RTL/datapath",
         "RTL/FIFO",
         "RTL/Registers"]
-       
     )
-    
+
+def test_registers_term(caplog):
+    caplog.set_level(logging.INFO)
+    run(
+        toplevel_lang="verilog",
+        verilog_sources=[os.path.join("RTL/Registers/", "registers_term.v")],
+        toplevel="registers_term",
+        module="cocotb_registers_term",
+        python_search=[hdl_dir],
+        timescale="1ns/100ps",
+        force_compile="True",
+        includes=[ "RTL/",
+        "RTL/SCSI_SM",
+        "RTL/CPU_SM",
+        "RTL/datapath",
+        "RTL/FIFO",
+        "RTL/Registers"]
+    )
+
 def test_fifo_3bit_cntr():
     run(
         toplevel_lang="verilog",
