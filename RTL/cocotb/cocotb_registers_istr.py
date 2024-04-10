@@ -68,10 +68,7 @@ async def registers_istr_test(dut):
     assert dut.INTS.value == 0 ,"INTS != 0  after CLR_INT_"
     assert dut.E_INT.value == 0 ,"E_INT != 0  after CLR_INT_"
     assert dut.INT_P.value == 0 ,"INT_P != 0  after CLR_INT_"
-    assert dut.FF.value == 0 ,"FF != 0  after CLR_INT_"
-    assert dut.FE.value == 1 ,"FE != 1  after CLR_INT_"
     assert dut.INT_O_.value == 1, "INT_O_ != 1  after CLR_INT_"
-    assert dut.ISTR_O.value == 0x1,"ISTR_O != 0x1  after CLR_INT_"
 
     dut.INTENA.value = 0
     await ClockCycles(dut.CLK, 2, True)
@@ -98,10 +95,8 @@ async def registers_istr_test(dut):
     assert dut.INTS.value == 0 ,"INTS != 0  after CLR_INT_"
     assert dut.E_INT.value == 0 ,"E_INT != 0  after CLR_INT_"
     assert dut.INT_P.value == 0 ,"INT_P != 0  after CLR_INT_"
-    assert dut.FF.value == 0 ,"FF != 0  after CLR_INT_"
-    assert dut.FE.value == 1 ,"FE != 1  after CLR_INT_"
     assert dut.INT_O_.value == 1, "INT_O_ != 1  after CLR_INT_"
-    assert dut.ISTR_O.value == 0x1,"ISTR_O != 0x1  after CLR_INT_"
+
     
     await ClockCycles(dut.CLK, 2, True)
     dut.FIFOFULL.value = 1

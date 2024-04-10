@@ -197,7 +197,7 @@ data words can be transferred with a single command. The counter must be initial
 
 > :memo: **NOTE:** **X** Denotes don’t care.
 
-> :memo: **NOTE:** The WTC register is read only in the Rev 4 SDMAC and will always return the  value $00000004.
+> :memo: **NOTE:** The WTC register is read only in the Rev 4 SDMAC and bit two will always be 0.
 ### 1.5.3. CNTR (Address: ```$08```) — read/write {#CNTR}
 
 The **CONTROL REGISTER** is an 8 bit register used to set mode and operating parameters of the SDMAC. An external reset will set all register bits to a low state.

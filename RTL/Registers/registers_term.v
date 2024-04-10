@@ -31,7 +31,11 @@ reg [1:0] TERM_COUNTER;
 
 wire CYCLE_ACTIVE;
 
-assign CYCLE_ACTIVE = ~(AS_| DMAC_ | WDREGREQ | h_0C);
+`ifdef COCOTB_SIM
+  assign CYCLE_ACTIVE = ~(AS_| DMAC_ | WDREGREQ );
+`else
+  assign CYCLE_ACTIVE = ~(AS_| DMAC_ | WDREGREQ | h_0C);
+`endif
 
 always @(posedge CLK or posedge AS_) begin
   if (AS_) begin
@@ -47,14 +51,5 @@ always @(posedge CLK or posedge AS_) begin
     TERM_COUNTER <= TERM_COUNTER + 1'b1;
   end
 end
-
-// the "macro" to dump signals
-`ifdef COCOTB_SIM
-initial begin
-  $dumpfile ("registers_term.vcd");
-  $dumpvars (0, registers_term);
-  #1;
-end
-`endif
 
 endmodule

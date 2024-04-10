@@ -47,7 +47,7 @@ module registers(
   output DMADIR,            //DMA Direction
   output DMAENA,            //DMA Enabled.
   output REG_DSK_,          //Register Cycle Term.
-  output WDREGREQ           //SCSI IC Cycle Term.
+  output WDREGREQ           //SCSI IC Chip Select.
 );
 
 wire CONTR_RD_;
@@ -83,7 +83,7 @@ addr_decoder u_addr_decoder(
     .DMADIR     (DMADIR    ),
     .h_0C       (h_0C      ),
     .WDREGREQ   (WDREGREQ  ),
-    .WTC_RD_    (WTC_RD_   ), 
+    .WTC_RD_    (WTC_RD_   ),
     .CONTR_RD_  (CONTR_RD_ ),
     .CONTR_WR   (CONTR_WR  ),
     .ISTR_RD_   (ISTR_RD_  ),
@@ -144,13 +144,13 @@ always @(negedge CLK or negedge RST_) begin
         FLUSHFIFO <= 1'b0;
     else if (~FLUSH_)
         FLUSHFIFO <= 1'b1;
-	 else	if (~CLR_FLUSHFIFO)
+	else if (~CLR_FLUSHFIFO)
 		FLUSHFIFO <= 1'b0;
 end
 
 //Store value of A1 loaded into ACR
 always @(negedge CLK or negedge RST_) begin
-    if (RST_ == 1'b0)
+    if (~RST_)
         A1 <= 1'b0;
     else if (ACR_WR)
         A1 <= MID[25];
@@ -158,7 +158,7 @@ end
 
 //Fake SSPBDAT register (only used for testing read and write cycles)
 always @(negedge CLK or negedge RST_) begin
-    if (RST_ == 1'b0)
+    if (~RST_)
         SSPBDAT <= 32'b0;
     else if (SSPBDAT_WR)
         SSPBDAT <= MID[31:0];
@@ -170,5 +170,14 @@ assign ISTR = ISTR_RD_  ? (WTC)  : {13'h0, ISTR_O};
 assign CNTR = CONTR_RD_ ? (ISTR) : {23'h0, CNTR_O};
 
 assign REG_OD = SSPBDAT_RD_ ? CNTR : SSPBDAT;
+
+// the "macro" to dump signals
+`ifdef COCOTB_SIM
+initial begin
+  $dumpfile ("registers.vcd");
+  $dumpvars (0, registers);
+  #1;
+end
+`endif
 
 endmodule

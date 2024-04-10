@@ -47,8 +47,10 @@ always @(negedge CLK, negedge RESET_, negedge CLR_INT_) begin
     INTS    <= 1'b0;
     E_INT   <= 1'b0;
     INT_P   <= 1'b0;
-    FF      <= 1'b0;
-    FE      <= 1'b1;
+    if (~RESET_) begin
+      FF      <= 1'b0;
+      FE      <= 1'b1;
+    end
   end
   else if (~ISTR_RD_) begin
     INT_F   <= INTA_I;
@@ -64,14 +66,5 @@ always @(*) begin
 	ISTR_O <= {1'b0, INT_F, INTS, E_INT, INT_P , 1'b0, 1'b0, FF, FE};
 	INT_O_ <= INTENA ? ~INTA_I : 1'b1;
 end
-
-// the "macro" to dump signals
-`ifdef COCOTB_SIM
-initial begin
-  $dumpfile ("registers_istr.vcd");
-  $dumpvars (0, registers_istr);
-  #1;
-end
-`endif
 
 endmodule
