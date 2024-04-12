@@ -58,7 +58,7 @@ end
 
 always @(posedge CLK or negedge RST_FIFO_) begin
     if (~RST_FIFO_) begin
-        PTR <= 2'b00;
+        PTR <= 2'b11;
     end
     else begin
         if (INCBO) begin

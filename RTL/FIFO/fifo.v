@@ -126,7 +126,6 @@ reg [31:0] BUFFER [7:0];
 
 //WRITE DATA TO FIFO BUFFER
 always @(posedge CLK) begin
-  FIFO_OD <= BUFFER[READ_PTR];
   if (UUWS)
     BUFFER[WRITE_PTR][31:24] <= FIFO_ID[31:24];
   if (UMWS)
@@ -136,5 +135,18 @@ always @(posedge CLK) begin
   if (LLWS)
     BUFFER[WRITE_PTR][7:0] <= FIFO_ID[7:0];
 end
+
+always @(negedge CLK) begin
+  FIFO_OD <= BUFFER[READ_PTR];
+end
+
+// the "macro" to dump signals
+`ifdef COCOTB_SIM
+initial begin
+  $dumpfile ("fifo.vcd");
+  $dumpvars (0, fifo);
+  #1;
+end
+`endif
 
 endmodule
