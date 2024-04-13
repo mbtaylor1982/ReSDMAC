@@ -72,20 +72,22 @@ async def fifo_test(dut):
     for j in range (0, m):
         n = 4
         for i in range (0, n):
-            await ClockCycles(dut.CLK, 1, True) 
+            await RisingEdge(dut.CLK90)
             dut.LBYTE_.value = 0
-            await ClockCycles(dut.CLK, 1, True) 
+            await RisingEdge(dut.CLK90)
             dut.LBYTE_.value = 1
             await ClockCycles(dut.CLK, 1, True) 
             dut.INCBO.value = 1
             await ClockCycles(dut.CLK, 1, True) 
             dut.INCBO.value = 0
         assert dut.BOEQ3.value == 1 ,"BOEQ3 != 1  after long word transfered"        
+        await ClockCycles(dut.CLK, 1, True) 
         dut.INCNI.value = 1
         dut.INCFIFO.value = 1
         await ClockCycles(dut.CLK, 1, True)  
         dut.INCNI.value = 0
         dut.INCFIFO.value = 0
+        await ClockCycles(dut.CLK, 1, True) 
         dut.FIFO_ID.value = dut.FIFO_ID.value + 0x10101010
         await ClockCycles(dut.CLK, 1, True)
         assert dut.FIFOEMPTY.value == 0 ,"FIFOEMPTY != 0  after  long word transfered"

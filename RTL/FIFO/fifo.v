@@ -122,21 +122,29 @@ assign BOEQ0 = (BYTE_PTR == 2'b00);
 assign BOEQ3 = (BYTE_PTR == 2'b11);
 
 //32 byte FIFO buffer (8 x 32 bit long words)
-reg [31:0] BUFFER [7:0]; 
+reg [31:0] BUFFER [7:0];
+integer i;
 
 //WRITE DATA TO FIFO BUFFER
-always @(posedge CLK) begin
-  if (UUWS)
-    BUFFER[WRITE_PTR][31:24] <= FIFO_ID[31:24];
-  if (UMWS)
-    BUFFER[WRITE_PTR][23:16] <= FIFO_ID[23:16];
-  if (LMWS)
-    BUFFER[WRITE_PTR][15:8] <= FIFO_ID[15:8];
-  if (LLWS)
-    BUFFER[WRITE_PTR][7:0] <= FIFO_ID[7:0];
+always @(negedge CLK90 or negedge RST_FIFO_) begin
+  if (~RST_FIFO_) begin
+    for (i = 0; i < 8; i = i+1) begin
+      BUFFER[i] <= 32'h00000000;
+    end
+  end
+  else begin
+    if (UUWS)
+      BUFFER[WRITE_PTR][31:24] <= FIFO_ID[31:24];
+    if (UMWS)
+      BUFFER[WRITE_PTR][23:16] <= FIFO_ID[23:16];
+    if (LMWS)
+      BUFFER[WRITE_PTR][15:8] <= FIFO_ID[15:8];
+    if (LLWS)
+      BUFFER[WRITE_PTR][7:0] <= FIFO_ID[7:0];
+  end
 end
 
-always @(negedge CLK) begin
+always @(posedge CLK) begin
   FIFO_OD <= BUFFER[READ_PTR];
 end
 
