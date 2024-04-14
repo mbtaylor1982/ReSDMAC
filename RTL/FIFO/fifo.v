@@ -149,7 +149,7 @@ always @(posedge CLK) begin
 end
 
 // the "macro" to dump signals
-`ifdef COCOTB_SIM
+`ifdef COCOTB_SIM1
 initial begin
   $dumpfile ("fifo.vcd");
   $dumpvars (0, fifo);

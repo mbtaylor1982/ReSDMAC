@@ -169,6 +169,7 @@ wire DSK0_IN_;
 wire DSK1_IN_;
 tri1 _BGACK_I;
 wire tDATA_OE_;
+wire dsack_int;
 
 registers u_registers(
     .ADDR      ({1'b0, ADDR, 2'b00}),
@@ -364,7 +365,8 @@ assign  BR = BREQ ?  1'b1 : 1'b0;
 assign _BGACK_IO = OWN ? 1'b0 : 1'bz;
 assign _SIZ1 = OWN ? SIZE1_CPUSM : 1'b0;
 
-assign DSACK_O = (REG_DSK_ & LS2CPU) ? 2'b00 : 2'b11;
+assign dsack_int = (REG_DSK_ & LS2CPU);
+assign DSACK_O = dsack_int ? 2'b00 : 2'b11;
 
 //SCSI outputs
 assign _IOR = ~(PRESET | RE);

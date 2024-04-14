@@ -172,7 +172,7 @@ assign CNTR = CONTR_RD_ ? (ISTR) : {23'h0, CNTR_O};
 assign REG_OD = SSPBDAT_RD_ ? CNTR : SSPBDAT;
 
 // the "macro" to dump signals
-`ifdef COCOTB_SIM
+`ifdef COCOTB_SIM1
 initial begin
   $dumpfile ("registers.vcd");
   $dumpvars (0, registers);
