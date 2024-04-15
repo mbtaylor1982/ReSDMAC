@@ -116,11 +116,15 @@ async def RESDMAC_test(dut):
     dut.DS_I_.value = 1
     dut.R_W.value = 1
     dut.DATA_I.value = 0
+    dut.BR.value = 0
     dut._id("_RST", extended=False).value = 1
     dut._id("_BG", extended=False).value = 1
     dut._id("_DREQ", extended=False).value = 1
     dut._id("_STERM", extended=False).value = 1
     dut._id("_DREQ", extended=False).value = 1
+    dut._id("_BGACK_IO", extended=False).value = 1
+    dut._id("_BERR", extended=False).value = 1
+    dut.DSACK_I_.value = 3
     dut.INTA.value = 0
 
 
@@ -130,6 +134,9 @@ async def RESDMAC_test(dut):
     
     await reset_dut(dut._id("_RST", extended=False), 40)
     dut._log.debug("After reset")
+    dut.AS_I_.value = 1
+    dut.DS_I_.value = 1
+    dut.R_W.value = 1
 
 
     #1 test WTC register
@@ -180,14 +187,40 @@ async def RESDMAC_test(dut):
 
     dut.PDATA_I.value = 0x0001
     
+    #load fifo from scsci
     while (dut.FIFOFULL == 0):
         dut._id("_DREQ", extended=False).value = 0
         await FallingEdge(dut._id("_DACK", extended=False))
         await FallingEdge(dut._id("_IOR", extended=False))
         dut._id("_DREQ", extended=False).value = 1
-        #await RisingEdge(dut._id("_IOR", extended=False))
         await RisingEdge(dut._id("_DACK", extended=False))
         await ClockCycles(dut.SCLK, 2, True)
         dut.PDATA_I.value += 0x0001
+    
+    #grant bus to SDMAC    
+    await RisingEdge(dut._id("BR", extended=False))
+    if (dut.AS_I_.value == 1) and (dut._id("_BGACK_IO", extended=False).value == 1):
+        dut._id("_BG", extended=False).value = 0
+    await FallingEdge(dut._id("_BGACK_IO", extended=False))
+    dut._id("_BG", extended=False).value = 1
+    
+    while (dut.FIFOEMPTY == 0):
+        await FallingEdge(dut.AS_O_)
+        await ClockCycles(dut.SCLK, 2, True)
+        dut._id("_STERM", extended=False).value = 0
+        await ClockCycles(dut.SCLK, 1, True)
+        dut._id("_STERM", extended=False).value = 1
+    
+    await ClockCycles(dut.SCLK, 2, True)    
+    await FallingEdge(dut.SCLK)
+    
+    dut.AS_I_.value = 1
+    dut.DS_I_.value = 1
+    dut.R_W.value = 1
+    #stop DMA
+    await read_data(dut, SP_DMA_STROBE_ADR)
+    
+    await read_data(dut, FLUSH_STROBE_ADR)
+    
         
-    await ClockCycles(dut.SCLK, 1, True)
+    
