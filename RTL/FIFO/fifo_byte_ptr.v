@@ -22,18 +22,21 @@
 module fifo_byte_ptr(
     input CLK,
     input INCBO,
-    input MID25,
+    input MID25, //MID25 is used to set the MSB of the BytePtr depending on if it is a transfer to odd or even address
     input ACR_WR,
     input H_0C,
     input RST_FIFO_,
 
-    output reg [1:0] PTR
+    output [1:0] PTR
 );
+
 
 wire A;
 wire Z;
 reg B;
 reg S;
+reg BO0;
+reg BO1;
 
     MUX2 u_MUX2 (
         .A  (A),  // input A,
@@ -42,10 +45,11 @@ reg S;
         .Z  (Z)   // output,
     );
 
-assign A = ~(PTR[0] ^ PTR[1]);
+assign A = ~(BO1 ^ BO0);
+assign PTR = {BO1, BO0};
 
 //added to eliminate glitches in the signals B and S.
-always @(negedge CLK or negedge RST_FIFO_) begin
+always @(posedge CLK or negedge RST_FIFO_) begin
     if (~RST_FIFO_) begin
         B <= 1'b0;
         S <= 1'b0;
@@ -58,14 +62,16 @@ end
 
 always @(posedge CLK or negedge RST_FIFO_) begin
     if (~RST_FIFO_) begin
-        PTR <= 2'b11;
+        BO0 <= 1'b0;
+        BO1 <= 1'b0;
     end
     else begin
         if (INCBO) begin
-            PTR <= {Z, ~PTR[0]};
+            BO0 <= ~BO0;
+            BO1 <= Z;
         end
         if (ACR_WR)
-            PTR <= {Z, PTR[0]};
+            BO1 <= Z;
     end
 end
 

@@ -17,7 +17,7 @@
 // along with dogtag.  If not, see <http://www.gnu.org/licenses/>.
  */
 module fifo_write_strobes(
-    input [1:0] PTR,    
+    input [1:0] PTR,
     input LHWORD,
     input LLWORD,
     input LBYTE_,
@@ -35,6 +35,6 @@ assign BO1 = PTR[1];
 assign UUWS = (!BO1 & !BO0 & !LBYTE_) | LHWORD; // B0
 assign UMWS = (!BO1 & BO0  & !LBYTE_) | LHWORD; // B1
 assign LMWS = (BO1  & !BO0 & !LBYTE_) | LLWORD; // B2
-assign LLWS = (BO0  & BO1  & !LBYTE_) | LLWORD; // B3
+assign LLWS = (BO1  & BO0  & !LBYTE_) | LLWORD; // B3
 
 endmodule

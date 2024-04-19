@@ -56,13 +56,13 @@ async def fifo_test(dut):
 
     assert dut.WRITE_PTR.value == 0 ,"WRITE_PTR != 0  after reset"
     assert dut.READ_PTR.value == 0 ,"READ_PTR != 0  after reset"
-    assert dut.BYTE_PTR.value == 3 ,"BYTE_PTR != 3  after reset"
+    assert dut.BYTE_PTR.value == 0 ,"BYTE_PTR != 0  after reset"
     assert dut.FIFOEMPTY.value == 1 ,"FIFOEMPTY != 1  after reset"
     assert dut.FIFOFULL.value == 0 ,"FIFOFULL != 0  after reset"
-    assert dut.BO0.value == 1 ,"BO0 != 1  after reset"
-    assert dut.BO1.value == 1 ,"BO1 != 1  after reset"
-    assert dut.BOEQ0.value == 0 ,"BOEQ0 != 0  after reset"
-    assert dut.BOEQ3.value == 1 ,"BOEQ3 != 1  after reset"
+    assert dut.BO0.value == 0 ,"BO0 != 0  after reset"
+    assert dut.BO1.value == 0 ,"BO1 != 0  after reset"
+    assert dut.BOEQ0.value == 1 ,"BOEQ0 != 1  after reset"
+    assert dut.BOEQ3.value == 0 ,"BOEQ3 != 0  after reset"
 
     await ClockCycles(dut.CLK, 2, True)    
     
@@ -80,7 +80,8 @@ async def fifo_test(dut):
             dut.INCBO.value = 1
             await ClockCycles(dut.CLK, 1, True) 
             dut.INCBO.value = 0
-        assert dut.BOEQ3.value == 1 ,"BOEQ3 != 1  after long word transfered"        
+        assert dut.BOEQ3.value == 0 ,"BOEQ3 != 0  after long word transfered"
+        assert dut._id("BUFFER[%d]" % dut.WRITE_PTR.value, extended=False).value == dut.FIFO_ID.value , "value %#x was not transferd to FIFO buffer" %dut.FIFO_ID.value
         await ClockCycles(dut.CLK, 1, True) 
         dut.INCNI.value = 1
         dut.INCFIFO.value = 1
