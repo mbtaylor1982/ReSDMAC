@@ -15,7 +15,6 @@
       - [1.5.3.5. DDIR — Device Direction {#DDIR}](#1535-ddir--device-direction-ddir)
       - [1.5.3.6. IO\_DX — IORDY and CSX1 Polarity Select {#IO\_DX}](#1536-io_dx--iordy-and-csx1-polarity-select-io_dx)
     - [1.5.4. ACR (Address: ```$0C```) — read/write {#ACR}](#154-acr-address-0c--readwrite-acr)
-      - [1.5.4.1. RAMSEY DMAC SUPPORT](#1541-ramsey-dmac-support)
     - [1.5.5. ST\_DMA (Address: ```$10```) — read/write strobe {#ST\_DMA}](#155-st_dma-address-10--readwrite-strobe-st_dma)
     - [1.5.6. FLUSH (Address: ```$14```) — read/write strobe {#FLUSH}](#156-flush-address-14--readwrite-strobe-flush)
     - [1.5.7. CINT (Address: ```$18```) — read/write strobe {#CINT}](#157-cint-address-18--readwrite-strobe-cint)
@@ -259,40 +258,39 @@ The IO__DX bit is used to define the polarity of the SDMAC pins CSX1 (pin 71) an
 
 ### 1.5.4. ACR (Address: ```$0C```) — read/write {#ACR}
 
-:warning: **This register is in the RAMSEY gate array NOT the SDMAC.**.
+**RAMSEY** provides the **ADDRESS COUNT REGISTER**,  a 32 bit register for determining the starting address of a DMA transfer. The ACR must be set before starting a DMA transfer.
 
-The **ADDRESS COUNT REGISTER** provides a 32 bit address counter for determining the starting address of a DMA transfer and is written as a single 32-bit longword. The counter must be initialized prior to the transfer of data and is incremented by 4 if the SDMAC is transferring to/from a 32-bit memory area or by 2 if the SDMAC is transferring data to/from a 16 bit memory area.
-This continues until the terminal count (enabled in the CNTR register) or an external END-OF-PROCESS is reached (INTA active).
+ >:memo: **SDMAC Rev 04:**
+ When writing a value to the ACR in Ramsey the SDMAC snoops on the databus and stores bit 2 of value written to the ACR, the bit value appears at bit 25 on the data bus due to Ramsey only having an 8 bit data port. This enables the SDMAC to perform transfers that start on an even word boundary, however a REV 7 Ramsey Is required for this.
 
-This register is actually in the RAMSEY gate array and thus must be used with the RAMSEY chip or a device that emulates the Address Counter function.
+When **_DMAEN** becomes low, the address lines on Ramsey become outputs and the value of the ACR is placed on the address bus.
 
-> :memo: **NOTE:** The counter can only be preset to a longword aligned boundary (address bits al and aO are always written as 0,0), all other types of non-aligned transfers MUST be done as programmed I/O.
+The ACR is incremented on the rising edge of **_AS** whenever **_DMAEN** is low.
 
-**Register bit descriptions:**
-
-| Bit          | 31  | .. | 0   |
-|--------------|-----|----|-----|
-| **Function** | MSB | .. | LSB |
-
-#### 1.5.4.1. RAMSEY DMAC SUPPORT
-
-**RAMSEY** contains the address counters used during DMA via the onboard controller. When **_DMAEN** becomes low, the address lines become outputs and provide the DMA addresses.
-
-The DMA address is incremented on the rising edge of **_AS** whenever **_DMAEN** is low.
-
-> Since DMA to both 32 and 16 bit ports are supported, RAMSEY must monitor how the cycle was terminated so that it can increment the address counter by the appropriate amount.
+Since DMA to both 32 and 16 bit ports are supported, RAMSEY must monitor how the cycle was terminated so that it can increment the ACR by the appropriate amount, 4 if the SDMAC is transferring to/from a 32-bit memory area or by 2 if the SDMAC is transferring data to/from a 16 bit memory area.
 
 - If **_STERM** transitioned low sometime during the cycle, then the port was **32 bits wide**, and the address is incremented by **4**.
 
 - If **_DSACK0** transitions during the DMA bus cycle, then the port was also **32 bits wide** (_DSACK0 and_DSACK1 are both set low to terminate an asynchronous 32 bit transfer).
 
 - If **neither signal** is seen to transition, then it can be assumed that the cycle was terminated by **_DSACK1**, indicating that the port was **16 bits wide**, and the address is incremented by **2**.
+  
+This continues until the terminal count (enabled in the CNTR register) or an external END-OF-PROCESS is reached (INTA active).
 
-The address counters are preset before DMA is done by writing to the 32 bit register at location ```$OODDOOOC``` (this register is readable as well). The counter can only be preset to a long word aligned boundary (bits 1 and 0 are always written as 0,0).
+ >:memo: **Ramsey Rev 04:** The ACR can only be preset to an even longword boundary **(bits 1 and 0 are always written as 0,0)**
 
- >:memo: **Ramsey Rev 04:** The counter can only be preset to an even longword boundary **(bits 1 and 0 are always written as 0,0)**
+> :memo: **Ramsey Rev 07:** The ACR can only be preset to an even word boundary **(bit 0 is always written as 0)**. If **A1** is high when a cycle terminates, then address is always incremented by **2** regardless of how the cycle terminates.
+>
+ **Register bit descriptions:**
 
-> :memo: **Ramsey Rev 07:** The counter can only be preset to an even word boundary **(bit 0 is always written as 0)**. If **A1** is high when a cycle terminates, then address is always incremented by **2** regardless of how the cycle terminates.
+MSB = 31
+
+|Bit|31..2|1|0|
+|-|-|-|-|
+|REV 04|X...X|0|0|
+|REV 07|X...X|X|0|
+
+>  X denotes bit can be written to.
 
 ### 1.5.5. ST_DMA (Address: ```$10```) — read/write strobe {#ST_DMA}
 
