@@ -6,7 +6,7 @@
         {
             "label": "Build Firmware",
             "type": "shell",
-            "command": "docker run --rm -v ${pwd}:/build -e LM_LICENSE_FILE=/opt/license.dat -v /path/to/license.dat:/opt/license.dat:ro -it raetro/quartus:13.0sp1 quartus_sh --flow compile /build/Quartus/RESDMAC.qpf",
+            "command": "docker run --rm -v ${pwd}:/build -e LM_LICENSE_FILE=/opt/license.dat -v /path/to/license.dat:/opt/license.dat:ro -it raetro/quartus:21.1 quartus_sh --flow compile /build/Quartus/RESDMAC.qpf",
             "detail": "Trigger build using raetro/quartus:13.0sp1 Docker image",
             "presentation": {
                 "echo": true,
