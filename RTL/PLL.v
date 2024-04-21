@@ -38,15 +38,16 @@ module PLL (
 //Setup with 25Mhz input and 3 clks at 45,90 and 135 degrees phase shift.
 
 wire c1, c2, c3;
+	 
+	 attpll	attpll_inst (
+	.areset ( RST ),
+	.inclk0 ( CLK ),
+	.c0 ( CLK45 ),
+	.c1 ( CLK90 ),
+	.c2 ( CLK135 ),
+	.locked ( LOCKED )
+	);
 
-    atpll APLL_inst (
-        .areset (RST),
-        .inclk0 (CLK),
-        .c0     (CLK45),
-        .c1     (CLK90),
-        .c2     (CLK135),
-        .locked (LOCKED)
-    );
 
 `endif
 
