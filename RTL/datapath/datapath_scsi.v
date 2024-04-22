@@ -39,7 +39,8 @@ module datapath_scsi (
     input LS2CPU,
 
     output [31:0] MOD_SCSI,
-    output [31:0] SCSI_OD
+    output [31:0] SCSI_OD,
+    output SCSI_OUT
 );
 
 wire F2S_UUD;
@@ -47,7 +48,7 @@ wire F2S_UMD;
 wire F2S_LMD;
 wire F2S_LLD;
 
-wire SCSI_OUT;
+//wire SCSI_OUT;
 wire SCSI_IN;
 
 wire [7:0] SCSI_DATA_RX;

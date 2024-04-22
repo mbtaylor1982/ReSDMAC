@@ -26,53 +26,40 @@
 `endif
 
 module RESDMAC(
-    output  INT,                //Connected to INT2 via open collector transistor.
-    output  _SIZ1,              //Indicates a 16 bit transfer if False. 
+    output  tri1 _INT,              //Connected to INT2 via open collector transistor.
+    output  _SIZ1,                  //Indicates a 16 bit transfer if False.
 
-    inout  R_W_IO,              //Read Write from CPU
-    inout  _AS_IO,              //Address Strobe
-    inout  _DS_IO,              //Data Strobe 
-    
-    input [1:0] DSACK_I_,      //Dynamic size and DATA ack input.
-    output [1:0] DSACK_O,      //Dynamic size and DATA ack output.
-   
-    inout  [31:0] DATA_IO,      // CPU side data bus 32bit wide
+    inout  R_W_IO,                  //Read Write from CPU
+    inout  _AS_IO,                  //Address Strobe
+    inout  _DS_IO,                  //Data Strobe
 
-    input  _STERM,              //static/synchronous data ack.
+	 inout [1:0] _DSACK_IO,
+    inout  [31:0] DATA_IO,      	// CPU side data bus 32bit wide
+
+    input  _STERM,              	//static/synchronous data ack.
     input SCLK,                     //CPUCLKB
     input _CS,                      //_SCSI from Fat Garry
     input _RST,                     //System Reset
-    input  _BERR,               //Bus Error 
+    input  _BERR,               	//Bus Error
     input [6:2] ADDR,               //CPU address Bus, bits are actually [6:2]
-    
+
     // Bus Mastering/Arbitration.
-    output   BR,                   //Bus Request
-    input    _BG,                   //Bus Grant
+    output  tri1 _BR,               //Bus Request
+    input   tri1 _BG,               //Bus Grant
     inout   tri1 _BGACK_IO,         //Bus Grant Acknoledge
 
     output _DMAEN,                  //Low =  Enable Address Generator in Ramsey
-    
+
     // Peripheral port signals
-    input  _DREQ,               //DMA Request From WD33c93A (SCSI) 
+    input  _DREQ,               	//DMA Request From WD33c93A (SCSI)
     input INTA,                     //Interupt from WD33c93A (SCSI)
 
     output _DACK,                   //DMA Acknoledge to WD33c93A (SCSI)
-    output _CSS,                    //Port 0 CS    
+    output _CSS,                    //Port 0 CS
     output _IOR,                    //Active Low read strobe
     output _IOW,                    //Ative Low Write strobe
-    
-    inout  [15:0] PD_PORT,      //Peripheral Data port
-    
-    //Diagnostic LEDS
-    output _LED_RD,                 //Indicated read from SDMAC or peripherial port.
-    output _LED_WR,                 //Indicate write to SDMAC or peripherial port.
-    output _LED_DMA,                //Indicate DMA cycle/busmaster.
-	
-    //level shifters control signals
-    output OWN,                     //Active high signal to show SDMAC is bus master, This can be used to set direction on level shifters for control signals.
-    output DATA_OE_,                //Active low ouput enable for DBUS level shifters.
-    output PDATA_OE_,                //Active low ouput enable for Peripheral BUS level shifters.
-    output reg DATA_DIR
+
+    inout  [15:0] PD_PORT     		//Peripheral Data port
 );
 
 reg AS_O_;
@@ -97,7 +84,12 @@ assign DATA_IO = ((R_W & ~H_0C) | OWN) ? DATA_O : 32'hzzzzzzzz;
 wire [15:0] PDATA_I;
 wire [15:0] PDATA_O;
 assign PDATA_I = PD_PORT;
-assign PD_PORT = _IOW ? 16'hzzzz: PDATA_O;
+assign PD_PORT = PD_OE ? 16'hzzzz: PDATA_O;
+
+wire [1:0] _DSACK_I;
+assign _DSACK_I = _DSACK_IO;
+assign _DSACK_IO = dsack_int ? 2'bzz : 2'b00;
+
 
 reg LLW;
 reg LHW;
@@ -111,6 +103,7 @@ wire [31:0] FIFO_OD;
 wire CLK45, CLK90, CLK135;
 wire PLLLOCKED;
 
+wire OWN;
 wire LBYTE_;
 wire RE_o;
 wire DACK_o;
@@ -123,7 +116,6 @@ wire LS2CPU;
 wire DREQ_;
 wire INCNO;
 wire INCNI;
-wire _INT;
 wire DSACK_CPU_SM;
 wire STOPFLUSH;
 wire FIFOEMPTY;
@@ -168,8 +160,10 @@ wire A3;
 wire DSK0_IN_;
 wire DSK1_IN_;
 tri1 _BGACK_I;
-wire tDATA_OE_;
+wire DATA_OE_;
 wire dsack_int;
+wire PD_OE;
+wire INT_O_;
 
 registers u_registers(
     .ADDR      ({1'b0, ADDR, 2'b00}),
@@ -189,7 +183,7 @@ registers u_registers(
     .ACR_WR    (ACR_WR    ),
     .h_0C      (H_0C      ),
     .A1        (A1        ),
-    .INT_O_    (_INT      ),
+    .INT_O_    (INT_O_    ),
     .DMADIR    (DMADIR    ),
     .DMAENA    (DMAENA    ),
     .REG_DSK_  (REG_DSK_  ),
@@ -332,7 +326,8 @@ datapath u_datapath(
     .F2CPUL    (F2CPUL      ),
     .F2CPUH    (F2CPUH      ),
     .DS_O_     (DS_O_       ),
-    .DATA_OE_  (tDATA_OE_   )
+    .DATA_OE_  (DATA_OE_    ),
+    .PD_OE     (PD_OE       )
 );
 
 PLL u_PLL (
@@ -352,21 +347,19 @@ always @(negedge SCLK) begin
     LHW     <= PLHW;
 end
 
-always @(posedge CLK45) begin
-    DATA_DIR <= (R_W ^ OWN);
-end
 
-assign DATA_OE_ = ((AS_I_ | _CS | ~ACR_WR) & (AS_I_ | _CS | H_0C) & _BGACK_IO);
+
+//assign DATA_OE_ = ((AS_I_ | _CS | ~ACR_WR) & (AS_I_ | _CS | H_0C) & _BGACK_IO);
 assign _BGACK_I =  _BGACK_IO;
 
 //System Outputs
 assign _DMAEN = ~OWN;
-assign  BR = BREQ ?  1'b1 : 1'b0;
+assign _BR = BREQ ?  1'b0 : 1'bz;
 assign _BGACK_IO = OWN ? 1'b0 : 1'bz;
 assign _SIZ1 = OWN ? SIZE1_CPUSM : 1'b0;
 
 assign dsack_int = (REG_DSK_ & LS2CPU);
-assign DSACK_O = dsack_int ? 2'b00 : 2'b11;
+
 
 //SCSI outputs
 assign _IOR = ~(PRESET | RE);
@@ -374,24 +367,17 @@ assign _IOW = ~(PRESET | WE);
 assign _CSS = ~ SCSI_CS;
 assign _DACK = ~ DACK_o;
 
-//Diagnostic LEDs
-assign _LED_WR  = OWN ? DMADIR  : ( R_W | AS_I_ | _CS | H_0C);
-assign _LED_RD  = OWN ? ~DMADIR : (~R_W | AS_I_ | _CS | H_0C);
-assign _LED_DMA = OWN ? 1'b0    : 1'b1;
 
 //internal connections
 assign DREQ_ = (~DMAENA | _DREQ);
 assign INCNO = (INCNO_CPU | INCNO_SCSI);
 assign INCNI = (INCNI_CPU | INCNI_SCSI);
 
-assign DSK0_IN_ = _BERR & DSACK_I_[0];
-assign DSK1_IN_ = _BERR & DSACK_I_[1];
+assign DSK0_IN_ = _BERR & _DSACK_I[0];
+assign DSK1_IN_ = _BERR & _DSACK_I[1];
 
 assign A3 = ADDR[3];
-
-assign PDATA_OE_ = (_DACK & _CSS);
-
-assign INT = ~_INT;
+assign _INT = INT_O_ ? 1'bz : 1'b0;
 
 // the "macro" to dump signals
 `ifdef COCOTB_SIM
