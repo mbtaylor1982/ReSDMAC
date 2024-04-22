@@ -1,25 +1,26 @@
-{ "" "" "" "Feature LogicLock is only available with a valid subscription license. You can purchase a software subscription to gain full access to this feature." {  } {  } 0 292013 "" 0 0 "Quartus II" 0 -1 0 ""}
-{ "" "" "" "Output port \"E\[59\]\" at CPU_SM_inputs.v(35) has no driver" {  } {  } 0 10034 "" 0 0 "Quartus II" 0 -1 0 ""}
-{ "" "" "" "Output port \"E\[54\]\" at CPU_SM_inputs.v(35) has no driver" {  } {  } 0 10034 "" 0 0 "Quartus II" 0 -1 0 ""}
-{ "" "" "" "Output port \"E\[52\]\" at CPU_SM_inputs.v(35) has no driver" {  } {  } 0 10034 "" 0 0 "Quartus II" 0 -1 0 ""}
-{ "" "" "" "Output port \"E\[49\]\" at CPU_SM_inputs.v(35) has no driver" {  } {  } 0 10034 "" 0 0 "Quartus II" 0 -1 0 ""}
-{ "" "" "" "Output port \"E\[47\]\" at CPU_SM_inputs.v(35) has no driver" {  } {  } 0 10034 "" 0 0 "Quartus II" 0 -1 0 ""}
-{ "" "" "" "Output port \"E\[44\]\" at CPU_SM_inputs.v(35) has no driver" {  } {  } 0 10034 "" 0 0 "Quartus II" 0 -1 0 ""}
-{ "" "" "" "Output port \"E\[41\]\" at CPU_SM_inputs.v(35) has no driver" {  } {  } 0 10034 "" 0 0 "Quartus II" 0 -1 0 ""}
-{ "" "" "" "Output port \"E\[38\]\" at CPU_SM_inputs.v(35) has no driver" {  } {  } 0 10034 "" 0 0 "Quartus II" 0 -1 0 ""}
-{ "" "" "" "Output port \"nE\[59\]\" at CPU_SM_inputs.v(37) has no driver" {  } {  } 0 10034 "" 0 0 "Quartus II" 0 -1 0 ""}
-{ "" "" "" "Output port \"nE\[54\]\" at CPU_SM_inputs.v(37) has no driver" {  } {  } 0 10034 "" 0 0 "Quartus II" 0 -1 0 ""}
-{ "" "" "" "Output port \"nE\[52\]\" at CPU_SM_inputs.v(37) has no driver" {  } {  } 0 10034 "" 0 0 "Quartus II" 0 -1 0 ""}
-{ "" "" "" "Output port \"nE\[49\]\" at CPU_SM_inputs.v(37) has no driver" {  } {  } 0 10034 "" 0 0 "Quartus II" 0 -1 0 ""}
-{ "" "" "" "Output port \"nE\[47\]\" at CPU_SM_inputs.v(37) has no driver" {  } {  } 0 10034 "" 0 0 "Quartus II" 0 -1 0 ""}
-{ "" "" "" "Output port \"nE\[44\]\" at CPU_SM_inputs.v(37) has no driver" {  } {  } 0 10034 "" 0 0 "Quartus II" 0 -1 0 ""}
-{ "" "" "" "Output port \"nE\[41\]\" at CPU_SM_inputs.v(37) has no driver" {  } {  } 0 10034 "" 0 0 "Quartus II" 0 -1 0 ""}
-{ "" "" "" "Output port \"nE\[38\]\" at CPU_SM_inputs.v(37) has no driver" {  } {  } 0 10034 "" 0 0 "Quartus II" 0 -1 0 ""}
-{ "" "" "" "Node  \"SCSI_SM:u_SCSI_SM\|CRESET_\"" {  } {  } 0 308010 "" 0 0 "Quartus II" 0 -1 0 ""}
-{ "" "" "" "Node  \"SCSI_SM:u_SCSI_SM\|S2CPU_o\"" {  } {  } 0 308010 "" 0 0 "Quartus II" 0 -1 0 ""}
-{ "" "" "" "Node  \"registers:u_registers\|registers_cntr:u_registers_cntr\|CNTR_O\[8\]\"" {  } {  } 0 308010 "" 0 0 "Quartus II" 0 -1 0 ""}
-{ "" "" "" "(Medium) Rule R105: The reset signal that is generated in one clock domain and used in another clock domain should be synchronized. Found 3 node(s) related to this rule." {  } {  } 0 308027 "" 0 0 "Quartus II" 0 -1 0 ""}
-{ "" "" "" "The assignment to disallow NOT gate push-back on register \"sld_signaltap:ReSDMAC\|sld_signaltap_impl:sld_signaltap_body\|sld_signaltap_implb:sld_signaltap_body\|trigger_out_mode_ff\" is ignored" {  } {  } 0 18057 "" 0 0 "Quartus II" 0 -1 0 ""}
-{ "" "" "" "Pin \"sld_hub:auto_hub\|receive\[0\]\[0\]\" is stuck at GND" {  } {  } 0 13410 "" 0 0 "Quartus II" 0 -1 0 ""}
-{ "" "" "" "Output pins are stuck at VCC or GND" {  } {  } 0 13024 "" 0 0 "Quartus II" 0 -1 0 ""}
-{ "" "" "" "*" {  } {  } 0 308022 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Feature LogicLock is only available with a valid subscription license. You can purchase a software subscription to gain full access to this feature." {  } {  } 0 292013 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Output port \"E\[59\]\" at CPU_SM_inputs.v(35) has no driver" {  } {  } 0 10034 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Output port \"E\[54\]\" at CPU_SM_inputs.v(35) has no driver" {  } {  } 0 10034 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Output port \"E\[52\]\" at CPU_SM_inputs.v(35) has no driver" {  } {  } 0 10034 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Output port \"E\[49\]\" at CPU_SM_inputs.v(35) has no driver" {  } {  } 0 10034 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Output port \"E\[47\]\" at CPU_SM_inputs.v(35) has no driver" {  } {  } 0 10034 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Output port \"E\[44\]\" at CPU_SM_inputs.v(35) has no driver" {  } {  } 0 10034 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Output port \"E\[41\]\" at CPU_SM_inputs.v(35) has no driver" {  } {  } 0 10034 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Output port \"E\[38\]\" at CPU_SM_inputs.v(35) has no driver" {  } {  } 0 10034 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Output port \"nE\[59\]\" at CPU_SM_inputs.v(37) has no driver" {  } {  } 0 10034 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Output port \"nE\[54\]\" at CPU_SM_inputs.v(37) has no driver" {  } {  } 0 10034 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Output port \"nE\[52\]\" at CPU_SM_inputs.v(37) has no driver" {  } {  } 0 10034 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Output port \"nE\[49\]\" at CPU_SM_inputs.v(37) has no driver" {  } {  } 0 10034 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Output port \"nE\[47\]\" at CPU_SM_inputs.v(37) has no driver" {  } {  } 0 10034 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Output port \"nE\[44\]\" at CPU_SM_inputs.v(37) has no driver" {  } {  } 0 10034 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Output port \"nE\[41\]\" at CPU_SM_inputs.v(37) has no driver" {  } {  } 0 10034 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Output port \"nE\[38\]\" at CPU_SM_inputs.v(37) has no driver" {  } {  } 0 10034 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Node  \"SCSI_SM:u_SCSI_SM\|CRESET_\"" {  } {  } 0 308010 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Node  \"SCSI_SM:u_SCSI_SM\|S2CPU_o\"" {  } {  } 0 308010 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Node  \"registers:u_registers\|registers_cntr:u_registers_cntr\|CNTR_O\[8\]\"" {  } {  } 0 308010 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "(Medium) Rule R105: The reset signal that is generated in one clock domain and used in another clock domain should be synchronized. Found 3 node(s) related to this rule." {  } {  } 0 308027 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "The assignment to disallow NOT gate push-back on register \"sld_signaltap:ReSDMAC\|sld_signaltap_impl:sld_signaltap_body\|sld_signaltap_implb:sld_signaltap_body\|trigger_out_mode_ff\" is ignored" {  } {  } 0 18057 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Pin \"sld_hub:auto_hub\|receive\[0\]\[0\]\" is stuck at GND" {  } {  } 0 13410 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Output pins are stuck at VCC or GND" {  } {  } 0 13024 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL Case Statement warning at SCSI_SM_INTERNALS.v(145): incomplete case statement has no default case item" {  } {  } 0 10270 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "*" {  } {  } 0 308022 "" 0 0 "Design Software" 0 -1 0 ""}

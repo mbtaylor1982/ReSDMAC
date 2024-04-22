@@ -4,7 +4,7 @@
 			"name" : "Top",
 			"pins" : [
 				{
-					"name" : "INT",
+					"name" : "_INT",
 					"strict" : false
 				},
 				{
@@ -12,15 +12,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "DSACK_O[0]",
-					"strict" : false
-				},
-				{
-					"name" : "DSACK_O[1]",
-					"strict" : false
-				},
-				{
-					"name" : "BR",
+					"name" : "_BR",
 					"strict" : false
 				},
 				{
@@ -44,34 +36,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "_LED_RD",
-					"strict" : false
-				},
-				{
-					"name" : "_LED_WR",
-					"strict" : false
-				},
-				{
-					"name" : "_LED_DMA",
-					"strict" : false
-				},
-				{
-					"name" : "OWN",
-					"strict" : false
-				},
-				{
-					"name" : "DATA_OE_",
-					"strict" : false
-				},
-				{
-					"name" : "PDATA_OE_",
-					"strict" : false
-				},
-				{
-					"name" : "DATA_DIR",
-					"strict" : false
-				},
-				{
 					"name" : "R_W_IO",
 					"strict" : false
 				},
@@ -81,6 +45,14 @@
 				},
 				{
 					"name" : "_DS_IO",
+					"strict" : false
+				},
+				{
+					"name" : "_DSACK_IO[0]",
+					"strict" : false
+				},
+				{
+					"name" : "_DSACK_IO[1]",
 					"strict" : false
 				},
 				{
@@ -284,38 +256,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "_CS",
-					"strict" : false
-				},
-				{
-					"name" : "ADDR[4]",
-					"strict" : false
-				},
-				{
-					"name" : "ADDR[2]",
-					"strict" : false
-				},
-				{
-					"name" : "ADDR[6]",
-					"strict" : false
-				},
-				{
-					"name" : "ADDR[5]",
-					"strict" : false
-				},
-				{
-					"name" : "ADDR[3]",
-					"strict" : false
-				},
-				{
-					"name" : "_RST",
-					"strict" : false
-				},
-				{
-					"name" : "DSACK_I_[1]",
-					"strict" : false
-				},
-				{
 					"name" : "_BERR",
 					"strict" : false
 				},
@@ -324,15 +264,39 @@
 					"strict" : false
 				},
 				{
-					"name" : "DSACK_I_[0]",
+					"name" : "ADDR[2]",
 					"strict" : false
 				},
 				{
-					"name" : "SCLK",
+					"name" : "ADDR[4]",
+					"strict" : false
+				},
+				{
+					"name" : "ADDR[5]",
+					"strict" : false
+				},
+				{
+					"name" : "_CS",
+					"strict" : false
+				},
+				{
+					"name" : "ADDR[3]",
+					"strict" : false
+				},
+				{
+					"name" : "ADDR[6]",
+					"strict" : false
+				},
+				{
+					"name" : "_RST",
 					"strict" : false
 				},
 				{
 					"name" : "_BG",
+					"strict" : false
+				},
+				{
+					"name" : "SCLK",
 					"strict" : false
 				},
 				{

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <preferences>
  <debug showDebugMenu="0" />
- <systemtable>
+ <systemtable filter="All Interfaces">
   <columns>
-   <connections preferredWidth="47" />
+   <connections preferredWidth="79" />
    <irq preferredWidth="34" />
   </columns>
  </systemtable>
@@ -15,8 +15,8 @@
   </columns>
  </clocktable>
  <library
-   expandedCategories="Library,Library/Peripherals,Project,Library/Clock and Reset,Library/Peripherals/Debug and Performance" />
- <window width="1699" height="903" x="0" y="0" />
+   expandedCategories="Library/University Program,Library/University Program/Memory,Project,Library/University Program/Communications,Library/Qsys Interconnect,Library/University Program/Generic IO,Library/University Program/Bridges,Library" />
+ <window width="1887" height="1121" x="0" y="0" />
  <hdlexample language="VERILOG" />
  <generation simulation="VERILOG" />
 </preferences>

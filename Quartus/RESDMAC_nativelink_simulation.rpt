@@ -4,19 +4,69 @@ Info: NativeLink has detected Verilog design -- Verilog simulation models will b
 ========= EDA Simulation Settings =====================
 
 Sim Mode              :  RTL
-Family                :  cycloneii
-Quartus root          :  c:/altera/13.0sp1/quartus/bin64/
-Quartus sim root      :  c:/altera/13.0sp1/quartus/eda/sim_lib
-Simulation Tool       :  modelsim-altera
+Family                :  max10
+Quartus root          :  c:/intelfpga_lite/22.1std/quartus/bin64/
+Quartus sim root      :  c:/intelfpga_lite/22.1std/quartus/eda/sim_lib
+Simulation Tool       :  questa intel fpga
 Simulation Language   :  verilog
 Simulation Mode       :  GUI
 Sim Output File       :  
 Sim SDF file          :  
-Sim dir               :  simulation\modelsim
+Sim dir               :  simulation\questa
 
 =======================================================
 
-Info: Starting NativeLink simulation with ModelSim-Altera software
-Sourced NativeLink script c:/altera/13.0sp1/quartus/common/tcl/internal/nativelink/modelsim.tcl
-Warning: File RESDMAC_run_msim_rtl_verilog.do already exists - backing up current file as RESDMAC_run_msim_rtl_verilog.do.bak2
-Info: Spawning ModelSim-Altera Simulation software 
+Info: Starting NativeLink simulation with Questa Intel FPGA software
+Sourced NativeLink script c:/intelfpga_lite/22.1std/quartus/common/tcl/internal/nativelink/modelsim.tcl
+missing "
+Error: NativeLink simulation flow was NOT successful
+
+
+
+================The following additional information is provided to help identify the cause of error while running nativelink scripts=================
+Nativelink TCL script failed with errorCode:  NONE
+Nativelink TCL script failed with errorInfo:  missing "
+    while executing
+"set questa_installation ""
+    invoked from within
+"if {[file isdirectory $questa_fse_directory]} {
+         set questa_installation "$questa_fse_directory
+         set found_a_questa_installation 1
+   ..."
+    (procedure "find_a_questa_oem_installation" line 21)
+    invoked from within
+"find_a_questa_oem_installation questa_installation"
+    invoked from within
+"if [ catch { set install_path_from_registry [registry get "HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Intel Corporation\\Quartus Prime\\$quartus_versi..."
+    invoked from within
+"if [ catch { set install_path_from_registry [registry get "HKEY_LOCAL_MACHINE\\SOFTWARE\\Intel Corporation\\Quartus Prime\\$quartus_version" "Questa I..."
+    (procedure "resolve_tool_path" line 102)
+    invoked from within
+"resolve_tool_path "sim" "vsim" $args_hash(qsf_sim_tool)"
+    (procedure "launch_sim" line 29)
+    invoked from within
+"launch_sim launch_args_hash"
+    ("eval" body line 1)
+    invoked from within
+"eval launch_sim launch_args_hash"
+    invoked from within
+"if [ info exists ::errorCode ] {
+                set savedCode $::errorCode
+                set savedInfo $::errorInfo
+                error $result $..."
+    invoked from within
+"if [catch {eval launch_sim launch_args_hash} result ] {
+            set status 1
+            if [ info exists ::errorCode ] {
+                set save..."
+    (procedure "run_sim" line 74)
+    invoked from within
+"run_sim run_sim_args_hash"
+    invoked from within
+"if [ info exists ::errorCode ] {
+            set savedCode $::errorCode
+            set savedInfo $::errorInfo
+            error "$result" $savedInfo ..."
+    (procedure "run_eda_simulation_tool" line 334)
+    invoked from within
+"run_eda_simulation_tool eda_opts_hash"
