@@ -143,9 +143,9 @@ Text GLabel 5850 1950 2    50   Output ~ 0
 INC_ADD_FPGA
 Text GLabel 5850 3050 2    50   Input ~ 0
 INTA_FPGA
-Text GLabel 5850 2850 2    50   BiDi ~ 0
-BGACK_FPGA
 Text GLabel 5850 3250 2    50   BiDi ~ 0
+BGACK_FPGA
+Text GLabel 6400 2600 2    50   BiDi ~ 0
 NOT_USED_A6_FPGA
 Text GLabel 4700 1250 1    50   BiDi ~ 0
 D0_FPGA
@@ -874,4 +874,6 @@ NoConn ~ 950  2250
 NoConn ~ 950  2450
 Text GLabel 1850 6150 3    50   BiDi ~ 0
 D14_FPGA
+Text GLabel 5850 2850 2    50   Input ~ 0
+SBG_FPGA
 $EndSCHEMATC
