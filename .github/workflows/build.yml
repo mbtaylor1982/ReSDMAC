@@ -15,7 +15,7 @@ on:
 jobs:
   synthesis:
     runs-on: ubuntu-latest
-    container: raetro/quartus:13.0sp1
+    container: mbtaylor1982/quartus:22.1
     steps:
       # 1 - Checkout repository
       - name: Checkout repository

@@ -14,7 +14,7 @@ on:
 jobs:
   synthesis:
     runs-on: ubuntu-latest
-    container: ghcr.io/raetro/quartus:13.0sp1 # Use GitHub Container Registry
+    container: mbtaylor1982/quartus:22.1 
     #container: raetro/quartus:17.1        # Use DockerHub
     ############################################################################
     env:

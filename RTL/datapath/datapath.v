@@ -68,7 +68,8 @@ module datapath (
     output [31:0] MID,
     output [31:0] FIFO_ID,
     output [31:0] DATA_O,
-    output DATA_OE_
+    output DATA_OE_,
+    output PD_OE
 );
 wire [31:0] MOD_SCSI;
 wire [31:0] MOD_TX;
@@ -122,7 +123,8 @@ datapath_scsi u_datapath_scsi(
     .BO0            (BO0       ),
     .BO1            (BO1       ),
     .LS2CPU         (LS2CPU    ),
-    .MOD_SCSI       (MOD_SCSI  )
+    .MOD_SCSI       (MOD_SCSI  ),
+    .SCSI_OUT       (PD_OE     )
 );
 
 assign DOEL_ = ~((~DS_I_ & nDMAC_ & RW) | (nOWN_ & DMADIR));

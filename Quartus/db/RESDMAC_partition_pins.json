@@ -1,0 +1,309 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "_INT",
+					"strict" : false
+				},
+				{
+					"name" : "_SIZ1",
+					"strict" : false
+				},
+				{
+					"name" : "_BR",
+					"strict" : false
+				},
+				{
+					"name" : "_DMAEN",
+					"strict" : false
+				},
+				{
+					"name" : "_DACK",
+					"strict" : false
+				},
+				{
+					"name" : "_CSS",
+					"strict" : false
+				},
+				{
+					"name" : "_IOR",
+					"strict" : false
+				},
+				{
+					"name" : "_IOW",
+					"strict" : false
+				},
+				{
+					"name" : "R_W_IO",
+					"strict" : false
+				},
+				{
+					"name" : "_AS_IO",
+					"strict" : false
+				},
+				{
+					"name" : "_DS_IO",
+					"strict" : false
+				},
+				{
+					"name" : "_DSACK_IO[0]",
+					"strict" : false
+				},
+				{
+					"name" : "_DSACK_IO[1]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[0]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[1]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[2]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[3]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[4]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[5]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[6]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[7]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[8]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[9]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[10]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[11]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[12]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[13]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[14]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[15]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[16]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[17]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[18]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[19]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[20]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[21]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[22]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[23]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[24]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[25]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[26]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[27]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[28]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[29]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[30]",
+					"strict" : false
+				},
+				{
+					"name" : "DATA_IO[31]",
+					"strict" : false
+				},
+				{
+					"name" : "_BGACK_IO",
+					"strict" : false
+				},
+				{
+					"name" : "PD_PORT[0]",
+					"strict" : false
+				},
+				{
+					"name" : "PD_PORT[1]",
+					"strict" : false
+				},
+				{
+					"name" : "PD_PORT[2]",
+					"strict" : false
+				},
+				{
+					"name" : "PD_PORT[3]",
+					"strict" : false
+				},
+				{
+					"name" : "PD_PORT[4]",
+					"strict" : false
+				},
+				{
+					"name" : "PD_PORT[5]",
+					"strict" : false
+				},
+				{
+					"name" : "PD_PORT[6]",
+					"strict" : false
+				},
+				{
+					"name" : "PD_PORT[7]",
+					"strict" : false
+				},
+				{
+					"name" : "PD_PORT[8]",
+					"strict" : false
+				},
+				{
+					"name" : "PD_PORT[9]",
+					"strict" : false
+				},
+				{
+					"name" : "PD_PORT[10]",
+					"strict" : false
+				},
+				{
+					"name" : "PD_PORT[11]",
+					"strict" : false
+				},
+				{
+					"name" : "PD_PORT[12]",
+					"strict" : false
+				},
+				{
+					"name" : "PD_PORT[13]",
+					"strict" : false
+				},
+				{
+					"name" : "PD_PORT[14]",
+					"strict" : false
+				},
+				{
+					"name" : "PD_PORT[15]",
+					"strict" : false
+				},
+				{
+					"name" : "INTA",
+					"strict" : false
+				},
+				{
+					"name" : "_BERR",
+					"strict" : false
+				},
+				{
+					"name" : "_STERM",
+					"strict" : false
+				},
+				{
+					"name" : "ADDR[2]",
+					"strict" : false
+				},
+				{
+					"name" : "ADDR[4]",
+					"strict" : false
+				},
+				{
+					"name" : "ADDR[5]",
+					"strict" : false
+				},
+				{
+					"name" : "_CS",
+					"strict" : false
+				},
+				{
+					"name" : "ADDR[3]",
+					"strict" : false
+				},
+				{
+					"name" : "ADDR[6]",
+					"strict" : false
+				},
+				{
+					"name" : "_RST",
+					"strict" : false
+				},
+				{
+					"name" : "_BG",
+					"strict" : false
+				},
+				{
+					"name" : "SCLK",
+					"strict" : false
+				},
+				{
+					"name" : "_DREQ",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
