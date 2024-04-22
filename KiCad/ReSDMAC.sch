@@ -213,7 +213,7 @@ Text GLabel 7150 1850 0    50   Output ~ 0
 INC_ADD
 Text GLabel 7150 1550 0    50   Output ~ 0
 SBR
-Text GLabel 7150 2050 0    50   BiDi ~ 0
+Text GLabel 7150 2150 0    50   BiDi ~ 0
 BGACK
 Text GLabel 7150 3250 0    50   Input ~ 0
 DREQ
@@ -223,13 +223,13 @@ Text GLabel 7150 3050 0    50   Output ~ 0
 CSS
 Text GLabel 7150 2950 0    50   Output ~ 0
 IOW
-Text GLabel 7150 4300 0    50   BiDi ~ 0
+Text GLabel 7150 4200 0    50   BiDi ~ 0
 PD12
-Text GLabel 7150 4100 0    50   BiDi ~ 0
-PD14
 Text GLabel 7150 4000 0    50   BiDi ~ 0
+PD14
+Text GLabel 7150 3900 0    50   BiDi ~ 0
 PD15
-Text GLabel 7150 4400 0    50   BiDi ~ 0
+Text GLabel 7150 4300 0    50   BiDi ~ 0
 PD11
 Text GLabel 7150 4600 0    50   BiDi ~ 0
 PD9
@@ -283,17 +283,17 @@ Text GLabel 9200 2150 0    50   BiDi ~ 0
 D5
 Text GLabel 9200 2450 0    50   BiDi ~ 0
 D6
-Text GLabel 9200 2250 0    50   Input ~ 0
-D15
 Text GLabel 9200 1550 0    50   BiDi ~ 0
-D16
+D15
 Text GLabel 9200 1450 0    50   BiDi ~ 0
-D17
+D16
 Text GLabel 9200 1350 0    50   BiDi ~ 0
-D18
+D17
 Text GLabel 9200 1250 0    50   BiDi ~ 0
-D19
+D18
 Text GLabel 9200 1150 0    50   BiDi ~ 0
+D19
+Text GLabel 9200 1050 0    50   BiDi ~ 0
 D20
 Text GLabel 9200 5900 0    50   BiDi ~ 0
 D23
@@ -345,10 +345,8 @@ Text GLabel 8150 1950 2    50   Input ~ 0
 INC_ADD_FPGA
 Text GLabel 8150 2050 2    50   Output ~ 0
 INTA_FPGA
-Text GLabel 8150 2150 2    50   BiDi ~ 0
+Text GLabel 8150 2250 2    50   BiDi ~ 0
 BGACK_FPGA
-Text GLabel 8150 2250 2    50   Output ~ 0
-NOT_USED_A6_FPGA
 Text GLabel 8150 2350 2    50   BiDi ~ 0
 D0_FPGA
 Text GLabel 8150 2450 2    50   Input ~ 0
@@ -367,15 +365,15 @@ Text GLabel 8150 3150 2    50   Input ~ 0
 DACK_FPGA
 Text GLabel 8150 3250 2    50   Output ~ 0
 DREQ_FPGA
-Text GLabel 10200 1250 2    50   BiDi ~ 0
+Text GLabel 10200 1150 2    50   BiDi ~ 0
 D20_FPGA
-Text GLabel 10200 1350 2    50   BiDi ~ 0
+Text GLabel 10200 1250 2    50   BiDi ~ 0
 D19_FPGA
-Text GLabel 10200 1450 2    50   BiDi ~ 0
+Text GLabel 10200 1350 2    50   BiDi ~ 0
 D18_FPGA
-Text GLabel 10200 1550 2    50   BiDi ~ 0
+Text GLabel 10200 1450 2    50   BiDi ~ 0
 D17_FPGA
-Text GLabel 10200 1750 2    50   BiDi ~ 0
+Text GLabel 10200 1550 2    50   BiDi ~ 0
 D16_FPGA
 Text GLabel 10200 1850 2    50   BiDi ~ 0
 D1_FPGA
@@ -387,7 +385,7 @@ Text GLabel 10200 2150 2    50   BiDi ~ 0
 D4_FPGA
 Text GLabel 10200 2250 2    50   BiDi ~ 0
 D5_FPGA
-Text GLabel 10200 2350 2    50   Output ~ 0
+Text GLabel 10200 1750 2    50   BiDi ~ 0
 D15_FPGA
 Text GLabel 10200 2450 2    50   BiDi ~ 0
 D6_FPGA
@@ -403,19 +401,17 @@ Text GLabel 10200 3050 2    50   BiDi ~ 0
 D9_FPGA
 Text GLabel 10200 3150 2    50   BiDi ~ 0
 D8_FPGA
-Text GLabel 8150 4100 2    50   BiDi ~ 0
+Text GLabel 8150 4000 2    50   BiDi ~ 0
 PD15_FPGA
-Text GLabel 8150 4000 2    50   Output ~ 0
-NOT_USED_E3_FPGA
-Text GLabel 8150 4200 2    50   BiDi ~ 0
+Text GLabel 8150 4100 2    50   BiDi ~ 0
 PD14_FPGA
-Text GLabel 7150 4200 0    50   BiDi ~ 0
+Text GLabel 7150 4100 0    50   BiDi ~ 0
 PD13
-Text GLabel 8150 4300 2    50   BiDi ~ 0
+Text GLabel 8150 4200 2    50   BiDi ~ 0
 PD13_FPGA
-Text GLabel 8150 4400 2    50   BiDi ~ 0
+Text GLabel 8150 4300 2    50   BiDi ~ 0
 PD12_FPGA
-Text GLabel 8150 4600 2    50   BiDi ~ 0
+Text GLabel 8150 4400 2    50   BiDi ~ 0
 PD11_FPGA
 Text GLabel 8150 4700 2    50   BiDi ~ 0
 PD9_FPGA
@@ -915,12 +911,16 @@ Wire Wire Line
 	5700 5800 5700 5900
 Wire Wire Line
 	2750 5800 2750 5900
-Text GLabel 9200 1050 0    50   Input ~ 0
-GND
-Text GLabel 10200 1150 2    50   Output ~ 0
-NOT_USED_K1_FPGA
-Text GLabel 7150 3900 0    50   Input ~ 0
-GND
-Text GLabel 7150 2150 0    50   Input ~ 0
-GND
+Text GLabel 9200 2250 0    50   BiDi ~ 0
+D14
+Text GLabel 10200 2350 2    50   BiDi ~ 0
+D14_FPGA
+Text GLabel 7150 2050 0    50   Input ~ 0
+SBG
+Text GLabel 8150 2150 2    50   Output ~ 0
+SBG_FPGA
+Text GLabel 7150 4400 0    50   BiDi ~ 0
+PD10
+Text GLabel 8150 4600 2    50   BiDi ~ 0
+PD10_FPGA
 $EndSCHEMATC
