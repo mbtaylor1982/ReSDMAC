@@ -145,8 +145,6 @@ Text GLabel 5850 3050 2    50   Input ~ 0
 INTA_FPGA
 Text GLabel 5850 3250 2    50   BiDi ~ 0
 BGACK_FPGA
-Text GLabel 6400 2600 2    50   BiDi ~ 0
-NOT_USED_A6_FPGA
 Text GLabel 4700 1250 1    50   BiDi ~ 0
 D0_FPGA
 Text GLabel 5850 3450 2    50   Input ~ 0
@@ -169,8 +167,6 @@ Text GLabel 4050 6150 3    50   BiDi ~ 0
 D7_FPGA
 Text GLabel 950  4750 0    50   BiDi ~ 0
 D20_FPGA
-Text GLabel -50  3850 0    50   Input ~ 0
-NOT_USED_K1_FPGA
 Text GLabel 950  3550 0    50   BiDi ~ 0
 D19_FPGA
 Text GLabel 950  4950 0    50   BiDi ~ 0
@@ -205,17 +201,15 @@ Text GLabel 2650 6150 3    50   BiDi ~ 0
 D9_FPGA
 Text GLabel 2950 6150 3    50   BiDi ~ 0
 D8_FPGA
-Text GLabel 4900 1250 1    50   Input ~ 0
-PD15_FPGA
 Text GLabel 950  2050 0    50   Input ~ 0
-NOT_USED_E3_FPGA
-Text GLabel 950  3050 0    50   BiDi ~ 0
+PD15_FPGA
+Text GLabel 4900 1250 1    50   BiDi ~ 0
 PD14_FPGA
-Text GLabel 5850 3550 2    50   BiDi ~ 0
+Text GLabel 950  3050 0    50   BiDi ~ 0
 PD13_FPGA
-Text GLabel 5000 1250 1    50   BiDi ~ 0
+Text GLabel 5850 3550 2    50   BiDi ~ 0
 PD12_FPGA
-Text GLabel 5850 3350 2    50   BiDi ~ 0
+Text GLabel 5000 1250 1    50   BiDi ~ 0
 PD11_FPGA
 Text GLabel 5850 4250 2    50   BiDi ~ 0
 PD9_FPGA
@@ -876,4 +870,6 @@ Text GLabel 1850 6150 3    50   BiDi ~ 0
 D14_FPGA
 Text GLabel 5850 2850 2    50   Input ~ 0
 SBG_FPGA
+Text GLabel 5850 3350 2    50   BiDi ~ 0
+PD10_FPGA
 $EndSCHEMATC

@@ -223,13 +223,13 @@ Text GLabel 7150 3050 0    50   Output ~ 0
 CSS
 Text GLabel 7150 2950 0    50   Output ~ 0
 IOW
-Text GLabel 7150 4300 0    50   BiDi ~ 0
+Text GLabel 7150 4200 0    50   BiDi ~ 0
 PD12
-Text GLabel 7150 4100 0    50   BiDi ~ 0
-PD14
 Text GLabel 7150 4000 0    50   BiDi ~ 0
+PD14
+Text GLabel 7150 3900 0    50   BiDi ~ 0
 PD15
-Text GLabel 7150 4400 0    50   BiDi ~ 0
+Text GLabel 7150 4300 0    50   BiDi ~ 0
 PD11
 Text GLabel 7150 4600 0    50   BiDi ~ 0
 PD9
@@ -347,8 +347,6 @@ Text GLabel 8150 2050 2    50   Output ~ 0
 INTA_FPGA
 Text GLabel 8150 2250 2    50   BiDi ~ 0
 BGACK_FPGA
-Text GLabel 6100 1600 2    50   Output ~ 0
-NOT_USED_A6_FPGA
 Text GLabel 8150 2350 2    50   BiDi ~ 0
 D0_FPGA
 Text GLabel 8150 2450 2    50   Input ~ 0
@@ -403,19 +401,17 @@ Text GLabel 10200 3050 2    50   BiDi ~ 0
 D9_FPGA
 Text GLabel 10200 3150 2    50   BiDi ~ 0
 D8_FPGA
-Text GLabel 8150 4100 2    50   BiDi ~ 0
+Text GLabel 8150 4000 2    50   BiDi ~ 0
 PD15_FPGA
-Text GLabel 8150 4000 2    50   Output ~ 0
-NOT_USED_E3_FPGA
-Text GLabel 8150 4200 2    50   BiDi ~ 0
+Text GLabel 8150 4100 2    50   BiDi ~ 0
 PD14_FPGA
-Text GLabel 7150 4200 0    50   BiDi ~ 0
+Text GLabel 7150 4100 0    50   BiDi ~ 0
 PD13
-Text GLabel 8150 4300 2    50   BiDi ~ 0
+Text GLabel 8150 4200 2    50   BiDi ~ 0
 PD13_FPGA
-Text GLabel 8150 4400 2    50   BiDi ~ 0
+Text GLabel 8150 4300 2    50   BiDi ~ 0
 PD12_FPGA
-Text GLabel 8150 4600 2    50   BiDi ~ 0
+Text GLabel 8150 4400 2    50   BiDi ~ 0
 PD11_FPGA
 Text GLabel 8150 4700 2    50   BiDi ~ 0
 PD9_FPGA
@@ -915,10 +911,6 @@ Wire Wire Line
 	5700 5800 5700 5900
 Wire Wire Line
 	2750 5800 2750 5900
-Text GLabel 7150 3900 0    50   Input ~ 0
-GND
-Text GLabel 6450 1850 0    50   Input ~ 0
-GND
 Text GLabel 9200 2250 0    50   BiDi ~ 0
 D14
 Text GLabel 10200 2350 2    50   BiDi ~ 0
@@ -927,4 +919,8 @@ Text GLabel 7150 2050 0    50   Input ~ 0
 SBG
 Text GLabel 8150 2150 2    50   Output ~ 0
 SBG_FPGA
+Text GLabel 7150 4400 0    50   BiDi ~ 0
+PD10
+Text GLabel 8150 4600 2    50   BiDi ~ 0
+PD10_FPGA
 $EndSCHEMATC
