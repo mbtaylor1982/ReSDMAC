@@ -283,17 +283,17 @@ Text GLabel 9200 2150 0    50   BiDi ~ 0
 D5
 Text GLabel 9200 2450 0    50   BiDi ~ 0
 D6
-Text GLabel 9200 2250 0    50   Input ~ 0
-D15
 Text GLabel 9200 1550 0    50   BiDi ~ 0
-D16
+D15
 Text GLabel 9200 1450 0    50   BiDi ~ 0
-D17
+D16
 Text GLabel 9200 1350 0    50   BiDi ~ 0
-D18
+D17
 Text GLabel 9200 1250 0    50   BiDi ~ 0
-D19
+D18
 Text GLabel 9200 1150 0    50   BiDi ~ 0
+D19
+Text GLabel 9200 1050 0    50   BiDi ~ 0
 D20
 Text GLabel 9200 5900 0    50   BiDi ~ 0
 D23
@@ -367,15 +367,15 @@ Text GLabel 8150 3150 2    50   Input ~ 0
 DACK_FPGA
 Text GLabel 8150 3250 2    50   Output ~ 0
 DREQ_FPGA
-Text GLabel 10200 1250 2    50   BiDi ~ 0
+Text GLabel 10200 1150 2    50   BiDi ~ 0
 D20_FPGA
-Text GLabel 10200 1350 2    50   BiDi ~ 0
+Text GLabel 10200 1250 2    50   BiDi ~ 0
 D19_FPGA
-Text GLabel 10200 1450 2    50   BiDi ~ 0
+Text GLabel 10200 1350 2    50   BiDi ~ 0
 D18_FPGA
-Text GLabel 10200 1550 2    50   BiDi ~ 0
+Text GLabel 10200 1450 2    50   BiDi ~ 0
 D17_FPGA
-Text GLabel 10200 1750 2    50   BiDi ~ 0
+Text GLabel 10200 1550 2    50   BiDi ~ 0
 D16_FPGA
 Text GLabel 10200 1850 2    50   BiDi ~ 0
 D1_FPGA
@@ -387,7 +387,7 @@ Text GLabel 10200 2150 2    50   BiDi ~ 0
 D4_FPGA
 Text GLabel 10200 2250 2    50   BiDi ~ 0
 D5_FPGA
-Text GLabel 10200 2350 2    50   Output ~ 0
+Text GLabel 10200 1750 2    50   BiDi ~ 0
 D15_FPGA
 Text GLabel 10200 2450 2    50   BiDi ~ 0
 D6_FPGA
@@ -915,12 +915,12 @@ Wire Wire Line
 	5700 5800 5700 5900
 Wire Wire Line
 	2750 5800 2750 5900
-Text GLabel 9200 1050 0    50   Input ~ 0
-GND
-Text GLabel 10200 1150 2    50   Output ~ 0
-NOT_USED_K1_FPGA
 Text GLabel 7150 3900 0    50   Input ~ 0
 GND
 Text GLabel 7150 2150 0    50   Input ~ 0
 GND
+Text GLabel 9200 2250 0    50   BiDi ~ 0
+D14
+Text GLabel 10200 2350 2    50   BiDi ~ 0
+D14_FPGA
 $EndSCHEMATC

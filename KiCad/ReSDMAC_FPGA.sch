@@ -167,17 +167,17 @@ Text GLabel 950  2150 0    50   Input ~ 0
 DREQ_FPGA
 Text GLabel 4050 6150 3    50   BiDi ~ 0
 D7_FPGA
-Text GLabel 950  3550 0    50   BiDi ~ 0
+Text GLabel 950  4750 0    50   BiDi ~ 0
 D20_FPGA
-Text GLabel 950  4750 0    50   Input ~ 0
+Text GLabel -50  3850 0    50   Input ~ 0
 NOT_USED_K1_FPGA
-Text GLabel 950  4950 0    50   BiDi ~ 0
+Text GLabel 950  3550 0    50   BiDi ~ 0
 D19_FPGA
-Text GLabel 950  4350 0    50   BiDi ~ 0
+Text GLabel 950  4950 0    50   BiDi ~ 0
 D18_FPGA
-Text GLabel 950  3950 0    50   BiDi ~ 0
+Text GLabel 950  4350 0    50   BiDi ~ 0
 D17_FPGA
-Text GLabel 950  4150 0    50   BiDi ~ 0
+Text GLabel 950  3950 0    50   BiDi ~ 0
 D16_FPGA
 Text GLabel 950  4650 0    50   BiDi ~ 0
 D1_FPGA
@@ -189,7 +189,7 @@ Text GLabel 1550 6150 3    50   BiDi ~ 0
 D4_FPGA
 Text GLabel 1650 6150 3    50   BiDi ~ 0
 D5_FPGA
-Text GLabel 1850 6150 3    50   BiDi ~ 0
+Text GLabel 950  4150 0    50   BiDi ~ 0
 D15_FPGA
 Text GLabel 3050 6150 3    50   BiDi ~ 0
 D6_FPGA
@@ -872,4 +872,6 @@ GND
 NoConn ~ 950  5450
 NoConn ~ 950  2250
 NoConn ~ 950  2450
+Text GLabel 1850 6150 3    50   BiDi ~ 0
+D14_FPGA
 $EndSCHEMATC
