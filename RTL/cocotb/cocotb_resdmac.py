@@ -116,7 +116,7 @@ async def RESDMAC_test(dut):
     dut.DS_I_.value = 1
     dut.R_W.value = 1
     dut.DATA_I.value = 0
-    dut.BR.value = 0
+    dut._id("_BR", extended=False).value = 1
     dut._id("_RST", extended=False).value = 1
     dut._id("_BG", extended=False).value = 1
     dut._id("_DREQ", extended=False).value = 1
@@ -124,7 +124,7 @@ async def RESDMAC_test(dut):
     dut._id("_DREQ", extended=False).value = 1
     dut._id("_BGACK_IO", extended=False).value = 1
     dut._id("_BERR", extended=False).value = 1
-    dut.DSACK_I_.value = 3
+    dut._id("_DSACK_I", extended=False).value = 3
     dut.INTA.value = 0
 
 
@@ -203,7 +203,7 @@ async def RESDMAC_test(dut):
         dut.PDATA_I.value = dut.PDATA_I.value + 0x1
     
     #grant bus to SDMAC    
-    await RisingEdge(dut._id("BR", extended=False))
+    await FallingEdge(dut._id("_BR", extended=False))
     if (dut.AS_I_.value == 1) and (dut._id("_BGACK_IO", extended=False).value == 1):
         dut._id("_BG", extended=False).value = 0
     await FallingEdge(dut._id("_BGACK_IO", extended=False))

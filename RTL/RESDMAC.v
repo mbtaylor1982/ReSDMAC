@@ -26,22 +26,22 @@
 `endif
 
 module RESDMAC(
-    output  tri1 _INT,              //Connected to INT2 via open collector transistor.
-    output  _SIZ1,                  //Indicates a 16 bit transfer if False.
+    output  tri1 _INT,                  //Connected to INT2 via open collector transistor.
+    output  tri1 _SIZ1,                 //Indicates a 16 bit transfer if False.
 
-    inout  R_W_IO,                  //Read Write from CPU
-    inout  _AS_IO,                  //Address Strobe
-    inout  _DS_IO,                  //Data Strobe
+    inout  tri1 R_W_IO,                 //Read Write from CPU
+    inout  tri1 _AS_IO,                 //Address Strobe
+    inout  tri1 _DS_IO,                 //Data Strobe
 
-	 inout [1:0] _DSACK_IO,
-    inout  [31:0] DATA_IO,      	// CPU side data bus 32bit wide
+	inout tri1 [1:0] _DSACK_IO,
+    inout tri1 [31:0] DATA_IO,      	// CPU side data bus 32bit wide
 
-    input  _STERM,              	//static/synchronous data ack.
-    input SCLK,                     //CPUCLKB
-    input _CS,                      //_SCSI from Fat Garry
-    input _RST,                     //System Reset
-    input  _BERR,               	//Bus Error
-    input [6:2] ADDR,               //CPU address Bus, bits are actually [6:2]
+    input tri1 _STERM,              	//static/synchronous data ack.
+    input SCLK,                         //CPUCLKB
+    input tri1 _CS,                     //_SCSI from Fat Garry
+    input tri1 _RST,                    //System Reset
+    input tri1 _BERR,               	//Bus Error
+    input [6:2] ADDR,              //CPU address Bus, bits are actually [6:2]
 
     // Bus Mastering/Arbitration.
     output  tri1 _BR,               //Bus Request
@@ -51,7 +51,7 @@ module RESDMAC(
     output _DMAEN,                  //Low =  Enable Address Generator in Ramsey
 
     // Peripheral port signals
-    input  _DREQ,               	//DMA Request From WD33c93A (SCSI)
+    input tri1 _DREQ,               //DMA Request From WD33c93A (SCSI)
     input INTA,                     //Interupt from WD33c93A (SCSI)
 
     output _DACK,                   //DMA Acknoledge to WD33c93A (SCSI)
@@ -59,12 +59,12 @@ module RESDMAC(
     output _IOR,                    //Active Low read strobe
     output _IOW,                    //Ative Low Write strobe
 
-    inout  [15:0] PD_PORT     		//Peripheral Data port
+    inout tri1 [15:0] PD_PORT     	//Peripheral Data port
 );
 
 reg AS_O_;
 wire AS_I_;
-assign AS_I_ = _AS_IO; 
+assign AS_I_ = _AS_IO;
 assign _AS_IO = OWN ? AS_O_: 1'bz;
 
 reg DS_O_;
