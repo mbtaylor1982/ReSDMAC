@@ -201,7 +201,7 @@ Text GLabel 2650 6150 3    50   BiDi ~ 0
 D9_FPGA
 Text GLabel 2950 6150 3    50   BiDi ~ 0
 D8_FPGA
-Text GLabel 950  2050 0    50   Input ~ 0
+Text GLabel 950  2050 0    50   BiDi ~ 0
 PD15_FPGA
 Text GLabel 4900 1250 1    50   BiDi ~ 0
 PD14_FPGA
