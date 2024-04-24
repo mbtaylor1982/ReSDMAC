@@ -3,7 +3,7 @@
  <debug showDebugMenu="0" />
  <systemtable filter="All Interfaces">
   <columns>
-   <connections preferredWidth="79" />
+   <connections preferredWidth="31" />
    <irq preferredWidth="34" />
   </columns>
  </systemtable>
@@ -14,8 +14,7 @@
    <frequency preferredWidth="354" />
   </columns>
  </clocktable>
- <library
-   expandedCategories="Library/University Program,Library/University Program/Memory,Project,Library/University Program/Communications,Library/Qsys Interconnect,Library/University Program/Generic IO,Library/University Program/Bridges,Library" />
+ <library expandedCategories="Project,Library" />
  <window width="1887" height="1121" x="0" y="0" />
  <hdlexample language="VERILOG" />
  <generation simulation="VERILOG" />
