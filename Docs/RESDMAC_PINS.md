@@ -55,7 +55,7 @@ RESERVED
 
 
 Pin Name/Usage               | Location  | Dir.   | I/O Standard      | Voltage | I/O Bank  | User Assignment
-| --- | --- | --- | --- | --- |---|------|
+-----------------------------|-----------|--------|-------------------|---------|-----------|----------------
 GND                          | A1        | gnd    |                   |         |           |                
 GND*                         | A2        |        |                   |         | 8         |                
 GND*                         | A3        |        |                   |         | 8         |                
@@ -69,7 +69,7 @@ _BR                          | A10       | output | 2.5 V             |         
 ADDR[2]                      | A11       | input  | 2.5 V             |         | 8         | Y              
 ADDR[4]                      | A12       | input  | 2.5 V             |         | 6         | Y              
 GND                          | A13       | gnd    |                   |         |           |                
-GND*                         | B1        |        |                   |         | 1A        |                
+JP                           | B1        | input  | 2.5 V             |         | 1A        | Y              
 _IOR                         | B2        | output | 2.5 V             |         | 8         | Y              
 GND*                         | B3        |        |                   |         | 8         |                
 PD_PORT[14]                  | B4        | bidir  | 2.5 V             |         | 8         | Y              
@@ -102,7 +102,7 @@ VCCA3                        | D4        | power  |                   | 3.0V/3.3
 GND                          | D5        | gnd    |                   |         |           |                
 PD_PORT[11]                  | D6        | bidir  | 2.5 V             |         | 8         | Y              
 GND*                         | D7        |        |                   |         | 8         |                
-GND*                         | D8        |        |                   |         | 8         |                
+D8                           | D8        | input  | 2.5 V             |         | 8         | Y              
 GND*                         | D9        |        |                   |         | 6         |                
 VCCA2                        | D10       | power  |                   | 3.0V/3.3V |           |                
 GND*                         | D11       |        |                   |         | 6         |                
@@ -137,8 +137,8 @@ SCLK                         | F13       | input  | 2.5 V             |         
 ~ALTERA_TMS~ / RESERVED_INPUT_WITH_WEAK_PULLUP | G1        | input  | 2.5 V Schmitt Trigger |         | 1B        | N              
 ~ALTERA_TCK~ / RESERVED_INPUT | G2        | input  | 2.5 V Schmitt Trigger |         | 1B        | N              
 VCCIO1                       | G3        | power  |                   | 2.5V    | 1A, 1B    |                
-GND*                         | G4        |        |                   |         | 1B        |                
-GND*                         | G5        |        |                   |         | 2         |                
+G4                           | G4        | input  | 2.5 V             |         | 1B        | Y              
+G5                           | G5        | input  | 2.5 V             |         | 2         | Y              
 VCC_ONE                      | G6        | power  |                   | 3.0V/3.3V |           |                
 GND                          | G7        | gnd    |                   |         |           |                
 VCC_ONE                      | G8        | power  |                   | 3.0V/3.3V |           |                
@@ -149,10 +149,10 @@ GND*                         | G12       |        |                   |         
 _RST                         | G13       | input  | 2.5 V             |         | 5         | Y              
 GND*                         | H1        |        |                   |         | 1B        |                
 DATA_IO[22]                  | H2        | bidir  | 2.5 V             |         | 1B        | Y              
-GND*                         | H3        |        |                   |         | 1B        |                
+H3                           | H3        | input  | 2.5 V             |         | 1B        | Y              
 GND*                         | H4        |        |                   |         | 2         |                
 GND*                         | H5        |        |                   |         | 2         |                
-GND*                         | H6        |        |                   |         | 2         |                
+H6                           | H6        | input  | 2.5 V             |         | 2         | Y              
 VCC_ONE                      | H7        | power  |                   | 3.0V/3.3V |           |                
 GND*                         | H8        |        |                   |         | 5         |                
 GND*                         | H9        |        |                   |         | 5         |                
