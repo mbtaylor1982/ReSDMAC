@@ -5,7 +5,7 @@
 
 [![join](https://dcbadge.vercel.app/api/server/PxHb69nY3q)](https://discord.gg/PxHb69nY3q)
 
-## Introduction
+### Introduction
 
 This project is an exercise in reverse engineering the Commodore SDMAC 390537 as found in the Amiga 3000
 
@@ -49,9 +49,22 @@ Please click [here](KiCad/bom/ibom.html) for the Interactive BOM.
  Below are the VCD files output by the cocotb tests. these can be used to help verify the verilog code.
 
 ![Register access timing](assets/VCD1.png "Register access timing")
-
 ![DMA cycle timing](assets/VCD2.png "DMA cycle timing")
 
+### Acknowledgements
+Thankyou to all the people who have helped with this project especially:
 
+- [Stefan Skotte aka Screemo](https://github.com/stefanskotte) For the long term loan of a REV 2 SDMAC.
+- [Andy aka trixster1979](https://github.com/trixster1979) For the long term loan of a REV 4 SDMAC.
+- [Matt Harlum Liv2](https://github.com/LIV2) for checking over the my code and interpretation of the FSM schematics.
+- [Chris Hooper aka CDH](https://github.com/cdhooper) For providing various adaptor PCBs and breakout boards, also for writing the [SDMAC test program](https://github.com/cdhooper/amiga_sdmac_test).
+- [Jorgen Bilander](https://github.com/jbilander) For adapting the [ReAgnus](https://github.com/jbilander/ReAgnus) design to suit the SDMAC, and also for crating the [ReSDMAC-devboard](https://github.com/jbilander/ReSDMAC-devboard)
+- [Stephen Leary AKA Terriblefire](https://github.com/terriblefire/) For publishing the verilog code for his projects and inspiring me to learn verilog and take on this project way back in 2021
 
-
+#### Honourable mentions
+others that have helped out with words of encouragement and general support.
+ - [John Hertell aka Chucky](https://github.com/ChuckyGang)
+ - [Wrangler](https://github.com/Wrangler491)
+ - [shanshe](https://github.com/shanshe)
+ - [Stefan Reinauer](https://github.com/reinauer)
+  
