@@ -10,6 +10,10 @@ Dev | Role | Donate
  [Mike Taylor](https://github.com/mbtaylor1982) | Verilog Code | [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/L3L4XGH2R) 
  [Jorgen Bilander](https://github.com/jbilander) | PCB Design | [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/)
 
+### Status
+
+>:red_circle:  **This project is still a work in progress and the code and hardware design is likely to change. this is why there are no instructions on how to build or program the board yet.**
+
 ### Introduction
 
 This project is an exercise in reverse engineering the Commodore SDMAC 390537 as found in the Amiga 3000
