@@ -16,7 +16,7 @@ This project is an exercise in reverse engineering the Commodore SDMAC 390537 as
 
 This project was started with nothing more that the descriptions of the SDMAC operations and from the [Amiga 3000T Service manual](Docs/Commodore/Commodore_A3000T_Service_Manual.pdf), the [WD33c93 Datasheets](Docs/WD33C93/WD33C93B_WesternDigital.pdf) and some source code from the Amiga 3000 Linux scsi drivers.
 
-Since then [Partial schmatics](Docs/Commodore/SDMAC%20Partial%20Schmatics/sdmac01.pdf) have been found for what appears to be the SDMAC 390537 Rev 4 (although could be an even more advanced revision with the FIFO expanded to 8 32  bit longwords).
+Since then Partial schmatics surfaced with some pages missing. I've done my best to add the missing pages back and the can be found here [SDMAC_Rev4.pdf](Docs/Commodore/sdmac_Rev4.pdf)
 
 ### SDMAC Documentation
 

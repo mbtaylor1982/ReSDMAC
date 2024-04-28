@@ -17,7 +17,7 @@
 // PROGRAM "Quartus Prime"
 // VERSION "Version 22.1std.2 Build 922 07/20/2023 SC Lite Edition"
 
-// DATE "04/26/2024 14:48:28"
+// DATE "04/28/2024 19:36:16"
 
 // 
 // Device: Altera 10M02SCU169C8G Package UFBGA169
@@ -56,11 +56,11 @@ module RESDMAC (
 	PD_PORT);
 output 	_INT;
 output 	_SIZ1;
-output 	R_W_IO;
-output 	_AS_IO;
-output 	_DS_IO;
-output 	[1:0] _DSACK_IO;
-output 	[31:0] DATA_IO;
+inout 	R_W_IO;
+inout 	_AS_IO;
+inout 	_DS_IO;
+inout 	[1:0] _DSACK_IO;
+inout 	[31:0] DATA_IO;
 input 	_STERM;
 input 	SCLK;
 input 	_CS;
@@ -69,7 +69,7 @@ input 	_BERR;
 input 	[6:2] ADDR;
 output 	_BR;
 input 	_BG;
-output 	_BGACK_IO;
+inout 	_BGACK_IO;
 output 	_DMAEN;
 input 	_DREQ;
 input 	INTA;
@@ -77,7 +77,7 @@ output 	_DACK;
 output 	_CSS;
 output 	_IOR;
 output 	_IOW;
-output 	[15:0] PD_PORT;
+inout 	[15:0] PD_PORT;
 
 // Design Ports Information
 // _INT	=>  Location: PIN_L13,	 I/O Standard: 2.5 V,	 Current Strength: Default
