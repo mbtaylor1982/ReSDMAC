@@ -3,7 +3,12 @@
 [![build](https://github.com/mbtaylor1982/RE-SDMAC/actions/workflows/build.yml/badge.svg)](https://github.com/mbtaylor1982/RE-SDMAC/actions/workflows/build.yml)
 [![test](https://github.com/mbtaylor1982/ReSDMAC/actions/workflows/test.yml/badge.svg)](https://github.com/mbtaylor1982/ReSDMAC/actions/workflows/test.yml)  
 [![join](https://dcbadge.vercel.app/api/server/PxHb69nY3q)](https://discord.gg/PxHb69nY3q)  
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/L3L4XGH2R)  
+
+
+Dev | Role | Donate
+---------|----------|---------
+ [Mike Taylor](https://github.com/mbtaylor1982) | Verilog Code | [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/L3L4XGH2R) 
+ [Jorgen Bilander](https://github.com/jbilander) | PCB Design | [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/)
 
 ### Introduction
 
