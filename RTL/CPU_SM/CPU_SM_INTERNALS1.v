@@ -1,4 +1,6 @@
-  `ifdef __ICARUS__ 
+/*ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/*/
+
+`ifdef __ICARUS__ 
   `include "CPU_SM_inputs.v"
   `include "CPU_SM_output.v"
 `endif

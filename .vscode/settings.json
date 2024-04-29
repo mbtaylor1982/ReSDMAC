@@ -1,20 +1,7 @@
 {
     "git.showPushSuccessNotification": true,
-    "licenseInjector.owner": "Mike Taylor",
-    "license.author": "Mike Taylor",
-    "license-header-manager.additionalCommentStyles": [{
-            "extension": ".v",
-            "commentStart": " /*",
-            "commentMiddle": "//",
-            "commentEnd": " */"
-        }
-    ],
-    "license.default": "gpl-3.0",
     "verilog.icarusPersistentBuild": true,
     "verilog.icarusBuildDirectory": "RTL/build/",
-    "licenser.author": "Mike Taylor",
-    "licenser.disableAutoHeaderInsertion": true,
-    "licenser.disableAutoSave": true,
     "verilog.icarusTestbenchIncludePwd": true,
     "verilog.icarusCompileArguments": "-W all",
     "verilog.icarusTestbenchIncludes": [
@@ -37,6 +24,18 @@
         "RTL/Registers"
 
     ],
+    "powerHeader.autoInsert.allow": "none",
+    "powerHeader.autoInsert.enable": true,
+    "powerHeader.autoInsert.languages": [
+        "verilog",
+        "python"
+    ],
+    "powerHeader.variables": [
+        "<author>='Mike Taylor'",
+        "email=\"mike@dewberryfields.com\"",
+        "!date!=new Date().toISOString()"
+    ],
+    "powerHeader.template": "ReSDMAC © $CURRENT_YEAR by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/",
 
 }
 
