@@ -196,7 +196,7 @@ set_global_assignment -name ENABLE_DRC_SETTINGS OFF
 
 # Power Estimation Assignments
 # ============================
-set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "NO HEAT SINK WITH STILL AIR"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name POWER_DEFAULT_INPUT_IO_TOGGLE_RATE "12.5 %"
 
@@ -263,4 +263,9 @@ set_location_assignment PIN_G5 -to G5
 set_instance_assignment -name RESERVE_PIN AS_INPUT_TRI_STATED -to G5
 set_location_assignment PIN_G4 -to G4
 set_instance_assignment -name RESERVE_PIN AS_INPUT_TRI_STATED -to G4
+set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_timing
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_symbol
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_signal_integrity
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_boundary_scan
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
