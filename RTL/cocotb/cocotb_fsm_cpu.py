@@ -417,7 +417,7 @@ async def fsm_cpu_test(dut):
     dut.STATE.value = 31
     table.append(await check_output_values(dut))
     
-    with open('/test/Docs/CPU_FSM_StateTable.md', 'w') as outfile:
+    with open('CPU_FSM_StateTable.md', 'w') as outfile:
         outfile.write('\n'.join(str(i) for i in table))
     
     
