@@ -24,6 +24,25 @@ def test_resdmac(caplog):
         "RTL/Registers"]
     )
 
+def test_fsm_cpu(caplog):
+    caplog.set_level(logging.INFO)
+    run(
+        toplevel_lang="verilog",
+        verilog_sources=[os.path.join("RTL/CPU_SM", "CPU_SM_INTERNALS1.v")],
+        toplevel="CPU_SM_INTERNALS1",
+        module="cocotb_fsm_cpu",
+        python_search=[hdl_dir],
+        timescale="1ns/100ps",
+        force_compile="True",
+        includes=[ "RTL/",
+        "RTL/SCSI_SM",
+        "RTL/CPU_SM",
+        "RTL/datapath",
+        "RTL/FIFO",
+        "RTL/Registers"]
+    )
+
+
 def test_FIFO(caplog):
     caplog.set_level(logging.INFO)
     run(
