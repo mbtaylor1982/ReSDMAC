@@ -24,7 +24,7 @@ jobs:
       - name: Change to cocotb test dtirectory 
         run: cd RTL/cocotb
       # 3 - Run cocotb tests using pytest
-      - name: run pytest
+      - name: run pytest -o log_cli=true
         uses: pavelzw/pytest-action@v2
         with:
           emoji: true

@@ -63,7 +63,7 @@
         {
             "label": "Run Testbench",
             "type": "shell",
-            "command": "docker run --rm -v ${pwd}:/test -w /test -it mbtaylor1982/cocotb-iverilog:latest pytest",
+            "command": "docker run --rm -v ${pwd}:/test -w /test -it mbtaylor1982/cocotb-iverilog:latest pytest -o log_cli=true",
             "detail": "Run Testbench",
             "presentation": {
                 "echo": true,
@@ -76,6 +76,24 @@
             "group": {
                 "kind": "test",
                 "isDefault": true,
+
+            }
+        },
+        {
+            "label": "analyzer",
+            "type": "shell",
+            "command": "docker run --rm -v ${pwd}/RTL/SCSI_SM/:/test -w /test -it starman360/pyverilog:latest python3 /home/me/Documents/pyfilescd/examples/example_controlflow_analyzer.py  -t SCSI_SM_INTERNALS /test/scsi_sm_internals.v",
+            "detail": "pyverilog Control-flow analyzer",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "group": {
+                "kind": "test"     
 
             }
         }
