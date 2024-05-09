@@ -20,7 +20,7 @@ module registers(
   input FIFOFULL,       // FIFO Full Flag
   input INTA_I,         // Interupt input
 
-  output [31:0] REG_OD,     //DATA OUT.
+  output reg [31:0] REG_OD,     //DATA OUT.
   output PRESET,            //Peripheral Reset.
   output reg FLUSHFIFO,     //Flush FIFO.
   output ACR_WR,            //input to FIFO_byte_ptr.
@@ -40,6 +40,7 @@ wire WTC_RD_;
 wire INTENA;
 wire SSPBDAT_RD_;
 wire SSPBDAT_WR;
+wire [3:0] MuxSelect;
 
 //Action strobes
 wire ST_DMA;    //Start DMA 
@@ -147,12 +148,22 @@ always @(negedge CLK or negedge RST_) begin
         SSPBDAT <= MID[31:0];
 end
 
-//drive output data onto bus.
-assign WTC  = WTC_RD_   ? 32'h00000000  : {32'h00000000};
-assign ISTR = ISTR_RD_  ? (WTC)  : {13'h0, ISTR_O};
-assign CNTR = CONTR_RD_ ? (ISTR) : {23'h0, CNTR_O};
+assign MuxSelect = {~WTC_RD_, ~ISTR_RD_, ~CONTR_RD_, ~SSPBDAT_RD_};
 
-assign REG_OD = SSPBDAT_RD_ ? CNTR : SSPBDAT;
+localparam WTC_SEL = 4'b1000;
+localparam ISTR_SEL = 4'b0100;
+localparam CONTR_SEL = 4'b0010;
+localparam SSPBDAT_SEL = 4'b0001;
+
+always @(*) begin
+    case (MuxSelect)
+      WTC_SEL       : REG_OD <= 32'h00000000;
+      ISTR_SEL      : REG_OD <= {13'h0, ISTR_O};
+      CONTR_SEL     : REG_OD <= {23'h0, CNTR_O};
+      SSPBDAT_SEL   : REG_OD <= SSPBDAT;
+      default       : REG_OD <= 32'h00000000;
+    endcase
+end
 
 // the "macro" to dump signals
 `ifdef COCOTB_SIM1
