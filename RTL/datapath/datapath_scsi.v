@@ -52,16 +52,18 @@ datapath_24dec u_datapath_24dec(
     .D3 (F2S_LLD )
 );
 
+wire [5:0] MuxSelect;
+assign MuxSelect = {(CPU2S & ~A3), (CPU2S & A3), F2S_UUD, F2S_UMD, F2S_LMD, F2S_LLD};
+
 datapath_8b_MUX u_datapath_8b_MUX(
     //inputs
-    .A (FIFO_OD[7:0]    ),
-    .B (FIFO_OD[15:8]   ),
-    .C (FIFO_OD[23:16]  ),
-    .D (FIFO_OD[31:24]  ),
-    .E (CPU_OD[23:16]  ),
-    .F (CPU_OD[7:0]    ),
-    //selects
-    .S ({(CPU2S & ~A3), (CPU2S & A3), F2S_UUD, F2S_UMD, F2S_LMD, F2S_LLD}),
+    .A (FIFO_OD[7:0]),
+    .B (FIFO_OD[15:8]),
+    .C (FIFO_OD[23:16]),
+    .D (FIFO_OD[31:24]),
+    .E (CPU_OD[23:16]),
+    .F (CPU_OD[7:0]),
+    .S (MuxSelect),//selects
     .Z (SCSI_DATA_TX) //output
 );
 
