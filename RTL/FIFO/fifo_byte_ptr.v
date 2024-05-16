@@ -29,7 +29,7 @@ reg BO1;
         .Z  (Z)   // output,
     );
 
-assign A = ~(BO1 ^ BO0);
+assign A = (BO1 ^ BO0);
 assign PTR = {BO1, BO0};
 
 //added to eliminate glitches in the signals B and S.
@@ -39,7 +39,7 @@ always @(posedge CLK or negedge RST_FIFO_) begin
         S <= 1'b0;
     end
     else begin
-        B <= ~MID25;
+        B <= MID25;
         S <= H_0C;
     end
 end
