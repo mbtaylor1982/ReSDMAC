@@ -158,7 +158,7 @@ localparam SSPBDAT_SEL = 4'b0001;
 always @(*) begin
     case (MuxSelect)
       WTC_SEL       : REG_OD <= 32'h00000000;
-      ISTR_SEL      : REG_OD <= {13'h0, ISTR_O};
+      ISTR_SEL      : REG_OD <= {23'h0, ISTR_O};
       CONTR_SEL     : REG_OD <= {23'h0, CNTR_O};
       SSPBDAT_SEL   : REG_OD <= SSPBDAT;
       default       : REG_OD <= 32'h00000000;
