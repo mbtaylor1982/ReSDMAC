@@ -101,4 +101,23 @@ module CPU_SM_inputs (
   assign  E[61]           = (STATE == 5'd10) | (STATE == 5'd14);//s10 or 14
   assign  E[62]           = (STATE == 5'd9) | (STATE == 5'd13);//s9 or s13
 
+//State And Input
+//E0-23,
+//E25,
+//E26,
+//E27,
+//E28,
+//E30,
+//E31,
+//E32,
+//E34,
+//E48,
+
+//State Only
+//E24,
+//E29,
+//E33,
+//E35-E46,
+//E50-E62,
+
 endmodule
