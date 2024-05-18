@@ -18,6 +18,8 @@ module CPU_SM_INTERNALS(
     input FIFOFULL,
     input FLUSHFIFO,
     input LASTWORD,
+    input DSACK,
+    input STERM,
 
     output reg INCNI,
     output reg BREQ,
@@ -76,11 +78,18 @@ localparam [4:0]
 
 reg [4:0] state;
 
-wire DMA_RD = DMAEN & ~DMADIR;
-wire DMA_WR = DMAEN & DMADIR;
+//State 0 input condistions
+wire s0a = DMAENA & DMADIR & FIFOEMPTY & ~FIFOFULL & FLUSHFIFO & ~LASTWORD; //E0
+wire s0b = DMAENA & DMADIR & ~FIFOEMPTY & FLUSHFIFO; //E2
+wire s0c = DMAENA & DMADIR & FLUSHFIFO & LASTWORD; //E3
+wire s0d = DMADIR & DMAENA & FIFOFULL; //e7
+wire s0e = ~DMADIR & DMAENA; //e13
 
-wire a = DMAENA & DMADIR & FIFOEMPTY & nFIFOFULL & FLUSHFIFO & nLASTWORD)
-wire b = DMAENA & DMADIR &(FIFOFULL | (FLUSHFIFO & LASTWORD) | (~FIFOEMPTY & FLUSHFIFO))
+//State 1 input condistions
+wire s1a = DSACK0 & DSACK1 & DSACK//e9
+wire s1b = DSACK1 //e20
+wire s1c = ~DSACK & ~STERM //e24
+wire s1d = STERM//e39
 
 
 always @(posedge CLK or negedge nRESET)
@@ -89,15 +98,126 @@ begin
         state <= s0;
     end
 	else begin
-        case (state_reg)
-            s0: state_reg <= DMA_RD ? s16 :(a ? s0 : s8)  
-            
-            S8:
+       case (state_reg)
+        s0: begin
+            if (s0a) begin
+                state <= s0;
+            end;
+            if (s0b) begin
+                state <= s8;
+            end;
+             if (s0c) begin
+                state <= s8;
+            end;
+            if (s0d) begin
+                state <= s8;
+            end;
+            if (s0e) begin
+                state <= s16;
+            end;
+        end
+        s1: begin
+            if (s1a) begin
+                state <= s24;
+            end;
+            if (s1b) begin
+                state <= s4;
+            end;
+             if (s1c) begin
+                state <= s1;
+            end;
+            if (s1d) begin
+                state <= s28;
+            end;
+        end;
+        s2: begin
+          
+        end
+        s3: begin
+        
+        end;
+        s4: begin
+        
+        end;
+        s5: begin
+        
+        end;
+        s6: begin
+        
+        end;
+        s7: begin
+        
+        end;
+        s8: begin
+        
+        end;
+        s9: begin
+        
+        end;
+        s10: begin
+                
+        end
+        s11: begin
+        end;
+        s12: begin
+          
+        end
+        s13: begin
+        
+        end;
+        s14: begin
+        
+        end;
+        s15: begin
+        
+        end;
+        s16: begin
+        
+        end;
+        s17: begin
+        
+        end;
+        s18: begin
+        
+        end;
+        s19: begin
+        
+        end;
+        s20: begin
+                
+        end
+        s21: begin
+        end;
+        s22: begin
+          
+        end
+        s23: begin
+        
+        end;
+        s24: begin
+        
+        end;
+        s25: begin
+        
+        end;
+        s26: begin
+        
+        end;
+        s27: begin
+        
+        end;
+        s28: begin
+        
+        end;
+        s29: begin
+        
+        end;
+        s30: begin
 
-            s16:
+        end
+        s31: begin
 
-            s24: state_reg <= s12;
-        endcase
+        end
 	end
 
 end
@@ -128,47 +248,106 @@ begin
     SetOutputDefaults();
     case (state_reg)
         s0: begin
-
+            if (s0a) begin
+                STOPFLUSH <= 1'b1;
+            end
+            if (s0b | s0c | s0d) begin
+                BREQ <= 1'b1;
+            end
         end
+        s1: begin
+            if(s1a) begin
+                DECFIFO <= 1'b1;
+                INCNO   <= 1'b1;
+            end;
+        end;
         s2: begin
-            if (~BGRANT) BGACK <= 1'b1;
-            else if (~CYCLEDONE) BGACK <= 1'b1;
+          
         end
-        s8: begin
-            if (~BGRANT) BGACK <= 1'b1;
-            else if (~CYCLEDONE) BGACK <= 1'b1;
-        end
+        s3: begin
+        
+        end;
+        s4: begin
+        
+        end;
         s5: begin
-            BGACK       <= 1'b1;
-            BRIDGEIN    <= 1'b1;
-        end
+        
+        end;
         s6: begin
-            BRIDGEIN    <= 1'b1;
-        end
+        
+        end;
+        s7: begin
+        
+        end;
+        s8: begin
+        
+        end;
+        s9: begin
+        
+        end;
         s10: begin
-            BRIDGEIN    <= 1'b1;
+                
+        end
+        s11: begin
+        end;
+        s12: begin
+          
         end
         s13: begin
-            BRIDGEIN    <= 1'b1;
-        end
+        
+        end;
         s14: begin
-            BRIDGEIN    <= 1'b1;
-        end
+        
+        end;
+        s15: begin
+        
+        end;
         s16: begin
-            BGACK       <= 1'b1;
+        
+        end;
+        s17: begin
+        
+        end;
+        s18: begin
+        
+        end;
+        s19: begin
+        
+        end;
+        s20: begin
+                
         end
+        s21: begin
+        end;
         s22: begin
-            BRIDGEIN    <= 1'b1;
+          
         end
+        s23: begin
+        
+        end;
+        s24: begin
+        
+        end;
+        s25: begin
+        
+        end;
         s26: begin
-            BRIDGEIN    <= 1'b1;
-        end
+        
+        end;
+        s27: begin
+        
+        end;
+        s28: begin
+        
+        end;
+        s29: begin
+        
+        end;
         s30: begin
-            BGACK       <= 1'b1;
-            BRIDGEIN    <= 1'b1;
+
         end
         s31: begin
-            BRIDGEIN    <= 1'b1;
+
         end
     endcase
 end
