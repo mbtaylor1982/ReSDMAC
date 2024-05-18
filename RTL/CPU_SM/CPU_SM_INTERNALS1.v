@@ -7,9 +7,11 @@
 
 module CPU_SM_INTERNALS1(
 
-    input CLK,              //CLK
+    input CLK,
+    input CLK45,
+    input CLK90,              //CLK
+    input CLK135,
     input nRESET,           //Active low reset
-
     input A1,
     input BGRANT_,
     input BOEQ3,
@@ -53,8 +55,11 @@ module CPU_SM_INTERNALS1(
 reg [4:0] STATE;
 wire [4:0] NEXT_STATE;
 wire [62:0] E;
+reg DSACK1_q;
 
 CPU_SM_inputs u_CPU_SM_inputs(
+    .CLK90        (CLK90        ),
+    .RST_         (nRESET       ),
     .A1           (A1           ),
     .BGRANT_      (BGRANT_      ),
     .BOEQ3        (BOEQ3        ),
@@ -103,7 +108,7 @@ CPU_SM_outputs u_CPU_SM_outputs(
 );
 
 //State Machine
-always @(posedge CLK or negedge nRESET) begin
+always @(posedge CLK90 or negedge nRESET) begin
     if (nRESET == 1'b0)
         STATE <= 5'b00000;
     else

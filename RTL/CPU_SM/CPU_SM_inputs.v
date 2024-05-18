@@ -1,6 +1,8 @@
 //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
 
 module CPU_SM_inputs (
+  input CLK90,
+  input RST_,
   input A1,
   input BGRANT_,
   input BOEQ3,
@@ -23,21 +25,30 @@ module CPU_SM_inputs (
   wire nBGRANT_;
   wire nCYCLEDONE;
   wire nDMADIR;
-  wire nDSACK0_;
-  wire nDSACK1_;
   wire nFIFOEMPTY;
   wire nFIFOFULL;
   wire nLASTWORD;
   wire nDREQ_;
   wire nBOEQ3;
   wire nDMAENA;
+  reg nDSACK0_;
+  reg nDSACK1_;
+
+always @(posedge CLK90 or negedge RST_) begin
+    if (RST_ == 1'b0) begin
+        nDSACK0_ <= 1'b0;
+        nDSACK1_ <= 1'b0;
+    end
+    else begin
+        nDSACK0_ <= ~DSACK0_;
+        nDSACK1_ <= ~DSACK1_;
+    end
+end
 
   assign nA1          = ~A1;
   assign nBGRANT_     = ~BGRANT_;
   assign nCYCLEDONE   = ~CYCLEDONE;
   assign nDMADIR      = ~DMADIR;
-  assign nDSACK0_     = ~DSACK0_;
-  assign nDSACK1_     = ~DSACK1_;
   assign nFIFOEMPTY   = ~FIFOEMPTY;
   assign nFIFOFULL    = ~FIFOFULL;
   assign nLASTWORD    = ~LASTWORD;

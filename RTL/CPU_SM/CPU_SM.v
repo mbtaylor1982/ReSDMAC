@@ -85,7 +85,10 @@ wire STERM_;
 wire LASTWORD;
 
 CPU_SM_INTERNALS1 u_CPU_SM_INTERNALS1 (
-    .CLK            (CLK90          ),  // input, (wire), CLK
+    .CLK            (CLK            ),  // input, (wire), CLK
+    .CLK45          (CLK45          ),  // input, (wire), CLK45
+    .CLK90          (CLK90          ),  // input, (wire), CLK90
+    .CLK135         (CLK135         ),  // input, (wire), CLK135
     .nRESET         (CCRESET_       ),  // input, (wire), Active low reset
     .A1             (A1             ),  // input, (wire), 
     .BGRANT_        (BGRANT_        ),  // input, (wire), 
