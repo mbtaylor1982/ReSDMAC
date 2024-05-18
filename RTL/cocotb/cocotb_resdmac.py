@@ -191,9 +191,9 @@ async def RESDMAC_test(dut):
     dut.PDATA_I.value = 0x0001
     
     #load fifo from scsci
-    m = 32
-    for j in range (0, m):
-    #while (dut.FIFOFULL == 0):
+    #m = 32
+    #for j in range (0, m):
+    while (dut.FIFOFULL == 0):
         dut._id("_DREQ", extended=False).value = 0
         await FallingEdge(dut._id("_DACK", extended=False))
         await FallingEdge(dut._id("_IOR", extended=False))
@@ -215,6 +215,58 @@ async def RESDMAC_test(dut):
         dut._id("_STERM", extended=False).value = 0
         await ClockCycles(dut.SCLK, 1, True)
         dut._id("_STERM", extended=False).value = 1
+        await FallingEdge(dut.SCLK)
+    
+    await ClockCycles(dut.SCLK, 2, True)    
+    await FallingEdge(dut.SCLK)
+    
+    dut.AS_I_.value = 1
+    dut.DS_I_.value = 1
+    dut.R_W.value = 1
+    #stop DMA
+    await read_data(dut, SP_DMA_STROBE_ADR)
+    
+    await read_data(dut, FLUSH_STROBE_ADR)
+    
+     #7 Test DMA READ (from scsi to memory) cycle
+    await reset_dut(dut._id("_RST", extended=False), 40)
+    
+    #Setup DMA Direction to Read from SCSI write to Memory
+    await write_data(dut, CONTR_REG_ADR, (CONTR_DMA_READ | CONTR_INTENA))
+    #start DMA
+    await read_data(dut, ST_DMA_STROBE_ADR)
+    
+    #Set Destination address
+    await write_data(dut, RAMSEY_ACR_REG_ADR, 0x00000000)
+   
+    dut.PDATA_I.value = 0x0021
+    
+    #load fifo from scsci
+    #m = 32
+    #for j in range (0, m):
+    while (dut.FIFOFULL == 0):
+        dut._id("_DREQ", extended=False).value = 0
+        await FallingEdge(dut._id("_DACK", extended=False))
+        await FallingEdge(dut._id("_IOR", extended=False))
+        dut._id("_DREQ", extended=False).value = 1
+        await RisingEdge(dut._id("_DACK", extended=False))
+        await ClockCycles(dut.SCLK, 2, True)
+        dut.PDATA_I.value = dut.PDATA_I.value + 0x1
+    
+    #grant bus to SDMAC    
+    await FallingEdge(dut._id("_BR", extended=False))
+    if (dut.AS_I_.value == 1) and (dut._id("_BGACK_IO", extended=False).value == 1):
+        dut._id("_BG", extended=False).value = 0
+    await FallingEdge(dut._id("_BGACK_IO", extended=False))
+    dut._id("_BG", extended=False).value = 1
+    
+    while (dut.FIFOEMPTY == 0):
+        await FallingEdge(dut.AS_O_)
+        await ClockCycles(dut.SCLK, 2, True)
+        dut._id("_DSACK_I", extended=False).value = 1
+        await ClockCycles(dut.SCLK, 1, True)
+        dut._id("_DSACK_I", extended=False).value = 3
+        await RisingEdge(dut.SCLK)
     
     await ClockCycles(dut.SCLK, 2, True)    
     await FallingEdge(dut.SCLK)
