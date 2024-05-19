@@ -4,7 +4,7 @@ import random
 
 import cocotb
 from cocotb.clock import Clock
-from cocotb.triggers import FallingEdge, RisingEdge, Timer, ClockCycles
+from cocotb.triggers import FallingEdge, RisingEdge, Edge, Timer, ClockCycles
 from cocotb.types import LogicArray
 
 WTC_REG_ADR = 0x01
@@ -102,6 +102,43 @@ async def write_data(dut, addr, data):
     dut.ADDR.value = 0
     dut.DATA_I.value = 0
     dut._id("_CS", extended=False).value = 1
+    
+async def FillFIFOFromSCSI(dut, initialValue):
+    
+    dut.PDATA_I.value = initialValue
+    
+    #load fifo from scsci
+    while (dut.FIFOFULL == 0):
+        dut._id("_DREQ", extended=False).value = 0
+        await FallingEdge(dut._id("_DACK", extended=False))
+        await FallingEdge(dut._id("_IOR", extended=False))
+        dut._id("_DREQ", extended=False).value = 1
+        await RisingEdge(dut._id("_DACK", extended=False))
+        await ClockCycles(dut.SCLK, 1, True)
+        dut.PDATA_I.value = dut.PDATA_I.value + 0x1
+        await RisingEdge(dut.SCLK)
+
+async def wait_for_bus_release(dut):
+    await RisingEdge(dut._id("_BGACK_IO", extended=False))
+    await RisingEdge(dut.SCLK)
+    await ClockCycles(dut.SCLK, 2, True)
+
+async def wait_for_bus_grant(dut):
+    await FallingEdge(dut._id("_BR", extended=False))
+    if (dut.AS_I_.value == 1) and (dut._id("_BGACK_IO", extended=False).value == 1):
+        dut._id("_BG", extended=False).value = 0
+    await FallingEdge(dut._id("_BGACK_IO", extended=False))
+    dut._id("_BG", extended=False).value = 1
+    await FallingEdge(dut.SCLK)
+
+async def XferFIFO2Mem(dut,TermSignal):
+    while (dut.FIFOEMPTY == 0):
+        await FallingEdge(dut.AS_O_)
+        await ClockCycles(dut.SCLK, 2, True)
+        dut._id(TermSignal, extended=False).value = 0
+        await RisingEdge(dut.AS_O_)
+        dut._id(TermSignal, extended=False).value = 1
+        await RisingEdge(dut.SCLK)
    
     
 
@@ -175,109 +212,77 @@ async def RESDMAC_test(dut):
     data = await read_data(dut, SSPB_DATA_ADR)
     assert data == TEST_PATTERN2, 'SSPBDAT Register not returning expected data'
     
-    #7 Test DMA READ (from scsi to memory) cycle
+    #7 Test DMA READ (from scsi to memory) 32 bit sterm cycle
     await reset_dut(dut._id("_RST", extended=False), 40)
-
-
-    
     #Setup DMA Direction to Read from SCSI write to Memory
     await write_data(dut, CONTR_REG_ADR, (CONTR_DMA_READ | CONTR_INTENA))
     #start DMA
     await read_data(dut, ST_DMA_STROBE_ADR)
-    
     #Set Destination address
     await write_data(dut, RAMSEY_ACR_REG_ADR, 0x00000000)
-   
-    dut.PDATA_I.value = 0x0001
-    
-    #load fifo from scsci
-    #m = 32
-    #for j in range (0, m):
-    while (dut.FIFOFULL == 0):
-        dut._id("_DREQ", extended=False).value = 0
-        await FallingEdge(dut._id("_DACK", extended=False))
-        await FallingEdge(dut._id("_IOR", extended=False))
-        dut._id("_DREQ", extended=False).value = 1
-        await RisingEdge(dut._id("_DACK", extended=False))
-        await ClockCycles(dut.SCLK, 2, True)
-        dut.PDATA_I.value = dut.PDATA_I.value + 0x1
-    
-    #grant bus to SDMAC    
-    await FallingEdge(dut._id("_BR", extended=False))
-    if (dut.AS_I_.value == 1) and (dut._id("_BGACK_IO", extended=False).value == 1):
-        dut._id("_BG", extended=False).value = 0
-    await FallingEdge(dut._id("_BGACK_IO", extended=False))
-    dut._id("_BG", extended=False).value = 1
-    
-    while (dut.FIFOEMPTY == 0):
-        await FallingEdge(dut.AS_O_)
-        await ClockCycles(dut.SCLK, 2, True)
-        dut._id("_STERM", extended=False).value = 0
-        await ClockCycles(dut.SCLK, 1, True)
-        dut._id("_STERM", extended=False).value = 1
-        await FallingEdge(dut.SCLK)
-    
-    await ClockCycles(dut.SCLK, 2, True)    
-    await FallingEdge(dut.SCLK)
+       
+    await FillFIFOFromSCSI(dut, 0x0001)
+    await wait_for_bus_grant(dut)
+    await XferFIFO2Mem(dut, "_STERM")
+    await wait_for_bus_release(dut)
     
     dut.AS_I_.value = 1
     dut.DS_I_.value = 1
     dut.R_W.value = 1
     #stop DMA
     await read_data(dut, SP_DMA_STROBE_ADR)
-    
+    #Flush
     await read_data(dut, FLUSH_STROBE_ADR)
     
-     #7 Test DMA READ (from scsi to memory) cycle
+    #8 Test DMA READ (from scsi to memory) 16 bit DSACK1 cycle
     await reset_dut(dut._id("_RST", extended=False), 40)
-    
     #Setup DMA Direction to Read from SCSI write to Memory
     await write_data(dut, CONTR_REG_ADR, (CONTR_DMA_READ | CONTR_INTENA))
     #start DMA
     await read_data(dut, ST_DMA_STROBE_ADR)
-    
     #Set Destination address
     await write_data(dut, RAMSEY_ACR_REG_ADR, 0x00000000)
-   
-    dut.PDATA_I.value = 0x0021
+    #Perform DMA Xfer
+    await FillFIFOFromSCSI(dut, 0x0021)
+    await wait_for_bus_grant(dut)
+    await XferFIFO2Mem(dut, "DSK1_IN_")
+    await wait_for_bus_release(dut)
     
-    #load fifo from scsci
-    #m = 32
-    #for j in range (0, m):
-    while (dut.FIFOFULL == 0):
-        dut._id("_DREQ", extended=False).value = 0
-        await FallingEdge(dut._id("_DACK", extended=False))
-        await FallingEdge(dut._id("_IOR", extended=False))
-        dut._id("_DREQ", extended=False).value = 1
-        await RisingEdge(dut._id("_DACK", extended=False))
-        await ClockCycles(dut.SCLK, 2, True)
-        dut.PDATA_I.value = dut.PDATA_I.value + 0x1
+    dut.AS_I_.value = 1
+    dut.DS_I_.value = 1
+    dut.R_W.value = 1
+    #stop DMA
+    await read_data(dut, SP_DMA_STROBE_ADR)
+    #Flush
+    await read_data(dut, FLUSH_STROBE_ADR)
     
-    #grant bus to SDMAC    
-    await FallingEdge(dut._id("_BR", extended=False))
-    if (dut.AS_I_.value == 1) and (dut._id("_BGACK_IO", extended=False).value == 1):
-        dut._id("_BG", extended=False).value = 0
-    await FallingEdge(dut._id("_BGACK_IO", extended=False))
-    dut._id("_BG", extended=False).value = 1
     
+    #9 Test DMA READ (from scsi to memory) 32 bit DSACK cycle
+    await reset_dut(dut._id("_RST", extended=False), 40)
+    #Setup DMA Direction to Read from SCSI write to Memory
+    await write_data(dut, CONTR_REG_ADR, (CONTR_DMA_READ | CONTR_INTENA))
+    #start DMA
+    await read_data(dut, ST_DMA_STROBE_ADR)
+    #Set Destination address
+    await write_data(dut, RAMSEY_ACR_REG_ADR, 0x00000000)
+    #Perform DMA Xfer
+    await FillFIFOFromSCSI(dut, 0x0031)
+    await wait_for_bus_grant(dut)
     while (dut.FIFOEMPTY == 0):
         await FallingEdge(dut.AS_O_)
         await ClockCycles(dut.SCLK, 2, True)
-        dut._id("_DSACK_I", extended=False).value = 1
-        await ClockCycles(dut.SCLK, 1, True)
+        dut._id("_DSACK_I", extended=False).value = 0
+        await RisingEdge(dut.AS_O_)
         dut._id("_DSACK_I", extended=False).value = 3
         await RisingEdge(dut.SCLK)
-    
-    await ClockCycles(dut.SCLK, 2, True)    
-    await FallingEdge(dut.SCLK)
+    await wait_for_bus_release(dut)
     
     dut.AS_I_.value = 1
     dut.DS_I_.value = 1
     dut.R_W.value = 1
     #stop DMA
     await read_data(dut, SP_DMA_STROBE_ADR)
-    
+    #Flush
     await read_data(dut, FLUSH_STROBE_ADR)
-    
-        
-    
+
+
