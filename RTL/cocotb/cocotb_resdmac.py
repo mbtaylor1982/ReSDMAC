@@ -127,11 +127,26 @@ async def FillFIFOFromMem(dut, initialValue,TermSignal):
         await ClockCycles(dut.SCLK, 1, True)
         await RisingEdge(dut.SCLK)
         dut._id(TermSignal, extended=False).value = 0
-        await RisingEdge(dut.AS_O_)
+        await RisingEdge(dut.AS_O_)        
         dut._id(TermSignal, extended=False).value = 1
         dut.DATA_I.value = dut.DATA_I.value + 0x10101010
         await RisingEdge(dut.SCLK)
-
+        
+async def f2s(dut):
+    dut._log.info("f2s started")
+    await RisingEdge(dut.AS_O_)
+    await RisingEdge(dut.SCLK)    
+    while (dut.FIFOEMPTY == 0):
+        dut._log.info("f2s fifo is NOT empty")
+        dut._id("_DREQ", extended=False).value = 0
+        await FallingEdge(dut._id("_DACK", extended=False))
+        await FallingEdge(dut._id("_IOW", extended=False))
+        dut._id("_DREQ", extended=False).value = 1
+        await RisingEdge(dut._id("_DACK", extended=False))
+        await ClockCycles(dut.SCLK, 1, True)
+        await RisingEdge(dut.SCLK)
+    dut._log.info("f2s fifo is empty")
+    dut._log.info("f2s ended")
 
 async def wait_for_bus_release(dut):
     await RisingEdge(dut._id("_BGACK_IO", extended=False))
@@ -231,11 +246,11 @@ async def RESDMAC_test(dut):
     await reset_dut(dut._id("_RST", extended=False), 40)
     #Setup DMA Direction to Read from SCSI write to Memory
     await write_data(dut, CONTR_REG_ADR, (CONTR_DMA_READ | CONTR_INTENA))
-    #start DMA
-    await read_data(dut, ST_DMA_STROBE_ADR)
     #Set Destination address
     await write_data(dut, RAMSEY_ACR_REG_ADR, 0x00000000)
-       
+    #start DMA
+    await read_data(dut, ST_DMA_STROBE_ADR)
+           
     await FillFIFOFromSCSI(dut, 0x0001)
     await wait_for_bus_grant(dut)
     await XferFIFO2Mem(dut, "_STERM")
@@ -253,10 +268,10 @@ async def RESDMAC_test(dut):
     await reset_dut(dut._id("_RST", extended=False), 40)
     #Setup DMA Direction to Read from SCSI write to Memory
     await write_data(dut, CONTR_REG_ADR, (CONTR_DMA_READ | CONTR_INTENA))
-    #start DMA
-    await read_data(dut, ST_DMA_STROBE_ADR)
     #Set Destination address
     await write_data(dut, RAMSEY_ACR_REG_ADR, 0x00000000)
+    #start DMA
+    await read_data(dut, ST_DMA_STROBE_ADR)
     #Perform DMA Xfer
     await FillFIFOFromSCSI(dut, 0x0021)
     await wait_for_bus_grant(dut)
@@ -310,11 +325,11 @@ async def RESDMAC_test(dut):
     await read_data(dut, ST_DMA_STROBE_ADR)
     
     dut._id("_DREQ", extended=False).value = 0
-        
+    f2sTask = cocotb.start_soon(f2s(dut))
     await wait_for_bus_grant(dut)
     await FillFIFOFromMem(dut, 0x11121314, "_STERM")
-    await wait_for_bus_release(dut)
-    await RisingEdge(dut.FIFOEMPTY)
+    await wait_for_bus_release(dut)    
+    await f2sTask
     
     dut.AS_I_.value = 1
     dut.DS_I_.value = 1
