@@ -172,7 +172,7 @@ begin
             DACK        <= 1'b1;
         end
         F2S_4: begin
-            F2S         <= 1'b1;
+            //F2S         <= 1'b1;
             INCBO       <= 1'b1;
             if (BOEQ3) begin
                 INCNO   <= 1'b1;
