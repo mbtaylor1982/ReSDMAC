@@ -91,6 +91,31 @@ wire s1b = DSACK1 //e20
 wire s1c = ~DSACK & ~STERM //e24
 wire s1d = STERM//e39
 
+//State 2 input condistions
+wire s2a = CYCLEDONE & ~A1 & ~BGRANT_//e11
+wire s2b = CYCLEDONE & A1 & ~BGRANT_//e12
+wire s2c = BGRANT_//e16
+wire s2d = ~CYCLEDONE//e17
+
+//State 3 input condistions
+wire s3a = ~DSACK & STERM_//e29
+wire s3b = ~DSACK1_ & DSACK //e30
+wire s3c = ~STERM_//e42
+
+//State 4 input condistions
+wire s4a = nDMADIR & DMAENA//e13
+wire s4b = //e53
+
+//State 5 input condistions
+wire s5a = DSACK//e50
+wire s5b = ~DSACK//e50
+
+//State 6 has no sub states
+
+//State 7 input condistions
+wire s7a = DSACK & ~DSACK1_//e28
+wire s7b = ~STERM_//e33
+wire s7c = ~DSACK & STERM_//e33
 
 always @(posedge CLK or negedge nRESET)
 begin
@@ -131,21 +156,60 @@ begin
             end;
         end;
         s2: begin
+             if (s2a) begin
+                state <= s18;
+            end;
+            if (s2b) begin
+                state <= s9;
+            end;
+             if (s2c) begin
+                state <= s2;
+            end;
+            if (s2d) begin
+                state <= s2;
+            end;
           
         end
         s3: begin
-        
+            if (s3a) begin
+                state <= s3;
+            end;
+            if (s3b) begin
+                state <= s28;
+            end;
+             if (s3c) begin
+                state <= s28;
+            end;
         end;
         s4: begin
-        
+            if (s4a) begin
+                state <= s16;
+            end;
+            if (s4b) begin
+                state <= s17;
+            end;
         end;
         s5: begin
-        
+            if (s5a) begin
+                state <= s11;
+            end;
+            if (s5b) begin
+                state <= s5;
+            end;
         end;
         s6: begin
-        
+            state <= s11;
         end;
         s7: begin
+            if (s7a) begin //DSACK & ~DSACK1_ e28
+                state <= s28;
+            end; 
+            if (s7b) begin //~STERM e33
+                state <= s28;
+            end;
+            if (sc) begin // ~DSACK & STERM_ e33
+                state <= s7;
+            end;  
         
         end;
         s8: begin
@@ -227,8 +291,8 @@ task SetOutputDefaults();
         CPU2S       <= 1'b0;
         INCNI       <= 1'b0;
         SIZE1       <= 1'b0;
-        PAS         <= 1'b0;,
-        F2CPUL      <= 1'b0;,
+        PAS         <= 1'b0;
+        F2CPUL      <= 1'b0;
         BRIDGEOUT   <= 1'b0;
         PLLW        <= 1'b0;
         PLHW        <= 1'b0;
@@ -257,27 +321,112 @@ begin
         end
         s1: begin
             if(s1a) begin
-                DECFIFO <= 1'b1;
                 INCNO   <= 1'b1;
+                DECFIFO <= 1'b1;
             end;
+            if(s1b) begin
+                F2CPUL <= 1'b1;
+                F2CPUH <= 1'b1;
+            end;
+            if(s1c) begin
+                PAS <= 1'b1;
+                PDS <= 1'b1;
+                F2CPUL <= 1'b1;
+                F2CPUH <= 1'b1;
+            end;
+            if (s1d) begin
+                F2CPUL  <= 1'b1;
+                F2CPUH  <= 1'b1;
+                INCNO   <= 1'b1;
+                DECFIFO <= 1'b1;
+            end
         end;
         s2: begin
+            if(s2a) begin
+                BREQ <= 1'b1;
+            end;
+            if(s2b) begin
+                BREQ <= 1'b1;
+            end;
+            if(s2c) begin
+                BREQ <= 1'b1;
+            end;
+            if (s2d) begin
+             BREQ <= 1'b1;
+            end
           
         end
         s3: begin
+            if(s3a) begin
+                SIZE1       <= 1'b1;
+                PAS         <= 1'b1;
+                PDS         <= 1'b1;
+                F2CPUL      <= 1'b1;
+                BRIDGEOUT   <= 1'b1;
+            end;
+            if(s3b) begin
+                SIZE1       <= 1'b1;
+                F2CPUL      <= 1'b1;
+                BRIDGEOUT   <= 1'b1;
+                INCNO       <= 1'b1;
+                DECFIFO     <= 1'b1;
+                
+            end;
+            if(s3c) begin
+                SIZE1       <= 1'b1;
+                F2CPUL      <= 1'b1;
+                BRIDGEOUT   <= 1'b1;
+                INCNO       <= 1'b1;
+                DECFIFO     <= 1'b1;
+            end;
         
         end;
         s4: begin
+            if (s4a) begin
+                //nothing to change on outputs
+            end;
+            if (s4b) begin
+                SIZE1       <= 1'b0; // not sure on this one
+                PAS         <= 1'b1;
+                F2CPUL      <= 1'b1;
+                BRIDGEOUT   <= 1'b1;
+            end;
         
         end;
         s5: begin
-        
+            if (s5a) begin //DSACK
+                SIZE1       <= 1'b1;
+                BRIDGEIN <= 1'b1;   
+            end;
+            if (s5b) begin //~DSACK
+                SIZE1       <= 1'b1;
+                PAS         <= 1'b1;
+                PDS         <= 1'b1;
+                INCFIFO     <= 1'b1;
+                DIEH        <= 1'b1;
+                BRIDGEIN    <= 1'b1;
+            end;        
         end;
         s6: begin
-        
+            BRIDGEIN    <= 1'b1;
         end;
         s7: begin
-        
+            if (s7a) begin //DSACK & ~DSACK1_ e28
+                SIZE1       <= 1'b1;
+              
+            end;
+            if (s7b) begin //~STERM e33
+                SIZE1       <= 1'b1;
+                F2CPUL      <= 1'b1;
+                F2CPUH      <= 1'b1;   
+            end;   
+            if (s7c) begin // ~DSACK & STERM_ e33
+                SIZE1       <= 1'b1;
+                PAS         <= 1'b1;
+                PDS         <= 1'b1;
+                F2CPUL      <= 1'b1;
+                F2CPUH      <= 1'b1; 
+            end;       
         end;
         s8: begin
         
