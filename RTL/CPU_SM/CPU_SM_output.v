@@ -44,11 +44,13 @@ assign BREQ_d = (E[2] | E[3] | E[4] | E[5] | E[7] | E[8] | E[10] | E[11] | E[12]
 //SIZE1
 wire SIZE1_X, SIZE1_Y, SIZE1_Z;
 
-assign SIZE1_X = (~(E[62] | E[61] | E[58] | E[56] | E[53] | E[26]) & ~((E[25] | E[28] | E[30] | E[50] ) & DSACK) & ~(E[50]  & ~DSACK));
+//assign SIZE1_X = (~(E[62] | E[61] | E[58] | E[56] | E[53] | E[26]) & ~((E[25] | E[28] | E[30] | E[50] ) & DSACK) & ~(E[50]  & ~DSACK));
+assign SIZE1_X = ~((E[62] | E[61] | E[58] | E[56] | E[53] | E[26]) | ((E[25] | E[28] | E[30] | E[50] ) & DSACK) | (E[50]  & ~DSACK));
 assign SIZE1_Y = (~STERM_ & (E[36] | E[33] | E[40] | E[42] | E[46] | E[51] ));
-assign SIZE1_Z = ((~(~(E[23]  & DSACK) & ~(~DSACK & (E[29]  | E[33]  | E[51] ))) |(E[40]  | E[36]  | E[46] )) & STERM_);
 
-assign SIZE1_d = (SIZE1_X | SIZE1_Y | SIZE1_Z);
+assign SIZE1_Z = (( ((E[23]  & DSACK) | (~DSACK & (E[29]  | E[33]  | E[51] ))) | (E[40]  | E[36]  | E[46] )) & STERM_);
+
+assign SIZE1_d = ~(~SIZE1_X & ~SIZE1_Y & ~SIZE1_Z);
 
 //PAS
 wire PAS_X, PAS_Y;
@@ -89,30 +91,29 @@ assign PDS_d = PDS_X | PDS_Y;
 //F2CPUL
 wire F2CPUL_X, F2CPUL_Y, F2CPUL_Z;
 
-assign F2CPUL_X = (~(E[58] | E[53] | E[34] | E[45] | E[26] | E[21]) & ~((E[20] | E[30] | E[28]) & DSACK));
-assign F2CPUL_Y = (~(~STERM_ & (E[36] | E[33] | E[39] | E[40] | E[42] | E[37])));
-assign F2CPUL_Z = (~(((~DSACK & (E[24]  | E[29]  | E[33] )) | (E[37] | E[40]  | E[36] )) & STERM_));
+assign F2CPUL_X = ((E[58] | E[53] | E[34] | E[45] | E[26] | E[21]) | ((E[20] | E[30] | E[28]) & DSACK));
+assign F2CPUL_Y = (~STERM_ & (E[36] | E[33] | E[39] | E[40] | E[42] | E[37]));
+assign F2CPUL_Z = (((~DSACK & (E[24]  | E[29]  | E[33] )) | (E[37] | E[40]  | E[36] )) & STERM_);
 
-assign F2CPUL_d = (~(F2CPUL_X & F2CPUL_Y & F2CPUL_Z)); 
+assign F2CPUL_d = (F2CPUL_X | F2CPUL_Y | F2CPUL_Z);
 
 
 //F2CPUH
 wire F2CPUH_X, F2CPUH_Y, F2CPUH_Z;
 
-assign F2CPUH_X = (~(E[58] | E[34] | E[45] | E[26] | E[21]) & ~((E[20] | E[28]) & DSACK));
-assign F2CPUH_Y = (~(~STERM_ & (E[36] | E[33] | E[39] | E[37])));
-assign F2CPUH_Z = (~(((~DSACK & (E[24]  | E[33] )) | (E[37] | E[36] )) & STERM_));
+assign F2CPUH_X = ((E[58] | E[34] | E[45] | E[26] | E[21]) | ((E[20] | E[28]) & DSACK));
+assign F2CPUH_Y = (~STERM_ & (E[36] | E[33] | E[39] | E[37]));
+assign F2CPUH_Z = (((~DSACK & (E[24]  | E[33] )) | (E[37] | E[36] )) & STERM_);
 
-assign F2CPUH_d = (~(F2CPUH_X & F2CPUH_Y & F2CPUH_Z)); 
+assign F2CPUH_d = (F2CPUH_X | F2CPUH_Y | F2CPUH_Z);
 
 //BRIDGEOUT
 wire BRIDGEOUT_X, BRIDGEOUT_Y, BRIDGEOUT_Z;
+assign BRIDGEOUT_X = (E[30] & DSACK);
+assign BRIDGEOUT_Y = (E[42] & ~STERM_);
+assign BRIDGEOUT_Z = (E[29] & ~DSACK & STERM_) ;
+assign BRIDGEOUT_d = (E[40] | E[53] |BRIDGEOUT_X | BRIDGEOUT_Y | BRIDGEOUT_Z );
 
-assign BRIDGEOUT_X = (~E[53]  & ~(E[30]  & DSACK));
-assign BRIDGEOUT_Y = (~(~STERM_ & (E[42] | E[40])));
-assign BRIDGEOUT_Z = (~(((~DSACK & E[29] )| E[40] ) & STERM_));
-
-assign BRIDGEOUT_d = (~(BRIDGEOUT_X & BRIDGEOUT_Y & BRIDGEOUT_Z));
 
 //PLLW
 wire PLLW_X, PLLW_Y;
@@ -146,11 +147,11 @@ assign STOPFLUSH_d = (E[0] | E[4] | E[5] | E[21] | E[26] | E[27]);
 //DIEH
 wire DIEH_X, DIEH_Y, DIEH_Z;
 
-assign DIEH_X = ~((E[61] | E[60] | E[62] | E[31] | E[56] | E[48]) | ((E[25] | E[50]) & DSACK) | (E[50]  & ~DSACK));
-assign DIEH_Y = (~(~STERM_ & (E[43] | E[46] | E[51])));
-assign DIEH_Z = (~(((~DSACK & (E[51]  | E[43] )) |(E[46]  | E[57] )) & STERM_));
+assign DIEH_X = ((E[61] | E[60] | E[62] | E[31] | E[56] | E[48]) | ((E[25] | E[50]) & DSACK) | (E[50]  & ~DSACK));
+assign DIEH_Y = (~STERM_ & (E[43] | E[46] | E[51]));
+assign DIEH_Z = (((~DSACK & (E[51]  | E[43] )) |(E[46]  | E[57] )) & STERM_);
 
-assign DIEH_d = (~(DIEH_X & DIEH_Y & DIEH_Z));
+assign DIEH_d = (DIEH_X | DIEH_Y | DIEH_Z);
 
 //DIEL
 wire DIEL_X, DIEL_Y, DIEL_Z;
