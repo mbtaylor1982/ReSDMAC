@@ -118,6 +118,21 @@ async def FillFIFOFromSCSI(dut, initialValue):
         dut.PDATA_I.value = dut.PDATA_I.value + 0x1
         await RisingEdge(dut.SCLK)
 
+async def FillFIFOFromMem(dut, initialValue,TermSignal):
+    dut.DATA_I.value = initialValue
+
+    #load fifo from scsci
+    while (dut.FIFOFULL == 0):
+        await FallingEdge(dut.AS_O_)
+        await ClockCycles(dut.SCLK, 1, True)
+        await RisingEdge(dut.SCLK)
+        dut._id(TermSignal, extended=False).value = 0
+        await RisingEdge(dut.AS_O_)
+        dut._id(TermSignal, extended=False).value = 1
+        dut.DATA_I.value = dut.DATA_I.value + 0x10101010
+        await RisingEdge(dut.SCLK)
+
+
 async def wait_for_bus_release(dut):
     await RisingEdge(dut._id("_BGACK_IO", extended=False))
     await RisingEdge(dut.SCLK)
@@ -261,10 +276,10 @@ async def RESDMAC_test(dut):
     await reset_dut(dut._id("_RST", extended=False), 40)
     #Setup DMA Direction to Read from SCSI write to Memory
     await write_data(dut, CONTR_REG_ADR, (CONTR_DMA_READ | CONTR_INTENA))
-    #start DMA
-    await read_data(dut, ST_DMA_STROBE_ADR)
     #Set Destination address
     await write_data(dut, RAMSEY_ACR_REG_ADR, 0x00000000)
+    #start DMA
+    await read_data(dut, ST_DMA_STROBE_ADR)
     #Perform DMA Xfer
     await FillFIFOFromSCSI(dut, 0x0031)
     await wait_for_bus_grant(dut)
@@ -284,5 +299,31 @@ async def RESDMAC_test(dut):
     await read_data(dut, SP_DMA_STROBE_ADR)
     #Flush
     await read_data(dut, FLUSH_STROBE_ADR)
+    
+    #10 Test DMA WRITE (from memory to SCSI) 32 bit sterm cycle
+    await reset_dut(dut._id("_RST", extended=False), 40)
+    #Setup DMA Direction to Read from SCSI write to Memory
+    await write_data(dut, CONTR_REG_ADR, (CONTR_DMA_WRITE | CONTR_INTENA))
+    #Set Destination address
+    await write_data(dut, RAMSEY_ACR_REG_ADR, 0x00000000)
+    #start DMA
+    await read_data(dut, ST_DMA_STROBE_ADR)
+    
+    dut._id("_DREQ", extended=False).value = 0
+        
+    await wait_for_bus_grant(dut)
+    await FillFIFOFromMem(dut, 0x11121314, "_STERM")
+    await wait_for_bus_release(dut)
+    await RisingEdge(dut.FIFOEMPTY)
+    
+    dut.AS_I_.value = 1
+    dut.DS_I_.value = 1
+    dut.R_W.value = 1
+    #stop DMA
+    await read_data(dut, SP_DMA_STROBE_ADR)
+    #Flush
+    await read_data(dut, FLUSH_STROBE_ADR)
+    
+   
 
 
