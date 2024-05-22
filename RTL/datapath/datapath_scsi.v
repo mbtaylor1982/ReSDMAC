@@ -43,8 +43,8 @@ assign SCSI_OUT = (F2S | CPU2S);
 assign SCSI_IN  = (S2F | S2CPU);
 
 datapath_24dec u_datapath_24dec(
-    .A  (BO0     ),
-    .B  (BO1     ),
+    .A  (BO1     ),
+    .B  (BO0     ),
     .En (F2S     ),
     .D0 (F2S_UUD ),
     .D1 (F2S_UMD ),
