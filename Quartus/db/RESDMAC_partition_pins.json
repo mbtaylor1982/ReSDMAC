@@ -256,11 +256,15 @@
 					"strict" : false
 				},
 				{
+					"name" : "_STERM",
+					"strict" : false
+				},
+				{
 					"name" : "_BERR",
 					"strict" : false
 				},
 				{
-					"name" : "_STERM",
+					"name" : "ADDR[3]",
 					"strict" : false
 				},
 				{
@@ -268,7 +272,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "ADDR[4]",
+					"name" : "ADDR[6]",
 					"strict" : false
 				},
 				{
@@ -280,11 +284,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "ADDR[3]",
-					"strict" : false
-				},
-				{
-					"name" : "ADDR[6]",
+					"name" : "ADDR[4]",
 					"strict" : false
 				},
 				{
