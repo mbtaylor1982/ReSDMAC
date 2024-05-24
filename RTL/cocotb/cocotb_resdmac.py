@@ -331,6 +331,13 @@ async def RESDMAC_test(dut):
     await wait_for_bus_release(dut)    
     await f2sTask
     
+    dut._id("_DREQ", extended=False).value = 0
+    f2sTask = cocotb.start_soon(f2s(dut))
+    await wait_for_bus_grant(dut)
+    await FillFIFOFromMem(dut, 0x11121314, "_STERM")
+    await wait_for_bus_release(dut)    
+    await f2sTask
+    
     dut.AS_I_.value = 1
     dut.DS_I_.value = 1
     dut.R_W.value = 1
