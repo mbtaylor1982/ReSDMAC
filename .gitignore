@@ -1,7 +1,6 @@
 
 *.v.out
-/Eagle/SDMAC.s#*
-/Eagle/SDMAC.b#*
+
 /RTL/build
 Quartus/db/*.tdf
 /sim_build
@@ -49,3 +48,5 @@ bom/
 out/
 
 
+/Quartus/output_files
+/RTL/cocotb/__pycache__/*.pyc
