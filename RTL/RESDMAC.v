@@ -68,7 +68,7 @@ assign DATA_IO = ((R_W & ~H_0C) | OWN) ? DATA_O : 32'hzzzzzzzz;
 wire [15:0] PDATA_I;
 wire [15:0] PDATA_O;
 assign PDATA_I = PD_PORT;
-assign PD_PORT = PD_OE ? 16'hzzzz: PDATA_O;
+assign PD_PORT = PD_OE ? PDATA_O: 16'hzzzz;
 
 wire [1:0] _DSACK_I;
 assign _DSACK_I = _DSACK_IO;
@@ -144,7 +144,6 @@ wire A3;
 wire DSK0_IN_;
 wire DSK1_IN_;
 tri1 _BGACK_I;
-wire DATA_OE_;
 wire dsack_int;
 wire PD_OE;
 wire INT_O_;
@@ -310,7 +309,6 @@ datapath u_datapath(
     .F2CPUL    (F2CPUL      ),
     .F2CPUH    (F2CPUH      ),
     .DS_O_     (DS_O_       ),
-    .DATA_OE_  (DATA_OE_    ),
     .PD_OE     (PD_OE       )
 );
 
@@ -331,16 +329,13 @@ always @(negedge SCLK) begin
     LHW     <= PLHW;
 end
 
-
-
-//assign DATA_OE_ = ((AS_I_ | _CS | ~ACR_WR) & (AS_I_ | _CS | H_0C) & _BGACK_IO);
 assign _BGACK_I =  _BGACK_IO;
 
 //System Outputs
 assign _DMAEN = ~OWN;
 assign _BR = BREQ ?  1'b0 : 1'bz;
 assign _BGACK_IO = OWN ? 1'b0 : 1'bz;
-assign _SIZ1 = OWN ? SIZE1_CPUSM : 1'b0;
+assign _SIZ1 = OWN ? SIZE1_CPUSM : 1'bz;
 
 assign dsack_int = (REG_DSK_ & LS2CPU);
 

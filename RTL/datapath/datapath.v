@@ -9,12 +9,12 @@
 module datapath (
     input CLK, CLK90, CLK135,
     input [31:0] DATA_I,
-    
+
     input [15:0] PD_IN,
     output [15:0] PD_OUT,
 
 
-    input [31:0] FIFO_OD,    
+    input [31:0] FIFO_OD,
     input [31:0] REG_OD,
 
     input PAS,
@@ -23,17 +23,16 @@ module datapath (
     input RW,
     input nOWN_,
     input DMADIR,
-    
+
     input BRIDGEIN,
     input BRIDGEOUT,
-    
-    input DIEH,    
+
+    input DIEH,
     input DIEL,
 
-    
     input LS2CPU,
     input S2CPU,
-    
+
     input S2F,
 
     input F2S,
@@ -47,11 +46,10 @@ module datapath (
     input F2CPUH,
 
     input DS_O_,
-  
+
     output [31:0] MID,
     output [31:0] FIFO_ID,
     output [31:0] DATA_O,
-    output DATA_OE_,
     output PD_OE
 );
 wire [31:0] MOD_SCSI;
@@ -88,11 +86,11 @@ datapath_output u_datapath_output(
     .F2CPUL     (F2CPUL     ),
     .F2CPUH     (F2CPUH     ),
     .S2CPU      (S2CPU      ),
-    .PAS        (PAS        )    
+    .PAS        (PAS        )
 );
 
 datapath_scsi u_datapath_scsi(
-    .CLK            (CLK       ), 
+    .CLK            (CLK       ),
     .SCSI_DATA_IN   (PD_IN     ),
     .SCSI_DATA_OUT  (PD_OUT    ),
     .SCSI_OD        (SCSI_OD   ),
@@ -112,13 +110,10 @@ datapath_scsi u_datapath_scsi(
 
 assign DOEL_ = ~((~DS_I_ & nDMAC_ & RW) | (nOWN_ & DMADIR));
 assign DOEH_ = DOEL_;
-assign DATA_OE_ = ~DOEH_;
 
 assign bBRIDGEIN = BRIDGEIN;
 assign bDIEH = (DIEH|CPU2S);
-
 assign bDIEL = (DIEL|CPU2S);
-
 
 assign MOD_TX = S2CPU ? MOD_SCSI : REG_OD;
 assign FIFO_ID = S2F ? SCSI_OD: CPU_OD;
