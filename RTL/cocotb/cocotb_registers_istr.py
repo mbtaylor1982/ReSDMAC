@@ -61,8 +61,9 @@ async def registers_istr_test(dut):
     dut.ISTR_RD_.value = 1
     await ClockCycles(dut.CLK, 2, True)
 
-    await reset_dut(dut.CLR_INT_ , 25)
+    await reset_dut(dut.CLR_INT_ , 40)
     dut._log.debug("After CLR_INT_")
+    await ClockCycles(dut.CLK, 1, True)
 
     assert dut.INT_F.value == 0 ,"INT_F != 0  after CLR_INT_"
     assert dut.INTS.value == 0 ,"INTS != 0  after CLR_INT_"
@@ -88,8 +89,9 @@ async def registers_istr_test(dut):
     dut.INTA_I.value = 0
     await ClockCycles(dut.CLK, 2, True)
     
-    await reset_dut(dut.CLR_INT_ , 25)
+    await reset_dut(dut.CLR_INT_ , 40)
     dut._log.debug("After CLR_INT_")
+    await ClockCycles(dut.CLK, 1, True)
     
     assert dut.INT_F.value == 0 ,"INT_F != 0  after CLR_INT_"
     assert dut.INTS.value == 0 ,"INTS != 0  after CLR_INT_"
