@@ -69,6 +69,7 @@ reg [4:0] state_reg;
 
 wire START_S2F = (~CDREQ_ & ~FIFOFULL & DMADIR & ~CCPUREQ & ~RIFIFO_o);
 wire START_F2S = (~CDREQ_ & ~FIFOEMPTY & ~DMADIR & ~CCPUREQ & ~RDFIFO_o);
+wire START_DMA_WR = (~DMADIR & ~CCPUREQ);
 
 always @(posedge CLK or negedge nRESET)
 begin
@@ -77,8 +78,21 @@ begin
     end
 	else begin
         case (state_reg)
-            IDLE_DMA_RD: state_reg <= START_S2F ? S2F_1 : (CCPUREQ ? CPUREQ : ((~DMADIR & ~CCPUREQ) ? IDLE_DMA_WR : IDLE_DMA_RD));
-            IDLE_DMA_WR: state_reg <= START_F2S ? F2S_1 : (CCPUREQ ? CPUREQ : IDLE_DMA_RD);
+            IDLE_DMA_RD: begin
+                case ({START_S2F, CCPUREQ, START_DMA_WR})
+                    3'b100  : state_reg <= S2F_1;
+                    3'b010  : state_reg <= CPUREQ;
+                    3'b001  : state_reg <= IDLE_DMA_WR;
+                    default : state_reg <= IDLE_DMA_RD;
+                endcase
+            end
+            IDLE_DMA_WR: begin
+                case ({START_F2S, CCPUREQ})
+                    2'b10   : state_reg <= F2S_1;
+                    2'b01   : state_reg <= CPUREQ;
+                    default : state_reg <= IDLE_DMA_RD;
+                endcase
+            end 
             CPUREQ: state_reg <= RW ? S2C_1 : C2S_1;
             //CPU to SCSI
             C2S_1: state_reg <= C2S_2;

@@ -128,7 +128,7 @@ end
 
 //Clocked outputs.
 always @(posedge CLK90 or negedge CRESET_) begin
-     if (~CRESET_)
+    if (~CRESET_)
     begin
         CPU2S_o     <= 1'b0;
         DACK_o      <= 1'b0;

@@ -2,7 +2,7 @@
 
 module scsi_sm_outputs  (
   input [27:0] E,
-  
+
   output DACK,
   output INCBO,
   output INCNI,
@@ -17,13 +17,13 @@ module scsi_sm_outputs  (
   output CPU2S,
   output [4:0] NEXT_STATE
 );
-  //Next-state equations 
+  //Next-state equations
   assign NEXT_STATE[0] = (E[8] | E[9] | E[17] | E[19] | E[23] | E[25] | E[26]);
   assign NEXT_STATE[1] = (E[12] | E[13] | E[14] | E[15] | E[16] | E[17] | E[18] | E[22] | E[24] | E[26] | E[27]);
   assign NEXT_STATE[2] = (E[0] | E[2] | E[7] | E[14] | E[15] | E[18] | E[20] | E[21] | E[22] | E[27]);
   assign NEXT_STATE[3] = (E[0] | E[1] | E[6] | E[12] | E[14] | E[15] | E[19] | E[20] | E[23] | E[24] | E[25] | E[27]);
   assign NEXT_STATE[4] = (E[1] | E[5] | E[8] | E[11] | E[13] | E[19] | E[21] | E[22] | E[23] | E[24] | E[26] | E[27]);
-  
+
   //Output equations
   assign DACK       = (E[0] | E[1] | E[7] | E[9] | E[13] | E[16] | E[20] | E[21]);
   assign INCBO      = (E[10] | E[11]);

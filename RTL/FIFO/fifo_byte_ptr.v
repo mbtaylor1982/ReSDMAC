@@ -3,6 +3,7 @@
 `ifdef __ICARUS__
   `include "mux2.v"
 `endif
+
 module fifo_byte_ptr(
     input CLK,
     input INCBO,
