@@ -33,7 +33,7 @@
             }
         },
         {
-            "label": "Clean",
+            "label": "Clean build",
             "type": "shell",
             "command": "docker run --rm -v ${pwd}:/build -e LM_LICENSE_FILE=/opt/license.dat -v /path/to/license.dat:/opt/license.dat:ro -it mbtaylor1982/quartus:22.1 quartus_sh --clean /build/Quartus/RESDMAC.qpf",
             "detail": "Clean build folder",
@@ -56,9 +56,6 @@
                   "line": 5 
                 }
             },
-            "group": {
-                "kind": "build",
-            }
         },
         {
             "label": "Run Testbench",
@@ -80,10 +77,10 @@
             }
         },
         {
-            "label": "analyzer",
+            "label": "Clean sim_build",
             "type": "shell",
-            "command": "docker run --rm -v ${pwd}/RTL/SCSI_SM/:/test -w /test -it starman360/pyverilog:latest python3 /home/me/Documents/pyfilescd/examples/example_controlflow_analyzer.py  -t SCSI_SM_INTERNALS /test/scsi_sm_internals.v",
-            "detail": "pyverilog Control-flow analyzer",
+            "command": "docker run --rm -v ${pwd}:/test -w /test -it mbtaylor1982/cocotb-iverilog:latest cocotb-clean -r",
+            "detail": "Run Testbench",
             "presentation": {
                 "echo": true,
                 "reveal": "always",
@@ -91,11 +88,11 @@
                 "panel": "dedicated",
                 "showReuseMessage": false,
                 "clear": true
-            },
-            "group": {
-                "kind": "test"     
-
-            }
-        }
+            },          
+        },
+        {
+            "label": "Clean",
+            "dependsOn": ["Clean build", "Clean sim_build"]           
+        }        
     ]
 }
