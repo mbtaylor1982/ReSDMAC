@@ -16,7 +16,7 @@ module registers_cntr(
 );
 
 always @(negedge CLK or negedge RESET_) begin
-    if (RESET_ == 1'b0) begin
+    if (~RESET_) begin
         DMADIR <= 1'b0;
         INTENA <= 1'b0;
         PRESET <= 1'b0;

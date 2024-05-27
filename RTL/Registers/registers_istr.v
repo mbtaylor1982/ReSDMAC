@@ -24,16 +24,20 @@ reg FE;
 wire CLR_INT_;
 assign CLR_INT_ = ~CLR_INT;
 
-always @(negedge CLK, negedge RESET_, negedge CLR_INT_) begin
-  if (~RESET_ | ~CLR_INT_) begin
+always @(negedge CLK, negedge RESET_) begin
+  if (~RESET_) begin
     INT_F   <= 1'b0;
     INTS    <= 1'b0;
     E_INT   <= 1'b0;
     INT_P   <= 1'b0;
-    if (~RESET_) begin
-      FF      <= 1'b0;
-      FE      <= 1'b1;
-    end
+    FF      <= 1'b0;
+    FE      <= 1'b1;
+  end
+  else if (~CLR_INT_) begin
+    INT_F   <= 1'b0;
+    INTS    <= 1'b0;
+    E_INT   <= 1'b0;
+    INT_P   <= 1'b0;
   end
   else if (~ISTR_RD_) begin
     INT_F   <= INTA_I;

@@ -109,7 +109,7 @@ CPU_SM_outputs u_CPU_SM_outputs(
 
 //State Machine
 always @(posedge CLK90 or negedge nRESET) begin
-    if (nRESET == 1'b0)
+    if (~nRESET)
         STATE <= 5'b00000;
     else
         STATE <= NEXT_STATE;

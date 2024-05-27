@@ -9,7 +9,7 @@ module fifo_3bit_cntr(
 );
 
 always @(posedge CLK or negedge RST_) begin
-    if (RST_ == 1'b0)
+    if (~RST_)
         COUNT <= 3'b000;
     else if(ClKEN)
       COUNT <= COUNT + 1'b1;

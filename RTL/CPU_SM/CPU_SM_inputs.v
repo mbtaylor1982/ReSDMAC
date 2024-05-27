@@ -35,7 +35,7 @@ module CPU_SM_inputs (
   reg nDSACK1_;
 
 always @(posedge CLK90 or negedge RST_) begin
-    if (RST_ == 1'b0) begin
+    if (~RST_) begin
         nDSACK0_ <= 1'b0;
         nDSACK1_ <= 1'b0;
     end

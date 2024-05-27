@@ -134,7 +134,7 @@ end
 
 //clocked inputs.
 always @(posedge  CLK135 or negedge CCRESET_) begin
-    if (CCRESET_ == 1'b0) begin
+    if (~CCRESET_) begin
         BGRANT_     <= 1'b1;
         DMAENA      <= 1'b0;
         DREQ_       <= 1'b1;
@@ -152,7 +152,7 @@ end
 
 //clocked outputs
 always @(posedge CLK90 or negedge CCRESET_) begin
-    if (CCRESET_ == 1'b0) begin
+    if (~CCRESET_) begin
         BGACK       <= 1'b0;
         PAS         <= 1'b0;
         PDS         <= 1'b0;
@@ -195,7 +195,7 @@ always @(posedge CLK90 or negedge CCRESET_) begin
 end
 
 always @(negedge CLK or posedge AS_) begin
-    if (AS_ == 1'b1)
+    if (AS_)
         DSACK_LATCHED_ <= 2'b11;
     else
         DSACK_LATCHED_ <= {DSACK1_, DSACK0_};

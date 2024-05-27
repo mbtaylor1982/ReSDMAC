@@ -1,23 +1,23 @@
  //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
- 
- `ifdef __ICARUS__ 
+
+ `ifdef __ICARUS__
     `include "scsi_sm_inputs.v"
     `include "scsi_sm_outputs.v"
 `endif
 
-module SCSI_SM_INTERNALS1(   
+module SCSI_SM_INTERNALS1(
 
     input CLK,              //CLK
     input nRESET,           //Active low reset
-                  
-    input BOEQ3,            //Asserted when transfering Byte 3                
+
+    input BOEQ3,            //Asserted when transfering Byte 3
     input CCPUREQ,          //Request CPU access to SCSI registers.
     input CDREQ_,           //Data transfer request from SCSI IC.
-    input CDSACK_,          //DSACK 
+    input CDSACK_,          //DSACK
     input DMADIR,           //Control Direction Of DMA transfer.
     input FIFOEMPTY,        //FIFOFULL flag
     input FIFOFULL,         //FIFOEMPTY flag
-    input RDFIFO_o,         
+    input RDFIFO_o,
     input RIFIFO_o,
     input RW,               //CPU RW signal
 
@@ -35,7 +35,7 @@ module SCSI_SM_INTERNALS1(
     output SCSI_CS,     //Chip Select for SCSI IC
     output WE,          //Write indicator to SCSI IC
     output SET_DSACK
-    
+
 );
 
 reg [4:0] STATE;
@@ -80,12 +80,11 @@ assign RIFIFO = E[4];
 
 //State Machine
 always @(posedge CLK or negedge nRESET) begin
-    if (nRESET == 1'b0)
+    if (~nRESET)
         STATE <= 5'b00000;
     else
         STATE <= NEXT_STATE;
 end
 
 
-
-endmodule 
+endmodule
