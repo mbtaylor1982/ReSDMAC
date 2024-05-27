@@ -78,44 +78,71 @@ localparam [4:0]
 
 reg [4:0] state;
 
-//State 0 input condistions
+//State 0 input conditions
 wire s0a = DMAENA & DMADIR & FIFOEMPTY & ~FIFOFULL & FLUSHFIFO & ~LASTWORD; //E0
 wire s0b = DMAENA & DMADIR & ~FIFOEMPTY & FLUSHFIFO; //E2
 wire s0c = DMAENA & DMADIR & FLUSHFIFO & LASTWORD; //E3
 wire s0d = DMADIR & DMAENA & FIFOFULL; //e7
 wire s0e = ~DMADIR & DMAENA; //e13
 
-//State 1 input condistions
+//State 1 input conditions
 wire s1a = DSACK0 & DSACK1 & DSACK//e9
 wire s1b = DSACK1 //e20
 wire s1c = ~DSACK & ~STERM //e24
 wire s1d = STERM//e39
 
-//State 2 input condistions
+//State 2 input conditions
 wire s2a = CYCLEDONE & ~A1 & ~BGRANT_//e11
 wire s2b = CYCLEDONE & A1 & ~BGRANT_//e12
 wire s2c = BGRANT_//e16
 wire s2d = ~CYCLEDONE//e17
 
-//State 3 input condistions
+//State 3 input conditions
 wire s3a = ~DSACK & STERM_//e29
 wire s3b = ~DSACK1_ & DSACK //e30
 wire s3c = ~STERM_//e42
 
-//State 4 input condistions
+//State 4 input conditions
 wire s4a = nDMADIR & DMAENA//e13
 wire s4b = //e53
 
-//State 5 input condistions
+//State 5 input conditions
 wire s5a = DSACK//e50
 wire s5b = ~DSACK//e50
 
 //State 6 has no sub states
 
-//State 7 input condistions
+//State 7 input conditions
 wire s7a = DSACK & ~DSACK1_//e28
 wire s7b = ~STERM_//e33
 wire s7c = ~DSACK & STERM_//e33
+
+//State 8 input conditions
+wire s8a = CYCLEDONE & LASTWORD & ~A1 & ~BGRANT_ & ~BOEQ3;//E4
+wire s8b = CYCLEDONE & LASTWORD & ~A1 & ~BGRANT_ & BOEQ3;//E5
+wire s8c = CYCLEDONE & ~LASTWORD & ~A1 & ~BGRANT_;//E8
+wire s8d = CYCLEDONE & A1 & ~BGRANT_;//E10
+wire s8e = BGRANT_;//E18
+wire s8f = ~CYCLEDONE;//E19
+
+//State 9 & 10 have no sub states
+
+//State 11 input conditions
+
+wire s11a = FIFOFULL; //E32
+wire s11b = ~FIFOFULL; //E48
+
+//State 12
+wire s12a = STERM_;//E37
+wire s12b = ~STERM_;//E37
+
+//state 13
+//E37 E50 E62
+wire s13a = STERM_;//E37
+wire s13b = ~STERM_;//E37
+wire s13c = DSACK//e50
+wire s13d = ~DSACK//e50
+
 
 always @(posedge CLK or negedge nRESET)
 begin
@@ -207,26 +234,71 @@ begin
             if (s7b) begin //~STERM e33
                 state <= s28;
             end;
-            if (sc) begin // ~DSACK & STERM_ e33
+            if (s7c) begin // ~DSACK & STERM_ e33
                 state <= s7;
             end;  
         
         end;
         s8: begin
+            if (s8a) begin 
+                state <= s20;
+            end; 
+            if (s8b) begin 
+                state <= s24;
+            end;
+            if (s8c) begin 
+                state <= s24;
+            end;
+            if (s8d) begin 
+                state <= s4;
+            end;  
+            if (s8e) begin 
+                state <= s8;
+            end;  
+            if (s8f) begin 
+                state <= s8;
+            end;  
         
         end;
         s9: begin
-        
+            state <= s21;
         end;
         s10: begin
-                
+            state <= s26;        
         end
         s11: begin
+            if (s11a) begin 
+                state <= s23;
+            end;  
+            if (s11b) begin 
+                state <= s25;
+            end;  
         end;
         s12: begin
+            if (s12a) begin 
+                state <= s1;
+            end;  
+            if (s12b) begin 
+                state <= s28;
+            end;
           
         end
         s13: begin
+            if (s13a) begin
+                state <= s21;
+            end;
+            if (s13b) begin
+                state <= s29;
+            end;
+             if (s13c) begin
+                state <= s31;
+            end;
+            if (s13d) begin
+                state <= s21;
+            end;
+            else begin
+                state <= s21; 
+            end;
         
         end;
         s14: begin
@@ -386,7 +458,7 @@ begin
                 //nothing to change on outputs
             end;
             if (s4b) begin
-                SIZE1       <= 1'b0; // not sure on this one
+                SIZE1       <= 1'b1; // not sure on this one
                 PAS         <= 1'b1;
                 F2CPUL      <= 1'b1;
                 BRIDGEOUT   <= 1'b1;
@@ -396,7 +468,7 @@ begin
         s5: begin
             if (s5a) begin //DSACK
                 SIZE1       <= 1'b1;
-                BRIDGEIN <= 1'b1;   
+                BRIDGEIN    <= 1'b1;   
             end;
             if (s5b) begin //~DSACK
                 SIZE1       <= 1'b1;
@@ -429,21 +501,106 @@ begin
             end;       
         end;
         s8: begin
+            if (s8a) begin 
+                BREQ        <= 1'b1;
+                STOPFLUSH   <= 1'b1;
+            end; 
+            if (s8b) begin 
+                BREQ        <= 1'b1;
+                STOPFLUSH   <= 1'b1;
+            end;
+            if (s8c) begin 
+                BREQ        <= 1'b1;
+            end;
+            if (s8d) begin 
+                BREQ        <= 1'b1;
+            end;  
+            if (s8e) begin 
+                BREQ        <= 1'b1;
+            end;  
+            if (s8f) begin 
+                BREQ        <= 1'b1;
+            end; 
         
         end;
         s9: begin
-        
+            SIZE1       <= 1'b1;
+            PAS         <= 1'b1;
+            PDS         <= 1'b1;
+            PLLW        <= 1'b1;
+            DIEH        <= 1'b1;
+            DIEL        <= 1'b1;
         end;
         s10: begin
-                
+            SIZE1       <= 1'b1;
+            PAS         <= 1'b1;
+            PDS         <= 1'b1;
+            PLLW        <= 1'b1;
+            DIEH        <= 1'b1;
+            BRIDGEIN    <= 1'b1;
         end
         s11: begin
+            if (s11a) begin 
+                INCNI       <= 1'b1;
+            end;  
+            if (s11b) begin 
+                INCNI       <= 1'b1;
+                PAS         <= 1'b1;
+                PDS         <= 1'b1;
+                PLLW        <= 1'b1;
+                PLHW        <= 1'b1;
+                DIEH        <= 1'b1;
+                DIEL        <= 1'b1;
+            end;  
         end;
         s12: begin
-          
+            if (s12a) begin
+                PAS         <= 1'b1;
+                PDS         <= 1'b1;
+                F2CPUL      <= 1'b1;
+                F2CPUH      <= 1'b1;
+            end;
+            if (s12b) begin
+                F2CPUL      <= 1'b1;
+                F2CPUH      <= 1'b1;
+                INCNO       <= 1'b1;
+                DECFIFO     <= 1'b1;
+            end;
         end
         s13: begin
-        
+            SIZE1       <= 1'b1;
+            PAS         <= 1'b1;
+            PDS         <= 1'b1;
+            PLLW        <= 1'b1;
+            DIEH        <= 1'b1;
+            DIEL        <= 1'b1;
+
+            if (s13a) begin
+                PAS         <= 1'b1;
+                PDS         <= 1'b1;
+                F2CPUL      <= 1'b1;
+                F2CPUH      <= 1'b1;
+            end;
+            if (s13b) begin
+                F2CPUL      <= 1'b1;
+                F2CPUH      <= 1'b1;
+                INCNO       <= 1'b1;
+                DECFIFO     <= 1'b1;
+            end;
+             if (s13c) begin
+                SIZE1       <= 1'b1;
+                INCFIFO     <= 1'b1;
+                BRIDGEIN    <= 1'b1;
+                DIEH        <= 1'b1;
+            end;
+            if (s13d) begin
+                SIZE1       <= 1'b1;
+                PAS         <= 1'b1;
+                PDS         <= 1'b1;
+                PLLW        <= 1'b1;
+                BRIDGEIN    <= 1'b1;
+                DIEH        <= 1'b1;
+            end;
         end;
         s14: begin
         

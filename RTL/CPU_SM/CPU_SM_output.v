@@ -39,18 +39,20 @@ assign NEXT_STATE[3] = E[2] | E[3] | E[5] | E[7] | E[8] | E[12] | E[18] | E[19] 
 assign NEXT_STATE[4] = E[5] | E[4] | E[8] | E[11] | E[26] | E[27] | E[32] | E[13] | E[14] | E[15] | E[22] | E[60] | E[61] | E[62] | E[48] | E[53] | E[58] | (E[9] & DSACK) | (E[30] & DSACK) | (E[28] & DSACK) | (E[36] & ~STERM_) | (E[33] & ~STERM_) | (E[39] & ~STERM_) | (E[40] & ~STERM_) | (E[42] & ~STERM_) | (E[37] & ~STERM_) | (E[23] & DSACK & STERM_) | (E[43] & ~DSACK & & STERM_) | (E[57] & STERM_);
 
 assign INCNI_d = (E[32] | E[48]);
-assign BREQ_d = (E[2] | E[3] | E[4] | E[5] | E[7] | E[8] | E[10] | E[11] | E[12] | E[16] | E[17] | E[18] | E[19]); 
+assign BREQ_d = (E[2] | E[3] | E[4] | E[5] | E[7] | E[8] | E[10] | E[11] | E[12] | E[16] | E[17] | E[18] | E[19]);
 
 //SIZE1
 wire SIZE1_X, SIZE1_Y, SIZE1_Z;
 
-//assign SIZE1_X = (~(E[62] | E[61] | E[58] | E[56] | E[53] | E[26]) & ~((E[25] | E[28] | E[30] | E[50] ) & DSACK) & ~(E[50]  & ~DSACK));
-assign SIZE1_X = ~((E[62] | E[61] | E[58] | E[56] | E[53] | E[26]) | ((E[25] | E[28] | E[30] | E[50] ) & DSACK) | (E[50]  & ~DSACK));
-assign SIZE1_Y = (~STERM_ & (E[36] | E[33] | E[40] | E[42] | E[46] | E[51] ));
+//assign SIZE1_X =((~E[62] & ~E[61] & ~E[58] & ~E[56] & ~E[53] & ~E[26])  & ~(~(~E[25] & ~E[28] & ~E[30] & ~E[50]) & DSACK) &  ~(E[50] & ~DSACK));
+//assign SIZE1_Y = ~(~(~E[36] & ~E[33] & ~E[40] & ~E[42] & ~E[46] & ~E[51]) & ~STERM)
+//assign SIZE1_Z = ~((~(~(E[23] & DSACK) & ~(~DSACK & (E[29]| E[33] | E[51]))) | (E[40] | E[36] | E[46])) & STERM);
 
-assign SIZE1_Z = (( ((E[23]  & DSACK) | (~DSACK & (E[29]  | E[33]  | E[51] ))) | (E[40]  | E[36]  | E[46] )) & STERM_);
+assign SIZE1_X = ((E[62] | E[61] | E[58] | E[56] | E[53] | E[26])  | ((E[25] | E[28] | E[30] | E[50]) & DSACK) | (E[50] & ~DSACK));
+assign SIZE1_Y = ((E[36] | E[33] | E[40] | E[42] | E[46] | E[51]) & ~STERM_);
+assign SIZE1_Z = (((E[40] | E[36] | E[46]) | (E[23] & DSACK) |((E[29]| E[33] | E[51]) & ~DSACK))& STERM_);
 
-assign SIZE1_d = ~(~SIZE1_X & ~SIZE1_Y & ~SIZE1_Z);
+assign SIZE1_d = (SIZE1_X | SIZE1_Y | SIZE1_Z);
 
 //PAS
 wire PAS_X, PAS_Y;
