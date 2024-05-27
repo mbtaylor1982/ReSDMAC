@@ -8,7 +8,11 @@ from cocotb.triggers import FallingEdge, RisingEdge, Edge, Timer, ClockCycles
 from cocotb.types import LogicArray
 
 WTC_REG_ADR = 0x01
-SCSI_REG_ADR = 0x10
+SCSI_REG_ADR1 = 0x10
+SCSI_REG_ADR2 = 0x11
+SCSI_REG_ADR3 = 0x12
+SCSI_REG_ADR4 = 0x13
+
 SSPB_DATA_ADR = 0x16
 CONTR_REG_ADR = 0x02
 RAMSEY_ACR_REG_ADR = 0x03
@@ -18,8 +22,9 @@ FLUSH_STROBE_ADR   = 0x05
 
 TEST_PATTERN1 = 0xAAAAAAAA
 TEST_PATTERN2 = 0x55555555
-SCSI_TEST_DATA1 = 0x00550055
+SCSI_TEST_DATA1 = 0x005500AA
 SCSI_TEST_DATA2 = 0x5555
+SCSI_TEST_DATA5 = 0xAAAA
 
 SCSI_TEST_DATA3 = 0x00AA
 SCSI_TEST_DATA4 = 0x00AA00AA
@@ -168,6 +173,8 @@ async def XferFIFO2Mem(dut,TermSignal):
         dut._id(TermSignal, extended=False).value = 0
         await RisingEdge(dut.AS_O_)
         dut._id(TermSignal, extended=False).value = 1
+        if dut.INCNO.value == 1:
+            dut.ADDR.value = dut.ADDR.value ^ 1
         await RisingEdge(dut.SCLK)
    
     
@@ -212,15 +219,67 @@ async def RESDMAC_test(dut):
     assert data == 0x00, 'WTC Register not returning expected data'
     
     #2 Test write to SCSI 
-    await write_data(dut, SCSI_REG_ADR, SCSI_TEST_DATA1)
+    await write_data(dut, SCSI_REG_ADR1, SCSI_TEST_DATA1)
+    assert dut._id("_CSS", extended=False).value == 0 , "_CSS not asserted when writing to SCSI IC"
+    #assert dut._id("_IOW", extended=False).value == 0 , "_IOW not asserted when writing to SCSI IC"
+    assert dut.PDATA_O.value == SCSI_TEST_DATA5 , "PDATA_O not returning expected data value"
+    await RisingEdge(dut._id("_CSS", extended=False))
+    
+    #2 Test write to SCSI 
+    await write_data(dut, SCSI_REG_ADR2, SCSI_TEST_DATA1)
+    assert dut._id("_CSS", extended=False).value == 0 , "_CSS not asserted when writing to SCSI IC"
+    #assert dut._id("_IOW", extended=False).value == 0 , "_IOW not asserted when writing to SCSI IC"
+    assert dut.PDATA_O.value == SCSI_TEST_DATA5 , "PDATA_O not returning expected data value"
+    await RisingEdge(dut._id("_CSS", extended=False))
+    
+    #2 Test write to SCSI 
+    await write_data(dut, SCSI_REG_ADR3, SCSI_TEST_DATA1)
     assert dut._id("_CSS", extended=False).value == 0 , "_CSS not asserted when writing to SCSI IC"
     #assert dut._id("_IOW", extended=False).value == 0 , "_IOW not asserted when writing to SCSI IC"
     assert dut.PDATA_O.value == SCSI_TEST_DATA2 , "PDATA_O not returning expected data value"
     await RisingEdge(dut._id("_CSS", extended=False))
+    
+    #2 Test write to SCSI 
+    await write_data(dut, SCSI_REG_ADR4, SCSI_TEST_DATA1)
+    assert dut._id("_CSS", extended=False).value == 0 , "_CSS not asserted when writing to SCSI IC"
+    #assert dut._id("_IOW", extended=False).value == 0 , "_IOW not asserted when writing to SCSI IC"
+    assert dut.PDATA_O.value == SCSI_TEST_DATA2 , "PDATA_O not returning expected data value"
+    await RisingEdge(dut._id("_CSS", extended=False))
+    
    
     #3 Test read from scsi
     dut.PDATA_I.value = SCSI_TEST_DATA3
-    data = await read_data(dut, SCSI_REG_ADR)
+    data = await read_data(dut, SCSI_REG_ADR1)
+    assert data == SCSI_TEST_DATA4, "Error reading scsi data"
+    assert dut._id("_CSS", extended=False).value == 0 , "_CSS not asserted when reading from SCSI IC"
+    assert dut._id("_IOR", extended=False).value == 0 , "_IOR not asserted when reading from SCSI IC"
+    await RisingEdge(dut._id("_CSS", extended=False))
+    await RisingEdge(dut._id("_IOR", extended=False))
+    dut.PDATA_I.value = 0x00
+    
+    #3 Test read from scsi
+    dut.PDATA_I.value = SCSI_TEST_DATA3
+    data = await read_data(dut, SCSI_REG_ADR2)
+    assert data == SCSI_TEST_DATA4, "Error reading scsi data"
+    assert dut._id("_CSS", extended=False).value == 0 , "_CSS not asserted when reading from SCSI IC"
+    assert dut._id("_IOR", extended=False).value == 0 , "_IOR not asserted when reading from SCSI IC"
+    await RisingEdge(dut._id("_CSS", extended=False))
+    await RisingEdge(dut._id("_IOR", extended=False))
+    dut.PDATA_I.value = 0x00
+    
+    #3 Test read from scsi
+    dut.PDATA_I.value = SCSI_TEST_DATA3
+    data = await read_data(dut, SCSI_REG_ADR3)
+    assert data == SCSI_TEST_DATA4, "Error reading scsi data"
+    assert dut._id("_CSS", extended=False).value == 0 , "_CSS not asserted when reading from SCSI IC"
+    assert dut._id("_IOR", extended=False).value == 0 , "_IOR not asserted when reading from SCSI IC"
+    await RisingEdge(dut._id("_CSS", extended=False))
+    await RisingEdge(dut._id("_IOR", extended=False))
+    dut.PDATA_I.value = 0x00
+    
+    #3 Test read from scsi
+    dut.PDATA_I.value = SCSI_TEST_DATA3
+    data = await read_data(dut, SCSI_REG_ADR4)
     assert data == SCSI_TEST_DATA4, "Error reading scsi data"
     assert dut._id("_CSS", extended=False).value == 0 , "_CSS not asserted when reading from SCSI IC"
     assert dut._id("_IOR", extended=False).value == 0 , "_IOR not asserted when reading from SCSI IC"
@@ -248,6 +307,7 @@ async def RESDMAC_test(dut):
     await write_data(dut, CONTR_REG_ADR, (CONTR_DMA_READ | CONTR_INTENA))
     #Set Destination address
     await write_data(dut, RAMSEY_ACR_REG_ADR, 0x00000000)
+    dut.ADDR.value = 0x00000000
     #start DMA
     await read_data(dut, ST_DMA_STROBE_ADR)
            
@@ -270,6 +330,30 @@ async def RESDMAC_test(dut):
     await write_data(dut, CONTR_REG_ADR, (CONTR_DMA_READ | CONTR_INTENA))
     #Set Destination address
     await write_data(dut, RAMSEY_ACR_REG_ADR, 0x00000000)
+    dut.ADDR.value = 0x00000000
+    #start DMA
+    await read_data(dut, ST_DMA_STROBE_ADR)
+    #Perform DMA Xfer
+    await FillFIFOFromSCSI(dut, 0x0021)
+    await wait_for_bus_grant(dut)
+    await XferFIFO2Mem(dut, "DSK1_IN_")
+    await wait_for_bus_release(dut)
+    
+    dut.AS_I_.value = 1
+    dut.DS_I_.value = 1
+    dut.R_W.value = 1
+    #stop DMA
+    await read_data(dut, SP_DMA_STROBE_ADR)
+    #Flush
+    await read_data(dut, FLUSH_STROBE_ADR)
+    
+    #8 Test DMA READ (from scsi to memory) 16 bit DSACK1 cycle
+    await reset_dut(dut._id("_RST", extended=False), 40)
+    #Setup DMA Direction to Read from SCSI write to Memory
+    await write_data(dut, CONTR_REG_ADR, (CONTR_DMA_READ | CONTR_INTENA))
+    #Set Destination address
+    await write_data(dut, RAMSEY_ACR_REG_ADR, 0x02000000)
+    dut.ADDR.value = 0x00000000
     #start DMA
     await read_data(dut, ST_DMA_STROBE_ADR)
     #Perform DMA Xfer
@@ -293,6 +377,7 @@ async def RESDMAC_test(dut):
     await write_data(dut, CONTR_REG_ADR, (CONTR_DMA_READ | CONTR_INTENA))
     #Set Destination address
     await write_data(dut, RAMSEY_ACR_REG_ADR, 0x00000000)
+    dut.ADDR.value = 0x00000000
     #start DMA
     await read_data(dut, ST_DMA_STROBE_ADR)
     #Perform DMA Xfer
@@ -321,6 +406,7 @@ async def RESDMAC_test(dut):
     await write_data(dut, CONTR_REG_ADR, (CONTR_DMA_WRITE | CONTR_INTENA))
     #Set Destination address
     await write_data(dut, RAMSEY_ACR_REG_ADR, 0x00000000)
+    dut.ADDR.value = 0x00000000
     #start DMA
     await read_data(dut, ST_DMA_STROBE_ADR)
     
