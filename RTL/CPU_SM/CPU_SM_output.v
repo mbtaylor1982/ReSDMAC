@@ -118,15 +118,28 @@ assign BRIDGEOUT_d = (E[40] | E[53] |BRIDGEOUT_X | BRIDGEOUT_Y | BRIDGEOUT_Z );
 
 
 //PLLW
-wire PLLW_X, PLLW_Y;
+wire PLLW_X,PLLW_X1,PLLW_X2;
+wire PLLW_Y,PLLW_Y1,PLLW_Y2,PLLW_Y3;
 
-assign PLLW_X = (~(E[35] | E[56] | E[48] | E[60] | E[61] | E[62]) & ~(E[50]  & ~DSACK));
-assign PLLW_Y = (~((~(~(E[23]  & DSACK) & ~(~DSACK & (E[43]  | E[51] )))|(E[57]  | E[46] )) & STERM_));
+assign PLLW_X1 = (E[35] | E[56] | E[48] | E[60] | E[61] | E[62]);
+assign PLLW_X2 = (E[50]  & ~DSACK);
 
-assign PLLW_d = (~(PLLW_X & PLLW_Y));
+assign PLLW_X = (PLLW_X1 | PLLW_X2);
+
+assign PLLW_Y1 = (E[23] & DSACK);
+assign PLLW_Y2 = ((E[43] | E[51] ) & ~DSACK);
+assign PLLW_Y3 = (E[57] | E[46]);
+
+assign PLLW_Y = ((PLLW_Y1 | PLLW_Y2 | PLLW_Y3) & STERM_);
+
+assign PLLW_d = (PLLW_X | PLLW_Y);
 
 //PLHW
-assign PLHW_d = ~(~(E[48]  | E[60] ) & (~(((~DSACK & E[43] ) | E[57] ) & STERM_)));
+wire PLHW_X,PLHW_Y;
+
+assign PLHW_X = (E[48] | E[60]);
+assign PLHW_Y = (E[57] | (E[43] & ~DSACK)) & STERM_;
+assign PLHW_d = (PLHW_X |PLHW_Y);
 
 //FIFO COUNTER STROBES
 wire AA,BB,CC,DD,EE,FF;
@@ -149,20 +162,45 @@ assign STOPFLUSH_d = (E[0] | E[4] | E[5] | E[21] | E[26] | E[27]);
 //DIEH
 wire DIEH_X, DIEH_Y, DIEH_Z;
 
-assign DIEH_X = ((E[61] | E[60] | E[62] | E[31] | E[56] | E[48]) | ((E[25] | E[50]) & DSACK) | (E[50]  & ~DSACK));
-assign DIEH_Y = (~STERM_ & (E[43] | E[46] | E[51]));
-assign DIEH_Z = (((~DSACK & (E[51]  | E[43] )) |(E[46]  | E[57] )) & STERM_);
+assign DIEH_X =
+(
+    (E[61] | E[60] | E[62] | E[31] | E[56] | E[48]) |
+    ((E[25] | E[50]) & DSACK) |
+    (E[50]  & ~DSACK)
+);
+
+assign DIEH_Y = ((E[43] | E[46] | E[51]) & ~STERM_);
+
+assign DIEH_Z =
+(
+    (
+        ((E[51] | E[43]) & ~DSACK) | 
+        (E[46] | E[57])
+    ) & STERM_
+);
 
 assign DIEH_d = (DIEH_X | DIEH_Y | DIEH_Z);
 
 //DIEL
 wire DIEL_X, DIEL_Y, DIEL_Z;
 
-assign DIEL_X = ~((E[62] | E[60] | E[48]) | ((E[25] | E[6]) & DSACK));
-assign DIEL_Y = (~(~STERM_ & (E[43] | E[46]  | E[51] )));
-assign DIEL_Z = (~(((~DSACK & (E[51]  | E[43] )) |(E[46]  | E[57] )) & STERM_));
+assign DIEL_X =
+(
+    (E[62] | E[60] | E[48]) |
+    ((E[25] | E[6]) & DSACK)
+);
 
-assign DIEL_d = (~DIEL_X | ~DIEL_Y | ~DIEL_Z);
+assign DIEL_Y = ((E[43] | E[46] | E[51]) & ~STERM_);
+
+assign DIEL_Z =
+(
+    (
+        ((E[51] | E[43]) & ~DSACK) |
+        (E[46] | E[57])
+    ) & STERM_
+);
+
+assign DIEL_d = (DIEL_X | DIEL_Y | DIEL_Z);
 
 assign BRIDGEIN_d = (E[56]  | E[55]  | E[35]  | E[61]  | E[50] );
 
