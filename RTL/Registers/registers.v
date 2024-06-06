@@ -40,7 +40,9 @@ wire WTC_RD_;
 wire INTENA;
 wire SSPBDAT_RD_;
 wire SSPBDAT_WR;
-wire [3:0] MuxSelect;
+wire VERSION_RD_;
+wire VERSION_WR;
+wire [4:0] MuxSelect;
 
 //Action strobes
 wire ST_DMA;    //Start DMA 
@@ -51,7 +53,13 @@ wire FLUSH_;    //Flush FIFO
 //Registers
 wire [8:0] ISTR_O;  //Interrupt Status Register
 wire [8:0] CNTR_O;  //Control Register
-reg [31:0] SSPBDAT;  //Fake Synchronous Serial Peripheral Bus Data Register (used to test SDMAC rev 4 in the test toll by CDH)
+reg [31:0] SSPBDAT;  //Fake Synchronous Serial Peripheral Bus Data Register (used to test SDMAC rev 4 in the test tool by CDH)
+
+reg [31:0] VERSION;
+reg [31:0] META_DATA0;
+reg [31:0] META_DATA1;
+reg [31:0] META_DATA2;
+
 
 wire [31:0] WTC;
 wire [31:0] CNTR;
@@ -60,24 +68,26 @@ wire [31:0] ISTR;
 
 //Address Decoding and Strobes
 addr_decoder u_addr_decoder(
-    .ADDR       (ADDR      ),
-    .DMAC_      (DMAC_     ),
-    .AS_        (AS_       ),
-    .RW         (RW        ),
-    .DMADIR     (DMADIR    ),
-    .h_0C       (h_0C      ),
-    .WDREGREQ   (WDREGREQ  ),
-    .WTC_RD_    (WTC_RD_   ),
-    .CONTR_RD_  (CONTR_RD_ ),
-    .CONTR_WR   (CONTR_WR  ),
-    .ISTR_RD_   (ISTR_RD_  ),
-    .ACR_WR     (ACR_WR    ),
-    .ST_DMA     (ST_DMA    ),
-    .SP_DMA     (SP_DMA    ),
-    .CLR_INT    (CLR_INT   ),
-    .FLUSH_     (FLUSH_    ),
-    .SSPBDAT_WR (SSPBDAT_WR),
-    .SSPBDAT_RD_ (SSPBDAT_RD_)
+    .ADDR           (ADDR       ),
+    .DMAC_          (DMAC_      ),
+    .AS_            (AS_        ),
+    .RW             (RW         ),
+    .DMADIR         (DMADIR     ),
+    .h_0C           (h_0C       ),
+    .WDREGREQ       (WDREGREQ   ),
+    .WTC_RD_        (WTC_RD_    ),
+    .CONTR_RD_      (CONTR_RD_  ),
+    .CONTR_WR       (CONTR_WR   ),
+    .ISTR_RD_       (ISTR_RD_   ),
+    .ACR_WR         (ACR_WR     ),
+    .ST_DMA         (ST_DMA     ),
+    .SP_DMA         (SP_DMA     ),
+    .CLR_INT        (CLR_INT    ),
+    .FLUSH_         (FLUSH_     ),
+    .SSPBDAT_WR     (SSPBDAT_WR ),
+    .SSPBDAT_RD_    (SSPBDAT_RD_),
+    .VERSION_RD_    (VERSION_RD_),
+    .VERSION_WR     (VERSION_WR )
 );
 
 //Interupt Status Register
@@ -148,12 +158,20 @@ always @(negedge CLK or negedge RST_) begin
         SSPBDAT <= MID[31:0];
 end
 
-assign MuxSelect = {~WTC_RD_, ~ISTR_RD_, ~CONTR_RD_, ~SSPBDAT_RD_};
+localparam REV_STR = 32'h52455631;//"REV1";"
 
-localparam WTC_SEL = 4'b1000;
-localparam ISTR_SEL = 4'b0100;
-localparam CONTR_SEL = 4'b0010;
-localparam SSPBDAT_SEL = 4'b0001;
+always @(negedge RST_) begin
+    if (~RST_)
+        VERSION <= REV_STR;
+end
+
+assign MuxSelect = {~WTC_RD_, ~ISTR_RD_, ~CONTR_RD_, ~SSPBDAT_RD_, ~VERSION_RD_};
+
+localparam WTC_SEL = 5'b10000;
+localparam ISTR_SEL = 5'b01000;
+localparam CONTR_SEL = 5'b00100;
+localparam SSPBDAT_SEL = 5'b00010;
+localparam VERSION_SEL = 5'b00001;
 
 always @(*) begin
     case (MuxSelect)
@@ -161,6 +179,7 @@ always @(*) begin
       ISTR_SEL      : REG_OD <= {23'h0, ISTR_O};
       CONTR_SEL     : REG_OD <= {23'h0, CNTR_O};
       SSPBDAT_SEL   : REG_OD <= SSPBDAT;
+      VERSION_SEL   : REG_OD <= VERSION;
       default       : REG_OD <= 32'h00000000;
     endcase
 end

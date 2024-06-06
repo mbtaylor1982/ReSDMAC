@@ -8,6 +8,8 @@ from cocotb.triggers import FallingEdge, RisingEdge, Edge, Timer, ClockCycles
 from cocotb.types import LogicArray
 
 WTC_REG_ADR = 0x01
+VERSION_REG_ADR = 0x08
+
 SCSI_REG_ADR1 = 0x10
 SCSI_REG_ADR2 = 0x11
 SCSI_REG_ADR3 = 0x12
@@ -28,6 +30,8 @@ SCSI_TEST_DATA5 = 0xAAAA
 
 SCSI_TEST_DATA3 = 0x00AA
 SCSI_TEST_DATA4 = 0x00AA00AA
+
+REV_STR = 0x52455631
 
 CONTR_DMA_READ = 0x02
 CONTR_DMA_WRITE = 0x00
@@ -300,6 +304,10 @@ async def RESDMAC_test(dut):
     await write_data(dut, SSPB_DATA_ADR, TEST_PATTERN2)
     data = await read_data(dut, SSPB_DATA_ADR)
     assert data == TEST_PATTERN2, 'SSPBDAT Register not returning expected data'
+    
+    #6a Test VERRSION register
+    data = await read_data(dut, VERSION_REG_ADR)
+    assert data == REV_STR, 'Version Register not returning expected data'
     
     #7 Test DMA READ (from scsi to memory) 32 bit sterm cycle
     await reset_dut(dut._id("_RST", extended=False), 40)

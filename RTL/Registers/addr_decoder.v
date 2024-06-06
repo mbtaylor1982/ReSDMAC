@@ -14,10 +14,12 @@ module addr_decoder(
   output ISTR_RD_,
   output WTC_RD_,
   output SSPBDAT_RD_,
+  output VERSION_RD_,
 
   output CONTR_WR,
   output ACR_WR,
   output SSPBDAT_WR,
+  output VERSION_WR,
 
   output ST_DMA,
   output SP_DMA,
@@ -31,6 +33,10 @@ wire h_10;
 wire h_14;
 wire h_18;
 wire h_1C;
+wire h_20;
+wire h_24;
+wire h_28;
+wire h_2C;
 wire h_3C;
 wire h_58;
 
@@ -44,6 +50,10 @@ assign h_10 = ADDR_VALID & (ADDR == 8'h10);
 assign h_14 = ADDR_VALID & (ADDR == 8'h14);
 assign h_18 = ADDR_VALID & (ADDR == 8'h18);
 assign h_1C = ADDR_VALID & (ADDR == 8'h1C);
+assign h_20 = ADDR_VALID & (ADDR == 8'h20);
+assign h_24 = ADDR_VALID & (ADDR == 8'h24);
+assign h_28 = ADDR_VALID & (ADDR == 8'h28);
+assign h_2C = ADDR_VALID & (ADDR == 8'h2C);
 assign h_3C = ADDR_VALID & (ADDR == 8'h3C);
 assign h_58 = ADDR_VALID & (ADDR == 8'h58);
 
@@ -54,10 +64,12 @@ assign WTC_RD_      = ~(h_04 & RW);
 assign CONTR_RD_    = ~(h_08 & RW);
 assign ISTR_RD_     = ~(h_1C & RW);
 assign SSPBDAT_RD_  = ~(h_58 & RW);
+assign VERSION_RD_  = ~(h_20 & RW);
 
 assign CONTR_WR     = (h_08 & ~RW);
 assign ACR_WR       = (h_0C & ~RW);
 assign SSPBDAT_WR   = (h_58 & ~RW);
+assign VERSION_WR   = (h_20 & ~RW);
 
 //action strobes
 assign ST_DMA   = h_10;
