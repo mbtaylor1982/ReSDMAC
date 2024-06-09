@@ -2,8 +2,8 @@
 
 module datapath_output (
     input CLK,
-    output [31:0] DATA,  
-    
+    output [31:0] DATA,
+
     input [31:0] OD,
     input [31:0] MOD,
     input BRIDGEOUT,
@@ -12,7 +12,7 @@ module datapath_output (
     input F2CPUL,
     input F2CPUH,
     input S2CPU,
-    input PAS     
+    input PAS
 );
 
 wire LOD1_F2CPU;
@@ -35,7 +35,7 @@ end
 
 always @(posedge CLK) begin
     if (LOD2_F2CPU)
-        UD_LATCH <= BRIDGEOUT ? LOWER_INPUT_DATA : UPPER_INPUT_DATA;
+        UD_LATCH <= UPPER_INPUT_DATA;
 end
 
 assign LOD1_F2CPU = PAS;
@@ -45,7 +45,7 @@ assign LOWER_INPUT_DATA = OD[15:0];
 assign UPPER_INPUT_DATA = OD[31:16];
 
 assign LOWER_OUTPUT_DATA = F2CPUL ? LD_LATCH : MOD[15:0];
-assign UPPER_OUTPUT_DATA = F2CPUH ? UD_LATCH : MOD[31:16];
+assign UPPER_OUTPUT_DATA = F2CPUH ? UD_LATCH : (BRIDGEOUT ? LD_LATCH : MOD[31:16]);
 assign DATA = S2CPU ? MOD : {UPPER_OUTPUT_DATA, LOWER_OUTPUT_DATA};
 
 endmodule
