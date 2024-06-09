@@ -143,6 +143,14 @@ wire s13b = ~STERM_;//E37
 wire s13c = DSACK//e50
 wire s13d = ~DSACK//e50
 
+//state 14 
+wire s14a = & DSACK0_ & nDSACK1_//E23
+wire s14b = & nDSACK0_ & nDSACK1_ //E25
+wire s14c = //E51
+
+wire s14d = //E55
+wire s14E = //E61
+
 
 always @(posedge CLK or negedge nRESET)
 begin
@@ -302,7 +310,10 @@ begin
         
         end;
         s14: begin
-        
+            If (STERM_)
+                state <=s31;
+            else
+                state <= s27;
         end;
         s15: begin
         

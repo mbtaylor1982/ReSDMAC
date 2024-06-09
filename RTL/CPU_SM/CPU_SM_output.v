@@ -48,9 +48,17 @@ wire SIZE1_X, SIZE1_Y, SIZE1_Z;
 //assign SIZE1_Y = ~(~(~E[36] & ~E[33] & ~E[40] & ~E[42] & ~E[46] & ~E[51]) & ~STERM)
 //assign SIZE1_Z = ~((~(~(E[23] & DSACK) & ~(~DSACK & (E[29]| E[33] | E[51]))) | (E[40] | E[36] | E[46])) & STERM);
 
-assign SIZE1_X = ((E[62] | E[61] | E[58] | E[56] | E[53] | E[26])  | ((E[25] | E[28] | E[30] | E[50]) & DSACK) | (E[50] & ~DSACK));
+assign SIZE1_X1 = (E[62] | E[61] | E[58] | E[56] | E[53] | E[26]);
+assign SIZE1_X2 = ((E[25] | E[28] | E[30] | E[50]) & DSACK);
+assign SIZE1_X3 = (E[50] & ~DSACK);
+assign SIZE1_X = (SIZE1_X1| SIZE1_X2 | SIZE1_X3);
+
 assign SIZE1_Y = ((E[36] | E[33] | E[40] | E[42] | E[46] | E[51]) & ~STERM_);
-assign SIZE1_Z = (((E[40] | E[36] | E[46]) | (E[23] & DSACK) |((E[29]| E[33] | E[51]) & ~DSACK))& STERM_);
+
+assign SIZE1_Z1 = (E[40] | E[36] | E[46]);
+assign SIZE1_Z2 = (E[23] & DSACK);
+assign SIZE1_Z3 = ((E[29]| E[33] | E[51]) & ~DSACK);
+assign SIZE1_Z = (SIZE1_Z1 | SIZE1_Z2 | SIZE1_Z3) & STERM_;
 
 assign SIZE1_d = (SIZE1_X | SIZE1_Y | SIZE1_Z);
 
