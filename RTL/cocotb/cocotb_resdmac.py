@@ -1,6 +1,7 @@
 # cocotb_resdmac.py
 
 import random
+import array as arr
 
 import cocotb
 from cocotb.clock import Clock
@@ -40,7 +41,8 @@ CONTR_INTDIS = 0x00
 CONTR_PRESET = 0x10
 CONTR_DMAENA = 0x100
 
-
+TEST_DATA_ARRAY_LONG = arr.array('L', [0x1a1b1c1d, 0x2a2b2c2d, 0x3a3b3c3d, 0x4a4b4c4d, 0x5a5b5c5d, 0x6a6b6c6d, 0x7a7b7c7d, 0x8a8b8c8d])
+TEST_DATA_ARRAY_BYTE = arr.array('B', [0x1a,0x1b,0x1c,0x1d, 0x2a,0x2b,0x2c,0x2d, 0x3a,0x3b,0x3c,0x3d, 0x4a,0x4b,0x4c,0x4d, 0x5a,0x5b,0x5c,0x5d, 0x6a,0x6b,0x6c,0x6d, 0x7a,0x7b,0x7c,0x7d, 0x8a,0x8b,0x8c,0x8d])
 
 async def reset_dut(reset_n, duration_ns):
     await Timer(duration_ns, units="ns")
@@ -113,49 +115,61 @@ async def write_data(dut, addr, data):
     dut._id("_CS", extended=False).value = 1
     
 async def FillFIFOFromSCSI(dut, initialValue):
-    
-    dut.PDATA_I.value = initialValue
-    
+    dut._log.info("Started Filling FIFO From SCSI")
+    i = 0
     #load fifo from scsci
     while (dut.FIFOFULL == 0):
         dut._id("_DREQ", extended=False).value = 0
+        dut.PDATA_I.value = TEST_DATA_ARRAY_BYTE[i]
         await FallingEdge(dut._id("_DACK", extended=False))
         await FallingEdge(dut._id("_IOR", extended=False))
+        dut._log.info("loaded FIFO with value %#x from SCSI", dut.PDATA_I.value)
         dut._id("_DREQ", extended=False).value = 1
         await RisingEdge(dut._id("_DACK", extended=False))
         await ClockCycles(dut.SCLK, 1, True)
-        dut.PDATA_I.value = dut.PDATA_I.value + 0x1
         await RisingEdge(dut.SCLK)
+        i += 1
+    dut.PDATA_I.value = 0
+    dut._log.info("Finished Filling FIFO From SCSI")
 
 async def FillFIFOFromMem(dut, initialValue,TermSignal):
-    dut.DATA_I.value = initialValue
-
-    #load fifo from scsci
+    dut._log.info("Started Filling FIFO From Memory")
+    i = 0
+    #load fifo from memory
     while (dut.FIFOFULL == 0):
         await FallingEdge(dut.AS_O_)
+        dut.DATA_I.value = TEST_DATA_ARRAY_LONG[i]
         await ClockCycles(dut.SCLK, 1, True)
         await RisingEdge(dut.SCLK)
         dut._id(TermSignal, extended=False).value = 0
-        await RisingEdge(dut.AS_O_)        
+        dut._log.info("loaded FIFO with value %#x from memory", dut.DATA_I.value)
+        await RisingEdge(dut.AS_O_)
         dut._id(TermSignal, extended=False).value = 1
-        dut.DATA_I.value = dut.DATA_I.value + 0x10101010
         await RisingEdge(dut.SCLK)
-        
+        i += 1
+    dut.DATA_I.value =0x0
+    dut._log.info("Finished Filling FIFO From Memory")
+
 async def f2s(dut):
-    dut._log.info("f2s started")
+    dut._log.info("Started transferring FIFO to SCSI")
+    result = arr.array('B')
     await RisingEdge(dut.AS_O_)
-    await RisingEdge(dut.SCLK)    
+    await RisingEdge(dut.SCLK)
+
     while (dut.FIFOEMPTY == 0):
-        dut._log.info("f2s fifo is NOT empty")
         dut._id("_DREQ", extended=False).value = 0
         await FallingEdge(dut._id("_DACK", extended=False))
         await FallingEdge(dut._id("_IOW", extended=False))
+        result.append(dut.PDATA_O.value & 0x00ff)
+        dut._log.info("Transfering value %#x from FIFO to SCSI", dut.PDATA_O.value)
         dut._id("_DREQ", extended=False).value = 1
         await RisingEdge(dut._id("_DACK", extended=False))
         await ClockCycles(dut.SCLK, 1, True)
         await RisingEdge(dut.SCLK)
-    dut._log.info("f2s fifo is empty")
-    dut._log.info("f2s ended")
+
+    are_equal = arrays_are_equal(dut, result, TEST_DATA_ARRAY_BYTE)
+    dut._log.info("Finished transferring FIFO to SCSI")
+    assert are_equal, "TEST_DATA_ARRAY_BYTE != result"
 
 async def wait_for_bus_release(dut):
     await RisingEdge(dut._id("_BGACK_IO", extended=False))
@@ -169,10 +183,26 @@ async def wait_for_bus_grant(dut):
     await FallingEdge(dut._id("_BGACK_IO", extended=False))
     dut._id("_BG", extended=False).value = 1
     await FallingEdge(dut.SCLK)
+    
+def arrays_are_equal(dut, arr1, arr2):
+    dut._log.info("Started checking array values")
+    if len(arr1) != len(arr2):
+        dut._log.error("arrays are not equal length")
+        return False
+    for i in range(len(arr1)):
+        if arr1[i] != arr2[i]:
+            dut._log.error("Value %#x != expected value %#x",arr1[i], arr2[i])
+            return False
+    dut._log.info("Finished checking array values")
+    return True
 
 async def XferFIFO2Mem(dut,TermSignal):
+    dut._log.info("Started transferring FIFO to Memory")
+    result = arr.array('L')
     while (dut.FIFOEMPTY == 0):
         await FallingEdge(dut.AS_O_)
+        result.append(dut.DATA_O.value)
+        dut._log.info("Transfering value %#x from FIFO to Memory", dut.DATA_O.value)
         await ClockCycles(dut.SCLK, 2, True)
         dut._id(TermSignal, extended=False).value = 0
         await RisingEdge(dut.AS_O_)
@@ -180,6 +210,9 @@ async def XferFIFO2Mem(dut,TermSignal):
         if dut.INCNO.value == 1:
             dut.ADDR.value = dut.ADDR.value ^ 1
         await RisingEdge(dut.SCLK)
+    are_equal = arrays_are_equal(dut, result, TEST_DATA_ARRAY_LONG)
+    dut._log.info("Finished transferring FIFO to Memory")
+    #assert are_equal, "TEST_DATA_ARRAY_LONG != result"
    
     
 
