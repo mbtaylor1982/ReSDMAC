@@ -17,7 +17,7 @@ module RESDMAC(
     inout  tri1 _AS_IO,                 //Address Strobe
     inout  tri1 _DS_IO,                 //Data Strobe
 
-	inout tri1 [1:0] _DSACK_IO,
+	 inout tri1 [1:0] _DSACK_IO,
     inout tri1 [31:0] DATA_IO,      	// CPU side data bus 32bit wide
 
     input tri1 _STERM,              	//static/synchronous data ack.
@@ -43,7 +43,16 @@ module RESDMAC(
     output _IOR,                    //Active Low read strobe
     output _IOW,                    //Ative Low Write strobe
 
-    inout tri1 [15:0] PD_PORT     	//Peripheral Data port
+    inout tri1 [15:0] PD_PORT,     	//Peripheral Data port
+	 
+	 input INC_ADD,
+	 input IORDY,
+	 input CSX1,
+	 input CSX0,
+	 input INTB,
+	 input JP,
+	 input PIN_D8
+	 
 );
 
 reg AS_O_;
@@ -63,7 +72,7 @@ assign  R_W_IO = OWN ? ~DMADIR : 1'bz;
 wire [31:0] DATA_I;
 wire [31:0] DATA_O;
 assign DATA_I = DATA_IO;
-assign DATA_IO = ((R_W & ~H_0C) | OWN) ? DATA_O : 32'hzzzzzzzz;
+assign DATA_IO = ((R_W & ~H_0C & ~_CS) | OWN) ? DATA_O : 32'hzzzzzzzz;
 
 wire [15:0] PDATA_I;
 wire [15:0] PDATA_O;
