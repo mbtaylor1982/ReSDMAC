@@ -256,19 +256,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "_STERM",
-					"strict" : false
-				},
-				{
-					"name" : "_BERR",
-					"strict" : false
-				},
-				{
 					"name" : "ADDR[3]",
 					"strict" : false
 				},
 				{
-					"name" : "ADDR[2]",
+					"name" : "_CS",
 					"strict" : false
 				},
 				{
@@ -280,7 +272,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "_CS",
+					"name" : "ADDR[2]",
 					"strict" : false
 				},
 				{
@@ -289,6 +281,14 @@
 				},
 				{
 					"name" : "_RST",
+					"strict" : false
+				},
+				{
+					"name" : "_BERR",
+					"strict" : false
+				},
+				{
+					"name" : "_STERM",
 					"strict" : false
 				},
 				{
@@ -301,6 +301,22 @@
 				},
 				{
 					"name" : "_DREQ",
+					"strict" : false
+				},
+				{
+					"name" : "altera_reserved_tms",
+					"strict" : false
+				},
+				{
+					"name" : "altera_reserved_tck",
+					"strict" : false
+				},
+				{
+					"name" : "altera_reserved_tdi",
+					"strict" : false
+				},
+				{
+					"name" : "altera_reserved_tdo",
 					"strict" : false
 				}
 			]
