@@ -43,23 +43,23 @@ module CPU_SM_INTERNALS(
 );
 
 localparam [4:0]
-    s0 = 0,
-    s1 = 1,
+    IDLE_s0 = 0,
+    DMA_R_s1 = 1,
     s2 = 2,
     s3 = 3,
-    s4 = 4,
+    DMA_R_s4 = 4,
     s5 = 5,
     s6 = 6,
     s7 = 7,
-    s8 = 8,
+    DMA_R_s8 = 8,
     s9 = 9,
     s10 = 10,
     s11 = 11,
-    s12 = 12,
+    DMA_R_s12 = 12,
     s13 = 13,
     s14 = 14,
     s15 = 15,
-    s16 = 16,
+    DMA_W_s16 = 16,
     s17 = 17,
     s18 = 18,
     s19 = 19,
@@ -67,11 +67,11 @@ localparam [4:0]
     s21 = 21,
     s22 = 22,
     s23 = 23,
-    s24 = 24,
+    DMA_R_s24 = 24,
     s25 = 25,
     s26 = 26,
     s27 = 27,
-    s28 = 28,
+    DMA_R_s28 = 28,
     s29 = 29,
     s30 = 30,
     s31 = 31;
@@ -155,217 +155,205 @@ wire s14E = //E61
 always @(posedge CLK or negedge nRESET)
 begin
     if (~nRESET) begin
-        state <= s0;
+        state <= IDLE_s0;
     end
 	else begin
-       case (state_reg)
-        s0: begin
-            if (s0a) begin
-                state <= s0;
+        case (state_reg)
+            IDLE_s0: begin
+                casex({DMAENA, DMADIR, FIFOEMPTY, FIFOFULL , FLUSHFIFO , LASTWORD})
+                    6'b111010   : state <= IDLE_s0;     //DMA Read: FIFO EMPTY, FIFO NOT FULL, FLUSH, NOT LASTWORD
+                    6'b110x1x   : state <= DMA_R_s8;    //DMA Read: FIFO NOT EMPTY, FLUSH
+                    6'b11xx11   : state <= DMA_R_s8;    //DMA Read: FLUSH, LASTWORD
+                    6'b11x1xx   : state <= DMA_R_s8;    //DMA Read: FIFO FULL
+                    6'b10xxxx   : state <= DMA_W_s16;   //DMA Write
+                    default     : state <= IDLE_s0;     //IDLE
+                endcase
+            end
+            DMA_R_s1: begin
+                casex({DSACK0_, DSACK1_, DSACK, STERM_})
+                    4'b001x : DMA_R_s24;    //32 bit DSACK term
+                    4'bx1xx : DMA_R_s4;     //16 bit DSACK term
+                    4'bxx01 : DMA_R_s1;     //insert wait state
+                    4'bxxx0 : DMA_R_s28;    //32 bit STERM
+                    default : DMA_R_s1;     //insert wait state
+                endcase
             end;
-            if (s0b) begin
-                state <= s8;
+            s2: begin
+                casex (CYCLEDONE, A1, & BGRANT_)
+                    3'b100 : s18;
+                    3'b110 : s9;
+                    3'bxx1 : s2;
+                    3'b0xx : s2;
+                    default: s2;
+                endcase
+            end
+            s3: begin
+                casex ({DSACK0_, DSACK1_, DSACK, STERM_})
+                    4'b001x : s24;          //32 bit DSACK term
+                    4'bx11x : s28;          //16 bit DSACK term
+                    4'bxx01 : s3;           //insert wait state
+                    4'bxxx0 : DMA_R_s28;    //32 bit STERM
+                    default : s3;           //insert wait state
+                endcase
             end;
-             if (s0c) begin
-                state <= s8;
+            DMA_R_s4: begin
+                casex ({DMAENA, DMADIR})
+                    2'b10   : s16; //DMA Write
+                    default : s17; //DMA Read
+                endcase
             end;
-            if (s0d) begin
-                state <= s8;
+            s5: begin
+                if (s5a) begin
+                    state <= s11;
+                end;
+                if (s5b) begin
+                    state <= s5;
+                end;
             end;
-            if (s0e) begin
-                state <= s16;
-            end;
-        end
-        s1: begin
-            if (s1a) begin
-                state <= s24;
-            end;
-            if (s1b) begin
-                state <= s4;
-            end;
-             if (s1c) begin
-                state <= s1;
-            end;
-            if (s1d) begin
-                state <= s28;
-            end;
-        end;
-        s2: begin
-             if (s2a) begin
-                state <= s18;
-            end;
-            if (s2b) begin
-                state <= s9;
-            end;
-             if (s2c) begin
-                state <= s2;
-            end;
-            if (s2d) begin
-                state <= s2;
-            end;
-          
-        end
-        s3: begin
-            if (s3a) begin
-                state <= s3;
-            end;
-            if (s3b) begin
-                state <= s28;
-            end;
-             if (s3c) begin
-                state <= s28;
-            end;
-        end;
-        s4: begin
-            if (s4a) begin
-                state <= s16;
-            end;
-            if (s4b) begin
-                state <= s17;
-            end;
-        end;
-        s5: begin
-            if (s5a) begin
+            s6: begin
                 state <= s11;
             end;
-            if (s5b) begin
-                state <= s5;
+            s7: begin
+                if (s7a) begin //DSACK & ~DSACK1_ e28
+                    state <= s28;
+                end; 
+                if (s7b) begin //~STERM e33
+                    state <= s28;
+                end;
+                if (s7c) begin // ~DSACK & STERM_ e33
+                    state <= s7;
+                end;  
+            
             end;
-        end;
-        s6: begin
-            state <= s11;
-        end;
-        s7: begin
-            if (s7a) begin //DSACK & ~DSACK1_ e28
-                state <= s28;
-            end; 
-            if (s7b) begin //~STERM e33
-                state <= s28;
+            DMA_R_s8: begin
+                casex({CYCLEDONE, LASTWORD, A1, BGRANT_, BOEQ3})
+                    5'b11000   : state <= s20;
+                    5'b11001   : state <= DMA_R_s24;
+                    5'b1000x   : state <= DMA_R_s24;
+                    5'b1x10x   : state <= s4;
+                    5'b1x10x   : state <= DMA_R_s8;
+                    5'b0xxxx   : state <= DMA_R_s8;
+                    default    : state <= DMA_R_s8;
+                endcase
             end;
-            if (s7c) begin // ~DSACK & STERM_ e33
-                state <= s7;
-            end;  
-        
-        end;
-        s8: begin
-            if (s8a) begin 
-                state <= s20;
-            end; 
-            if (s8b) begin 
-                state <= s24;
-            end;
-            if (s8c) begin 
-                state <= s24;
-            end;
-            if (s8d) begin 
-                state <= s4;
-            end;  
-            if (s8e) begin 
-                state <= s8;
-            end;  
-            if (s8f) begin 
-                state <= s8;
-            end;  
-        
-        end;
-        s9: begin
-            state <= s21;
-        end;
-        s10: begin
-            state <= s26;        
-        end
-        s11: begin
-            if (s11a) begin 
-                state <= s23;
-            end;  
-            if (s11b) begin 
-                state <= s25;
-            end;  
-        end;
-        s12: begin
-            if (s12a) begin 
-                state <= s1;
-            end;  
-            if (s12b) begin 
-                state <= s28;
-            end;
-          
-        end
-        s13: begin
-            if (s13a) begin
+            s9: begin
                 state <= s21;
             end;
-            if (s13b) begin
-                state <= s29;
+            s10: begin
+                state <= s26;
+            end
+            s11: begin
+                if (s11a) begin
+                    state <= s23;
+                end;
+                if (s11b) begin
+                    state <= s25;
+                end;
             end;
-             if (s13c) begin
-                state <= s31;
+            DMA_R_s12: begin
+                if (STERM_)
+                    state <= DMA_R_s1;
+                else
+                    state <= s28;
+            end
+            s13: begin
+                if (s13a) begin
+                    state <= s21;
+                end;
+                if (s13b) begin
+                    state <= s29;
+                end;
+                if (s13c) begin
+                    state <= s31;
+                end;
+                if (s13d) begin
+                    state <= s21;
+                end;
+                else begin
+                    state <= s21; 
+                end;
+            
             end;
-            if (s13d) begin
-                state <= s21;
+            s14: begin
+                if (STERM_)
+                    state <=s31;
+                else
+                    state <= s27;
             end;
-            else begin
-                state <= s21; 
+            s15: begin
+            
             end;
-        
-        end;
-        s14: begin
-            If (STERM_)
-                state <=s31;
-            else
-                state <= s27;
-        end;
-        s15: begin
-        
-        end;
-        s16: begin
-        
-        end;
-        s17: begin
-        
-        end;
-        s18: begin
-        
-        end;
-        s19: begin
-        
-        end;
-        s20: begin
-                
-        end
-        s21: begin
-        end;
-        s22: begin
-          
-        end
-        s23: begin
-        
-        end;
-        s24: begin
-        
-        end;
-        s25: begin
-        
-        end;
-        s26: begin
-        
-        end;
-        s27: begin
-        
-        end;
-        s28: begin
-        
-        end;
-        s29: begin
-        
-        end;
-        s30: begin
+            s16: begin
+                casex ({DMAENA, DMADIR, FIFOEMPTY, DREQ_})
+                    4'b1010 : s2;
+                    4'bx0x1 : s16;
+                    4'bx00x : s16;
+                    4'b0xxx : s16;
+                    default : s16;
+                endcase
+            end;
+            DMA_R_s17: begin
+                if (STERM_)
+                    state <=s3;
+                else
+                    state <= DMA_R_s28;
+            end;
+            s18: begin
+                state <=s25;
+            end;
+            s19: begin
+            
+            end;
+            s20: begin
+                    
+            end
+            s21: begin
+            end;
+            s22: begin
+            
+            end
+            s23: begin
+                state <= IDLE_s0;
+            end;
+            DMA_R_s24: begin
+                state <= DMA_R_s12;
+            end;
+            s25: begin
+                casex ({DSACK1_, DSACK, STERM_ })
+                    3'b0xx  : s10;
+                    3'bxx0  : s11;
+                    3'bx01  : s27;
+                    3'bxx1  : s27;
+                    default : s25;
+                endcase
+            end;
+            s26: begin
+            
+            end;
+            s27: begin
+            
+            end;
+            DMA_R_s28: begin
+                casex ({BOEQ3, FIFOEMPTY, LASTWORD})
+                    3'b111 : DMA_R_s12;
+                    3'b011 : s18;
+                    3'bx10 : s23;
+                    3'bx0x : DMA_R_s12;
+                    default: DMA_R_s28;
+                endcase
+            
+            end;
+            s29: begin
+            
+            end;
+            s30: begin
 
-        end
-        s31: begin
+            end
+            s31: begin
 
-        end
-	end
+            end
+	    endcase
+    end
 
 end
 
