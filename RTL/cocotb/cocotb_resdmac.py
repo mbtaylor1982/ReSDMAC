@@ -34,8 +34,8 @@ SCSI_TEST_DATA4 = 0x00AA00AA
 
 REV_STR = 0x52455631
 
-CONTR_DMA_READ = 0x02
-CONTR_DMA_WRITE = 0x00
+CONTR_DMA_READ = 0x00
+CONTR_DMA_WRITE = 0x02
 CONTR_INTENA = 0x04
 CONTR_INTDIS = 0x00
 CONTR_PRESET = 0x10
@@ -177,9 +177,17 @@ async def wait_for_bus_release(dut):
     await ClockCycles(dut.SCLK, 2, True)
 
 async def wait_for_bus_grant(dut):
-    await FallingEdge(dut._id("_BR", extended=False))
+    if (dut._id("_BR", extended=False) == 1):
+        dut._log.info("waiting BR falling edge")
+        await FallingEdge(dut._id("_BR", extended=False))
+    if (dut.AS_I_.value == 0):
+        dut._log.info("waiting AS rising edge")
+        await RisingEdge(dut._id("AS_I_", extended=False))
+        await ClockCycles(dut.SCLK, 1, True)
     if (dut.AS_I_.value == 1) and (dut._id("_BGACK_IO", extended=False).value == 1):
+        dut._log.info("setting _BG low")
         dut._id("_BG", extended=False).value = 0
+    dut._log.info("waiting _BGACK_IO falling edge")    
     await FallingEdge(dut._id("_BGACK_IO", extended=False))
     dut._id("_BG", extended=False).value = 1
     await FallingEdge(dut.SCLK)
@@ -438,8 +446,47 @@ async def RESDMAC_test(dut):
     dut.R_W.value = 1
     #stop DMA
     await read_data(dut, SP_DMA_STROBE_ADR)
+    
+    
+    
+    #9a Test DMA READ (from scsi to memory) 32 bit sterm cycle with flush
+    #await reset_dut(dut._id("_RST", extended=False), 40)
+    #Setup DMA Direction to Read from SCSI write to Memory
+    #await write_data(dut, CONTR_REG_ADR, (CONTR_DMA_READ | CONTR_INTENA))
+    #Set Destination address
+    #await write_data(dut, RAMSEY_ACR_REG_ADR, 0x00000000)
+    #dut.ADDR.value = 0x00000000
+    #start DMA
+    #await read_data(dut, ST_DMA_STROBE_ADR)
+           
+    #dut._log.info("Started Filling FIFO From SCSI")
+    #i = 0
+    #load fifo from scsci
+    #while (i <= 14):
+    #    dut._id("_DREQ", extended=False).value = 0
+    #    dut.PDATA_I.value = TEST_DATA_ARRAY_BYTE[i]
+    #    await FallingEdge(dut._id("_DACK", extended=False))
+    #    await FallingEdge(dut._id("_IOR", extended=False))
+    #    dut._log.info("loaded FIFO with value %#x from SCSI", dut.PDATA_I.value)
+    #    dut._id("_DREQ", extended=False).value = 1
+    #    await RisingEdge(dut._id("_DACK", extended=False))
+    #    await ClockCycles(dut.SCLK, 1, True)
+    #    await RisingEdge(dut.SCLK)
+    #    i += 1
+    #dut.PDATA_I.value = 0
+    #dut._log.info("Finished Filling FIFO From SCSI")
     #Flush
-    await read_data(dut, FLUSH_STROBE_ADR)
+    #await read_data(dut, FLUSH_STROBE_ADR)
+    
+    #await wait_for_bus_grant(dut)
+    #await XferFIFO2Mem(dut, "_STERM")
+    #await wait_for_bus_release(dut)
+    
+    #dut.AS_I_.value = 1
+    #dut.DS_I_.value = 1
+    #dut.R_W.value = 1
+    #stop DMA
+    #await read_data(dut, SP_DMA_STROBE_ADR)
     
     #10 Test DMA WRITE (from memory to SCSI) 32 bit sterm cycle
     await reset_dut(dut._id("_RST", extended=False), 40)
