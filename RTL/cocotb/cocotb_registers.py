@@ -111,7 +111,7 @@ async def registers_test(dut):
     assert dut.REG_DSK_.value == 1, "REG_DSK_ != 1  after reset"
     assert dut.WDREGREQ.value == 0  , "WDREGREQ != 0  after reset"
     assert dut.DMAENA.value == 0 ,"DMAENA != 0  after reset"
-    assert dut.DMADIR.value == 0 ,"DMADIR != 0  after reset"
+    assert dut.DMADIR.value == 1 ,"DMADIR != 1  after reset"
     assert dut.INTENA.value == 0 ,"INTENA != 0  after reset"
     assert dut.PRESET.value == 0 ,"PRESET != 0  after reset"
     assert dut.CNTR_O.value == 0 , "CNTR_O != 0x0  after reset"
@@ -130,7 +130,7 @@ async def registers_test(dut):
     data = await read_data(dut, 0x08)
     assert data == 0x00, 'Control Register not returning expected data'
     assert dut.DMAENA.value == 0, 'Control Register DMAENA != 0'
-    assert dut.DMADIR.value == 0, 'Control Register DMADIR != 0'
+    assert dut.DMADIR.value == 1, 'Control Register DMADIR != 1'
     assert dut.INTENA.value == 0, 'Control Register INTENA != 0'
     assert dut.PRESET.value == 0, 'Control Register PRESET != 0'
     
@@ -139,7 +139,7 @@ async def registers_test(dut):
     data = await read_data(dut, 0x08)
     assert data == 0x02, 'Control Register not returning expected data'
     assert dut.DMAENA.value == 0, 'Control Register DMAENA != 0'
-    assert dut.DMADIR.value == 1, 'Control Register DMADIR != 1'
+    assert dut.DMADIR.value == 0, 'Control Register DMADIR != 0'
     assert dut.INTENA.value == 0, 'Control Register INTENA != 0'
     assert dut.PRESET.value == 0, 'Control Register PRESET != 0'
     
@@ -148,7 +148,7 @@ async def registers_test(dut):
     data = await read_data(dut, 0x08)
     assert data == 0x04, 'Control Register not returning expected data'
     assert dut.DMAENA.value == 0, 'Control Register DMAENA != 0'
-    assert dut.DMADIR.value == 0, 'Control Register DMADIR != 0'
+    assert dut.DMADIR.value == 1, 'Control Register DMADIR != 1'
     assert dut.INTENA.value == 1, 'Control Register INTENA != 1'
     assert dut.PRESET.value == 0, 'Control Register PRESET != 0'
     
@@ -157,7 +157,7 @@ async def registers_test(dut):
     data = await read_data(dut, 0x08)
     assert data == 0x10, 'Control Register not returning expected data'
     assert dut.DMAENA.value == 0, 'Control Register DMAENA != 0'
-    assert dut.DMADIR.value == 0, 'Control Register DMADIR != 0'
+    assert dut.DMADIR.value == 1, 'Control Register DMADIR != 1'
     assert dut.INTENA.value == 0, 'Control Register INTENA != 0'
     assert dut.PRESET.value == 1, 'Control Register PRESET != 1'
 
@@ -166,16 +166,17 @@ async def registers_test(dut):
     data = await read_data(dut, 0x08)
     assert data == 0x16, 'Control Register not returning expected data'
     assert dut.DMAENA.value == 0, 'Control Register DMAENA != 0'
-    assert dut.DMADIR.value == 1, 'Control Register DMADIR != 1'
+    assert dut.DMADIR.value == 0, 'Control Register DMADIR != 0'
     assert dut.INTENA.value == 1, 'Control Register INTENA != 1'
     assert dut.PRESET.value == 1, 'Control Register PRESET != 1'
+    
 
     #2f Start DMA using write
     await write_data(dut, 0x10, 0x0)
     data = await read_data(dut, 0x08)
     assert data == 0x116, 'Control Register not returning expected data'
     assert dut.DMAENA.value == 1, 'Control Register DMAENA != 1'
-    assert dut.DMADIR.value == 1, 'Control Register DMADIR != 1'
+    assert dut.DMADIR.value == 0, 'Control Register DMADIR != 0'
     assert dut.INTENA.value == 1, 'Control Register INTENA != 1'
     assert dut.PRESET.value == 1, 'Control Register PRESET != 1'
     
@@ -184,7 +185,7 @@ async def registers_test(dut):
     data = await read_data(dut, 0x08)
     assert data == 0x16, 'Control Register not returning expected data'
     assert dut.DMAENA.value == 0, 'Control Register DMAENA != 0'
-    assert dut.DMADIR.value == 1, 'Control Register DMADIR != 1'
+    assert dut.DMADIR.value == 0, 'Control Register DMADIR != 0'
     assert dut.INTENA.value == 1, 'Control Register INTENA != 1'
     assert dut.PRESET.value == 1, 'Control Register PRESET != 1'
     
@@ -193,7 +194,7 @@ async def registers_test(dut):
     data = await read_data(dut, 0x08)
     assert data == 0x116, 'Control Register not returning expected data'
     assert dut.DMAENA.value == 1, 'Control Register DMAENA != 1'
-    assert dut.DMADIR.value == 1, 'Control Register DMADIR != 1'
+    assert dut.DMADIR.value == 0, 'Control Register DMADIR != 0'
     assert dut.INTENA.value == 1, 'Control Register INTENA != 1'
     assert dut.PRESET.value == 1, 'Control Register PRESET != 1'
     
@@ -202,11 +203,12 @@ async def registers_test(dut):
     data = await read_data(dut, 0x08)
     assert data == 0x16, 'Control Register not returning expected data'
     assert dut.DMAENA.value == 0, 'Control Register DMAENA != 0'
-    assert dut.DMADIR.value == 1, 'Control Register DMADIR != 1'
+    assert dut.DMADIR.value == 0, 'Control Register DMADIR != 0'
     assert dut.INTENA.value == 1, 'Control Register INTENA != 1'
     assert dut.PRESET.value == 1, 'Control Register PRESET != 1'
     
     #2j FLUSH FIFO
+    await write_data(dut, 0x08, 0x00) #set DMADIR
     await read_data(dut, 0x14)
     assert dut.FLUSHFIFO.value == 1 , "FLUSHFIFO != 1  after FLUSH"
     dut.STOPFLUSH.value = 1
@@ -217,6 +219,7 @@ async def registers_test(dut):
         
     
     #3 test IST register
+    await write_data(dut, 0x08, 0x04) #enable ints
     #3a check inital values have been reset
     data = await read_data(dut, 0x1C)
     assert data == 0x01, 'Control Register not returning expected data'

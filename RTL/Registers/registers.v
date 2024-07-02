@@ -53,6 +53,7 @@ wire FLUSH_;    //Flush FIFO
 //Registers
 wire [8:0] ISTR_O;  //Interrupt Status Register
 wire [8:0] CNTR_O;  //Control Register
+wire nDMADIR;
 reg [31:0] SSPBDAT;  //Fake Synchronous Serial Peripheral Bus Data Register (used to test SDMAC rev 4 in the test tool by CDH)
 
 reg [31:0] VERSION;
@@ -72,7 +73,7 @@ addr_decoder u_addr_decoder(
     .DMAC_          (DMAC_      ),
     .AS_            (AS_        ),
     .RW             (RW         ),
-    .DMADIR         (DMADIR     ),
+    .DMADIR         (nDMADIR    ),
     .h_0C           (h_0C       ),
     .WDREGREQ       (WDREGREQ   ),
     .WTC_RD_        (WTC_RD_    ),
@@ -115,7 +116,7 @@ registers_cntr u_registers_cntr(
     .CNTR_O    (CNTR_O    ),
     .INTENA    (INTENA    ),
     .PRESET    (PRESET    ),
-    .DMADIR    (DMADIR    ),
+    .DMADIR    (nDMADIR   ),
     .DMAENA    (DMAENA    )
 );
 
@@ -129,16 +130,14 @@ registers_term u_registers_term(
     .REG_DSK_ (REG_DSK_ )
 );
 
-//FIFOFLUSH control
-wire CLR_FLUSHFIFO;
-assign CLR_FLUSHFIFO = ~STOPFLUSH;
+assign DMADIR = ~nDMADIR;
 
 always @(negedge CLK or negedge RST_) begin
     if (~RST_)
         FLUSHFIFO <= 1'b0;
     else if (~FLUSH_)
         FLUSHFIFO <= 1'b1;
-	else if (~CLR_FLUSHFIFO)
+	else if (STOPFLUSH)
 		FLUSHFIFO <= 1'b0;
 end
 
