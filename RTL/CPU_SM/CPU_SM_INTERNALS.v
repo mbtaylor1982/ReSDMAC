@@ -3,6 +3,9 @@
 module CPU_SM_INTERNALS(
 
     input CLK,              //CLK
+    input CLK45,
+    input CLK90,              //CLK
+    input CLK135,
     input nRESET,           //Active low reset
 
     input A1,
@@ -20,6 +23,8 @@ module CPU_SM_INTERNALS(
     input LASTWORD,
     input DSACK,
     input STERM,
+    input RDFIFO_,
+    input RIFIFO_,
 
     output reg INCNI,
     output reg BREQ,
@@ -155,7 +160,6 @@ begin
             s11: state <= FIFOFULL ? s23 : s25;
             DMA_R_s12: state <= STERM_ ? DMA_R_s1 : s28;
             s13: begin
-
             end;
             s14: state <= STERM_ ? s31 : s27;
             s15: begin
@@ -252,104 +256,109 @@ begin
     SetOutputDefaults();
     case (state_reg)
         s0: begin
-            if (s0a) begin
-                STOPFLUSH <= 1'b1;
-            end
-            if (s0b | s0c | s0d) begin
-                BREQ <= 1'b1;
-            end
+            casex({DMAENA, DMADIR, FIFOEMPTY, FIFOFULL , FLUSHFIFO , LASTWORD})
+                6'b111010   : STOPFLUSH <= 1'b1;       //DMA Read: FIFO EMPTY, FIFO NOT FULL, FLUSH, NOT LASTWORD
+                6'b110x1x   : BREQ      <= 1'b1;       //DMA Read: FIFO NOT EMPTY, FLUSH
+                6'b11xx11   : BREQ      <= 1'b1;       //DMA Read: FLUSH, LASTWORD
+                6'b11x1xx   : BREQ      <= 1'b1;       //DMA Read: FIFO FULL
+            endcase
         end
         s1: begin
-            if(s1a) begin
-                INCNO   <= 1'b1;
-                DECFIFO <= 1'b1;
-            end;
-            if(s1b) begin
-                F2CPUL <= 1'b1;
-                F2CPUH <= 1'b1;
-            end;
-            if(s1c) begin
-                PAS <= 1'b1;
-                PDS <= 1'b1;
-                F2CPUL <= 1'b1;
-                F2CPUH <= 1'b1;
-            end;
-            if (s1d) begin
-                F2CPUL  <= 1'b1;
-                F2CPUH  <= 1'b1;
-                INCNO   <= 1'b1;
-                DECFIFO <= 1'b1;
-            end
+            casex({DSACK0_, DSACK1_, DSACK, STERM_})
+                4'b001x : //32 bit DSACK term
+                    begin
+                        INCNO   <= 1'b1;
+                        DECFIFO <= 1'b1;
+                    end
+                4'bx1xx : //16 bit DSACK term
+                    begin
+                        F2CPUL <= 1'b1;
+                        F2CPUH <= 1'b1;
+                    end
+                4'bxx01 : //Wait state
+                    begin
+                        PAS <= 1'b1;
+                        PDS <= 1'b1;
+                        F2CPUL <= 1'b1;
+                        F2CPUH <= 1'b1;
+                    end
+                4'bxxx0 : //32 bit STERM
+                    begin
+                        F2CPUL  <= 1'b1;
+                        F2CPUH  <= 1'b1;
+                        INCNO   <= 1'b1;
+                        DECFIFO <= 1'b1;
+                    end
+            endcase
         end;
         s2: begin
-            if(s2a) begin
-                BREQ <= 1'b1;
-            end;
-            if(s2b) begin
-                BREQ <= 1'b1;
-            end;
-            if(s2c) begin
-                BREQ <= 1'b1;
-            end;
-            if (s2d) begin
-             BREQ <= 1'b1;
-            end
-          
+            BREQ <= 1'b1;
+            casex (CYCLEDONE, A1, BGRANT_)
+                3'b100  : BREQ <= 1'b1;
+                3'b110  : BREQ <= 1'b1;
+                3'bxx1  : BREQ <= 1'b1;
+                3'b0xx  : BREQ <= 1'b1;
+            endcase
         end
         s3: begin
-            if(s3a) begin
-                SIZE1       <= 1'b1;
-                PAS         <= 1'b1;
-                PDS         <= 1'b1;
-                F2CPUL      <= 1'b1;
-                BRIDGEOUT   <= 1'b1;
-            end;
-            if(s3b) begin
-                SIZE1       <= 1'b1;
-                F2CPUL      <= 1'b1;
-                BRIDGEOUT   <= 1'b1;
-                INCNO       <= 1'b1;
-                DECFIFO     <= 1'b1;
-                
-            end;
-            if(s3c) begin
-                SIZE1       <= 1'b1;
-                F2CPUL      <= 1'b1;
-                BRIDGEOUT   <= 1'b1;
-                INCNO       <= 1'b1;
-                DECFIFO     <= 1'b1;
-            end;
-        
+            casex ({DSACK0_, DSACK1_, DSACK, STERM_})
+                4'b001x : //32 bit DSACK term
+                    begin
+                        DECFIFO     <= 1'b1;
+                        INCNO       <= 1'b1;
+                    end
+                4'bx11x : //16 bit DSACK term
+                    begin
+                        SIZE1       <= 1'b1;
+                        F2CPUL      <= 1'b1;
+                        BRIDGEOUT   <= 1'b1;
+                        DECFIFO     <= 1'b1;
+                        INCNO       <= 1'b1;
+                    end
+                4'bxx01 : //insert wait state
+                    begin
+                        SIZE1       <= 1'b1;
+                        PAS         <= 1'b1;
+                        PDS         <= 1'b1;
+                        F2CPUL      <= 1'b1;
+                        BRIDGEOUT   <= 1'b1;
+                    end
+                4'bxxx0 : //32 bit STERM
+                    begin
+                        SIZE1       <= 1'b1;
+                        F2CPUL      <= 1'b1;
+                        BRIDGEOUT   <= 1'b1;
+                        DECFIFO     <= 1'b1;
+                        INCNO       <= 1'b1;
+                    end
+            endcase
         end;
         s4: begin
-            if (s4a) begin
-                //nothing to change on outputs
-            end;
-            if (s4b) begin
-                SIZE1       <= 1'b1; // not sure on this one
-                PAS         <= 1'b1;
-                F2CPUL      <= 1'b1;
-                BRIDGEOUT   <= 1'b1;
-            end;
-        
+            SIZE1       <= 1'b1;
+            PAS         <= 1'b1;
+            F2CPUL      <= 1'b1;
+            BRIDGEOUT   <= 1'b1;
         end;
         s5: begin
-            if (s5a) begin //DSACK
-                SIZE1       <= 1'b1;
-                BRIDGEIN    <= 1'b1;   
-            end;
-            if (s5b) begin //~DSACK
-                SIZE1       <= 1'b1;
+            SIZE1       <= 1'b1;
+            DIEH        <= 1'b1;
+            BRIDGEIN    <= 1'b1;
+
+            if (DSACK)
+                INCFIFO     <= 1'b1;
+            else begin
                 PAS         <= 1'b1;
                 PDS         <= 1'b1;
-                INCFIFO     <= 1'b1;
-                DIEH        <= 1'b1;
-                BRIDGEIN    <= 1'b1;
-            end;        
+                PLLW        <= 1'b1;
+            end
         end;
         s6: begin
+            INCFIFO     <= 1'b1;
             BRIDGEIN    <= 1'b1;
         end;
+
+
+        
         s7: begin
             if (s7a) begin //DSACK & ~DSACK1_ e28
                 SIZE1       <= 1'b1;
