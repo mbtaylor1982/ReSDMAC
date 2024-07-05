@@ -356,32 +356,38 @@ begin
             INCFIFO     <= 1'b1;
             BRIDGEIN    <= 1'b1;
         end;
-
-
-        
         s7: begin
-            if (s7a) begin //DSACK & ~DSACK1_ e28
-                SIZE1       <= 1'b1;
-              
-            end;
-            if (s7b) begin //~STERM e33
-                SIZE1       <= 1'b1;
-                F2CPUL      <= 1'b1;
-                F2CPUH      <= 1'b1;   
-            end;   
-            if (s7c) begin // ~DSACK & STERM_ e33
-                SIZE1       <= 1'b1;
-                PAS         <= 1'b1;
-                PDS         <= 1'b1;
-                F2CPUL      <= 1'b1;
-                F2CPUH      <= 1'b1; 
-            end;       
+            casex ({DSACK1_ DSACK, STERM_})
+                3'b01x  :
+                    begin
+                        SIZE1       <= 1'b1;
+                        F2CPUL      <= 1'b1;
+                        F2CPUH      <= 1'b1;
+                    end
+                3'bxx0  :
+                    begin
+                        SIZE1       <= 1'b1;
+                        F2CPUL      <= 1'b1;
+                        F2CPUH      <= 1'b1;
+                    end
+                3'bx01  :
+                    begin
+                        SIZE1       <= 1'b1;
+                        PAS         <= 1'b1;
+                        PDS         <= 1'b1;
+                        F2CPUL      <= 1'b1;
+                        F2CPUH      <= 1'b1;
+                    end
+            endcase
         end;
         DMA_R_BUS_REQ: begin
-            BREQ        <= 1'b1;
-            
             casex({CYCLEDONE, LASTWORD, A1, BGRANT_, BOEQ3})
-                5'b1100x   : STOPFLUSH   <= 1'b1;
+                5'b11000    : STOPFLUSH   <= 1'b1;
+                5'b11001    : STOPFLUSH   <= 1'b1;
+                5'b1000x    : BREQ        <= 1'b1;
+                5'b1x10x    : BREQ        <= 1'b1;
+                5'b1x10x    : BREQ        <= 1'b1;
+                5'b0xxxx    : BREQ        <= 1'b1;
             endcase
         end;
         s9: begin
@@ -401,10 +407,9 @@ begin
             BRIDGEIN    <= 1'b1;
         end
         s11: begin
-            if (s11a) begin 
+            if (FIFOFULL)
                 INCNI       <= 1'b1;
-            end;  
-            if (s11b) begin 
+            else begin
                 INCNI       <= 1'b1;
                 PAS         <= 1'b1;
                 PDS         <= 1'b1;
@@ -412,21 +417,20 @@ begin
                 PLHW        <= 1'b1;
                 DIEH        <= 1'b1;
                 DIEL        <= 1'b1;
-            end;  
+            end
         end;
         s12: begin
-            if (s12a) begin
+            if (STERM_)
+            begin
                 PAS         <= 1'b1;
                 PDS         <= 1'b1;
                 F2CPUL      <= 1'b1;
                 F2CPUH      <= 1'b1;
-            end;
-            if (s12b) begin
-                F2CPUL      <= 1'b1;
-                F2CPUH      <= 1'b1;
+            end
+            else begin
                 INCNO       <= 1'b1;
                 DECFIFO     <= 1'b1;
-            end;
+            end
         end
         s13: begin
             SIZE1       <= 1'b1;
@@ -435,33 +439,36 @@ begin
             PLLW        <= 1'b1;
             DIEH        <= 1'b1;
             DIEL        <= 1'b1;
+            BRIDGEIN    <= 1'b1;
 
-            if (s13a) begin
-                PAS         <= 1'b1;
-                PDS         <= 1'b1;
-                F2CPUL      <= 1'b1;
-                F2CPUH      <= 1'b1;
-            end;
-            if (s13b) begin
-                F2CPUL      <= 1'b1;
-                F2CPUH      <= 1'b1;
-                INCNO       <= 1'b1;
-                DECFIFO     <= 1'b1;
-            end;
-             if (s13c) begin
-                SIZE1       <= 1'b1;
-                INCFIFO     <= 1'b1;
-                BRIDGEIN    <= 1'b1;
-                DIEH        <= 1'b1;
-            end;
-            if (s13d) begin
-                SIZE1       <= 1'b1;
-                PAS         <= 1'b1;
-                PDS         <= 1'b1;
-                PLLW        <= 1'b1;
-                BRIDGEIN    <= 1'b1;
-                DIEH        <= 1'b1;
-            end;
+            casex ({DSACK, STERM_})
+                2'bx1:
+                    begin
+                        PAS         <= 1'b1;
+                        PDS         <= 1'b1;
+                        F2CPUL      <= 1'b1;
+                        F2CPUH      <= 1'b1;
+                    end
+                2'bx0:
+                    begin
+                        INCNO       <= 1'b1;
+                        DECFIFO     <= 1'b1;
+                    end
+                2'b0x:
+                    begin
+                        SIZE1       <= 1'b1;
+                        PAS         <= 1'b1;
+                        PDS         <= 1'b1;
+                        PLLW        <= 1'b1;
+                        DIEH        <= 1'b1;
+                    end
+                2'b1x:
+                    begin
+                        SIZE1       <= 1'b1;
+                        INCFIFO     <= 1'b1;
+                        DIEH        <= 1'b1;
+                    end
+            endcase
         end;
         s14: begin
         
