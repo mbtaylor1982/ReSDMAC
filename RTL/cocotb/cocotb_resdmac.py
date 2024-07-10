@@ -2,11 +2,13 @@
 
 import random
 import array as arr
+import json
 
 import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import FallingEdge, RisingEdge, Edge, Timer, ClockCycles
 from cocotb.types import LogicArray
+from cocotb.wavedrom import Wavedrom, trace
 
 WTC_REG_ADR = 0x01
 VERSION_REG_ADR = 0x08
@@ -85,6 +87,11 @@ async def read_data(dut, addr):
     
 async def write_data(dut, addr, data):
     dut._log.info("Write value %#x to addr %#x", data, addr)
+    dut.R_W.value = 1
+    dut.ADDR.value = 0
+    dut.DATA_I.value = 0xffffffff
+    dut._id("_CS", extended=False).value = 1
+    await ClockCycles(dut.SCLK, 2, True)
     await RisingEdge(dut.SCLK)
     #s0
     dut._id("_CS", extended=False).value = 0
@@ -111,7 +118,7 @@ async def write_data(dut, addr, data):
     #Cycle end
     dut.R_W.value = 1
     dut.ADDR.value = 0
-    dut.DATA_I.value = 0
+    dut.DATA_I.value =0xffffffff 
     dut._id("_CS", extended=False).value = 1
     
 async def FillFIFOFromSCSI(dut, initialValue):
@@ -221,6 +228,15 @@ async def XferFIFO2Mem(dut,TermSignal):
     are_equal = arrays_are_equal(dut, result, TEST_DATA_ARRAY_LONG)
     dut._log.info("Finished transferring FIFO to Memory")
     #assert are_equal, "TEST_DATA_ARRAY_LONG != result"
+    
+def convertDecToHex(decData):
+    # split dec string
+    el = decData.split()
+    # hexify it
+    el = list(map(lambda x: hex(int(x)), el))
+    # back to string
+    s = ' '.join(str(x) for x in el)
+    return s
    
     
 
@@ -262,32 +278,43 @@ async def RESDMAC_test(dut):
     await write_data(dut, WTC_REG_ADR, TEST_PATTERN1)
     data = await read_data(dut, WTC_REG_ADR)
     assert data == 0x00, 'WTC Register not returning expected data'
-    
-    #2 Test write to SCSI 
-    await write_data(dut, SCSI_REG_ADR1, SCSI_TEST_DATA1)
-    assert dut._id("_CSS", extended=False).value == 0 , "_CSS not asserted when writing to SCSI IC"
-    #assert dut._id("_IOW", extended=False).value == 0 , "_IOW not asserted when writing to SCSI IC"
-    assert dut.PDATA_O.value == SCSI_TEST_DATA5 , "PDATA_O not returning expected data value"
-    await RisingEdge(dut._id("_CSS", extended=False))
+
+    with trace(dut._id("_CS", extended=False),dut.ADDR, dut.DATA_I, dut.R_W, dut.AS_I_, dut.DS_I_, dut._id("_DSACK_IO", extended=False), dut._id("_CSS", extended=False),dut._id("_IOW", extended=False), dut.PDATA_O, clk=dut.SCLK) as waves:
+        #2 Test write to SCSI
+        await write_data(dut, SCSI_REG_ADR1, SCSI_TEST_DATA1)
+        assert dut._id("_CSS", extended=False).value == 0 , "_CSS not asserted after writing to SCSI IC"
+        assert dut._id("_IOW", extended=False).value == 1 , "_IOW asserted after writing to SCSI IC"
+        assert dut.PDATA_O.value == SCSI_TEST_DATA5 , "PDATA_O not returning expected data value"
+        await RisingEdge(dut._id("_CSS", extended=False))
+        await ClockCycles(dut.SCLK, 2, True)
+        datas = waves.dumpj(header="Write to WD33C93 controller", footer="SCLK:25Mhz (T:40ns)")
+        data = json.loads(datas)
+        for x, i in enumerate(data['signal']):
+            if 'data' in i:
+                result = convertDecToHex(i['data'])
+                data['signal'][x]['data'] = result
+        with open('/test/Docs/TimingDiagrams/SCSI_Write.json', 'w') as json_file:
+            json.dump(data,json_file, indent=4, sort_keys=False)
+
     
     #2 Test write to SCSI 
     await write_data(dut, SCSI_REG_ADR2, SCSI_TEST_DATA1)
-    assert dut._id("_CSS", extended=False).value == 0 , "_CSS not asserted when writing to SCSI IC"
-    #assert dut._id("_IOW", extended=False).value == 0 , "_IOW not asserted when writing to SCSI IC"
+    assert dut._id("_CSS", extended=False).value == 0 , "_CSS not asserted after writing to SCSI IC"
+    assert dut._id("_IOW", extended=False).value == 1 , "_IOW asserted after writing to SCSI IC"
     assert dut.PDATA_O.value == SCSI_TEST_DATA5 , "PDATA_O not returning expected data value"
     await RisingEdge(dut._id("_CSS", extended=False))
     
     #2 Test write to SCSI 
     await write_data(dut, SCSI_REG_ADR3, SCSI_TEST_DATA1)
-    assert dut._id("_CSS", extended=False).value == 0 , "_CSS not asserted when writing to SCSI IC"
-    #assert dut._id("_IOW", extended=False).value == 0 , "_IOW not asserted when writing to SCSI IC"
+    assert dut._id("_CSS", extended=False).value == 0 , "_CSS not asserted after writing to SCSI IC"
+    assert dut._id("_IOW", extended=False).value == 1 , "_IOW asserted after writing to SCSI IC"
     assert dut.PDATA_O.value == SCSI_TEST_DATA2 , "PDATA_O not returning expected data value"
     await RisingEdge(dut._id("_CSS", extended=False))
     
     #2 Test write to SCSI 
     await write_data(dut, SCSI_REG_ADR4, SCSI_TEST_DATA1)
-    assert dut._id("_CSS", extended=False).value == 0 , "_CSS not asserted when writing to SCSI IC"
-    #assert dut._id("_IOW", extended=False).value == 0 , "_IOW not asserted when writing to SCSI IC"
+    assert dut._id("_CSS", extended=False).value == 0 , "_CSS not asserted after writing to SCSI IC"
+    assert dut._id("_IOW", extended=False).value == 1 , "_IOW asserted after writing to SCSI IC"
     assert dut.PDATA_O.value == SCSI_TEST_DATA2 , "PDATA_O not returning expected data value"
     await RisingEdge(dut._id("_CSS", extended=False))
     
@@ -387,6 +414,8 @@ async def RESDMAC_test(dut):
     await wait_for_bus_grant(dut)
     await XferFIFO2Mem(dut, "DSK1_IN_")
     await wait_for_bus_release(dut)
+    
+    
     
     dut.AS_I_.value = 1
     dut.DS_I_.value = 1

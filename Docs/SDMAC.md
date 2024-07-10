@@ -458,11 +458,68 @@ The SDMAC runs asynchronously with the SCSI peripheral device (in A3000 the WD33
 ### 1.6.1. Example timing diagram
 
 ```wavedrom
-{ signal: [
-  { name: "clk",         wave: "p.....|..." },
-  { name: "Data",        wave: "x.345x|=.x", data: ["head", "body", "tail", "data"] },
-  { name: "Request",     wave: "0.1..0|1.0" },
-  {},
-  { name: "Acknowledge", wave: "1.....|01." }
-]}
+{
+    "signal": [
+        {
+            "name": "SCLK",
+            "wave": "p........."
+        },
+        {
+            "name": "_CS",
+            "wave": "1.0.....1."
+        },
+        {
+            "name": "ADDR",
+            "wave": "x.3.....x.",
+            "data": "0x40"
+        },
+        {
+            "name": "DATA",
+            "wave": "x..5....x.",
+            "data": "0x005500aa"
+        },
+        {
+            "name": "R_W",
+            "wave": "1.0.....1."
+        },
+        {
+            "name": "_AS",
+            "wave": "1..0....1."
+        },
+        {
+            "name": "_DS",
+            "wave": "1...0...1."
+        },
+        {
+            "name": "_DSACK0",
+            "wave": "1......01.",
+        },
+        {
+            "name": "_DSACK1",
+            "wave": "1......01.",
+        },
+        {},
+        ['WDC33C93',
+            {
+                "name": "_CSS",
+                "wave": "1....0...1"
+            },
+            {
+                "name": "_IOW",
+                "wave": "1....0..1."
+            },
+            {
+                "name": "PDATA",
+                "wave": "x....5..x.",
+                "data": "0xaaaa"
+            }
+        ]
+    ],
+    "head": {
+        "text": "Write to WD33C93 controller"
+    },
+    "foot": {
+        "text": "SCLK:25Mhz (T:40ns)"
+    }
+}
 ```
