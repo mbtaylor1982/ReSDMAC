@@ -161,8 +161,22 @@ assign BB = E[55]| ((E[50] | E[25] | E[6]) & DSACK) ;
 
 assign CC = (E[9] & DSACK) | (E[30] & DSACK);
 assign DD = ((E[39] | E[40] | E[37] | E[42]) & ~STERM_);
+
 assign EE = ~(AA | BB | RDFIFO_);
+/* assign EE = 
+    ~(E[55] + RDFIFO_ + ~STERM_ + DSACK) | //s6, s14, s22, s30
+    (~E[55] & ~RDFIFO_ & STERM_ & ~E[50] & ~E[25] & ~E[6]) |
+    (~E[55] & ~RDFIFO_ & ~E[51] & ~E[46] & ~E[43] & ~DSACK) | 
+    (~E[55] & ~RDFIFO_ & ~E[50] & ~E[25] & ~E[6] & ~E[51] & ~E[46] & ~E[43]); */
+
 assign FF = ~(CC | DD | RIFIFO_);
+/* assign FF = 
+    (~DSACK & ~RIFIFO_) |
+    (~E[9] & ~E[30] & ~RIFIFO_) |   //s3 nDSACK0_ & nDSACK1_
+    (E[37] & ~STERM_ & ~RIFIFO_) |  //s12 or s13
+    (E[39] & ~STERM_ & ~RIFIFO_) |  //s1
+    (E[40] & ~STERM_ & ~RIFIFO_) |  //s17
+    (E[42] & ~STERM_ & ~RIFIFO_);   //s3 */
 
 assign INCFIFO_d = (AA | BB | FF);
 assign DECFIFO_d = (CC | DD | EE);
