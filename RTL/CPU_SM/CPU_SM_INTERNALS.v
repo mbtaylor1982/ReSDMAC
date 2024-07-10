@@ -471,9 +471,57 @@ begin
             endcase
         end;
         s14: begin
+            //assign  E[23]           = (((STATE == 5'd14) | (STATE == 5'd15)) & DSACK0_ & nDSACK1_);//s14 or s15
+            //assign  E[25]           = (((STATE == 5'd14) | (STATE == 5'd15)) & nDSACK0_ & nDSACK1_);//s14 or s15
+            assign  E[51]           = (STATE == 5'd14) | (STATE == 5'd15);//s14 or s15 //E51_s_E54_sd
+            assign  E[55]           = (STATE == 5'd6) | (STATE == 5'd14) | (STATE == 5'd22) | (STATE == 5'd30);//s6, s14, s22, s30
+            assign  E[61]           = (STATE == 5'd10) | (STATE == 5'd14);//s10 or 14
+
+            casex ({DSACK0_, DSACK1_, DSACK, STERM_})
+                4'b1011: 
+                    begin
+                        SIZE1       <= 1'b1;
+                        PLLW        <= 1'b1;
+                    end
+                4'b001x:
+                    begin
+                        SIZE1       <= 1'b1;
+                        INCFIFO     <= 1'b1;
+                        DIEH        <= 1'b1;
+                        DIEL        <= 1'b1;
+                    end
+                4'bxxx0:
+                    begin
+                        SIZE1       <= 1'b1;
+                    end
+                4'bxx01:
+                    begin
+                        SIZE1       <= 1'b1;
+                        PAS         <= 1'b1;
+                        PDS         <= 1'b1;
+                        PLLW        <= 1'b1;
+                    end
+            endcase
         
         end;
         s15: begin
+            assign  E[23]           = (((STATE == 5'd14) | (STATE == 5'd15)) & DSACK0_ & nDSACK1_);//s14 or s15
+            assign  E[25]           = (((STATE == 5'd14) | (STATE == 5'd15)) & nDSACK0_ & nDSACK1_);//s14 or s15
+            assign  E[51]           = (STATE == 5'd14) | (STATE == 5'd15);//s14 or s15 //E51_s_E54_sd
+
+            casex ({DSACK0_, DSACK1_, DSACK, STERM_})
+            4'b1011: 
+                begin
+                    SIZE1       <= 1'b1;
+                    PLLW        <= 1'b1;
+                end
+            4'b001x:
+                begin
+                    SIZE1       <= 1'b1;
+                    INCFIFO     <= 1'b1;
+                    DIEH        <= 1'b1;
+                    DIEL        <= 1'b1;
+                end
         
         end;
         DMA_W_BUS_REQ: begin
