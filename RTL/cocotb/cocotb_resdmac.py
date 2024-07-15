@@ -292,12 +292,12 @@ async def RESDMAC_test(dut):
     dut.R_W.value = 1
 
     #1 test WTC register
-    await write_data(dut, WTC_REG_ADR, TEST_PATTERN1, header='Write to WTC register', footer='SCLK:25Mhz (T:40ns)', filename='/test/Docs/TimingDiagrams/WTC_Write.json')
+    await write_data(dut, WTC_REG_ADR, TEST_PATTERN1, header='Write to WTC register', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/WTC_Write.json')
     data = await read_data(dut, WTC_REG_ADR)
     assert data == 0x00, 'WTC Register not returning expected data'
 
     #2 Test write to SCSI
-    writecycle = cocotb.start_soon(write_data(dut, SCSI_REG_ADR1, SCSI_TEST_DATA1, dut._id("_CSS", extended=False),dut._id("_IOW", extended=False), dut.PDATA_O, header='Write to WD33C93 controller', footer='SCLK:25Mhz (T:40ns)', filename='/test/Docs/TimingDiagrams/SCSI_WriteAddr_1.json'))
+    writecycle = cocotb.start_soon(write_data(dut, SCSI_REG_ADR1, SCSI_TEST_DATA1, dut._id("_CSS", extended=False),dut._id("_IOW", extended=False), dut.PDATA_O, header='Write to WD33C93 controller', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/SCSI_WriteAddr_1.json'))
     if (dut._id("_IOW", extended=False).value == 1):
         await FallingEdge(dut._id("_IOW", extended=False))
     if (dut._id("_CSS", extended=False).value == 1):
@@ -307,7 +307,7 @@ async def RESDMAC_test(dut):
     await writecycle
 
     #2 Test write to SCSI 
-    writecycle = cocotb.start_soon(write_data(dut, SCSI_REG_ADR2, SCSI_TEST_DATA1, dut._id("_CSS", extended=False),dut._id("_IOW", extended=False), dut.PDATA_O, header='Write to WD33C93 controller', footer='SCLK:25Mhz (T:40ns)', filename='/test/Docs/TimingDiagrams/SCSI_WriteAddr_2.json'))
+    writecycle = cocotb.start_soon(write_data(dut, SCSI_REG_ADR2, SCSI_TEST_DATA1, dut._id("_CSS", extended=False),dut._id("_IOW", extended=False), dut.PDATA_O, header='Write to WD33C93 controller', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/SCSI_WriteAddr_2.json'))
     if (dut._id("_IOW", extended=False).value == 1):
         await FallingEdge(dut._id("_IOW", extended=False))
     if (dut._id("_CSS", extended=False).value == 1):
@@ -317,7 +317,7 @@ async def RESDMAC_test(dut):
     await writecycle
 
     #2 Test write to SCSI
-    writecycle = cocotb.start_soon(write_data(dut, SCSI_REG_ADR3, SCSI_TEST_DATA1, dut._id("_CSS", extended=False),dut._id("_IOW", extended=False), dut.PDATA_O, header='Write to WD33C93 controller', footer='SCLK:25Mhz (T:40ns)', filename='/test/Docs/TimingDiagrams/SCSI_WriteAddr_3.json'))
+    writecycle = cocotb.start_soon(write_data(dut, SCSI_REG_ADR3, SCSI_TEST_DATA1, dut._id("_CSS", extended=False),dut._id("_IOW", extended=False), dut.PDATA_O, header='Write to WD33C93 controller', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/SCSI_WriteAddr_3.json'))
     if (dut._id("_IOW", extended=False).value == 1):
         await FallingEdge(dut._id("_IOW", extended=False))
     if (dut._id("_CSS", extended=False).value == 1):
@@ -327,7 +327,7 @@ async def RESDMAC_test(dut):
     await writecycle
 
     #2 Test write to SCSI
-    writecycle = cocotb.start_soon(write_data(dut, SCSI_REG_ADR4, SCSI_TEST_DATA1, dut._id("_CSS", extended=False),dut._id("_IOW", extended=False), dut.PDATA_O, header='Write to WD33C93 controller', footer='SCLK:25Mhz (T:40ns)', filename='/test/Docs/TimingDiagrams/SCSI_WriteAddr_4.json'))
+    writecycle = cocotb.start_soon(write_data(dut, SCSI_REG_ADR4, SCSI_TEST_DATA1, dut._id("_CSS", extended=False),dut._id("_IOW", extended=False), dut.PDATA_O, header='Write to WD33C93 controller', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/SCSI_WriteAddr_4.json'))
     if (dut._id("_IOW", extended=False).value == 1):
         await FallingEdge(dut._id("_IOW", extended=False))
     if (dut._id("_CSS", extended=False).value == 1):
@@ -359,7 +359,7 @@ async def RESDMAC_test(dut):
             if 'data' in i:
                 result = convertDecToHex(i['data'])
                 data['signal'][x]['data'] = result
-        with open('/test/Docs/TimingDiagrams/SCSI_Read.json', 'w') as json_file:
+        with open('../Docs/TimingDiagrams/SCSI_Read.json', 'w') as json_file:
             json.dump(data,json_file, indent=4, sort_keys=False)
     
     #3 Test read from scsi
@@ -393,16 +393,16 @@ async def RESDMAC_test(dut):
     dut.PDATA_I.value = 0x00
     
     #4 check we can reset the SCSI IC
-    await write_data(dut, CONTR_REG_ADR, CONTR_PRESET, dut._id("_IOR", extended=False), dut._id("_IOW", extended=False), dut.u_registers.u_registers_cntr.CNTR_O, header='Write to CONTR REG to Reset SCSI IC', footer='SCLK:25Mhz (T:40ns)', filename='/test/Docs/TimingDiagrams/CONTR_1_Write.json')
+    await write_data(dut, CONTR_REG_ADR, CONTR_PRESET, dut._id("_IOR", extended=False), dut._id("_IOW", extended=False), dut.u_registers.u_registers_cntr.CNTR_O, header='Write to CONTR REG to Reset SCSI IC', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/CONTR_1_Write.json')
     assert (dut._id("_IOR", extended=False).value == 0) and (dut._id("_IOW", extended=False).value == 0) , "PRESET did not assert _IOW and _IOR"
     
     #5 test SSPBDAT register
-    await write_data(dut, SSPB_DATA_ADR, TEST_PATTERN1, dut.u_registers.SSPBDAT, header='Write to SSPBDAT REG', footer='SCLK:25Mhz (T:40ns)', filename='/test/Docs/TimingDiagrams/SSPBDAT_1_Write.json')
+    await write_data(dut, SSPB_DATA_ADR, TEST_PATTERN1, dut.u_registers.SSPBDAT, header='Write to SSPBDAT REG', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/SSPBDAT_1_Write.json')
     data = await read_data(dut, SSPB_DATA_ADR)
     assert data == TEST_PATTERN1, 'SSPBDAT Register not returning expected data'
     
     #6 test SSPBDAT register
-    await write_data(dut, SSPB_DATA_ADR, TEST_PATTERN2, dut.u_registers.SSPBDAT, header='Write to SSPBDAT REG', footer='SCLK:25Mhz (T:40ns)', filename='/test/Docs/TimingDiagrams/SSPBDAT_2_Write.json')
+    await write_data(dut, SSPB_DATA_ADR, TEST_PATTERN2, dut.u_registers.SSPBDAT, header='Write to SSPBDAT REG', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/SSPBDAT_2_Write.json')
     data = await read_data(dut, SSPB_DATA_ADR)
     assert data == TEST_PATTERN2, 'SSPBDAT Register not returning expected data'
     
