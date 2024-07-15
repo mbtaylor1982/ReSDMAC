@@ -22,8 +22,8 @@ jobs:
         uses: actions/checkout@v4
       # 2 - Copy files to the test directory 
       - name: Copy files
-       working-directory: ${{ env.WORK_DIR }}/test
-       run: cp -r .github "$GITHUB_WORKSPACE/"   
+        working-directory: ${{ env.WORK_DIR }}/test
+        run: cp -r .github "$GITHUB_WORKSPACE/"   
       # 3 - Change to cocotb test dtirectory 
       - name: Change to cocotb test dtirectory 
         run: cd /test/RTL/cocotb
