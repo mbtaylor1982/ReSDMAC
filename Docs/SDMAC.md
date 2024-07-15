@@ -523,3 +523,6 @@ The SDMAC runs asynchronously with the SCSI peripheral device (in A3000 the WD33
     }
 }
 ```
+
+![test](https://svg.wavedrom.com/github/mbtaylor1982/ReSDMAC/main/Docs/TimingDiagrams/SCSI_Write.json)
+

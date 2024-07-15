@@ -53,8 +53,12 @@ async def reset_dut(reset_n, duration_ns):
     reset_n.value = 1
     await Timer(duration_ns, units="ns")
     reset_n._log.debug("Reset complete")
-    
+
 async def read_data(dut, addr):
+    dut.R_W.value = 1
+    dut.ADDR.value = 0
+    dut._id("_CS", extended=False).value = 1
+    await ClockCycles(dut.SCLK, 2, True)
     await RisingEdge(dut.SCLK)
     #s0
     dut._id("_CS", extended=False).value = 0
@@ -80,47 +84,60 @@ async def read_data(dut, addr):
     #Cycle end
     dut.R_W.value = 1
     dut.ADDR.value = 0
-    dut._id("_CS", extended=False).value = 1    
+    dut._id("_CS", extended=False).value = 1
     dut._log.info("Read value %#x from addr %#x", data, addr)
     return data
 
-    
-async def write_data(dut, addr, data):
+async def write_data(dut, addr, data, *args, header="", footer="",filename=""):
     dut._log.info("Write value %#x to addr %#x", data, addr)
-    dut.R_W.value = 1
-    dut.ADDR.value = 0
-    dut.DATA_I.value = 0xffffffff
-    dut._id("_CS", extended=False).value = 1
-    await ClockCycles(dut.SCLK, 2, True)
-    await RisingEdge(dut.SCLK)
-    #s0
-    dut._id("_CS", extended=False).value = 0
-    dut.ADDR.value = addr
-    dut.R_W.value = 0
-    await FallingEdge(dut.SCLK)
-    #s1
-    dut.AS_I_.value = 0
-    await RisingEdge(dut.SCLK)
-    #s2
-    dut.DATA_I.value = data
-    await FallingEdge(dut.SCLK)
-    #s3
-    dut.DS_I_.value = 0
-    #wait for cycle term signal to assert 
-    await FallingEdge(dut.dsack_int)
-    await RisingEdge(dut.SCLK)
-    #s4 nothing to do in s4 for a write
-    await FallingEdge(dut.SCLK)
-    #s5
-    dut.AS_I_.value = 1
-    dut.DS_I_.value = 1
-    await RisingEdge(dut.SCLK)
-    #Cycle end
-    dut.R_W.value = 1
-    dut.ADDR.value = 0
-    dut.DATA_I.value =0xffffffff 
-    dut._id("_CS", extended=False).value = 1
-    
+    #Setup wavedrom trace
+    with trace(dut._id("_CS", extended=False),dut.ADDR, dut.DATA_I, dut.R_W, dut.AS_I_, dut.DS_I_, dut._id("_DSACK_IO", extended=False),*args, clk=dut.SCLK) as waves:
+        #Set inital values
+        dut.R_W.value = 1
+        dut.ADDR.value = 0
+        dut.DATA_I.value = 0xffffffff
+        dut._id("_CS", extended=False).value = 1
+        await ClockCycles(dut.SCLK, 2, True)
+        await RisingEdge(dut.SCLK)
+        #s0
+        dut._id("_CS", extended=False).value = 0
+        dut.ADDR.value = addr
+        dut.R_W.value = 0
+        await FallingEdge(dut.SCLK)
+        #s1
+        dut.AS_I_.value = 0
+        await RisingEdge(dut.SCLK)
+        #s2
+        dut.DATA_I.value = data
+        await FallingEdge(dut.SCLK)
+        #s3
+        dut.DS_I_.value = 0
+        #wait for cycle term signal to assert
+        await FallingEdge(dut.dsack_int)
+        await RisingEdge(dut.SCLK)
+        #s4 nothing to do in s4 for a write
+        await FallingEdge(dut.SCLK)
+        #s5
+        dut.AS_I_.value = 1
+        dut.DS_I_.value = 1
+        await RisingEdge(dut.SCLK)
+        #Cycle end
+        dut.R_W.value = 1
+        dut.ADDR.value = 0
+        dut.DATA_I.value =0xffffffff
+        dut._id("_CS", extended=False).value = 1
+        await ClockCycles(dut.SCLK, 2, True)
+        #Write wavedrom to file
+        datas = waves.dumpj(header=header, footer=footer)
+        data = json.loads(datas)
+        for x, i in enumerate(data['signal']):
+            if 'data' in i:
+                result = convertDecToHex(i['data'])
+                data['signal'][x]['data'] = result
+        if (filename != ""):
+            with open(filename, 'w') as json_file:
+                json.dump(data,json_file, indent=4, sort_keys=False)
+
 async def FillFIFOFromSCSI(dut, initialValue):
     dut._log.info("Started Filling FIFO From SCSI")
     i = 0
@@ -157,7 +174,7 @@ async def FillFIFOFromMem(dut, initialValue,TermSignal):
     dut.DATA_I.value =0x0
     dut._log.info("Finished Filling FIFO From Memory")
 
-async def f2s(dut):
+async def XferFIFO2SCSI(dut):
     dut._log.info("Started transferring FIFO to SCSI")
     result = arr.array('B')
     await RisingEdge(dut.AS_O_)
@@ -178,39 +195,6 @@ async def f2s(dut):
     dut._log.info("Finished transferring FIFO to SCSI")
     assert are_equal, "TEST_DATA_ARRAY_BYTE != result"
 
-async def wait_for_bus_release(dut):
-    await RisingEdge(dut._id("_BGACK_IO", extended=False))
-    await RisingEdge(dut.SCLK)
-    await ClockCycles(dut.SCLK, 2, True)
-
-async def wait_for_bus_grant(dut):
-    if (dut._id("_BR", extended=False) == 1):
-        dut._log.info("waiting BR falling edge")
-        await FallingEdge(dut._id("_BR", extended=False))
-    if (dut.AS_I_.value == 0):
-        dut._log.info("waiting AS rising edge")
-        await RisingEdge(dut._id("AS_I_", extended=False))
-        await ClockCycles(dut.SCLK, 1, True)
-    if (dut.AS_I_.value == 1) and (dut._id("_BGACK_IO", extended=False).value == 1):
-        dut._log.info("setting _BG low")
-        dut._id("_BG", extended=False).value = 0
-    dut._log.info("waiting _BGACK_IO falling edge")    
-    await FallingEdge(dut._id("_BGACK_IO", extended=False))
-    dut._id("_BG", extended=False).value = 1
-    await FallingEdge(dut.SCLK)
-    
-def arrays_are_equal(dut, arr1, arr2):
-    dut._log.info("Started checking array values")
-    if len(arr1) != len(arr2):
-        dut._log.error("arrays are not equal length")
-        return False
-    for i in range(len(arr1)):
-        if arr1[i] != arr2[i]:
-            dut._log.error("Value %#x != expected value %#x",arr1[i], arr2[i])
-            return False
-    dut._log.info("Finished checking array values")
-    return True
-
 async def XferFIFO2Mem(dut,TermSignal):
     dut._log.info("Started transferring FIFO to Memory")
     result = arr.array('L')
@@ -228,7 +212,32 @@ async def XferFIFO2Mem(dut,TermSignal):
     are_equal = arrays_are_equal(dut, result, TEST_DATA_ARRAY_LONG)
     dut._log.info("Finished transferring FIFO to Memory")
     #assert are_equal, "TEST_DATA_ARRAY_LONG != result"
-    
+
+async def wait_for_bus_grant(dut):
+    dut._log.info("wait_for_bus_grant")
+    if (dut._id("_BR", extended=False) == 1):
+        dut._log.info("waiting BR falling edge")
+        await FallingEdge(dut._id("_BR", extended=False))
+    if (dut.AS_I_.value == 0):
+        dut._log.info("waiting AS rising edge")
+        await RisingEdge(dut._id("AS_I_", extended=False))
+        await ClockCycles(dut.SCLK, 1, True)
+    if (dut.AS_I_.value == 1) and (dut._id("_BGACK_IO", extended=False).value == 1):
+        dut._log.info("setting _BG low")
+        dut._id("_BG", extended=False).value = 0
+    dut._log.info("waiting _BGACK_IO falling edge")
+    await FallingEdge(dut._id("_BGACK_IO", extended=False))
+    dut._id("_BG", extended=False).value = 1
+    await FallingEdge(dut.SCLK)
+
+async def wait_for_bus_release(dut):
+    dut._log.info("wait_for_bus_release")
+    if (dut._id("_BGACK_IO", extended=False) == 0):
+        dut._log.info("waiting _BGACK_IO rising edge")
+        await RisingEdge(dut._id("_BGACK_IO", extended=False))
+        await RisingEdge(dut.SCLK)
+    await ClockCycles(dut.SCLK, 2, True)
+
 def convertDecToHex(decData):
     # split dec string
     el = decData.split()
@@ -237,13 +246,23 @@ def convertDecToHex(decData):
     # back to string
     s = ' '.join(str(x) for x in el)
     return s
-   
-    
+
+def arrays_are_equal(dut, arr1, arr2):
+    dut._log.info("Started checking array values")
+    if len(arr1) != len(arr2):
+        dut._log.error("arrays are not equal length")
+        return False
+    for i in range(len(arr1)):
+        if arr1[i] != arr2[i]:
+            dut._log.error("Value %#x != expected value %#x",arr1[i], arr2[i])
+            return False
+    dut._log.info("Finished checking array values")
+    return True
 
 @cocotb.test()
 async def RESDMAC_test(dut):
     """Test RESDMAC"""
-    
+
     #set inital value of inputs
     dut.ADDR.value = 0
     dut._id("_CS", extended=False).value = 1
@@ -262,7 +281,6 @@ async def RESDMAC_test(dut):
     dut._id("_DSACK_I", extended=False).value = 3
     dut.INTA.value = 0
 
-
     clock = Clock(dut.SCLK, 40, units="ns")  # Create a 40ns period clock on port clk
     # Start the clock. Start it low to avoid issues on the first RisingEdge
     cocotb.start_soon(clock.start(start_high=False))
@@ -273,61 +291,76 @@ async def RESDMAC_test(dut):
     dut.DS_I_.value = 1
     dut.R_W.value = 1
 
-
     #1 test WTC register
-    await write_data(dut, WTC_REG_ADR, TEST_PATTERN1)
+    await write_data(dut, WTC_REG_ADR, TEST_PATTERN1, header='Write to WTC register', footer='SCLK:25Mhz (T:40ns)', filename='/test/Docs/TimingDiagrams/WTC_Write.json')
     data = await read_data(dut, WTC_REG_ADR)
     assert data == 0x00, 'WTC Register not returning expected data'
 
-    with trace(dut._id("_CS", extended=False),dut.ADDR, dut.DATA_I, dut.R_W, dut.AS_I_, dut.DS_I_, dut._id("_DSACK_IO", extended=False), dut._id("_CSS", extended=False),dut._id("_IOW", extended=False), dut.PDATA_O, clk=dut.SCLK) as waves:
-        #2 Test write to SCSI
-        await write_data(dut, SCSI_REG_ADR1, SCSI_TEST_DATA1)
-        assert dut._id("_CSS", extended=False).value == 0 , "_CSS not asserted after writing to SCSI IC"
-        assert dut._id("_IOW", extended=False).value == 1 , "_IOW asserted after writing to SCSI IC"
-        assert dut.PDATA_O.value == SCSI_TEST_DATA5 , "PDATA_O not returning expected data value"
+    #2 Test write to SCSI
+    writecycle = cocotb.start_soon(write_data(dut, SCSI_REG_ADR1, SCSI_TEST_DATA1, dut._id("_CSS", extended=False),dut._id("_IOW", extended=False), dut.PDATA_O, header='Write to WD33C93 controller', footer='SCLK:25Mhz (T:40ns)', filename='/test/Docs/TimingDiagrams/SCSI_WriteAddr_1.json'))
+    if (dut._id("_IOW", extended=False).value == 1):
+        await FallingEdge(dut._id("_IOW", extended=False))
+    if (dut._id("_CSS", extended=False).value == 1):
+        await FallingEdge(dut._id("_CSS", extended=False))
+    await ClockCycles(dut.SCLK, 1, True)
+    assert dut.PDATA_O.value == SCSI_TEST_DATA5 , "PDATA_O not returning expected data value"
+    await writecycle
+
+    #2 Test write to SCSI 
+    writecycle = cocotb.start_soon(write_data(dut, SCSI_REG_ADR2, SCSI_TEST_DATA1, dut._id("_CSS", extended=False),dut._id("_IOW", extended=False), dut.PDATA_O, header='Write to WD33C93 controller', footer='SCLK:25Mhz (T:40ns)', filename='/test/Docs/TimingDiagrams/SCSI_WriteAddr_2.json'))
+    if (dut._id("_IOW", extended=False).value == 1):
+        await FallingEdge(dut._id("_IOW", extended=False))
+    if (dut._id("_CSS", extended=False).value == 1):
+        await FallingEdge(dut._id("_CSS", extended=False))
+    await ClockCycles(dut.SCLK, 1, True)
+    assert dut.PDATA_O.value == SCSI_TEST_DATA5 , "PDATA_O not returning expected data value"
+    await writecycle
+
+    #2 Test write to SCSI
+    writecycle = cocotb.start_soon(write_data(dut, SCSI_REG_ADR3, SCSI_TEST_DATA1, dut._id("_CSS", extended=False),dut._id("_IOW", extended=False), dut.PDATA_O, header='Write to WD33C93 controller', footer='SCLK:25Mhz (T:40ns)', filename='/test/Docs/TimingDiagrams/SCSI_WriteAddr_3.json'))
+    if (dut._id("_IOW", extended=False).value == 1):
+        await FallingEdge(dut._id("_IOW", extended=False))
+    if (dut._id("_CSS", extended=False).value == 1):
+        await FallingEdge(dut._id("_CSS", extended=False))
+    await ClockCycles(dut.SCLK, 1, True)
+    assert dut.PDATA_O.value == SCSI_TEST_DATA2 , "PDATA_O not returning expected data value"
+    await writecycle
+
+    #2 Test write to SCSI
+    writecycle = cocotb.start_soon(write_data(dut, SCSI_REG_ADR4, SCSI_TEST_DATA1, dut._id("_CSS", extended=False),dut._id("_IOW", extended=False), dut.PDATA_O, header='Write to WD33C93 controller', footer='SCLK:25Mhz (T:40ns)', filename='/test/Docs/TimingDiagrams/SCSI_WriteAddr_4.json'))
+    if (dut._id("_IOW", extended=False).value == 1):
+        await FallingEdge(dut._id("_IOW", extended=False))
+    if (dut._id("_CSS", extended=False).value == 1):
+        await FallingEdge(dut._id("_CSS", extended=False))
+    await ClockCycles(dut.SCLK, 1, True)
+    assert dut.PDATA_O.value == SCSI_TEST_DATA2 , "PDATA_O not returning expected data value"
+    await writecycle
+
+    #3 Test read from scsi
+    with trace(dut._id("_CS", extended=False),dut.ADDR, dut.DATA_O, dut.R_W, dut.AS_I_, dut.DS_I_, dut._id("_DSACK_IO", extended=False), dut._id("_CSS", extended=False),dut._id("_IOR", extended=False), dut.PDATA_I, clk=dut.SCLK) as waves:
+        dut.PDATA_I.value = 0x00
+        t = cocotb.start_soon(read_data(dut, SCSI_REG_ADR1))
+        await FallingEdge(dut._id("_IOR", extended=False))
+        dut.PDATA_I.value = SCSI_TEST_DATA3
+        await RisingEdge(dut.dsack_int)
+        assert dut.DATA_O.value == SCSI_TEST_DATA4 , "Error reading scsi data"
+        dut.DATA_O = 0x00
+        data = await t
+        #assert data == SCSI_TEST_DATA4, "Error reading scsi data"
+        assert dut._id("_CSS", extended=False).value == 0 , "_CSS not asserted when reading from SCSI IC"
+        assert dut._id("_IOR", extended=False).value == 0 , "_IOR not asserted when reading from SCSI IC"
         await RisingEdge(dut._id("_CSS", extended=False))
+        await RisingEdge(dut._id("_IOR", extended=False))
+        dut.PDATA_I.value = 0x00
         await ClockCycles(dut.SCLK, 2, True)
-        datas = waves.dumpj(header="Write to WD33C93 controller", footer="SCLK:25Mhz (T:40ns)")
+        datas = waves.dumpj(header="Read From to WD33C93 controller", footer="SCLK:25Mhz (T:40ns)")
         data = json.loads(datas)
         for x, i in enumerate(data['signal']):
             if 'data' in i:
                 result = convertDecToHex(i['data'])
                 data['signal'][x]['data'] = result
-        with open('/test/Docs/TimingDiagrams/SCSI_Write.json', 'w') as json_file:
+        with open('/test/Docs/TimingDiagrams/SCSI_Read.json', 'w') as json_file:
             json.dump(data,json_file, indent=4, sort_keys=False)
-
-    
-    #2 Test write to SCSI 
-    await write_data(dut, SCSI_REG_ADR2, SCSI_TEST_DATA1)
-    assert dut._id("_CSS", extended=False).value == 0 , "_CSS not asserted after writing to SCSI IC"
-    assert dut._id("_IOW", extended=False).value == 1 , "_IOW asserted after writing to SCSI IC"
-    assert dut.PDATA_O.value == SCSI_TEST_DATA5 , "PDATA_O not returning expected data value"
-    await RisingEdge(dut._id("_CSS", extended=False))
-    
-    #2 Test write to SCSI 
-    await write_data(dut, SCSI_REG_ADR3, SCSI_TEST_DATA1)
-    assert dut._id("_CSS", extended=False).value == 0 , "_CSS not asserted after writing to SCSI IC"
-    assert dut._id("_IOW", extended=False).value == 1 , "_IOW asserted after writing to SCSI IC"
-    assert dut.PDATA_O.value == SCSI_TEST_DATA2 , "PDATA_O not returning expected data value"
-    await RisingEdge(dut._id("_CSS", extended=False))
-    
-    #2 Test write to SCSI 
-    await write_data(dut, SCSI_REG_ADR4, SCSI_TEST_DATA1)
-    assert dut._id("_CSS", extended=False).value == 0 , "_CSS not asserted after writing to SCSI IC"
-    assert dut._id("_IOW", extended=False).value == 1 , "_IOW asserted after writing to SCSI IC"
-    assert dut.PDATA_O.value == SCSI_TEST_DATA2 , "PDATA_O not returning expected data value"
-    await RisingEdge(dut._id("_CSS", extended=False))
-    
-   
-    #3 Test read from scsi
-    dut.PDATA_I.value = SCSI_TEST_DATA3
-    data = await read_data(dut, SCSI_REG_ADR1)
-    assert data == SCSI_TEST_DATA4, "Error reading scsi data"
-    assert dut._id("_CSS", extended=False).value == 0 , "_CSS not asserted when reading from SCSI IC"
-    assert dut._id("_IOR", extended=False).value == 0 , "_IOR not asserted when reading from SCSI IC"
-    await RisingEdge(dut._id("_CSS", extended=False))
-    await RisingEdge(dut._id("_IOR", extended=False))
-    dut.PDATA_I.value = 0x00
     
     #3 Test read from scsi
     dut.PDATA_I.value = SCSI_TEST_DATA3
@@ -360,16 +393,16 @@ async def RESDMAC_test(dut):
     dut.PDATA_I.value = 0x00
     
     #4 check we can reset the SCSI IC
-    await write_data(dut, CONTR_REG_ADR, CONTR_PRESET)
+    await write_data(dut, CONTR_REG_ADR, CONTR_PRESET, dut._id("_IOR", extended=False), dut._id("_IOW", extended=False), dut.u_registers.u_registers_cntr.CNTR_O, header='Write to CONTR REG to Reset SCSI IC', footer='SCLK:25Mhz (T:40ns)', filename='/test/Docs/TimingDiagrams/CONTR_1_Write.json')
     assert (dut._id("_IOR", extended=False).value == 0) and (dut._id("_IOW", extended=False).value == 0) , "PRESET did not assert _IOW and _IOR"
     
     #5 test SSPBDAT register
-    await write_data(dut, SSPB_DATA_ADR, TEST_PATTERN1)
+    await write_data(dut, SSPB_DATA_ADR, TEST_PATTERN1, dut.u_registers.SSPBDAT, header='Write to SSPBDAT REG', footer='SCLK:25Mhz (T:40ns)', filename='/test/Docs/TimingDiagrams/SSPBDAT_1_Write.json')
     data = await read_data(dut, SSPB_DATA_ADR)
     assert data == TEST_PATTERN1, 'SSPBDAT Register not returning expected data'
     
     #6 test SSPBDAT register
-    await write_data(dut, SSPB_DATA_ADR, TEST_PATTERN2)
+    await write_data(dut, SSPB_DATA_ADR, TEST_PATTERN2, dut.u_registers.SSPBDAT, header='Write to SSPBDAT REG', footer='SCLK:25Mhz (T:40ns)', filename='/test/Docs/TimingDiagrams/SSPBDAT_2_Write.json')
     data = await read_data(dut, SSPB_DATA_ADR)
     assert data == TEST_PATTERN2, 'SSPBDAT Register not returning expected data'
     
@@ -528,14 +561,14 @@ async def RESDMAC_test(dut):
     await read_data(dut, ST_DMA_STROBE_ADR)
     
     dut._id("_DREQ", extended=False).value = 0
-    f2sTask = cocotb.start_soon(f2s(dut))
+    f2sTask = cocotb.start_soon(XferFIFO2SCSI(dut))
     await wait_for_bus_grant(dut)
     await FillFIFOFromMem(dut, 0x11121314, "_STERM")
     await wait_for_bus_release(dut)    
     await f2sTask
     
     dut._id("_DREQ", extended=False).value = 0
-    f2sTask = cocotb.start_soon(f2s(dut))
+    f2sTask = cocotb.start_soon(XferFIFO2SCSI(dut))
     await wait_for_bus_grant(dut)
     await FillFIFOFromMem(dut, 0x11121314, "_STERM")
     await wait_for_bus_release(dut)    
@@ -546,8 +579,7 @@ async def RESDMAC_test(dut):
     dut.R_W.value = 1
     #stop DMA
     await read_data(dut, SP_DMA_STROBE_ADR)
-    #Flush
-    await read_data(dut, FLUSH_STROBE_ADR)
+
     
    
 
