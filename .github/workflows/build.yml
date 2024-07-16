@@ -1,5 +1,8 @@
 name: build
 
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+
 on:
   push:
     branches:
@@ -14,7 +17,7 @@ on:
 
 jobs:
   synthesis:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest debian:stretch-slim
     container:
       image: mbtaylor1982/quartus:22.1
       credentials:
