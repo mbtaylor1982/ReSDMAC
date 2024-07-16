@@ -1,0 +1,50 @@
+{
+    "signal": [
+        {
+            "name": "clock",
+            "wave": "p........."
+        },
+        {
+            "name": "_CS",
+            "wave": "1.0...1..."
+        },
+        {
+            "name": "ADDR",
+            "wave": "=.=...=...",
+            "data": "0x0 0x16 0x0"
+        },
+        {
+            "name": "DATA_O",
+            "wave": "=..=..=...",
+            "data": "0x0 0xaaaaaaaa 0x0"
+        },
+        {
+            "name": "R_W",
+            "wave": "1........."
+        },
+        {
+            "name": "AS_I_",
+            "wave": "1..0..1..."
+        },
+        {
+            "name": "DS_I_",
+            "wave": "1..0..1..."
+        },
+        {
+            "name": "_DSACK_IO",
+            "wave": "=....==...",
+            "data": "0x3 0x0 0x3"
+        },
+        {
+            "name": "SSPBDAT",
+            "wave": "=.........",
+            "data": "0xaaaaaaaa"
+        }
+    ],
+    "head": {
+        "text": "Read From SSPBDAT REG"
+    },
+    "foot": {
+        "text": "SCLK:25Mhz (T:40ns)"
+    }
+}
