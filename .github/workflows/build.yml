@@ -17,7 +17,7 @@ on:
 
 jobs:
   synthesis:
-    runs-on: ubuntu-latest debian:stretch-slim
+    runs-on: ubuntu-latest
     container:
       image: mbtaylor1982/quartus:22.1
       credentials:
