@@ -1,0 +1,37 @@
+name: Quartus Workflow
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Runs Quartus analysis & synthesis, fitter, timing analysis, and programming file generation
+        uses: raetro/quartus-flow@v1
+        with:
+          # Quartus Project File. For example, blinking_led
+          # [Required]
+          project: 'RESDMAC'
+
+          # Project Revision Name. For example, blinking_led_rgb
+          # Default: Empty
+          revision: ''
+
+          # Quartus Version/Alias. For example, 17.1 or pocket
+          # Default: 17.1
+          version: '22.1'
+
+          # Project Folder containing the qpf file. For example, projects/sockit
+          # Default: projects
+          project_folder: 'Quartus'
