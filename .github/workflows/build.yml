@@ -15,7 +15,11 @@ on:
 jobs:
   synthesis:
     runs-on: ubuntu-latest
-    container: mbtaylor1982/quartus:22.1
+    container:
+      image: mbtaylor1982/quartus:22.1
+      credentials:
+        username: ${{ secrets.DOCKER_HUB_USER }}
+        password: ${{ secrets.DOCKER_HUB_PWD }}
     steps:
       # 1 - Checkout repository
       - name: Checkout repository
@@ -25,7 +29,7 @@ jobs:
         run: quartus_sh --flow compile Quartus/RESDMAC.qpf
       # 3 - Upload artifacts
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: OutputFiles.zip
           path: Quartus/output_files/
