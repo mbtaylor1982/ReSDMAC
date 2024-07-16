@@ -5,6 +5,7 @@
 Quartus/db/*.tdf
 /sim_build
 
+
 Thumbs.db
 .DS_Store
 
@@ -50,3 +51,5 @@ out/
 
 /Quartus/output_files
 /RTL/cocotb/__pycache__/*.pyc
+*.stp
+
