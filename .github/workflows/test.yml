@@ -15,7 +15,11 @@ on:
 jobs:
   testing:
     runs-on: ubuntu-latest
-    container: mbtaylor1982/cocotb-iverilog:latest
+    container:
+      image: mbtaylor1982/cocotb-iverilog:latest
+      credentials:
+        username: ${{ secrets.DOCKER_HUB_USER }}
+        password: ${{ secrets.DOCKER_HUB_PWD }}
     steps:
       # 1 - Checkout repository
       - name: Checkout repository
@@ -33,7 +37,7 @@ jobs:
           click-to-expand: false
       # 4 Upload VCD Files
       - name: upload vcd files
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: vcd-files
           path: sim_build/*.vcd
