@@ -264,7 +264,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "ADDR[6]",
+					"name" : "ADDR[2]",
 					"strict" : false
 				},
 				{
@@ -272,15 +272,19 @@
 					"strict" : false
 				},
 				{
-					"name" : "ADDR[2]",
-					"strict" : false
-				},
-				{
 					"name" : "ADDR[4]",
 					"strict" : false
 				},
 				{
+					"name" : "ADDR[6]",
+					"strict" : false
+				},
+				{
 					"name" : "_RST",
+					"strict" : false
+				},
+				{
+					"name" : "SCLK",
 					"strict" : false
 				},
 				{
@@ -293,10 +297,6 @@
 				},
 				{
 					"name" : "_BG",
-					"strict" : false
-				},
-				{
-					"name" : "SCLK",
 					"strict" : false
 				},
 				{

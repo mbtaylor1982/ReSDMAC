@@ -1,28 +1,29 @@
 ## Generated SDC file "RESDMAC.out.sdc"
 
-## Copyright (C) 1991-2013 Altera Corporation
-## Your use of Altera Corporation's design tools, logic functions 
-## and other software and tools, and its AMPP partner logic 
+## Copyright (C) 2023  Intel Corporation. All rights reserved.
+## Your use of Intel Corporation's design tools, logic functions 
+## and other software and tools, and any partner logic 
 ## functions, and any output files from any of the foregoing 
 ## (including device programming or simulation files), and any 
 ## associated documentation or information are expressly subject 
-## to the terms and conditions of the Altera Program License 
-## Subscription Agreement, Altera MegaCore Function License 
-## Agreement, or other applicable license agreement, including, 
-## without limitation, that your use is for the sole purpose of 
-## programming logic devices manufactured by Altera and sold by 
-## Altera or its authorized distributors.  Please refer to the 
-## applicable agreement for further details.
+## to the terms and conditions of the Intel Program License 
+## Subscription Agreement, the Intel Quartus Prime License Agreement,
+## the Intel FPGA IP License Agreement, or other applicable license
+## agreement, including, without limitation, that your use is for
+## the sole purpose of programming logic devices manufactured by
+## Intel and sold by Intel or its authorized distributors.  Please
+## refer to the applicable agreement for further details, at
+## https://fpgasoftware.intel.com/eula.
 
 
 ## VENDOR  "Altera"
-## PROGRAM "Quartus II"
-## VERSION "Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
+## PROGRAM "Quartus Prime"
+## VERSION "Version 22.1std.2 Build 922 07/20/2023 SC Lite Edition"
 
-## DATE    "Fri Sep 08 17:37:31 2023"
+## DATE    "Sun Jun 30 23:51:16 2024"
 
 ##
-## DEVICE  "EP2C5T144C8"
+## DEVICE  "10M16SCU169C8G"
 ##
 
 
@@ -39,16 +40,16 @@ set_time_format -unit ns -decimal_places 3
 #**************************************************************
 
 create_clock -name {altera_reserved_tck} -period 100.000 -waveform { 0.000 50.000 } [get_ports {altera_reserved_tck}]
-create_clock -name {sclk} -period 40.000 -waveform { 0.000 20.000 } [get_ports {SCLK}]
+create_clock -name {SCLK} -period 40.000 -waveform { 0.000 20.000 } [get_ports {SCLK}]
 
 
 #**************************************************************
 # Create Generated Clock
 #**************************************************************
 
-create_generated_clock -name {clk45} -source [get_pins {u_PLL|APLL_inst|altpll_component|pll|inclk[0]}] -duty_cycle 50.000 -multiply_by 1 -phase 45.000 -master_clock {sclk} [get_pins {u_PLL|APLL_inst|altpll_component|pll|clk[0]}] 
-create_generated_clock -name {clk90} -source [get_pins {u_PLL|APLL_inst|altpll_component|pll|inclk[0]}] -duty_cycle 50.000 -multiply_by 1 -phase 90.000 -master_clock {sclk} [get_pins {u_PLL|APLL_inst|altpll_component|pll|clk[1]}] 
-create_generated_clock -name {clk135} -source [get_pins {u_PLL|APLL_inst|altpll_component|pll|inclk[0]}] -duty_cycle 50.000 -multiply_by 1 -phase 135.000 -master_clock {sclk} [get_pins {u_PLL|APLL_inst|altpll_component|pll|clk[2]}] 
+create_generated_clock -name {PLL:u_PLL|attpll:attpll_inst|altpll:altpll_component|attpll_altpll:auto_generated|wire_pll1_clk[0]} -source [get_pins {u_PLL|attpll_inst|altpll_component|auto_generated|pll1|inclk[0]}] -duty_cycle 50/1 -multiply_by 1 -phase 45/1 -master_clock {SCLK} [get_pins {u_PLL|attpll_inst|altpll_component|auto_generated|pll1|clk[0]}] 
+create_generated_clock -name {PLL:u_PLL|attpll:attpll_inst|altpll:altpll_component|attpll_altpll:auto_generated|wire_pll1_clk[1]} -source [get_pins {u_PLL|attpll_inst|altpll_component|auto_generated|pll1|inclk[0]}] -duty_cycle 50/1 -multiply_by 1 -phase 90/1 -master_clock {SCLK} [get_pins {u_PLL|attpll_inst|altpll_component|auto_generated|pll1|clk[1]}] 
+create_generated_clock -name {PLL:u_PLL|attpll:attpll_inst|altpll:altpll_component|attpll_altpll:auto_generated|wire_pll1_clk[2]} -source [get_pins {u_PLL|attpll_inst|altpll_component|auto_generated|pll1|inclk[0]}] -duty_cycle 50/1 -multiply_by 1 -phase 135/1 -master_clock {SCLK} [get_pins {u_PLL|attpll_inst|altpll_component|auto_generated|pll1|clk[2]}] 
 
 
 #**************************************************************
@@ -67,70 +68,6 @@ create_generated_clock -name {clk135} -source [get_pins {u_PLL|APLL_inst|altpll_
 # Set Input Delay
 #**************************************************************
 
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {ADDR[2]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {ADDR[3]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {ADDR[4]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {ADDR[5]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {ADDR[6]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[0]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[1]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[2]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[3]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[4]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[5]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[6]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[7]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[8]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[9]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[10]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[11]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[12]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[13]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[14]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[15]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[16]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[17]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[18]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[19]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[20]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[21]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[22]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[23]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[24]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[25]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[26]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[27]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[28]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[29]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[30]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DATA_IO[31]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DSACK_I_[0]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {DSACK_I_[1]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {PD_PORT[0]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {PD_PORT[1]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {PD_PORT[2]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {PD_PORT[3]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {PD_PORT[4]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {PD_PORT[5]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {PD_PORT[6]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {PD_PORT[7]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {PD_PORT[8]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {PD_PORT[9]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {PD_PORT[10]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {PD_PORT[11]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {PD_PORT[12]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {PD_PORT[13]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {PD_PORT[14]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {PD_PORT[15]}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {R_W_IO}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {_AS_IO}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {_BERR}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {_BG}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {_CS}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {_DREQ}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {_DS_IO}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {_RST}]
-set_input_delay -add_delay -min -clock [get_clocks {sclk}]  0.000 [get_ports {_STERM}]
 
 
 #**************************************************************
@@ -150,7 +87,6 @@ set_clock_groups -asynchronous -group [get_clocks {altera_reserved_tck}]
 # Set False Path
 #**************************************************************
 
-set_false_path -to [get_ports {_LED_DMA _LED_RD _LED_WR}]
 
 
 #**************************************************************
