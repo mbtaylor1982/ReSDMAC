@@ -197,7 +197,8 @@ async def FillFIFOFromMem(dut, data, TermSignal):
             await RisingEdge(dut.SCLK)
             dut._id(TermSignal, extended=False).value = 0
             dut._log.info("loaded FIFO with value %#x from memory", dut.DATA_I.value)
-            await RisingEdge(dut.AS_O_)
+            if (dut.AS_O_ == 0):
+                await RisingEdge(dut.AS_O_)
             dut._id(TermSignal, extended=False).value = 1
             await RisingEdge(dut.SCLK)
        
@@ -214,32 +215,35 @@ async def XferFIFO2SCSI(dut):
     #    await RisingEdge(dut.AS_O_)
     #await RisingEdge(dut.SCLK)
 
-    if (dut.FIFOEMPTY == 1):
-        dut._log.info("waiting FIFOEMPTY falling edge")
-        await FallingEdge(dut.FIFOEMPTY)
+    while (dut.DMAENA == 1):
+        try:
+            if (dut.FIFOEMPTY == 1):
+                dut._log.info("waiting FIFOEMPTY falling edge")
+                await with_timeout(FallingEdge(dut.FIFOEMPTY),300,'ns')
+                dut._log.info("FIFOEMPTY falling edge detected before timeout")
 
-    while (dut.FIFOEMPTY == 0):
-        if (dut._id("_DACK", extended=False) == 1):
-            await FallingEdge(dut._id("_DACK", extended=False))
-        if (dut._id("_IOW", extended=False) == 1):    
-            await FallingEdge(dut._id("_IOW", extended=False))
-        #result.append(dut.PDATA_O.value & 0x00ff)
-        dut._log.info("Transfering value %#x from FIFO to SCSI", dut.PDATA_O.value)
-        dut._id("_DREQ", extended=False).value = 1
-        if (dut._id("_DACK", extended=False) == 0):
-            await RisingEdge(dut._id("_DACK", extended=False))
-        await ClockCycles(dut.SCLK, 1, True)
-        await RisingEdge(dut.SCLK)
-        dut._id("_DREQ", extended=False).value = 0
-        await ClockCycles(dut.SCLK, 1, True)
-        while (await wait_for_bus_grant(dut) == False):
-            dut._log.info("waiting for bus grant")
-            await ClockCycles(dut.SCLK, 1, True)
-
+            while (dut.FIFOEMPTY == 0):
+                if (dut._id("_DACK", extended=False) == 1):
+                    await FallingEdge(dut._id("_DACK", extended=False))
+                if (dut._id("_IOW", extended=False) == 1):
+                    await FallingEdge(dut._id("_IOW", extended=False))
+                #result.append(dut.PDATA_O.value & 0x00ff)
+                dut._log.info("Transfering value %#x from FIFO to SCSI", dut.PDATA_O.value)
+                dut._id("_DREQ", extended=False).value = 1
+                if (dut._id("_DACK", extended=False) == 0):
+                    await RisingEdge(dut._id("_DACK", extended=False))
+                await ClockCycles(dut.SCLK, 1, True)
+                await RisingEdge(dut.SCLK)
+                dut._id("_DREQ", extended=False).value = 0
+                await ClockCycles(dut.SCLK, 1, True)
+        except cocotb.result.SimTimeoutError:
+            dut._log.info("timeout: FIFOEMPTY falling edge") 
     #are_equal = arrays_are_equal(dut, result, TEST_DATA_ARRAY_BYTE)
     dut._log.info("Finished transferring FIFO to SCSI")
     #assert are_equal, "TEST_DATA_ARRAY_BYTE != result"
-    dut._id("_DREQ", extended=False).value = 0
+    dut._log.info("setting _DREQ = 1")
+    dut._id("_DREQ", extended=False).value = 1
+    dut._log.info("_DREQ set to 1")
 
 async def XferFIFO2Mem(dut,TermSignal):
     while (dut.DMAENA == 1):
@@ -350,10 +354,10 @@ async def DMA_WRITE(dut, data, addr, termsig):
     M2F = cocotb.start_soon(FillFIFOFromMem(dut, data, termsig))
     f2sTask = cocotb.start_soon(XferFIFO2SCSI(dut))
     await M2F
-    await f2sTask
-    #dut._id("_DREQ", extended=False).value = 1
     #stop DMA
+    await ClockCycles(dut.SCLK, 200, True)
     await read_data(dut, SP_DMA_STROBE_ADR)
+    await f2sTask
 
 @cocotb.test()
 async def RESDMAC_test(dut):
@@ -522,4 +526,6 @@ async def RESDMAC_test(dut):
     await DMA_READ(dut, TEST_DATA_ARRAY_BYTE, 0x00000000, "DSK1_IN_")
     #10 Test DMA WRITE (from memory to SCSI) 32 bit sterm cycle
     await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG2, 0x00000000, "_STERM")
+    #11 Test DMA WRITE (from memory to SCSI) 16 bit DSACK1 cycle
+    await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG, 0x00000000, "_STERM")
 
