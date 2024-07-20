@@ -108,12 +108,22 @@ begin
             S2C_5: state_reg <= S2C_6;
             S2C_6: state_reg <= CDSACK_ ? IDLE_DMA_RD : S2C_6;
             //FIFO to SCSI
-            F2S_1: state_reg <= F2S_2;
+            F2S_1: begin
+                if (CDREQ_)
+                    state_reg <= F2S_2;
+                else
+                    state_reg <= F2S_1;
+            end
             F2S_2: state_reg <= F2S_3;
             F2S_3: state_reg <= F2S_4;
             F2S_4: state_reg <= IDLE_DMA_WR;
             //SCSI to FIFO
-            S2F_1: state_reg <= S2F_2;
+            S2F_1: begin
+                if (CDREQ_)
+                    state_reg <= S2F_2;
+                else
+                    state_reg <= S2F_1;
+            end
             S2F_2: state_reg <= S2F_3;
             S2F_3: state_reg <= S2F_4;
             S2F_4: state_reg <= IDLE_DMA_RD;
@@ -223,15 +233,18 @@ begin
         end
         //SCSI to FIFO
         S2F_1: begin
+                RE      <= 1'b1;
+                S2F     <= 1'b1;
+                DACK    <= 1'b1;
             if (FIFOFULL) begin
                 INCNI   <= 1'b1;
                 INCNO   <= 1'b1;
             end
-            else begin
+           /*  else begin
                 RE      <= 1'b1;
                 S2F     <= 1'b1;
                 DACK    <= 1'b1;
-            end
+            end */
         end
         S2F_2: begin
             RE          <= 1'b1;
