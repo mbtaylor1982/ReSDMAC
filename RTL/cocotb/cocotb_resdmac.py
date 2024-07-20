@@ -6,7 +6,7 @@ import json
 
 import cocotb
 from cocotb.clock import Clock
-from cocotb.triggers import FallingEdge, RisingEdge, Edge, Timer, ClockCycles, with_timeout
+from cocotb.triggers import FallingEdge, RisingEdge, Edge, Timer, ClockCycles, with_timeout, First
 from cocotb.types import LogicArray
 from cocotb.wavedrom import Wavedrom, trace
 
@@ -43,10 +43,10 @@ CONTR_INTDIS = 0x00
 CONTR_PRESET = 0x10
 CONTR_DMAENA = 0x100
 
-TEST_DATA_ARRAY_LONG = arr.array('L', [0x1a1b1c1d, 0x2a2b2c2d, 0x3a3b3c3d, 0x4a4b4c4d, 0x5a5b5c5d, 0x6a6b6c6d, 0x7a7b7c7d, 0x8a8b8c8d])
+TEST_DATA_ARRAY_LONG1 = arr.array('L', [0x1a1b1c1d, 0x2a2b2c2d, 0x3a3b3c3d, 0x4a4b4c4d, 0x5a5b5c5d, 0x6a6b6c6d, 0x7a7b7c7d, 0x8a8b8c8d])
 TEST_DATA_ARRAY_LONG2 = arr.array('L', [0x1a1b1c1d, 0x2a2b2c2d, 0x3a3b3c3d, 0x4a4b4c4d, 0x5a5b5c5d, 0x6a6b6c6d, 0x7a7b7c7d, 0x8a8b8c8d,0x1a1b1c1d, 0x2a2b2c2d, 0x3a3b3c3d, 0x4a4b4c4d, 0x5a5b5c5d, 0x6a6b6c6d, 0x7a7b7c7d, 0x8a8b8c8d,0x1a1b1c1d, 0x2a2b2c2d, 0x3a3b3c3d, 0x4a4b4c4d, 0x5a5b5c5d, 0x6a6b6c6d, 0x7a7b7c7d, 0x8a8b8c8d,0x1a1b1c1d, 0x2a2b2c2d, 0x3a3b3c3d, 0x4a4b4c4d, 0x5a5b5c5d, 0x6a6b6c6d, 0x7a7b7c7d, 0x8a8b8c8d])
-TEST_DATA_ARRAY_BYTE = arr.array('B', [0x1a,0x1b,0x1c,0x1d, 0x2a,0x2b,0x2c,0x2d, 0x3a,0x3b,0x3c,0x3d, 0x4a,0x4b,0x4c,0x4d, 0x5a,0x5b,0x5c,0x5d, 0x6a,0x6b,0x6c,0x6d, 0x7a,0x7b,0x7c,0x7d, 0x8a,0x8b,0x8c,0x8d])
 
+TEST_DATA_ARRAY_BYTE1 = arr.array('B', [0x1a,0x1b,0x1c,0x1d, 0x2a,0x2b,0x2c,0x2d, 0x3a,0x3b,0x3c,0x3d, 0x4a,0x4b,0x4c,0x4d, 0x5a,0x5b,0x5c,0x5d, 0x6a,0x6b,0x6c,0x6d, 0x7a,0x7b,0x7c,0x7d, 0x8a,0x8b,0x8c,0x8d])
 TEST_DATA_ARRAY_BYTE2 = arr.array('B', [0x1a,0x1b,0x1c,0x1d, 0x2a,0x2b,0x2c,0x2d, 0x3a,0x3b,0x3c,0x3d, 0x4a,0x4b,0x4c,0x4d, 0x5a,0x5b,0x5c,0x5d, 0x6a,0x6b,0x6c,0x6d, 0x7a,0x7b,0x7c,0x7d, 0x8a,0x8b,0x8c,0x8d,0xff,0xfe,0xfd,0xfc])
 TEST_DATA_ARRAY_BYTE3 = arr.array('B', [0x1a,0x1b,0x1c,0x1d, 0x2a,0x2b,0x2c,0x2d, 0x3a,0x3b,0x3c,0x3d, 0x4a,0x4b,0x4c,0x4d, 0x5a,0x5b,0x5c,0x5d, 0x6a,0x6b,0x6c,0x6d, 0x7a,0x7b,0x7c,0x7d, 0x8a,0x8b,0x8c,0x8d,0x1a,0x1b,0x1c,0x1d, 0x2a,0x2b,0x2c,0x2d, 0x3a,0x3b,0x3c,0x3d, 0x4a,0x4b,0x4c,0x4d, 0x5a,0x5b,0x5c,0x5d, 0x6a,0x6b,0x6c,0x6d, 0x7a,0x7b,0x7c,0x7d, 0x8a,0x8b,0x8c,0x8d,0x1a,0x1b,0x1c,0x1d, 0x2a,0x2b,0x2c,0x2d, 0x3a,0x3b,0x3c,0x3d, 0x4a,0x4b,0x4c,0x4d, 0x5a,0x5b,0x5c,0x5d, 0x6a,0x6b,0x6c,0x6d, 0x7a,0x7b,0x7c,0x7d, 0x8a,0x8b,0x8c,0x8d,0x1a,0x1b,0x1c,0x1d, 0x2a,0x2b,0x2c,0x2d, 0x3a,0x3b,0x3c,0x3d, 0x4a,0x4b,0x4c,0x4d, 0x5a,0x5b,0x5c,0x5d, 0x6a,0x6b,0x6c,0x6d, 0x7a,0x7b,0x7c,0x7d, 0x8a,0x8b,0x8c,0x8d])
 
@@ -187,9 +187,11 @@ async def FillFIFOFromMem(dut, data, TermSignal):
         if (dut.FIFOFULL == 1):
             dut._log.info("waiting for fifofull == 0")
             await FallingEdge(dut.FIFOFULL)
+            await ClockCycles(dut.SCLK, 1, True)
         while (await wait_for_bus_grant(dut) == False):
             dut._log.info("waiting for bus grant")
             await ClockCycles(dut.SCLK, 1, True)
+        
         if (dut.AS_O_ == 1):
             await FallingEdge(dut.AS_O_)
             dut.DATA_I.value = item
@@ -201,8 +203,19 @@ async def FillFIFOFromMem(dut, data, TermSignal):
                 await RisingEdge(dut.AS_O_)
             dut._id(TermSignal, extended=False).value = 1
             await RisingEdge(dut.SCLK)
-       
-    #await wait_for_bus_release(dut)
+            if (TermSignal == "DSK1_IN_"):
+                if (dut.AS_O_ == 1):
+                    await FallingEdge(dut.AS_O_)
+                    dut.DATA_I.value = item
+                    await ClockCycles(dut.SCLK, 1, True)
+                    await RisingEdge(dut.SCLK)
+                    dut._id(TermSignal, extended=False).value = 0
+                    dut._log.info("loaded FIFO with value %#x from memory", dut.DATA_I.value)
+                    if (dut.AS_O_ == 0):
+                        await RisingEdge(dut.AS_O_)
+                    dut._id(TermSignal, extended=False).value = 1
+                    await RisingEdge(dut.SCLK)
+                
     dut.DATA_I.value =0x0
     dut._log.info("Finished Filling FIFO From Memory")
 
@@ -215,35 +228,22 @@ async def XferFIFO2SCSI(dut):
     #    await RisingEdge(dut.AS_O_)
     #await RisingEdge(dut.SCLK)
 
-    while (dut.DMAENA == 1):
-        try:
-            if (dut.FIFOEMPTY == 1):
-                dut._log.info("waiting FIFOEMPTY falling edge")
-                await with_timeout(FallingEdge(dut.FIFOEMPTY),300,'ns')
-                dut._log.info("FIFOEMPTY falling edge detected before timeout")
-
-            while (dut.FIFOEMPTY == 0):
-                if (dut._id("_DACK", extended=False) == 1):
-                    await FallingEdge(dut._id("_DACK", extended=False))
-                if (dut._id("_IOW", extended=False) == 1):
-                    await FallingEdge(dut._id("_IOW", extended=False))
-                #result.append(dut.PDATA_O.value & 0x00ff)
-                dut._log.info("Transfering value %#x from FIFO to SCSI", dut.PDATA_O.value)
-                dut._id("_DREQ", extended=False).value = 1
-                if (dut._id("_DACK", extended=False) == 0):
-                    await RisingEdge(dut._id("_DACK", extended=False))
-                await ClockCycles(dut.SCLK, 1, True)
-                await RisingEdge(dut.SCLK)
-                dut._id("_DREQ", extended=False).value = 0
-                await ClockCycles(dut.SCLK, 1, True)
-        except cocotb.result.SimTimeoutError:
-            dut._log.info("timeout: FIFOEMPTY falling edge") 
-    #are_equal = arrays_are_equal(dut, result, TEST_DATA_ARRAY_BYTE)
-    dut._log.info("Finished transferring FIFO to SCSI")
-    #assert are_equal, "TEST_DATA_ARRAY_BYTE != result"
-    dut._log.info("setting _DREQ = 1")
-    dut._id("_DREQ", extended=False).value = 1
-    dut._log.info("_DREQ set to 1")
+    while True:
+        await ClockCycles(dut.SCLK, 1, True)
+        while (dut.FIFOEMPTY == 0):
+            if (dut._id("_DACK", extended=False) == 1):
+                await FallingEdge(dut._id("_DACK", extended=False))
+            if (dut._id("_IOW", extended=False) == 1):
+                await FallingEdge(dut._id("_IOW", extended=False))
+            #result.append(dut.PDATA_O.value & 0x00ff)
+            dut._log.info("Transfering value %#x from FIFO to SCSI", dut.PDATA_O.value)
+            dut._id("_DREQ", extended=False).value = 1
+            if (dut._id("_DACK", extended=False) == 0):
+                await RisingEdge(dut._id("_DACK", extended=False))
+            await ClockCycles(dut.SCLK, 1, True)
+            await RisingEdge(dut.SCLK)
+            dut._id("_DREQ", extended=False).value = 0
+            await ClockCycles(dut.SCLK, 1, True)
 
 async def XferFIFO2Mem(dut,TermSignal):
     while (dut.DMAENA == 1):
@@ -260,8 +260,6 @@ async def XferFIFO2Mem(dut,TermSignal):
                 if (dut.AS_O_ == 0):
                     await RisingEdge(dut.AS_O_)
                 dut._id(TermSignal, extended=False).value = 1
-                if dut.INCNO.value == 1:
-                    dut.ADDR.value = dut.ADDR.value ^ 1
                 await RisingEdge(dut.SCLK)
             await wait_for_bus_release(dut)
     #are_equal = arrays_are_equal(dut, result, TEST_DATA_ARRAY_LONG)
@@ -320,44 +318,93 @@ def arrays_are_equal(dut, arr1, arr2):
     dut._log.info("Finished checking array values")
     return True
 
+async def DriveAddrBusForDMA(dut, addr):
+    
+    address = addr
+    if (dut._id("_DMAEN", extended=False) == 1):
+        dut._log.info("waiting _DMAEN falling edge")
+        await FallingEdge(dut._id("_DMAEN", extended=False))
+    dut.ADDR.value = ((address & 0x7c) >> 2)
+
+    while (dut._id("_DMAEN", extended=False) == 0):
+        IncAmount = 2
+        if (dut.AS_I_.value == 1):
+            dut._log.info("waiting AS falling edge")
+            await FallingEdge(dut._id("AS_I_", extended=False))
+        
+        STERM = FallingEdge(dut._id("_STERM", extended=False))
+        DSACK0 = FallingEdge(dut.DSK0_IN_)
+        DSACK1 = FallingEdge(dut.DSK1_IN_)
+        t_ret = await First(STERM, DSACK0, DSACK1)
+        
+        if (t_ret == STERM or t_ret == DSACK0):
+            IncAmount = 4
+            
+        if (dut.AS_I_.value == 0):
+            dut._log.info("waiting AS rising edge")
+            await RisingEdge(dut._id("AS_I_", extended=False))
+            address += IncAmount
+            dut.ADDR.value = ((address & 0x7c) >> 2)
+    
+
 async def DMA_READ(dut, data, addr, termsig):
-    dut._log.info("Starting DMA read to addr %#x", addr)
-    await reset_dut(dut._id("_RST", extended=False), 40)
-    #Setup DMA Direction to Read from SCSI write to Memory
-    await write_data(dut, CONTR_REG_ADR, (CONTR_DMA_READ | CONTR_INTENA))
-    #Set Destination address
-    await write_data(dut, RAMSEY_ACR_REG_ADR, addr)
-    dut.ADDR.value = addr
-    #start DMA
-    await read_data(dut, ST_DMA_STROBE_ADR)
-    S2F = cocotb.start_soon(FillFIFOFromSCSI(dut, data))
-    F2M = cocotb.start_soon(XferFIFO2Mem(dut, termsig))
-    #wait for scsi to fifo data transfer to finish
-    await S2F
-    #Flush any data remaining in the fifo to memory
-    await read_data(dut, FLUSH_STROBE_ADR)
-    #stop DMA
-    await read_data(dut, SP_DMA_STROBE_ADR)
-    #wait for any DMA cycles transfering from fifo to memory
-    await F2M
+    with trace(dut.ADDR, dut.DATA_O, dut.R_W, dut.AS_I_, dut.DS_I_, dut._id("_STERM", extended=False),dut.DSK0_IN_,dut.DSK1_IN_,dut._id("_BR", extended=False),dut._id("_BG", extended=False),dut._id("_BGACK_IO", extended=False),dut._id("_DREQ", extended=False),dut._id("_DACK", extended=False),dut._id("_IOR", extended=False),dut.PDATA_I, clk=dut.SCLK) as waves:
+        dut._log.info("Starting DMA read to addr %#x", addr)
+        await reset_dut(dut._id("_RST", extended=False), 40)
+        DrvAddr = cocotb.start_soon(DriveAddrBusForDMA(dut, addr))
+        #Setup DMA Direction to Read from SCSI write to Memory
+        await write_data(dut, CONTR_REG_ADR, (CONTR_DMA_READ | CONTR_INTENA))
+        #Set Destination address
+        await write_data(dut, RAMSEY_ACR_REG_ADR, addr)
+        #start DMA
+        await read_data(dut, ST_DMA_STROBE_ADR)
+        S2F = cocotb.start_soon(FillFIFOFromSCSI(dut, data))
+        F2M = cocotb.start_soon(XferFIFO2Mem(dut, termsig))
+        #wait for scsi to fifo data transfer to finish
+        await S2F
+        #Flush any data remaining in the fifo to memory
+        await read_data(dut, FLUSH_STROBE_ADR)
+        #stop DMA
+        await read_data(dut, SP_DMA_STROBE_ADR)
+        #wait for any DMA cycles transfering from fifo to memory
+        await F2M
+        await DrvAddr
+        datas = waves.dumpj(header="DMA READ", footer="")
+        jdata = json.loads(datas)
+        for x, i in enumerate(jdata['signal']):
+            if 'data' in i:
+                result = convertDecToHex(i['data'])
+                jdata['signal'][x]['data'] = result
+        with open("../Docs/TimingDiagrams/DMA_READ.json", 'w') as json_file:
+            json.dump(jdata,json_file, indent=4, sort_keys=False)
     
 async def DMA_WRITE(dut, data, addr, termsig):
     dut._log.info("Starting DMA write to addr %#x", addr)
     await reset_dut(dut._id("_RST", extended=False), 40)
+    DrvAddr = cocotb.start_soon(DriveAddrBusForDMA(dut, addr))
     #Setup DMA Direction to Read from SCSI write to Memory
     await write_data(dut, CONTR_REG_ADR, (CONTR_DMA_WRITE | CONTR_INTENA))
     #Set Destination address
     await write_data(dut, RAMSEY_ACR_REG_ADR, addr)
-    dut.ADDR.value = addr
+    
     #start DMA
     await read_data(dut, ST_DMA_STROBE_ADR)
+    #f2sTask = cocotb.start_soon(XferFIFO2SCSI(dut, DMA_Cycle_Finsished))
     M2F = cocotb.start_soon(FillFIFOFromMem(dut, data, termsig))
     f2sTask = cocotb.start_soon(XferFIFO2SCSI(dut))
     await M2F
+    
+    if (dut.FIFOEMPTY == 0):
+        await RisingEdge(dut.FIFOEMPTY)
+    dut._log.info("Finished transferring FIFO to SCSI")
+    dut._id("_DREQ", extended=False).value = 1
+    f2sTask.kill()
+    await wait_for_bus_release(dut)
     #stop DMA
-    await ClockCycles(dut.SCLK, 200, True)
+    await ClockCycles(dut.SCLK, 2, True)
     await read_data(dut, SP_DMA_STROBE_ADR)
-    await f2sTask
+    await DrvAddr
+    
 
 @cocotb.test()
 async def RESDMAC_test(dut):
@@ -520,12 +567,20 @@ async def RESDMAC_test(dut):
     data = await read_data(dut, VERSION_REG_ADR, dut.u_registers.VERSION, header='Read From VERSION REG', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/VERSION_read.json')
     assert data == REV_STR, 'Version Register not returning expected data'
 
-    #8 Test DMA READ (from scsi to memory) 32 bit sterm cycle
+    #8a Test DMA READ (from scsi to memory) 32 bit sterm cycle
+    await DMA_READ(dut, TEST_DATA_ARRAY_BYTE1, 0x00000000, "_STERM")
+    #8b Test DMA READ (from scsi to memory) 32 bit sterm cycle with left over bytes that need flushing from the fifo
+    await DMA_READ(dut, TEST_DATA_ARRAY_BYTE2, 0x00000000, "_STERM")
+    #8c Test DMA READ (from scsi to memory) 32 bit sterm cycle with more than one DMA cycle
     await DMA_READ(dut, TEST_DATA_ARRAY_BYTE3, 0x00000000, "_STERM")
-    #9 Test DMA READ (from scsi to memory) 16 bit DSACK1 cycle
-    await DMA_READ(dut, TEST_DATA_ARRAY_BYTE, 0x00000000, "DSK1_IN_")
-    #10 Test DMA WRITE (from memory to SCSI) 32 bit sterm cycle
+    #8d Test DMA READ (from scsi to memory) 16 bit DSACK1 cycle
+    await DMA_READ(dut, TEST_DATA_ARRAY_BYTE1, 0x00000000, "DSK1_IN_")
+    
+    
+    #9a Test DMA WRITE (from memory to SCSI) 32 bit sterm cycle
+    await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG1, 0x00000000, "_STERM")
+    #9b Test DMA WRITE (from memory to SCSI) 32 bit sterm cycle with more than one DMA cycle
     await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG2, 0x00000000, "_STERM")
-    #11 Test DMA WRITE (from memory to SCSI) 16 bit DSACK1 cycle
-    await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG, 0x00000000, "_STERM")
+    #9 Test DMA WRITE (from memory to SCSI) 16 bit DSACK1 cycle
+    #await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG1, 0x00000000, "DSK1_IN_")
 
