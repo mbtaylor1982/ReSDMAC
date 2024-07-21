@@ -223,8 +223,8 @@ async def XferFIFO2SCSI(dut):
     dut._id("_DREQ", extended=False).value = 0
     dut._log.info("Started transferring FIFO to SCSI")
     
-    if (dut.FIFOFULL == 0):
-        await RisingEdge(dut.FIFOFULL)
+    #if (dut.FIFOFULL == 0):
+    #    await RisingEdge(dut.FIFOFULL)
     #result = arr.array('B')
     #if (dut.AS_O_ == 0) :
     #    dut._log.info("waiting AS_O_ rising edge")
@@ -590,5 +590,5 @@ async def RESDMAC_test(dut):
     #9c Test DMA WRITE (from memory to SCSI) 16 bit DSACK1 cycle
     await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG1, 0x00000000, "DSK1_IN_")
     #9d Test DMA WRITE (from memory to SCSI) 16 bit DSACK1 cycle
-    #await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG2, 0x00000000, "DSK1_IN_")
+    await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG2, 0x00000000, "DSK1_IN_")
 
