@@ -186,17 +186,17 @@ begin
             DACK        <= 1'b1;
         end
         F2S_2: begin
-            WE          <= 1'b1;
+            //WE          <= 1'b1;
             F2S         <= 1'b1;
-            DACK        <= 1'b1;
+            //DACK        <= 1'b1;
         end
         F2S_3: begin
-            WE          <= 1'b1;
+            //WE          <= 1'b1;
             F2S         <= 1'b1;
-            DACK        <= 1'b1;
+            //DACK        <= 1'b1;
         end
         F2S_4: begin
-            //F2S         <= 1'b1;
+            F2S         <= 1'b1;
             INCBO       <= 1'b1;
             if (BOEQ3) begin
                 INCNO   <= 1'b1;
@@ -247,15 +247,15 @@ begin
             end */
         end
         S2F_2: begin
-            RE          <= 1'b1;
-            RE          <= 1'b1;
+            //RE          <= 1'b1;
+            //RE          <= 1'b1;
             S2F         <= 1'b1;
-            DACK        <= 1'b1;
+            //DACK        <= 1'b1;
         end
         S2F_3: begin
-            RE          <= 1'b1;
+            //RE          <= 1'b1;
             S2F         <= 1'b1;
-            DACK        <= 1'b1;
+            //DACK        <= 1'b1;
         end
         S2F_4: begin
             INCBO       <= 1'b1;
