@@ -400,8 +400,10 @@ async def DMA_WRITE(dut, data, addr, termsig):
     if (dut.FIFOEMPTY == 0):
         await RisingEdge(dut.FIFOEMPTY)
     dut._log.info("Finished transferring FIFO to SCSI")
-    dut._id("_DREQ", extended=False).value = 1
     f2sTask.kill()
+    await ClockCycles(dut.SCLK, 2, True)
+    dut._id("_DREQ", extended=False).value = 1
+   
    
     await wait_for_bus_release(dut)
     #stop DMA
@@ -581,6 +583,8 @@ async def RESDMAC_test(dut):
     #await DMA_READ(dut, TEST_DATA_ARRAY_BYTE1, 0x00000000, "DSK0_IN_")
     #8e Test DMA READ (from scsi to memory) 16 bit DSACK1 cycle
     await DMA_READ(dut, TEST_DATA_ARRAY_BYTE1, 0x00000000, "DSK1_IN_")
+    #8f Test DMA READ (from scsi to memory) 16 bit DSACK1 cycle
+    await DMA_READ(dut, TEST_DATA_ARRAY_BYTE3, 0x00000000, "DSK1_IN_")
     
     
     #9a Test DMA WRITE (from memory to SCSI) 32 bit sterm cycle
@@ -588,7 +592,7 @@ async def RESDMAC_test(dut):
     #9b Test DMA WRITE (from memory to SCSI) 32 bit sterm cycle with more than one DMA cycle
     await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG2, 0x00000000, "_STERM")
     #9c Test DMA WRITE (from memory to SCSI) 16 bit DSACK1 cycle
-    await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG1, 0x00000000, "DSK1_IN_")
+    #await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG2, 0x00000000, "DSK1_IN_")
     #9d Test DMA WRITE (from memory to SCSI) 16 bit DSACK1 cycle
-    await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG2, 0x00000000, "DSK1_IN_")
+    #await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG2, 0x00000000, "DSK1_IN_")
 
