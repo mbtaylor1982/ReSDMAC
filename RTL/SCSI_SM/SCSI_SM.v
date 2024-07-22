@@ -8,17 +8,17 @@
 module SCSI_SM
 
 (   input BOEQ3,            //Asserted when transfering Byte 3
-    input CLK,               //CPUClk.
+    input CLK,              //CPUClk.
     input CLK45,            //CPUClk phase shifted 45 deg.
     input CLK90,            //CPUCLK phase shifted 90 deg.
     input CLK135,           //CPUCLK phase shifted 135 deg
     input CPUREQ,           //Request CPU access to SCSI registers.
-    input DECFIFO,          //Decrement FIFO pointer
+    input DECFIFO,          //Decrement FIFO pointer used to ack the request
     input DMADIR,           //Control Direction Of DMA transfer.
     input DREQ_,            //Data transfer request from SCSI IC
     input FIFOEMPTY,        //FIFOFULL flag
     input FIFOFULL,         //FIFOEMPTY flag
-    input INCFIFO,          //Increment FIFO pointer
+    input INCFIFO,          //Increment FIFO pointer used to ack the request
     input AS_,              //CPU Address Strobe
     input RESET_,           //System Reset
     input RW,               //CPU RW signal
@@ -29,9 +29,9 @@ module SCSI_SM
     output reg INCBO_o,     //Increment FIFO Byte Pointer
     output reg INCNI_o,     //Increment FIFO Next In Pointer
     output reg INCNO_o,     //Increement FIFO Next Out Pointer
-    output reg RDFIFO_o,    //Read Longword from FIFO
+    output reg RDFIFO_o,    //Request FIFO Decrement from CPU FSM
     output reg RE_o,        //Read indicator to SCSI IC
-    output reg RIFIFO_o,    //Write Longword to FIFO
+    output reg RIFIFO_o,    //Request FIFO Increment from CPU FSM
     output reg S2CPU_o,     //Indicate SCSI to CPU Transfer
     output reg S2F_o,       //Indicate SCSI to FIFO Transfer
     output reg SCSI_CS_o,   //Chip Select for SCSI IC
@@ -54,29 +54,26 @@ wire F2S;       // Enable FIFO to SCSI datapath.
 wire INCBO;     // Inc the FIFO byte ptr.
 wire INCNI;     // Inc the FIFO Next in ptr.
 wire INCNO;     // Inc the FIFO Next out ptr.
-wire RDRST_;    // Feedback from RDFIFO_d.
 wire RE;        // Read enable line for WD33C93 IC.
-wire RIRST_;    // Feedback from RIFIFO_d.
 wire S2CPU;     // Enable SCSI to CPU datapath.
 wire S2F;       // Enable SCSI to FIFO datapath.
 wire SCSI_CS;   // Chip select to WD33C93 IC.
 wire SET_DSACK; // Signal to latch SCSI data for CPU and terminate CPU Cycle.
 wire WE;        // Write enable line for WD33C93 IC.
-wire RDFIFO;
-wire RIFIFO;
+wire RDFIFO;    // Request FIFO Decrement from CPU FSM
+wire RIFIFO;    // Request FIFO Increment from CPU FSM
 
 reg nLS2CPU;    //Inverted signal to idicate when to latch the SCSI data for CPU cycle.
 
-//*not sure on these  Miket 2023-01-28*
-reg RDFIFO_d;   // Signal CPU SM to read FIFO?
-reg RIFIFO_d;   // Signal CPU SM to Write to FIFO?
+reg RDFIFO_d;   // clocked request FIFO Decrement from CPU FSM
+reg RIFIFO_d;   // clocked request FIFO Increment from CPU FSM
 
 /*
 --To swap between the FSM implmanetions instsiate the different modules--
     1.Original gate based FSM = SCSI_SM_INTERNALS1
     2.Standard verilog form fsm = SCSI_SM_INTERNALS
 */
-SCSI_SM_INTERNALS u_SCSI_SM_INTERNALS (
+SCSI_SM_INTERNALS1 u_SCSI_SM_INTERNALS (
     .CLK        (CLK90      ),  // input, (wire), CLK
     .nRESET     (CRESET_    ),  // input, (wire), Active low reset
     .BOEQ3      (BOEQ3      ),  // input, (wire), Asserted when transfering Byte 3
@@ -86,8 +83,8 @@ SCSI_SM_INTERNALS u_SCSI_SM_INTERNALS (
     .DMADIR     (DMADIR     ),  // input, (wire), Control Direction Of DMA transfer.
     .FIFOEMPTY  (FIFOEMPTY  ),  // input, (wire), FIFOFULL flag
     .FIFOFULL   (FIFOFULL   ),  // input, (wire), FIFOEMPTY flag
-    .RDFIFO_o   (RDFIFO_o   ),  // input, (wire),
-    .RIFIFO_o   (RIFIFO_o   ),  // input, (wire),
+    .RDFIFO_o   (RDFIFO_o   ),  // input, (wire), Request FIFO DEC from CPU FSM
+    .RIFIFO_o   (RIFIFO_o   ),  // input, (wire), Request FIFO INC from CPU FSM
     .RW         (RW         ),  // input, (wire), CPU RW signal
     .CPU2S      (CPU2S      ),  // output, reg, Indicate CPU to SCSI Transfer
     .DACK       (DACK       ),  // output, reg, SCSI IC Data request Acknowledge
@@ -95,9 +92,9 @@ SCSI_SM_INTERNALS u_SCSI_SM_INTERNALS (
     .INCBO      (INCBO      ),  // output, reg, Increment FIFO Byte Pointer
     .INCNI      (INCNI      ),  // output, reg, Increment FIFO Next In Pointer
     .INCNO      (INCNO      ),  // output, reg, Increement FIFO Next Out Pointer
-    .RDFIFO     (RDFIFO     ),  // output, reg, Read Longword from FIFO
+    .RDFIFO     (RDFIFO     ),  // output, reg, Request FIFO Decrement from CPU FSM
     .RE         (RE         ),  // output, reg, Read indicator to SCSI IC
-    .RIFIFO     (RIFIFO     ),  // output, reg, Write Longword to FIFO
+    .RIFIFO     (RIFIFO     ),  // output, reg, Request FIFO Increment from CPU FSM
     .S2CPU      (S2CPU      ),  // output, reg, Indicate SCSI to CPU Transfer
     .S2F        (S2F        ),  // output, reg, Indicate SCSI to FIFO Transfer
     .SCSI_CS    (SCSI_CS    ),  // output, reg, Chip Select for SCSI IC
@@ -164,19 +161,19 @@ end
 
 always @(posedge CLK135 or negedge RESET_) begin
     if (~RESET_) begin
+        //reset request for inc or dec fifo
         RDFIFO_o <= 1'b0;
 	    RIFIFO_o <= 1'b0;
 	end
-    else if (DECFIFO)
+    if (DECFIFO) //ack the fifo dec request
         RDFIFO_o <= 1'b0;
-	else if (INCFIFO)
+	if (INCFIFO) //ack the fifo inc request
         RIFIFO_o <= 1'b0;
-	else if (RDFIFO_d)
+	if (RDFIFO_d) //request fifo dec
         RDFIFO_o <= 1'b1;
-	else if (RIFIFO_d)
+	if (RIFIFO_d) //request fifo inc
         RIFIFO_o <= 1'b1;
 end
-
 
 always @(posedge CLK135 or posedge AS_) begin
     if (AS_)
