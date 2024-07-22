@@ -153,37 +153,31 @@ assign PLHW_X = (E[48] | E[60]);
 assign PLHW_Y = (E[57] | (E[43] & ~DSACK)) & STERM_;
 assign PLHW_d = (PLHW_X |PLHW_Y);
 
-//FIFO COUNTER STROBES
-wire AA,BB,CC,DD,EE,FF;
 
-assign AA = ((E[51] | E[46] | E[43]) & ~STERM_);
-assign BB = E[55]| ((E[50] | E[25] | E[6]) & DSACK) ;
+//FIFO  STROBES
+wire STERM_INC,DSACK_INC,SCSI_DEC,SCSI_INC,DSACK_DEC,FF;
 
-assign CC = (E[9] & DSACK) | (E[30] & DSACK);
-assign DD = ((E[39] | E[40] | E[37] | E[42]) & ~STERM_);
+//INC FIFO for memory reads using STERM or DSACK
+assign STERM_INC = ((E[51] | E[46] | E[43]) & ~STERM_);//s14,s15,s21,s25,s27,s29 and STERM low
+assign DSACK_INC = (((E[50] | E[25] | E[6]) & DSACK ) | E[55]);//s5,s13,s14,s15,s28 and DSACK high / OR s6, s14, s22, s30
+//INC FIFO when SCSI FSM requests it unless we are decrementing it
+assign SCSI_INC = (~RIFIFO_ & ~STERM_DEC & ~DSACK_DEC);
+//increment fifo counter
+assign INCFIFO_d = (SCSI_INC | STERM_INC | DSACK_INC);
 
-assign EE = ~(AA | BB | RDFIFO_);
-/* assign EE = 
-    ~(E[55] + RDFIFO_ + ~STERM_ + DSACK) | //s6, s14, s22, s30
-    (~E[55] & ~RDFIFO_ & STERM_ & ~E[50] & ~E[25] & ~E[6]) |
-    (~E[55] & ~RDFIFO_ & ~E[51] & ~E[46] & ~E[43] & ~DSACK) | 
-    (~E[55] & ~RDFIFO_ & ~E[50] & ~E[25] & ~E[6] & ~E[51] & ~E[46] & ~E[43]); */
+//DEC FIFO for memory writes using STERM or DSACK
+assign STERM_DEC = ((E[39] | E[40] | E[37] | E[42]) & ~STERM_); //s1,s3,s12,s13,s17 and STERM low
+assign DSACK_DEC = ((E[9] | E[30]) & DSACK);//(s1 or s3 and nDSACK0_ & nDSACK1_ ) or (s3 and nDSACK1_) with DSACK high
+//DEC FIFO when SCSI FSM requests it unless we are incrementing it
+assign SCSI_DEC = (~RDFIFO_ & ~STERM_INC & ~DSACK_INC);
+//decrement fifo counter
+assign DECFIFO_d = (SCSI_DEC | STERM_DEC | DSACK_DEC);
 
-assign FF = ~(CC | DD | RIFIFO_);
-/* assign FF = 
-    (~DSACK & ~RIFIFO_) |
-    (~E[9] & ~E[30] & ~RIFIFO_) |   //s3 nDSACK0_ & nDSACK1_
-    (E[37] & ~STERM_ & ~RIFIFO_) |  //s12 or s13
-    (E[39] & ~STERM_ & ~RIFIFO_) |  //s1
-    (E[40] & ~STERM_ & ~RIFIFO_) |  //s17
-    (E[42] & ~STERM_ & ~RIFIFO_);   //s3 */
+//increment the next output pointer whenever data is removed and fifo Decremented
+assign INCNO_d = (DSACK_DEC | STERM_DEC);
 
-assign INCFIFO_d = (AA | BB | FF);
-assign DECFIFO_d = (CC | DD | EE);
-assign INCNO_d = (CC | DD);
-
+//FLUSH
 assign STOPFLUSH_d = (E[0] | E[4] | E[5] | E[21] | E[26] | E[27]);
-
 
 //DIEH
 wire DIEH_X, DIEH_Y, DIEH_Z;
@@ -200,7 +194,7 @@ assign DIEH_Y = ((E[43] | E[46] | E[51]) & ~STERM_);
 assign DIEH_Z =
 (
     (
-        ((E[51] | E[43]) & ~DSACK) | 
+        ((E[51] | E[43]) & ~DSACK) |
         (E[46] | E[57])
     ) & STERM_
 );
