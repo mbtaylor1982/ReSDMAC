@@ -215,38 +215,58 @@ async def FillFIFOFromMem(dut, data, TermSignal):
                         await RisingEdge(dut.AS_O_)
                     dut._id(TermSignal, extended=False).value = 1
                     await RisingEdge(dut.SCLK)
-                
+                    
+    if (dut.FIFOFULL == 0 and dut._id("_BGACK_IO", extended=False) == 0):
+        while (dut.FIFOFULL == 0):
+            if (dut.AS_O_ == 1):
+                await FallingEdge(dut.AS_O_)
+                dut.DATA_I.value = 0xaabbccdd
+                await ClockCycles(dut.SCLK, 1, True)
+                await RisingEdge(dut.SCLK)
+                dut._id(TermSignal, extended=False).value = 0
+                dut._log.info("loaded FIFO with value %#x from memory", dut.DATA_I.value)
+                if (dut.AS_O_ == 0):
+                    await RisingEdge(dut.AS_O_)
+                dut._id(TermSignal, extended=False).value = 1
+                await RisingEdge(dut.SCLK)
+                if (TermSignal == "DSK1_IN_"):
+                    if (dut.AS_O_ == 1):
+                        await FallingEdge(dut.AS_O_)
+                        dut.DATA_I.value = ((0xaabbccdd & 0x0000ffff) << 16) + (0xaabbccdd & 0x0000ffff)
+                        await ClockCycles(dut.SCLK, 1, True)
+                        await RisingEdge(dut.SCLK)
+                        dut._id(TermSignal, extended=False).value = 0
+                        dut._log.info("loaded FIFO with value %#x from memory", dut.DATA_I.value)
+                        if (dut.AS_O_ == 0):
+                            await RisingEdge(dut.AS_O_)
+                        dut._id(TermSignal, extended=False).value = 1
+                        await RisingEdge(dut.SCLK)
+        await wait_for_bus_release(dut)
+        
     dut.DATA_I.value =0x0
     dut._log.info("Finished Filling FIFO From Memory")
 
-async def XferFIFO2SCSI(dut):
+async def XferFIFO2SCSI(dut,bytes):
     dut._id("_DREQ", extended=False).value = 0
-    dut._log.info("Started transferring FIFO to SCSI")
-    
-    #if (dut.FIFOFULL == 0):
-    #    await RisingEdge(dut.FIFOFULL)
-    #result = arr.array('B')
-    #if (dut.AS_O_ == 0) :
-    #    dut._log.info("waiting AS_O_ rising edge")
-    #    await RisingEdge(dut.AS_O_)
-    #await RisingEdge(dut.SCLK)
+    dut._log.info("Started transferring FIFO to SCSI")    
 
-    while True:
+    i = 0
+    while i < bytes:
+        if (dut._id("_DACK", extended=False) == 1):
+            await FallingEdge(dut._id("_DACK", extended=False))
+        if (dut._id("_IOW", extended=False) == 1):
+            await FallingEdge(dut._id("_IOW", extended=False))
+        dut._log.info("Transfering value %#x from FIFO to SCSI", dut.PDATA_O.value)
+        dut._id("_DREQ", extended=False).value = 1
+        if (dut._id("_DACK", extended=False) == 0):
+            await RisingEdge(dut._id("_DACK", extended=False))
         await ClockCycles(dut.SCLK, 1, True)
-        while (dut.FIFOEMPTY == 0):
-            if (dut._id("_DACK", extended=False) == 1):
-                await FallingEdge(dut._id("_DACK", extended=False))
-            if (dut._id("_IOW", extended=False) == 1):
-                await FallingEdge(dut._id("_IOW", extended=False))
-            #result.append(dut.PDATA_O.value & 0x00ff)
-            dut._log.info("Transfering value %#x from FIFO to SCSI", dut.PDATA_O.value)
-            dut._id("_DREQ", extended=False).value = 1
-            if (dut._id("_DACK", extended=False) == 0):
-                await RisingEdge(dut._id("_DACK", extended=False))
-            await ClockCycles(dut.SCLK, 1, True)
-            await RisingEdge(dut.SCLK)
-            dut._id("_DREQ", extended=False).value = 0
-            await ClockCycles(dut.SCLK, 1, True)
+        await RisingEdge(dut.SCLK)
+        dut._id("_DREQ", extended=False).value = 0
+        await ClockCycles(dut.SCLK, 1, True)
+        i += 1
+    dut._id("_DREQ", extended=False).value = 1
+    dut._log.info("Finished transferring FIFO to SCSI")
 
 async def XferFIFO2Mem(dut,TermSignal):
     while (dut.DMAENA == 1):
@@ -348,7 +368,6 @@ async def DriveAddrBusForDMA(dut, addr):
             await RisingEdge(dut._id("AS_I_", extended=False))
             address += IncAmount
             dut.ADDR.value = ((address & 0x7c) >> 2)
-    
 
 async def DMA_READ(dut, data, addr, termsig):
     with trace(dut.ADDR, dut.DATA_O, dut.R_W, dut.AS_I_, dut.DS_I_, dut._id("_STERM", extended=False),dut.DSK0_IN_,dut.DSK1_IN_,dut._id("_BR", extended=False),dut._id("_BG", extended=False),dut._id("_BGACK_IO", extended=False),dut._id("_DREQ", extended=False),dut._id("_DACK", extended=False),dut._id("_IOR", extended=False),dut.PDATA_I, clk=dut.SCLK) as waves:
@@ -380,7 +399,7 @@ async def DMA_READ(dut, data, addr, termsig):
                 jdata['signal'][x]['data'] = result
         with open("../Docs/TimingDiagrams/DMA_READ.json", 'w') as json_file:
             json.dump(jdata,json_file, indent=4, sort_keys=False)
-    
+
 async def DMA_WRITE(dut, data, addr, termsig):
     dut._log.info("Starting DMA write to addr %#x", addr)
     await reset_dut(dut._id("_RST", extended=False), 40)
@@ -389,33 +408,23 @@ async def DMA_WRITE(dut, data, addr, termsig):
     await write_data(dut, CONTR_REG_ADR, (CONTR_DMA_WRITE | CONTR_INTENA))
     #Set Destination address
     await write_data(dut, RAMSEY_ACR_REG_ADR, addr)
-    
     #start DMA
     await read_data(dut, ST_DMA_STROBE_ADR)
-    #f2sTask = cocotb.start_soon(XferFIFO2SCSI(dut, DMA_Cycle_Finsished))
+    datalengthbytes = len(data)*4
     M2F = cocotb.start_soon(FillFIFOFromMem(dut, data, termsig))
-    f2sTask = cocotb.start_soon(XferFIFO2SCSI(dut))
+    dut._log.info("transfering %i bytes to scsi", datalengthbytes)
+    f2sTask = cocotb.start_soon(XferFIFO2SCSI(dut,datalengthbytes))
     await M2F
-    
-    if (dut.FIFOEMPTY == 0):
-        await RisingEdge(dut.FIFOEMPTY)
-    dut._log.info("Finished transferring FIFO to SCSI")
-    f2sTask.kill()
-    await ClockCycles(dut.SCLK, 2, True)
-    dut._id("_DREQ", extended=False).value = 1
-   
-   
-    await wait_for_bus_release(dut)
+    await f2sTask
     #stop DMA
     await ClockCycles(dut.SCLK, 2, True)
     await read_data(dut, SP_DMA_STROBE_ADR)
     await DrvAddr
-    
 
 @cocotb.test()
 async def RESDMAC_test(dut):
     """Test RESDMAC"""
-    
+
     print(dir(dut))
 
     #set inital value of inputs
@@ -592,7 +601,7 @@ async def RESDMAC_test(dut):
     #9b Test DMA WRITE (from memory to SCSI) 32 bit sterm cycle with more than one DMA cycle
     await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG2, 0x00000000, "_STERM")
     #9c Test DMA WRITE (from memory to SCSI) 16 bit DSACK1 cycle
-    #await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG2, 0x00000000, "DSK1_IN_")
+    await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG1, 0x00000000, "DSK1_IN_")
     #9d Test DMA WRITE (from memory to SCSI) 16 bit DSACK1 cycle
-    #await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG2, 0x00000000, "DSK1_IN_")
+    await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG2, 0x00000000, "DSK1_IN_")
 
