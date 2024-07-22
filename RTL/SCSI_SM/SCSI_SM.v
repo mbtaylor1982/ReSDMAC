@@ -159,20 +159,18 @@ always @(posedge CLK90 or negedge CRESET_) begin
     end
 end
 
-always @(posedge CLK135 or negedge RESET_) begin
-    if (~RESET_) begin
-        //reset request for inc or dec fifo
-        RDFIFO_o <= 1'b0;
-	    RIFIFO_o <= 1'b0;
-	end
-    if (DECFIFO) //ack the fifo dec request
-        RDFIFO_o <= 1'b0;
-	if (INCFIFO) //ack the fifo inc request
+always @(posedge CLK135 or posedge INCFIFO or negedge RESET_ ) begin
+    if (INCFIFO | ~RESET_) //ack the fifo inc request
         RIFIFO_o <= 1'b0;
-	if (RDFIFO_d) //request fifo dec
-        RDFIFO_o <= 1'b1;
-	if (RIFIFO_d) //request fifo inc
+	else if (RIFIFO_d) //request fifo inc
         RIFIFO_o <= 1'b1;
+end
+
+always @(posedge CLK135 or posedge DECFIFO or negedge RESET_) begin
+    if (DECFIFO | ~RESET_) //ack the fifo dec request
+        RDFIFO_o <= 1'b0;
+    else if (RDFIFO_d) //request fifo dec
+        RDFIFO_o <= 1'b1;
 end
 
 always @(posedge CLK135 or posedge AS_) begin
