@@ -75,6 +75,6 @@ assign VERSION_WR   = (h_20 & ~RW);
 assign ST_DMA   = h_10;
 assign SP_DMA   = h_3C;
 assign CLR_INT  = h_18;
-assign FLUSH_   = ~(h_14 & ~DMADIR);
+assign FLUSH_   = ~h_14;
 
 endmodule
