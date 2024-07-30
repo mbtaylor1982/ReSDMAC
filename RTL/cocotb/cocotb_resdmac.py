@@ -414,11 +414,13 @@ async def DMA_WRITE(dut, data, addr, termsig):
     M2F = cocotb.start_soon(FillFIFOFromMem(dut, data, termsig))
     dut._log.info("transfering %i bytes to scsi", datalengthbytes)
     f2sTask = cocotb.start_soon(XferFIFO2SCSI(dut,datalengthbytes))
-    await M2F
     await f2sTask
-    #stop DMA
     await ClockCycles(dut.SCLK, 2, True)
+    #Flush any data remaining in the fifo to memory
+    await read_data(dut, FLUSH_STROBE_ADR)
+    #stop DMA
     await read_data(dut, SP_DMA_STROBE_ADR)
+    await M2F
     await DrvAddr
 
 @cocotb.test()
