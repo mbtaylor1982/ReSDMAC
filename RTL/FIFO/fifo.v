@@ -90,7 +90,7 @@ fifo_3bit_cntr u_next_out_cntr(
 
 //BYTE POINTER
 fifo_byte_ptr u_byte_ptr(
-  .CLK       (CLK135    ),
+  .CLK       (CLK   ),
   .INCBO     (INCBO     ),
   .MID25     (MID25     ),
   .ACR_WR    (ACR_WR    ),
@@ -110,7 +110,7 @@ reg [31:0] BUFFER [7:0];
 integer i;
 
 //WRITE DATA TO FIFO BUFFER
-always @(negedge CLK90 or negedge RST_FIFO_) begin
+always @(posedge CLK90 or negedge RST_FIFO_) begin
   if (~RST_FIFO_) begin
     for (i = 0; i < 8; i = i+1) begin
       BUFFER[i] <= 32'h00000000;

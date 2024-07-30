@@ -91,6 +91,8 @@ datapath_output u_datapath_output(
 
 datapath_scsi u_datapath_scsi(
     .CLK            (CLK       ),
+    .CLK90          (CLK90     ),
+    .CLK135         (CLK135    ),
     .SCSI_DATA_IN   (PD_IN     ),
     .SCSI_DATA_OUT  (PD_OUT    ),
     .SCSI_OD        (SCSI_OD   ),

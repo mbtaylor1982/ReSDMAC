@@ -6,7 +6,7 @@
 `endif
 
 module datapath_scsi (
-    input CLK,
+    input CLK, CLK90, CLK135,
     input [15:0] SCSI_DATA_IN,
     output [15:0] SCSI_DATA_OUT,
     
@@ -37,7 +37,8 @@ wire SCSI_IN;
 wire [7:0] SCSI_DATA_RX;
 wire [7:0] SCSI_DATA_TX;
 
-reg [7:0] SCSI_DATA_LATCHED;
+reg [7:0] SCSI_DATA__RX_LATCHED;
+reg [7:0] SCSI_DATA__TX_LATCHED;
 
 assign SCSI_OUT = (F2S | CPU2S);
 assign SCSI_IN  = (S2F | S2CPU);
@@ -67,17 +68,21 @@ datapath_8b_MUX u_datapath_8b_MUX(
     .Z (SCSI_DATA_TX) //output
 );
 
-assign SCSI_DATA_OUT = SCSI_OUT ? {SCSI_DATA_TX, SCSI_DATA_TX} : 16'h0000;
+assign SCSI_DATA_OUT = SCSI_OUT ? {SCSI_DATA__TX_LATCHED, SCSI_DATA__TX_LATCHED} : 16'h0000;
 assign SCSI_DATA_RX = SCSI_IN ? SCSI_DATA_IN[7:0] : 8'h00;
 
 always @(negedge CLK, negedge S2CPU) begin
     if (~S2CPU)
-        SCSI_DATA_LATCHED <= 8'h00;
+        SCSI_DATA__RX_LATCHED <= 8'h00;
     else if (~LS2CPU)
-        SCSI_DATA_LATCHED <= SCSI_DATA_RX;
+        SCSI_DATA__RX_LATCHED <= SCSI_DATA_RX;
 end
 
-assign MOD_SCSI = {8'h00 , SCSI_DATA_LATCHED, 8'h00, SCSI_DATA_LATCHED};
+always @(posedge CLK135) begin
+    SCSI_DATA__TX_LATCHED <= SCSI_DATA_TX;
+end
+
+assign MOD_SCSI = {8'h00 , SCSI_DATA__RX_LATCHED, 8'h00, SCSI_DATA__RX_LATCHED};
 assign SCSI_OD = {SCSI_DATA_RX, SCSI_DATA_RX, SCSI_DATA_RX, SCSI_DATA_RX};
 
 endmodule
