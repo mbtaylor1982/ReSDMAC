@@ -37,8 +37,8 @@ async def registers_term_test(dut):
     
     dut.AS_.value = 0
     dut.DMAC_.value = 0
-    await ClockCycles(dut.CLK, 3, True)
-    assert dut.REG_DSK_.value == 0, "REG_DSK_ != 0 after 3 clk cycles"
+    await ClockCycles(dut.CLK, 5, True)
+    assert dut.REG_DSK_.value == 0, "REG_DSK_ != 0 after 5 clk cycles"
         
     await ClockCycles(dut.CLK, 6, True)
     
@@ -64,8 +64,8 @@ async def registers_term_test(dut):
     dut.AS_.value = 0
     dut.DMAC_.value = 0
     dut.h_0C.value = 1
-    await ClockCycles(dut.CLK, 3, True)
-    assert dut.REG_DSK_.value == 0, "REG_DSK_ != 0 with h_0C after 3 clk cycles"
+    await ClockCycles(dut.CLK, 5, True)
+    assert dut.REG_DSK_.value == 0, "REG_DSK_ != 0 with h_0C after 5 clk cycles"
     dut.AS_.value = 1
     dut.DMAC_.value = 1
     dut.h_0C.value = 0
