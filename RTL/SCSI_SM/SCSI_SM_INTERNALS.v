@@ -186,9 +186,9 @@ begin
             DACK        <= 1'b1;
         end
         F2S_2: begin
-            //WE          <= 1'b1;
+            WE          <= 1'b1;
             F2S         <= 1'b1;
-            //DACK        <= 1'b1;
+            DACK        <= 1'b1;
         end
         F2S_3: begin
             //WE          <= 1'b1;
@@ -218,12 +218,13 @@ begin
             RE          <= 1'b1;
             S2CPU       <= 1'b1;
             SCSI_CS     <= 1'b1;
-            SET_DSACK   <= 1'b1;
+            //SET_DSACK   <= 1'b1;
         end
         S2C_4: begin
             RE          <= 1'b1;
             S2CPU       <= 1'b1;
-            //SET_DSACK   <= 1'b1;  //moved to S2C_3 so DSACK is asserted earlier
+            SCSI_CS     <= 1'b1;
+            SET_DSACK   <= 1'b1;  //moved to S2C_3 so DSACK is asserted earlier
         end
         S2C_5: begin
             S2CPU       <= 1'b1;
@@ -247,10 +248,9 @@ begin
             end */
         end
         S2F_2: begin
-            //RE          <= 1'b1;
-            //RE          <= 1'b1;
+            RE          <= 1'b1;
             S2F         <= 1'b1;
-            //DACK        <= 1'b1;
+            DACK        <= 1'b1;
         end
         S2F_3: begin
             //RE          <= 1'b1;

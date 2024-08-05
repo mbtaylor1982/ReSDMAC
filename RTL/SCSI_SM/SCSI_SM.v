@@ -73,7 +73,7 @@ reg RIFIFO_d;   // clocked request FIFO Increment from CPU FSM
     1.Original gate based FSM = SCSI_SM_INTERNALS1
     2.Standard verilog form fsm = SCSI_SM_INTERNALS
 */
-SCSI_SM_INTERNALS1 u_SCSI_SM_INTERNALS (
+SCSI_SM_INTERNALS u_SCSI_SM_INTERNALS (
     .CLK        (CLK90      ),  // input, (wire), CLK
     .nRESET     (CRESET_    ),  // input, (wire), Active low reset
     .BOEQ3      (BOEQ3      ),  // input, (wire), Asserted when transfering Byte 3
