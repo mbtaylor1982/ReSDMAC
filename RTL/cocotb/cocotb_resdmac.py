@@ -256,6 +256,7 @@ async def XferFIFO2SCSI(dut,bytes):
             await FallingEdge(dut._id("_DACK", extended=False))
         if (dut._id("_IOW", extended=False) == 1):
             await FallingEdge(dut._id("_IOW", extended=False))
+        await ClockCycles(dut.SCLK, 1, True)
         dut._log.info("Transfering value %#x from FIFO to SCSI", dut.PDATA_O.value)
         dut._id("_DREQ", extended=False).value = 1
         if (dut._id("_DACK", extended=False) == 0):
@@ -345,14 +346,14 @@ async def DriveAddrBusForDMA(dut, addr):
     
     address = addr
     if (dut._id("_DMAEN", extended=False) == 1):
-        dut._log.info("waiting _DMAEN falling edge")
+        #dut._log.info("waiting _DMAEN falling edge")
         await FallingEdge(dut._id("_DMAEN", extended=False))
     dut.ADDR.value = ((address & 0x7c) >> 2)
 
     while (dut._id("_DMAEN", extended=False) == 0):
         IncAmount = 2
         if (dut.AS_I_.value == 1):
-            dut._log.info("waiting AS falling edge")
+            #dut._log.info("waiting AS falling edge")
             await FallingEdge(dut._id("AS_I_", extended=False))
         
         STERM = FallingEdge(dut._id("_STERM", extended=False))
@@ -364,7 +365,7 @@ async def DriveAddrBusForDMA(dut, addr):
             IncAmount = 4
             
         if (dut.AS_I_.value == 0):
-            dut._log.info("waiting AS rising edge")
+            #dut._log.info("waiting AS rising edge")
             await RisingEdge(dut._id("AS_I_", extended=False))
             address += IncAmount
             dut.ADDR.value = ((address & 0x7c) >> 2)
