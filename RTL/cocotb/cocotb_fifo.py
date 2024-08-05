@@ -72,13 +72,13 @@ async def fifo_test(dut):
     for j in range (0, m):
         n = 4
         for i in range (0, n):
-            await RisingEdge(dut.CLK90)
+            await RisingEdge(dut.CLK)
             dut.LBYTE_.value = 0
-            await RisingEdge(dut.CLK90)
+            await RisingEdge(dut.CLK)
             dut.LBYTE_.value = 1
-            await ClockCycles(dut.CLK, 1, True) 
+            await ClockCycles(dut.CLK135, 1, True) 
             dut.INCBO.value = 1
-            await ClockCycles(dut.CLK, 1, True) 
+            await ClockCycles(dut.CLK135, 1, True) 
             dut.INCBO.value = 0
         assert dut.BOEQ3.value == 0 ,"BOEQ3 != 0  after long word transfered"
         assert dut._id("BUFFER[%d]" % dut.WRITE_PTR.value, extended=False).value == dut.FIFO_ID.value , "value %#x was not transferd to FIFO buffer" %dut.FIFO_ID.value
