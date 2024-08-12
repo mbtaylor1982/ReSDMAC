@@ -19,7 +19,7 @@ defaults:
     working-directory: Quartus
 
 jobs:
-  synthesis:
+  build:
     runs-on: ubuntu-latest
     container:
       image: mbtaylor1982/quartus:22.1
@@ -38,7 +38,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: OutputFiles_10M16SCU169C8G.zip
-          path: output_files_10M16SCU169C8G/
+          path: Quartus/output_files_10M16SCU169C8G
           retention-days: 14
       # 4 - RTL synthesis 10M16
       - name: Run compilation flow
@@ -48,6 +48,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: OutputFiles_10M04SCU169C8G.zip
-          path: output_files_10M04SCU169C8G/
+          path: Quartus/output_files_10M04SCU169C8G
           retention-days: 14
      
