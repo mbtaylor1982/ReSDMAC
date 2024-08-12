@@ -5,16 +5,27 @@
 ################################################################################
 name: Create New Core Release
 ################################################################################
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+
 on:
   push:
     # Sequence of patterns matched against refs/tags
     tags:
       - 'v*' # Trigger only when tag matches v*, i.e. v1.0, v21.12.31, v211231
 ################################################################################
+defaults:
+  run:
+    working-directory: Quartus
+
 jobs:
   synthesis:
     runs-on: ubuntu-latest
-    container: mbtaylor1982/quartus:22.1 
+    container:
+      image: mbtaylor1982/quartus:22.1
+      credentials:
+        username: ${{ secrets.DOCKER_HUB_USER }}
+        password: ${{ secrets.DOCKER_HUB_PWD }} 
     #container: raetro/quartus:17.1        # Use DockerHub
     ############################################################################
     env:
@@ -25,12 +36,14 @@ jobs:
       ## 1 - Checkout repository
       ##########################################################################
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
       ##########################################################################
       ## 2 - RTL synthesis
       ##########################################################################
-      - name: Run compilation flow
-        run: quartus_sh --flow compile Quartus/RESDMAC.qpf
+      - name: Run 10M16 compilation flow
+        run: quartus_sh -t  RESDMAC.tcl 10M16SCU169C8G
+      - name: Run 10M04 compilation flow
+        run: quartus_sh -t  RESDMAC.tcl 10M04SCU169C8G
       ##########################################################################
       ## 3 - Get current version for tagging binary
       ##########################################################################
@@ -40,20 +53,31 @@ jobs:
       ##########################################################################
       ## 4 - Upload artifacts
       ##########################################################################
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+      - name: Upload artifacts 10M16
+        uses: actions/upload-artifact@v3
         with:
-          name: RESDMAC_${{ steps.version.outputs.version }}.zip
-          path: Quartus/output_files/
-          retention-days: 14
+          name: RESDMAC_10M16_${{ steps.version.outputs.version }}.zip
+          path: Quartus/output_files_10M16SCU169C8G
+          retention-days: 0
+      - name: Upload artifacts 10M04
+        uses: actions/upload-artifact@v3
+        with:
+          name: RESDMAC_10M04_${{ steps.version.outputs.version }}.zip
+          path: Quartus/output_files_10M04SCU169C8G
+          retention-days: 0
       ##########################################################################
       ## 5 - Create tag with version and SHA256 checksum
       ##########################################################################
       - name: Copy, tag with version and create SHA256 checksum
         run: |
           mkdir -p releases
-          cp Quartus/output_files/RESDMAC.pof releases/RESDMAC_${{ steps.version.outputs.version }}.pof
-          ( cd Quartus/output_files && sha256sum RESDMAC.pof > ../../releases/RESDMAC_${{ steps.version.outputs.version }}.pof.sha256 )
+          cp output_files_10M16SCU169C8G/RESDMAC.pof ../../releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.pof
+          sha256sum RESDMAC.pof > ../../releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.pof.sha256
+      - name: Copy, tag with version and create SHA256 checksum
+        run: |
+          mkdir -p releases
+          cp output_files_10M04SCU169C8G/RESDMAC.pof ../../releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof
+          sha256sum RESDMAC.pof > ../../releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof.sha256
       ##########################################################################
       ## 6 - Create a new GitHub release and upload the distribution artifacts
       ##########################################################################
@@ -62,8 +86,10 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            releases/RESDMAC_${{ steps.version.outputs.version }}.pof
-            releases/RESDMAC_${{ steps.version.outputs.version }}.pof.sha256
+            releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.pof
+            releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.pof.sha256
+            releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof
+            releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof.sha256
       ##########################################################################
       ## 7 - Don't ever commit binary files to Git! But if this is what you want to do.
       ##########################################################################
