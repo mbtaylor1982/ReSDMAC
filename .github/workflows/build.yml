@@ -14,6 +14,9 @@ on:
       - main
     paths-ignore:
       - '**.md'
+defaults:
+  run:
+    working-directory: Quartus
 
 jobs:
   synthesis:
@@ -27,23 +30,20 @@ jobs:
       # 1 - Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
-      # 2 - Change to Quartus dir
-      - name: Change to Quartus test dtirectory 
-        run: cd Quartus
-      # 3 - RTL synthesis 10M16
+      # 2 - RTL synthesis 10M16
       - name: Run compilation flow
         run: quartus_sh -t  RESDMAC.tcl 10M16SCU169C8G
-      # 4 - Upload artifacts
+      # 3 - Upload artifacts
       - name: Upload 10M16SCU169C8G Firmware
         uses: actions/upload-artifact@v3
         with:
           name: OutputFiles_10M16SCU169C8G.zip
           path: output_files_10M16SCU169C8G/
           retention-days: 14
-      # 5 - RTL synthesis 10M16
+      # 4 - RTL synthesis 10M16
       - name: Run compilation flow
         run: quartus_sh -t  RESDMAC.tcl 10M04SCU169C8G
-      # 6 - Upload artifacts
+      # 5 - Upload artifacts
       - name: Upload 10M04SCU169C8G Firmware
         uses: actions/upload-artifact@v3
         with:
