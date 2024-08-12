@@ -4,9 +4,37 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build Firmware",
+            "label": "Build 10M04 Firmware",
             "type": "shell",
-            "command": "docker run --rm -v ${pwd}:/build -e LM_LICENSE_FILE=/opt/license.dat -v /path/to/license.dat:/opt/license.dat:ro -it mbtaylor1982/quartus:22.1 quartus_sh --flow compile /build/Quartus/RESDMAC.qpf",
+            "command": "docker run --rm -v ${pwd}:/build -e LM_LICENSE_FILE=/opt/license.dat -v /path/to/license.dat:/opt/license.dat:ro -it -w /build/Quartus mbtaylor1982/quartus:22.1 quartus_sh -t  RESDMAC.tcl 10M04SCU169C8G",
+            "detail": "Trigger build using mbtaylor1982/quartus:22.1 Docker image",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "problemMatcher": {
+                "fileLocation": ["relative", "${workspaceFolder}"],
+                "owner": "Quartus",
+                "pattern": {
+                  "regexp": "^(Warning|Error)\\s+(\\(\\d+\\)):\\s+(.*)File:\\s+\/build(.*)Line:\\s+(\\d+)$",
+                  "severity": 1,
+                  "message": 3,
+                  "file": 4,
+                  "line": 5 
+                }
+            },
+            "group": {
+                "kind": "build",
+            }
+        },
+        {
+            "label": "Build 10M16 Firmware",
+            "type": "shell",
+            "command": "docker run --rm -v ${pwd}:/build -e LM_LICENSE_FILE=/opt/license.dat -v /path/to/license.dat:/opt/license.dat:ro -it -w /build/Quartus mbtaylor1982/quartus:22.1 quartus_sh -t  RESDMAC.tcl 10M16SCU169C8G",
             "detail": "Trigger build using mbtaylor1982/quartus:22.1 Docker image",
             "presentation": {
                 "echo": true,
