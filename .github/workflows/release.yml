@@ -70,14 +70,11 @@ jobs:
       ##########################################################################
       - name: Copy, tag with version and create SHA256 checksum
         run: |
-          mkdir -p releases
-          cp output_files_10M16SCU169C8G/RESDMAC.pof ../../releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.pof
-          sha256sum RESDMAC.pof > ../../releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.pof.sha256
-      - name: Copy, tag with version and create SHA256 checksum
-        run: |
-          mkdir -p releases
-          cp output_files_10M04SCU169C8G/RESDMAC.pof ../../releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof
-          sha256sum RESDMAC.pof > ../../releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof.sha256
+          mkdir -p ../releases
+          cp output_files_10M16SCU169C8G/RESDMAC.pof ../releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.pof
+          cp output_files_10M04SCU169C8G/RESDMAC.pof ../releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof
+          sha256sum RESDMAC.pof > ../releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.pof.sha256
+          sha256sum RESDMAC.pof > ../releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof.sha256
       ##########################################################################
       ## 6 - Create a new GitHub release and upload the distribution artifacts
       ##########################################################################
