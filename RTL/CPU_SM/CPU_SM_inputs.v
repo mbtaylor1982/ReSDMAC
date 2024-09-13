@@ -2,16 +2,16 @@
 
 module CPU_SM_inputs (
   input CLK90,
-  input RST_,
+  input nRST,
   input A1,
-  input BGRANT_,
+  input nBGRANT,
   input BOEQ3,
   input CYCLEDONE,
   input DMADIR,
   input DMAENA,
-  input DREQ_,
-  input DSACK0_,
-  input DSACK1_,
+  input nDREQ,
+  input nDSACK0,
+  input nDSACK1,
   input FIFOEMPTY,
   input FIFOFULL,
   input FLUSHFIFO,
@@ -22,72 +22,72 @@ module CPU_SM_inputs (
 );
 
   wire nA1;
-  wire nBGRANT_;
+  wire BGRANT;
   wire nCYCLEDONE;
   wire nDMADIR;
   wire nFIFOEMPTY;
   wire nFIFOFULL;
   wire nLASTWORD;
-  wire nDREQ_;
+  wire DREQ;
   wire nBOEQ3;
   wire nDMAENA;
-  reg nDSACK0_;
-  reg nDSACK1_;
+  reg DSACK0;
+  reg DSACK1;
 
-always @(posedge CLK90 or negedge RST_) begin
-    if (~RST_) begin
-        nDSACK0_ <= 1'b0;
-        nDSACK1_ <= 1'b0;
+always @(posedge CLK90 or negedge nRST) begin
+    if (~nRST) begin
+        DSACK0 <= 1'b0;
+        DSACK1 <= 1'b0;
     end
     else begin
-        nDSACK0_ <= ~DSACK0_;
-        nDSACK1_ <= ~DSACK1_;
+        DSACK0 <= ~nDSACK0;
+        DSACK1 <= ~nDSACK1;
     end
 end
 
   assign nA1          = ~A1;
-  assign nBGRANT_     = ~BGRANT_;
+  assign BGRANT       = ~nBGRANT;
   assign nCYCLEDONE   = ~CYCLEDONE;
   assign nDMADIR      = ~DMADIR;
   assign nFIFOEMPTY   = ~FIFOEMPTY;
   assign nFIFOFULL    = ~FIFOFULL;
   assign nLASTWORD    = ~LASTWORD;
-  assign nDREQ_       = ~DREQ_;
+  assign DREQ         = ~nDREQ;
   assign nBOEQ3       = ~BOEQ3;
   assign nDMAENA      = ~DMAENA;
 
   assign  E[0]            = ((STATE == 5'd0) & DMAENA & DMADIR & FIFOEMPTY & nFIFOFULL & FLUSHFIFO & nLASTWORD);//s0
-  assign  E[1]            = (((STATE == 5'd16) | (STATE == 5'd20)) & DMAENA & nDMADIR & FIFOEMPTY & nDREQ_);//s16 or s20
+  assign  E[1]            = (((STATE == 5'd16) | (STATE == 5'd20)) & DMAENA & nDMADIR & FIFOEMPTY & DREQ);//s16 or s20
   assign  E[2]            = ((STATE == 5'd0) & DMAENA & DMADIR & nFIFOEMPTY & FLUSHFIFO);//s0
   assign  E[3]            = ((STATE == 5'd0) & DMAENA & DMADIR & FLUSHFIFO & LASTWORD);//s0
-  assign  E[4]            = ((STATE == 5'd8) & CYCLEDONE & LASTWORD & nA1 & nBGRANT_ & nBOEQ3);//s8
-  assign  E[5]            = ((STATE == 5'd8) & CYCLEDONE & LASTWORD & nA1 & nBGRANT_ & BOEQ3);//s8
-  assign  E[6]            = ((STATE == 5'd28) & nDSACK0_ & nDSACK1_);//s28
+  assign  E[4]            = ((STATE == 5'd8) & CYCLEDONE & LASTWORD & nA1 & BGRANT & nBOEQ3);//s8
+  assign  E[5]            = ((STATE == 5'd8) & CYCLEDONE & LASTWORD & nA1 & BGRANT & BOEQ3);//s8
+  assign  E[6]            = ((STATE == 5'd28) & DSACK0 & DSACK1);//s28
   assign  E[7]            = ((STATE == 5'd0) & DMADIR & DMAENA & FIFOFULL);//s0
-  assign  E[8]            = ((STATE == 5'd8) & CYCLEDONE & nLASTWORD & nA1 & nBGRANT_);//s8
-  assign  E[9]            = (((STATE == 5'd1) | (STATE == 5'd3)) & nDSACK0_ & nDSACK1_);//s1 or s3
-  assign  E[10]           = ((STATE == 5'd8) & CYCLEDONE & A1 & nBGRANT_);//s8
-  assign  E[11]           = ((STATE == 5'd2) & CYCLEDONE & nA1 & nBGRANT_);//s2
-  assign  E[12]           = ((STATE == 5'd2) & CYCLEDONE & A1 & nBGRANT_);//s2
+  assign  E[8]            = ((STATE == 5'd8) & CYCLEDONE & nLASTWORD & nA1 & BGRANT);//s8
+  assign  E[9]            = (((STATE == 5'd1) | (STATE == 5'd3)) & DSACK0 & DSACK1);//s1 or s3
+  assign  E[10]           = ((STATE == 5'd8) & CYCLEDONE & A1 & BGRANT);//s8
+  assign  E[11]           = ((STATE == 5'd2) & CYCLEDONE & nA1 & BGRANT);//s2
+  assign  E[12]           = ((STATE == 5'd2) & CYCLEDONE & A1 & BGRANT);//s2
   assign  E[13]           = (((STATE == 5'd0) | (STATE == 5'd4)) & nDMADIR & DMAENA);//s0 or s4
-  assign  E[14]           = (((STATE == 5'd16) | (STATE == 5'd18) | (STATE == 5'd20) | (STATE == 5'd22)) & nDMADIR & DREQ_);//s16, s18, s20, s22
+  assign  E[14]           = (((STATE == 5'd16) | (STATE == 5'd18) | (STATE == 5'd20) | (STATE == 5'd22)) & nDMADIR & nDREQ);//s16, s18, s20, s22
   assign  E[15]           = (((STATE == 5'd16) | (STATE == 5'd18) | (STATE == 5'd20) | (STATE == 5'd22)) & nDMADIR & nFIFOEMPTY);//s16, s18, s20, s22
-  assign  E[16]           = ((STATE == 5'd2) & BGRANT_);//s2
+  assign  E[16]           = ((STATE == 5'd2) & nBGRANT);//s2
   assign  E[17]           = ((STATE == 5'd2) & nCYCLEDONE);//s2
-  assign  E[18]           = ((STATE == 5'd8) & BGRANT_);//s8
+  assign  E[18]           = ((STATE == 5'd8) & nBGRANT);//s8
   assign  E[19]           = ((STATE == 5'd8) & nCYCLEDONE);//s8
-  assign  E[20]           = ((STATE == 5'd1) & nDSACK1_);//s1
+  assign  E[20]           = ((STATE == 5'd1) & DSACK1);//s1
   assign  E[21]           = (((STATE == 5'd28) | (STATE == 5'd29)) & BOEQ3 & FIFOEMPTY & LASTWORD);//s28 or 29
   assign  E[22]           = (((STATE == 5'd16) | (STATE == 5'd18) | (STATE == 5'd20) | (STATE == 5'd22)) & nDMAENA);//s16, s18, s20, s22
-  assign  E[23]           = (((STATE == 5'd14) | (STATE == 5'd15)) & DSACK0_ & nDSACK1_);//s14 or s15
+  assign  E[23]           = (((STATE == 5'd14) | (STATE == 5'd15)) & nDSACK0 & DSACK1);//s14 or s15
   assign  E[24]           = (STATE == 5'd1);//s1
-  assign  E[25]           = (((STATE == 5'd14) | (STATE == 5'd15)) & nDSACK0_ & nDSACK1_);//s14 or s15
+  assign  E[25]           = (((STATE == 5'd14) | (STATE == 5'd15)) & DSACK0 & DSACK1);//s14 or s15
   assign  E[26]           = (((STATE == 5'd28) | (STATE == 5'd29))& nBOEQ3 & FIFOEMPTY & LASTWORD);//s28 or 29
   assign  E[27]           = (((STATE == 5'd28) | (STATE == 5'd29)) & FIFOEMPTY & nLASTWORD);//s28 or 29
-  assign  E[28]           = ((STATE == 5'd7) & nDSACK1_);//s7
+  assign  E[28]           = ((STATE == 5'd7) & DSACK1);//s7
   assign  E[29]           = (STATE == 5'd3);//s3
-  assign  E[30]           = ((STATE == 5'd3) & nDSACK1_);//s3
-  assign  E[31]           = (((STATE == 5'd25) | (STATE == 5'd27)) & nDSACK1_);//s25 or s27
+  assign  E[30]           = ((STATE == 5'd3) & DSACK1);//s3
+  assign  E[31]           = (((STATE == 5'd25) | (STATE == 5'd27)) & DSACK1);//s25 or s27
   assign  E[32]           = ((STATE == 5'd11) & FIFOFULL);//s11
   assign  E[33]           = ((STATE == 5'd7));//s7   //E33_sd_E38_s
   assign  E[34]           = (((STATE == 5'd28) | (STATE == 5'd29)) & nFIFOEMPTY); //s28 or s29
@@ -111,6 +111,15 @@ end
   assign  E[60]           = (STATE == 5'd18) | (STATE == 5'd22);//s18 or s22
   assign  E[61]           = (STATE == 5'd10) | (STATE == 5'd14);//s10 or 14
   assign  E[62]           = (STATE == 5'd9) | (STATE == 5'd13);//s9 or s13
+  
+  assign E[59] = 1'b0;
+  assign E[54] = 1'b0;
+  assign E[52] = 1'b0;
+  assign E[49] = 1'b0;
+  assign E[47] = 1'b0;
+  assign E[44] = 1'b0;
+  assign E[41] = 1'b0;
+  assign E[38] = 1'b0;
 
 //State And Input
 //E0-23,

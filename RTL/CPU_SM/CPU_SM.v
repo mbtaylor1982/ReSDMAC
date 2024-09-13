@@ -91,40 +91,41 @@ CPU_SM_INTERNALS1 u_CPU_SM_INTERNALS1 (
     .CLK135         (CLK135         ),  // input, (wire), CLK135
     .nRESET         (CCRESET_       ),  // input, (wire), Active low reset
     .A1             (A1             ),  // input, (wire), 
-    .BGRANT_        (BGRANT_        ),  // input, (wire), 
+    .nBGRANT        (BGRANT_        ),  // input, (wire), 
     .BOEQ3          (BOEQ3          ),  // input, (wire), 
     .CYCLEDONE      (CYCLEDONE      ),  // input, (wire), 
     .DMADIR         (DMADIR         ),  // input, (wire), 
     .DMAENA         (DMAENA         ),  // input, (wire), 
-    .DREQ_          (DREQ_          ),  // input, (wire), 
-    .DSACK0_        (DSACK0_        ),  // input, (wire), 
-    .DSACK1_        (DSACK1_        ),  // input, (wire), 
+    .nDREQ          (DREQ_          ),  // input, (wire), 
+    .nDSACK0        (DSACK0_        ),  // input, (wire), 
+    .nDSACK1        (DSACK1_        ),  // input, (wire), 
     .FIFOEMPTY      (FIFOEMPTY      ),  // input, (wire), 
     .FIFOFULL       (FIFOFULL       ),  // input, (wire), 
     .FLUSHFIFO      (FLUSHFIFO      ),  // input, (wire), 
     .LASTWORD       (LASTWORD       ),  // input, (wire), 
     .DSACK          (DSACK          ),  // input, (wire), 
-    .STERM_         (STERM_         ),  // input, (wire), 
-    .RDFIFO_        (RDFIFO_        ),  // input, (wire), 
-    .RIFIFO_        (RIFIFO_        ),  // input, (wire), 
-    .INCNI_d        (INCNI_d        ),  // output, (wire), 
-    .BREQ_d         (BREQ_d         ),  // output, (wire), 
-    .SIZE1_d        (SIZE1_d        ),  // output, (wire), 
-    .PAS_d          (PAS_d          ),  // output, (wire), 
-    .PDS_d          (PDS_d          ),  // output, (wire), 
-    .F2CPUL_d       (F2CPUL_d       ),  // output, (wire), 
-    .F2CPUH_d       (F2CPUH_d       ),  // output, (wire), 
-    .BRIDGEOUT_d    (BRIDGEOUT_d    ),  // output, (wire), 
-    .PLLW_d         (PLLW_d         ),  // output, (wire), 
-    .PLHW_d         (PLHW_d         ),  // output, (wire), 
-    .INCFIFO_d      (INCFIFO_d      ),  // output, (wire), 
-    .DECFIFO_d      (DECFIFO_d      ),  // output, (wire), 
-    .INCNO_d        (INCNO_d        ),  // output, (wire), 
-    .STOPFLUSH_d    (STOPFLUSH_d    ),  // output, (wire), 
-    .DIEH_d         (DIEH_d         ),  // output, (wire), 
-    .DIEL_d         (DIEL_d         ),  // output, (wire), 
-    .BRIDGEIN_d     (BRIDGEIN_d     ),  // output, (wire), 
-    .BGACK_d        (BGACK_d        )   // output, (wire), 
+    .nSTERM         (STERM_         ),  // input, (wire), 
+    .nRDFIFO        (RDFIFO_        ),  // input, (wire), 
+    .nRIFIFO        (RIFIFO_        ),  // input, (wire), 
+    
+    .INCNI        (INCNI_d        ),  // output, (wire), 
+    .BREQ         (BREQ_d         ),  // output, (wire), 
+    .SIZE1        (SIZE1_d        ),  // output, (wire), 
+    .PAS          (PAS_d          ),  // output, (wire), 
+    .PDS          (PDS_d          ),  // output, (wire), 
+    .F2CPUL       (F2CPUL_d       ),  // output, (wire), 
+    .F2CPUH       (F2CPUH_d       ),  // output, (wire), 
+    .BRIDGEOUT    (BRIDGEOUT_d    ),  // output, (wire), 
+    .PLLW         (PLLW_d         ),  // output, (wire), 
+    .PLHW         (PLHW_d         ),  // output, (wire), 
+    .INCFIFO      (INCFIFO_d      ),  // output, (wire), 
+    .DECFIFO      (DECFIFO_d      ),  // output, (wire), 
+    .INCNO        (INCNO_d        ),  // output, (wire), 
+    .STOPFLUSH    (STOPFLUSH_d    ),  // output, (wire), 
+    .DIEH         (DIEH_d         ),  // output, (wire), 
+    .DIEL         (DIEL_d         ),  // output, (wire), 
+    .BRIDGEIN     (BRIDGEIN_d     ),  // output, (wire), 
+    .BGACK        (BGACK_d        )   // output, (wire), 
 );
 
 //clocked reset
@@ -202,7 +203,7 @@ always @(negedge CLK or posedge AS_) begin
 end
 
 assign aCYCLEDONE_ = ~(BGACK_I_ & AS_ & DSACK0_ & DSACK1_ & iSTERM_);
-assign LASTWORD = (~BOEQ0 & aFLUSHFIFO & FIFOEMPTY);
+assign LASTWORD = (~BOEQ0 & aFLUSHFIFO & FIFOEMPTY); // not sure this is correct as Lastword is never asserted.
 assign CYCLEDONE = ~nCYCLEDONE;
 assign iDSACK = ~(DSACK_LATCHED_[0] & DSACK_LATCHED_[1]);
 assign DSACK = iDSACK;
