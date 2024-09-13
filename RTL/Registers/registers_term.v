@@ -23,11 +23,11 @@ wire CYCLE_ACTIVE;
 always @(posedge CLK or posedge AS_) begin
   if (AS_) begin
     TERM_COUNTER <= 3'd0;
-    REG_DSK_ <= 3'b1;
+    REG_DSK_ <= 1'b1;
   end
   else if (CYCLE_ACTIVE) begin
     if (TERM_COUNTER == 3'd3)
-      REG_DSK_ <= 3'b0;
+      REG_DSK_ <= 1'b0;
     if (TERM_COUNTER < 3'd7)
 		TERM_COUNTER <= TERM_COUNTER + 3'b1;
   end
