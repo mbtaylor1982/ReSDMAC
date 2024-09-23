@@ -67,7 +67,7 @@ localparam [5:0]
     //s17 = 17,
     //s18 = 18,
     //s19 = 19,
-    s20 = 10,
+    s20 = 20,
     s21 = 21,
     s22 = 22,
     s23 = 23,
@@ -85,51 +85,51 @@ localparam [5:0]
     s35 = 35,
     letgo = 36;
 
-reg [5:0] STATE;
-reg [5:0] NEXT_STATE;
+reg [5:0] state;
+reg [5:0] next_state;
 reg int_INCFIFO;
 reg int_DECFIFO;
 
 always @(*) begin
-    case(STATE)
+    case (state)
         
         //-- DMA read from FIFO writing to CPU
         
         s0: begin
              casex ({DMAENA, FIFOFULL, DMADIR, FLUSHFIFO, FIFOEMPTY, LASTWORD})
-                6'b0xxxxx   : NEXT_STATE <= s0;     // DMA is not turned on
-                6'b1010xx   : NEXT_STATE <= s0;     // FIFO not yet full
-                6'b101110   : NEXT_STATE <= s0;     //(STOPFLUSH);  Nothing to flush
-                6'b10110x   : NEXT_STATE <= s1;     //(BREQ);  flush whatever's there
-                6'b101111   : NEXT_STATE <= s1;     //(BREQ);  One last lonely word to send to CPU
-                6'b111xxx   : NEXT_STATE <= s1;     //(BREQ);  time to dump the FIFO to CPU
-                6'b1x0xxx   : NEXT_STATE <= s20;    //go to DMA write mode
-                default     : NEXT_STATE <= STATE;
+                6'b0xxxxx   : next_state <= s0;     // DMA is not turned on
+                6'b1010xx   : next_state <= s0;     // FIFO not yet full
+                6'b101110   : next_state <= s0;     //(STOPFLUSH);  Nothing to flush
+                6'b10110x   : next_state <= s1;     //(BREQ);  flush whatever's there
+                6'b101111   : next_state <= s1;     //(BREQ);  One last lonely word to send to CPU
+                6'b111xxx   : next_state <= s1;     //(BREQ);  time to dump the FIFO to CPU
+                6'b1x0xxx   : next_state <= s20;    //go to DMA write mode
+                default     : next_state <= state;
             endcase
         end
         s1: begin
             casex ({nBGRANT, CYCLEDONE, A1, LASTWORD, BOEQ3}) // wait for the bus
-                5'b1xxxx    : NEXT_STATE <= s1;     //(BREQ);
-                5'b00xxx    : NEXT_STATE <= s1;     //(BREQ);
-                5'b0100x    : NEXT_STATE <= s2;     //(BREQ BGACK); start, lword aligned
-                5'b01011    : NEXT_STATE <= s2;     //(BREQ BGACK STOPFLUSH); start, 3 bytes left so write lword
-                5'b011xx    : NEXT_STATE <= s6;     //(BREQ BGACK); start, lword unaligned (only happen very first time)
-                5'b01010    : NEXT_STATE <= s10;    //(BREQ BGACK STOPFLUSH); start, very last byte/word, so write word
-                default     : NEXT_STATE <= STATE;
+                5'b1xxxx    : next_state <= s1;     //(BREQ);
+                5'b00xxx    : next_state <= s1;     //(BREQ);
+                5'b0100x    : next_state <= s2;     //(BREQ BGACK); start, lword aligned
+                5'b01011    : next_state <= s2;     //(BREQ BGACK STOPFLUSH); start, 3 bytes left so write lword
+                5'b011xx    : next_state <= s6;     //(BREQ BGACK); start, lword unaligned (only happen very first time)
+                5'b01010    : next_state <= s10;    //(BREQ BGACK STOPFLUSH); start, very last byte/word, so write word
+                default     : next_state <= state;
             endcase
         end
         
         //----- Attempt to write the entire aligned longword -----
 
-        s2: NEXT_STATE <= s3;                       //goto s3(BGACK PAS F2CPUH F2CPUL);
-        s3: NEXT_STATE <= nSTERM ? s4 : s15;        //if NOT STERM_ then s15(BGACK F2CPUH F2CPUL DECFIFO) -- first cycle of a CPU access else s4(BGACK PAS PDS F2CPUH F2CPUL);
+        s2: next_state <= s3;                       //goto s3(BGACK PAS F2CPUH F2CPUL);
+        s3: next_state <= nSTERM ? s4 : s15;        //if NOT STERM_ then s15(BGACK F2CPUH F2CPUL DECFIFO) -- first cycle of a CPU access else s4(BGACK PAS PDS F2CPUH F2CPUL);
         s4: begin
-            casex ({nSTERM, DSACK, nDSACK1, nDSACK0_}) // wait for cycle to end
-                4'b0xxx     : NEXT_STATE <= s15;    //(BGACK F2CPUH F2CPUL DECFIFO);   -- 32 bit cycle terminated
-                4'b10xx     : NEXT_STATE <= s4;     //(BGACK PAS PDS F2CPUH F2CPUL);   -- Cycle not yet terminated
-                4'b1100     : NEXT_STATE <= s15;    //(BGACK F2CPUH F2CPUL DECFIFO);   -- 32 bit cycle terminated
-                4'b1101     : NEXT_STATE <= s6;     //(BGACK F2CPUH F2CPUL);           -- 16 bit cycle terminated, so now write the 2nd word
-                default     : NEXT_STATE <= STATE;
+            casex ({nSTERM, DSACK, nDSACK1, nDSACK0}) // wait for cycle to end
+                4'b0xxx     : next_state <= s15;    //(BGACK F2CPUH F2CPUL DECFIFO);   -- 32 bit cycle terminated
+                4'b10xx     : next_state <= s4;     //(BGACK PAS PDS F2CPUH F2CPUL);   -- Cycle not yet terminated
+                4'b1100     : next_state <= s15;    //(BGACK F2CPUH F2CPUL DECFIFO);   -- 32 bit cycle terminated
+                4'b1101     : next_state <= s6;     //(BGACK F2CPUH F2CPUL);           -- 16 bit cycle terminated, so now write the 2nd word
+                default     : next_state <= state;
                 //4'b1110 8 bit ports not supported
                 //4'b1111 impossible (I hope...)
             endcase
@@ -137,30 +137,30 @@ always @(*) begin
 
         //----- Write the 16 bit odd word value -----
 
-        s6: NEXT_STATE <= s7;                       //goto s7(BGACK PAS BRIDGEOUT F2CPUL SIZE1); -- start a CPU cycle (lword unaligned)
-        s7: NEXT_STATE <= nSTERM ? s8 : s15;        //if NOT STERM_ then s15(BGACK BRIDGEOUT F2CPUL SIZE1 DECFIFO) -- first cycle of CPU access else s8(BGACK PAS PDS BRIDGEOUT F2CPUL SIZE1);
+        s6: next_state <= s7;                       //goto s7(BGACK PAS BRIDGEOUT F2CPUL SIZE1); -- start a CPU cycle (lword unaligned)
+        s7: next_state <= nSTERM ? s8 : s15;        //if NOT STERM_ then s15(BGACK BRIDGEOUT F2CPUL SIZE1 DECFIFO) -- first cycle of CPU access else s8(BGACK PAS PDS BRIDGEOUT F2CPUL SIZE1);
         s8: begin
             casex ({nSTERM, DSACK, nDSACK1, nDSACK0}) // wait for cycle to end
-                4'b0xxx     : NEXT_STATE <= s15;    //(BGACK BRIDGEOUT F2CPUL SIZE1 DECFIFO); -- 32 bit cycle terminated
-                4'b10xx     : NEXT_STATE <= s8;     //(BGACK PAS PDS BRIDGEOUT F2CPUL SIZE1); -- Cycle not yet terminated
-                4'b1100     : NEXT_STATE <= s15;    //(BGACK BRIDGEOUT F2CPUL SIZE1 DECFIFO); -- 32 bit cycle terminated
-                4'b1101     : NEXT_STATE <= s15;    //(BGACK BRIDGEOUT F2CPUL SIZE1 DECFIFO); -- 16 bit cycle terminated
-                default     : NEXT_STATE <= STATE;
+                4'b0xxx     : next_state <= s15;    //(BGACK BRIDGEOUT F2CPUL SIZE1 DECFIFO); -- 32 bit cycle terminated
+                4'b10xx     : next_state <= s8;     //(BGACK PAS PDS BRIDGEOUT F2CPUL SIZE1); -- Cycle not yet terminated
+                4'b1100     : next_state <= s15;    //(BGACK BRIDGEOUT F2CPUL SIZE1 DECFIFO); -- 32 bit cycle terminated
+                4'b1101     : next_state <= s15;    //(BGACK BRIDGEOUT F2CPUL SIZE1 DECFIFO); -- 16 bit cycle terminated
+                default     : next_state <= state;
             endcase
         end
         
         //----- Special case to write last byte or word (not a full longword) to the CPU during a FLUSH of the FIFO -----
         //-- (if only a byte left, then it is padded with an extra byte when the word is written out)
 
-        s10: NEXT_STATE <= s11;                     //goto s11(BGACK PAS F2CPUH F2CPUL SIZE1);
-        s11: NEXT_STATE <= nSTERM ? s12 : s15;      //if NOT STERM_ then s15(BGACK F2CPUH F2CPUL SIZE1) -- first cycle of a CPU access else s12(BGACK PAS PDS F2CPUH F2CPUL SIZE1);
+        s10: next_state <= s11;                     //goto s11(BGACK PAS F2CPUH F2CPUL SIZE1);
+        s11: next_state <= nSTERM ? s12 : s15;      //if NOT STERM_ then s15(BGACK F2CPUH F2CPUL SIZE1) -- first cycle of a CPU access else s12(BGACK PAS PDS F2CPUH F2CPUL SIZE1);
         s12: begin
             casex ({nSTERM, DSACK, nDSACK1, nDSACK0}) //wait for cycle to end
-                4'b0xxx     : NEXT_STATE <= s15;    //(BGACK F2CPUH F2CPUL SIZE1);          -- 32 bit cycle terminated
-                4'b10xx     : NEXT_STATE <= s12;    //(BGACK PAS PDS F2CPUH F2CPUL SIZE1);  -- Cycle not yet terminated
-                4'b1100     : NEXT_STATE <= s15;    //(BGACK F2CPUH F2CPUL SIZE1);          -- 32 bit cycle terminated
-                4'b1101     : NEXT_STATE <= s15;    //(BGACK F2CPUH F2CPUL SIZE1);          -- 16 bit cycle terminated
-                default     : NEXT_STATE <= STATE;
+                4'b0xxx     : next_state <= s15;    //(BGACK F2CPUH F2CPUL SIZE1);          -- 32 bit cycle terminated
+                4'b10xx     : next_state <= s12;    //(BGACK PAS PDS F2CPUH F2CPUL SIZE1);  -- Cycle not yet terminated
+                4'b1100     : next_state <= s15;    //(BGACK F2CPUH F2CPUL SIZE1);          -- 32 bit cycle terminated
+                4'b1101     : next_state <= s15;    //(BGACK F2CPUH F2CPUL SIZE1);          -- 16 bit cycle terminated
+                default     : next_state <= state;
             endcase
         end
 
@@ -168,11 +168,11 @@ always @(*) begin
 
         s15: begin 
             casex ({FIFOEMPTY, LASTWORD, BOEQ3}) // check if more to do
-                3'b10x      : NEXT_STATE <= letgo;   //(BGACK STOPFLUSH);                            -- no more left
-                3'b110      : NEXT_STATE <= s11;     //(BGACK PAS F2CPUH F2CPUL SIZE1 STOPFLUSH);    -- very last byte/word to do
-                3'b111      : NEXT_STATE <= s3;      //(BGACK PAS F2CPUH F2CPUL STOPFLUSH);          -- very last 3 bytes left,so write LWORD
-                3'b0xx      : NEXT_STATE <= s3;      //(BGACK PAS F2CPUH F2CPUL);                    -- start another CPU cycle
-                default     : NEXT_STATE <= STATE;
+                3'b10x      : next_state <= letgo;   //(BGACK STOPFLUSH);                            -- no more left
+                3'b110      : next_state <= s11;     //(BGACK PAS F2CPUH F2CPUL SIZE1 STOPFLUSH);    -- very last byte/word to do
+                3'b111      : next_state <= s3;      //(BGACK PAS F2CPUH F2CPUL STOPFLUSH);          -- very last 3 bytes left,so write LWORD
+                3'b0xx      : next_state <= s3;      //(BGACK PAS F2CPUH F2CPUL);                    -- start another CPU cycle
+                default     : next_state <= state;
             endcase
         end
 
@@ -182,45 +182,45 @@ always @(*) begin
 
         s20: begin
             casex ({DMAENA, DMADIR, FIFOEMPTY, nDREQ})
-                4'b0xxx     : NEXT_STATE <= s20;    //DMA is not turned on
-                4'b100x     : NEXT_STATE <= s20;    //FIFO not empty yet
-                4'b1011     : NEXT_STATE <= s20;    //Don't put data in FIFO 'til SCSI asks for more
-                4'b1010     : NEXT_STATE <= s21;    //Time to put data in FIFO
-                4'b11xx     : NEXT_STATE <= s0;     //go to DMA read mode
-                default     : NEXT_STATE <= STATE;
+                4'b0xxx     : next_state <= s20;    //DMA is not turned on
+                4'b100x     : next_state <= s20;    //FIFO not empty yet
+                4'b1011     : next_state <= s20;    //Don't put data in FIFO 'til SCSI asks for more
+                4'b1010     : next_state <= s21;    //Time to put data in FIFO
+                4'b11xx     : next_state <= s0;     //go to DMA read mode
+                default     : next_state <= state;
             endcase
         end
 
         s21: begin 
             casex ({nBGRANT, CYCLEDONE, A1}) //wait for the bus
-                3'b1xx      : NEXT_STATE <= s21;     //(BREQ);
-                3'b00x      : NEXT_STATE <= s21;     //(BREQ);
-                3'b010      : NEXT_STATE <= s22;     //(BREQ BGACK); -- start, lword aligned
-                3'b011      : NEXT_STATE <= s30;     //(BREQ BGACK); -- start, lword unaligned (can only happen very first time)
-                default     : NEXT_STATE <= STATE;
+                3'b1xx      : next_state <= s21;     //(BREQ);
+                3'b00x      : next_state <= s21;     //(BREQ);
+                3'b010      : next_state <= s22;     //(BREQ BGACK); -- start, lword aligned
+                3'b011      : next_state <= s30;     //(BREQ BGACK); -- start, lword unaligned (can only happen very first time)
+                default     : next_state <= state;
             endcase
         end
 
         //-- Attempt to read the entire aligned longword
 
-        s22: NEXT_STATE <= s23;                     //goto s23(BGACK PAS PDS PLHW PLLW DIEL DIEH); -- start CPU cycle (lword aligned)
-        s23: NEXT_STATE <= nSTERM ? s24 : s35;      //if NOT STERM_ then s35(BGACK INCFIFO DIEL DIEH) -- first cycle of a CPU access else s24(BGACK PAS PDS PLHW PLLW DIEL DIEH);
+        s22: next_state <= s23;                     //goto s23(BGACK PAS PDS PLHW PLLW DIEL DIEH); -- start CPU cycle (lword aligned)
+        s23: next_state <= nSTERM ? s24 : s35;      //if NOT STERM_ then s35(BGACK INCFIFO DIEL DIEH) -- first cycle of a CPU access else s24(BGACK PAS PDS PLHW PLLW DIEL DIEH);
 
         s24: begin
             casex ({nSTERM, DSACK, nDSACK1, nDSACK0}) //wait for cycle to end
-                4'b0xxx     : NEXT_STATE <= s35;    //(BGACK INCFIFO DIEL DIEH);            -- 32 bit cycle terminated
-                4'b10xx     : NEXT_STATE <= s24;    //(BGACK PAS PDS PLHW PLLW DIEL DIEH);  -- Cycle not yet terminated
-                4'b1100     : NEXT_STATE <= s35;    //(BGACK INCFIFO DIEL DIEH);            -- 32 bit cycle terminated
-                4'b1101     : NEXT_STATE <= s26;    //(BGACK DIEH);                         -- 16 bit cycle terminated
-                default     : NEXT_STATE <= STATE;
+                4'b0xxx     : next_state <= s35;    //(BGACK INCFIFO DIEL DIEH);            -- 32 bit cycle terminated
+                4'b10xx     : next_state <= s24;    //(BGACK PAS PDS PLHW PLLW DIEL DIEH);  -- Cycle not yet terminated
+                4'b1100     : next_state <= s35;    //(BGACK INCFIFO DIEL DIEH);            -- 32 bit cycle terminated
+                4'b1101     : next_state <= s26;    //(BGACK DIEH);                         -- 16 bit cycle terminated
+                default     : next_state <= state;
             endcase
         end
 
         //-- Responded as 16 bits only, so re-Read the 16 bit oddword value from this 16 bit port
 
-        s26: NEXT_STATE <= s27;                     //goto s27(BGACK PAS PDS PLLW SIZE1 DIEH BRIDGEIN); -- start CPU cycle (lword unaligned)
-        s27: NEXT_STATE <= s28;                     //goto s28(BGACK PAS PDS PLLW SIZE1 DIEH BRIDGEIN); -- No need to check STERM 'cause if it was a 32 bit port we never could have got here...
-        s28: NEXT_STATE <= DSACK ? s35 : s28;       //if NOT DSACK then s28(BGACK PAS PDS PLLW SIZE1 DIEH BRIDGEIN) -- Cycle not yet terminated else s35(BGACK SIZE1 DIEH BRIDGEIN INCFIFO); -- cycle terminated (can assume it was via 16 bit DSACK)
+        s26: next_state <= s27;                     //goto s27(BGACK PAS PDS PLLW SIZE1 DIEH BRIDGEIN); -- start CPU cycle (lword unaligned)
+        s27: next_state <= s28;                     //goto s28(BGACK PAS PDS PLLW SIZE1 DIEH BRIDGEIN); -- No need to check STERM 'cause if it was a 32 bit port we never could have got here...
+        s28: next_state <= DSACK ? s35 : s28;       //if NOT DSACK then s28(BGACK PAS PDS PLLW SIZE1 DIEH BRIDGEIN) -- Cycle not yet terminated else s35(BGACK SIZE1 DIEH BRIDGEIN INCFIFO); -- cycle terminated (can assume it was via 16 bit DSACK)
 
         //-- Special case for very first odd word access of a DMA. We don't know which half of the data bus will have the
         //-- data. If 32 bit port then word will be on D0-D15. If 16 bit port then word will be on D16-D31. Assume it is
@@ -228,25 +228,25 @@ always @(*) begin
         //-- D0-D15 and then latch it into the FIFO. This adds a couple of extra cycles before *AS is asserted to begin the
         //-- next DMA read. However, this only happens at worst case 1 time for an entire DMA.
 
-        s30: NEXT_STATE <= s31;                     //goto s31(BGACK PAS PDS PLLW SIZE1 DIEH DIEL); -- start CPU cycle (lword unaligned)
-        s31: NEXT_STATE <= nSTERM ? s32 : s35;      //if NOT STERM_ then s35(BGACK SIZE1 DIEH DIEL INCFIFO) -- first cycle of a CPU access else s32(BGACK PAS PDS PLLW SIZE1 DIEH DIEL);
+        s30: next_state <= s31;                     //goto s31(BGACK PAS PDS PLLW SIZE1 DIEH DIEL); -- start CPU cycle (lword unaligned)
+        s31: next_state <= nSTERM ? s32 : s35;      //if NOT STERM_ then s35(BGACK SIZE1 DIEH DIEL INCFIFO) -- first cycle of a CPU access else s32(BGACK PAS PDS PLLW SIZE1 DIEH DIEL);
         
         s32: begin
             casex ({nSTERM, DSACK, nDSACK1, nDSACK0}) //wait for cycle to end
-                4'b0xxx     : NEXT_STATE <= s35;    //(BGACK SIZE1 DIEH DIEL INCFIFO);      -- 32 bit cycle terminated
-                4'b10xx     : NEXT_STATE <= s32;    //(BGACK PAS PDS PLLW SIZE1 DIEH DIEL); -- Cycle not yet terminated
-                4'b1100     : NEXT_STATE <= s35;    //(BGACK SIZE1 DIEH DIEL INCFIFO);      -- 32 bit cycle terminated
-                4'b1101     : NEXT_STATE <= s33;    //(BGACK PLLW SIZE1);                   -- 16 bit cycle terminated, so gotta bridge & such...
-                default     : NEXT_STATE <= STATE;
+                4'b0xxx     : next_state <= s35;    //(BGACK SIZE1 DIEH DIEL INCFIFO);      -- 32 bit cycle terminated
+                4'b10xx     : next_state <= s32;    //(BGACK PAS PDS PLLW SIZE1 DIEH DIEL); -- Cycle not yet terminated
+                4'b1100     : next_state <= s35;    //(BGACK SIZE1 DIEH DIEL INCFIFO);      -- 32 bit cycle terminated
+                4'b1101     : next_state <= s33;    //(BGACK PLLW SIZE1);                   -- 16 bit cycle terminated, so gotta bridge & such...
+                default     : next_state <= state;
             endcase
         end
-        s33: NEXT_STATE <= s34;                     //goto s34(BGACK PLLW BRIDGEIN);
-        s34: NEXT_STATE <= s35;                     //goto s35(BGACK BRIDGEIN INCFIFO);
-        s35: NEXT_STATE <= FIFOFULL ? letgo : s23;  //if FIFOFULL then letgo(BGACK INCNI); -- no more room in FIFO else s23(BGACK PAS PDS PLHW PLLW DIEL DIEH INCNI); -- start another CPU cycle
+        s33: next_state <= s34;                     //goto s34(BGACK PLLW BRIDGEIN);
+        s34: next_state <= s35;                     //goto s35(BGACK BRIDGEIN INCFIFO);
+        s35: next_state <= FIFOFULL ? letgo : s23;  //if FIFOFULL then letgo(BGACK INCNI); -- no more room in FIFO else s23(BGACK PAS PDS PLHW PLLW DIEL DIEH INCNI); -- start another CPU cycle
 
-        letgo: NEXT_STATE <= s0;                    //goto s0;
+        letgo: next_state <= s0;                    //goto s0;
 
-        default : NEXT_STATE <= STATE;
+        default : next_state <= state;
     endcase
 
 end
@@ -271,7 +271,7 @@ always @(*) begin
     BRIDGEIN    <= 1'b0;
     BGACK       <= 1'b0;
 
-    case(STATE)
+    case(state)
 
         //-- DMA read from FIFO writing to CPU
 
@@ -322,7 +322,7 @@ always @(*) begin
             BGACK       <= 1'b1;
             F2CPUL      <= 1'b1;
             F2CPUH      <= 1'b1;
-            casex ({nSTERM, DSACK, nDSACK1, nDSACK0_}) // wait for cycle to end
+            casex ({nSTERM, DSACK, nDSACK1, nDSACK0}) // wait for cycle to end
                 4'b10xx     : begin             //(BGACK F2CPUH F2CPUL PAS PDS );   -- Cycle not yet terminated
                    PAS  <= 1'b1;
                    PDS  <= 1'b1;
@@ -488,7 +488,7 @@ always @(*) begin
                     DIEL        <= 1'b1;
                 end
                 4'b0xxx     : begin //(BGACK INCFIFO DIEL DIEH);            -- 32 bit STERM cycle terminated
-                    INCFIFO     <= 1'b1;
+                    int_INCFIFO     <= 1'b1;
                     DIEL        <= 1'b1;
                 end
                 4'b1100     : begin //(BGACK INCFIFO DIEL DIEH);            -- 32 bit DSACK cycle terminated
@@ -613,8 +613,6 @@ always @(*) begin
         end
 
         //letgo:  no outputs for s36/letgo.
-
-        default : NEXT_STATE <= STATE;
     endcase
 
 end
@@ -629,9 +627,9 @@ assign INCNO = int_DECFIFO;
 //State Machine
 always @(posedge CLK90 or negedge nRESET) begin
     if (~nRESET)
-        STATE <= 5'b00000;
+        state <= 5'b00000;
     else
-        STATE <= NEXT_STATE;
+        state <= next_state;
 end
 
 endmodule

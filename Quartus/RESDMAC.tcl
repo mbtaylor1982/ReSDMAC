@@ -34,9 +34,8 @@ if {$make_assignments} {
 	set_global_assignment -name LAST_QUARTUS_VERSION "21.1.0 Lite Edition"
 	set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files_$quartus(args)
 	set_global_assignment -name SMART_RECOMPILE OFF
-	set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/CPU_SM_INTERNALS1.v
+	set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/CPU_SM_INTERNALS3.v
 	set_global_assignment -name VERILOG_FILE ../RTL/mux2.v
-	set_global_assignment -name TCL_SCRIPT_FILE generate_jic_programming_file.tcl
 	set_global_assignment -name VERILOG_FILE ../RTL/SCSI_SM/scsi_sm_internals1.v
 	set_global_assignment -name VERILOG_FILE ../RTL/SCSI_SM/SCSI_SM_INTERNALS.v
 	set_global_assignment -name VERILOG_FILE ../RTL/PLL.v

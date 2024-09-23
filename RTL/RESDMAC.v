@@ -166,7 +166,8 @@ registers u_registers(
     .RW        (R_W       ),
     .CLK       (CLK45     ),
     .MID       (MID       ),
-    .STOPFLUSH (STOP_FLUSH_E),
+    //.STOPFLUSH (STOP_FLUSH_E),
+    .STOPFLUSH (STOPFLUSH),
     .RST_      (_RST ),
     .FIFOEMPTY (FIFOEMPTY ),
     .FIFOFULL  (FIFOFULL  ),
@@ -270,8 +271,8 @@ fifo int_fifo(
     .LBYTE_      (LBYTE_    ),
     .H_0C        (H_0C      ),
     .ACR_WR      (ACR_WR    ),
-    //.RST_FIFO_   (DMAENA    ),
-    .RST_FIFO_   (RST_FIFO  ),
+    .RST_FIFO_   (DMAENA    ),
+    //.RST_FIFO_   (RST_FIFO  ),
     .MID25       (MID[25]   ),
     .FIFO_ID     (FIFO_ID   ),
     .FIFOFULL    (FIFOFULL  ),
@@ -370,19 +371,19 @@ assign DSK1_IN_ = _BERR & _DSACK_I[1];
 assign A3 = ADDR[3];
 assign _INT = INT_O_ ? 1'bz : 1'b0;
 
-assign RST_FIFO = (DMAENA & ~(FLUSHFIFO & ~DMADIR));
+//assign RST_FIFO = (DMAENA & ~(FLUSHFIFO & ~DMADIR));
 
-reg  STOP;
+//reg  STOP;
 
-always @(negedge CLK45, negedge _RST)
-begin
-    if (~_RST)
-        STOP <= 0;
-    else if (FLUSHFIFO & ~DMADIR)
-        STOP <= 1;
-end
+//always @(negedge CLK45, negedge _RST)
+//begin
+//    if (~_RST)
+//        STOP <= 0;
+//    else if (FLUSHFIFO & ~DMADIR)
+//        STOP <= 1;
+//end
 
-assign STOP_FLUSH_E = STOPFLUSH | STOP;
+//assign STOP_FLUSH_E = STOPFLUSH | STOP;
 
 
 

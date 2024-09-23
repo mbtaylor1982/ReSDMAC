@@ -20,7 +20,7 @@
 ## PROGRAM "Quartus Prime"
 ## VERSION "Version 22.1std.2 Build 922 07/20/2023 SC Lite Edition"
 
-## DATE    "Sun Jun 30 23:51:16 2024"
+## DATE    "Tue Sep  3 18:44:21 2024"
 
 ##
 ## DEVICE  "10M16SCU169C8G"
@@ -80,6 +80,9 @@ create_generated_clock -name {PLL:u_PLL|attpll:attpll_inst|altpll:altpll_compone
 # Set Clock Groups
 #**************************************************************
 
+set_clock_groups -asynchronous -group [get_clocks {altera_reserved_tck}] 
+set_clock_groups -asynchronous -group [get_clocks {altera_reserved_tck}] 
+set_clock_groups -asynchronous -group [get_clocks {altera_reserved_tck}] 
 set_clock_groups -asynchronous -group [get_clocks {altera_reserved_tck}] 
 
 
