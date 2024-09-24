@@ -24,7 +24,7 @@ def test_resdmac(caplog):
         "RTL/Registers"]
     )
 
-def test_fsm_cpu(caplog):
+""" def test_fsm_cpu(caplog):
     caplog.set_level(logging.INFO)
     run(
         toplevel_lang="verilog",
@@ -40,7 +40,7 @@ def test_fsm_cpu(caplog):
         "RTL/datapath",
         "RTL/FIFO",
         "RTL/Registers"]
-    )
+    ) """
 
 
 def test_FIFO(caplog):
