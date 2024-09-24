@@ -187,7 +187,7 @@ async def FillFIFOFromMem(dut, data, TermSignal):
         if (dut.FIFOFULL == 1):
             dut._log.info("waiting for fifofull == 0")
             await FallingEdge(dut.FIFOFULL)
-            await ClockCycles(dut.SCLK, 1, True)
+            await ClockCycles(dut.SCLK, 2, True)
         while (await wait_for_bus_grant(dut) == False):
             dut._log.info("waiting for bus grant")
             await ClockCycles(dut.SCLK, 1, True)
