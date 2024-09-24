@@ -2,6 +2,7 @@
 
 `ifdef __ICARUS__ 
   `include "CPU_SM_INTERNALS3.v"
+  `include "CPU_SM_INTERNALS1.v"
 `endif
 
 module CPU_SM(
@@ -84,7 +85,7 @@ wire SIZE1_d;
 wire STERM_;
 wire LASTWORD;
 
-CPU_SM_INTERNALS3 u_CPU_SM_INTERNALS1 (
+CPU_SM_INTERNALS3 u_CPU_SM_INTERNALS (
     .CLK            (CLK            ),  // input, (wire), CLK
     .CLK45          (CLK45          ),  // input, (wire), CLK45
     .CLK90          (CLK90          ),  // input, (wire), CLK90
