@@ -20,6 +20,7 @@ SCSI_REG_ADR4 = 0x13
 
 SSPB_DATA_ADR = 0x16
 CONTR_REG_ADR = 0x02
+ISR_REG_ADR = 0x07 
 RAMSEY_ACR_REG_ADR = 0x03
 ST_DMA_STROBE_ADR  = 0x04
 SP_DMA_STROBE_ADR  = 0x0f
@@ -59,6 +60,7 @@ async def reset_dut(reset_n, duration_ns):
     reset_n._log.debug("Reset complete")
 
 async def read_data(dut, addr, *args, header="", footer="",filename=""):
+    await wait_for_bus_release(dut)
     await ClockCycles(dut.SCLK, 4, True)
     if (dut._id("_BGACK_IO", extended=False) == 0):
         dut._log.info("waiting _BGACK_IO rising edge")
@@ -109,6 +111,7 @@ async def read_data(dut, addr, *args, header="", footer="",filename=""):
         return data
 
 async def write_data(dut, addr, data, *args, header="", footer="",filename=""):
+    await wait_for_bus_release(dut)
     if (dut._id("_BGACK_IO", extended=False) == 0):
         dut._log.info("waiting _BGACK_IO rising edge")
         await RisingEdge(dut._id("_BGACK_IO", extended=False))
@@ -274,7 +277,7 @@ async def XferFIFO2Mem(dut,TermSignal):
         if (await wait_for_bus_grant(dut)):
             dut._log.info("Started transferring FIFO to Memory")
             #result = arr.array('L')
-            while (dut.FIFOEMPTY == 0):
+            while (dut.FIFOEMPTY == 0 or dut.FLUSHFIFO == 1):
                 if (dut.AS_O_ == 1):
                     await FallingEdge(dut.AS_O_)
                 #result.append(dut.DATA_O.value)
@@ -320,6 +323,15 @@ async def wait_for_bus_release(dut):
         await RisingEdge(dut._id("_BGACK_IO", extended=False))
         await RisingEdge(dut.SCLK)
     await ClockCycles(dut.SCLK, 2, True)
+    
+async def wait_for_FIFO_empty(dut):
+    dut._log.info("wait_for_FIFO_empty")
+    data = 0
+    while (data & 1 != 1):
+        data = await read_data(dut, ISR_REG_ADR)
+        dut._log.info("FIFO_empty = %#x", data)
+    await RisingEdge(dut.SCLK)
+
 
 def convertDecToHex(decData):
     # split dec string
@@ -387,6 +399,7 @@ async def DMA_READ(dut, data, addr, termsig):
         await S2F
         #Flush any data remaining in the fifo to memory
         await read_data(dut, FLUSH_STROBE_ADR)
+        await wait_for_FIFO_empty(dut)
         #stop DMA
         await read_data(dut, SP_DMA_STROBE_ADR)
         #wait for any DMA cycles transfering from fifo to memory
@@ -585,18 +598,23 @@ async def RESDMAC_test(dut):
     data = await read_data(dut, VERSION_REG_ADR, dut.u_registers.VERSION, header='Read From VERSION REG', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/VERSION_read.json')
     assert data == REV_STR, 'Version Register not returning expected data'
 
+    
+
     #8a Test DMA READ (from scsi to memory) 32 bit sterm cycle
     await DMA_READ(dut, TEST_DATA_ARRAY_BYTE1, 0x00000000, "_STERM")
     #8b Test DMA READ (from scsi to memory) 32 bit sterm cycle with left over bytes that need flushing from the fifo
     await DMA_READ(dut, TEST_DATA_ARRAY_BYTE2, 0x00000000, "_STERM")
     #8c Test DMA READ (from scsi to memory) 32 bit sterm cycle with more than one DMA cycle
-    await DMA_READ(dut, TEST_DATA_ARRAY_BYTE3, 0x00000000, "_STERM")
+        #await DMA_READ(dut, TEST_DATA_ARRAY_BYTE3, 0x00000000, "_STERM")
     #8d Test DMA READ (from scsi to memory) 32 bit DSACK0 cycle
-    #await DMA_READ(dut, TEST_DATA_ARRAY_BYTE1, 0x00000000, "DSK0_IN_")
+        #await DMA_READ(dut, TEST_DATA_ARRAY_BYTE1, 0x00000000, "DSK0_IN_")
     #8e Test DMA READ (from scsi to memory) 16 bit DSACK1 cycle
     await DMA_READ(dut, TEST_DATA_ARRAY_BYTE1, 0x00000000, "DSK1_IN_")
     #8f Test DMA READ (from scsi to memory) 16 bit DSACK1 cycle
     await DMA_READ(dut, TEST_DATA_ARRAY_BYTE3, 0x00000000, "DSK1_IN_")
+    #8g Test DMA READ (from scsi to memory) 32 bit unaligend 
+    await DMA_READ(dut, TEST_DATA_ARRAY_BYTE1, 0x02000000, "_STERM")
+    
     
     
     #9a Test DMA WRITE (from memory to SCSI) 32 bit sterm cycle

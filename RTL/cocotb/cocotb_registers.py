@@ -104,7 +104,7 @@ async def registers_test(dut):
 
     assert dut.REG_OD.value == 0 , "REG_OD != 0x0  after reset"
     assert dut.FLUSHFIFO.value == 0 , "FLUSHFIFO != 0  after reset"
-    assert dut.A1.value == 0  , "A1 != 0  after reset"
+    assert dut.A1.value == 1  , "A1 != 1  after reset"
     assert dut.INT_O_.value == 1, "INT_O_ != 1  after reset"
     assert dut.ACR_WR.value == 0  , "ACR_WR != 0  after reset"
     assert dut.h_0C.value == 0  , "h_0C != 0  after reset"

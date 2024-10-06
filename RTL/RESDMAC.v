@@ -182,7 +182,8 @@ registers u_registers(
     .DMADIR    (DMADIR    ),
     .DMAENA    (DMAENA    ),
     .REG_DSK_  (REG_DSK_  ),
-    .WDREGREQ  (WDREGREQ  )
+    .WDREGREQ  (WDREGREQ  ),
+    .AS_O      (AS_O_     )
 );
 
 CPU_SM u_CPU_SM(

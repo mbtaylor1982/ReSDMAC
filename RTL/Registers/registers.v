@@ -19,6 +19,7 @@ module registers(
   input FIFOEMPTY,      // FIFO Emtpty Flag
   input FIFOFULL,       // FIFO Full Flag
   input INTA_I,         // Interupt input
+  input AS_O,           // Address strobe from CPU FSM
 
   output reg [31:0] REG_OD,     //DATA OUT.
   output PRESET,            //Peripheral Reset.
@@ -144,9 +145,11 @@ end
 //Store value of A1 loaded into ACR
 always @(negedge CLK or negedge RST_) begin
     if (~RST_)
-        A1 <= 1'b0;
+        A1 <= 1'b1;
     else if (ACR_WR)
         A1 <= MID[25];
+    else if (~AS_O)
+        A1 <= 1'b0;
 end
 
 //Fake SSPBDAT register (only used for testing read and write cycles)
