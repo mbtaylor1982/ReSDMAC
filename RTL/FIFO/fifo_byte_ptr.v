@@ -34,21 +34,15 @@ assign A = (BO1 ^ BO0);
 assign PTR = {BO1, BO0};
 
 //added to eliminate glitches in the signals B and S.
-always @(posedge CLK or negedge RST_FIFO_) begin
-    if (~RST_FIFO_) begin
-        B <= 1'b0;
-        S <= 1'b0;
-    end
-    else begin
-        B <= MID25;
-        S <= H_0C;
-    end
+always @(posedge CLK) begin
+    B <= MID25;
+    S <= H_0C;
 end
 
 always @(posedge CLK or negedge RST_FIFO_) begin
     if (~RST_FIFO_) begin
         BO0 <= 1'b0;
-        BO1 <= 1'b0;
+        BO1 <= Z;
     end
     else begin
         if (INCBO) begin

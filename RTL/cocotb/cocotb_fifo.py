@@ -34,8 +34,8 @@ async def fifo_test(dut):
     dut.LLWORD.value = 0        #Load Lower Word strobe from CPU sm
     dut.LHWORD.value = 0        #Load Higher Word strobe from CPU sm
     dut.LBYTE_.value = 1        #Load Byte strobe from SCSI SM = !(DACK.o & RE.o)
-    dut.H_0C.value = 0          #Address Decode for $0C ACR register
-    dut.ACR_WR.value = 0        #indicate write to ACR?
+    dut.H_0C.value = 1          #Address Decode for $0C ACR register
+    dut.ACR_WR.value = 1        #indicate write to ACR?
     dut.MID25.value = 0         #think this may be checking A1 in the ACR to make sure BYTE PTR is initialised to the correct value.
     dut.FIFO_ID.value = 0       #FIFO Data Input
     dut.INCFIFO.value = 0       #Inc FIFO from CPU sm
@@ -53,6 +53,9 @@ async def fifo_test(dut):
 
     await reset_dut(dut.RST_FIFO_ , 40)
     dut._log.debug("After reset")
+    
+    dut.H_0C.value = 0          
+    dut.ACR_WR.value = 0        
 
     assert dut.WRITE_PTR.value == 0 ,"WRITE_PTR != 0  after reset"
     assert dut.READ_PTR.value == 0 ,"READ_PTR != 0  after reset"
