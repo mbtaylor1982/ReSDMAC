@@ -384,7 +384,7 @@ begin
         STOP <= 1;
 end
 
-assign STOP_FLUSH_E = STOPFLUSH | STOP;
+assign STOP_FLUSH_E = DMADIR ? STOPFLUSH : STOP;
 
 
 
