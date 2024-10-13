@@ -381,19 +381,15 @@ always @(*) begin
             F2CPUL      <= 1'b1;
             SIZE1       <= 1'b1;
         end
-        s11: begin 
+        s11: begin
+            BGACK   <= 1'b1;
+            F2CPUH  <= 1'b1;
+            F2CPUL  <= 1'b1;
+            SIZE1   <= 1'b1;
+
             if (nSTERM ) begin //(BGACK PAS PDS F2CPUH F2CPUL SIZE1);
-                BGACK   <= 1'b1;
                 PAS     <= 1'b1;
                 PDS     <= 1'b1;
-                F2CPUH  <= 1'b1;
-                F2CPUL  <= 1'b1;
-                SIZE1   <= 1'b1;
-            end else begin //if NOT STERM_ then (BGACK F2CPUH F2CPUL SIZE1) -- first cycle of a CPU access
-                BGACK   <= 1'b1;
-                F2CPUH  <= 1'b1;
-                F2CPUL  <= 1'b1;
-                SIZE1   <= 1'b1;
             end
         end
         s12: begin
