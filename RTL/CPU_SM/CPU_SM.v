@@ -204,7 +204,7 @@ always @(negedge CLK or posedge AS_) begin
 end
 
 assign aCYCLEDONE_ = ~(BGACK_I_ & AS_ & DSACK0_ & DSACK1_ & iSTERM_);
-assign LASTWORD = (~BOEQ0 & aFLUSHFIFO & FIFOEMPTY); // not sure this is correct as Lastword is never asserted.
+assign LASTWORD = (~BOEQ0 & aFLUSHFIFO & FIFOEMPTY);
 assign CYCLEDONE = ~nCYCLEDONE;
 assign iDSACK = ~(DSACK_LATCHED_[0] & DSACK_LATCHED_[1]);
 assign DSACK = iDSACK;
