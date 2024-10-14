@@ -38,20 +38,29 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       ##########################################################################
-      ## 2 - RTL synthesis
+      ## 2 - Get current version for tagging binary
+      ##########################################################################
+      - name: Get the version
+        id: version
+        run: echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+      ##########################################################################
+      ## 3 - add tag to version register
+      ##########################################################################
+      - name: Replace single file
+        uses: richardrigutins/replace-in-files@v2
+        with:
+          files: 'RTL/Registers/registers.v'
+          search-text: '/$V$'
+          replacement-text: ${{ steps.version.outputs.version }}
+      ##########################################################################
+      ## 4 - RTL synthesis
       ##########################################################################
       - name: Run 10M16 compilation flow
         run: quartus_sh -t  RESDMAC.tcl 10M16SCU169C8G
       - name: Run 10M04 compilation flow
         run: quartus_sh -t  RESDMAC.tcl 10M04SCU169C8G
       ##########################################################################
-      ## 3 - Get current version for tagging binary
-      ##########################################################################
-      - name: Get the version
-        id: version
-        run: echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
-      ##########################################################################
-      ## 4 - Upload artifacts
+      ## 5 - Upload artifacts
       ##########################################################################
       - name: Upload artifacts 10M16
         uses: actions/upload-artifact@v4
@@ -66,7 +75,7 @@ jobs:
           path: Quartus/output_files_10M04SCU169C8G
           retention-days: 0
       ##########################################################################
-      ## 5 - Create tag with version and SHA256 checksum
+      ## 6 - Create tag with version and SHA256 checksum
       ##########################################################################
       - name: Copy, tag with version and create SHA256 checksum
         run: |
@@ -76,7 +85,7 @@ jobs:
           sha256sum output_files_10M16SCU169C8G/RESDMAC.pof > ../releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.pof.sha256
           sha256sum output_files_10M04SCU169C8G/RESDMAC.pof > ../releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof.sha256
       ##########################################################################
-      ## 6 - Create a new GitHub release and upload the distribution artifacts
+      ## 7 - Create a new GitHub release and upload the distribution artifacts
       ##########################################################################
       - name: Create a new GitHub release
         uses: softprops/action-gh-release@v2
@@ -88,7 +97,7 @@ jobs:
             releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof
             releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof.sha256
       ##########################################################################
-      ## 7 - Don't ever commit binary files to Git! But if this is what you want to do.
+      ## 8 - Don't ever commit binary files to Git! But if this is what you want to do.
       ##########################################################################
       #- name: Commit Binary to Repository (aka. the MiST(er) way)
       #  run: |
