@@ -52,6 +52,12 @@ jobs:
           files: 'RTL/Registers/registers.v'
           search-text: '/$V$'
           replacement-text: ${{ steps.version.outputs.version }}
+      - name: Replace single file
+        uses: richardrigutins/replace-in-files@v2
+        with:
+          files: 'RTL/cocotb/coctb_resdmac.py'
+          search-text: '/$V$'
+          replacement-text: ${{ steps.version.outputs.version }}
       ##########################################################################
       ## 4 - RTL synthesis
       ##########################################################################
@@ -85,26 +91,22 @@ jobs:
           sha256sum output_files_10M16SCU169C8G/RESDMAC.pof > ../releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.pof.sha256
           sha256sum output_files_10M04SCU169C8G/RESDMAC.pof > ../releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof.sha256
       ##########################################################################
-      ## 7 - Create a new GitHub release and upload the distribution artifacts
+      ## 7 - Gernerate Change Log
+      ##########################################################################
+      - name: Changelog
+        uses: glennawatson/ChangeLog@v1
+        id: changelog
+      ##########################################################################
+      ## 8 - Create a new GitHub release and upload the distribution artifacts
       ##########################################################################
       - name: Create a new GitHub release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
+          body: |
+            ${{ steps.Changelog.outputs.changelog }}
           files: |
             releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.pof
             releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.pof.sha256
             releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof
             releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof.sha256
-      ##########################################################################
-      ## 8 - Don't ever commit binary files to Git! But if this is what you want to do.
-      ##########################################################################
-      #- name: Commit Binary to Repository (aka. the MiST(er) way)
-      #  run: |
-      #    git fetch
-      #    git checkout -b master
-      #    git config user.name github-actions
-      #    git config user.email github-actions@github.com
-      #    git add releases/my_project_${{ steps.version.outputs.version }}.rbf
-      #    git commit -m "Release ${{ steps.version.outputs.version }}"
-      #    git push origin master

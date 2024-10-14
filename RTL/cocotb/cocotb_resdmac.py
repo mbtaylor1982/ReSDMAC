@@ -35,7 +35,7 @@ SCSI_TEST_DATA5 = 0xAAAA
 SCSI_TEST_DATA3 = 0x00AA
 SCSI_TEST_DATA4 = 0x00AA00AA
 
-REV_STR = 0x52455631
+REV_STR = int("/$V$".encode("utf-8").hex(), base= 16)
 
 CONTR_DMA_READ = 0x00
 CONTR_DMA_WRITE = 0x02
@@ -614,15 +614,18 @@ async def RESDMAC_test(dut):
     await DMA_READ(dut, TEST_DATA_ARRAY_BYTE3, 0x00000000, "DSK1_IN_")
     #8g Test DMA READ (from scsi to memory) 32 bit unaligend 
     await DMA_READ(dut, TEST_DATA_ARRAY_BYTE1, 0x02000000, "_STERM")
+    await DMA_READ(dut, TEST_DATA_ARRAY_BYTE2, 0x02000000, "_STERM")
     
     
     
     #9a Test DMA WRITE (from memory to SCSI) 32 bit sterm cycle
     await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG1, 0x00000000, "_STERM")
-    #9b Test DMA WRITE (from memory to SCSI) 32 bit sterm cycle with more than one DMA cycle
+    #9b Test DMA WRITE (from memory to SCSI) 32 bit sterm cycle unaligned
+    await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG1, 0x02000000, "_STERM")
+    #9c Test DMA WRITE (from memory to SCSI) 32 bit sterm cycle with more than one DMA cycle
     await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG2, 0x00000000, "_STERM")
-    #9c Test DMA WRITE (from memory to SCSI) 16 bit DSACK1 cycle
-    await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG1, 0x00000000, "DSK1_IN_")
     #9d Test DMA WRITE (from memory to SCSI) 16 bit DSACK1 cycle
+    await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG1, 0x00000000, "DSK1_IN_")
+    #9e Test DMA WRITE (from memory to SCSI) 16 bit DSACK1 cycle
     await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG2, 0x00000000, "DSK1_IN_")
 

@@ -57,7 +57,7 @@ wire [8:0] CNTR_O;  //Control Register
 wire nDMADIR;
 reg [31:0] SSPBDAT;  //Fake Synchronous Serial Peripheral Bus Data Register (used to test SDMAC rev 4 in the test tool by CDH)
 
-reg [31:0] VERSION;
+reg [8*4:1] VERSION; //used to store the code version (git tag) limited to 4 ascii chars.
 reg [31:0] META_DATA0;
 reg [31:0] META_DATA1;
 reg [31:0] META_DATA2;
@@ -160,11 +160,9 @@ always @(negedge CLK or negedge RST_) begin
         SSPBDAT <= MID[31:0];
 end
 
-localparam REV_STR = 32'h52455631;//"REV1";"
-
 always @(negedge RST_) begin
     if (~RST_)
-        VERSION <= REV_STR;
+        VERSION <= "/$V$"; // This will get replaced with the release tag by github eg(v0.4).
 end
 
 assign MuxSelect = {~WTC_RD_, ~ISTR_RD_, ~CONTR_RD_, ~SSPBDAT_RD_, ~VERSION_RD_};
