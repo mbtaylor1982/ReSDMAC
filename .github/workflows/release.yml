@@ -19,7 +19,7 @@ defaults:
     working-directory: Quartus
 
 jobs:
-  synthesis:
+  create_release:
     runs-on: ubuntu-latest
     container:
       image: mbtaylor1982/quartus:22.1
@@ -38,24 +38,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       ##########################################################################
-      ## 2 - Get current version for tagging binary
+      ## 2 - Get current version for tagging
       ##########################################################################
-      - name: Get the version
+      - name: Get the tag / version
         id: version
         run: echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
       ##########################################################################
       ## 3 - add tag to version register
       ##########################################################################
-      - name: Replace single file
+      - name: Replace /$V$ in file registers.v with tag
         uses: richardrigutins/replace-in-files@v2
         with:
           files: 'RTL/Registers/registers.v'
           search-text: '/$V$'
           replacement-text: ${{ steps.version.outputs.version }}
-      - name: Replace single file
+      - name: Replace /$V$ in file cocotb_resdmac.py with tag
         uses: richardrigutins/replace-in-files@v2
         with:
-          files: 'RTL/cocotb/coctb_resdmac.py'
+          files: 'RTL/cocotb/cocotb_resdmac.py'
           search-text: '/$V$'
           replacement-text: ${{ steps.version.outputs.version }}
       ##########################################################################
@@ -94,8 +94,9 @@ jobs:
       ## 7 - Gernerate Change Log
       ##########################################################################
       - name: Changelog
-        uses: glennawatson/ChangeLog@v1
-        id: changelog
+        uses: janheinrichmerker/action-github-changelog-generator@v2.3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       ##########################################################################
       ## 8 - Create a new GitHub release and upload the distribution artifacts
       ##########################################################################
