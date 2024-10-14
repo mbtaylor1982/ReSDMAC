@@ -78,7 +78,7 @@ always @(negedge CLK, negedge S2CPU) begin
         SCSI_DATA__RX_LATCHED <= SCSI_DATA_RX;
 end
 
-always @(posedge CLK135) begin
+always @(negedge CLK135) begin
     SCSI_DATA__TX_LATCHED <= SCSI_DATA_TX;
 end
 
