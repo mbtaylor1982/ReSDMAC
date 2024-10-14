@@ -90,7 +90,7 @@ fifo_3bit_cntr u_next_out_cntr(
 
 //BYTE POINTER
 fifo_byte_ptr u_byte_ptr(
-  .CLK       (CLK   ),
+  .CLK       (CLK       ),
   .INCBO     (INCBO     ),
   .MID25     (MID25     ),
   .ACR_WR    (ACR_WR    ),
