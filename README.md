@@ -4,12 +4,6 @@
 [![test](https://github.com/mbtaylor1982/ReSDMAC/actions/workflows/test.yml/badge.svg)](https://github.com/mbtaylor1982/ReSDMAC/actions/workflows/test.yml)  
 [![join](https://dcbadge.vercel.app/api/server/PxHb69nY3q)](https://discord.gg/PxHb69nY3q)  
 
-
-Dev | Role | Donate
----------|----------|---------
- [Mike Taylor](https://github.com/mbtaylor1982) | Verilog Code | [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/L3L4XGH2R) 
- [Jorgen Bilander](https://github.com/jbilander) | PCB Design | [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/)
-
 ### Status
 
 >:red_circle:  **This project is still a work in progress and the code and hardware design is likely to change. this is why there are no instructions on how to build or program the board yet.**
