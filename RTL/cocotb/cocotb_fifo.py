@@ -34,9 +34,7 @@ async def fifo_test(dut):
     dut.LLWORD.value = 0        #Load Lower Word strobe from CPU sm
     dut.LHWORD.value = 0        #Load Higher Word strobe from CPU sm
     dut.LBYTE_.value = 1        #Load Byte strobe from SCSI SM = !(DACK.o & RE.o)
-    dut.H_0C.value = 1          #Address Decode for $0C ACR register
-    dut.ACR_WR.value = 1        #indicate write to ACR?
-    dut.MID25.value = 0         #think this may be checking A1 in the ACR to make sure BYTE PTR is initialised to the correct value.
+    dut.A1.value = 0            #Value for A1 loaded into ACR register
     dut.FIFO_ID.value = 0       #FIFO Data Input
     dut.INCFIFO.value = 0       #Inc FIFO from CPU sm
     dut.DECFIFO.value = 0       #Dec FIFO from CPU sm
@@ -51,11 +49,23 @@ async def fifo_test(dut):
     await cocotb.start(clock90)
     await cocotb.start(clock135)
 
+    dut.A1.value = 1            #Value for A1 loaded into ACR register
     await reset_dut(dut.RST_FIFO_ , 40)
     dut._log.debug("After reset")
+
+    assert dut.WRITE_PTR.value == 0 ,"WRITE_PTR != 0  after reset"
+    assert dut.READ_PTR.value == 0 ,"READ_PTR != 0  after reset"
+    assert dut.BYTE_PTR.value == 2 ,"BYTE_PTR != 2  after reset"
+    assert dut.FIFOEMPTY.value == 1 ,"FIFOEMPTY != 1  after reset"
+    assert dut.FIFOFULL.value == 0 ,"FIFOFULL != 0  after reset"
+    assert dut.BO0.value == 0 ,"BO0 != 0  after reset"
+    assert dut.BO1.value == 1 ,"BO1 != 1  after reset"
+    assert dut.BOEQ0.value == 0 ,"BOEQ0 != 0  after reset"
+    assert dut.BOEQ3.value == 0 ,"BOEQ3 != 0  after reset"
     
-    dut.H_0C.value = 0          
-    dut.ACR_WR.value = 0        
+    dut.A1.value = 0            #Value for A1 loaded into ACR register
+    await reset_dut(dut.RST_FIFO_ , 40)
+    dut._log.debug("After reset")
 
     assert dut.WRITE_PTR.value == 0 ,"WRITE_PTR != 0  after reset"
     assert dut.READ_PTR.value == 0 ,"READ_PTR != 0  after reset"
@@ -66,6 +76,7 @@ async def fifo_test(dut):
     assert dut.BO1.value == 0 ,"BO1 != 0  after reset"
     assert dut.BOEQ0.value == 1 ,"BOEQ0 != 1  after reset"
     assert dut.BOEQ3.value == 0 ,"BOEQ3 != 0  after reset"
+    
 
     await ClockCycles(dut.CLK, 2, True)    
     

@@ -15,11 +15,8 @@ module fifo(
     input LHWORD,       //Load Higher Word strobe from CPU sm
     
     input LBYTE_,       //Load Byte strobe from SCSI SM = !(DACK.o & RE.o)
-
-    input H_0C,         //Address Decode for $0C ACR register
-    input ACR_WR,       //indicate write to ACR?
     input RST_FIFO_,    //Reset FIFO
-    input MID25,        //think this may be checking A1 in the ACR to make sure BYTE PTR is initialised to the correct value.
+    input A1,           //value of A1 loaded into ACR as start of DMA cycle
 
     input [31:0] FIFO_ID,    //FIFO Data Input
 
@@ -90,11 +87,9 @@ fifo_3bit_cntr u_next_out_cntr(
 
 //BYTE POINTER
 fifo_byte_ptr u_byte_ptr(
-  .CLK       (CLK       ),
+  .CLK       (CLK90     ),
   .INCBO     (INCBO     ),
-  .MID25     (MID25     ),
-  .ACR_WR    (ACR_WR    ),
-  .H_0C      (H_0C      ),
+  .A1        (A1        ),
   .RST_FIFO_ (RST_FIFO_ ),
   .PTR       (BYTE_PTR  )
 );
