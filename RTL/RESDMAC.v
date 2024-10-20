@@ -25,7 +25,7 @@ module RESDMAC(
     input tri1 _CS,                     //_SCSI from Fat Garry
     input tri1 _RST,                    //System Reset
     input tri1 _BERR,               	//Bus Error
-    input [6:2] ADDR,              //CPU address Bus, bits are actually [6:2]
+    input [6:2] ADDR,                   //CPU address Bus, bits are actually [6:2]
 
     // Bus Mastering/Arbitration.
     output  tri1 _BR,               //Bus Request
@@ -44,7 +44,7 @@ module RESDMAC(
     output _IOW,                    //Ative Low Write strobe
 
     inout tri1 [15:0] PD_PORT,     	//Peripheral Data port
-	 
+
 	 input INC_ADD,
 	 input IORDY,
 	 input CSX1,
@@ -52,7 +52,7 @@ module RESDMAC(
 	 input INTB,
 	 input JP,
 	 input PIN_D8
-	 
+
 );
 
 reg AS_O_;
@@ -72,7 +72,7 @@ assign  R_W_IO = OWN ? ~DMADIR : 1'bz;
 wire [31:0] DATA_I;
 wire [31:0] DATA_O;
 assign DATA_I = DATA_IO;
-assign DATA_IO = ((R_W & ~H_0C & ~_CS) | OWN) ? DATA_O : 32'hzzzzzzzz;
+assign DATA_IO = ((R_W & ~H_0C & ~H_5C & ~_CS) | OWN) ? DATA_O : 32'hzzzzzzzz;
 
 wire [15:0] PDATA_I;
 wire [15:0] PDATA_O;
@@ -116,6 +116,7 @@ wire FIFOFULL;
 wire FLUSHFIFO;
 wire ACR_WR;
 wire H_0C;
+wire H_5C;
 wire A1;
 wire DMADIR;
 wire DMAENA;
@@ -166,7 +167,6 @@ registers u_registers(
     .RW        (R_W       ),
     .CLK       (CLK45     ),
     .MID       (MID       ),
-    //.STOPFLUSH (STOP_FLUSH_E),
     .STOPFLUSH (STOPFLUSH),
     .RST_      (_RST ),
     .FIFOEMPTY (FIFOEMPTY ),
@@ -177,6 +177,7 @@ registers u_registers(
     .FLUSHFIFO (FLUSHFIFO ),
     .ACR_WR    (ACR_WR    ),
     .h_0C      (H_0C      ),
+    .h_5C      (H_5C      ),
     .A1        (A1        ),
     .INT_O_    (INT_O_    ),
     .DMADIR    (DMADIR    ),
@@ -271,7 +272,6 @@ fifo int_fifo(
     .LLWORD      (LLW       ),
     .LHWORD      (LHW       ),
     .LBYTE_      (LBYTE_    ),
-    //.RST_FIFO_   (DMAENA    ),
     .RST_FIFO_   (RST_FIFO  ),
     .A1          (A1        ),
     .FIFO_ID     (FIFO_ID   ),

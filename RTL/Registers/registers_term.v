@@ -6,6 +6,7 @@ module registers_term(
     input DMAC_,
     input WDREGREQ,
     input h_0C,
+    input h_5C,
 
     output reg REG_DSK_
 );
@@ -17,7 +18,7 @@ wire CYCLE_ACTIVE;
 `ifdef COCOTB_SIM
   assign CYCLE_ACTIVE = ~(AS_| DMAC_ | WDREGREQ );
 `else
-  assign CYCLE_ACTIVE = ~(AS_| DMAC_ | WDREGREQ | h_0C);
+  assign CYCLE_ACTIVE = ~(AS_| DMAC_ | WDREGREQ | h_0C | h_5C);
 `endif
 
 always @(posedge CLK or posedge AS_) begin

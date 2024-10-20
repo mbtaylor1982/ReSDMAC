@@ -208,7 +208,7 @@ if {$make_assignments} {
 	set_instance_assignment -name RESERVE_PIN AS_INPUT_TRI_STATED -to CSX1
 	set_instance_assignment -name RESERVE_PIN AS_INPUT_TRI_STATED -to CSX0
 	set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to _DREQ
-	set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to IORDY
+	set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to IORDY
 	set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to _BR
 	set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to R_W_IO
 	set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to _AS_IO
