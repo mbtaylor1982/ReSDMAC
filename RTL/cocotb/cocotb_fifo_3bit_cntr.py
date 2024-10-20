@@ -4,7 +4,7 @@ import random
 
 import cocotb
 from cocotb.clock import Clock
-from cocotb.triggers import RisingEdge
+from cocotb.triggers import RisingEdge, ClockCycles
 from cocotb.types import LogicArray
 
 @cocotb.test()
@@ -21,14 +21,14 @@ async def fifo_3bit_cntr_test(dut):
     # Start the clock. Start it low to avoid issues on the first RisingEdge
     cocotb.start_soon(clock.start(start_high=False))
     
-    await RisingEdge(dut.CLK)
+    await ClockCycles(dut.CLK, 2, True)
     assert dut.COUNT.value == 0, "Count was not reset to zero when RST_ = 0"
     dut.RST_.value = 1
     
-    await RisingEdge(dut.CLK)
+    await ClockCycles(dut.CLK, 2, True)
     assert dut.COUNT.value == 0, "Count incremented with clk edge when CLKEN = 0"
         
-    dut.ClKEN.value = 1    
+    dut.ClKEN.value = 1
     
     for i in range(0,8):
         await RisingEdge(dut.CLK)
