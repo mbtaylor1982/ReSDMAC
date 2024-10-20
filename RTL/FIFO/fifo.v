@@ -37,7 +37,7 @@ module fifo(
     input INCNO,        //Inc Next Out (Write Pointer)
     input INCNI,        //Inc Next In (Read Pointer)
 
-    output reg [31:0] FIFO_OD    //FIFO Data Output
+    output [31:0] FIFO_OD    //FIFO Data Output
 );
 
 wire [2:0] WRITE_PTR;
@@ -61,12 +61,11 @@ fifo_write_strobes u_write_strobes(
 
 fifo__full_empty_ctr u_full_empty_ctr(
     .CLK       (CLK       ),
-    .CLK135    (CLK135    ),
-    .INCFIFO   (INCFIFO   ),
-    .DECFIFO   (DECFIFO   ),
-    .RST_FIFO_ (RST_FIFO_ ),
-    .FIFOEMPTY (FIFOEMPTY ),
-    .FIFOFULL  (FIFOFULL  )
+    .RST_      (RST_FIFO_ ),
+    .INC       (INCFIFO   ),
+    .DEC       (DECFIFO   ),
+    .EMPTY     (FIFOEMPTY ),
+    .FULL      (FIFOFULL  )
 );
 
 //Next In Write Counter
@@ -105,7 +104,7 @@ reg [31:0] BUFFER [7:0];
 integer i;
 
 //WRITE DATA TO FIFO BUFFER
-always @(posedge CLK90 or negedge RST_FIFO_) begin
+always @(posedge CLK90) begin
   if (~RST_FIFO_) begin
     for (i = 0; i < 8; i = i+1) begin
       BUFFER[i] <= 32'h00000000;
@@ -123,9 +122,7 @@ always @(posedge CLK90 or negedge RST_FIFO_) begin
   end
 end
 
-always @(posedge CLK) begin
-  FIFO_OD <= BUFFER[READ_PTR];
-end
+assign FIFO_OD = BUFFER[READ_PTR];
 
 // the "macro" to dump signals
 `ifdef COCOTB_SIM1

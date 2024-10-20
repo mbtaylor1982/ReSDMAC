@@ -9,7 +9,7 @@ module fifo_byte_ptr(
     output reg [1:0] PTR
 );
 
- always @(negedge CLK or negedge RST_FIFO_) begin
+ always @(negedge CLK) begin
     if (~RST_FIFO_) begin
         if (A1)
             PTR <= 2'b10;
