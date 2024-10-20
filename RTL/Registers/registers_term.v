@@ -28,8 +28,8 @@ always @(posedge CLK or posedge AS_) begin
   else if (CYCLE_ACTIVE) begin
     if (TERM_COUNTER == 3'd3)
       REG_DSK_ <= 1'b0;
-    if (TERM_COUNTER < 3'd7)
-		TERM_COUNTER <= TERM_COUNTER + 3'b1;
+    else
+		  TERM_COUNTER <= TERM_COUNTER + 3'b1;
   end
 end
 

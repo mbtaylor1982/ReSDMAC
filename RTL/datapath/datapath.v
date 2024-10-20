@@ -76,7 +76,7 @@ datapath_input u_datapath_input(
 );
 
 datapath_output u_datapath_output(
-    .CLK        (CLK135     ),
+    .CLK        (CLK        ),
     .DATA       (DATA_O     ),
     .OD         (FIFO_OD    ),
     .MOD        (MOD_TX     ),

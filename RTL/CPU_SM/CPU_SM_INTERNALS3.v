@@ -42,7 +42,8 @@ module CPU_SM_INTERNALS3(
     output reg DIEH,        // Data Input Enable for High word.
     output reg DIEL,        // Data Input Enable for Low word.
     output reg BRIDGEIN,    // Send D16-D31 inputs to D0-D15 input lines
-    output reg BGACK        // bus grant acknowledge
+    output reg BGACK,       // bus grant acknowledge
+    output reg RST_FIFO     //Reset for fifo at when flush in write to scsi direction.
 );
 
 //only 27 state are actually used.
@@ -181,12 +182,9 @@ always @(*) begin
         //-- How to keep DMA from reading extra data from CPU on its last FIFO fill?? Beats says its OK if it does
 
         s20: begin
-            casex ({DMAENA, DMADIR, FIFOEMPTY, nDREQ})
-                4'b0xxx     : next_state <= s20;    //DMA is not turned on
-                4'b100x     : next_state <= s20;    //FIFO not empty yet
-                4'b1011     : next_state <= s20;    //Don't put data in FIFO 'til SCSI asks for more
-                4'b1010     : next_state <= s21;    //Time to put data in FIFO
-                4'b11xx     : next_state <= s0;     //go to DMA read mode
+            casex ({DMAENA, DMADIR, FIFOEMPTY, nDREQ, FLUSHFIFO})
+                5'b1010x     : next_state <= s21;    //Time to put data in FIFO
+                5'b11xxx     : next_state <= s0;     //go to DMA read mode
                 default     : next_state <= state;
             endcase
         end
@@ -270,6 +268,7 @@ always @(*) begin
     DIEL        <= 1'b0;
     BRIDGEIN    <= 1'b0;
     BGACK       <= 1'b0;
+    RST_FIFO    <= 1'b0;
 
     case(state)
 
@@ -440,6 +439,12 @@ always @(*) begin
         //-- How to keep DMA from reading extra data from CPU on its last FIFO fill?? Beats says its OK if it does
 
         //s20: no outputs to set for s20
+        s20: begin
+            if (FLUSHFIFO & ~FIFOEMPTY & DMAENA & ~DMADIR & nDREQ)
+                RST_FIFO <= 1'b1;
+            if(FLUSHFIFO & ~FIFOFULL & FIFOEMPTY & DMAENA & ~DMADIR)
+                STOPFLUSH <= 1'b1;
+        end
 
         s21: begin
             BREQ <= 1'b1;

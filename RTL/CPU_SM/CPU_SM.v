@@ -46,7 +46,8 @@ module CPU_SM(
     output reg PLHW,
     output reg PLLW,
     output reg SIZE1,
-    output reg STOPFLUSH
+    output reg STOPFLUSH,
+    output reg RST_FIFO
 );
 
 //clocked inputs
@@ -77,6 +78,7 @@ wire BREQ_d;
 wire BRIDGEIN_d;
 wire INCNI_d;
 wire STOPFLUSH_d;
+wire RST_FIFO_d;
 wire PAS_d;
 wire PDS_d;
 wire PLHW_d;
@@ -126,7 +128,8 @@ CPU_SM_INTERNALS3 u_CPU_SM_INTERNALS (
     .DIEH         (DIEH_d         ),  // output, (wire), 
     .DIEL         (DIEL_d         ),  // output, (wire), 
     .BRIDGEIN     (BRIDGEIN_d     ),  // output, (wire), 
-    .BGACK        (BGACK_d        )   // output, (wire), 
+    .BGACK        (BGACK_d        ),   // output, (wire), 
+    .RST_FIFO     (RST_FIFO_d     )
 );
 
 //clocked reset
@@ -173,6 +176,7 @@ always @(posedge CLK90 or negedge CCRESET_) begin
         PLLW        <= 1'b0;
         SIZE1       <= 1'b0;
         STOPFLUSH   <= 1'b0;
+        RST_FIFO    <= 1'b0;
     end
     else begin
         BGACK       <= BGACK_d;
@@ -193,6 +197,7 @@ always @(posedge CLK90 or negedge CCRESET_) begin
         PLLW        <= PLLW_d;
         SIZE1       <= SIZE1_d;
         STOPFLUSH   <= STOPFLUSH_d;
+        RST_FIFO    <= RST_FIFO_d;
     end
 end
 

@@ -58,9 +58,9 @@ wire nDMADIR;
 reg [31:0] SSPBDAT;  //Fake Synchronous Serial Peripheral Bus Data Register (used to test SDMAC rev 4 in the test tool by CDH)
 
 reg [8*4:1] VERSION; //used to store the code version (git tag) limited to 4 ascii chars.
-reg [31:0] META_DATA0;
-reg [31:0] META_DATA1;
-reg [31:0] META_DATA2;
+//reg [31:0] META_DATA0;
+//reg [31:0] META_DATA1;
+//reg [31:0] META_DATA2;
 
 
 wire [31:0] WTC;

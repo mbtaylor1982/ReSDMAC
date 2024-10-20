@@ -34,9 +34,9 @@ wire h_14;
 wire h_18;
 wire h_1C;
 wire h_20;
-wire h_24;
-wire h_28;
-wire h_2C;
+//wire h_24;
+//wire h_28;
+//wire h_2C;
 wire h_3C;
 wire h_58;
 
@@ -51,9 +51,9 @@ assign h_14 = ADDR_VALID & (ADDR == 8'h14);
 assign h_18 = ADDR_VALID & (ADDR == 8'h18);
 assign h_1C = ADDR_VALID & (ADDR == 8'h1C);
 assign h_20 = ADDR_VALID & (ADDR == 8'h20);
-assign h_24 = ADDR_VALID & (ADDR == 8'h24);
-assign h_28 = ADDR_VALID & (ADDR == 8'h28);
-assign h_2C = ADDR_VALID & (ADDR == 8'h2C);
+//assign h_24 = ADDR_VALID & (ADDR == 8'h24);
+//assign h_28 = ADDR_VALID & (ADDR == 8'h28);
+//assign h_2C = ADDR_VALID & (ADDR == 8'h2C);
 assign h_3C = ADDR_VALID & (ADDR == 8'h3C);
 assign h_58 = ADDR_VALID & (ADDR == 8'h58);
 

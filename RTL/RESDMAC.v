@@ -157,7 +157,7 @@ wire dsack_int;
 wire PD_OE;
 wire INT_O_;
 wire RST_FIFO;
-wire STOP_FLUSH_E;
+wire CPUSM_FIFO_RST;
 
 registers u_registers(
     .ADDR      ({1'b0, ADDR, 2'b00}),
@@ -166,8 +166,8 @@ registers u_registers(
     .RW        (R_W       ),
     .CLK       (CLK45     ),
     .MID       (MID       ),
-    .STOPFLUSH (STOP_FLUSH_E),
-    //.STOPFLUSH (STOPFLUSH),
+    //.STOPFLUSH (STOP_FLUSH_E),
+    .STOPFLUSH (STOPFLUSH),
     .RST_      (_RST ),
     .FIFOEMPTY (FIFOEMPTY ),
     .FIFOFULL  (FIFOFULL  ),
@@ -226,7 +226,8 @@ CPU_SM u_CPU_SM(
     .PLLW          (PLLW        ),
     .PLHW          (PLHW        ),
     .AS_           (AS_I_       ),
-    .BGACK_I_      (_BGACK_I    )
+    .BGACK_I_      (_BGACK_I    ),
+    .RST_FIFO      (CPUSM_FIFO_RST)    
 
 );
 
@@ -370,21 +371,7 @@ assign DSK1_IN_ = _BERR & _DSACK_I[1];
 assign A3 = ADDR[3];
 assign _INT = INT_O_ ? 1'bz : 1'b0;
 
-assign RST_FIFO = (DMAENA & ~(FLUSHFIFO & ~DMADIR));
-
-reg  STOP;
-
-always @(negedge CLK45, negedge _RST)
-begin
-    if (~_RST)
-        STOP <= 0;
-    else if (FLUSHFIFO & ~DMADIR)
-        STOP <= 1;
-end
-
-assign STOP_FLUSH_E = DMADIR ? STOPFLUSH : STOP;
-
-
+assign RST_FIFO = (DMAENA & ~CPUSM_FIFO_RST);
 
 // the "macro" to dump signals
 `ifdef COCOTB_SIM
