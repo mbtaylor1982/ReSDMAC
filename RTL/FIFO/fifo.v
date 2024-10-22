@@ -87,9 +87,9 @@ fifo_3bit_cntr u_next_out_cntr(
 //BYTE POINTER
 fifo_byte_ptr u_byte_ptr(
   .CLK       (CLK90     ),
+  .RST_FIFO_ (RST_FIFO_ ),
   .INCBO     (INCBO     ),
   .A1        (A1        ),
-  .RST_FIFO_ (RST_FIFO_ ),
   .PTR       (BYTE_PTR  )
 );
 
