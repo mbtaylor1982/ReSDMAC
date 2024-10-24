@@ -26,7 +26,6 @@ module registers(
   output reg FLUSHFIFO,     //Flush FIFO.
   output ACR_WR,            //input to FIFO_byte_ptr.
   output h_0C,              //input to FIFO_byte_ptr.
-  output h_5C,
   output reg A1,            //Store value of A1 written to ACR.
   output INT_O_,            //INT_2 Output. (maskable by negating INTENA in the control register)
   output DMADIR,            //DMA Direction
@@ -77,7 +76,6 @@ addr_decoder u_addr_decoder(
     .RW             (RW         ),
     .DMADIR         (nDMADIR    ),
     .h_0C           (h_0C       ),
-    .h_5C           (h_5C       ),
     .WDREGREQ       (WDREGREQ   ),
     .WTC_RD_        (WTC_RD_    ),
     .CONTR_RD_      (CONTR_RD_  ),
@@ -130,7 +128,6 @@ registers_term u_registers_term(
     .DMAC_    (DMAC_    ),
     .WDREGREQ (WDREGREQ ),
     .h_0C     (h_0C     ),
-    .h_5C     (h_5C     ),
     .REG_DSK_ (REG_DSK_ )
 );
 
