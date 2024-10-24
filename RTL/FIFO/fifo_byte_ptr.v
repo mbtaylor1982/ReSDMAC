@@ -2,22 +2,18 @@
 
 module fifo_byte_ptr(
     input CLK,
-    input INCBO,
-    input RST_FIFO_,
-    input A1,       //value of MID25 (A1) stored when ACR_WR and H_0C are asserted.
-
-    output reg [1:0] PTR
+    input SyncLoad,
+    input Enable,
+    input [1:0] Data,
+    output reg [1:0] Count
 );
 
  always @(negedge CLK) begin
-    if (~RST_FIFO_) begin
-        if (A1)
-            PTR <= 2'b10;
-        else
-            PTR <= 2'b00;
+    if (SyncLoad) begin
+        Count <= Data;
     end
-    else if(INCBO)
-      PTR <= PTR + 1'b1;
+    else if(Enable)
+      Count <= Count + 1'b1;
 end
 
 endmodule

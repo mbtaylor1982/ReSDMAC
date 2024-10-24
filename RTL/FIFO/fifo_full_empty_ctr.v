@@ -1,6 +1,10 @@
 //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
 
-module fifo__full_empty_ctr(
+module fifo__full_empty_ctr
+#(
+    parameter BITS = 4,
+    parameter MAX = 8)
+(
     input CLK,
     input RST_,
     input INC,
@@ -9,29 +13,29 @@ module fifo__full_empty_ctr(
     output EMPTY,
     output FULL
 );
-reg [3:0] COUNT;
+reg [BITS-1:0] COUNT;
 
 always @ (negedge CLK) begin
   if (~RST_)
-    COUNT <= 4'b0000;
+    COUNT <= 0;
   else begin
     if (INC) begin
-      if (COUNT == 4'b1000)
-        COUNT <= 4'b0000;
+      if (COUNT == MAX)
+        COUNT <= 0;
       else
-        COUNT <= COUNT + 1'b1;
+        COUNT <= COUNT + 1;
     end
 
     if (DEC) begin
-      if (COUNT == 4'b0000)
-        COUNT <= 4'b1000;
+      if (COUNT == 0)
+        COUNT <= MAX;
       else
-        COUNT <= COUNT - 1'b1;
+        COUNT <= COUNT - 1;
     end
   end
 end
 
-assign FULL  = (COUNT == 4'b1000); //FULL when count = 8
-assign EMPTY = (COUNT == 4'b0000); //EMPTY when count = 0
+assign FULL  = (COUNT == MAX); //FULL when count = MAX
+assign EMPTY = (COUNT == 0); //EMPTY when count = 0
 
 endmodule

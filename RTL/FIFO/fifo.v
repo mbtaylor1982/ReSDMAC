@@ -7,18 +7,22 @@
   `include "fifo_byte_ptr.v"
 `endif
 
-module fifo(
-    
+module fifo
+#(
+      parameter DEPTH = 8,
+      parameter  WIDTH = 32)
+(
+
     input CLK, CLK90, CLK135, //Clocks
 
     input LLWORD,       //Load Lower Word strobe from CPU sm
     input LHWORD,       //Load Higher Word strobe from CPU sm
-    
+
     input LBYTE_,       //Load Byte strobe from SCSI SM = !(DACK.o & RE.o)
     input RST_FIFO_,    //Reset FIFO
     input A1,           //value of A1 loaded into ACR as start of DMA cycle
 
-    input [31:0] FIFO_ID,    //FIFO Data Input
+    input [WIDTH-1:0] FIFO_ID,    //FIFO Data Input
 
     output FIFOFULL,    //Signal FIFO is FULL
     output FIFOEMPTY,   //Signal FIFO is Empty
@@ -37,11 +41,13 @@ module fifo(
     input INCNO,        //Inc Next Out (Write Pointer)
     input INCNI,        //Inc Next In (Read Pointer)
 
-    output [31:0] FIFO_OD    //FIFO Data Output
+    output [WIDTH-1:0] FIFO_OD    //FIFO Data Output
 );
 
-wire [2:0] WRITE_PTR;
-wire [2:0] READ_PTR;
+localparam CNTR_BITS = ($clog2(DEPTH));
+
+wire [CNTR_BITS-1:0] WRITE_PTR;
+wire [CNTR_BITS-1:0] READ_PTR;
 wire [1:0] BYTE_PTR;
 wire UUWS;
 wire UMWS;
@@ -59,7 +65,12 @@ fifo_write_strobes u_write_strobes(
     .LLWS   (LLWS     )
 );
 
-fifo__full_empty_ctr u_full_empty_ctr(
+fifo__full_empty_ctr #(
+  .BITS($clog2(DEPTH+1)),
+  .MAX(DEPTH)
+)
+u_full_empty_ctr
+(
     .CLK       (CLK       ),
     .RST_      (RST_FIFO_ ),
     .INC       (INCFIFO   ),
@@ -69,44 +80,48 @@ fifo__full_empty_ctr u_full_empty_ctr(
 );
 
 //Next In Write Counter
-fifo_3bit_cntr u_next_in_cntr(
+fifo_3bit_cntr #(.BITS(CNTR_BITS))
+u_next_in_cntr
+(
     .CLK       (CLK135    ),
-    .ClKEN     (INCNI     ),
     .RST_      (RST_FIFO_ ),
+    .ClKEN     (INCNI     ),
     .COUNT     (WRITE_PTR )
 );
 
 //Next Out Read Counter
-fifo_3bit_cntr u_next_out_cntr(
+fifo_3bit_cntr #(.BITS(CNTR_BITS))
+u_next_out_cntr
+(
     .CLK       (CLK135    ),
-    .ClKEN     (INCNO     ),
     .RST_      (RST_FIFO_ ),
+    .ClKEN     (INCNO     ),
     .COUNT     (READ_PTR  )
 );
 
 //BYTE POINTER
 fifo_byte_ptr u_byte_ptr(
-  .CLK       (CLK90     ),
-  .RST_FIFO_ (RST_FIFO_ ),
-  .INCBO     (INCBO     ),
-  .A1        (A1        ),
-  .PTR       (BYTE_PTR  )
+  .CLK       (CLK90      ),
+  .SyncLoad  (~RST_FIFO_ ),
+  .Enable    (INCBO      ),
+  .Data      ({A1, 1'b0} ),
+  .Count     (BYTE_PTR   )
 );
 
 assign BO0 = BYTE_PTR[0];
 assign BO1 = BYTE_PTR[1];
 
-assign BOEQ0 = (BYTE_PTR == 2'b00);
-assign BOEQ3 = (BYTE_PTR == 2'b11);
+assign BOEQ0 = (BYTE_PTR == 0);
+assign BOEQ3 = (BYTE_PTR == 3);
 
 //32 byte FIFO buffer (8 x 32 bit long words)
-reg [31:0] BUFFER [7:0];
+reg [WIDTH-1:0] BUFFER [DEPTH-1:0];
 integer i;
 
 //WRITE DATA TO FIFO BUFFER
 always @(posedge CLK90) begin
   if (~RST_FIFO_) begin
-    for (i = 0; i < 8; i = i+1) begin
+    for (i = 0; i < DEPTH; i = i+1) begin
       BUFFER[i] <= 32'h00000000;
     end
   end
@@ -123,14 +138,5 @@ always @(posedge CLK90) begin
 end
 
 assign FIFO_OD = BUFFER[READ_PTR];
-
-// the "macro" to dump signals
-`ifdef COCOTB_SIM1
-initial begin
-  $dumpfile ("fifo.vcd");
-  $dumpvars (0, fifo);
-  #1;
-end
-`endif
 
 endmodule
