@@ -628,4 +628,6 @@ async def RESDMAC_test(dut):
     await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG1, 0x00000000, "DSK1_IN_")
     #9e Test DMA WRITE (from memory to SCSI) 16 bit DSACK1 cycle
     await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG2, 0x00000000, "DSK1_IN_")
+    
+    await read_data(dut, 0x17)
 

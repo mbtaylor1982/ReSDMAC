@@ -81,9 +81,9 @@ async def fifo_test(dut):
     await ClockCycles(dut.CLK, 2, True)    
     
     #test filling and emptying FIFO a byte at a time
-    dut.FIFO_ID.value = 0x11121314
+    dut.FIFO_ID.value = 0xa1b1c1d1
     m = 8
-    for j in range (0, m):
+    while (dut.FIFOFULL.value != 1):
         n = 4
         for i in range (0, n):
             await RisingEdge(dut.CLK)
@@ -103,7 +103,7 @@ async def fifo_test(dut):
         dut.INCNI.value = 0
         dut.INCFIFO.value = 0
         await ClockCycles(dut.CLK, 1, True) 
-        dut.FIFO_ID.value = dut.FIFO_ID.value + 0x10101010
+        dut.FIFO_ID.value = dut.FIFO_ID.value + 0x01010101
         await ClockCycles(dut.CLK, 1, True)
         assert dut.FIFOEMPTY.value == 0 ,"FIFOEMPTY != 0  after  long word transfered"
     assert dut.FIFOFULL.value == 1 ,"FIFOFULL != 1  after population"
@@ -128,7 +128,7 @@ async def fifo_test(dut):
         
         
     #test filling and emptying FIFO a longword at a time
-    dut.FIFO_ID.value = 0x11121314
+    dut.FIFO_ID.value = 0xa1b1c1d1
     while (dut.FIFOFULL.value != 1):
         dut.LLWORD.value = 1
         dut.LHWORD.value = 1 
@@ -140,7 +140,7 @@ async def fifo_test(dut):
         await ClockCycles(dut.CLK, 1, True)  
         dut.INCNI.value = 0
         dut.INCFIFO.value = 0
-        dut.FIFO_ID.value = dut.FIFO_ID.value + 0x10101010
+        dut.FIFO_ID.value = dut.FIFO_ID.value + 0x01010101
         await ClockCycles(dut.CLK, 1, True)
     dut.FIFO_ID.value = 0x00000000  
 
