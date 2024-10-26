@@ -20,6 +20,7 @@ module registers(
   input FIFOFULL,       // FIFO Full Flag
   input INTA_I,         // Interupt input
   input AS_O,           // Address strobe from CPU FSM
+  input DSP_DATA,
 
   output reg [31:0] REG_OD,     //DATA OUT.
   output PRESET,            //Peripheral Reset.
@@ -31,19 +32,21 @@ module registers(
   output DMADIR,            //DMA Direction
   output DMAENA,            //DMA Enabled.
   output REG_DSK_,          //Register Cycle Term.
-  output WDREGREQ           //SCSI IC Chip Select.
+  output WDREGREQ          //SCSI IC Chip Select.
+
 );
 
 wire CONTR_RD_;
 wire CONTR_WR;
 wire ISTR_RD_;
 wire WTC_RD_;
+wire DSP_RD_;
 wire INTENA;
 wire SSPBDAT_RD_;
 wire SSPBDAT_WR;
 wire VERSION_RD_;
 wire VERSION_WR;
-wire [4:0] MuxSelect;
+wire [5:0] MuxSelect;
 
 //Action strobes
 wire ST_DMA;    //Start DMA 
@@ -58,6 +61,7 @@ wire nDMADIR;
 reg [31:0] SSPBDAT;  //Fake Synchronous Serial Peripheral Bus Data Register (used to test SDMAC rev 4 in the test tool by CDH)
 
 reg [8*4:1] VERSION; //used to store the code version (git tag) limited to 4 ascii chars.
+reg [7:0] DSP;
 //reg [31:0] META_DATA0;
 //reg [31:0] META_DATA1;
 //reg [31:0] META_DATA2;
@@ -81,6 +85,7 @@ addr_decoder u_addr_decoder(
     .CONTR_RD_      (CONTR_RD_  ),
     .CONTR_WR       (CONTR_WR   ),
     .ISTR_RD_       (ISTR_RD_   ),
+    .DSP_RD_        (DSP_RD_    ),
     .ACR_WR         (ACR_WR     ),
     .ST_DMA         (ST_DMA     ),
     .SP_DMA         (SP_DMA     ),
@@ -165,13 +170,22 @@ always @(negedge RST_) begin
         VERSION <= "/$V$"; // This will get replaced with the release tag by github eg(v0.4).
 end
 
-assign MuxSelect = {~WTC_RD_, ~ISTR_RD_, ~CONTR_RD_, ~SSPBDAT_RD_, ~VERSION_RD_};
 
-localparam WTC_SEL = 5'b10000;
-localparam ISTR_SEL = 5'b01000;
-localparam CONTR_SEL = 5'b00100;
-localparam SSPBDAT_SEL = 5'b00010;
-localparam VERSION_SEL = 5'b00001;
+always @(negedge CLK or negedge RST_) begin
+    if (~RST_)
+        DSP <= 8'b0;
+    else if (~AS_)
+        DSP <= DSP_DATA;
+end
+
+assign MuxSelect = {~WTC_RD_, ~ISTR_RD_, ~CONTR_RD_, ~SSPBDAT_RD_, ~VERSION_RD_, ~DSP_RD_};
+
+localparam WTC_SEL = 6'b100000;
+localparam ISTR_SEL = 6'b010000;
+localparam CONTR_SEL = 6'b001000;
+localparam SSPBDAT_SEL = 6'b000100;
+localparam VERSION_SEL = 6'b000010;
+localparam DSP_SEL = 6'b000001;
 
 always @(*) begin
     case (MuxSelect)
@@ -180,6 +194,7 @@ always @(*) begin
       CONTR_SEL     : REG_OD <= {23'h0, CNTR_O};
       SSPBDAT_SEL   : REG_OD <= SSPBDAT;
       VERSION_SEL   : REG_OD <= VERSION;
+      DSP_SEL       : REG_OD <= {24'h0, DSP};
       default       : REG_OD <= 32'h00000000;
     endcase
 end

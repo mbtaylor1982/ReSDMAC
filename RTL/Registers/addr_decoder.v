@@ -15,6 +15,7 @@ module addr_decoder(
   output WTC_RD_,
   output SSPBDAT_RD_,
   output VERSION_RD_,
+  output DSP_RD_,
 
   output CONTR_WR,
   output ACR_WR,
@@ -38,7 +39,9 @@ wire h_20;
 //wire h_28;
 //wire h_2C;
 wire h_3C;
+wire h_5C;
 wire h_58;
+
 
 wire ADDR_VALID;
 assign ADDR_VALID = ~(DMAC_ | AS_);
@@ -55,6 +58,7 @@ assign h_20 = ADDR_VALID & (ADDR == 8'h20);
 //assign h_28 = ADDR_VALID & (ADDR == 8'h28);
 //assign h_2C = ADDR_VALID & (ADDR == 8'h2C);
 assign h_3C = ADDR_VALID & (ADDR == 8'h3C);
+assign h_5C = ADDR_VALID & (ADDR == 8'h5C);
 assign h_58 = ADDR_VALID & (ADDR == 8'h58);
 
 assign WDREGREQ = ADDR_VALID & (ADDR[7:4] == 4'h4);
@@ -65,6 +69,7 @@ assign CONTR_RD_    = ~(h_08 & RW);
 assign ISTR_RD_     = ~(h_1C & RW);
 assign SSPBDAT_RD_  = ~(h_58 & RW);
 assign VERSION_RD_  = ~(h_20 & RW);
+assign DSP_RD_      = ~(h_5C & RW);
 
 assign CONTR_WR     = (h_08 & ~RW);
 assign ACR_WR       = (h_0C & ~RW);

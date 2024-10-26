@@ -183,7 +183,8 @@ registers u_registers(
     .DMAENA    (DMAENA    ),
     .REG_DSK_  (REG_DSK_  ),
     .WDREGREQ  (WDREGREQ  ),
-    .AS_O      (AS_O_     )
+    .AS_O      (AS_O_     ),
+    .DSP_DATA  (PDATA_I[15:8])
 );
 
 CPU_SM u_CPU_SM(
