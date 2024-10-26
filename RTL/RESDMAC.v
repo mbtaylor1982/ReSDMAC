@@ -158,6 +158,7 @@ wire PD_OE;
 wire INT_O_;
 wire RST_FIFO;
 wire CPUSM_FIFO_RST;
+wire [7:0] DSP_DATA;
 
 registers u_registers(
     .ADDR      ({1'b0, ADDR, 2'b00}),
@@ -184,7 +185,7 @@ registers u_registers(
     .REG_DSK_  (REG_DSK_  ),
     .WDREGREQ  (WDREGREQ  ),
     .AS_O      (AS_O_     ),
-    .DSP_DATA  (PDATA_I[15:8])
+    .DSP_DATA  (DSP_DATA  )
 );
 
 CPU_SM u_CPU_SM(
@@ -373,6 +374,7 @@ assign A3 = ADDR[3];
 assign _INT = INT_O_ ? 1'bz : 1'b0;
 
 assign RST_FIFO = (DMAENA & ~CPUSM_FIFO_RST);
+assign DSP_DATA = {INC_ADD, CSX1, CSX0, PDATA_I[15], PDATA_I[14], PDATA_I[12], PDATA_I[11], PDATA_I[10]};
 
 // the "macro" to dump signals
 `ifdef COCOTB_SIM
