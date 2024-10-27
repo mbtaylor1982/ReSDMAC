@@ -376,6 +376,18 @@ assign _INT = INT_O_ ? 1'bz : 1'b0;
 assign RST_FIFO = (DMAENA & ~CPUSM_FIFO_RST);
 assign DSP_DATA = {INC_ADD, CSX1, CSX0, PDATA_I[15], PDATA_I[14], PDATA_I[12], PDATA_I[11], PDATA_I[10]};
 
+/*
+AP_0 = _dspINT0 = PIN 58 = NC2/PD10
+AP_1 = _dspINT1 = PIN 59 = NC3/PD11
+AP_2 = _dspCI2  = PIN 60 = NC4/PD12
+AP_3 = _dspCI6  = PIN 62 = NC6/PD14
+AP_4 = _dspMI2  = PIN 64 = NC7/PD15
+AP_5 = _dspMI6  = PIN 70 = _CSX0
+AP_6 = NC       = PIN 71 = _CSX1
+AP_7 = _dspRST  = PIN 74 = INC_ADD
+
+*/
+
 // the "macro" to dump signals
 `ifdef COCOTB_SIM
 initial begin

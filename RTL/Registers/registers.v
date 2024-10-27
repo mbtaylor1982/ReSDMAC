@@ -20,7 +20,7 @@ module registers(
   input FIFOFULL,       // FIFO Full Flag
   input INTA_I,         // Interupt input
   input AS_O,           // Address strobe from CPU FSM
-  input DSP_DATA,
+  input [7:0] DSP_DATA,
 
   output reg [31:0] REG_OD,     //DATA OUT.
   output PRESET,            //Peripheral Reset.
@@ -171,10 +171,10 @@ always @(negedge RST_) begin
 end
 
 
-always @(negedge CLK or negedge RST_) begin
+always @(posedge CLK or negedge RST_) begin
     if (~RST_)
         DSP <= 8'b0;
-    else if (~AS_)
+    else if (~DSP_RD_)
         DSP <= DSP_DATA;
 end
 

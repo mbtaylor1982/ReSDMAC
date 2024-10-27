@@ -12,6 +12,7 @@ from cocotb.wavedrom import Wavedrom, trace
 
 WTC_REG_ADR = 0x01
 VERSION_REG_ADR = 0x08
+DSP_REG_ADR =(0x5c >> 0x2)
 
 SCSI_REG_ADR1 = 0x10
 SCSI_REG_ADR2 = 0x11
@@ -597,37 +598,36 @@ async def RESDMAC_test(dut):
     #7 Test VERRSION register
     data = await read_data(dut, VERSION_REG_ADR, dut.u_registers.VERSION, header='Read From VERSION REG', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/VERSION_read.json')
     assert data == REV_STR, 'Version Register not returning expected data'
-
     
+    #8 Test DSP register
+    dut.u_registers.DSP_DATA.value = 0x55
+    data = await read_data(dut, DSP_REG_ADR, dut.u_registers.DSP, header='Read From DSP REG', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/DSP_read.json')
+    assert data == 0x55, 'DSP Register not returning expected data'
 
-    #8a Test DMA READ (from scsi to memory) 32 bit sterm cycle
+    #9a Test DMA READ (from scsi to memory) 32 bit sterm cycle
     await DMA_READ(dut, TEST_DATA_ARRAY_BYTE1, 0x00000000, "_STERM")
-    #8b Test DMA READ (from scsi to memory) 32 bit sterm cycle with left over bytes that need flushing from the fifo
+    #9b Test DMA READ (from scsi to memory) 32 bit sterm cycle with left over bytes that need flushing from the fifo
     await DMA_READ(dut, TEST_DATA_ARRAY_BYTE2, 0x00000000, "_STERM")
-    #8c Test DMA READ (from scsi to memory) 32 bit sterm cycle with more than one DMA cycle
+    #9c Test DMA READ (from scsi to memory) 32 bit sterm cycle with more than one DMA cycle
         #await DMA_READ(dut, TEST_DATA_ARRAY_BYTE3, 0x00000000, "_STERM")
-    #8d Test DMA READ (from scsi to memory) 32 bit DSACK0 cycle
+    #9d Test DMA READ (from scsi to memory) 32 bit DSACK0 cycle
         #await DMA_READ(dut, TEST_DATA_ARRAY_BYTE1, 0x00000000, "DSK0_IN_")
-    #8e Test DMA READ (from scsi to memory) 16 bit DSACK1 cycle
+    #9e Test DMA READ (from scsi to memory) 16 bit DSACK1 cycle
     await DMA_READ(dut, TEST_DATA_ARRAY_BYTE1, 0x00000000, "DSK1_IN_")
-    #8f Test DMA READ (from scsi to memory) 16 bit DSACK1 cycle
+    #9f Test DMA READ (from scsi to memory) 16 bit DSACK1 cycle
     await DMA_READ(dut, TEST_DATA_ARRAY_BYTE3, 0x00000000, "DSK1_IN_")
-    #8g Test DMA READ (from scsi to memory) 32 bit unaligend 
+    #9g Test DMA READ (from scsi to memory) 32 bit unaligend 
     await DMA_READ(dut, TEST_DATA_ARRAY_BYTE1, 0x02000000, "_STERM")
     await DMA_READ(dut, TEST_DATA_ARRAY_BYTE2, 0x02000000, "_STERM")
     
-    
-    
-    #9a Test DMA WRITE (from memory to SCSI) 32 bit sterm cycle
+    #10a Test DMA WRITE (from memory to SCSI) 32 bit sterm cycle
     await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG1, 0x00000000, "_STERM")
-    #9b Test DMA WRITE (from memory to SCSI) 32 bit sterm cycle unaligned
+    #10b Test DMA WRITE (from memory to SCSI) 32 bit sterm cycle unaligned
     await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG1, 0x02000000, "_STERM")
-    #9c Test DMA WRITE (from memory to SCSI) 32 bit sterm cycle with more than one DMA cycle
+    #10c Test DMA WRITE (from memory to SCSI) 32 bit sterm cycle with more than one DMA cycle
     await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG2, 0x00000000, "_STERM")
-    #9d Test DMA WRITE (from memory to SCSI) 16 bit DSACK1 cycle
+    #10d Test DMA WRITE (from memory to SCSI) 16 bit DSACK1 cycle
     await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG1, 0x00000000, "DSK1_IN_")
-    #9e Test DMA WRITE (from memory to SCSI) 16 bit DSACK1 cycle
+    #10e Test DMA WRITE (from memory to SCSI) 16 bit DSACK1 cycle
     await DMA_WRITE(dut, TEST_DATA_ARRAY_LONG2, 0x00000000, "DSK1_IN_")
-    
-    await read_data(dut, 0x17)
 
