@@ -34,13 +34,12 @@ if {$make_assignments} {
 	set_global_assignment -name LAST_QUARTUS_VERSION "21.1.0 Lite Edition"
 	set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files_$quartus(args)
 	set_global_assignment -name SMART_RECOMPILE OFF
-	set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/CPU_SM_INTERNALS3.v
-	set_global_assignment -name VERILOG_FILE ../RTL/mux2.v
-	set_global_assignment -name VERILOG_FILE ../RTL/SCSI_SM/scsi_sm_internals1.v
+	set_global_assignment -name FLOW_ENABLE_POWER_ANALYZER ON
+	set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
+	set_global_assignment -name SDC_FILE RESDMAC.out.sdc
+	set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/CPU_SM_INTERNALS.v
+	set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/CPU_SM.v
 	set_global_assignment -name VERILOG_FILE ../RTL/SCSI_SM/SCSI_SM_INTERNALS.v
-	set_global_assignment -name VERILOG_FILE ../RTL/PLL.v
-	set_global_assignment -name VERILOG_FILE ../RTL/SCSI_SM/scsi_sm_outputs.v
-	set_global_assignment -name VERILOG_FILE ../RTL/SCSI_SM/scsi_sm_inputs.v
 	set_global_assignment -name VERILOG_FILE ../RTL/SCSI_SM/SCSI_SM.v
 	set_global_assignment -name VERILOG_FILE ../RTL/Registers/registers_term.v
 	set_global_assignment -name VERILOG_FILE ../RTL/Registers/registers_istr.v
@@ -58,9 +57,7 @@ if {$make_assignments} {
 	set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath_24dec.v
 	set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath_8b_MUX.v
 	set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath.v
-	set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/CPU_SM_output.v
-	set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/CPU_SM_inputs.v
-	set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/CPU_SM.v
+	set_global_assignment -name VERILOG_FILE ../RTL/PLL.v
 	set_global_assignment -name VERILOG_FILE ../RTL/RESDMAC.v
 	set_global_assignment -name SIGNALTAP_FILE ReSDMAC.stp
 	set_global_assignment -name QIP_FILE attpll.qip
@@ -72,6 +69,9 @@ if {$make_assignments} {
 	set_global_assignment -name DEVICE_FILTER_PACKAGE UFBGA
 	set_global_assignment -name DEVICE_FILTER_PIN_COUNT 169
 	set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 8
+	set_global_assignment -name STATE_MACHINE_PROCESSING "ONE-HOT"
+	set_global_assignment -name SAFE_STATE_MACHINE ON
+	set_global_assignment -name HDL_MESSAGE_LEVEL LEVEL1
 	set_global_assignment -name DEVICE $quartus(args)
 	set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
 	set_global_assignment -name FITTER_EFFORT "STANDARD FIT"
@@ -208,7 +208,7 @@ if {$make_assignments} {
 	set_instance_assignment -name RESERVE_PIN AS_INPUT_TRI_STATED -to CSX1
 	set_instance_assignment -name RESERVE_PIN AS_INPUT_TRI_STATED -to CSX0
 	set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to _DREQ
-	set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to IORDY
+	set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to IORDY
 	set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to _BR
 	set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to R_W_IO
 	set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to _AS_IO
