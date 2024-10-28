@@ -8,7 +8,7 @@
 
 ### Introduction
 
-This project is an exercise in reverse engineering the Commodore SDMAC 390537 as found in the Amiga 3000
+This project is has been a community effort with the PCB design by [Jorgen Bilander](https://github.com/jbilander) and the code by [Mike Taylor](https://github.com/mbtaylor1982). It has been exercise in reverse engineering the Commodore SDMAC 390537 as found in the Amiga 3000
 
 This project was started with nothing more that the descriptions of the SDMAC operations and from the [Amiga 3000T Service manual](Docs/Commodore/Commodore_A3000T_Service_Manual.pdf), the [WD33c93 Datasheets](Docs/WD33C93/WD33C93B_WesternDigital.pdf) and some source code from the Amiga 3000 Linux scsi drivers.
 
@@ -31,7 +31,7 @@ To collate together the technical details of the SDMAC a markdown document has b
 
 ### Timing Diagrams
 
- Below are the VCD files output by the cocotb tests. these can be used to help verify the verilog code.
+ Below are the VCD files output by the cocotb tests. these have been used to help verify the verilog code.
 
 ![Register access timing](assets/VCD1.png "Register access timing")
 ![DMA cycle timing](assets/VCD2.png "DMA cycle timing")
@@ -40,22 +40,22 @@ To collate together the technical details of the SDMAC a markdown document has b
 
 Thankyou to all the people who have helped with this project especially:
 
-- [Stefan Skotte aka Screemo](https://github.com/stefanskotte) For the long term loan of a REV 2 SDMAC.
 - [Andy aka trixster1979](https://github.com/trixster1979) For the long term loan of a REV 4 SDMAC and dedicated testing of this on the AA3000+
-- [Matt Harlum Liv2](https://github.com/LIV2) for checking over the my code and interpretation of the FSM schematics.
 - [Chris Hooper aka CDH](https://github.com/cdhooper) For providing various adaptor PCBs and breakout boards, also for writing the [SDMAC test program](https://github.com/cdhooper/amiga_sdmac_test).
 - [Jorgen Bilander](https://github.com/jbilander) For adapting the [ReAgnus](https://github.com/jbilander/ReAgnus) design to suit the SDMAC, and also for crating the [ReSDMAC-devboard](https://github.com/jbilander/ReSDMAC-devboard)
-- [Stephen Leary AKA Terriblefire](https://github.com/terriblefire/) For publishing the verilog code for his projects and inspiring me to learn verilog and take on this project way back in 2021
+- [Matt Harlum Liv2](https://github.com/LIV2) for checking over the my code and interpretation of the FSM schematics.
 - [Matthias Heinrichs](https://github.com/MHeinrichs) For providing the Original Statemachine documentation
-- [Stefan Reinauer](https://github.com/reinauer) For his execelnt work showcasing this at Amiwest 2024
+- [Stefan Reinauer](https://github.com/reinauer) For his excellent work showcasing this at Amiwest 2024
+- [Stefan Skotte aka Screemo](https://github.com/stefanskotte) For the long term loan of a REV 2 SDMAC.
+- [Stephen Leary AKA Terriblefire](https://github.com/terriblefire/) For publishing the verilog code for his projects and inspiring me to learn verilog and take on this project way back in 2021
 
 #### Honourable mentions
 
-others that have helped out with words of encouragement and general support.
+Others that have helped out with words of encouragement and general support.
 
 - [John Hertell aka Chucky](https://github.com/ChuckyGang)
-- [Wrangler](https://github.com/Wrangler491)
 - [shanshe](https://github.com/shanshe)
+- [Wrangler](https://github.com/Wrangler491)
 
 ***
 [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
