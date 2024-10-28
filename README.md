@@ -14,7 +14,7 @@ This project was started with nothing more that the descriptions of the SDMAC op
 
 Since then schematics for what appears to be the Rev 3(C) surfaced along with the original finite sate machine descriptions:
 
-- [SDMAC_RevC.pdf](Docs/Commodore/sdmac_RevC.pdf)
+- [SDMAC_RevC.pdf](Docs/Commodore/SDMAC_RevC.pdf)
 - [Original Statemachine documentation](https://github.com/mbtaylor1982/ReSDMAC/issues/8)
 
 ### SDMAC Documentation
