@@ -114,7 +114,7 @@ assign BO1 = BYTE_PTR[1];
 assign BOEQ0 = (BYTE_PTR == 0);
 assign BOEQ3 = (BYTE_PTR == 3);
 
-//32 byte FIFO buffer (8 x 32 bit long words)
+//32 bit wide FIFO buffer default depth = 8
 reg [WIDTH-1:0] BUFFER [DEPTH-1:0];
 integer i;
 

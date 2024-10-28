@@ -2,7 +2,6 @@
 
 `ifdef __ICARUS__ 
     `include "SCSI_SM_INTERNALS.v"
-    `include "scsi_sm_internals1.v"
 `endif
 
 module SCSI_SM

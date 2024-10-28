@@ -23,14 +23,14 @@ always @ (negedge CLK) begin
       if (COUNT == MAX)
         COUNT <= 0;
       else
-        COUNT <= COUNT + 1;
+        COUNT <= COUNT + 1'b1;
     end
 
     if (DEC) begin
       if (COUNT == 0)
         COUNT <= MAX;
       else
-        COUNT <= COUNT - 1;
+        COUNT <= COUNT - 1'b1;
     end
   end
 end

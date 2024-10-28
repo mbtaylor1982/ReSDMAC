@@ -2,11 +2,9 @@
 
 [![build](https://github.com/mbtaylor1982/RE-SDMAC/actions/workflows/build.yml/badge.svg)](https://github.com/mbtaylor1982/RE-SDMAC/actions/workflows/build.yml)
 [![test](https://github.com/mbtaylor1982/ReSDMAC/actions/workflows/test.yml/badge.svg)](https://github.com/mbtaylor1982/ReSDMAC/actions/workflows/test.yml)  
-[![join](https://dcbadge.vercel.app/api/server/PxHb69nY3q)](https://discord.gg/PxHb69nY3q)  
+[![join](https://dcbadge.limes.pink/api/server/INVITE)](https://discord.gg/NezUTSZwJ8)
 
-### Status
-
->:red_circle:  **This project is still a work in progress and the code and hardware design is likely to change. this is why there are no instructions on how to build or program the board yet.**
+##
 
 ### Introduction
 
@@ -21,41 +19,47 @@ Since then Partial schmatics surfaced with some pages missing. I've done my best
 To collate togethe the technical details of the SDMAC a markdown document has been created and is [linked here](Docs/SDMAC.md)
 This will be updated with timing diagrams, state diagrams schmatic fragments as appropriate.
 
-
 #### FIFO
 
 The FIFO is implmented with an 8 x 32 bit long word buffer, each long word can be loaded one byte at a time, one word at a time (high or low) or all at once. This is controled by the Byte Pointer and the write strobe sub circuit in within the FIFO. Reading from the FIFO is asynchronous and the longword pointed to by the read (Next Out) pointer is always present on the output data bus of the FIFO.
 
 #### CPU State Machine
+
 TODO:
 #### SCSI State Machine!
+
 [Details here](RTL/SCSI_SM/README.md)
 
 #### Resgisters
+
 TODO:
+
 #### Datapath
+
 TODO:
 
 ***
 
 BOM Rev. 1A
----------
-Reference  | Name/Value   | Package | Notes
--|-|-|-|
-U1 | 10M04SCU169C8G | BGA-169 11.0x11.0mm_Layout13x13 | FPGA Intel MAX 10 [10M04SCU169C8G](https://www.mouser.com/ProductDetail/989-10M04SCU169C8G)
-U2 | LM1117-3.3 | SOT-223 | Low-Dropout Linear Regulator 3.3 Volt
-U3-U6 | SN74CBTD16210 | TSSOP-48 6.1x12.5mm_P0.5mm | 20-BIT FET Bus switch with level shifting, high-speed TTL-compatible. [74CBTD16210DGGR](https://www.mouser.com/ProductDetail/595-74CBTD16210DGGR)
-U7 | Winslow PLCC-84 Plug | PLCC-84 Plug | Optionally use a home made plug (stacked PCBs)
-U8 | PLCC-84_TH_pin_holes | TH_plug_pins | Pins to use with homemade plug, 1.27mm pitch Long Pin 1x40P or 1x50P [Aliexpress](https://www.aliexpress.com/item/32894911767.html) Cut to length after soldering.
-RN1 | CAY16-103J4LF RES ARRAY 4 Resistors 10k Ω | 1206 | [CAY16-103J4LF](https://www.mouser.com/ProductDetail/652-CAY16-103J4LF)
-RN2 | CAY16-103J4LF RES ARRAY 4 Resistors 10k Ω | 1206 | --"--
-C1-3 | Capacitor 10uF | 1206 | 
-C4,C5,C8,C11 | Capacitor 1uF | 0805 | 
-C6,C7,C9,C10 | Capacitor 0.1uF = 100nF | 0805 | 
-C12-C19 | Capacitor 0.01uF = 10nF | 0603 |
-C20 | Capacitor 0.1uF = 100nF | 0603 |
-C21-C24 | Capacitor 0.01uF = 10nF | 0603 |
-JTAG | SMT Pin Header Male | SMT 2 x 5 Pin 2.0mm pitch |
+
+***
+
+Reference    | Name/Value                                | Package                         | Notes
+-------------|-------------------------------------------|---------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+U1           | 10M04SCU169C8G                            | BGA-169 11.0x11.0mm_Layout13x13 | FPGA Intel MAX 10 [10M04SCU169C8G](https://www.mouser.com/ProductDetail/989-10M04SCU169C8G)
+U2           | LM1117-3.3                                | SOT-223                         | Low-Dropout Linear Regulator 3.3 Volt
+U3-U6        | SN74CBTD16210                             | TSSOP-48 6.1x12.5mm_P0.5mm      | 20-BIT FET Bus switch with level shifting, high-speed TTL-compatible. [74CBTD16210DGGR](https://www.mouser.com/ProductDetail/595-74CBTD16210DGGR)
+U7           | Winslow PLCC-84 Plug                      | PLCC-84 Plug                    | Optionally use a home made plug (stacked PCBs)
+U8           | PLCC-84_TH_pin_holes                      | TH_plug_pins                    | Pins to use with homemade plug, 1.27mm pitch Long Pin 1x40P or 1x50P [Aliexpress](https://www.aliexpress.com/item/32894911767.html) Cut to length after soldering.
+RN1          | CAY16-103J4LF RES ARRAY 4 Resistors 10k Ω | 1206                            | [CAY16-103J4LF](https://www.mouser.com/ProductDetail/652-CAY16-103J4LF)
+RN2          | CAY16-103J4LF RES ARRAY 4 Resistors 10k Ω | 1206                            | --"--
+C1-3         | Capacitor 10uF                            | 1206                            |
+C4,C5,C8,C11 | Capacitor 1uF                             | 0805                            |
+C6,C7,C9,C10 | Capacitor 0.1uF = 100nF                   | 0805                            |
+C12-C19      | Capacitor 0.01uF = 10nF                   | 0603                            |
+C20          | Capacitor 0.1uF = 100nF                   | 0603                            |
+C21-C24      | Capacitor 0.01uF = 10nF                   | 0603                            |
+JTAG         | SMT Pin Header Male                       | SMT 2 x 5 Pin 2.0mm pitch       |
 
 ***
 

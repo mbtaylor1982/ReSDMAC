@@ -11,12 +11,12 @@
         {
             "name": "ADDR",
             "wave": "=.=.....=...",
-            "data": "0x0 0x8 0x0"
+            "data": "0x0 0x17 0x0"
         },
         {
             "name": "DATA_O",
-            "wave": "=..=....=...",
-            "data": "0x0 0x2f245624 0x0"
+            "wave": "=...=...=...",
+            "data": "0x0 0x55 0x0"
         },
         {
             "name": "R_W",
@@ -36,13 +36,13 @@
             "data": "0x3 0x0 0x3"
         },
         {
-            "name": "VERSION",
-            "wave": "=...........",
-            "data": "0x2f245624"
+            "name": "DSP",
+            "wave": "=...=.......",
+            "data": "0x0 0x55"
         }
     ],
     "head": {
-        "text": "Read From VERSION REG"
+        "text": "Read From DSP REG"
     },
     "foot": {
         "text": "SCLK:25Mhz (T:40ns)"

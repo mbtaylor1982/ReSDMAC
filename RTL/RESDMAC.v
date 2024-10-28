@@ -45,13 +45,13 @@ module RESDMAC(
 
     inout tri1 [15:0] PD_PORT,     	//Peripheral Data port
 	 
-	 input INC_ADD,
 	 input IORDY,
-	 input CSX1,
-	 input CSX0,
 	 input INTB,
 	 input JP,
-	 input PIN_D8
+	 input PIN_D8,
+	 input INC_ADD,
+	 input CSX1,
+	 input CSX0
 	 
 );
 
@@ -167,7 +167,6 @@ registers u_registers(
     .RW        (R_W       ),
     .CLK       (CLK45     ),
     .MID       (MID       ),
-    //.STOPFLUSH (STOP_FLUSH_E),
     .STOPFLUSH (STOPFLUSH),
     .RST_      (_RST ),
     .FIFOEMPTY (FIFOEMPTY ),
@@ -229,7 +228,7 @@ CPU_SM u_CPU_SM(
     .PLHW          (PLHW        ),
     .AS_           (AS_I_       ),
     .BGACK_I_      (_BGACK_I    ),
-    .RST_FIFO      (CPUSM_FIFO_RST)    
+    .RST_FIFO      (CPUSM_FIFO_RST)
 
 );
 
@@ -273,7 +272,6 @@ fifo int_fifo(
     .LLWORD      (LLW       ),
     .LHWORD      (LHW       ),
     .LBYTE_      (LBYTE_    ),
-    //.RST_FIFO_   (DMAENA    ),
     .RST_FIFO_   (RST_FIFO  ),
     .A1          (A1        ),
     .FIFO_ID     (FIFO_ID   ),

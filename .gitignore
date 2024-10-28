@@ -53,3 +53,17 @@ out/
 /RTL/cocotb/__pycache__/*.pyc
 *.stp
 
+RTL/cocotb/FIFO/__pycache__/cocotb_fifo_3bit_cntr.cpython-311-pytest-7.4.1.pyc
+RTL/cocotb/FIFO/__pycache__/cocotb_fifo_full_empty_ctr.cpython-311-pytest-7.4.1.pyc
+RTL/cocotb/FIFO/__pycache__/cocotb_fifo.cpython-311-pytest-7.4.1.pyc
+RTL/cocotb/FIFO/__pycache__/test_fifo.cpython-311-pytest-7.4.1.pyc
+RTL/cocotb/Registers/__pycache__/cocotb_registers_cntr.cpython-311-pytest-7.4.1.pyc
+RTL/cocotb/Registers/__pycache__/cocotb_registers_istr.cpython-311-pytest-7.4.1.pyc
+RTL/cocotb/Registers/__pycache__/cocotb_registers_term.cpython-311-pytest-7.4.1.pyc
+RTL/cocotb/Registers/__pycache__/cocotb_registers.cpython-311-pytest-7.4.1.pyc
+RTL/cocotb/Registers/__pycache__/test_registers.cpython-311-pytest-7.4.1.pyc
+RTL/cocotb/FIFO/__pycache__/cocotb_fifo_3bit_cntr.cpython-311-pytest-7.4.1.pyc
+RTL/cocotb/FIFO/__pycache__/cocotb_fifo_full_empty_ctr.cpython-311-pytest-7.4.1.pyc
+RTL/cocotb/FIFO/__pycache__/cocotb_fifo.cpython-311-pytest-7.4.1.pyc
+RTL/cocotb/FIFO/__pycache__/test_fifo.cpython-311-pytest-7.4.1.pyc
+__pycache__

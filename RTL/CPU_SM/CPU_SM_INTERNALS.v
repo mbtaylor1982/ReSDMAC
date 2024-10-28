@@ -1,6 +1,6 @@
 //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
 
-module CPU_SM_INTERNALS3(
+module CPU_SM_INTERNALS(
 
     input CLK,              // sCLK
     input CLK45,            // sCLK phase shifted 45 degrees.
@@ -250,7 +250,6 @@ always @(*) begin
 end
 
 always @(*) begin
-
     INCNI       <= 1'b0;
     BREQ        <= 1'b0;
     SIZE1       <= 1'b0;
