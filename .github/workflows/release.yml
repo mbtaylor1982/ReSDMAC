@@ -65,6 +65,8 @@ jobs:
         run: quartus_sh -t  RESDMAC.tcl 10M16SCU169C8G
       - name: Run 10M04 compilation flow
         run: quartus_sh -t  RESDMAC.tcl 10M04SCU169C8G
+      - name: Run 10M02 compilation flow
+        run: quartus_sh -t  RESDMAC.tcl 10M02SCU169C8G
       ##########################################################################
       ## 5 - Upload artifacts
       ##########################################################################
@@ -80,6 +82,12 @@ jobs:
           name: RESDMAC_10M04_${{ steps.version.outputs.version }}.zip
           path: Quartus/output_files_10M04SCU169C8G
           retention-days: 0
+      - name: Upload artifacts 10M02
+        uses: actions/upload-artifact@v4
+        with:
+          name: RESDMAC_10M02_${{ steps.version.outputs.version }}.zip
+          path: Quartus/output_files_10M02SCU169C8G
+          retention-days: 0
       ##########################################################################
       ## 6 - Create tag with version and SHA256 checksum
       ##########################################################################
@@ -88,8 +96,10 @@ jobs:
           mkdir -p ../releases
           cp output_files_10M16SCU169C8G/RESDMAC.pof ../releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.pof
           cp output_files_10M04SCU169C8G/RESDMAC.pof ../releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof
+          cp output_files_10M02SCU169C8G/RESDMAC.pof ../releases/RESDMAC_10M02_${{ steps.version.outputs.version }}.pof
           sha256sum output_files_10M16SCU169C8G/RESDMAC.pof > ../releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.pof.sha256
           sha256sum output_files_10M04SCU169C8G/RESDMAC.pof > ../releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof.sha256
+          sha256sum output_files_10M02SCU169C8G/RESDMAC.pof > ../releases/RESDMAC_10M02_${{ steps.version.outputs.version }}.pof.sha256
       ##########################################################################
       ## 7 - Gernerate Change Log
       ##########################################################################
@@ -111,3 +121,5 @@ jobs:
             releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.pof.sha256
             releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof
             releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof.sha256
+            releases/RESDMAC_10M02_${{ steps.version.outputs.version }}.pof
+            releases/RESDMAC_10M02_${{ steps.version.outputs.version }}.pof.sha256

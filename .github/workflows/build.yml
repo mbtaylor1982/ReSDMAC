@@ -31,7 +31,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       # 2 - RTL synthesis 10M16
-      - name: Run compilation flow
+      - name: Run compilation flow 10M16
         run: quartus_sh -t  RESDMAC.tcl 10M16SCU169C8G
       # 3 - Upload artifacts
       - name: Upload 10M16SCU169C8G Firmware
@@ -40,8 +40,8 @@ jobs:
           name: OutputFiles_10M16SCU169C8G.zip
           path: Quartus/output_files_10M16SCU169C8G
           retention-days: 14
-      # 4 - RTL synthesis 10M16
-      - name: Run compilation flow
+      # 4 - RTL synthesis 10M04
+      - name: Run compilation flow 10M04
         run: quartus_sh -t  RESDMAC.tcl 10M04SCU169C8G
       # 5 - Upload artifacts
       - name: Upload 10M04SCU169C8G Firmware
@@ -49,4 +49,14 @@ jobs:
         with:
           name: OutputFiles_10M04SCU169C8G.zip
           path: Quartus/output_files_10M04SCU169C8G
+          retention-days: 14
+      # 6 - RTL synthesis 10M02
+      - name: Run compilation flow 10M02
+        run: quartus_sh -t  RESDMAC.tcl 10M02SCU169C8G
+      # 7 - Upload artifacts
+      - name: Upload 10M02SCU169C8G Firmware
+        uses: actions/upload-artifact@v4
+        with:
+          name: OutputFiles_10M02SCU169C8G.zip
+          path: Quartus/output_files_10M02SCU169C8G
           retention-days: 14
