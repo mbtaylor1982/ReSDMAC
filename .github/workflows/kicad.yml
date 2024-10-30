@@ -16,5 +16,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: KiCad_Outputs.zip
-          path: Generated
+          path: KiCad/Generated
           retention-days: 0
