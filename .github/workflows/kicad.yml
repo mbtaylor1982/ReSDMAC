@@ -1,0 +1,20 @@
+name: KiCad
+
+on:
+    workflow_dispatch:
+jobs:
+  kicad_outputs:
+    runs-on: ubuntu-latest
+    container: ghcr.io/inti-cmnb/kicad5_auto:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Gernerate_Outptus
+        working-directory: KiCad
+        run: kibot --quick-start
+      - name: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: KiCad_Outputs.zip
+          path: KiCad\Generated
+          retention-days: 0

@@ -19,14 +19,32 @@ defaults:
     working-directory: Quartus
 
 jobs:
+  kicad_outputs:
+    runs-on: ubuntu-latest
+    container: ghcr.io/inti-cmnb/kicad5_auto:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Gernerate_Outptus
+        working-directory: KiCad
+        run: kibot --quick-start
+      - name: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: KiCad_Outputs.zip
+          path: KiCad\Generated
+          retention-days: 0
+
   create_release:
+    needs:
+      - kicad_outputs
     runs-on: ubuntu-latest
     container:
       image: mbtaylor1982/quartus:22.1
       credentials:
         username: ${{ secrets.DOCKER_HUB_USER }}
         password: ${{ secrets.DOCKER_HUB_PWD }} 
-    #container: raetro/quartus:17.1        # Use DockerHub
+        #container: raetro/quartus:17.1        # Use DockerHub
     ############################################################################
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -62,10 +80,13 @@ jobs:
       ## 4 - RTL synthesis
       ##########################################################################
       - name: Run 10M16 compilation flow
+        working-directory: Quartus
         run: quartus_sh -t  RESDMAC.tcl 10M16SCU169C8G
       - name: Run 10M04 compilation flow
+        working-directory: Quartus
         run: quartus_sh -t  RESDMAC.tcl 10M04SCU169C8G
       - name: Run 10M02 compilation flow
+        working-directory: Quartus
         run: quartus_sh -t  RESDMAC.tcl 10M02SCU169C8G
       ##########################################################################
       ## 5 - Upload artifacts
