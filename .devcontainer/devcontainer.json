@@ -12,6 +12,36 @@
 			"version": "latest",
 			"dockerDashComposeVersion": "latest"
 		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"aaron-bond.better-comments",
+				"raamakrishnan.bluespec-system-verilog",
+				"usernamehw.errorlens",
+				"mhutchie.git-graph",
+				"donjayamanne.githistory",
+				"formulahendry.github-actions",
+				"github.vscode-github-actions",
+				"me-dutour-mathieu.vscode-github-actions",
+				"GitHub.codespaces",
+				"ldez.ignore-files",
+				"yzhang.markdown-all-in-one",
+				"bierner.markdown-emoji",
+				"Cameron.vscode-pytest",
+				"ms-python.python",
+				"surfer-project.surfer",
+				"go2sh.tcl-language-support",
+				"tzylee.verilog-highlight",
+				"czh.czh-verilog-snippet",
+				"Seongmock.verilog-autoline",
+				"mshr-h.veriloghdl",
+				"czj.verilog-simplealign",
+				"vscode-icons-team.vscode-icons",
+				"bmpenuelas.waveform-render",
+				"redhat.vscode-yaml"
+			]
+		}
 	}
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
