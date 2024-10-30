@@ -1,8 +1,19 @@
 # ReSDMAC
 
-[![build](https://github.com/mbtaylor1982/RE-SDMAC/actions/workflows/build.yml/badge.svg)](https://github.com/mbtaylor1982/RE-SDMAC/actions/workflows/build.yml)
-[![test](https://github.com/mbtaylor1982/ReSDMAC/actions/workflows/test.yml/badge.svg)](https://github.com/mbtaylor1982/ReSDMAC/actions/workflows/test.yml)  
+![CC BY-SA 4.0][cc-by-sa-shield]
+
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/mbtaylor1982/resdmac/build.yml)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/mbtaylor1982/resdmac/test.yml?label=tests)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/mbtaylor1982/ReSDMAC)
+
+![GitHub Release](https://img.shields.io/github/v/release/mbtaylor1982/resdmac?sort=date&display_name=release)
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/mbtaylor1982/resdmac/total)
+
 [![join](https://dcbadge.limes.pink/api/server/https://discord.gg/NezUTSZwJ8)](https://discord.gg/NezUTSZwJ8)
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/L3L4XGH2R)
+
+***
 
 ##
 
@@ -12,7 +23,7 @@ This project is has been a community effort with the PCB design by [Jorgen Bilan
 
 This project was started with nothing more that the descriptions of the SDMAC operations and from the [Amiga 3000T Service manual](Docs/Commodore/Commodore_A3000T_Service_Manual.pdf), the [WD33c93 Datasheets](Docs/WD33C93/WD33C93B_WesternDigital.pdf) and some source code from the Amiga 3000 Linux scsi drivers.
 
-Since then schematics for what appears to be the Rev 3(C) surfaced along with the original finite sate machine descriptions:
+Since then schematics for what appears to be the Rev 3(C) surfaced along with the original finite state machine descriptions:
 
 - [SDMAC_RevC.pdf](Docs/Commodore/SDMAC_RevC.pdf)
 - [Original Statemachine documentation](https://github.com/mbtaylor1982/ReSDMAC/issues/8)
@@ -58,13 +69,11 @@ Others that have helped out with words of encouragement and general support.
 - [Wrangler](https://github.com/Wrangler491)
 
 ***
-[![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
-
-This work is licensed under a
-[Creative Commons Attribution-ShareAlike 4.0 International License][cc-by-sa].
-
+This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License][cc-by-sa].
 [![CC BY-SA 4.0][cc-by-sa-image]][cc-by-sa]
 
 [cc-by-sa]: http://creativecommons.org/licenses/by-sa/4.0/
+
 [cc-by-sa-image]: https://licensebuttons.net/l/by-sa/4.0/88x31.png
+
 [cc-by-sa-shield]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
