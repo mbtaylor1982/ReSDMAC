@@ -32,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: KiCad_Outputs.zip
-          path: KiCad\Generated
+          path: Generated
           retention-days: 0
 
   create_release:
