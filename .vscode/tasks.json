@@ -63,7 +63,7 @@
                   "severity": 1,
                   "message": 3,
                   "file": 4,
-                  "line": 5 
+                  "line": 5
                 }
             },
             "dependsOn":["Clean_sim_build"]
@@ -102,7 +102,7 @@
             "windows":{
                 "command": "docker run -v ${pwd}:/test -w /test -it mbtaylor1982/cocotb-iverilog:latest cocotb-clean -r"
             },
-            "detail": "Run Testbench",
+            "detail": "clean up testbench outputs",
             "presentation": {
                 "echo": true,
                 "reveal": "always",
