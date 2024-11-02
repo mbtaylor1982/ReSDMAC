@@ -39,10 +39,10 @@
 
 ### Write
 
-![SCSI_write](https://svg.wavedrom.com/github/mbtaylor1982/ReSDMAC/main/Docs/TimingDiagrams/SCSI_WriteAddr1.json)
-![SCSI_write](https://svg.wavedrom.com/github/mbtaylor1982/ReSDMAC/main/Docs/TimingDiagrams/SCSI_WriteAddr2.json)
-![SCSI_write](https://svg.wavedrom.com/github/mbtaylor1982/ReSDMAC/main/Docs/TimingDiagrams/SCSI_WriteAddr3.json)
-![SCSI_write](https://svg.wavedrom.com/github/mbtaylor1982/ReSDMAC/main/Docs/TimingDiagrams/SCSI_WriteAddr4.json)
+![SCSI_write](https://svg.wavedrom.com/github/mbtaylor1982/ReSDMAC/main/Docs/TimingDiagrams/SCSI_WriteAddr_1.json)
+![SCSI_write](https://svg.wavedrom.com/github/mbtaylor1982/ReSDMAC/main/Docs/TimingDiagrams/SCSI_WriteAddr_2.json)
+![SCSI_write](https://svg.wavedrom.com/github/mbtaylor1982/ReSDMAC/main/Docs/TimingDiagrams/SCSI_WriteAddr_3.json)
+![SCSI_write](https://svg.wavedrom.com/github/mbtaylor1982/ReSDMAC/main/Docs/TimingDiagrams/SCSI_WriteAddr_4.json)
 
 ## SSPBDAT Register
 
