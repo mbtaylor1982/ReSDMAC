@@ -4,7 +4,7 @@
 
 /RTL/build
 /sim_build
-/RESDMAC_assignment_defaults.qdf
+
 /RTL/cocotb/FIFO/__pycache__
 /RTL/cocotb/Registers/__pycache__
 /RTL/cocotb/__pycache__
@@ -13,6 +13,7 @@
 /Quartus/db
 /Quartus/simulation
 /Quartus/incremental_db
+/Quartus/RESDMAC_assignment_defaults.qdf
 /KiCad/Generated
 
 Thumbs.db
