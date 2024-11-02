@@ -19,7 +19,7 @@
 #
 # Quartus Prime
 # Version 22.1std.2 Build 922 07/20/2023 SC Lite Edition
-# Date created = 19:11:47  September 23, 2024
+# Date created = 11:06:13  November 02, 2024
 #
 # -------------------------------------------------------------------------- #
 #
@@ -45,13 +45,12 @@ set_global_assignment -name PROJECT_CREATION_TIME_DATE "23:14:24  DECEMBER 29, 2
 set_global_assignment -name LAST_QUARTUS_VERSION "22.1std.2 Lite Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files_10M16SCU169C8G
 set_global_assignment -name SMART_RECOMPILE OFF
-set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/CPU_SM_INTERNALS3.v
-set_global_assignment -name VERILOG_FILE ../RTL/mux2.v
-set_global_assignment -name VERILOG_FILE ../RTL/SCSI_SM/scsi_sm_internals1.v
+set_global_assignment -name FLOW_ENABLE_POWER_ANALYZER ON
+set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
+set_global_assignment -name SDC_FILE RESDMAC.out.sdc
+set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/CPU_SM_INTERNALS.v
+set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/CPU_SM.v
 set_global_assignment -name VERILOG_FILE ../RTL/SCSI_SM/SCSI_SM_INTERNALS.v
-set_global_assignment -name VERILOG_FILE ../RTL/PLL.v
-set_global_assignment -name VERILOG_FILE ../RTL/SCSI_SM/scsi_sm_outputs.v
-set_global_assignment -name VERILOG_FILE ../RTL/SCSI_SM/scsi_sm_inputs.v
 set_global_assignment -name VERILOG_FILE ../RTL/SCSI_SM/SCSI_SM.v
 set_global_assignment -name VERILOG_FILE ../RTL/Registers/registers_term.v
 set_global_assignment -name VERILOG_FILE ../RTL/Registers/registers_istr.v
@@ -69,19 +68,19 @@ set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath_input.v
 set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath_24dec.v
 set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath_8b_MUX.v
 set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath.v
-set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/CPU_SM_output.v
-set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/CPU_SM_inputs.v
-set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/CPU_SM.v
+set_global_assignment -name VERILOG_FILE ../RTL/PLL.v
 set_global_assignment -name VERILOG_FILE ../RTL/RESDMAC.v
 set_global_assignment -name SIGNALTAP_FILE ReSDMAC.stp
-set_global_assignment -name QIP_FILE attpll.qip
-set_global_assignment -name FLOW_ENABLE_POWER_ANALYZER ON
+set_global_assignment -name QIP_FILE IP/attpll.qip
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name TIMING_ANALYZER_MULTICORNER_ANALYSIS ON
 set_global_assignment -name DEVICE_FILTER_PACKAGE UFBGA
 set_global_assignment -name DEVICE_FILTER_PIN_COUNT 169
 set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 8
+set_global_assignment -name STATE_MACHINE_PROCESSING "ONE-HOT"
+set_global_assignment -name SAFE_STATE_MACHINE ON
+set_global_assignment -name HDL_MESSAGE_LEVEL LEVEL1
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
 set_global_assignment -name FITTER_EFFORT "STANDARD FIT"
 set_global_assignment -name ENABLE_BOOT_SEL_PIN OFF
@@ -107,13 +106,13 @@ set_global_assignment -name ASSIGNMENT_GROUP_MEMBER _RST -section_id GlobalSigna
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_timing
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_symbol
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_signal_integrity
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_boundary_scan
 set_global_assignment -name EN_USER_IO_WEAK_PULLUP OFF
 set_global_assignment -name EN_SPI_IO_WEAK_PULLUP OFF
+set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp
 set_global_assignment -name VCCA_USER_VOLTAGE 3.3V
 set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 3.3V
 set_location_assignment PIN_M9 -to DATA_IO[31]

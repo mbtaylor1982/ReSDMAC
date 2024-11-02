@@ -60,7 +60,7 @@ if {$make_assignments} {
 	set_global_assignment -name VERILOG_FILE ../RTL/PLL.v
 	set_global_assignment -name VERILOG_FILE ../RTL/RESDMAC.v
 	set_global_assignment -name SIGNALTAP_FILE ReSDMAC.stp
-	set_global_assignment -name QIP_FILE attpll.qip
+	set_global_assignment -name QIP_FILE IP/attpll.qip
 	set_global_assignment -name FLOW_ENABLE_POWER_ANALYZER ON
 	set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 	set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
