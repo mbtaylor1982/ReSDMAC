@@ -5,6 +5,7 @@
     `include "registers_istr.v"
     `include "registers_cntr.v"
     `include "registers_term.v"
+    `include "registers_flash.v"
 `endif
 
 module registers(
@@ -46,7 +47,14 @@ wire SSPBDAT_RD_;
 wire SSPBDAT_WR;
 wire VERSION_RD_;
 wire VERSION_WR;
-wire [5:0] MuxSelect;
+wire FLASH_ADDR_RD_;
+wire FLASH_ADDR_WR;
+wire FLASH_DATA_RD_;
+wire FLASH_DATA_WR;
+wire FLASH_TERM;
+wire [7:0] MuxSelect;
+wire [31:0] FLASH_DATA_OUT;
+wire DSACK_TERM_;
 
 //Action strobes
 wire ST_DMA;    //Start DMA 
@@ -62,6 +70,7 @@ reg [31:0] SSPBDAT;  //Fake Synchronous Serial Peripheral Bus Data Register (use
 
 reg [8*4:1] VERSION; //used to store the code version (git tag) limited to 4 ascii chars.
 reg [7:0] DSP;
+reg [23:0] FLASH_ADDR;
 //reg [31:0] META_DATA0;
 //reg [31:0] META_DATA1;
 //reg [31:0] META_DATA2;
@@ -94,7 +103,11 @@ addr_decoder u_addr_decoder(
     .SSPBDAT_WR     (SSPBDAT_WR ),
     .SSPBDAT_RD_    (SSPBDAT_RD_),
     .VERSION_RD_    (VERSION_RD_),
-    .VERSION_WR     (VERSION_WR )
+    .VERSION_WR     (VERSION_WR ),
+    .FLASH_ADDR_RD_ (FLASH_ADDR_RD_),
+    .FLASH_ADDR_WR  (FLASH_ADDR_WR),
+    .FLASH_DATA_RD_ (FLASH_DATA_RD_),
+    .FLASH_DATA_WR  (FLASH_DATA_WR)
 );
 
 //Interupt Status Register
@@ -133,7 +146,18 @@ registers_term u_registers_term(
     .DMAC_    (DMAC_    ),
     .WDREGREQ (WDREGREQ ),
     .h_0C     (h_0C     ),
-    .REG_DSK_ (REG_DSK_ )
+    .REG_DSK_ (DSACK_TERM_)
+);
+
+registers_flash u_registers_flash(
+    .CLK            (CLK        ),
+    .nRST           (_RST       ),
+    .FLASH_DATA_RD_ (FLASH_DATA_RD_),
+    .FLASH_DATA_WR  (FLASH_DATA_WR),
+    .FLASH_ADDR     (FLASH_ADDR ),
+    .FLASH_DATA_IN  (MID[31:0]),
+    .FLASH_DATA_OUT (FLASH_DATA_OUT),
+    .Term           (FLASH_TERM )
 );
 
 assign DMADIR = ~nDMADIR;
@@ -165,6 +189,14 @@ always @(negedge CLK or negedge RST_) begin
         SSPBDAT <= MID[31:0];
 end
 
+//Fake FLASH_ADDR register
+always @(negedge CLK or negedge RST_) begin
+    if (~RST_)
+        FLASH_ADDR <= 32'b0;
+    else if (SSPBDAT_WR)
+        FLASH_ADDR <= MID[23:0];
+end
+
 always @(negedge RST_) begin
     if (~RST_)
         VERSION <= "/$V$"; // This will get replaced with the release tag by github eg(v0.4).
@@ -178,26 +210,32 @@ always @(posedge CLK or negedge RST_) begin
         DSP <= DSP_DATA;
 end
 
-assign MuxSelect = {~WTC_RD_, ~ISTR_RD_, ~CONTR_RD_, ~SSPBDAT_RD_, ~VERSION_RD_, ~DSP_RD_};
+assign MuxSelect = {~WTC_RD_, ~ISTR_RD_, ~CONTR_RD_, ~SSPBDAT_RD_, ~VERSION_RD_, ~DSP_RD_, ~FLASH_DATA_RD_, ~FLASH_ADDR_RD_};
 
-localparam WTC_SEL = 6'b100000;
-localparam ISTR_SEL = 6'b010000;
-localparam CONTR_SEL = 6'b001000;
-localparam SSPBDAT_SEL = 6'b000100;
-localparam VERSION_SEL = 6'b000010;
-localparam DSP_SEL = 6'b000001;
+localparam WTC_SEL = 8'b10000000;
+localparam ISTR_SEL = 8'b01000000;
+localparam CONTR_SEL = 8'b00100000;
+localparam SSPBDAT_SEL = 8'b00010000;
+localparam VERSION_SEL = 8'b00001000;
+localparam DSP_SEL = 8'b00000100;
+localparam FLASH_DATA_SEL = 8'b00000010;
+localparam FLASH_ADDR_SEL = 8'b00000001;
 
 always @(*) begin
     case (MuxSelect)
-      WTC_SEL       : REG_OD <= 32'h00000000;
-      ISTR_SEL      : REG_OD <= {23'h0, ISTR_O};
-      CONTR_SEL     : REG_OD <= {23'h0, CNTR_O};
-      SSPBDAT_SEL   : REG_OD <= SSPBDAT;
-      VERSION_SEL   : REG_OD <= VERSION;
-      DSP_SEL       : REG_OD <= {24'h0, DSP};
-      default       : REG_OD <= 32'h00000000;
+      WTC_SEL           : REG_OD <= 32'h00000000;
+      ISTR_SEL          : REG_OD <= {23'h0, ISTR_O};
+      CONTR_SEL         : REG_OD <= {23'h0, CNTR_O};
+      SSPBDAT_SEL       : REG_OD <= SSPBDAT;
+      VERSION_SEL       : REG_OD <= VERSION;
+      DSP_SEL           : REG_OD <= {24'h0, DSP};
+      FLASH_DATA_SEL    : REG_OD <= FLASH_DATA_OUT;
+      FLASH_ADDR_SEL    : REG_OD <= FLASH_ADDR;
+      default           : REG_OD <= 32'h00000000;
     endcase
 end
+
+assign REG_DSK_ = DSACK_TERM_ & ~FLASH_TERM;
 
 // the "macro" to dump signals
 `ifdef COCOTB_SIM1

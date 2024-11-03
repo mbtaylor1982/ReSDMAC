@@ -1,0 +1,14 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst test.bridge_0 -pg 1 -lvl 2 -y 70
+preplace inst test.clk_0 -pg 1 -lvl 1 -y 30
+preplace inst test.dual_boot_0 -pg 1 -lvl 3 -y 130
+preplace inst test -pg 1 -lvl 1 -y 40 -regy -20
+preplace netloc EXPORT<net_container>test</net_container>(SLAVE)test.bridge_0_external_interface,(SLAVE)bridge_0.external_interface) 1 0 2 NJ 100 NJ
+preplace netloc FAN_OUT<net_container>test</net_container>(SLAVE)bridge_0.clk,(MASTER)clk_0.clk,(SLAVE)dual_boot_0.clk) 1 1 2 410 160 N
+preplace netloc EXPORT<net_container>test</net_container>(SLAVE)test.clk,(SLAVE)clk_0.clk_in) 1 0 1 NJ
+preplace netloc EXPORT<net_container>test</net_container>(SLAVE)test.reset,(SLAVE)clk_0.clk_in_reset) 1 0 1 NJ
+preplace netloc FAN_OUT<net_container>test</net_container>(SLAVE)bridge_0.reset,(MASTER)clk_0.clk_reset,(SLAVE)dual_boot_0.nreset) 1 1 2 390 180 N
+preplace netloc POINT_TO_POINT<net_container>test</net_container>(MASTER)bridge_0.avalon_master,(SLAVE)dual_boot_0.avalon) 1 2 1 670
+levelinfo -pg 1 0 180 800
+levelinfo -hier test 190 220 440 700 790

@@ -44,6 +44,7 @@ if {$make_assignments} {
 	set_global_assignment -name VERILOG_FILE ../RTL/Registers/registers_term.v
 	set_global_assignment -name VERILOG_FILE ../RTL/Registers/registers_istr.v
 	set_global_assignment -name VERILOG_FILE ../RTL/Registers/registers_cntr.v
+	set_global_assignment -name VERILOG_FILE ../RTL/Registers/registers_flash.v
 	set_global_assignment -name VERILOG_FILE ../RTL/Registers/registers.v
 	set_global_assignment -name VERILOG_FILE ../RTL/Registers/addr_decoder.v
 	set_global_assignment -name VERILOG_FILE ../RTL/FIFO/fifo_write_strobes.v
@@ -60,6 +61,7 @@ if {$make_assignments} {
 	set_global_assignment -name VERILOG_FILE ../RTL/PLL.v
 	set_global_assignment -name VERILOG_FILE ../RTL/RESDMAC.v
 	set_global_assignment -name SIGNALTAP_FILE ReSDMAC.stp
+	set_global_assignment -name QIP_FILE IP/synthesis/test.qip
 	set_global_assignment -name QIP_FILE IP/attpll.qip
 	set_global_assignment -name FLOW_ENABLE_POWER_ANALYZER ON
 	set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
