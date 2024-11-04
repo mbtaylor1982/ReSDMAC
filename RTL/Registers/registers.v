@@ -55,6 +55,7 @@ wire FLASH_TERM;
 wire [7:0] MuxSelect;
 wire [31:0] FLASH_DATA_OUT;
 wire DSACK_TERM_;
+wire h_28;
 
 //Action strobes
 wire ST_DMA;    //Start DMA 
@@ -89,6 +90,7 @@ addr_decoder u_addr_decoder(
     .RW             (RW         ),
     .DMADIR         (nDMADIR    ),
     .h_0C           (h_0C       ),
+    .h_28           (h_28       ),
     .WDREGREQ       (WDREGREQ   ),
     .WTC_RD_        (WTC_RD_    ),
     .CONTR_RD_      (CONTR_RD_  ),
@@ -141,23 +143,24 @@ registers_cntr u_registers_cntr(
 
 //DSACK timing.
 registers_term u_registers_term(
-    .CLK      (CLK      ),
-    .AS_      (AS_      ),
-    .DMAC_    (DMAC_    ),
-    .WDREGREQ (WDREGREQ ),
-    .h_0C     (h_0C     ),
+    .CLK      (CLK        ),
+    .AS_      (AS_        ),
+    .DMAC_    (DMAC_      ),
+    .WDREGREQ (WDREGREQ   ),
+    .h_0C     (h_0C       ),
+    .h_28     (h_28       ),
     .REG_DSK_ (DSACK_TERM_)
 );
 
 registers_flash u_registers_flash(
-    .CLK            (CLK        ),
-    .nRST           (_RST       ),
-    .FLASH_DATA_RD_ (FLASH_DATA_RD_),
-    .FLASH_DATA_WR  (FLASH_DATA_WR),
-    .FLASH_ADDR     (FLASH_ADDR ),
-    .FLASH_DATA_IN  (MID[31:0]),
-    .FLASH_DATA_OUT (FLASH_DATA_OUT),
-    .Term           (FLASH_TERM )
+    .CLK            (CLK            ),
+    .nRST           (RST_           ),
+    .FLASH_DATA_RD_ (FLASH_DATA_RD_ ),
+    .FLASH_DATA_WR  (FLASH_DATA_WR  ),
+    .FLASH_ADDR     (FLASH_ADDR     ),
+    .FLASH_DATA_IN  (MID[31:0]      ),
+    .FLASH_DATA_OUT (FLASH_DATA_OUT ),
+    .Term           (FLASH_TERM     )
 );
 
 assign DMADIR = ~nDMADIR;
@@ -193,7 +196,7 @@ end
 always @(negedge CLK or negedge RST_) begin
     if (~RST_)
         FLASH_ADDR <= 32'b0;
-    else if (SSPBDAT_WR)
+    else if (FLASH_ADDR_WR)
         FLASH_ADDR <= MID[23:0];
 end
 

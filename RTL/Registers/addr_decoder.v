@@ -8,6 +8,7 @@ module addr_decoder(
   input DMADIR,     // DMADIR from bit from Control Register.
 
   output h_0C,      // RAMSEY ACR Address Decode
+  output h_28,
   output WDREGREQ,  // WD33C93  Address Decode
 
   output CONTR_RD_,
@@ -41,7 +42,7 @@ wire h_18;
 wire h_1C;
 wire h_20;
 wire h_24;
-wire h_28;
+//wire h_28;
 //wire h_2C;
 wire h_3C;
 wire h_5C;

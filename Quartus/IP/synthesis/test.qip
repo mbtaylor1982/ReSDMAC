@@ -2,7 +2,7 @@ set_global_assignment -entity "test" -library "test" -name IP_TOOL_NAME "Qsys"
 set_global_assignment -entity "test" -library "test" -name IP_TOOL_VERSION "22.1"
 set_global_assignment -entity "test" -library "test" -name IP_TOOL_ENV "Qsys"
 set_global_assignment -library "test" -name SOPCINFO_FILE [file join $::quartus(qip_path) "../../test.sopcinfo"]
-set_global_assignment -entity "test" -library "test" -name SLD_INFO "QSYS_NAME test HAS_SOPCINFO 1 GENERATION_ID 1730636053"
+set_global_assignment -entity "test" -library "test" -name SLD_INFO "QSYS_NAME test HAS_SOPCINFO 1 GENERATION_ID 1730679234"
 set_global_assignment -library "test" -name MISC_FILE [file join $::quartus(qip_path) "../test.cmp"]
 set_global_assignment -library "test" -name SLD_FILE [file join $::quartus(qip_path) "test.debuginfo"]
 set_global_assignment -entity "test" -library "test" -name IP_TARGETED_DEVICE_FAMILY "MAX 10"
@@ -15,7 +15,7 @@ set_global_assignment -entity "test" -library "test" -name IP_COMPONENT_DISPLAY_
 set_global_assignment -entity "test" -library "test" -name IP_COMPONENT_REPORT_HIERARCHY "On"
 set_global_assignment -entity "test" -library "test" -name IP_COMPONENT_INTERNAL "Off"
 set_global_assignment -entity "test" -library "test" -name IP_COMPONENT_VERSION "MS4w"
-set_global_assignment -entity "test" -library "test" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTczMDYzNjA1Mw==::QXV0byBHRU5FUkFUSU9OX0lE"
+set_global_assignment -entity "test" -library "test" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTczMDY3OTIzNA==::QXV0byBHRU5FUkFUSU9OX0lE"
 set_global_assignment -entity "test" -library "test" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfRkFNSUxZ::TUFYIDEw::QXV0byBERVZJQ0VfRkFNSUxZ"
 set_global_assignment -entity "test" -library "test" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0U=::MTBNMTZTQ1UxNjlDOEc=::QXV0byBERVZJQ0U="
 set_global_assignment -entity "test" -library "test" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfU1BFRURHUkFERQ==::OA==::QXV0byBERVZJQ0VfU1BFRURHUkFERQ=="
@@ -494,7 +494,7 @@ set_global_assignment -entity "altera_onchip_flash" -library "test" -name IP_COM
 set_global_assignment -entity "altera_onchip_flash" -library "test" -name IP_COMPONENT_PARAMETER "UkVBRF9CVVJTVF9NT0RF::SW5jcmVtZW50aW5n::UmVhZCBidXJzdCBtb2Rl"
 set_global_assignment -entity "altera_onchip_flash" -library "test" -name IP_COMPONENT_PARAMETER "UkVBRF9CVVJTVF9DT1VOVA==::OA==::UmVhZCBidXJzdCBjb3VudA=="
 set_global_assignment -entity "altera_onchip_flash" -library "test" -name IP_COMPONENT_PARAMETER "Q09ORklHVVJBVElPTl9NT0RF::U2luZ2xlIFVuY29tcHJlc3NlZCBJbWFnZQ==::Q29uZmlndXJhdGlvbiBNb2Rl"
-set_global_assignment -entity "altera_onchip_flash" -library "test" -name IP_COMPONENT_PARAMETER "U0VDVE9SX0FDQ0VTU19NT0RF::UmVhZCBhbmQgd3JpdGUsUmVhZCBhbmQgd3JpdGUsUmVhZCBvbmx5LFJlYWQgYW5kIHdyaXRlLFJlYWQgYW5kIHdyaXRl::QWNjZXNzIE1vZGU="
+set_global_assignment -entity "altera_onchip_flash" -library "test" -name IP_COMPONENT_PARAMETER "U0VDVE9SX0FDQ0VTU19NT0RF::UmVhZCBhbmQgd3JpdGUsUmVhZCBhbmQgd3JpdGUsSGlkZGVuLFJlYWQgYW5kIHdyaXRlLFJlYWQgYW5kIHdyaXRl::QWNjZXNzIE1vZGU="
 set_global_assignment -entity "altera_onchip_flash" -library "test" -name IP_COMPONENT_PARAMETER "aW5pdEZsYXNoQ29udGVudA==::ZmFsc2U=::SW5pdGlhbGl6ZSBmbGFzaCBjb250ZW50"
 set_global_assignment -entity "altera_onchip_flash" -library "test" -name IP_COMPONENT_PARAMETER "YXV0b0luaXRpYWxpemF0aW9uRmlsZU5hbWU=::dGVzdF9vbmNoaXBfZmxhc2hfMA==::YXV0b0luaXRpYWxpemF0aW9uRmlsZU5hbWU="
 set_global_assignment -entity "altera_onchip_flash" -library "test" -name IP_COMPONENT_PARAMETER "REVWSUNFX0ZBTUlMWQ==::TUFYIDEw::REVWSUNFX0ZBTUlMWQ=="

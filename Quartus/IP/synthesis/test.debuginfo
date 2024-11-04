@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="test" kind="system" version="22.1" fabric="QSYS">
  <!-- Format version 22.1 922 (Future versions may contain additional information.) -->
- <!-- 2024.11.03.12:14:17 -->
+ <!-- 2024.11.04.00:13:58 -->
  <!-- A collection of modules and connections -->
  <parameter name="clockCrossingAdapter">
   <type>com.altera.sopcmodel.ensemble.EClockAdapter</type>
@@ -53,7 +53,7 @@
  </parameter>
  <parameter name="generationId">
   <type>int</type>
-  <value>1730636053</value>
+  <value>1730679234</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>true</visible>
@@ -1218,7 +1218,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="SECTOR_ACCESS_MODE">
    <type>[Ljava.lang.String;</type>
-   <value>Read and write,Read and write,Read only,Read and write,Read and write</value>
+   <value>Read and write,Read and write,Hidden,Read and write,Read and write</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -4612,5 +4612,5 @@ parameters are a RESULT of the module parameters. -->
   <version>22.1</version>
  </plugin>
  <reportVersion>22.1 922</reportVersion>
- <uniqueIdentifier>04421A2A9CFC00000192F1F27FDC</uniqueIdentifier>
+ <uniqueIdentifier>04421A2A9CFC00000192F4856474</uniqueIdentifier>
 </EnsembleReport>

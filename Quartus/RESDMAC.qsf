@@ -19,7 +19,7 @@
 #
 # Quartus Prime
 # Version 22.1std.2 Build 922 07/20/2023 SC Lite Edition
-# Date created = 12:40:47  November 03, 2024
+# Date created = 00:24:25  November 04, 2024
 #
 # -------------------------------------------------------------------------- #
 #
@@ -114,6 +114,7 @@ set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_boundary_scan
 set_global_assignment -name EN_USER_IO_WEAK_PULLUP OFF
 set_global_assignment -name EN_SPI_IO_WEAK_PULLUP OFF
+set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp
 set_global_assignment -name VCCA_USER_VOLTAGE 3.3V
 set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 3.3V
 set_location_assignment PIN_M9 -to DATA_IO[31]

@@ -102,7 +102,7 @@
   <parameter name="PART_NAME" value="10M16SCU169C8G" />
   <parameter name="READ_BURST_COUNT" value="8" />
   <parameter name="READ_BURST_MODE" value="Incrementing" />
-  <parameter name="SECTOR_ACCESS_MODE">Read and write,Read and write,Read only,Read and write,Read and write</parameter>
+  <parameter name="SECTOR_ACCESS_MODE">Read and write,Read and write,Hidden,Read and write,Read and write</parameter>
   <parameter name="autoInitializationFileName">$${FILENAME}_onchip_flash_0</parameter>
   <parameter name="initFlashContent" value="false" />
   <parameter name="initializationFileName">altera_onchip_flash.hex</parameter>

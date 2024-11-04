@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="test" kind="test" version="1.0" fabric="QSYS">
  <!-- Format version 22.1 922 (Future versions may contain additional information.) -->
- <!-- 2024.11.03.12:14:13 -->
+ <!-- 2024.11.04.00:13:54 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1730636053</value>
+  <value>1730679234</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -1162,7 +1162,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="SECTOR_ACCESS_MODE">
    <type>[Ljava.lang.String;</type>
-   <value>Read and write,Read and write,Read only,Read and write,Read and write</value>
+   <value>Read and write,Read and write,Hidden,Read and write,Read and write</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>

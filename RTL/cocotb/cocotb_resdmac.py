@@ -13,6 +13,8 @@ from cocotb.wavedrom import Wavedrom, trace
 WTC_REG_ADR = 0x01
 VERSION_REG_ADR = 0x08
 DSP_REG_ADR =(0x5c >> 0x2)
+FLASH_ADDR_ADR = (0x24 >> 0x2)
+FLASH_DATA_ADR = (0x28 >> 0x2)
 
 SCSI_REG_ADR1 = 0x10
 SCSI_REG_ADR2 = 0x11
@@ -29,6 +31,7 @@ FLUSH_STROBE_ADR   = 0x05
 
 TEST_PATTERN1 = 0xAAAAAAAA
 TEST_PATTERN2 = 0x55555555
+TEST_PATTERN3 = 0x555555
 SCSI_TEST_DATA1 = 0x005500AA
 SCSI_TEST_DATA2 = 0x5555
 SCSI_TEST_DATA5 = 0xAAAA
@@ -603,7 +606,29 @@ async def RESDMAC_test(dut):
     dut.u_registers.DSP_DATA.value = 0x55
     data = await read_data(dut, DSP_REG_ADR, dut.u_registers.DSP, header='Read From DSP REG', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/DSP_read.json')
     assert data == 0x55, 'DSP Register not returning expected data'
-
+    
+    #8 Test FLASH_ADDR register
+    await write_data(dut, FLASH_ADDR_ADR, TEST_PATTERN3, dut.u_registers.FLASH_ADDR, header='Write to FLASH_ADDR REG', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/FLASH_ADDR_Write.json')
+    data = await read_data(dut, FLASH_ADDR_ADR, dut.u_registers.FLASH_ADDR, header='Read From FLASH_ADDR REG', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/FLASH_ADDR_Read.json')
+    assert data == TEST_PATTERN3, 'FLASH_ADDR_ADR Register not returning expected data'
+    
+    
+    #8 Test FLASH_ADDR register
+    await write_data(dut, FLASH_ADDR_ADR, TEST_PATTERN3, dut.u_registers.FLASH_ADDR, header='Write to FLASH_ADDR REG', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/FLASH_ADDR_Write.json')
+    data = await read_data(dut, FLASH_ADDR_ADR, dut.u_registers.FLASH_ADDR, header='Read From FLASH_ADDR REG', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/FLASH_ADDR_Read.json')
+    assert data == TEST_PATTERN3, 'FLASH_ADDR_ADR Register not returning expected data'
+    
+    await write_data(dut, FLASH_ADDR_ADR, 0x080000, dut.u_registers.FLASH_ADDR, header='Write to FLASH_ADDR REG', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/FLASH_ADDR_Write.json')
+    await write_data(dut, FLASH_DATA_ADR, TEST_PATTERN1, dut.u_registers.u_registers_flash.FLASH_CONTROL, header='Write to FLASH_CONTROL', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/FLASH_CONTROL_Write.json')
+    data = await read_data(dut, FLASH_DATA_ADR, dut.u_registers.u_registers_flash.FLASH_CONTROL, header='Read From FLASH_CONTROL', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/FLASH_CONTROL_Read.json')
+    assert data == TEST_PATTERN1, 'FLASH_CONTROL Register not returning expected data'
+    
+    
+    await write_data(dut, FLASH_ADDR_ADR, 0x24000, dut.u_registers.FLASH_ADDR, header='Write to FLASH_ADDR REG', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/FLASH_ADDR_Write.json')
+    await write_data(dut, FLASH_DATA_ADR, TEST_PATTERN2, dut.u_registers.u_registers_flash.FLASHDATA, header='Write to FLASHDATA', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/FLASHDATA_Write.json')
+    data = await read_data(dut, FLASH_DATA_ADR, dut.u_registers.u_registers_flash.FLASHDATA, header='Read From FLASHDATA', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/FLASHDATA_Read.json')
+    assert data == TEST_PATTERN2, 'FLASHDATA Register not returning expected data'
+    
     #9a Test DMA READ (from scsi to memory) 32 bit sterm cycle
     await DMA_READ(dut, TEST_DATA_ARRAY_BYTE1, 0x00000000, "_STERM")
     #9b Test DMA READ (from scsi to memory) 32 bit sterm cycle with left over bytes that need flushing from the fifo

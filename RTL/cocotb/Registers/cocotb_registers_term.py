@@ -23,6 +23,7 @@ async def registers_term_test(dut):
     dut.DMAC_.value = 1
     dut.WDREGREQ.value = 0
     dut.h_0C.value = 0
+    dut.h_28.value = 0
 
     clock = Clock(dut.CLK, 40, units="ns")  # Create a 40ns period clock on port clk
     # Start the clock. Start it low to avoid issues on the first RisingEdge
