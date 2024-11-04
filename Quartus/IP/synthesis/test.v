@@ -12,6 +12,8 @@ module test (
 		output wire        bridge_0_external_interface_acknowledge, //                            .acknowledge
 		output wire [31:0] bridge_0_external_interface_read_data,   //                            .read_data
 		input  wire        clk_clk,                                 //                         clk.clk
+		output wire        int_osc_0_clkout_clk,                    //            int_osc_0_clkout.clk
+		input  wire        int_osc_0_oscena_oscena,                 //            int_osc_0_oscena.oscena
 		input  wire        reset_reset_n                            //                       reset.reset_n
 	);
 
@@ -54,6 +56,15 @@ module test (
 		.write_data         (bridge_0_external_interface_write_data),  //                   .export
 		.acknowledge        (bridge_0_external_interface_acknowledge), //                   .export
 		.read_data          (bridge_0_external_interface_read_data)    //                   .export
+	);
+
+	altera_int_osc #(
+		.DEVICE_FAMILY   ("MAX 10"),
+		.DEVICE_ID       ("16"),
+		.CLOCK_FREQUENCY ("116")
+	) int_osc_0 (
+		.oscena (int_osc_0_oscena_oscena), // oscena.oscena
+		.clkout (int_osc_0_clkout_clk)     // clkout.clk
 	);
 
 	altera_onchip_flash #(

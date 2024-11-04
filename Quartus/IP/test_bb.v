@@ -8,7 +8,9 @@ module test (
 	bridge_0_external_interface_acknowledge,
 	bridge_0_external_interface_read_data,
 	clk_clk,
-	reset_reset_n);	
+	reset_reset_n,
+	int_osc_0_clkout_clk,
+	int_osc_0_oscena_oscena);	
 
 	input	[23:0]	bridge_0_external_interface_address;
 	input	[3:0]	bridge_0_external_interface_byte_enable;
@@ -19,4 +21,6 @@ module test (
 	output	[31:0]	bridge_0_external_interface_read_data;
 	input		clk_clk;
 	input		reset_reset_n;
+	output		int_osc_0_clkout_clk;
+	input		int_osc_0_oscena_oscena;
 endmodule

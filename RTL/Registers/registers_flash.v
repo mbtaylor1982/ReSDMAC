@@ -19,6 +19,7 @@ reg [31:0] data_out;
 reg [2:0] TERM_COUNTER;
 reg Term_Int;
 wire CYCLE_ACTIVE;
+wire clk116M;
 
 localparam FLASH_DATA_REG = {4'h0, 4'b0xxx , 16'hxxxx}; //	$000000 -> $07FFFF
 localparam FLASH_CONTROL_REG = {20'h08000, 4'b0xxx}; 	//	$080000 -> $080007
@@ -68,7 +69,12 @@ always @(posedge CLK or negedge nRST) begin
 	end
 end
 
+
+
 `elsif ALTERA_RESERVED_QIS
+
+reg [31:0] LATCHED_FLASH_DATA_OUT;
+wire [31:0] data;
 
 test u0 (
 		.bridge_0_external_interface_address     (FLASH_ADDR),
@@ -77,11 +83,21 @@ test u0 (
 		.bridge_0_external_interface_write       (FLASH_DATA_WR),
 		.bridge_0_external_interface_write_data  (FLASH_DATA_IN),
 		.bridge_0_external_interface_acknowledge (Term),
-		.bridge_0_external_interface_read_data   (FLASH_DATA_OUT),
+		.bridge_0_external_interface_read_data   (data),
 		.clk_clk                                 (CLK),
-		.reset_reset_n                           (nRST)
+		.reset_reset_n                           (nRST),
+		.int_osc_0_clkout_clk                    (1'b1),
+		.int_osc_0_oscena_oscena                 (clk116M) 
 	);
 
+always @(posedge CLK or negedge nRST) begin
+	if (~nRST)
+		LATCHED_FLASH_DATA_OUT <= 32'h00000000;
+	else if(Term)
+		LATCHED_FLASH_DATA_OUT <= data;
+end
+
+assign FLASH_DATA_OUT = LATCHED_FLASH_DATA_OUT;
 `endif
 
 endmodule

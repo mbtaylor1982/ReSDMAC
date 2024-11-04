@@ -6,6 +6,8 @@ Progress: Adding bridge_0 [altera_up_external_bus_to_avalon_bridge 18.0]
 Progress: Parameterizing module bridge_0
 Progress: Adding clk_0 [clock_source 22.1]
 Progress: Parameterizing module clk_0
+Progress: Adding int_osc_0 [altera_int_osc 22.1]
+Progress: Parameterizing module int_osc_0
 Progress: Adding onchip_flash_0 [altera_onchip_flash 22.1]
 Progress: Parameterizing module onchip_flash_0
 Progress: Building connections
@@ -15,6 +17,8 @@ Progress: Done reading input file
 Info: test: Generating test "test" for QUARTUS_SYNTH
 Info: bridge_0: Starting Generation of External Bus to Avalon Bridge
 Info: bridge_0: "test" instantiated altera_up_external_bus_to_avalon_bridge "bridge_0"
+Info: int_osc_0: Generating top-level entity altera_int_osc.
+Info: int_osc_0: "test" instantiated altera_int_osc "int_osc_0"
 Info: onchip_flash_0: Generating top-level entity altera_onchip_flash
 Info: onchip_flash_0: "test" instantiated altera_onchip_flash "onchip_flash_0"
 Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
@@ -35,6 +39,6 @@ Info: rsp_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "rsp_m
 Info: Reusing file C:/Users/mbtay/SDMAC-Replacement/Quartus/IP/synthesis/submodules/altera_merlin_arbitrator.sv
 Info: avalon_st_adapter: "mm_interconnect_0" instantiated altera_avalon_st_adapter "avalon_st_adapter"
 Info: error_adapter_0: "avalon_st_adapter" instantiated error_adapter "error_adapter_0"
-Info: test: Done "test" with 18 modules, 27 files
+Info: test: Done "test" with 19 modules, 29 files
 Info: qsys-generate succeeded.
 Info: Finished: Create HDL design files for synthesis

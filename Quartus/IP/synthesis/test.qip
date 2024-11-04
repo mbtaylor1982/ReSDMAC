@@ -2,7 +2,7 @@ set_global_assignment -entity "test" -library "test" -name IP_TOOL_NAME "Qsys"
 set_global_assignment -entity "test" -library "test" -name IP_TOOL_VERSION "22.1"
 set_global_assignment -entity "test" -library "test" -name IP_TOOL_ENV "Qsys"
 set_global_assignment -library "test" -name SOPCINFO_FILE [file join $::quartus(qip_path) "../../test.sopcinfo"]
-set_global_assignment -entity "test" -library "test" -name SLD_INFO "QSYS_NAME test HAS_SOPCINFO 1 GENERATION_ID 1730679234"
+set_global_assignment -entity "test" -library "test" -name SLD_INFO "QSYS_NAME test HAS_SOPCINFO 1 GENERATION_ID 1730760085"
 set_global_assignment -library "test" -name MISC_FILE [file join $::quartus(qip_path) "../test.cmp"]
 set_global_assignment -library "test" -name SLD_FILE [file join $::quartus(qip_path) "test.debuginfo"]
 set_global_assignment -entity "test" -library "test" -name IP_TARGETED_DEVICE_FAMILY "MAX 10"
@@ -15,7 +15,7 @@ set_global_assignment -entity "test" -library "test" -name IP_COMPONENT_DISPLAY_
 set_global_assignment -entity "test" -library "test" -name IP_COMPONENT_REPORT_HIERARCHY "On"
 set_global_assignment -entity "test" -library "test" -name IP_COMPONENT_INTERNAL "Off"
 set_global_assignment -entity "test" -library "test" -name IP_COMPONENT_VERSION "MS4w"
-set_global_assignment -entity "test" -library "test" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTczMDY3OTIzNA==::QXV0byBHRU5FUkFUSU9OX0lE"
+set_global_assignment -entity "test" -library "test" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTczMDc2MDA4NQ==::QXV0byBHRU5FUkFUSU9OX0lE"
 set_global_assignment -entity "test" -library "test" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfRkFNSUxZ::TUFYIDEw::QXV0byBERVZJQ0VfRkFNSUxZ"
 set_global_assignment -entity "test" -library "test" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0U=::MTBNMTZTQ1UxNjlDOEc=::QXV0byBERVZJQ0U="
 set_global_assignment -entity "test" -library "test" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfU1BFRURHUkFERQ==::OA==::QXV0byBERVZJQ0VfU1BFRURHUkFERQ=="
@@ -540,6 +540,20 @@ set_global_assignment -entity "altera_onchip_flash" -library "test" -name IP_COM
 set_global_assignment -entity "altera_onchip_flash" -library "test" -name IP_COMPONENT_PARAMETER "SVNfRFVBTF9CT09U::RmFsc2U=::SVNfRFVBTF9CT09U"
 set_global_assignment -entity "altera_onchip_flash" -library "test" -name IP_COMPONENT_PARAMETER "SVNfRVJBTV9TS0lQ::VHJ1ZQ==::SVNfRVJBTV9TS0lQ"
 set_global_assignment -entity "altera_onchip_flash" -library "test" -name IP_COMPONENT_PARAMETER "SVNfQ09NUFJFU1NFRF9JTUFHRQ==::RmFsc2U=::SVNfQ09NUFJFU1NFRF9JTUFHRQ=="
+set_global_assignment -entity "altera_int_osc" -library "test" -name IP_COMPONENT_NAME "YWx0ZXJhX2ludF9vc2M="
+set_global_assignment -entity "altera_int_osc" -library "test" -name IP_COMPONENT_DISPLAY_NAME "SW50ZXJuYWwgT3NjaWxsYXRvcg=="
+set_global_assignment -entity "altera_int_osc" -library "test" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "altera_int_osc" -library "test" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "altera_int_osc" -library "test" -name IP_COMPONENT_AUTHOR "QWx0ZXJhIENvcnBvcmF0aW9u"
+set_global_assignment -entity "altera_int_osc" -library "test" -name IP_COMPONENT_VERSION "MjIuMQ=="
+set_global_assignment -entity "altera_int_osc" -library "test" -name IP_COMPONENT_DESCRIPTION "SW50ZXJuYWwgT3NjaWxsYXRvciBwcm92aWRlcyBpbnRlcm5hbCBjbG9jayBzb3VyY2UgZm9yIGRlYnVnZ2luZyBwdXJwb3NlLg=="
+set_global_assignment -entity "altera_int_osc" -library "test" -name IP_COMPONENT_PARAMETER "SU5GT1JNQVRJT04=::VGhlIG91dHB1dCBmcmVxdWVuY3kgZm9yIDEwTTAyLCAxME0wNCwgMTBNMDgsIDEwTTE2LCBhbmQgMTBNMjUgZGV2aWNlcyBpcyA1NX4xMTZNSHogPGJyPlRoZSBvdXRwdXQgZnJlcXVlbmN5IGZvciAxME00MCwgYW5kIDEwTTUwIGRldmljZXMgaXMgMzV+NzdNSHogPGJyPg==::SU5GT1JNQVRJT04="
+set_global_assignment -entity "altera_int_osc" -library "test" -name IP_COMPONENT_PARAMETER "REVWSUNFX0ZBTUlMWQ==::TUFYIDEw::RGV2aWNlIGZhbWlseQ=="
+set_global_assignment -entity "altera_int_osc" -library "test" -name IP_COMPONENT_PARAMETER "UEFSVF9OQU1F::MTBNMTZTQ1UxNjlDOEc=::RGV2aWNl"
+set_global_assignment -entity "altera_int_osc" -library "test" -name IP_COMPONENT_PARAMETER "REVWSUNFX0lE::MTY=::REVWSUNFX0lE"
+set_global_assignment -entity "altera_int_osc" -library "test" -name IP_COMPONENT_PARAMETER "Q0xPQ0tfRlJFUVVFTkNZXzE=::MTE2::Q2xvY2sgRnJlcXVlbmN5"
+set_global_assignment -entity "altera_int_osc" -library "test" -name IP_COMPONENT_PARAMETER "Q0xPQ0tfRlJFUVVFTkNZ::MTE2::Q0xPQ0tfRlJFUVVFTkNZ"
+set_global_assignment -entity "altera_int_osc" -library "test" -name IP_COMPONENT_PARAMETER "Q0JYX0FVVE9fQkxBQ0tCT1g=::QUxM::Q0JYX0FVVE9fQkxBQ0tCT1g="
 set_global_assignment -entity "test_bridge_0" -library "test" -name IP_COMPONENT_NAME "dGVzdF9icmlkZ2VfMA=="
 set_global_assignment -entity "test_bridge_0" -library "test" -name IP_COMPONENT_DISPLAY_NAME "RXh0ZXJuYWwgQnVzIHRvIEF2YWxvbiBCcmlkZ2U="
 set_global_assignment -entity "test_bridge_0" -library "test" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
@@ -579,6 +593,8 @@ set_global_assignment -library "test" -name VERILOG_FILE [file join $::quartus(q
 set_global_assignment -library "test" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/altera_onchip_flash_avmm_csr_controller.v"]
 set_global_assignment -library "test" -name SDC_FILE [file join $::quartus(qip_path) "submodules/altera_onchip_flash.sdc"]
 set_global_assignment -library "test" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/rtl/altera_onchip_flash_block.v"]
+set_global_assignment -library "test" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/altera_int_osc.v"]
+set_global_assignment -library "test" -name SDC_FILE [file join $::quartus(qip_path) "submodules/altera_int_osc.sdc"]
 set_global_assignment -library "test" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/test_bridge_0.v"]
 
 set_global_assignment -entity "altera_reset_controller" -library "test" -name IP_TOOL_NAME "altera_reset_controller"
@@ -629,3 +645,6 @@ set_global_assignment -entity "altera_merlin_master_translator" -library "test" 
 set_global_assignment -entity "altera_onchip_flash" -library "test" -name IP_TOOL_NAME "altera_onchip_flash"
 set_global_assignment -entity "altera_onchip_flash" -library "test" -name IP_TOOL_VERSION "22.1"
 set_global_assignment -entity "altera_onchip_flash" -library "test" -name IP_TOOL_ENV "Qsys"
+set_global_assignment -entity "altera_int_osc" -library "test" -name IP_TOOL_NAME "altera_int_osc"
+set_global_assignment -entity "altera_int_osc" -library "test" -name IP_TOOL_VERSION "22.1"
+set_global_assignment -entity "altera_int_osc" -library "test" -name IP_TOOL_ENV "Qsys"

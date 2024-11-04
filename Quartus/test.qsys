@@ -35,6 +35,14 @@
          type = "boolean";
       }
    }
+   element int_osc_0
+   {
+      datum _sortIndex
+      {
+         value = "3";
+         type = "int";
+      }
+   }
    element onchip_flash_0
    {
       datum _sortIndex
@@ -70,6 +78,16 @@
    type="conduit"
    dir="end" />
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
+ <interface
+   name="int_osc_0_clkout"
+   internal="int_osc_0.clkout"
+   type="clock"
+   dir="start" />
+ <interface
+   name="int_osc_0_oscena"
+   internal="int_osc_0.oscena"
+   type="conduit"
+   dir="end" />
  <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
  <module
    name="bridge_0"
@@ -87,6 +105,13 @@
   <parameter name="clockFrequencyKnown" value="true" />
   <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="NONE" />
+ </module>
+ <module name="int_osc_0" kind="altera_int_osc" version="22.1" enabled="1">
+  <parameter name="CBX_AUTO_BLACKBOX" value="ALL" />
+  <parameter name="CLOCK_FREQUENCY_1" value="116" />
+  <parameter name="CLOCK_FREQUENCY_2" value="77" />
+  <parameter name="DEVICE_FAMILY" value="MAX 10" />
+  <parameter name="PART_NAME" value="10M16SCU169C8G" />
  </module>
  <module
    name="onchip_flash_0"

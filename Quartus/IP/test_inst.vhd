@@ -8,7 +8,9 @@
 			bridge_0_external_interface_acknowledge : out std_logic;                                        -- acknowledge
 			bridge_0_external_interface_read_data   : out std_logic_vector(31 downto 0);                    -- read_data
 			clk_clk                                 : in  std_logic                     := 'X';             -- clk
-			reset_reset_n                           : in  std_logic                     := 'X'              -- reset_n
+			reset_reset_n                           : in  std_logic                     := 'X';             -- reset_n
+			int_osc_0_clkout_clk                    : out std_logic;                                        -- clk
+			int_osc_0_oscena_oscena                 : in  std_logic                     := 'X'              -- oscena
 		);
 	end component test;
 
@@ -22,6 +24,8 @@
 			bridge_0_external_interface_acknowledge => CONNECTED_TO_bridge_0_external_interface_acknowledge, --                            .acknowledge
 			bridge_0_external_interface_read_data   => CONNECTED_TO_bridge_0_external_interface_read_data,   --                            .read_data
 			clk_clk                                 => CONNECTED_TO_clk_clk,                                 --                         clk.clk
-			reset_reset_n                           => CONNECTED_TO_reset_reset_n                            --                       reset.reset_n
+			reset_reset_n                           => CONNECTED_TO_reset_reset_n,                           --                       reset.reset_n
+			int_osc_0_clkout_clk                    => CONNECTED_TO_int_osc_0_clkout_clk,                    --            int_osc_0_clkout.clk
+			int_osc_0_oscena_oscena                 => CONNECTED_TO_int_osc_0_oscena_oscena                  --            int_osc_0_oscena.oscena
 		);
 

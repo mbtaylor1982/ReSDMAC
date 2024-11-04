@@ -5,10 +5,10 @@ preplace inst test.bridge_0 -pg 1 -lvl 2 -y 90
 preplace inst test.clk_0 -pg 1 -lvl 1 -y 50
 preplace inst test -pg 1 -lvl 1 -y 40 -regy -20
 preplace netloc EXPORT<net_container>test</net_container>(SLAVE)test.bridge_0_external_interface,(SLAVE)bridge_0.external_interface) 1 0 2 NJ 40 NJ
-preplace netloc FAN_OUT<net_container>test</net_container>(MASTER)clk_0.clk,(SLAVE)bridge_0.clk,(SLAVE)onchip_flash_0.clk) 1 1 2 410 180 N
-preplace netloc EXPORT<net_container>test</net_container>(SLAVE)test.clk,(SLAVE)clk_0.clk_in) 1 0 1 NJ
-preplace netloc FAN_OUT<net_container>test</net_container>(MASTER)bridge_0.avalon_master,(SLAVE)onchip_flash_0.csr,(SLAVE)onchip_flash_0.data) 1 2 1 710
-preplace netloc EXPORT<net_container>test</net_container>(SLAVE)test.reset,(SLAVE)clk_0.clk_in_reset) 1 0 1 NJ
-preplace netloc FAN_OUT<net_container>test</net_container>(MASTER)clk_0.clk_reset,(SLAVE)bridge_0.reset,(SLAVE)onchip_flash_0.nreset) 1 1 2 390 200 690
+preplace netloc FAN_OUT<net_container>test</net_container>(SLAVE)onchip_flash_0.data,(MASTER)bridge_0.avalon_master,(SLAVE)onchip_flash_0.csr) 1 2 1 710
+preplace netloc FAN_OUT<net_container>test</net_container>(MASTER)clk_0.clk_reset,(SLAVE)onchip_flash_0.nreset,(SLAVE)bridge_0.reset) 1 1 2 390 200 690
+preplace netloc EXPORT<net_container>test</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)test.reset) 1 0 1 NJ
+preplace netloc EXPORT<net_container>test</net_container>(SLAVE)clk_0.clk_in,(SLAVE)test.clk) 1 0 1 NJ
+preplace netloc FAN_OUT<net_container>test</net_container>(MASTER)clk_0.clk,(SLAVE)onchip_flash_0.clk,(SLAVE)bridge_0.clk) 1 1 2 410 180 N
 levelinfo -pg 1 0 180 890
 levelinfo -hier test 190 220 460 780 880
