@@ -38,7 +38,7 @@
 
 // ------------------------------------------
 // Generation parameters:
-//   output_name:         test_mm_interconnect_0_rsp_mux
+//   output_name:         flash_interface_mm_interconnect_0_rsp_mux
 //   NUM_INPUTS:          2
 //   ARBITRATION_SHARES:  1 1
 //   ARBITRATION_SCHEME   "no-arb"
@@ -48,7 +48,7 @@
 //   ST_CHANNEL_W:        2
 // ------------------------------------------
 
-module test_mm_interconnect_0_rsp_mux
+module flash_interface_mm_interconnect_0_rsp_mux
 (
     // ----------------------
     // Sinks

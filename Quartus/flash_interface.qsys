@@ -9,7 +9,7 @@
    categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
-   element bridge_0
+   element avalon_bridge
    {
       datum _sortIndex
       {
@@ -22,7 +22,7 @@
          type = "boolean";
       }
    }
-   element clk_0
+   element clk_source
    {
       datum _sortIndex
       {
@@ -35,20 +35,33 @@
          type = "boolean";
       }
    }
-   element int_osc_0
-   {
-      datum _sortIndex
-      {
-         value = "3";
-         type = "int";
-      }
-   }
-   element onchip_flash_0
+   element onchip_flash
    {
       datum _sortIndex
       {
          value = "2";
          type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "1";
+         type = "boolean";
+      }
+   }
+   element onchip_flash.csr
+   {
+      datum baseAddress
+      {
+         value = "524288";
+         type = "String";
+      }
+   }
+   element onchip_flash.data
+   {
+      datum baseAddress
+      {
+         value = "0";
+         type = "String";
       }
    }
 }
@@ -72,25 +85,19 @@
  <parameter name="timeStamp" value="0" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
+ <interface name="clk" internal="clk_source.clk_in" type="clock" dir="end" />
  <interface
-   name="bridge_0_external_interface"
-   internal="bridge_0.external_interface"
+   name="external_interface"
+   internal="avalon_bridge.external_interface"
    type="conduit"
    dir="end" />
- <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
  <interface
-   name="int_osc_0_clkout"
-   internal="int_osc_0.clkout"
-   type="clock"
-   dir="start" />
- <interface
-   name="int_osc_0_oscena"
-   internal="int_osc_0.oscena"
-   type="conduit"
+   name="reset"
+   internal="clk_source.clk_in_reset"
+   type="reset"
    dir="end" />
- <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
  <module
-   name="bridge_0"
+   name="avalon_bridge"
    kind="altera_up_external_bus_to_avalon_bridge"
    version="18.0"
    enabled="1">
@@ -100,27 +107,20 @@
   <parameter name="addr_size_multiplier" value="Mbytes" />
   <parameter name="data_size" value="32" />
  </module>
- <module name="clk_0" kind="clock_source" version="22.1" enabled="1">
+ <module name="clk_source" kind="clock_source" version="22.1" enabled="1">
   <parameter name="clockFrequency" value="25000000" />
   <parameter name="clockFrequencyKnown" value="true" />
   <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="NONE" />
  </module>
- <module name="int_osc_0" kind="altera_int_osc" version="22.1" enabled="1">
-  <parameter name="CBX_AUTO_BLACKBOX" value="ALL" />
-  <parameter name="CLOCK_FREQUENCY_1" value="116" />
-  <parameter name="CLOCK_FREQUENCY_2" value="77" />
-  <parameter name="DEVICE_FAMILY" value="MAX 10" />
-  <parameter name="PART_NAME" value="10M16SCU169C8G" />
- </module>
  <module
-   name="onchip_flash_0"
+   name="onchip_flash"
    kind="altera_onchip_flash"
    version="22.1"
    enabled="1">
   <parameter name="AUTO_CLOCK_RATE" value="25000000" />
   <parameter name="CLOCK_FREQUENCY" value="25.0" />
-  <parameter name="CONFIGURATION_MODE">Single Uncompressed Image</parameter>
+  <parameter name="CONFIGURATION_MODE">Single Compressed Image</parameter>
   <parameter name="CONFIGURATION_SCHEME">Internal Configuration</parameter>
   <parameter name="DATA_INTERFACE" value="Parallel" />
   <parameter name="DEVICE_FAMILY" value="MAX 10" />
@@ -128,7 +128,7 @@
   <parameter name="READ_BURST_COUNT" value="8" />
   <parameter name="READ_BURST_MODE" value="Incrementing" />
   <parameter name="SECTOR_ACCESS_MODE">Read and write,Read and write,Hidden,Read and write,Read and write</parameter>
-  <parameter name="autoInitializationFileName">$${FILENAME}_onchip_flash_0</parameter>
+  <parameter name="autoInitializationFileName">$${FILENAME}_onchip_flash</parameter>
   <parameter name="initFlashContent" value="false" />
   <parameter name="initializationFileName">altera_onchip_flash.hex</parameter>
   <parameter name="initializationFileNameForSim">altera_onchip_flash.dat</parameter>
@@ -137,8 +137,8 @@
  <connection
    kind="avalon"
    version="22.1"
-   start="bridge_0.avalon_master"
-   end="onchip_flash_0.csr">
+   start="avalon_bridge.avalon_master"
+   end="onchip_flash.csr">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x00080000" />
   <parameter name="defaultConnection" value="false" />
@@ -146,28 +146,32 @@
  <connection
    kind="avalon"
    version="22.1"
-   start="bridge_0.avalon_master"
-   end="onchip_flash_0.data">
+   start="avalon_bridge.avalon_master"
+   end="onchip_flash.data">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
- <connection kind="clock" version="22.1" start="clk_0.clk" end="bridge_0.clk" />
  <connection
    kind="clock"
    version="22.1"
-   start="clk_0.clk"
-   end="onchip_flash_0.clk" />
+   start="clk_source.clk"
+   end="avalon_bridge.clk" />
+ <connection
+   kind="clock"
+   version="22.1"
+   start="clk_source.clk"
+   end="onchip_flash.clk" />
  <connection
    kind="reset"
    version="22.1"
-   start="clk_0.clk_reset"
-   end="onchip_flash_0.nreset" />
+   start="clk_source.clk_reset"
+   end="onchip_flash.nreset" />
  <connection
    kind="reset"
    version="22.1"
-   start="clk_0.clk_reset"
-   end="bridge_0.reset" />
+   start="clk_source.clk_reset"
+   end="avalon_bridge.reset" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />
  <interconnectRequirement for="$system" name="qsys_mm.insertDefaultSlave" value="FALSE" />

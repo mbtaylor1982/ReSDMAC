@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<EnsembleReport name="test" kind="test" version="1.0" fabric="QSYS">
+<EnsembleReport
+ name="flash_interface"
+ kind="flash_interface"
+ version="1.0"
+ fabric="QSYS">
  <!-- Format version 22.1 922 (Future versions may contain additional information.) -->
- <!-- 2024.11.04.22:41:25 -->
+ <!-- 2024.11.10.19:41:34 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1730760085</value>
+  <value>1731267694</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -96,10 +100,10 @@
   <valid>true</valid>
  </parameter>
  <module
-   name="bridge_0"
+   name="avalon_bridge"
    kind="altera_up_external_bus_to_avalon_bridge"
    version="18.0"
-   path="bridge_0">
+   path="avalon_bridge">
   <!-- Describes a single module. Module parameters are
 the requested settings for a module instance. -->
   <parameter name="addr_size">
@@ -574,17 +578,17 @@ parameters are a RESULT of the module parameters. -->
    </port>
    <memoryBlock>
     <isBridge>false</isBridge>
-    <moduleName>onchip_flash_0</moduleName>
+    <moduleName>onchip_flash</moduleName>
     <slaveName>csr</slaveName>
-    <name>onchip_flash_0.csr</name>
+    <name>onchip_flash.csr</name>
     <baseAddress>524288</baseAddress>
     <span>8</span>
    </memoryBlock>
    <memoryBlock>
     <isBridge>false</isBridge>
-    <moduleName>onchip_flash_0</moduleName>
+    <moduleName>onchip_flash</moduleName>
     <slaveName>data</slaveName>
-    <name>onchip_flash_0.data</name>
+    <name>onchip_flash.data</name>
     <baseAddress>0</baseAddress>
     <span>417792</span>
    </memoryBlock>
@@ -671,7 +675,11 @@ parameters are a RESULT of the module parameters. -->
    </port>
   </interface>
  </module>
- <module name="clk_0" kind="clock_source" version="22.1" path="clk_0">
+ <module
+   name="clk_source"
+   kind="clock_source"
+   version="22.1"
+   path="clk_source">
   <!-- Describes a single module. Module parameters are
 the requested settings for a module instance. -->
   <parameter name="clockFrequency">
@@ -908,15 +916,15 @@ parameters are a RESULT of the module parameters. -->
    </port>
    <clockDomainMember>
     <isBridge>false</isBridge>
-    <moduleName>bridge_0</moduleName>
+    <moduleName>avalon_bridge</moduleName>
     <slaveName>clk</slaveName>
-    <name>bridge_0.clk</name>
+    <name>avalon_bridge.clk</name>
    </clockDomainMember>
    <clockDomainMember>
     <isBridge>false</isBridge>
-    <moduleName>onchip_flash_0</moduleName>
+    <moduleName>onchip_flash</moduleName>
     <slaveName>clk</slaveName>
-    <name>onchip_flash_0.clk</name>
+    <name>onchip_flash.clk</name>
    </clockDomainMember>
   </interface>
   <interface name="clk_reset" kind="reset_source" version="22.1">
@@ -982,222 +990,10 @@ parameters are a RESULT of the module parameters. -->
   </interface>
  </module>
  <module
-   name="int_osc_0"
-   kind="altera_int_osc"
-   version="22.1"
-   path="int_osc_0">
-  <!-- Describes a single module. Module parameters are
-the requested settings for a module instance. -->
-  <parameter name="INFORMATION">
-   <type>java.lang.String</type>
-   <value><![CDATA[The output frequency for 10M02, 10M04, 10M08, 10M16, and 10M25 devices is 55~116MHz <br>The output frequency for 10M40, and 10M50 devices is 35~77MHz <br>]]></value>
-   <derived>true</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="DEVICE_FAMILY">
-   <type>java.lang.String</type>
-   <value>MAX10FPGA</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-   <sysinfo_type>DEVICE_FAMILY</sysinfo_type>
-  </parameter>
-  <parameter name="PART_NAME">
-   <type>java.lang.String</type>
-   <value>10M16SCU169C8G</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-   <sysinfo_type>DEVICE</sysinfo_type>
-  </parameter>
-  <parameter name="DEVICE_ID">
-   <type>java.lang.String</type>
-   <value>16</value>
-   <derived>true</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="CLOCK_FREQUENCY_1">
-   <type>java.lang.String</type>
-   <value>116</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="CLOCK_FREQUENCY_2">
-   <type>java.lang.String</type>
-   <value>77</value>
-   <derived>false</derived>
-   <enabled>false</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="CLOCK_FREQUENCY">
-   <type>java.lang.String</type>
-   <value>116</value>
-   <derived>true</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="CBX_AUTO_BLACKBOX">
-   <type>java.lang.String</type>
-   <value>ALL</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="deviceFamily">
-   <type>java.lang.String</type>
-   <value>UNKNOWN</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="generateLegacySim">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <interface name="oscena" kind="conduit_end" version="22.1">
-   <!-- The connection points exposed by a module instance for the
-particular module parameters. Connection points and their
-parameters are a RESULT of the module parameters. -->
-   <assignment>
-    <name>ui.blockdiagram.direction</name>
-    <value>INPUT</value>
-   </assignment>
-   <parameter name="associatedClock">
-    <type>java.lang.String</type>
-    <value></value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="associatedReset">
-    <type>java.lang.String</type>
-    <value></value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="deviceFamily">
-    <type>java.lang.String</type>
-    <value>UNKNOWN</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="generateLegacySim">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <type>conduit</type>
-   <isStart>false</isStart>
-   <port>
-    <name>oscena</name>
-    <direction>Input</direction>
-    <width>1</width>
-    <role>oscena</role>
-   </port>
-  </interface>
-  <interface name="clkout" kind="clock_source" version="22.1">
-   <!-- The connection points exposed by a module instance for the
-particular module parameters. Connection points and their
-parameters are a RESULT of the module parameters. -->
-   <assignment>
-    <name>ui.blockdiagram.direction</name>
-    <value>OUTPUT</value>
-   </assignment>
-   <parameter name="associatedDirectClock">
-    <type>java.lang.String</type>
-    <value></value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="clockRate">
-    <type>long</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="clockRateKnown">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="externallyDriven">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="ptfSchematicName">
-    <type>java.lang.String</type>
-    <value></value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="deviceFamily">
-    <type>java.lang.String</type>
-    <value>UNKNOWN</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="generateLegacySim">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <type>clock</type>
-   <isStart>true</isStart>
-   <port>
-    <name>clkout</name>
-    <direction>Output</direction>
-    <width>1</width>
-    <role>clk</role>
-   </port>
-  </interface>
- </module>
- <module
-   name="onchip_flash_0"
+   name="onchip_flash"
    kind="altera_onchip_flash"
    version="22.1"
-   path="onchip_flash_0">
+   path="onchip_flash">
   <!-- Describes a single module. Module parameters are
 the requested settings for a module instance. -->
   <assignment>
@@ -1358,7 +1154,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="CONFIGURATION_MODE">
    <type>java.lang.String</type>
-   <value>Single Uncompressed Image</value>
+   <value>Single Compressed Image</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -1390,7 +1186,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="SECTOR_STORAGE_TYPE">
    <type>[Ljava.lang.String;</type>
-   <value>UFM,UFM,NA,CFM,CFM</value>
+   <value>UFM,UFM,NA,UFM,CFM</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>true</visible>
@@ -1430,7 +1226,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="autoInitializationFileName">
    <type>java.lang.String</type>
-   <value>test_onchip_flash_0</value>
+   <value>flash_interface_onchip_flash</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -1595,7 +1391,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="MAX_UFM_VALID_ADDR">
    <type>int</type>
-   <value>8191</value>
+   <value>36863</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -1811,7 +1607,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="IS_COMPRESSED_IMAGE">
    <type>java.lang.String</type>
-   <value>False</value>
+   <value>True</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -2689,11 +2485,11 @@ parameters are a RESULT of the module parameters. -->
   </interface>
  </module>
  <connection
-   name="bridge_0.avalon_master/onchip_flash_0.csr"
+   name="avalon_bridge.avalon_master/onchip_flash.csr"
    kind="avalon"
    version="22.1"
-   start="bridge_0.avalon_master"
-   end="onchip_flash_0.csr">
+   start="avalon_bridge.avalon_master"
+   end="onchip_flash.csr">
   <parameter name="arbitrationPriority">
    <type>int</type>
    <value>1</value>
@@ -2734,17 +2530,17 @@ parameters are a RESULT of the module parameters. -->
    <visible>true</visible>
    <valid>true</valid>
   </parameter>
-  <startModule>bridge_0</startModule>
+  <startModule>avalon_bridge</startModule>
   <startConnectionPoint>avalon_master</startConnectionPoint>
-  <endModule>onchip_flash_0</endModule>
+  <endModule>onchip_flash</endModule>
   <endConnectionPoint>csr</endConnectionPoint>
  </connection>
  <connection
-   name="bridge_0.avalon_master/onchip_flash_0.data"
+   name="avalon_bridge.avalon_master/onchip_flash.data"
    kind="avalon"
    version="22.1"
-   start="bridge_0.avalon_master"
-   end="onchip_flash_0.data">
+   start="avalon_bridge.avalon_master"
+   end="onchip_flash.data">
   <parameter name="arbitrationPriority">
    <type>int</type>
    <value>1</value>
@@ -2785,17 +2581,17 @@ parameters are a RESULT of the module parameters. -->
    <visible>true</visible>
    <valid>true</valid>
   </parameter>
-  <startModule>bridge_0</startModule>
+  <startModule>avalon_bridge</startModule>
   <startConnectionPoint>avalon_master</startConnectionPoint>
-  <endModule>onchip_flash_0</endModule>
+  <endModule>onchip_flash</endModule>
   <endConnectionPoint>data</endConnectionPoint>
  </connection>
  <connection
-   name="clk_0.clk/bridge_0.clk"
+   name="clk_source.clk/avalon_bridge.clk"
    kind="clock"
    version="22.1"
-   start="clk_0.clk"
-   end="bridge_0.clk">
+   start="clk_source.clk"
+   end="avalon_bridge.clk">
   <parameter name="deviceFamily">
    <type>java.lang.String</type>
    <value>UNKNOWN</value>
@@ -2812,17 +2608,17 @@ parameters are a RESULT of the module parameters. -->
    <visible>true</visible>
    <valid>true</valid>
   </parameter>
-  <startModule>clk_0</startModule>
+  <startModule>clk_source</startModule>
   <startConnectionPoint>clk</startConnectionPoint>
-  <endModule>bridge_0</endModule>
+  <endModule>avalon_bridge</endModule>
   <endConnectionPoint>clk</endConnectionPoint>
  </connection>
  <connection
-   name="clk_0.clk/onchip_flash_0.clk"
+   name="clk_source.clk/onchip_flash.clk"
    kind="clock"
    version="22.1"
-   start="clk_0.clk"
-   end="onchip_flash_0.clk">
+   start="clk_source.clk"
+   end="onchip_flash.clk">
   <parameter name="deviceFamily">
    <type>java.lang.String</type>
    <value>UNKNOWN</value>
@@ -2839,17 +2635,17 @@ parameters are a RESULT of the module parameters. -->
    <visible>true</visible>
    <valid>true</valid>
   </parameter>
-  <startModule>clk_0</startModule>
+  <startModule>clk_source</startModule>
   <startConnectionPoint>clk</startConnectionPoint>
-  <endModule>onchip_flash_0</endModule>
+  <endModule>onchip_flash</endModule>
   <endConnectionPoint>clk</endConnectionPoint>
  </connection>
  <connection
-   name="clk_0.clk_reset/onchip_flash_0.nreset"
+   name="clk_source.clk_reset/onchip_flash.nreset"
    kind="reset"
    version="22.1"
-   start="clk_0.clk_reset"
-   end="onchip_flash_0.nreset">
+   start="clk_source.clk_reset"
+   end="onchip_flash.nreset">
   <parameter name="deviceFamily">
    <type>java.lang.String</type>
    <value>UNKNOWN</value>
@@ -2866,17 +2662,17 @@ parameters are a RESULT of the module parameters. -->
    <visible>true</visible>
    <valid>true</valid>
   </parameter>
-  <startModule>clk_0</startModule>
+  <startModule>clk_source</startModule>
   <startConnectionPoint>clk_reset</startConnectionPoint>
-  <endModule>onchip_flash_0</endModule>
+  <endModule>onchip_flash</endModule>
   <endConnectionPoint>nreset</endConnectionPoint>
  </connection>
  <connection
-   name="clk_0.clk_reset/bridge_0.reset"
+   name="clk_source.clk_reset/avalon_bridge.reset"
    kind="reset"
    version="22.1"
-   start="clk_0.clk_reset"
-   end="bridge_0.reset">
+   start="clk_source.clk_reset"
+   end="avalon_bridge.reset">
   <parameter name="deviceFamily">
    <type>java.lang.String</type>
    <value>UNKNOWN</value>
@@ -2893,9 +2689,9 @@ parameters are a RESULT of the module parameters. -->
    <visible>true</visible>
    <valid>true</valid>
   </parameter>
-  <startModule>clk_0</startModule>
+  <startModule>clk_source</startModule>
   <startConnectionPoint>clk_reset</startConnectionPoint>
-  <endModule>bridge_0</endModule>
+  <endModule>avalon_bridge</endModule>
   <endConnectionPoint>reset</endConnectionPoint>
  </connection>
  <plugin>
@@ -2931,7 +2727,7 @@ parameters are a RESULT of the module parameters. -->
   <version>22.1</version>
  </plugin>
  <plugin>
-  <instanceCount>2</instanceCount>
+  <instanceCount>1</instanceCount>
   <name>conduit_end</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
@@ -2976,22 +2772,6 @@ parameters are a RESULT of the module parameters. -->
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
   <displayName>Reset Output</displayName>
-  <version>22.1</version>
- </plugin>
- <plugin>
-  <instanceCount>1</instanceCount>
-  <name>altera_int_osc</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IModule</subtype>
-  <displayName>Internal Oscillator</displayName>
-  <version>22.1</version>
- </plugin>
- <plugin>
-  <instanceCount>1</instanceCount>
-  <name>clock_source</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
-  <displayName>Clock Output</displayName>
   <version>22.1</version>
  </plugin>
  <plugin>

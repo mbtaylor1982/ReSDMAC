@@ -38,7 +38,7 @@
 
 // ------------------------------------------
 // Generation parameters:
-//   output_name:        test_mm_interconnect_0_avalon_st_adapter_error_adapter_0
+//   output_name:        flash_interface_mm_interconnect_0_avalon_st_adapter_error_adapter_0
 //   use_ready:          true
 //   use_packets:        false
 //   use_empty:          0
@@ -63,7 +63,7 @@
 
 
 
-module test_mm_interconnect_0_avalon_st_adapter_error_adapter_0
+module flash_interface_mm_interconnect_0_avalon_st_adapter_error_adapter_0
 (
  // Interface: in
  output reg         in_ready,

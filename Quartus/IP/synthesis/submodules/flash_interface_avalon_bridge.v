@@ -27,7 +27,7 @@
  *                                                                            *
  ******************************************************************************/
 
-module test_bridge_0 (
+module flash_interface_avalon_bridge (
 	// Inputs
 	clk,
 	reset,

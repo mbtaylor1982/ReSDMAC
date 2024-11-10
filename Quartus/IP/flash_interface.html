@@ -2,7 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
  <head>
-  <title>datasheet for test</title>
+  <title>datasheet for flash_interface</title>
   <style type="text/css">
 body { font-family:arial ;}
 a { text-decoration:underline ; color:#003000 ;}
@@ -58,7 +58,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
  <body>
   <table class="topTitle">
    <tr>
-    <td class="l">test</td>
+    <td class="l">flash_interface</td>
     <td class="r">
      <br/>
      <br/>
@@ -67,7 +67,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   </table>
   <table class="blueBar">
    <tr>
-    <td class="l">2024.11.04.22:41:25</td>
+    <td class="l">2024.11.10.19:41:34</td>
     <td class="r">Datasheet</td>
    </tr>
   </table>
@@ -77,8 +77,8 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
    <div style="display:inline-block ; text-align:left">
     <table class="connectionboxes">
      <tr>
-      <td class="lefthandwire">&#160;&#160;clk_0&#160;</td>
-      <td class="main" rowspan="2">test</td>
+      <td class="lefthandwire">&#160;&#160;clk_source&#160;</td>
+      <td class="main" rowspan="2">flash_interface</td>
      </tr>
      <tr style="height:6px">
       <td></td>
@@ -88,7 +88,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
    <div style="display:inline-block ; text-align:left"><span>
      <br/>All Components
      <br/>&#160;&#160;
-     <a href="#module_onchip_flash_0"><b>onchip_flash_0</b>
+     <a href="#module_onchip_flash"><b>onchip_flash</b>
      </a> altera_onchip_flash 22.1</span>
    </div>
   </div>
@@ -98,7 +98,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
    <tr>
     <td class="empty" rowspan="2"></td>
     <td class="mastermodule" colspan="1">
-     <a href="#module_bridge_0"><b>bridge_0</b>
+     <a href="#module_avalon_bridge"><b>avalon_bridge</b>
      </a>
     </td>
    </tr>
@@ -107,7 +107,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
    </tr>
    <tr>
     <td class="slavemodule">&#160;
-     <a href="#module_onchip_flash_0"><b>onchip_flash_0</b>
+     <a href="#module_onchip_flash"><b>onchip_flash</b>
      </a>
     </td>
     <td class="empty"></td>
@@ -121,19 +121,19 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     <td class="addr"><span style="color:#989898">0x</span>00080000</td>
    </tr>
   </table>
-  <a name="module_bridge_0"> </a>
+  <a name="module_avalon_bridge"> </a>
   <div>
    <hr/>
-   <h2>bridge_0</h2>altera_up_external_bus_to_avalon_bridge v18.0
+   <h2>avalon_bridge</h2>altera_up_external_bus_to_avalon_bridge v18.0
    <br/>
    <div class="greydiv">
     <table class="connectionboxes">
      <tr>
       <td class="neighbor" rowspan="4">
-       <a href="#module_clk_0">clk_0</a>
+       <a href="#module_clk_source">clk_source</a>
       </td>
       <td class="from">clk&#160;&#160;</td>
-      <td class="main" rowspan="8">bridge_0</td>
+      <td class="main" rowspan="8">avalon_bridge</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;clk</td>
@@ -149,7 +149,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <td></td>
       <td class="from">avalon_master&#160;&#160;</td>
       <td class="neighbor" rowspan="4">
-       <a href="#module_onchip_flash_0">onchip_flash_0</a>
+       <a href="#module_onchip_flash">onchip_flash</a>
       </td>
      </tr>
      <tr>
@@ -215,10 +215,10 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     </tr>
    </table>
   </div>
-  <a name="module_clk_0"> </a>
+  <a name="module_clk_source"> </a>
   <div>
    <hr/>
-   <h2>clk_0</h2>clock_source v22.1
+   <h2>clk_source</h2>clock_source v22.1
    <br/>
    <br/>
    <br/>
@@ -262,82 +262,19 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     </tr>
    </table>
   </div>
-  <a name="module_int_osc_0"> </a>
+  <a name="module_onchip_flash"> </a>
   <div>
    <hr/>
-   <h2>int_osc_0</h2>altera_int_osc v22.1
-   <br/>
-   <br/>
-   <br/>
-   <table class="flowbox">
-    <tr>
-     <td class="parametersbox">
-      <h2>Parameters</h2>
-      <table>
-       <tr>
-        <td class="parametername">INFORMATION</td>
-        <td class="parametervalue">The output frequency for 10M02, 10M04, 10M08, 10M16, and 10M25 devices is 55~116MHz &lt;br&gt;The output frequency for 10M40, and 10M50 devices is 35~77MHz &lt;br&gt;</td>
-       </tr>
-       <tr>
-        <td class="parametername">DEVICE_FAMILY</td>
-        <td class="parametervalue">MAX10FPGA</td>
-       </tr>
-       <tr>
-        <td class="parametername">PART_NAME</td>
-        <td class="parametervalue">10M16SCU169C8G</td>
-       </tr>
-       <tr>
-        <td class="parametername">DEVICE_ID</td>
-        <td class="parametervalue">16</td>
-       </tr>
-       <tr>
-        <td class="parametername">CLOCK_FREQUENCY_1</td>
-        <td class="parametervalue">116</td>
-       </tr>
-       <tr>
-        <td class="parametername">CLOCK_FREQUENCY_2</td>
-        <td class="parametervalue">77</td>
-       </tr>
-       <tr>
-        <td class="parametername">CLOCK_FREQUENCY</td>
-        <td class="parametervalue">116</td>
-       </tr>
-       <tr>
-        <td class="parametername">CBX_AUTO_BLACKBOX</td>
-        <td class="parametervalue">ALL</td>
-       </tr>
-       <tr>
-        <td class="parametername">deviceFamily</td>
-        <td class="parametervalue">UNKNOWN</td>
-       </tr>
-       <tr>
-        <td class="parametername">generateLegacySim</td>
-        <td class="parametervalue">false</td>
-       </tr>
-      </table>
-     </td>
-    </tr>
-   </table>&#160;&#160;
-   <table class="flowbox">
-    <tr>
-     <td class="parametersbox">
-      <h2>Software Assignments</h2>(none)</td>
-    </tr>
-   </table>
-  </div>
-  <a name="module_onchip_flash_0"> </a>
-  <div>
-   <hr/>
-   <h2>onchip_flash_0</h2>altera_onchip_flash v22.1
+   <h2>onchip_flash</h2>altera_onchip_flash v22.1
    <br/>
    <div class="greydiv">
     <table class="connectionboxes">
      <tr>
       <td class="neighbor" rowspan="4">
-       <a href="#module_bridge_0">bridge_0</a>
+       <a href="#module_avalon_bridge">avalon_bridge</a>
       </td>
       <td class="from">avalon_master&#160;&#160;</td>
-      <td class="main" rowspan="9">onchip_flash_0</td>
+      <td class="main" rowspan="9">onchip_flash</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;csr</td>
@@ -353,7 +290,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
      </tr>
      <tr>
       <td class="neighbor" rowspan="4">
-       <a href="#module_clk_0">clk_0</a>
+       <a href="#module_clk_source">clk_source</a>
       </td>
       <td class="from">clk&#160;&#160;</td>
      </tr>
@@ -397,7 +334,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">CONFIGURATION_MODE</td>
-        <td class="parametervalue">Single Uncompressed Image</td>
+        <td class="parametervalue">Single Compressed Image</td>
        </tr>
        <tr>
         <td class="parametername">SECTOR_ID</td>
@@ -413,7 +350,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">SECTOR_STORAGE_TYPE</td>
-        <td class="parametervalue">UFM,UFM,NA,CFM,CFM</td>
+        <td class="parametervalue">UFM,UFM,NA,UFM,CFM</td>
        </tr>
        <tr>
         <td class="parametername">initFlashContent</td>
@@ -433,7 +370,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">autoInitializationFileName</td>
-        <td class="parametervalue">test_onchip_flash_0</td>
+        <td class="parametervalue">flash_interface_onchip_flash</td>
        </tr>
        <tr>
         <td class="parametername">INIT_FILENAME</td>
@@ -513,7 +450,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">MAX_UFM_VALID_ADDR</td>
-        <td class="parametervalue">8191</td>
+        <td class="parametervalue">36863</td>
        </tr>
        <tr>
         <td class="parametername">SECTOR1_MAP</td>
@@ -621,7 +558,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">IS_COMPRESSED_IMAGE</td>
-        <td class="parametervalue">False</td>
+        <td class="parametervalue">True</td>
        </tr>
        <tr>
         <td class="parametername">deviceFamily</td>
@@ -716,7 +653,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   <table class="blueBar">
    <tr>
     <td class="l">generation took 0.00 seconds</td>
-    <td class="r">rendering took 0.01 seconds</td>
+    <td class="r">rendering took 0.00 seconds</td>
    </tr>
   </table>
  </body>

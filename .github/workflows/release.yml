@@ -62,34 +62,19 @@ jobs:
         id: version
         run: echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
       ##########################################################################
-      ## 3 - add tag to version register
-      ##########################################################################
-      - name: Replace /$V$ in file registers.v with tag
-        uses: richardrigutins/replace-in-files@v2
-        with:
-          files: 'RTL/Registers/registers.v'
-          search-text: '/$V$'
-          replacement-text: ${{ steps.version.outputs.version }}
-      - name: Replace /$V$ in file cocotb_resdmac.py with tag
-        uses: richardrigutins/replace-in-files@v2
-        with:
-          files: 'RTL/cocotb/cocotb_resdmac.py'
-          search-text: '/$V$'
-          replacement-text: ${{ steps.version.outputs.version }}
-      ##########################################################################
-      ## 4 - RTL synthesis
+      ## 3 - RTL synthesis
       ##########################################################################
       - name: Run 10M16 compilation flow
         working-directory: Quartus
-        run: quartus_sh -t  RESDMAC.tcl 10M16SCU169C8G
+        run: quartus_sh -t  RESDMAC.tcl -device 10M16SCU169C8G -version ${{ steps.version.outputs.version }}
       - name: Run 10M04 compilation flow
         working-directory: Quartus
-        run: quartus_sh -t  RESDMAC.tcl 10M04SCU169C8G
+        run: quartus_sh -t  RESDMAC.tcl -device 10M04SCU169C8G -version ${{ steps.version.outputs.version }}
       - name: Run 10M02 compilation flow
         working-directory: Quartus
-        run: quartus_sh -t  RESDMAC.tcl 10M02SCU169C8G
+        run: quartus_sh -t  RESDMAC.tcl -device 10M02SCU169C8G -version ${{ steps.version.outputs.version }}
       ##########################################################################
-      ## 5 - Upload artifacts
+      ## 4 - Upload artifacts
       ##########################################################################
       - name: Upload artifacts 10M16
         uses: actions/upload-artifact@v4
@@ -110,7 +95,7 @@ jobs:
           path: Quartus/output_files_10M02SCU169C8G
           retention-days: 0
       ##########################################################################
-      ## 6 - Create tag with version and SHA256 checksum
+      ## 5 - Create tag with version and SHA256 checksum
       ##########################################################################
       - name: Copy, tag with version and create SHA256 checksum
         run: |
@@ -118,18 +103,21 @@ jobs:
           cp output_files_10M16SCU169C8G/RESDMAC.pof ../releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.pof
           cp output_files_10M04SCU169C8G/RESDMAC.pof ../releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof
           cp output_files_10M02SCU169C8G/RESDMAC.pof ../releases/RESDMAC_10M02_${{ steps.version.outputs.version }}.pof
+          cp output_files_10M16SCU169C8G/resdmac_cfm0_auto.rpd ../releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.rpd
+          cp output_files_10M04SCU169C8G/resdmac_cfm0_auto.rpd ../releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.rpd
+          cp output_files_10M02SCU169C8G/resdmac_cfm0_auto.rpd ../releases/RESDMAC_10M02_${{ steps.version.outputs.version }}.rpd
           sha256sum output_files_10M16SCU169C8G/RESDMAC.pof > ../releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.pof.sha256
           sha256sum output_files_10M04SCU169C8G/RESDMAC.pof > ../releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof.sha256
           sha256sum output_files_10M02SCU169C8G/RESDMAC.pof > ../releases/RESDMAC_10M02_${{ steps.version.outputs.version }}.pof.sha256
       ##########################################################################
-      ## 7 - Gernerate Change Log
+      ## 6 - Gernerate Change Log
       ##########################################################################
       - name: Changelog
         uses: janheinrichmerker/action-github-changelog-generator@v2.3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       ##########################################################################
-      ## 8 - Create a new GitHub release and upload the distribution artifacts
+      ## 7 - Create a new GitHub release and upload the distribution artifacts
       ##########################################################################
       - name: Create a new GitHub release
         uses: softprops/action-gh-release@v2
@@ -140,8 +128,11 @@ jobs:
             ${{ steps.Changelog.outputs.changelog }}
           files: |
             releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.pof
+            releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.rpd
             releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.pof.sha256
             releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof
+            releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.rpd
             releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof.sha256
             releases/RESDMAC_10M02_${{ steps.version.outputs.version }}.pof
+            releases/RESDMAC_10M02_${{ steps.version.outputs.version }}.rpd
             releases/RESDMAC_10M02_${{ steps.version.outputs.version }}.pof.sha256

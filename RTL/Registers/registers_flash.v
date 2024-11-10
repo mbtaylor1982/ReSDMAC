@@ -10,94 +10,111 @@ module registers_flash(
     output Term
 );
 
-`ifdef __ICARUS__
+`ifdef ALTERA_RESERVED_QIS
 
-reg [31:0] FLASHDATA;
-reg [31:0] FLASH_CONTROL;
+	localparam four_byte_transfer = 4'b1111;
 
-reg [31:0] data_out;
-reg [2:0] TERM_COUNTER;
-reg Term_Int;
-wire CYCLE_ACTIVE;
-wire clk116M;
+	reg [31:0] LATCHED_FLASH_DATA_OUT;
+	reg LATCHED_FLASH_DATA_WR;
+	reg [2:0] WriteCycleClks;
+	wire [31:0] data;
 
-localparam FLASH_DATA_REG = {4'h0, 4'b0xxx , 16'hxxxx}; //	$000000 -> $07FFFF
-localparam FLASH_CONTROL_REG = {20'h08000, 4'b0xxx}; 	//	$080000 -> $080007
-
-assign nCYCLE_ACTIVE = ~FLASH_DATA_WR & FLASH_DATA_RD_;
-assign Term = Term_Int;
-assign FLASH_DATA_OUT = data_out;
-
-always @(posedge CLK or negedge nRST) begin
-	if (~nRST) begin
-		FLASHDATA 		<= 32'h00000000;
-		FLASH_CONTROL 	<= 32'h00000000;
-		data_out		<= 32'h00000000;
+	always @(posedge CLK or negedge nRST) begin
+		if (~nRST) begin
+			LATCHED_FLASH_DATA_WR <= 1'b0;
+			WriteCycleClks <= 3'b0;
+		end
+		else begin
+			if (FLASH_DATA_WR) begin
+				WriteCycleClks <= WriteCycleClks + 1;
+				if (WriteCycleClks >= 3)
+					LATCHED_FLASH_DATA_WR <= FLASH_DATA_WR;
+			end
+			else begin
+				WriteCycleClks <= 3'b0;
+				LATCHED_FLASH_DATA_WR <= 1'b0;
+			end
+		end
 	end
 
-	if (FLASH_DATA_WR) begin
-		casex (FLASH_ADDR)
-			FLASH_DATA_REG		: FLASHDATA 	<= FLASH_DATA_IN;
-			FLASH_CONTROL_REG	: FLASH_CONTROL <= FLASH_DATA_IN;
-		endcase
+	always @(negedge CLK or negedge nRST) begin
+		if (~nRST)
+			LATCHED_FLASH_DATA_OUT <= 32'h00000000;
+		else if(Term)
+			LATCHED_FLASH_DATA_OUT <= data;
 	end
 
-	if (~FLASH_DATA_RD_) begin
-		casex (FLASH_ADDR)
-			FLASH_DATA_REG		: data_out <= FLASHDATA;
-			FLASH_CONTROL_REG	: data_out <= FLASH_CONTROL;
-		endcase
-	end
+	assign FLASH_DATA_OUT = LATCHED_FLASH_DATA_OUT;
 
-end
-
-always @(posedge CLK or negedge nRST) begin
-	if (~nRST) begin
-		TERM_COUNTER 	<= 3'b0;
-		Term_Int 		<= 1'b0;
-	end
-
-	if (~nCYCLE_ACTIVE) begin
-		if (TERM_COUNTER == 3'd3)
-			Term_Int <= 1'b1;
-		else
-			TERM_COUNTER <= TERM_COUNTER + 1;
-	end
-	else begin
-		Term_Int <= 0;
-		TERM_COUNTER 	<= 3'b0;
-	end
-end
-
-
-
-`elsif ALTERA_RESERVED_QIS
-
-reg [31:0] LATCHED_FLASH_DATA_OUT;
-wire [31:0] data;
-
-test u0 (
-		.bridge_0_external_interface_address     (FLASH_ADDR),
-		.bridge_0_external_interface_byte_enable (4'b1111),
-		.bridge_0_external_interface_read        (~FLASH_DATA_RD_),
-		.bridge_0_external_interface_write       (FLASH_DATA_WR),
-		.bridge_0_external_interface_write_data  (FLASH_DATA_IN),
-		.bridge_0_external_interface_acknowledge (Term),
-		.bridge_0_external_interface_read_data   (data),
-		.clk_clk                                 (CLK),
-		.reset_reset_n                           (nRST),
-		.int_osc_0_clkout_clk                    (1'b1),
-		.int_osc_0_oscena_oscena                 (clk116M) 
+	flash_interface u0 (
+		.clk_clk                        (CLK),
+		.reset_reset_n                  (nRST),
+		.external_interface_address     (FLASH_ADDR),
+		.external_interface_read        (~FLASH_DATA_RD_),
+		.external_interface_read_data   (data),
+		.external_interface_write       (LATCHED_FLASH_DATA_WR),
+		.external_interface_write_data  (FLASH_DATA_IN),
+		.external_interface_acknowledge (Term),
+		.external_interface_byte_enable (four_byte_transfer)
 	);
 
-always @(posedge CLK or negedge nRST) begin
-	if (~nRST)
-		LATCHED_FLASH_DATA_OUT <= 32'h00000000;
-	else if(Term)
-		LATCHED_FLASH_DATA_OUT <= data;
-end
+`elsif __ICARUS__
 
-assign FLASH_DATA_OUT = LATCHED_FLASH_DATA_OUT;
+	reg [31:0] FLASHDATA;
+	reg [31:0] FLASH_CONTROL;
+
+	reg [31:0] data_out;
+	reg [2:0] TERM_COUNTER;
+	reg Term_Int;
+	wire CYCLE_ACTIVE;
+
+	localparam FLASH_DATA_REG = {4'h0, 4'b0xxx , 16'hxxxx}; //	$000000 -> $07FFFF
+	localparam FLASH_CONTROL_REG = {20'h08000, 4'b0xxx}; 	//	$080000 -> $080007
+
+	assign nCYCLE_ACTIVE = ~FLASH_DATA_WR & FLASH_DATA_RD_;
+	assign Term = Term_Int;
+	assign FLASH_DATA_OUT = data_out;
+
+	always @(posedge CLK or negedge nRST) begin
+		if (~nRST) begin
+			FLASHDATA 		<= 32'h00000000;
+			FLASH_CONTROL 	<= 32'h00000000;
+			data_out		<= 32'h00000000;
+		end
+
+		if (FLASH_DATA_WR) begin
+			casex (FLASH_ADDR)
+				FLASH_DATA_REG		: FLASHDATA 	<= FLASH_DATA_IN;
+				FLASH_CONTROL_REG	: FLASH_CONTROL <= FLASH_DATA_IN;
+			endcase
+		end
+
+		if (~FLASH_DATA_RD_) begin
+			casex (FLASH_ADDR)
+				FLASH_DATA_REG		: data_out <= FLASHDATA;
+				FLASH_CONTROL_REG	: data_out <= FLASH_CONTROL;
+			endcase
+		end
+
+	end
+
+	always @(posedge CLK or negedge nRST) begin
+		if (~nRST) begin
+			TERM_COUNTER 	<= 3'b0;
+			Term_Int 		<= 1'b0;
+		end
+
+		if (~nCYCLE_ACTIVE) begin
+			if (TERM_COUNTER == 3'd3)
+				Term_Int <= 1'b1;
+			else
+				TERM_COUNTER <= TERM_COUNTER + 1;
+		end
+		else begin
+			Term_Int <= 0;
+			TERM_COUNTER 	<= 3'b0;
+		end
+	end
 `endif
 
 endmodule

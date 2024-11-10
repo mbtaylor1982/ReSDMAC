@@ -42,7 +42,7 @@
 
 `timescale 1 ns / 1 ns
 
-module test_mm_interconnect_0_router_default_decode
+module flash_interface_mm_interconnect_0_router_default_decode
   #(
      parameter DEFAULT_CHANNEL = 1,
                DEFAULT_WR_CHANNEL = -1,
@@ -81,7 +81,7 @@ module test_mm_interconnect_0_router_default_decode
 endmodule
 
 
-module test_mm_interconnect_0_router
+module flash_interface_mm_interconnect_0_router
 (
     // -------------------
     // Clock & Reset
@@ -172,7 +172,7 @@ module test_mm_interconnect_0_router
 
 
 
-    test_mm_interconnect_0_router_default_decode the_default_decode(
+    flash_interface_mm_interconnect_0_router_default_decode the_default_decode(
       .default_destination_id (default_destid),
       .default_wr_channel   (),
       .default_rd_channel   (),

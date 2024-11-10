@@ -7,10 +7,10 @@
             "label": "Build Firmware",
             "type": "shell",
             "windows": {
-                "command": "docker run -v ${pwd}:/build -w /build/Quartus -e LM_LICENSE_FILE=/opt/license.dat -v /path/to/license.dat:/opt/license.dat:ro -it  mbtaylor1982/quartus:22.1 quartus_sh -t  RESDMAC.tcl ${input:device}"
+                "command": "docker run --rm -v ${pwd}:/build -w /build/Quartus -e LM_LICENSE_FILE=/opt/license.dat -v /path/to/license.dat:/opt/license.dat:ro -it  mbtaylor1982/quartus:22.1 quartus_sh -t  RESDMAC.tcl -device ${input:device} -version v9.9"
             },
             "linux":{
-                "command": "docker run -v $(pwd):/build -w /build/Quartus -e LM_LICENSE_FILE=/opt/license.dat -v /path/to/license.dat:/opt/license.dat:ro -it  mbtaylor1982/quartus:22.1 quartus_sh -t  RESDMAC.tcl ${input:device}"
+                "command": "docker run -rm -v $(pwd):/build -w /build/Quartus -e LM_LICENSE_FILE=/opt/license.dat -v /path/to/license.dat:/opt/license.dat:ro -it  mbtaylor1982/quartus:22.1 quartus_sh -t  RESDMAC.tcl -device ${input:device} -version v9.9"
             },
             "detail": "Trigger build using mbtaylor1982/quartus:22.1 Docker image",
             "presentation": {
@@ -41,10 +41,10 @@
             "label": "Clean",
             "type": "shell",
             "linux":{
-                "command": "docker run -v $(pwd):/build -w /build/Quartus -e LM_LICENSE_FILE=/opt/license.dat -v /path/to/license.dat:/opt/license.dat:ro -it mbtaylor1982/quartus:22.1 quartus_sh --clean RESDMAC.qpf"
+                "command": "docker run -rm -v $(pwd):/build -w /build/Quartus -e LM_LICENSE_FILE=/opt/license.dat -v /path/to/license.dat:/opt/license.dat:ro -it mbtaylor1982/quartus:22.1 quartus_sh --clean RESDMAC.qpf"
             },
             "windows":{
-                "command": "docker run -v ${pwd}:/build -w /build/Quartus -e LM_LICENSE_FILE=/opt/license.dat -v /path/to/license.dat:/opt/license.dat:ro -it mbtaylor1982/quartus:22.1 quartus_sh --clean RESDMAC.qpf"
+                "command": "docker run -rm -v ${pwd}:/build -w /build/Quartus -e LM_LICENSE_FILE=/opt/license.dat -v /path/to/license.dat:/opt/license.dat:ro -it mbtaylor1982/quartus:22.1 quartus_sh --clean RESDMAC.qpf"
             },
             "detail": "Clean build folder",
             "presentation": {
@@ -72,10 +72,10 @@
             "label": "Run Testbench",
             "type": "shell",
             "linux":{
-                "command": "docker run -v $(pwd):$(pwd) -w $(pwd) -it mbtaylor1982/cocotb-iverilog:latest pytest -o log_cli=true"
+                "command": "docker run -rm -v $(pwd):$(pwd) -w $(pwd) -it mbtaylor1982/cocotb-iverilog:latest pytest -o log_cli=true"
             },
             "windows":{
-                "command": "docker run -v ${pwd}:/test -w /test -it mbtaylor1982/cocotb-iverilog:latest pytest -o log_cli=true"
+                "command": "docker run -rm -v ${pwd}:/test -w /test -it mbtaylor1982/cocotb-iverilog:latest pytest -o log_cli=true"
             },
             "detail": "Run Testbench",
             "presentation": {
@@ -97,10 +97,10 @@
             "hide": true,
             "type": "shell",
             "linux":{
-                "command": "docker run -v $(pwd):$(pwd) -w $(pwd) -it mbtaylor1982/cocotb-iverilog:latest cocotb-clean -r"
+                "command": "docker run -rm -v $(pwd):$(pwd) -w $(pwd) -it mbtaylor1982/cocotb-iverilog:latest cocotb-clean -r"
             },
             "windows":{
-                "command": "docker run -v ${pwd}:/test -w /test -it mbtaylor1982/cocotb-iverilog:latest cocotb-clean -r"
+                "command": "docker run -rm -v ${pwd}:/test -w /test -it mbtaylor1982/cocotb-iverilog:latest cocotb-clean -r"
             },
             "detail": "clean up testbench outputs",
             "presentation": {
@@ -116,10 +116,10 @@
             "label": "Kicad_Output",
             "type": "shell",
             "linux":{
-                "command": "docker run -v $(pwd):$(pwd) -w $(pwd)/KiCad -it ghcr.io/inti-cmnb/kicad5_auto:latest kibot --quick-start"
+                "command": "docker run -rm -v $(pwd):$(pwd) -w $(pwd)/KiCad -it ghcr.io/inti-cmnb/kicad5_auto:latest kibot --quick-start"
             },
             "windows":{
-                "command": "docker run -v ${pwd}:/build -w /build/KiCad -it ghcr.io/inti-cmnb/kicad5_auto:latest kibot --quick-start"
+                "command": "docker run -rm -v ${pwd}:/build -w /build/KiCad -it ghcr.io/inti-cmnb/kicad5_auto:latest kibot --quick-start"
             },
             "detail": "Generate Kicad Outputfiles",
             "presentation": {

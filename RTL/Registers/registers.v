@@ -1,5 +1,5 @@
  //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
- 
+
  `ifdef __ICARUS__ 
     `include "addr_decoder.v"
     `include "registers_istr.v"
@@ -202,7 +202,7 @@ end
 
 always @(negedge RST_) begin
     if (~RST_)
-        VERSION <= "/$V$"; // This will get replaced with the release tag by github eg(v0.4).
+        VERSION <= `DEF_VERSION; // This will get replaced with the release tag by github eg(v0.4).
 end
 
 
