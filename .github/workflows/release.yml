@@ -116,6 +116,9 @@ jobs:
         uses: janheinrichmerker/action-github-changelog-generator@v2.3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          onlyLastTag: "true"
+          stripHeaders: "true"
+          stripGeneratorNotice: "true"
       ##########################################################################
       ## 7 - Create a new GitHub release and upload the distribution artifacts
       ##########################################################################
@@ -123,9 +126,10 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
+          name: Release ${{ github.ref }}
+          tag_name: ${{ github.ref }}
           draft: true
-          body: |
-            ${{ steps.Changelog.outputs.changelog }}
+          body: ${{ steps.Changelog.outputs.changelog }}
           files: |
             releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.pof
             releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.rpd
