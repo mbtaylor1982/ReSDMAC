@@ -39,7 +39,7 @@ SCSI_TEST_DATA5 = 0xAAAA
 SCSI_TEST_DATA3 = 0x00AA
 SCSI_TEST_DATA4 = 0x00AA00AA
 
-REV_STR = int("/$V$".encode("utf-8").hex(), base= 16)
+REV_STR = int("v9.9".encode("utf-8").hex(), base= 16)
 
 CONTR_DMA_READ = 0x00
 CONTR_DMA_WRITE = 0x02

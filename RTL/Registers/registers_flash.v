@@ -14,15 +14,21 @@ module registers_flash(
 
 	localparam four_byte_transfer = 4'b1111;
 
+	reg [8*14:1] Device;
 	reg [31:0] LATCHED_FLASH_DATA_OUT;
 	reg LATCHED_FLASH_DATA_WR;
 	reg [2:0] WriteCycleClks;
 	wire [31:0] data;
+	wire FLASH_CLK;
+	reg CLK_6_25M;
+	reg Clk_12_5M;
+
 
 	always @(posedge CLK or negedge nRST) begin
 		if (~nRST) begin
 			LATCHED_FLASH_DATA_WR <= 1'b0;
 			WriteCycleClks <= 3'b0;
+			Device <= `DEVICE;
 		end
 		else begin
 			if (FLASH_DATA_WR) begin
@@ -46,8 +52,22 @@ module registers_flash(
 
 	assign FLASH_DATA_OUT = LATCHED_FLASH_DATA_OUT;
 
-	flash_interface u0 (
-		.clk_clk                        (CLK),
+	always @(posedge CLK or negedge nRST) begin
+		if (~nRST) begin
+			CLK_6_25M <= 0;
+			Clk_12_5M <= 0;
+		end
+		else begin
+			Clk_12_5M <= ~Clk_12_5M;
+			if (Clk_12_5M)
+				CLK_6_25M <= ~CLK_6_25M;
+		end
+	end
+
+	assign FLASH_CLK = (Device == "10M02SCU169C8G") ? CLK_6_25M : CLK;
+
+	`FLASH_INTERFACE u0 (
+		.clk_clk                        (FLASH_CLK),
 		.reset_reset_n                  (nRST),
 		.external_interface_address     (FLASH_ADDR),
 		.external_interface_read        (~FLASH_DATA_RD_),

@@ -1,0 +1,40 @@
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate C:\Users\mbtay\SDMAC-Replacement\Quartus\IP\flash_interface_10M16SCU169C8G.qsys --synthesis=VERILOG --output-directory=C:\Users\mbtay\SDMAC-Replacement\Quartus\IP\flash_interface_10M16SCU169C8G\synthesis --family="MAX 10" --part=10M16SCU169C8G
+Progress: Loading IP/flash_interface_10M16SCU169C8G.qsys
+Progress: Reading input file
+Progress: Adding avalon_bridge [altera_up_external_bus_to_avalon_bridge 18.0]
+Progress: Parameterizing module avalon_bridge
+Progress: Adding clk_source [clock_source 22.1]
+Progress: Parameterizing module clk_source
+Progress: Adding onchip_flash [altera_onchip_flash 22.1]
+Progress: Parameterizing module onchip_flash
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: flash_interface_10M16SCU169C8G: Generating flash_interface_10M16SCU169C8G "flash_interface_10M16SCU169C8G" for QUARTUS_SYNTH
+Info: avalon_bridge: Starting Generation of External Bus to Avalon Bridge
+Info: avalon_bridge: "flash_interface_10M16SCU169C8G" instantiated altera_up_external_bus_to_avalon_bridge "avalon_bridge"
+Info: onchip_flash: Generating top-level entity altera_onchip_flash
+Info: onchip_flash: "flash_interface_10M16SCU169C8G" instantiated altera_onchip_flash "onchip_flash"
+Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
+Info: avalon_st_adapter_001: Inserting error_adapter: error_adapter_0
+Info: mm_interconnect_0: "flash_interface_10M16SCU169C8G" instantiated altera_mm_interconnect "mm_interconnect_0"
+Info: rst_controller: "flash_interface_10M16SCU169C8G" instantiated altera_reset_controller "rst_controller"
+Info: avalon_bridge_avalon_master_translator: "mm_interconnect_0" instantiated altera_merlin_master_translator "avalon_bridge_avalon_master_translator"
+Info: onchip_flash_csr_translator: "mm_interconnect_0" instantiated altera_merlin_slave_translator "onchip_flash_csr_translator"
+Info: avalon_bridge_avalon_master_agent: "mm_interconnect_0" instantiated altera_merlin_master_agent "avalon_bridge_avalon_master_agent"
+Info: onchip_flash_csr_agent: "mm_interconnect_0" instantiated altera_merlin_slave_agent "onchip_flash_csr_agent"
+Info: onchip_flash_csr_agent_rsp_fifo: "mm_interconnect_0" instantiated altera_avalon_sc_fifo "onchip_flash_csr_agent_rsp_fifo"
+Info: router: "mm_interconnect_0" instantiated altera_merlin_router "router"
+Info: router_001: "mm_interconnect_0" instantiated altera_merlin_router "router_001"
+Info: cmd_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "cmd_demux"
+Info: cmd_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "cmd_mux"
+Info: rsp_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "rsp_demux"
+Info: rsp_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "rsp_mux"
+Info: Reusing file C:/Users/mbtay/SDMAC-Replacement/Quartus/IP/flash_interface_10M16SCU169C8G/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: avalon_st_adapter: "mm_interconnect_0" instantiated altera_avalon_st_adapter "avalon_st_adapter"
+Info: error_adapter_0: "avalon_st_adapter" instantiated error_adapter "error_adapter_0"
+Info: flash_interface_10M16SCU169C8G: Done "flash_interface_10M16SCU169C8G" with 18 modules, 27 files
+Info: qsys-generate succeeded.
+Info: Finished: Create HDL design files for synthesis

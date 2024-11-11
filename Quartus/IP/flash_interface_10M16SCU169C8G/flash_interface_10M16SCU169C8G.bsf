@@ -1,0 +1,119 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 2023  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+*/
+(header "symbol" (version "1.1"))
+(symbol
+	(rect 0 0 464 280)
+	(text "flash_interface_10M16SCU169C8G" (rect 131 -1 272 11)(font "Arial" (font_size 10)))
+	(text "inst" (rect 8 264 20 276)(font "Arial" ))
+	(port
+		(pt 0 72)
+		(input)
+		(text "clk_clk" (rect 0 0 27 12)(font "Arial" (font_size 8)))
+		(text "clk_clk" (rect 4 61 46 72)(font "Arial" (font_size 8)))
+		(line (pt 0 72)(pt 192 72)(line_width 1))
+	)
+	(port
+		(pt 0 112)
+		(input)
+		(text "external_interface_address[23..0]" (rect 0 0 133 12)(font "Arial" (font_size 8)))
+		(text "external_interface_address[23..0]" (rect 4 101 202 112)(font "Arial" (font_size 8)))
+		(line (pt 0 112)(pt 192 112)(line_width 3))
+	)
+	(port
+		(pt 0 128)
+		(input)
+		(text "external_interface_byte_enable[3..0]" (rect 0 0 145 12)(font "Arial" (font_size 8)))
+		(text "external_interface_byte_enable[3..0]" (rect 4 117 220 128)(font "Arial" (font_size 8)))
+		(line (pt 0 128)(pt 192 128)(line_width 3))
+	)
+	(port
+		(pt 0 144)
+		(input)
+		(text "external_interface_read" (rect 0 0 94 12)(font "Arial" (font_size 8)))
+		(text "external_interface_read" (rect 4 133 142 144)(font "Arial" (font_size 8)))
+		(line (pt 0 144)(pt 192 144)(line_width 1))
+	)
+	(port
+		(pt 0 160)
+		(input)
+		(text "external_interface_write" (rect 0 0 94 12)(font "Arial" (font_size 8)))
+		(text "external_interface_write" (rect 4 149 148 160)(font "Arial" (font_size 8)))
+		(line (pt 0 160)(pt 192 160)(line_width 1))
+	)
+	(port
+		(pt 0 176)
+		(input)
+		(text "external_interface_write_data[31..0]" (rect 0 0 140 12)(font "Arial" (font_size 8)))
+		(text "external_interface_write_data[31..0]" (rect 4 165 220 176)(font "Arial" (font_size 8)))
+		(line (pt 0 176)(pt 192 176)(line_width 3))
+	)
+	(port
+		(pt 0 248)
+		(input)
+		(text "reset_reset_n" (rect 0 0 56 12)(font "Arial" (font_size 8)))
+		(text "reset_reset_n" (rect 4 237 82 248)(font "Arial" (font_size 8)))
+		(line (pt 0 248)(pt 192 248)(line_width 1))
+	)
+	(port
+		(pt 0 192)
+		(output)
+		(text "external_interface_acknowledge" (rect 0 0 126 12)(font "Arial" (font_size 8)))
+		(text "external_interface_acknowledge" (rect 4 181 184 192)(font "Arial" (font_size 8)))
+		(line (pt 0 192)(pt 192 192)(line_width 1))
+	)
+	(port
+		(pt 0 208)
+		(output)
+		(text "external_interface_read_data[31..0]" (rect 0 0 140 12)(font "Arial" (font_size 8)))
+		(text "external_interface_read_data[31..0]" (rect 4 197 214 208)(font "Arial" (font_size 8)))
+		(line (pt 0 208)(pt 192 208)(line_width 3))
+	)
+	(drawing
+		(text "clk" (rect 177 43 372 99)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "clk" (rect 197 67 412 144)(font "Arial" (color 0 0 0)))
+		(text "external_interface" (rect 88 83 284 179)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "address" (rect 197 107 436 224)(font "Arial" (color 0 0 0)))
+		(text "byte_enable" (rect 197 123 460 256)(font "Arial" (color 0 0 0)))
+		(text "read" (rect 197 139 418 288)(font "Arial" (color 0 0 0)))
+		(text "write" (rect 197 155 424 320)(font "Arial" (color 0 0 0)))
+		(text "write_data" (rect 197 171 454 352)(font "Arial" (color 0 0 0)))
+		(text "acknowledge" (rect 197 187 460 384)(font "Arial" (color 0 0 0)))
+		(text "read_data" (rect 197 203 448 416)(font "Arial" (color 0 0 0)))
+		(text "reset" (rect 163 219 356 451)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "reset_n" (rect 197 243 436 496)(font "Arial" (color 0 0 0)))
+		(text " system " (rect 429 264 906 538)(font "Arial" ))
+		(line (pt 192 32)(pt 272 32)(line_width 1))
+		(line (pt 272 32)(pt 272 264)(line_width 1))
+		(line (pt 192 264)(pt 272 264)(line_width 1))
+		(line (pt 192 32)(pt 192 264)(line_width 1))
+		(line (pt 193 52)(pt 193 76)(line_width 1))
+		(line (pt 194 52)(pt 194 76)(line_width 1))
+		(line (pt 193 92)(pt 193 212)(line_width 1))
+		(line (pt 194 92)(pt 194 212)(line_width 1))
+		(line (pt 193 228)(pt 193 252)(line_width 1))
+		(line (pt 194 228)(pt 194 252)(line_width 1))
+		(line (pt 0 0)(pt 464 0)(line_width 1))
+		(line (pt 464 0)(pt 464 280)(line_width 1))
+		(line (pt 0 280)(pt 464 280)(line_width 1))
+		(line (pt 0 0)(pt 0 280)(line_width 1))
+	)
+)
