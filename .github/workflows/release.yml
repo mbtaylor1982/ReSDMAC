@@ -140,3 +140,4 @@ jobs:
             releases/RESDMAC_10M02_${{ steps.version.outputs.version }}.pof
             releases/RESDMAC_10M02_${{ steps.version.outputs.version }}.rpd
             releases/RESDMAC_10M02_${{ steps.version.outputs.version }}.pof.sha256
+            KiCad/Generated
