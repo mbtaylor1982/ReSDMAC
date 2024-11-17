@@ -1,117 +1,45 @@
-################################################################################
-# SPDX-License-Identifier: CC0-1.0
-# SPDX-FileType: OTHER
-# SPDX-FileCopyrightText: (c) 2021-2022, The Raetro authors and contributors
-################################################################################
-name: Create New Core Release
-################################################################################
-#env:
-  #ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+name: Create New Release
 
 on:
   push:
     # Sequence of patterns matched against refs/tags
     tags:
       - 'v*' # Trigger only when tag matches v*, i.e. v1.0, v21.12.31, v211231
-################################################################################
+
 defaults:
   run:
     working-directory: Quartus
 
 jobs:
   kicad_outputs:
-    runs-on: ubuntu-latest
-    container: ghcr.io/inti-cmnb/kicad5_auto:latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Gernerate_Outptus
-        working-directory: KiCad
-        run: kibot --quick-start
-      - name: upload
-        uses: actions/upload-artifact@v4
-        with:
-          name: KiCad_Outputs.zip
-          path: KiCad/Generated
-          retention-days: 0
-
+    uses: ./.github/workflows/kicad.yml
+  build_firmware:
+    uses: ./.github/workflows/build.yml
+    with:
+      version: ${{ github.ref_name }}
+      use_version: true
   create_release:
-    needs:
-      - kicad_outputs
+    needs: [kicad_outputs, build_firmware]
     runs-on: ubuntu-latest
-    container:
-      image: mbtaylor1982/quartus:22.1
-      credentials:
-        username: ${{ secrets.DOCKER_HUB_USER }}
-        password: ${{ secrets.DOCKER_HUB_PWD }} 
-        #container: raetro/quartus:17.1        # Use DockerHub
-    ############################################################################
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    ############################################################################
+
     steps:
-      ##########################################################################
-      ## 1 - Checkout repository
-      ##########################################################################
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      ##########################################################################
-      ## 2 - Get current version for tagging
-      ##########################################################################
-      - name: Get the tag / version
-        id: version
-        run: echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
-      ##########################################################################
-      ## 3 - RTL synthesis
-      ##########################################################################
-      - name: Run 10M16 compilation flow
-        working-directory: Quartus
-        run: quartus_sh -t  RESDMAC.tcl -device 10M16SCU169C8G -version ${{ steps.version.outputs.version }}
-      - name: Run 10M04 compilation flow
-        working-directory: Quartus
-        run: quartus_sh -t  RESDMAC.tcl -device 10M04SCU169C8G -version ${{ steps.version.outputs.version }}
-      - name: Run 10M02 compilation flow
-        working-directory: Quartus
-        run: quartus_sh -t  RESDMAC.tcl -device 10M02SCU169C8G -version ${{ steps.version.outputs.version }}
-      ##########################################################################
-      ## 4 - Upload artifacts
-      ##########################################################################
-      - name: Upload artifacts 10M16
-        uses: actions/upload-artifact@v4
-        with:
-          name: RESDMAC_10M16_${{ steps.version.outputs.version }}.zip
-          path: Quartus/output_files_10M16SCU169C8G
-          retention-days: 0
-      - name: Upload artifacts 10M04
-        uses: actions/upload-artifact@v4
-        with:
-          name: RESDMAC_10M04_${{ steps.version.outputs.version }}.zip
-          path: Quartus/output_files_10M04SCU169C8G
-          retention-days: 0
-      - name: Upload artifacts 10M02
-        uses: actions/upload-artifact@v4
-        with:
-          name: RESDMAC_10M02_${{ steps.version.outputs.version }}.zip
-          path: Quartus/output_files_10M02SCU169C8G
-          retention-days: 0
-      ##########################################################################
-      ## 5 - Create tag with version and SHA256 checksum
-      ##########################################################################
+      - name: download artifacts
+        uses: actions/download-artifact@v4
+
       - name: Copy, tag with version and create SHA256 checksum
         run: |
           mkdir -p ../releases
-          cp output_files_10M16SCU169C8G/RESDMAC.pof ../releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.pof
-          cp output_files_10M04SCU169C8G/RESDMAC.pof ../releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof
-          cp output_files_10M02SCU169C8G/RESDMAC.pof ../releases/RESDMAC_10M02_${{ steps.version.outputs.version }}.pof
-          cp output_files_10M16SCU169C8G/resdmac_cfm0_auto.rpd ../releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.rpd
-          cp output_files_10M04SCU169C8G/resdmac_cfm0_auto.rpd ../releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.rpd
-          cp output_files_10M02SCU169C8G/resdmac_cfm0_auto.rpd ../releases/RESDMAC_10M02_${{ steps.version.outputs.version }}.rpd
-          sha256sum output_files_10M16SCU169C8G/RESDMAC.pof > ../releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.pof.sha256
-          sha256sum output_files_10M04SCU169C8G/RESDMAC.pof > ../releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof.sha256
-          sha256sum output_files_10M02SCU169C8G/RESDMAC.pof > ../releases/RESDMAC_10M02_${{ steps.version.outputs.version }}.pof.sha256
-      ##########################################################################
-      ## 6 - Gernerate Change Log
-      ##########################################################################
+          cp KiCad_Outputs.zip ../releases/KiCad_Outputs_${{ github.ref_name }}
+          cp output_files_10M16_${{ github.ref_name }}.zip/RESDMAC.pof ../releases/RESDMAC_10M16_${{ github.ref_name }}.pof
+          cp output_files_10M04_${{ github.ref_name }}.zip/RESDMAC.pof ../releases/RESDMAC_10M04_${{ github.ref_name }}.pof
+          cp output_files_10M02_${{ github.ref_name }}.zip/RESDMAC.pof ../releases/RESDMAC_10M02_${{ github.ref_name }}.pof
+          cp output_files_10M16_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd ../releases/RESDMAC_10M16_${{ github.ref_name }}.rpd
+          cp output_files_10M04_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd ../releases/RESDMAC_10M04_${{ github.ref_name }}.rpd
+          cp output_files_10M02_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd ../releases/RESDMAC_10M02_${{ github.ref_name }}.rpd
+          sha256sum output_files_10M16_${{ github.ref_name }}.zip/RESDMAC.pof > ../releases/RESDMAC_10M16_${{ github.ref_name }}.pof.sha256
+          sha256sum output_files_10M04_${{ github.ref_name }}.zip/RESDMAC.pof > ../releases/RESDMAC_10M04_${{ github.ref_name }}.pof.sha256
+          sha256sum output_files_10M02_${{ github.ref_name }}.zip/RESDMAC.pof > ../releases/RESDMAC_10M02_${{ github.ref_name }}.pof.sha256
+
       - name: Changelog
         uses: janheinrichmerker/action-github-changelog-generator@v2.3
         with:
@@ -119,25 +47,23 @@ jobs:
           onlyLastTag: "true"
           stripHeaders: "true"
           stripGeneratorNotice: "true"
-      ##########################################################################
-      ## 7 - Create a new GitHub release and upload the distribution artifacts
-      ##########################################################################
+
       - name: Create a new GitHub release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          name: Release ${{ github.ref }}
-          tag_name: ${{ github.ref }}
+          name: Release ${{ github.ref_name }}
+          tag_name: ${{ github.ref_name }}
           draft: true
           body: ${{ steps.Changelog.outputs.changelog }}
           files: |
-            releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.pof
-            releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.rpd
-            releases/RESDMAC_10M16_${{ steps.version.outputs.version }}.pof.sha256
-            releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof
-            releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.rpd
-            releases/RESDMAC_10M04_${{ steps.version.outputs.version }}.pof.sha256
-            releases/RESDMAC_10M02_${{ steps.version.outputs.version }}.pof
-            releases/RESDMAC_10M02_${{ steps.version.outputs.version }}.rpd
-            releases/RESDMAC_10M02_${{ steps.version.outputs.version }}.pof.sha256
-            KiCad/Generated
+            releases/RESDMAC_10M16_${{ github.ref_name }}.pof
+            releases/RESDMAC_10M16_${{ github.ref_name }}.rpd
+            releases/RESDMAC_10M16_${{ github.ref_name }}.pof.sha256
+            releases/RESDMAC_10M04_${{ github.ref_name }}.pof
+            releases/RESDMAC_10M04_${{ github.ref_name }}.rpd
+            releases/RESDMAC_10M04_${{ github.ref_name }}.pof.sha256
+            releases/RESDMAC_10M02_${{ github.ref_name }}.pof
+            releases/RESDMAC_10M02_${{ github.ref_name }}.rpd
+            releases/RESDMAC_10M02_${{ github.ref_name }}.pof.sha256
+            releases/KiCad_Outputs_${{ github.ref_name }}
