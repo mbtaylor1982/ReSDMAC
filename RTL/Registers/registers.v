@@ -7,6 +7,7 @@
     `include "registers_term.v"
     `include "registers_flash.v"
     `define DEF_VERSION "v9.9"
+    `define DEVICE "10M16SCU169C8G"
 `endif
 
 module registers(
