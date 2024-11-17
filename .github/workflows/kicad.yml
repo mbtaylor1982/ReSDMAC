@@ -5,6 +5,7 @@ on:
         paths:
             - 'KiCad/**'
     workflow_dispatch:
+    workflow_call:  
 jobs:
   kicad_outputs:
     runs-on: ubuntu-latest
