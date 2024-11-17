@@ -15,7 +15,6 @@ on:
         description: Version Tag (eg v1.0)
         required: true
         type: string
-        description: Version Tag (eg v1.0)
         default: v9.9
       use_version:
         description: Use the version tag from the input.
