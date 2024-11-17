@@ -19,6 +19,7 @@ module addr_decoder(
   output DSP_RD_,
   output FLASH_ADDR_RD_,
   output FLASH_DATA_RD_,
+  output DEV_RD_,
 
   output CONTR_WR,
   output ACR_WR,
@@ -44,6 +45,7 @@ wire h_20;
 wire h_24;
 //wire h_28;
 //wire h_2C;
+wire h_30;
 wire h_3C;
 wire h_5C;
 wire h_58;
@@ -63,6 +65,7 @@ assign h_20 = ADDR_VALID & (ADDR == 8'h20);
 assign h_24 = ADDR_VALID & (ADDR == 8'h24);
 assign h_28 = ADDR_VALID & (ADDR == 8'h28);
 //assign h_2C = ADDR_VALID & (ADDR == 8'h2C);
+assign h_30 = ADDR_VALID & (ADDR == 8'h30);
 assign h_3C = ADDR_VALID & (ADDR == 8'h3C);
 assign h_5C = ADDR_VALID & (ADDR == 8'h5C);
 assign h_58 = ADDR_VALID & (ADDR == 8'h58);
@@ -78,6 +81,7 @@ assign VERSION_RD_    = ~(h_20 & RW);
 assign DSP_RD_        = ~(h_5C & RW);
 assign FLASH_ADDR_RD_ = ~(h_24 & RW);
 assign FLASH_DATA_RD_ = ~(h_28 & RW);
+assign DEV_RD_        = ~(h_30 & RW);
 
 assign CONTR_WR       = (h_08 & ~RW);
 assign ACR_WR         = (h_0C & ~RW);

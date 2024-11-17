@@ -43,6 +43,7 @@ wire CONTR_WR;
 wire ISTR_RD_;
 wire WTC_RD_;
 wire DSP_RD_;
+wire DEV_RD_;
 wire INTENA;
 wire SSPBDAT_RD_;
 wire SSPBDAT_WR;
@@ -53,7 +54,7 @@ wire FLASH_ADDR_WR;
 wire FLASH_DATA_RD_;
 wire FLASH_DATA_WR;
 wire FLASH_TERM;
-wire [7:0] MuxSelect;
+wire [8:0] MuxSelect;
 wire [31:0] FLASH_DATA_OUT;
 wire DSACK_TERM_;
 wire h_28;
@@ -71,6 +72,8 @@ wire nDMADIR;
 reg [31:0] SSPBDAT;  //Fake Synchronous Serial Peripheral Bus Data Register (used to test SDMAC rev 4 in the test tool by CDH)
 
 reg [8*4:1] VERSION; //used to store the code version (git tag) limited to 4 ascii chars.
+reg [8*14:1] DEVICE_TXT; //TXT representation of the FPAG variant.
+reg [4:0] DEVICE; //FPGA variaint 10M02, 10M04, 10M16 etc...
 reg [7:0] DSP;
 reg [23:0] FLASH_ADDR;
 //reg [31:0] META_DATA0;
@@ -98,6 +101,7 @@ addr_decoder u_addr_decoder(
     .CONTR_WR       (CONTR_WR   ),
     .ISTR_RD_       (ISTR_RD_   ),
     .DSP_RD_        (DSP_RD_    ),
+    .DEV_RD_        (DEV_RD_    ),
     .ACR_WR         (ACR_WR     ),
     .ST_DMA         (ST_DMA     ),
     .SP_DMA         (SP_DMA     ),
@@ -201,11 +205,19 @@ always @(negedge CLK or negedge RST_) begin
         FLASH_ADDR <= MID[23:0];
 end
 
-always @(negedge RST_) begin
-    if (~RST_)
+always @(posedge CLK) begin
+    if (~RST_) begin
         VERSION <= `DEF_VERSION; // This will get replaced with the release tag by github eg(v0.4).
-end
+        DEVICE_TXT <= `DEVICE;
 
+        case (DEVICE_TXT)
+            "10M02SCU169C8G": DEVICE <= 5'd2;
+            "10M04SCU169C8G": DEVICE <= 5'd4;
+            "10M16SCU169C8G": DEVICE <= 5'd16;
+            default         : DEVICE <= 5'd0;
+        endcase
+    end
+end
 
 always @(posedge CLK or negedge RST_) begin
     if (~RST_)
@@ -214,16 +226,17 @@ always @(posedge CLK or negedge RST_) begin
         DSP <= DSP_DATA;
 end
 
-assign MuxSelect = {~WTC_RD_, ~ISTR_RD_, ~CONTR_RD_, ~SSPBDAT_RD_, ~VERSION_RD_, ~DSP_RD_, ~FLASH_DATA_RD_, ~FLASH_ADDR_RD_};
+assign MuxSelect = {~WTC_RD_, ~ISTR_RD_, ~CONTR_RD_, ~SSPBDAT_RD_, ~VERSION_RD_, ~DSP_RD_, ~FLASH_DATA_RD_, ~FLASH_ADDR_RD_, ~DEV_RD_};
 
-localparam WTC_SEL = 8'b10000000;
-localparam ISTR_SEL = 8'b01000000;
-localparam CONTR_SEL = 8'b00100000;
-localparam SSPBDAT_SEL = 8'b00010000;
-localparam VERSION_SEL = 8'b00001000;
-localparam DSP_SEL = 8'b00000100;
-localparam FLASH_DATA_SEL = 8'b00000010;
-localparam FLASH_ADDR_SEL = 8'b00000001;
+localparam WTC_SEL          = 9'b100000000;
+localparam ISTR_SEL         = 9'b010000000;
+localparam CONTR_SEL        = 9'b001000000;
+localparam SSPBDAT_SEL      = 9'b000100000;
+localparam VERSION_SEL      = 9'b000010000;
+localparam DSP_SEL          = 9'b000001000;
+localparam FLASH_DATA_SEL   = 9'b000000100;
+localparam FLASH_ADDR_SEL   = 9'b000000010;
+localparam DEV_SEL          = 9'b000000001;
 
 always @(*) begin
     case (MuxSelect)
@@ -235,6 +248,7 @@ always @(*) begin
       DSP_SEL           : REG_OD <= {24'h0, DSP};
       FLASH_DATA_SEL    : REG_OD <= FLASH_DATA_OUT;
       FLASH_ADDR_SEL    : REG_OD <= FLASH_ADDR;
+      DEV_SEL           : REG_OD <= {27'h0, DEVICE};
       default           : REG_OD <= 32'h00000000;
     endcase
 end
