@@ -1,8 +1,5 @@
 name: build
 
-#env:
-#  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
-
 on:
   push:
     branches:
@@ -15,22 +12,22 @@ on:
         description: Version Tag (eg v1.0)
         required: true
         type: string
-        default: v9.9
+        default: 'v9.9'
       use_version:
         description: Use the version tag from the input.
-        default: false
-        type: boolean
+        default: 'false'
+        type: string
   workflow_call:
     inputs:
       version:
         description: Version Tag (eg v1.0)
         required: true
         type: string
-        default: v9.9
+        default: 'v9.9'
       use_version:
         description: Use the version tag from the input.
-        default: true
-        type: boolean
+        default: 'false'
+        type: string
 defaults:
   run:
     working-directory: Quartus
@@ -44,7 +41,7 @@ jobs:
         username: ${{ secrets.DOCKER_HUB_USER }}
         password: ${{ secrets.DOCKER_HUB_PWD }}
     env:
-      VERSION: ${{ inputs.use_version == true && inputs.version || 'v9.9' }}
+      VERSION: ${{ inputs.use_version == 'true' && inputs.version || 'v9.9' }}
     steps:
       # 1 - Checkout repository
       - name: Checkout repository
@@ -56,7 +53,7 @@ jobs:
       - name: Upload 10M16SCU169C8G Firmware
         uses: actions/upload-artifact@v4
         with:
-          name: OutputFiles_10M16SCU169C8G.zip
+          name: OutputFiles_10M16__${{inputs.version}}.zip
           path: Quartus/output_files_10M16SCU169C8G
           retention-days: 14
       # 4 - RTL synthesis 10M04
@@ -66,7 +63,7 @@ jobs:
       - name: Upload 10M04SCU169C8G Firmware
         uses: actions/upload-artifact@v4
         with:
-          name: OutputFiles_10M04SCU169C8G.zip
+          name: OutputFiles_10M04_${{inputs.version}}.zip
           path: Quartus/output_files_10M04SCU169C8G
           retention-days: 14
       # 6 - RTL synthesis 10M02
@@ -76,6 +73,6 @@ jobs:
       - name: Upload 10M02SCU169C8G Firmware
         uses: actions/upload-artifact@v4
         with:
-          name: OutputFiles_10M02SCU169C8G.zip
+          name: OutputFiles_10M02__${{inputs.version}}.zip
           path: Quartus/output_files_10M02SCU169C8G
           retention-days: 14
