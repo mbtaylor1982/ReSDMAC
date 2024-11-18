@@ -11,8 +11,11 @@ jobs:
   build_firmware:
     uses: ./.github/workflows/build.yml
     secrets: inherit
+  test:
+    uses: ./.github/workflows/test.yml
+    secrets: inherit
   create_release:
-    needs: [kicad_outputs, build_firmware]
+    needs: [kicad_outputs, build_firmware, test]
     runs-on: ubuntu-latest
 
     steps:
@@ -25,7 +28,7 @@ jobs:
       - name: Copy, tag with version and create SHA256 checksum
         run: |
           mkdir -p releases
-          cp -r KiCad_Outputs.zip releases/KiCad_Outputs_${{ github.ref_name }}
+          cp -r KiCad_Outputs.zip ./releases/KiCad_Outputs_${{ github.ref_name }}
           cp OutputFiles_10M16_${{ github.ref_name }}.zip/RESDMAC.pof ./releases/RESDMAC_10M16_${{ github.ref_name }}.pof
           cp OutputFiles_10M04_${{ github.ref_name }}.zip/RESDMAC.pof ./releases/RESDMAC_10M04_${{ github.ref_name }}.pof
           cp OutputFiles_10M02_${{ github.ref_name }}.zip/RESDMAC.pof ./releases/RESDMAC_10M02_${{ github.ref_name }}.pof
