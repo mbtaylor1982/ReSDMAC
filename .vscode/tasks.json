@@ -10,7 +10,7 @@
                 "command": "docker run --rm -v ${pwd}:/build -w /build/Quartus -e LM_LICENSE_FILE=/opt/license.dat -v /path/to/license.dat:/opt/license.dat:ro -it  mbtaylor1982/quartus:22.1 quartus_sh -t  RESDMAC.tcl -device ${input:device} -version v9.9"
             },
             "linux":{
-                "command": "docker run -rm -v $(pwd):/build -w /build/Quartus -e LM_LICENSE_FILE=/opt/license.dat -v /path/to/license.dat:/opt/license.dat:ro -it  mbtaylor1982/quartus:22.1 quartus_sh -t  RESDMAC.tcl -device ${input:device} -version v9.9"
+                "command": "docker run --rm -v $(pwd):/build -w /build/Quartus -e LM_LICENSE_FILE=/opt/license.dat -v /path/to/license.dat:/opt/license.dat:ro -it  mbtaylor1982/quartus:22.1 quartus_sh -t  RESDMAC.tcl -device ${input:device} -version v9.9"
             },
             "detail": "Trigger build using mbtaylor1982/quartus:22.1 Docker image",
             "presentation": {
