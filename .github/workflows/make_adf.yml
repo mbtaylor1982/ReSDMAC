@@ -21,7 +21,7 @@ jobs:
                 latest: true
                 extract: true
                 fileName: 'ReSDMAC*.zip'
-                token: ${{ secrets.GITHUB_TOKEN }}
+                token: ${{ secrets.RESDMAC_UPDATE_REPO}}
 
           - name: Display structure of files
             run: ls -R
