@@ -26,15 +26,15 @@ jobs:
         run: |
           mkdir -p releases
           cp -r KiCad_Outputs.zip releases/KiCad_Outputs_${{ github.ref_name }}
-          cp output_files_10M16_${{ github.ref_name }}.zip/RESDMAC.pof releases/RESDMAC_10M16_${{ github.ref_name }}.pof
-          cp output_files_10M04_${{ github.ref_name }}.zip/RESDMAC.pof releases/RESDMAC_10M04_${{ github.ref_name }}.pof
-          cp output_files_10M02_${{ github.ref_name }}.zip/RESDMAC.pof releases/RESDMAC_10M02_${{ github.ref_name }}.pof
-          cp output_files_10M16_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd releases/RESDMAC_10M16_${{ github.ref_name }}.rpd
-          cp output_files_10M04_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd releases/RESDMAC_10M04_${{ github.ref_name }}.rpd
-          cp output_files_10M02_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd releases/RESDMAC_10M02_${{ github.ref_name }}.rpd
-          sha256sum output_files_10M16_${{ github.ref_name }}.zip/RESDMAC.pof > releases/RESDMAC_10M16_${{ github.ref_name }}.pof.sha256
-          sha256sum output_files_10M04_${{ github.ref_name }}.zip/RESDMAC.pof > releases/RESDMAC_10M04_${{ github.ref_name }}.pof.sha256
-          sha256sum output_files_10M02_${{ github.ref_name }}.zip/RESDMAC.pof > releases/RESDMAC_10M02_${{ github.ref_name }}.pof.sha256
+          cp OutputFiles_10M16_${{ github.ref_name }}.zip/RESDMAC.pof releases/RESDMAC_10M16_${{ github.ref_name }}.pof
+          cp OutputFiles_10M04_${{ github.ref_name }}.zip/RESDMAC.pof releases/RESDMAC_10M04_${{ github.ref_name }}.pof
+          cp OutputFiles_10M02_${{ github.ref_name }}.zip/RESDMAC.pof releases/RESDMAC_10M02_${{ github.ref_name }}.pof
+          cp OutputFiles_10M16_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd releases/RESDMAC_10M16_${{ github.ref_name }}.rpd
+          cp OutputFiles_10M04_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd releases/RESDMAC_10M04_${{ github.ref_name }}.rpd
+          cp OutputFiles_10M02_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd releases/RESDMAC_10M02_${{ github.ref_name }}.rpd
+          sha256sum OutputFiles_10M16_${{ github.ref_name }}.zip/RESDMAC.pof > releases/RESDMAC_10M16_${{ github.ref_name }}.pof.sha256
+          sha256sum OutputFiles_10M04_${{ github.ref_name }}.zip/RESDMAC.pof > releases/RESDMAC_10M04_${{ github.ref_name }}.pof.sha256
+          sha256sum OutputFiles_10M02_${{ github.ref_name }}.zip/RESDMAC.pof > releases/RESDMAC_10M02_${{ github.ref_name }}.pof.sha256
 
       - id: changelog
         name: Changelog
