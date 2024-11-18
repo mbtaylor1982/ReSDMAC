@@ -19,6 +19,9 @@ jobs:
       - name: download artifacts
         uses: actions/download-artifact@v4
 
+      - name: Display structure of downloaded files
+        run: ls -R
+
       - name: Copy, tag with version and create SHA256 checksum
         run: |
           mkdir -p releases
