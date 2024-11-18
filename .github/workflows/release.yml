@@ -5,11 +5,6 @@ on:
     # Sequence of patterns matched against refs/tags
     tags:
       - 'v*' # Trigger only when tag matches v*, i.e. v1.0, v21.12.31, v211231
-
-defaults:
-  run:
-    working-directory: Quartus
-
 jobs:
   kicad_outputs:
     uses: ./.github/workflows/kicad.yml
