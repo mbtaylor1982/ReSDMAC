@@ -1,0 +1,34 @@
+name: make_adf
+
+on:
+    workflow_dispatch:
+    workflow_call:
+jobs:
+    make_update_adf:
+        runs-on: ubuntu-latest
+        container: walkero/amitoolsondocker:latest
+        steps:
+          - name: Checkout repository
+            uses: actions/checkout@v4
+
+          - name: download artifacts
+            uses: actions/download-artifact@v4
+
+          - name: download_assets
+            uses: robinraju/release-downloader@v1
+            with:
+                repository: 'mbtaylor1982/ReSDMAC_Update_Tool'
+                latest: true
+                fileName: 'resdmac.zip'
+
+          - name: Display structure of files
+            run: ls -R
+
+          - name: make_adf
+            run: |
+              mkdir -p ADF
+              xdftool ./ADF/ReSDMAC_Utils${{ github.ref_name }}.adf format "ReSDMAC_Utils"
+              xdftool ./ADF/ReSDMAC_Utils${{ github.ref_name }}.adf makedir C
+              xdftool ./ADF/ReSDMAC_Utils${{ github.ref_name }}.adf makedir S
+              xdftool ./ADF/ReSDMAC_Utils${{ github.ref_name }}.adf makedir Devs
+              xdftool ./ADF/ReSDMAC_Utils${{ github.ref_name }}.adf boot install
