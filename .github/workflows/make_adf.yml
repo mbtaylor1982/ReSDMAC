@@ -19,7 +19,7 @@ jobs:
             with:
                 repository: 'mbtaylor1982/ReSDMAC_Update_Tool'
                 latest: true
-                fileName: 'resdmac.zip'
+                fileName: 'ReSDMAC_0.1.zip'
                 token: ${{ secrets.GITHUB_TOKEN }}
 
           - name: Display structure of files
