@@ -22,9 +22,6 @@ jobs:
       - name: download artifacts
         uses: actions/download-artifact@v4
 
-      - name: Display structure of downloaded files
-        run: ls -R
-
       - name: Copy, tag with version and create SHA256 checksum
         run: |
           mkdir -p releases
@@ -40,9 +37,6 @@ jobs:
           sha256sum OutputFiles_10M04_${{ github.ref_name }}.zip/RESDMAC.pof > ./releases/RESDMAC_10M04_${{ github.ref_name }}.pof.sha256
           sha256sum OutputFiles_10M02_${{ github.ref_name }}.zip/RESDMAC.pof > ./releases/RESDMAC_10M02_${{ github.ref_name }}.pof.sha256
       
-      - name: Display structure of files
-        run: ls -R
-
       - name: Create a new GitHub release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
@@ -52,7 +46,7 @@ jobs:
           draft: true
           generate_release_notes: true
           files: |
-            ./releases/KiCad_Outputs_${{ github.ref_name }}  
+            ./releases/KiCad_Outputs_${{ github.ref_name }}.zip  
             ./releases/RESDMAC_10M16_${{ github.ref_name }}.pof
             ./releases/RESDMAC_10M04_${{ github.ref_name }}.pof
             ./releases/RESDMAC_10M02_${{ github.ref_name }}.pof
