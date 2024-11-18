@@ -15,6 +15,7 @@ jobs:
     uses: ./.github/workflows/kicad.yml
   build_firmware:
     uses: ./.github/workflows/build.yml
+    secrets: inherit
   create_release:
     needs: [kicad_outputs, build_firmware]
     runs-on: ubuntu-latest
