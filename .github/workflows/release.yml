@@ -38,7 +38,8 @@ jobs:
           sha256sum output_files_10M04_${{ github.ref_name }}.zip/RESDMAC.pof > ../releases/RESDMAC_10M04_${{ github.ref_name }}.pof.sha256
           sha256sum output_files_10M02_${{ github.ref_name }}.zip/RESDMAC.pof > ../releases/RESDMAC_10M02_${{ github.ref_name }}.pof.sha256
 
-      - name: Changelog
+      - id: changelog
+        name: Changelog
         uses: janheinrichmerker/action-github-changelog-generator@v2.3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
