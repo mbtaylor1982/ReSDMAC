@@ -33,7 +33,7 @@ jobs:
                 latest: true
                 extract: true
                 out-file-path: 'release-downloads'
-                fileName: 'SDMAC*.zip'
+                fileName: 'sdmac*.zip'
 
           - name: download_devtest_release
             uses: robinraju/release-downloader@v1
