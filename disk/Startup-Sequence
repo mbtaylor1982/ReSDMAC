@@ -1,0 +1,9 @@
+; Startup-Sequence
+; Copyright © 2024 Mike Taylor
+
+Path SYS:C ADD
+
+echo "Welcome to the ReSDMAC update utility disk"
+echo ""
+echo "To update firmware, type:"
+echo "    resdmac -w update.rpd"

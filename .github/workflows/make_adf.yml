@@ -7,6 +7,8 @@ jobs:
     make_update_adf:
         runs-on: ubuntu-latest
         container: walkero/amitoolsondocker:latest
+        env:
+          ADF_FILE: ReSDMAC_Utils${{ github.ref_name }}.adf
         steps:
           - name: Checkout repository
             uses: actions/checkout@v4
@@ -14,7 +16,7 @@ jobs:
           - name: download artifacts
             uses: actions/download-artifact@v4
 
-          - name: download_assets
+          - name: download_resdmac_update_release
             uses: robinraju/release-downloader@v1
             with:
                 repository: 'mbtaylor1982/ReSDMAC_Update_Tool'
@@ -24,14 +26,40 @@ jobs:
                 fileName: 'ReSDMAC*.zip'
                 token: ${{ secrets.RESDMAC_UPDATE_REPO}}
 
+          - name: download_sdmac_release
+            uses: robinraju/release-downloader@v1
+            with:
+                repository: 'cdhooper/amiga_sdmac_test'
+                latest: true
+                extract: true
+                out-file-path: 'release-downloads'
+                fileName: 'SDMAC*.zip'
+
+          - name: download_devtest_release
+            uses: robinraju/release-downloader@v1
+            with:
+                repository: 'cdhooper/amiga_devtest'
+                latest: true
+                out-file-path: 'release-downloads'
+                fileName: 'devtest*.lha' #change to zip file later
+
           - name: Display structure of files
             run: ls -R
 
           - name: make_adf
             run: |
               mkdir -p ADF
-              xdftool ./ADF/ReSDMAC_Utils${{ github.ref_name }}.adf format "ReSDMAC_Utils"
-              xdftool ./ADF/ReSDMAC_Utils${{ github.ref_name }}.adf makedir C
-              xdftool ./ADF/ReSDMAC_Utils${{ github.ref_name }}.adf makedir S
-              xdftool ./ADF/ReSDMAC_Utils${{ github.ref_name }}.adf makedir Devs
-              xdftool ./ADF/ReSDMAC_Utils${{ github.ref_name }}.adf boot install
+              xdftool ./ADF/${{ env.ADF_FILE }} format "ReSDMAC_Utils"
+              xdftool ./ADF/${{ env.ADF_FILE }} makedir C
+              xdftool ./ADF/${{ env.ADF_FILE }} makedir S
+              xdftool ./ADF/${{ env.ADF_FILE }} makedir Devs
+              xdftool ./ADF/${{ env.ADF_FILE }} write ./Quartus/output_files_10M16SCU169C8G/resdmac_cfm0_auto.rpd resdmac_10M16${{ github.ref_name }}.rpd
+              xdftool ./ADF/${{ env.ADF_FILE }} write ./Quartus/output_files_10M04SCU169C8G/resdmac_cfm0_auto.rpd resdmac_10M04${{ github.ref_name }}.rpd
+              xdftool ./ADF/${{ env.ADF_FILE }} write ./Quartus/output_files_10M02SCU169C8G/resdmac_cfm0_auto.rpd resdmac_10M02${{ github.ref_name }}.rpd
+              xdftool ./ADF/${{ env.ADF_FILE }} write ./disk/Startup-Sequence S/Startup-Sequence
+              xdftool ./ADF/${{ env.ADF_FILE }} write ./disk/system-configuration Devs/system-configuration
+              xdftool ./ADF/${{ env.ADF_FILE }} write ./disk/Disk.info
+              xdftool ./ADF/${{ env.ADF_FILE }} write ./release-downloads/resdmac C/resdmac
+              xdftool ./ADF/${{ env.ADF_FILE }} write ./release-downloads/sdmac C/sdmac
+              xdftool ./ADF/${{ env.ADF_FILE }} write ./release-downloads/devtest C/devtest
+              xdftool ./ADF/${{ env.ADF_FILE }} boot install
