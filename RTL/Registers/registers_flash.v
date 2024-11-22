@@ -10,25 +10,35 @@ module registers_flash(
     output Term
 );
 
+	reg CLK_6_25M;
+	reg Clk_12_5M;
+
+	always @(posedge CLK or negedge nRST) begin
+		if (~nRST) begin
+			CLK_6_25M <= 0;
+			Clk_12_5M <= 0;
+		end
+		else begin
+			Clk_12_5M <= ~Clk_12_5M;
+			if (Clk_12_5M)
+				CLK_6_25M <= ~CLK_6_25M;
+		end
+	end
+
+
 `ifdef ALTERA_RESERVED_QIS
 
 	localparam four_byte_transfer = 4'b1111;
 
-	reg [8*14:1] Device;
 	reg [31:0] LATCHED_FLASH_DATA_OUT;
 	reg LATCHED_FLASH_DATA_WR;
 	reg [2:0] WriteCycleClks;
 	wire [31:0] data;
-	wire FLASH_CLK;
-	reg CLK_6_25M;
-	reg Clk_12_5M;
-
 
 	always @(posedge CLK or negedge nRST) begin
 		if (~nRST) begin
 			LATCHED_FLASH_DATA_WR <= 1'b0;
 			WriteCycleClks <= 3'b0;
-			Device <= `DEVICE;
 		end
 		else begin
 			if (FLASH_DATA_WR) begin
@@ -52,31 +62,49 @@ module registers_flash(
 
 	assign FLASH_DATA_OUT = LATCHED_FLASH_DATA_OUT;
 
-	always @(posedge CLK or negedge nRST) begin
-		if (~nRST) begin
-			CLK_6_25M <= 0;
-			Clk_12_5M <= 0;
-		end
-		else begin
-			Clk_12_5M <= ~Clk_12_5M;
-			if (Clk_12_5M)
-				CLK_6_25M <= ~CLK_6_25M;
-		end
-	end
-
-	assign FLASH_CLK = (Device == "10M02SCU169C8G") ? CLK_6_25M : CLK;
-
-	`FLASH_INTERFACE u0 (
-		.clk_clk                        (FLASH_CLK),
-		.reset_reset_n                  (nRST),
-		.external_interface_address     (FLASH_ADDR),
-		.external_interface_read        (~FLASH_DATA_RD_),
-		.external_interface_read_data   (data),
-		.external_interface_write       (LATCHED_FLASH_DATA_WR),
-		.external_interface_write_data  (FLASH_DATA_IN),
-		.external_interface_acknowledge (Term),
-		.external_interface_byte_enable (four_byte_transfer)
-	);
+	generate
+		case(`DEVICE)
+			"10M02SCU169C8G" : begin
+				flash_interface_10M02SCU169C8G flash_interface (
+					.clk_clk                        (CLK_6_25M), //10M02 requires a clk rate of 7MHz or less.
+					.reset_reset_n                  (nRST),
+					.external_interface_address     (FLASH_ADDR),
+					.external_interface_read        (~FLASH_DATA_RD_),
+					.external_interface_read_data   (data),
+					.external_interface_write       (LATCHED_FLASH_DATA_WR),
+					.external_interface_write_data  (FLASH_DATA_IN),
+					.external_interface_acknowledge (Term),
+					.external_interface_byte_enable (four_byte_transfer)
+				);
+			end
+			"10M04SCU169C8G" : begin
+				flash_interface_10M04SCU169C8G flash_interface (
+					.clk_clk                        (CLK),
+					.reset_reset_n                  (nRST),
+					.external_interface_address     (FLASH_ADDR),
+					.external_interface_read        (~FLASH_DATA_RD_),
+					.external_interface_read_data   (data),
+					.external_interface_write       (LATCHED_FLASH_DATA_WR),
+					.external_interface_write_data  (FLASH_DATA_IN),
+					.external_interface_acknowledge (Term),
+					.external_interface_byte_enable (four_byte_transfer)
+				);
+			end
+			"10M16SCU169C8G" : begin
+				flash_interface_10M16SCU169C8G flash_interface (
+					.clk_clk                        (CLK),
+					.reset_reset_n                  (nRST),
+					.external_interface_address     (FLASH_ADDR),
+					.external_interface_read        (~FLASH_DATA_RD_),
+					.external_interface_read_data   (data),
+					.external_interface_write       (LATCHED_FLASH_DATA_WR),
+					.external_interface_write_data  (FLASH_DATA_IN),
+					.external_interface_acknowledge (Term),
+					.external_interface_byte_enable (four_byte_transfer)
+				);
+			end
+		endcase
+	endgenerate
 
 `elsif __ICARUS__
 

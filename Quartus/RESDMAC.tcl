@@ -44,7 +44,6 @@ if {$make_assignments} {
 	set_global_assignment -name FAMILY "MAX 10"
 	set_global_assignment -name DEVICE $optshash(device)
 	set_global_assignment -name VERILOG_MACRO "DEF_VERSION=\"$optshash(version)\""
-	set_global_assignment -name VERILOG_MACRO "FLASH_INTERFACE=flash_interface_$optshash(device)"
 	set_global_assignment -name VERILOG_MACRO "DEVICE=\"$optshash(device)\""
 	set_global_assignment -name ORIGINAL_QUARTUS_VERSION "13.0 SP1"
 	set_global_assignment -name PROJECT_CREATION_TIME_DATE "23:14:24  DECEMBER 29, 2022"
