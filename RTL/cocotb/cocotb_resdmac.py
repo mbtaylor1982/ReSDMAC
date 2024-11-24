@@ -10,24 +10,26 @@ from cocotb.triggers import FallingEdge, RisingEdge, Edge, Timer, ClockCycles, w
 from cocotb.types import LogicArray
 from cocotb.wavedrom import Wavedrom, trace
 
-WTC_REG_ADR = 0x01
-VERSION_REG_ADR = 0x08
-DSP_REG_ADR =(0x5c >> 0x2)
-FLASH_ADDR_ADR = (0x24 >> 0x2)
-FLASH_DATA_ADR = (0x28 >> 0x2)
+WTC_REG_ADR         = (0x04 >> 0x2)
+CONTR_REG_ADR       = (0x08 >> 0x2)
+RAMSEY_ACR_REG_ADR  = (0x0C >> 0x2)
+ST_DMA_STROBE_ADR   = (0x10 >> 0x2)
+FLUSH_STROBE_ADR    = (0x14 >> 0x2)
+ISR_REG_ADR         = (0x1C >> 0x2)
 
-SCSI_REG_ADR1 = 0x10
-SCSI_REG_ADR2 = 0x11
-SCSI_REG_ADR3 = 0x12
-SCSI_REG_ADR4 = 0x13
+VERSION_REG_ADR     = (0x20 >> 0x2) #ReSDMAC specific
+FLASH_ADDR_ADR      = (0x24 >> 0x2) #ReSDMAC specific
+FLASH_DATA_ADR      = (0x28 >> 0x2) #ReSDMAC specific
+DEVICE_REG_ADR      = (0x2c >> 0x2) #ReSDMAC specific
 
-SSPB_DATA_ADR = 0x16
-CONTR_REG_ADR = 0x02
-ISR_REG_ADR = 0x07 
-RAMSEY_ACR_REG_ADR = 0x03
-ST_DMA_STROBE_ADR  = 0x04
-SP_DMA_STROBE_ADR  = 0x0f
-FLUSH_STROBE_ADR   = 0x05
+SP_DMA_STROBE_ADR   = (0x3C >> 0x2)
+SCSI_REG_ADR1       = (0x40 >> 0x2)
+SCSI_REG_ADR2       = (0x44 >> 0x2)
+SCSI_REG_ADR3       = (0x48 >> 0x2)
+SCSI_REG_ADR4       = (0x4c >> 0x2)
+SSPB_DATA_ADR       = (0x58 >> 0x2)
+DSP_REG_ADR         = (0x5c >> 0x2)
+
 
 TEST_PATTERN1 = 0xAAAAAAAA
 TEST_PATTERN2 = 0x55555555
@@ -469,7 +471,7 @@ async def RESDMAC_test(dut):
     # Start the clock. Start it low to avoid issues on the first RisingEdge
     cocotb.start_soon(clock.start(start_high=False))
     
-    await reset_dut(dut._id("_RST", extended=False), 40)
+    await reset_dut(dut._id("_RST", extended=False), 120)
     dut._log.debug("After reset")
     dut.AS_I_.value = 1
     dut.DS_I_.value = 1
@@ -611,8 +613,7 @@ async def RESDMAC_test(dut):
     await write_data(dut, FLASH_ADDR_ADR, TEST_PATTERN3, dut.u_registers.FLASH_ADDR, header='Write to FLASH_ADDR REG', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/FLASH_ADDR_Write.json')
     data = await read_data(dut, FLASH_ADDR_ADR, dut.u_registers.FLASH_ADDR, header='Read From FLASH_ADDR REG', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/FLASH_ADDR_Read.json')
     assert data == TEST_PATTERN3, 'FLASH_ADDR_ADR Register not returning expected data'
-    
-    
+        
     #8 Test FLASH_ADDR register
     await write_data(dut, FLASH_ADDR_ADR, TEST_PATTERN3, dut.u_registers.FLASH_ADDR, header='Write to FLASH_ADDR REG', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/FLASH_ADDR_Write.json')
     data = await read_data(dut, FLASH_ADDR_ADR, dut.u_registers.FLASH_ADDR, header='Read From FLASH_ADDR REG', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/FLASH_ADDR_Read.json')
@@ -622,12 +623,14 @@ async def RESDMAC_test(dut):
     await write_data(dut, FLASH_DATA_ADR, TEST_PATTERN1, dut.u_registers.u_registers_flash.FLASH_CONTROL, header='Write to FLASH_CONTROL', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/FLASH_CONTROL_Write.json')
     data = await read_data(dut, FLASH_DATA_ADR, dut.u_registers.u_registers_flash.FLASH_CONTROL, header='Read From FLASH_CONTROL', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/FLASH_CONTROL_Read.json')
     assert data == TEST_PATTERN1, 'FLASH_CONTROL Register not returning expected data'
-    
-    
+        
     await write_data(dut, FLASH_ADDR_ADR, 0x24000, dut.u_registers.FLASH_ADDR, header='Write to FLASH_ADDR REG', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/FLASH_ADDR_Write.json')
     await write_data(dut, FLASH_DATA_ADR, TEST_PATTERN2, dut.u_registers.u_registers_flash.FLASHDATA, header='Write to FLASHDATA', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/FLASHDATA_Write.json')
     data = await read_data(dut, FLASH_DATA_ADR, dut.u_registers.u_registers_flash.FLASHDATA, header='Read From FLASHDATA', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/FLASHDATA_Read.json')
     assert data == TEST_PATTERN2, 'FLASHDATA Register not returning expected data'
+    
+    data = await read_data(dut, DEVICE_REG_ADR, dut.u_registers.DEVICE, header='Read From DEVICE REG', footer='SCLK:25Mhz (T:40ns)', filename='../Docs/TimingDiagrams/DEVICE_REG_Read.json')
+    assert data == 0x10, 'DEVICE Register not returning expected data'
     
     #9a Test DMA READ (from scsi to memory) 32 bit sterm cycle
     await DMA_READ(dut, TEST_DATA_ARRAY_BYTE1, 0x00000000, "_STERM")
