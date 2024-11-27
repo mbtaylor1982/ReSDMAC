@@ -5,7 +5,7 @@
  version="22.1"
  fabric="QSYS">
  <!-- Format version 22.1 922 (Future versions may contain additional information.) -->
- <!-- 2024.11.11.08:46:25 -->
+ <!-- 2024.11.26.22:21:42 -->
  <!-- A collection of modules and connections -->
  <parameter name="clockCrossingAdapter">
   <type>com.altera.sopcmodel.ensemble.EClockAdapter</type>
@@ -57,7 +57,7 @@
  </parameter>
  <parameter name="generationId">
   <type>int</type>
-  <value>1731314781</value>
+  <value>1732659699</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>true</visible>
@@ -4620,5 +4620,5 @@ parameters are a RESULT of the module parameters. -->
   <version>22.1</version>
  </plugin>
  <reportVersion>22.1 922</reportVersion>
- <uniqueIdentifier>04421A2A9CFC000001931A6712B2</uniqueIdentifier>
+ <uniqueIdentifier>04421A2A9CFC000001936A90E145</uniqueIdentifier>
 </EnsembleReport>

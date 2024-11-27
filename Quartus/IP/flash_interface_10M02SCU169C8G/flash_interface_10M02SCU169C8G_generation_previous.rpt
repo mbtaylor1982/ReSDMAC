@@ -12,7 +12,6 @@ Progress: Building connections
 Progress: Parameterizing connections
 Progress: Validating
 Progress: Done reading input file
-Warning: flash_interface_10M02SCU169C8G.onchip_flash: Clock frequency is set to 25000000 Hz, but the target device only supports maximum 7250000 Hz for the selected interface.
 Info: flash_interface_10M02SCU169C8G: Generating flash_interface_10M02SCU169C8G "flash_interface_10M02SCU169C8G" for QUARTUS_SYNTH
 Info: avalon_bridge: Starting Generation of External Bus to Avalon Bridge
 Info: avalon_bridge: "flash_interface_10M02SCU169C8G" instantiated altera_up_external_bus_to_avalon_bridge "avalon_bridge"
