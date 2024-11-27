@@ -14,8 +14,9 @@ module registers(
   input [7:0] ADDR,     // CPU address Bus
   input DMAC_,          // SDMAC Chip Select !SCSI from Fat Garry.
   input AS_,            // CPU Address Strobe.
+  input DS_,            // CPU Data Strobe.
   input RW,             // CPU Read Write Control Line.
-  input CLK,            // System Clock
+  input CLK,            // Clock 90 degrees phase shifted
   input [31:0] MID,     // DATA IN
   input STOPFLUSH,      //
   input RST_,           // System Reset
@@ -161,6 +162,8 @@ registers_term u_registers_term(
 registers_flash u_registers_flash(
     .CLK            (CLK            ),
     .nRST           (RST_           ),
+    .n_DS           (DS_            ),
+    .n_AS           (AS_            ),
     .FLASH_DATA_RD_ (FLASH_DATA_RD_ ),
     .FLASH_DATA_WR  (FLASH_DATA_WR  ),
     .FLASH_ADDR     (FLASH_ADDR     ),
