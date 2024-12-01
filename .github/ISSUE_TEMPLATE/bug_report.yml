@@ -24,7 +24,6 @@ body:
       label: What happened?
       description: Also tell us, what did you expect to happen?
       placeholder: Tell us what you see!
-      value: "A bug happened!"
     validations:
       required: true
   - type: dropdown
@@ -53,6 +52,30 @@ body:
         - A3000T
         - AA3000+
         - ReAmiga A3000
+    validations:
+      required: true
+  - type: dropdown
+    id: Accelerator
+    attributes:
+      label: What Accelerator are you using?
+      options:
+        - None (Onboard 030)
+        - BFG9060
+        - TF4060
+        - Z3660
+        - A3660
+        - A3640
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: Speed
+    attributes:
+      label: CPU Speed (MHz)
+      description: Please enter the CPU speed in MHz.
+      placeholder: ex. 50
+    validations:
+      required: false
   - type: textarea
     id: logs
     attributes:
