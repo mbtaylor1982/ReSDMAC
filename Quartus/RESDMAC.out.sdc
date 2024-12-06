@@ -41,7 +41,6 @@ set_time_format -unit ns -decimal_places 3
 
 create_clock -name {u_registers|u_registers_flash|flash_interface|onchip_flash|altera_onchip_flash_block|ufm_block|osc} -period 181.818 -waveform { 0.000 90.909 } [get_pins {u_registers|u_registers_flash|flash_interface|onchip_flash|altera_onchip_flash_block|ufm_block|osc}]
 create_clock -name {SCLK} -period 40.000 -waveform { 0.000 20.000 } [get_ports {SCLK}]
-create_clock -name {CLK_6_25M} -period 160.000 -waveform { 0.000 80.000 } [get_registers {registers:u_registers|registers_flash:u_registers_flash|CLK_6_25M}]
 
 
 #**************************************************************
@@ -78,22 +77,6 @@ set_clock_uncertainty -fall_from [get_clocks {u_PLL|attpll_inst|altpll_component
 set_clock_uncertainty -fall_from [get_clocks {u_PLL|attpll_inst|altpll_component|auto_generated|pll1|clk[2]}] -fall_to [get_clocks {SCLK}] -hold 0.150  
 set_clock_uncertainty -fall_from [get_clocks {u_PLL|attpll_inst|altpll_component|auto_generated|pll1|clk[2]}] -rise_to [get_clocks {u_PLL|attpll_inst|altpll_component|auto_generated|pll1|clk[1]}]  0.070  
 set_clock_uncertainty -fall_from [get_clocks {u_PLL|attpll_inst|altpll_component|auto_generated|pll1|clk[2]}] -fall_to [get_clocks {u_PLL|attpll_inst|altpll_component|auto_generated|pll1|clk[1]}]  0.070  
-set_clock_uncertainty -rise_from [get_clocks {CLK_6_25M}] -rise_to [get_clocks {CLK_6_25M}]  0.070  
-set_clock_uncertainty -rise_from [get_clocks {CLK_6_25M}] -fall_to [get_clocks {CLK_6_25M}]  0.070  
-set_clock_uncertainty -rise_from [get_clocks {CLK_6_25M}] -rise_to [get_clocks {u_registers|u_registers_flash|flash_interface|onchip_flash|altera_onchip_flash_block|ufm_block|osc}]  0.070  
-set_clock_uncertainty -rise_from [get_clocks {CLK_6_25M}] -fall_to [get_clocks {u_registers|u_registers_flash|flash_interface|onchip_flash|altera_onchip_flash_block|ufm_block|osc}]  0.070  
-set_clock_uncertainty -rise_from [get_clocks {CLK_6_25M}] -rise_to [get_clocks {u_PLL|attpll_inst|altpll_component|auto_generated|pll1|clk[1]}] -setup 0.160  
-set_clock_uncertainty -rise_from [get_clocks {CLK_6_25M}] -rise_to [get_clocks {u_PLL|attpll_inst|altpll_component|auto_generated|pll1|clk[1]}] -hold 0.170  
-set_clock_uncertainty -rise_from [get_clocks {CLK_6_25M}] -fall_to [get_clocks {u_PLL|attpll_inst|altpll_component|auto_generated|pll1|clk[1]}] -setup 0.160  
-set_clock_uncertainty -rise_from [get_clocks {CLK_6_25M}] -fall_to [get_clocks {u_PLL|attpll_inst|altpll_component|auto_generated|pll1|clk[1]}] -hold 0.170  
-set_clock_uncertainty -fall_from [get_clocks {CLK_6_25M}] -rise_to [get_clocks {CLK_6_25M}]  0.070  
-set_clock_uncertainty -fall_from [get_clocks {CLK_6_25M}] -fall_to [get_clocks {CLK_6_25M}]  0.070  
-set_clock_uncertainty -fall_from [get_clocks {CLK_6_25M}] -rise_to [get_clocks {u_registers|u_registers_flash|flash_interface|onchip_flash|altera_onchip_flash_block|ufm_block|osc}]  0.070  
-set_clock_uncertainty -fall_from [get_clocks {CLK_6_25M}] -fall_to [get_clocks {u_registers|u_registers_flash|flash_interface|onchip_flash|altera_onchip_flash_block|ufm_block|osc}]  0.070  
-set_clock_uncertainty -fall_from [get_clocks {CLK_6_25M}] -rise_to [get_clocks {u_PLL|attpll_inst|altpll_component|auto_generated|pll1|clk[1]}] -setup 0.160  
-set_clock_uncertainty -fall_from [get_clocks {CLK_6_25M}] -rise_to [get_clocks {u_PLL|attpll_inst|altpll_component|auto_generated|pll1|clk[1]}] -hold 0.170  
-set_clock_uncertainty -fall_from [get_clocks {CLK_6_25M}] -fall_to [get_clocks {u_PLL|attpll_inst|altpll_component|auto_generated|pll1|clk[1]}] -setup 0.160  
-set_clock_uncertainty -fall_from [get_clocks {CLK_6_25M}] -fall_to [get_clocks {u_PLL|attpll_inst|altpll_component|auto_generated|pll1|clk[1]}] -hold 0.170  
 set_clock_uncertainty -rise_from [get_clocks {SCLK}] -rise_to [get_clocks {u_PLL|attpll_inst|altpll_component|auto_generated|pll1|clk[2]}] -setup 0.150  
 set_clock_uncertainty -rise_from [get_clocks {SCLK}] -rise_to [get_clocks {u_PLL|attpll_inst|altpll_component|auto_generated|pll1|clk[2]}] -hold 0.170  
 set_clock_uncertainty -rise_from [get_clocks {SCLK}] -fall_to [get_clocks {u_PLL|attpll_inst|altpll_component|auto_generated|pll1|clk[2]}] -setup 0.150  
