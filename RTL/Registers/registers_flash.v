@@ -1,5 +1,4 @@
 //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
-
 module registers_flash(
     input CLK,
     input nRST,
@@ -13,24 +12,9 @@ module registers_flash(
     output reg Term
 );
 
+
+
 `ifdef ALTERA_RESERVED_QIS
-
-	reg CLK_6_25M;
-	reg Clk_12_5M;
-
-	always @(posedge CLK or negedge nRST) begin
-		if (~nRST) begin
-			CLK_6_25M <= 0;
-			Clk_12_5M <= 0;
-		end
-		else begin
-			Clk_12_5M <= ~Clk_12_5M;
-			if (Clk_12_5M)
-				CLK_6_25M <= ~CLK_6_25M;
-		end
-	end
-
-
 	localparam four_byte_transfer = 4'b1111;
 
 	reg [31:0] LATCHED_FLASH_DATA_OUT;
@@ -41,66 +25,54 @@ module registers_flash(
 	wire [31:0] data;
 	wire ack;
 
-	always @(posedge CLK_6_25M or negedge nRST) begin
-		if (~nRST)
-			LATCHED_ADDR <= 32'h00000000;
-		else if(~n_AS)
-			LATCHED_ADDR <= FLASH_ADDR;
+	always @(posedge CLK or negedge nRST) begin
+	if (~nRST)
+		LATCHED_ADDR <= 32'h00000000;
+	else if(~n_AS)
+		LATCHED_ADDR <= FLASH_ADDR;
 	end
 
-	always @(posedge CLK_6_25M or negedge nRST) begin
-		if (~nRST)
-			LATCHED_FLASH_DATA_OUT <= 32'h00000000;
-		else if(~FLASH_DATA_RD_ & ack)
-			LATCHED_FLASH_DATA_OUT <= data;
+	always @(posedge CLK or negedge nRST) begin
+	if (~nRST)
+		LATCHED_FLASH_DATA_OUT <= 32'h00000000;
+	else if(~FLASH_DATA_RD_ & ack)
+		LATCHED_FLASH_DATA_OUT <= data;
 	end
 
-	always @(posedge CLK_6_25M or negedge nRST) begin
-		if (~nRST)
-			LATCHED_FLASH_DATA_IN <= 32'h00000000;
-		else if(FLASH_DATA_WR & ~n_DS)
-			LATCHED_FLASH_DATA_IN <= FLASH_DATA_IN;
+	always @(posedge CLK or negedge nRST) begin
+	if (~nRST)
+		LATCHED_FLASH_DATA_IN <= 32'h00000000;
+	else if(FLASH_DATA_WR & ~n_DS)
+		LATCHED_FLASH_DATA_IN <= FLASH_DATA_IN;
 	end
 
-	always @(posedge CLK_6_25M or negedge nRST) begin
-		if (~nRST)
-			Term <= 1'b0;
-		else begin
-			Term <= ack;
-		end;
+	always @(posedge CLK or negedge nRST) begin
+	if (~nRST)
+		Term <= 1'b0;
+	else begin
+		Term <= ack;
+	end;
 	end
 
-	always @(posedge CLK_6_25M or negedge nRST) begin
-		if (~nRST) begin
-			write 	<= 1'b0;
-			read 	<= 1'b0;
-		end
-		else begin
-			read 	<= (~FLASH_DATA_RD_ & ~n_DS);
-			write 	<= (FLASH_DATA_WR 	& ~n_DS);
-		end
+	always @(posedge CLK or negedge nRST) begin
+	if (~nRST) begin
+		write 	<= 1'b0;
+		read 	<= 1'b0;
+	end
+	else begin
+		read 	<= (~FLASH_DATA_RD_ & ~n_DS);
+		write 	<= (FLASH_DATA_WR 	& ~n_DS);
+	end
 	end
 
 	assign FLASH_DATA_OUT = LATCHED_FLASH_DATA_OUT;
 
 	generate
 		case(`DEVICE)
-			"10M02SCU169C8G" : begin
-				flash_interface_10M02SCU169C8G flash_interface (
-					.clk_clk                        (CLK_6_25M), //10M02 requires a clk rate of 7MHz or less.
-					.reset_reset_n                  (nRST),
-					.external_interface_address     (LATCHED_ADDR),
-					.external_interface_read        (read),
-					.external_interface_read_data   (data),
-					.external_interface_write       (write),
-					.external_interface_write_data  (LATCHED_FLASH_DATA_IN),
-					.external_interface_acknowledge (ack),
-					.external_interface_byte_enable (four_byte_transfer)
-				);
-			end
+			"10M02SCU169C8G" : assign data = LATCHED_FLASH_DATA_IN;
 			"10M04SCU169C8G" : begin
 				flash_interface_10M04SCU169C8G flash_interface (
-					.clk_clk                        (CLK_6_25M),
+					.clk_clk                        (CLK),
 					.reset_reset_n                  (nRST),
 					.external_interface_address     (LATCHED_ADDR),
 					.external_interface_read        (read),
@@ -113,7 +85,7 @@ module registers_flash(
 			end
 			"10M16SCU169C8G" : begin
 				flash_interface_10M16SCU169C8G flash_interface (
-					.clk_clk                        (CLK_6_25M),
+					.clk_clk                        (CLK),
 					.reset_reset_n                  (nRST),
 					.external_interface_address     (LATCHED_ADDR),
 					.external_interface_read        (read),
@@ -185,5 +157,7 @@ module registers_flash(
 		end
 	end
 `endif
+
+
 
 endmodule

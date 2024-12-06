@@ -1,6 +1,6 @@
  //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
 
- `ifdef __ICARUS__ 
+ `ifdef __ICARUS__
     `include "addr_decoder.v"
     `include "registers_istr.v"
     `include "registers_cntr.v"
@@ -167,7 +167,7 @@ registers_flash u_registers_flash(
     .FLASH_DATA_RD_ (FLASH_DATA_RD_ ),
     .FLASH_DATA_WR  (FLASH_DATA_WR  ),
     .FLASH_ADDR     (FLASH_ADDR     ),
-    .FLASH_DATA_IN  (MID[31:0]      ),
+    .FLASH_DATA_IN  (MID            ),
     .FLASH_DATA_OUT (FLASH_DATA_OUT ),
     .Term           (FLASH_TERM     )
 );
@@ -205,7 +205,7 @@ end
 always @(negedge CLK or negedge RST_) begin
     if (~RST_)
         FLASH_ADDR <= 32'b0;
-    else if (FLASH_ADDR_WR)
+    else if (FLASH_ADDR_WR & ~DS_)
         FLASH_ADDR <= MID[23:0];
 end
 
