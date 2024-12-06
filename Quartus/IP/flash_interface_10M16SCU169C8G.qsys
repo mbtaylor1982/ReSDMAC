@@ -101,14 +101,14 @@
    kind="altera_up_external_bus_to_avalon_bridge"
    version="18.0"
    enabled="1">
-  <parameter name="AUTO_CLK_CLOCK_RATE" value="6250000" />
+  <parameter name="AUTO_CLK_CLOCK_RATE" value="25000000" />
   <parameter name="AUTO_DEVICE_FAMILY" value="MAX 10" />
   <parameter name="addr_size" value="16" />
   <parameter name="addr_size_multiplier" value="Mbytes" />
   <parameter name="data_size" value="32" />
  </module>
  <module name="clk_source" kind="clock_source" version="22.1" enabled="1">
-  <parameter name="clockFrequency" value="6250000" />
+  <parameter name="clockFrequency" value="25000000" />
   <parameter name="clockFrequencyKnown" value="true" />
   <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="NONE" />
@@ -118,7 +118,7 @@
    kind="altera_onchip_flash"
    version="22.1"
    enabled="1">
-  <parameter name="AUTO_CLOCK_RATE" value="6250000" />
+  <parameter name="AUTO_CLOCK_RATE" value="25000000" />
   <parameter name="CLOCK_FREQUENCY" value="25.0" />
   <parameter name="CONFIGURATION_MODE">Single Compressed Image</parameter>
   <parameter name="CONFIGURATION_SCHEME">Internal Configuration</parameter>

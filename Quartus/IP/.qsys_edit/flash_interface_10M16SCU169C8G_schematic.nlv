@@ -4,11 +4,11 @@ preplace inst flash_interface_10M16SCU169C8G.avalon_bridge -pg 1 -lvl 2 -y 90
 preplace inst flash_interface_10M16SCU169C8G -pg 1 -lvl 1 -y 40 -regy -20
 preplace inst flash_interface_10M16SCU169C8G.clk_source -pg 1 -lvl 1 -y 50
 preplace inst flash_interface_10M16SCU169C8G.onchip_flash -pg 1 -lvl 3 -y 70
-preplace netloc FAN_OUT<net_container>flash_interface_10M16SCU169C8G</net_container>(SLAVE)onchip_flash.data,(MASTER)avalon_bridge.avalon_master,(SLAVE)onchip_flash.csr) 1 2 1 620
-preplace netloc EXPORT<net_container>flash_interface_10M16SCU169C8G</net_container>(SLAVE)flash_interface_10M16SCU169C8G.clk,(SLAVE)clk_source.clk_in) 1 0 1 NJ
+preplace netloc FAN_OUT<net_container>flash_interface_10M16SCU169C8G</net_container>(MASTER)avalon_bridge.avalon_master,(SLAVE)onchip_flash.csr,(SLAVE)onchip_flash.data) 1 2 1 620
+preplace netloc EXPORT<net_container>flash_interface_10M16SCU169C8G</net_container>(SLAVE)clk_source.clk_in,(SLAVE)flash_interface_10M16SCU169C8G.clk) 1 0 1 NJ
 preplace netloc EXPORT<net_container>flash_interface_10M16SCU169C8G</net_container>(SLAVE)clk_source.clk_in_reset,(SLAVE)flash_interface_10M16SCU169C8G.reset) 1 0 1 NJ
-preplace netloc FAN_OUT<net_container>flash_interface_10M16SCU169C8G</net_container>(SLAVE)avalon_bridge.clk,(MASTER)clk_source.clk,(SLAVE)onchip_flash.clk) 1 1 2 330 180 600
 preplace netloc FAN_OUT<net_container>flash_interface_10M16SCU169C8G</net_container>(SLAVE)onchip_flash.nreset,(MASTER)clk_source.clk_reset,(SLAVE)avalon_bridge.reset) 1 1 2 310 200 620
 preplace netloc EXPORT<net_container>flash_interface_10M16SCU169C8G</net_container>(SLAVE)avalon_bridge.external_interface,(SLAVE)flash_interface_10M16SCU169C8G.external_interface) 1 0 2 NJ 40 NJ
+preplace netloc FAN_OUT<net_container>flash_interface_10M16SCU169C8G</net_container>(MASTER)clk_source.clk,(SLAVE)onchip_flash.clk,(SLAVE)avalon_bridge.clk) 1 1 2 330 180 600
 levelinfo -pg 1 0 110 750
 levelinfo -hier flash_interface_10M16SCU169C8G 120 150 380 650 740

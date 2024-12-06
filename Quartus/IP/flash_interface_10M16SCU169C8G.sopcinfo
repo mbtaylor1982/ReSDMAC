@@ -5,11 +5,11 @@
  version="1.0"
  fabric="QSYS">
  <!-- Format version 22.1 922 (Future versions may contain additional information.) -->
- <!-- 2024.11.26.08:50:30 -->
+ <!-- 2024.12.06.18:20:37 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1732611030</value>
+  <value>1733509237</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -141,7 +141,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="AUTO_CLK_CLOCK_RATE">
    <type>java.lang.Long</type>
-   <value>6250000</value>
+   <value>25000000</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -212,7 +212,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="clockRate">
     <type>java.lang.Long</type>
-    <value>6250000</value>
+    <value>25000000</value>
     <derived>true</derived>
     <enabled>true</enabled>
     <visible>false</visible>
@@ -684,7 +684,7 @@ parameters are a RESULT of the module parameters. -->
 the requested settings for a module instance. -->
   <parameter name="clockFrequency">
    <type>long</type>
-   <value>6250000</value>
+   <value>25000000</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -782,7 +782,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="clockRate">
     <type>java.lang.Long</type>
-    <value>6250000</value>
+    <value>25000000</value>
     <derived>true</derived>
     <enabled>true</enabled>
     <visible>false</visible>
@@ -860,7 +860,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="clockRate">
     <type>long</type>
-    <value>6250000</value>
+    <value>25000000</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -1269,7 +1269,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="AUTO_CLOCK_RATE">
    <type>long</type>
-   <value>6250000</value>
+   <value>25000000</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -1535,7 +1535,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="FLASH_RESET_CYCLE_MAX_INDEX">
    <type>int</type>
-   <value>1</value>
+   <value>6</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -1543,7 +1543,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="FLASH_BUSY_TIMEOUT_CYCLE_MAX_INDEX">
    <type>int</type>
-   <value>7</value>
+   <value>30</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -1551,7 +1551,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="FLASH_ERASE_TIMEOUT_CYCLE_MAX_INDEX">
    <type>int</type>
-   <value>2187500</value>
+   <value>8750000</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -1559,7 +1559,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="FLASH_WRITE_TIMEOUT_CYCLE_MAX_INDEX">
    <type>int</type>
-   <value>1906</value>
+   <value>7625</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -1675,7 +1675,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="clockRate">
     <type>java.lang.Long</type>
-    <value>6250000</value>
+    <value>25000000</value>
     <derived>true</derived>
     <enabled>true</enabled>
     <visible>false</visible>
