@@ -12,9 +12,8 @@ module registers_flash(
     output reg Term
 );
 
-
-
 `ifdef ALTERA_RESERVED_QIS
+	
 	localparam four_byte_transfer = 4'b1111;
 
 	reg [31:0] LATCHED_FLASH_DATA_OUT;
@@ -54,7 +53,7 @@ module registers_flash(
 	end;
 	end
 
-	always @(posedge CLK or negedge nRST) begin
+	always @(negedge CLK or negedge nRST) begin
 	if (~nRST) begin
 		write 	<= 1'b0;
 		read 	<= 1'b0;
