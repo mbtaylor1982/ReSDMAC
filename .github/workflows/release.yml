@@ -21,6 +21,9 @@ jobs:
     steps:
       - name: download artifacts
         uses: actions/download-artifact@v4
+    
+      - name: Install rhash
+        run: sudo apt-get -y install rhash
 
       - name: Copy, tag with version and create SHA256 checksum
         run: |
@@ -35,6 +38,8 @@ jobs:
           sha256sum OutputFiles_10M16_${{ github.ref_name }}.zip/RESDMAC.pof > ./releases/RESDMAC_10M16_${{ github.ref_name }}.pof.sha256
           sha256sum OutputFiles_10M04_${{ github.ref_name }}.zip/RESDMAC.pof > ./releases/RESDMAC_10M04_${{ github.ref_name }}.pof.sha256
           sha256sum OutputFiles_10M02_${{ github.ref_name }}.zip/RESDMAC.pof > ./releases/RESDMAC_10M02_${{ github.ref_name }}.pof.sha256
+          rhash  -C OutputFiles_10M16_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd > ./releases/RESDMAC_10M16_${{ github.ref_name }}.rpd.crc32
+          rhash  -C OutputFiles_10M04_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd > ./releases/RESDMAC_10M04_${{ github.ref_name }}.rpd.crc32
       
       - name: Create a new GitHub release
         uses: softprops/action-gh-release@v2
@@ -51,6 +56,8 @@ jobs:
             ./releases/RESDMAC_10M02_${{ github.ref_name }}.pof
             ./releases/RESDMAC_10M16_${{ github.ref_name }}.rpd
             ./releases/RESDMAC_10M04_${{ github.ref_name }}.rpd
+            ./releases/RESDMAC_10M16_${{ github.ref_name }}.rpd.crc32
+            ./releases/RESDMAC_10M04_${{ github.ref_name }}.rpd.crc32
             ./releases/RESDMAC_10M16_${{ github.ref_name }}.pof.sha256
             ./releases/RESDMAC_10M04_${{ github.ref_name }}.pof.sha256
             ./releases/RESDMAC_10M02_${{ github.ref_name }}.pof.sha256
