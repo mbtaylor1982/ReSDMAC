@@ -42,7 +42,7 @@ jobs:
           quartus_sh -t  RESDMAC.tcl -device 10M16SCU169C8G -version $VERSION
           cd output_files_10M16SCU169C8G
           sha256sum RESDMAC.pof > RESDMAC.pof.sha256
-          ../bin/gencrc resdmac_cfm0_auto.rpd > resdmac_cfm0_auto.crc32
+          ../../bin/gencrc resdmac_cfm0_auto.rpd > resdmac_cfm0_auto.crc32
       # 3 - Upload artifacts
       - name: Upload 10M16SCU169C8G Firmware
         uses: actions/upload-artifact@v4
@@ -57,7 +57,7 @@ jobs:
           quartus_sh -t  RESDMAC.tcl -device 10M04SCU169C8G -version $VERSION
           cd output_files_10M04SCU169C8G
           sha256sum RESDMAC.pof > RESDMAC.pof.sha256
-          ../bin/gencrc resdmac_cfm0_auto.rpd > resdmac_cfm0_auto.crc32
+          ../../bin/gencrc resdmac_cfm0_auto.rpd > resdmac_cfm0_auto.crc32
       # 5 - Upload artifacts
       - name: Upload 10M04SCU169C8G Firmware
         uses: actions/upload-artifact@v4
