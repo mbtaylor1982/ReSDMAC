@@ -24,8 +24,9 @@ jobs:
 
       - name: Install gencrc
         run: |
-          wget -P /bin https://github.com/mbtaylor1982/gencrc/releases/latest/download/gencrc
-          chmod +x /bin/gencrc
+          mkdir -p bin
+          wget -P ./bin https://github.com/mbtaylor1982/gencrc/releases/latest/download/gencrc
+          chmod +x ./bin/gencrc
 
       - name: Copy, tag with version and create SHA256 checksum
         run: |
@@ -40,8 +41,8 @@ jobs:
           sha256sum OutputFiles_10M16_${{ github.ref_name }}.zip/RESDMAC.pof > ./releases/RESDMAC_10M16_${{ github.ref_name }}.pof.sha256
           sha256sum OutputFiles_10M04_${{ github.ref_name }}.zip/RESDMAC.pof > ./releases/RESDMAC_10M04_${{ github.ref_name }}.pof.sha256
           sha256sum OutputFiles_10M02_${{ github.ref_name }}.zip/RESDMAC.pof > ./releases/RESDMAC_10M02_${{ github.ref_name }}.pof.sha256
-          gencrc OutputFiles_10M16_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd > ./releases/RESDMAC_10M16_${{ github.ref_name }}.rpd.crc32
-          gencrc OutputFiles_10M04_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd > ./releases/RESDMAC_10M04_${{ github.ref_name }}.rpd.crc32
+          ./bin/gencrc OutputFiles_10M16_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd > ./releases/RESDMAC_10M16_${{ github.ref_name }}.rpd.crc32
+          ./bin/gencrc OutputFiles_10M04_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd > ./releases/RESDMAC_10M04_${{ github.ref_name }}.rpd.crc32
 
       - name: Create a new GitHub release
         uses: softprops/action-gh-release@v2
