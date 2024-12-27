@@ -67,7 +67,7 @@ jobs:
         working-directory: Quartus
         run: quartus_sh -t  RESDMAC.tcl -device 10M02SCU169C8G -version $VERSION
       - name: calcualte 10M02 checksums
-        run: sha256sum Quartus/output_files_10M04SCU169C8G/RESDMAC.pof > Quartus/output_files_10M04SCU169C8G/RESDMAC.pof.sha256
+        run: sha256sum Quartus/output_files_10M02SCU169C8G/RESDMAC.pof > Quartus/output_files_10M02SCU169C8G/RESDMAC.pof.sha256
       # 7 - Upload artifacts
       - name: Upload 10M02SCU169C8G Firmware
         uses: actions/upload-artifact@v4
