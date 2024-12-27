@@ -38,11 +38,12 @@ jobs:
       # 2 - RTL synthesis 10M16
       - name: Run compilation flow 10M16
         working-directory: Quartus
+        run: quartus_sh -t  RESDMAC.tcl -device 10M16SCU169C8G -version $VERSION
+      - name: calcualte 10M16 checksums
         run: |
-          quartus_sh -t  RESDMAC.tcl -device 10M16SCU169C8G -version $VERSION
-          cd output_files_10M16SCU169C8G
-          sha256sum RESDMAC.pof > RESDMAC.pof.sha256
-          ../../bin/gencrc resdmac_cfm0_auto.rpd > resdmac_cfm0_auto.crc32
+          cd bin
+          sha256sum ../Quartus/output_files_10M16SCU169C8G/RESDMAC.pof > ../Quartus/output_files_10M16SCU169C8G/RESDMAC.pof.sha256
+          gencrc ../Quartus/output_files_10M16SCU169C8G/resdmac_cfm0_auto.rpd > ../Quartus/output_files_10M16SCU169C8G/resdmac_cfm0_auto.crc32
       # 3 - Upload artifacts
       - name: Upload 10M16SCU169C8G Firmware
         uses: actions/upload-artifact@v4
@@ -53,12 +54,13 @@ jobs:
       # 4 - RTL synthesis 10M04
       - name: Run compilation flow 10M04
         working-directory: Quartus
+        run: quartus_sh -t  RESDMAC.tcl -device 10M04SCU169C8G -version $VERSION
+      - name: calcualte 10M04 checksums
         run: |
-          quartus_sh -t  RESDMAC.tcl -device 10M04SCU169C8G -version $VERSION
-          cd output_files_10M04SCU169C8G
-          sha256sum RESDMAC.pof > RESDMAC.pof.sha256
-          ../../bin/gencrc resdmac_cfm0_auto.rpd > resdmac_cfm0_auto.crc32
-      # 5 - Upload artifacts
+          cd bin
+          sha256sum ../Quartus/output_files_10M04SCU169C8G/RESDMAC.pof > ../Quartus/output_files_10M04SCU169C8G/RESDMAC.pof.sha256
+          gencrc ../Quartus/output_files_10M04SCU169C8G/resdmac_cfm0_auto.rpd > ../Quartus/output_files_10M04SCU169C8G/resdmac_cfm0_auto.crc32
+        # 5 - Upload artifacts
       - name: Upload 10M04SCU169C8G Firmware
         uses: actions/upload-artifact@v4
         with:
@@ -68,10 +70,9 @@ jobs:
       # 6 - RTL synthesis 10M02
       - name: Run compilation flow 10M02
         working-directory: Quartus
-        run: |
-          quartus_sh -t  RESDMAC.tcl -device 10M02SCU169C8G -version $VERSION
-          sha256sum RESDMAC.pof > RESDMAC.pof.sha256
-          cd output_files_10M02SCU169C8G
+        run: quartus_sh -t  RESDMAC.tcl -device 10M02SCU169C8G -version $VERSION
+      - name: calcualte 10M02 checksums
+        run: sha256sum Quartus/output_files_10M04SCU169C8G/RESDMAC.pof > Quartus/output_files_10M04SCU169C8G/RESDMAC.pof.sha256
       # 7 - Upload artifacts
       - name: Upload 10M02SCU169C8G Firmware
         uses: actions/upload-artifact@v4
