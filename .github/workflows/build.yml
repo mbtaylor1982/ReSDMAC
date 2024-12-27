@@ -8,9 +8,6 @@ on:
       - '**.md'
   workflow_dispatch:
   workflow_call:
-defaults:
-  run:
-    working-directory: Quartus
 
 jobs:
   build:
@@ -24,29 +21,28 @@ jobs:
       VERSION: ${{ startsWith(github.ref_name, 'v') && github.ref_name || 'v9.9'}}
     steps:
       - name: make bin dir
-        run: |
-          cd ..
-          mkdir -p bin
+        run: mkdir -p bin
       - name: Install gencrc
         uses: robinraju/release-downloader@v1
         with:
             repository: 'mbtaylor1982/gencrc'
             latest: true
-            out-file-path: '../bin'
+            out-file-path: './bin'
             fileName: 'gencrc'
             extract: true
       - name: add +x permission to gencrc
-        run: chmod +x ../bin/gencrc
+        run: chmod +x ./bin/gencrc
       # 1 - Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
       # 2 - RTL synthesis 10M16
       - name: Run compilation flow 10M16
+        working-directory: Quartus
         run: |
           quartus_sh -t  RESDMAC.tcl -device 10M16SCU169C8G -version $VERSION
           cd output_files_10M16SCU169C8G
           sha256sum RESDMAC.pof > RESDMAC.pof.sha256
-          ../../bin/gencrc resdmac_cfm0_auto.rpd > resdmac_cfm0_auto.crc32
+          ../bin/gencrc resdmac_cfm0_auto.rpd > resdmac_cfm0_auto.crc32
       # 3 - Upload artifacts
       - name: Upload 10M16SCU169C8G Firmware
         uses: actions/upload-artifact@v4
@@ -56,11 +52,12 @@ jobs:
           retention-days: 14
       # 4 - RTL synthesis 10M04
       - name: Run compilation flow 10M04
+        working-directory: Quartus
         run: |
           quartus_sh -t  RESDMAC.tcl -device 10M04SCU169C8G -version $VERSION
           cd output_files_10M04SCU169C8G
           sha256sum RESDMAC.pof > RESDMAC.pof.sha256
-          ../../bin/gencrc resdmac_cfm0_auto.rpd > resdmac_cfm0_auto.crc32
+          ../bin/gencrc resdmac_cfm0_auto.rpd > resdmac_cfm0_auto.crc32
       # 5 - Upload artifacts
       - name: Upload 10M04SCU169C8G Firmware
         uses: actions/upload-artifact@v4
@@ -70,6 +67,7 @@ jobs:
           retention-days: 14
       # 6 - RTL synthesis 10M02
       - name: Run compilation flow 10M02
+        working-directory: Quartus
         run: |
           quartus_sh -t  RESDMAC.tcl -device 10M02SCU169C8G -version $VERSION
           sha256sum RESDMAC.pof > RESDMAC.pof.sha256
