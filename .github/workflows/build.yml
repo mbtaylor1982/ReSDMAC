@@ -53,8 +53,8 @@ jobs:
         run: quartus_sh -t  RESDMAC.tcl -device 10M04SCU169C8G -version $VERSION
       - name: calcualte 10M04 checksums
         run: |
-          sha256sum ../Quartus/output_files_10M04SCU169C8G/RESDMAC.pof > ../Quartus/output_files_10M04SCU169C8G/RESDMAC.pof.sha256
-          gencrc ../Quartus/output_files_10M04SCU169C8G/resdmac_cfm0_auto.rpd > ../Quartus/output_files_10M04SCU169C8G/resdmac_cfm0_auto.crc32
+          sha256sum Quartus/output_files_10M04SCU169C8G/RESDMAC.pof > Quartus/output_files_10M04SCU169C8G/RESDMAC.pof.sha256
+          gencrc Quartus/output_files_10M04SCU169C8G/resdmac_cfm0_auto.rpd > Quartus/output_files_10M04SCU169C8G/resdmac_cfm0_auto.crc32
         # 5 - Upload artifacts
       - name: Upload 10M04SCU169C8G Firmware
         uses: actions/upload-artifact@v4
