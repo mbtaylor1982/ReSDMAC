@@ -48,17 +48,20 @@ jobs:
 
           - name: make_adf
             run: |
+              rename ./release-downloads/ReSDMAC* ./release-downloads/resdmac
+              rename ./release-downloads/sdmac* ./release-downloads/sdmac
               mkdir -p ADF
               xdftool ./ADF/${{ env.ADF_FILE }} format "ReSDMAC_Utils${{ github.ref_name }}"
               xdftool ./ADF/${{ env.ADF_FILE }} makedir C
               xdftool ./ADF/${{ env.ADF_FILE }} makedir S
               xdftool ./ADF/${{ env.ADF_FILE }} makedir Devs
-              xdftool ./ADF/${{ env.ADF_FILE }} write ./release-downloads/ReSDMAC_0.1/resdmac C/resdmac
-              xdftool ./ADF/${{ env.ADF_FILE }} write ./release-downloads/sdmac_0.9/sdmac C/sdmac
+              xdftool ./ADF/${{ env.ADF_FILE }} write ./release-downloads/resdmac/resdmac C/resdmac
+              xdftool ./ADF/${{ env.ADF_FILE }} write ./release-downloads/sdmac/sdmac C/sdmac
               xdftool ./ADF/${{ env.ADF_FILE }} write ./release-downloads:/devtest_1.6.lha devtest.lha
-              xdftool ./ADF/${{ env.ADF_FILE }} write ./OutputFiles_10M16_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd resdmac_10M16${{ github.ref_name }}.rpd
-              xdftool ./ADF/${{ env.ADF_FILE }} write ./OutputFiles_10M04_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd resdmac_10M04${{ github.ref_name }}.rpd
-              xdftool ./ADF/${{ env.ADF_FILE }} write ./OutputFiles_10M02_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd resdmac_10M02${{ github.ref_name }}.rpd
+              xdftool ./ADF/${{ env.ADF_FILE }} write ./OutputFiles_10M16_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd 10M16_update.rpd
+              xdftool ./ADF/${{ env.ADF_FILE }} write ./OutputFiles_10M04_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd 10M04_update.rpd
+              xdftool ./ADF/${{ env.ADF_FILE }} write ./OutputFiles_10M16_${{ github.ref_name }}.zip/resdmac_cfm0_auto.crc32 10M16_update.crc32
+              xdftool ./ADF/${{ env.ADF_FILE }} write ./OutputFiles_10M04_${{ github.ref_name }}.zip/resdmac_cfm0_auto.crc32 10M04_update.crc32
               xdftool ./ADF/${{ env.ADF_FILE }} write ./disk/Startup-Sequence S/Startup-Sequence
               xdftool ./ADF/${{ env.ADF_FILE }} write ./disk/system-configuration Devs/system-configuration
               xdftool ./ADF/${{ env.ADF_FILE }} write ./disk/Disk.info
