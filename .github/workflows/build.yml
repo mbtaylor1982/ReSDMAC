@@ -24,7 +24,9 @@ jobs:
       VERSION: ${{ startsWith(github.ref_name, 'v') && github.ref_name || 'v9.9'}}
     steps:
       - name: make bin dir
-        run: mkdir -p ../bin
+        run: |
+          cd ..
+          mkdir -p bin
       - name: Install gencrc
         uses: robinraju/release-downloader@v1
         with:
@@ -34,7 +36,7 @@ jobs:
             fileName: 'gencrc'
             extract: true
       - name: add +x permission to gencrc
-        run: chmod +x ./bin/gencrc
+        run: chmod +x ../bin/gencrc
       # 1 - Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
