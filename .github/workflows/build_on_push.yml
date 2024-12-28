@@ -4,8 +4,9 @@ on:
     push:
       branches:
         - main
-      paths-ignore:
-        - '**.md'
+      paths:
+        - 'Quartus/**'
+        - 'RTL/**'
 jobs:
   build_firmware_10M02:
     secrets: inherit
