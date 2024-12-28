@@ -1,9 +1,11 @@
 ; Startup-Sequence
-; Copyright © 2024 Mike Taylor
+; Copyright ï¿½ 2024 Mike Taylor
 
 Path SYS:C ADD
 
 echo "Welcome to the ReSDMAC update utility disk"
 echo ""
 echo "To update firmware, type:"
-echo "    resdmac -w update.rpd"
+echo "    resdmac -w 10Mxx_update.rpd"
+echo "    xx = 04 for 10M04 and 16 for 10M16 devices"
+
