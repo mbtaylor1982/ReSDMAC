@@ -8,6 +8,7 @@ jobs:
         runs-on: ubuntu-latest
         container: walkero/amitoolsondocker:latest
         env:
+          ADF_LABEL: ReSDMAC_Utils${{ github.ref_name }}
           ADF_FILE: ReSDMAC_Utils${{ github.ref_name }}.adf
         steps:
           - name: Checkout repository
@@ -49,7 +50,7 @@ jobs:
           - name: make_adf
             run: |
               mkdir -p ADF
-              xdftool ./ADF/${{ env.ADF_FILE }} format "ReSDMAC_Utils${{ github.ref_name }}"
+              xdftool ./ADF/${{ env.ADF_FILE }} format "${{ env.ADF_LABEL }}"
               xdftool ./ADF/${{ env.ADF_FILE }} makedir C
               xdftool ./ADF/${{ env.ADF_FILE }} makedir S
               xdftool ./ADF/${{ env.ADF_FILE }} makedir Devs
@@ -62,3 +63,9 @@ jobs:
               xdftool ./ADF/${{ env.ADF_FILE }} write ./disk/system-configuration Devs/system-configuration
               xdftool ./ADF/${{ env.ADF_FILE }} write ./disk/Disk.info
               xdftool ./ADF/${{ env.ADF_FILE }} boot install
+          - name: Upload ADF file
+            uses: actions/upload-artifact@v4
+            with:
+              name: ${{ env.ADF_FILE }}
+              path: ./ADF/${{ env.ADF_FILE }}
+              retention-days: 14
