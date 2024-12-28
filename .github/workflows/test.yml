@@ -4,13 +4,15 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - '**.md'
+    paths:
+      - 'Quartus/**'
+      - 'RTL/**'
   pull_request:
     branches:
       - main
-    paths-ignore:
-      - '**.md'
+    paths:
+      - 'Quartus/**'
+      - 'RTL/**'
   workflow_call:
 jobs:
   testing:
