@@ -56,8 +56,8 @@ jobs:
               xdftool ./ADF/${{ env.ADF_FILE }} write ./ReSDMAC_Update_Tool/resdmac C/resdmac
               xdftool ./ADF/${{ env.ADF_FILE }} write ./OutputFiles_10M16SCU169C8G_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd 10M16_update.rpd
               xdftool ./ADF/${{ env.ADF_FILE }} write ./OutputFiles_10M04SCU169C8G_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd 10M04_update.rpd
-              xdftool ./ADF/${{ env.ADF_FILE }} write ./OutputFiles_10M16SCU169C8G_${{ github.ref_name }}.zip/resdmac_cfm0_auto_crc32.txt 10M16_update_crc32.txt
-              xdftool ./ADF/${{ env.ADF_FILE }} write ./OutputFiles_10M04SCU169C8G_${{ github.ref_name }}.zip/resdmac_cfm0_auto_crc32.txt 10M04_update_crc32.txt
+              xdftool ./ADF/${{ env.ADF_FILE }} write ./OutputFiles_10M16SCU169C8G_${{ github.ref_name }}.zip/resdmac_cfm0_auto_crc32.txt 10M16_update.rpd.crc32
+              xdftool ./ADF/${{ env.ADF_FILE }} write ./OutputFiles_10M04SCU169C8G_${{ github.ref_name }}.zip/resdmac_cfm0_auto_crc32.txt 10M04_update.rpd.crc32
               xdftool ./ADF/${{ env.ADF_FILE }} write ./disk/Startup-Sequence S/Startup-Sequence
               xdftool ./ADF/${{ env.ADF_FILE }} write ./disk/system-configuration Devs/system-configuration
               xdftool ./ADF/${{ env.ADF_FILE }} write ./disk/Disk.info
