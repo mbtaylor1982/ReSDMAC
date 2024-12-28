@@ -14,8 +14,12 @@ jobs:
   test:
     uses: ./.github/workflows/test.yml
     secrets: inherit
+  ADF:
+    needs: [build_firmware]
+    uses: ./.github/workflows/make_adf.yml
+    secrets: inherit
   create_release:
-    needs: [kicad_outputs, build_firmware, test]
+    needs: [kicad_outputs, build_firmware, test, ADF]
     runs-on: ubuntu-latest
 
     steps:
