@@ -46,13 +46,10 @@ jobs:
           - name: Display structure of files
             run: ls -R
 
-          - name: install rename
-            run: apt-get install -y rename
-
           - name: make_adf
             run: |
-              rename ./release-downloads/ReSDMAC*.zip ./release-downloads/resdmac
-              rename ./release-downloads/sdmac*.zip ./release-downloads/sdmac
+              find . -name "ReSDMAC*.zip" -exec mv '{}' ../resdmac/ \;
+              find . -name "sdmac*.zip" -exec mv '{}' ../sdmac/ \;
               mkdir -p ADF
               xdftool ./ADF/${{ env.ADF_FILE }} format "ReSDMAC_Utils${{ github.ref_name }}"
               xdftool ./ADF/${{ env.ADF_FILE }} makedir C
