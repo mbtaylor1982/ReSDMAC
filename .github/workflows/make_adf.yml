@@ -22,7 +22,7 @@ jobs:
                 repository: 'mbtaylor1982/ReSDMAC_Update_Tool'
                 latest: true
                 extract: true
-                out-file-path: 'release-downloads'
+                out-file-path: 'ReSDMAC_Update_Tool'
                 fileName: 'ReSDMAC.zip'
                 token: ${{ secrets.RESDMAC_UPDATE_REPO}}
 
@@ -53,7 +53,7 @@ jobs:
               xdftool ./ADF/${{ env.ADF_FILE }} makedir C
               xdftool ./ADF/${{ env.ADF_FILE }} makedir S
               xdftool ./ADF/${{ env.ADF_FILE }} makedir Devs
-              xdftool ./ADF/${{ env.ADF_FILE }} write ./release-downloads/ReSDMAC/resdmac C/resdmac
+              xdftool ./ADF/${{ env.ADF_FILE }} write ./ReSDMAC_Update_Tool/resdmac C/resdmac
               xdftool ./ADF/${{ env.ADF_FILE }} write ./OutputFiles_10M16_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd 10M16_update.rpd
               xdftool ./ADF/${{ env.ADF_FILE }} write ./OutputFiles_10M04_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd 10M04_update.rpd
               xdftool ./ADF/${{ env.ADF_FILE }} write ./OutputFiles_10M16_${{ github.ref_name }}.zip/resdmac_cfm0_auto.crc32 10M16_update.crc32
