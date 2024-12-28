@@ -54,7 +54,6 @@ jobs:
           cp OutputFiles_10M16SCU169C8G_${{ github.ref_name }}.zip/resdmac_cfm0_auto.crc32 ./releases/RESDMAC_10M16SCU169C8G_${{ github.ref_name }}.rpd.crc32
           cp OutputFiles_10M04SCU169C8G_${{ github.ref_name }}.zip/resdmac_cfm0_auto.crc32 ./releases/RESDMAC_10M04SCU169C8G_${{ github.ref_name }}.rpd.crc32
 
-
       - name: Create a new GitHub release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
@@ -64,7 +63,7 @@ jobs:
           draft: true
           generate_release_notes: true
           files: |
-            ReSDMAC_Utils${{ github.ref_name }}.adf
+            ./ReSDMAC_Utils${{ github.ref_name }}.adf.zip/ReSDMAC_Utils${{ github.ref_name }}.adf
             ./releases/KiCad_Outputs_${{ github.ref_name }}.zip
             ./releases/RESDMAC_10M16SCU169C8G_${{ github.ref_name }}.pof
             ./releases/RESDMAC_10M04SCU169C8G_${{ github.ref_name }}.pof
@@ -76,5 +75,5 @@ jobs:
             ./releases/RESDMAC_10M16SCU169C8G_${{ github.ref_name }}.pof.sha256
             ./releases/RESDMAC_10M04SCU169C8G_${{ github.ref_name }}.pof.sha256
             ./releases/RESDMAC_10M02SCU169C8G_${{ github.ref_name }}.pof.sha256
-            
+
 
