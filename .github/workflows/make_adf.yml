@@ -48,8 +48,10 @@ jobs:
 
           - name: make_adf
             run: |
-              find . -name "ReSDMAC*.zip" -exec mv '{}' ../resdmac/ \;
-              find . -name "sdmac*.zip" -exec mv '{}' ../sdmac/ \;
+              mkdir -p resdmac
+              mkdir -p sdmac
+              find . -name "ReSDMAC*.zip" -exec mv '{}' ./resdmac/ \;
+              find . -name "sdmac*.zip" -exec mv '{}' ./sdmac/ \;
               mkdir -p ADF
               xdftool ./ADF/${{ env.ADF_FILE }} format "ReSDMAC_Utils${{ github.ref_name }}"
               xdftool ./ADF/${{ env.ADF_FILE }} makedir C
