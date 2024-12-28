@@ -63,15 +63,11 @@ jobs:
           draft: true
           generate_release_notes: true
           files: |
-            ./ReSDMAC_Utils${{ github.ref_name }}.adf/ReSDMAC_Utils${{ github.ref_name }}.adf
+            ./ReSDMAC_Utils_${{ github.ref_name }}.adf/ReSDMAC_Utils_${{ github.ref_name }}.adf
             ./releases/KiCad_Outputs_${{ github.ref_name }}.zip
             ./releases/RESDMAC_10M16SCU169C8G_${{ github.ref_name }}.pof
             ./releases/RESDMAC_10M04SCU169C8G_${{ github.ref_name }}.pof
             ./releases/RESDMAC_10M02SCU169C8G_${{ github.ref_name }}.pof
-            ./releases/RESDMAC_10M16SCU169C8G_${{ github.ref_name }}.rpd
-            ./releases/RESDMAC_10M04SCU169C8G_${{ github.ref_name }}.rpd
-            ./releases/RESDMAC_10M16SCU169C8G_${{ github.ref_name }}_rpd_crc32.txt
-            ./releases/RESDMAC_10M04SCU169C8G_${{ github.ref_name }}_rpd_crc32.txt
             ./releases/RESDMAC_10M16SCU169C8G_${{ github.ref_name }}_pof_sha256.txt
             ./releases/RESDMAC_10M04SCU169C8G_${{ github.ref_name }}_pof_sha256.txt
             ./releases/RESDMAC_10M02SCU169C8G_${{ github.ref_name }}_pof_sha256.txt

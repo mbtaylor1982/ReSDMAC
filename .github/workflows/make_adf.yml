@@ -7,8 +7,8 @@ jobs:
         runs-on: ubuntu-latest
         container: walkero/amitoolsondocker:latest
         env:
-          ADF_LABEL: ReSDMAC_Utils${{ github.ref_name }}
-          ADF_FILE: ReSDMAC_Utils${{ github.ref_name }}.adf
+          ADF_LABEL: ReSDMAC_Utils_${{ github.ref_name }}
+          ADF_FILE: ReSDMAC_Utils_${{ github.ref_name }}.adf
         steps:
           - name: Checkout repository
             uses: actions/checkout@v4
