@@ -23,43 +23,37 @@ jobs:
                 latest: true
                 extract: true
                 out-file-path: 'release-downloads'
-                fileName: 'ReSDMAC*.zip'
+                fileName: 'ReSDMAC.zip'
                 token: ${{ secrets.RESDMAC_UPDATE_REPO}}
 
-          - name: download_sdmac_release
-            uses: robinraju/release-downloader@v1
-            with:
-                repository: 'cdhooper/amiga_sdmac_test'
-                latest: true
-                extract: true
-                out-file-path: 'release-downloads'
-                fileName: 'sdmac*.zip'
+          #- name: download_sdmac_release
+          #  uses: robinraju/release-downloader@v1
+          #  with:
+          #      repository: 'cdhooper/amiga_sdmac_test'
+          #      latest: true
+          #      extract: true
+          #      out-file-path: 'release-downloads'
+          #      fileName: 'sdmac*.zip'
 
-          - name: download_devtest_release
-            uses: robinraju/release-downloader@v1
-            with:
-                repository: 'cdhooper/amiga_devtest'
-                latest: true
-                out-file-path: 'release-downloads'
-                fileName: 'devtest*.lha' #change to zip file later
+          #- name: download_devtest_release
+          #  uses: robinraju/release-downloader@v1
+          #  with:
+          #      repository: 'cdhooper/amiga_devtest'
+          #      latest: true
+          #      out-file-path: 'release-downloads'
+          #      fileName: 'devtest*.lha' #change to zip file later
 
           - name: Display structure of files
             run: ls -R
 
           - name: make_adf
             run: |
-              mkdir -p resdmac
-              mkdir -p sdmac
-              find . -name "ReSDMAC*.zip" -exec mv '{}' ./resdmac/ \;
-              find . -name "sdmac*.zip" -exec mv '{}' ./sdmac/ \;
               mkdir -p ADF
               xdftool ./ADF/${{ env.ADF_FILE }} format "ReSDMAC_Utils${{ github.ref_name }}"
               xdftool ./ADF/${{ env.ADF_FILE }} makedir C
               xdftool ./ADF/${{ env.ADF_FILE }} makedir S
               xdftool ./ADF/${{ env.ADF_FILE }} makedir Devs
-              xdftool ./ADF/${{ env.ADF_FILE }} write ./release-downloads/resdmac/resdmac C/resdmac
-              xdftool ./ADF/${{ env.ADF_FILE }} write ./release-downloads/sdmac/sdmac C/sdmac
-              xdftool ./ADF/${{ env.ADF_FILE }} write ./release-downloads:/devtest_1.6.lha devtest.lha
+              xdftool ./ADF/${{ env.ADF_FILE }} write ./release-downloads/ReSDMAC/resdmac C/resdmac
               xdftool ./ADF/${{ env.ADF_FILE }} write ./OutputFiles_10M16_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd 10M16_update.rpd
               xdftool ./ADF/${{ env.ADF_FILE }} write ./OutputFiles_10M04_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd 10M04_update.rpd
               xdftool ./ADF/${{ env.ADF_FILE }} write ./OutputFiles_10M16_${{ github.ref_name }}.zip/resdmac_cfm0_auto.crc32 10M16_update.crc32
