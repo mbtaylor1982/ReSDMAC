@@ -48,11 +48,11 @@ jobs:
           cp OutputFiles_10M02SCU169C8G_${{ github.ref_name }}.zip/RESDMAC.pof ./releases/RESDMAC_10M02SCU169C8G_${{ github.ref_name }}.pof
           cp OutputFiles_10M16SCU169C8G_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd ./releases/RESDMAC_10M16SCU169C8G_${{ github.ref_name }}.rpd
           cp OutputFiles_10M04SCU169C8G_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd ./releases/RESDMAC_10M04SCU169C8G_${{ github.ref_name }}.rpd
-          cp OutputFiles_10M16SCU169C8G_${{ github.ref_name }}.zip/RESDMAC.pof.sha256 ./releases/RESDMAC_10M16SCU169C8G_${{ github.ref_name }}.pof.sha256
-          cp OutputFiles_10M04SCU169C8G_${{ github.ref_name }}.zip/RESDMAC.pof.sha256 ./releases/RESDMAC_10M04SCU169C8G_${{ github.ref_name }}.pof.sha256
-          cp OutputFiles_10M02SCU169C8G_${{ github.ref_name }}.zip/RESDMAC.pof.sha256 ./releases/RESDMAC_10M02SCU169C8G_${{ github.ref_name }}.pof.sha256
-          cp OutputFiles_10M16SCU169C8G_${{ github.ref_name }}.zip/resdmac_cfm0_auto.crc32 ./releases/RESDMAC_10M16SCU169C8G_${{ github.ref_name }}.rpd.crc32
-          cp OutputFiles_10M04SCU169C8G_${{ github.ref_name }}.zip/resdmac_cfm0_auto.crc32 ./releases/RESDMAC_10M04SCU169C8G_${{ github.ref_name }}.rpd.crc32
+          cp OutputFiles_10M16SCU169C8G_${{ github.ref_name }}.zip/RESDMAC_pof_sha256.txt ./releases/RESDMAC_10M16SCU169C8G_${{ github.ref_name }}_pof_sha256.txt
+          cp OutputFiles_10M04SCU169C8G_${{ github.ref_name }}.zip/RESDMAC_pof_sha256.txt ./releases/RESDMAC_10M04SCU169C8G_${{ github.ref_name }}_pof_sha256.txt
+          cp OutputFiles_10M02SCU169C8G_${{ github.ref_name }}.zip/RESDMAC_pof_sha256.txt ./releases/RESDMAC_10M02SCU169C8G_${{ github.ref_name }}_pof_sha256.txt
+          cp OutputFiles_10M16SCU169C8G_${{ github.ref_name }}.zip/resdmac_cfm0_auto_crc32.txt ./releases/RESDMAC_10M16SCU169C8G_${{ github.ref_name }}_rpd_crc32.txt
+          cp OutputFiles_10M04SCU169C8G_${{ github.ref_name }}.zip/resdmac_cfm0_auto_crc32.txt ./releases/RESDMAC_10M04SCU169C8G_${{ github.ref_name }}_rpd_crc32.txt
 
       - name: Create a new GitHub release
         uses: softprops/action-gh-release@v2
@@ -70,10 +70,10 @@ jobs:
             ./releases/RESDMAC_10M02SCU169C8G_${{ github.ref_name }}.pof
             ./releases/RESDMAC_10M16SCU169C8G_${{ github.ref_name }}.rpd
             ./releases/RESDMAC_10M04SCU169C8G_${{ github.ref_name }}.rpd
-            ./releases/RESDMAC_10M16SCU169C8G_${{ github.ref_name }}.rpd.crc32
-            ./releases/RESDMAC_10M04SCU169C8G_${{ github.ref_name }}.rpd.crc32
-            ./releases/RESDMAC_10M16SCU169C8G_${{ github.ref_name }}.pof.sha256
-            ./releases/RESDMAC_10M04SCU169C8G_${{ github.ref_name }}.pof.sha256
-            ./releases/RESDMAC_10M02SCU169C8G_${{ github.ref_name }}.pof.sha256
+            ./releases/RESDMAC_10M16SCU169C8G_${{ github.ref_name }}_rpd_crc32.txt
+            ./releases/RESDMAC_10M04SCU169C8G_${{ github.ref_name }}_rpd_crc32.txt
+            ./releases/RESDMAC_10M16SCU169C8G_${{ github.ref_name }}_pof_sha256.txt
+            ./releases/RESDMAC_10M04SCU169C8G_${{ github.ref_name }}_pof_sha256.txt
+            ./releases/RESDMAC_10M02SCU169C8G_${{ github.ref_name }}_pof_sha256.txt
 
 

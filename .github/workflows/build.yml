@@ -48,8 +48,8 @@ jobs:
 
       - name: calcualte file checksums
         run: |
-          sha256sum Quartus/output_files_${{ inputs.device }}/RESDMAC.pof > Quartus/output_files_${{ inputs.device }}/RESDMAC.pof.sha256
-          gencrc Quartus/output_files_${{ inputs.device }}/resdmac_cfm0_auto.rpd > Quartus/output_files_${{ inputs.device }}/resdmac_cfm0_auto.crc32
+          sha256sum Quartus/output_files_${{ inputs.device }}/RESDMAC.pof > Quartus/output_files_${{ inputs.device }}/RESDMAC_pof_sha256.txt
+          gencrc Quartus/output_files_${{ inputs.device }}/resdmac_cfm0_auto.rpd > Quartus/output_files_${{ inputs.device }}/resdmac_cfm0_auto_crc32.txt
 
       - name: Upload Firmware
         uses: actions/upload-artifact@v4
