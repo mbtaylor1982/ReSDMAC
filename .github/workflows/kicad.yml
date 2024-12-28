@@ -1,10 +1,6 @@
 name: KiCad
 
 on:
-    push:
-        paths:
-            - 'KiCad/**'
-    workflow_dispatch:
     workflow_call:
 jobs:
   kicad_outputs:
