@@ -1,14 +1,22 @@
 name: build
 
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - '**.md'
   workflow_dispatch:
+    inputs:
+      device:
+        type: choice
+        required: true
+        description: FPGA device
+        options:
+          - 10M02SCU169C8G
+          - 10M04SCU169C8G
+          - 10M16SCU169C8G
   workflow_call:
-
+    inputs:
+      device:
+        type: string
+        required: true
+        description: FPGA device
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,51 +35,25 @@ jobs:
             latest: true
             out-file-path: '/usr/local/bin'
             fileName: 'gencrc'
+
       - name: add +x permission to gencrc
         run: chmod +x /usr/local/bin/gencrc
-      # 1 - Checkout repository
+
       - name: Checkout repository
         uses: actions/checkout@v4
-      # 2 - RTL synthesis 10M16
-      - name: Run compilation flow 10M16
+
+      - name: Run compilation flow ${{ inputs.device }}
         working-directory: Quartus
-        run: quartus_sh -t  RESDMAC.tcl -device 10M16SCU169C8G -version $VERSION
-      - name: calcualte 10M16 checksums
+        run: quartus_sh -t  RESDMAC.tcl -device ${{ inputs.device }} -version $VERSION
+
+      - name: calcualte file checksums
         run: |
-          sha256sum Quartus/output_files_10M16SCU169C8G/RESDMAC.pof > Quartus/output_files_10M16SCU169C8G/RESDMAC.pof.sha256
-          gencrc Quartus/output_files_10M16SCU169C8G/resdmac_cfm0_auto.rpd > Quartus/output_files_10M16SCU169C8G/resdmac_cfm0_auto.crc32
-      # 3 - Upload artifacts
-      - name: Upload 10M16SCU169C8G Firmware
+          sha256sum Quartus/output_files_${{ inputs.device }}/RESDMAC.pof > Quartus/output_files_${{ inputs.device }}/RESDMAC.pof.sha256
+          gencrc Quartus/output_files_${{ inputs.device }}/resdmac_cfm0_auto.rpd > Quartus/output_files_${{ inputs.device }}/resdmac_cfm0_auto.crc32
+
+      - name: Upload Firmware
         uses: actions/upload-artifact@v4
         with:
-          name: OutputFiles_10M16_${{ env.VERSION }}.zip
-          path: Quartus/output_files_10M16SCU169C8G
-          retention-days: 14
-      # 4 - RTL synthesis 10M04
-      - name: Run compilation flow 10M04
-        working-directory: Quartus
-        run: quartus_sh -t  RESDMAC.tcl -device 10M04SCU169C8G -version $VERSION
-      - name: calcualte 10M04 checksums
-        run: |
-          sha256sum Quartus/output_files_10M04SCU169C8G/RESDMAC.pof > Quartus/output_files_10M04SCU169C8G/RESDMAC.pof.sha256
-          gencrc Quartus/output_files_10M04SCU169C8G/resdmac_cfm0_auto.rpd > Quartus/output_files_10M04SCU169C8G/resdmac_cfm0_auto.crc32
-        # 5 - Upload artifacts
-      - name: Upload 10M04SCU169C8G Firmware
-        uses: actions/upload-artifact@v4
-        with:
-          name: OutputFiles_10M04_${{ env.VERSION }}.zip
-          path: Quartus/output_files_10M04SCU169C8G
-          retention-days: 14
-      # 6 - RTL synthesis 10M02
-      - name: Run compilation flow 10M02
-        working-directory: Quartus
-        run: quartus_sh -t  RESDMAC.tcl -device 10M02SCU169C8G -version $VERSION
-      - name: calcualte 10M02 checksums
-        run: sha256sum Quartus/output_files_10M02SCU169C8G/RESDMAC.pof > Quartus/output_files_10M02SCU169C8G/RESDMAC.pof.sha256
-      # 7 - Upload artifacts
-      - name: Upload 10M02SCU169C8G Firmware
-        uses: actions/upload-artifact@v4
-        with:
-          name: OutputFiles_10M02_${{ env.VERSION }}.zip
-          path: Quartus/output_files_10M02SCU169C8G
+          name: OutputFiles_${{ inputs.device }}_${{ env.VERSION }}.zip
+          path: Quartus/output_files_${{ inputs.device }}
           retention-days: 14

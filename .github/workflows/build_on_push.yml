@@ -1,0 +1,24 @@
+name: build_on_push
+
+on:
+    push:
+      branches:
+        - main
+      paths-ignore:
+        - '**.md'
+jobs:
+  build_firmware_10M02:
+    secrets: inherit
+    uses: ./.github/workflows/build.yml
+    with:
+      device: 10M02SCU169C8G
+  build_firmware_10M04:
+    secrets: inherit
+    uses: ./.github/workflows/build.yml
+    with:
+      device: 10M04SCU169C8G
+  build_firmware_10M16:
+    secrets: inherit
+    uses: ./.github/workflows/build.yml
+    with:
+      device: 10M16SCU169C8G
