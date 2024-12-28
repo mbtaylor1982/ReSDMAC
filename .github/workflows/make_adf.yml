@@ -47,7 +47,7 @@ jobs:
             run: ls -R
 
           - name: install rename
-            run: sudo apt-get install -y rename
+            run: apt-get install -y rename
 
           - name: make_adf
             run: |
