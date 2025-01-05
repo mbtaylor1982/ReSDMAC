@@ -8,7 +8,19 @@ on:
 jobs:
   kicad_outputs:
     uses: ./.github/workflows/kicad.yml
+  build_firmware_10M02:
+    secrets: inherit
+    uses: ./.github/workflows/build.yml
+    with:
+      device: 10M02SCU169C8G
+  build_firmware_10M04:
+    needs: build_firmware_10M02
+    secrets: inherit
+    uses: ./.github/workflows/build.yml
+    with:
+      device: 10M04SCU169C8G
   build_firmware_10M16:
+    needs: build_firmware_10M04
     secrets: inherit
     uses: ./.github/workflows/build.yml
     with:
@@ -17,11 +29,11 @@ jobs:
     uses: ./.github/workflows/test.yml
     secrets: inherit
   ADF:
-    needs: [build_firmware_10M16]
+    needs: [build_firmware_10M02, build_firmware_10M04, build_firmware_10M16]
     uses: ./.github/workflows/make_adf.yml
     secrets: inherit
   create_release:
-    needs: [kicad_outputs, build_firmware_10M16, test, ADF]
+    needs: [kicad_outputs, build_firmware_10M02, build_firmware_10M04, build_firmware_10M16, test, ADF]
     runs-on: ubuntu-latest
 
     steps:
@@ -32,12 +44,17 @@ jobs:
         run: |
           mkdir -p releases
           mv ./KiCad_Outputs.zip ./KiCad_Outputs
-          zip -r ./releases/KiCad_Outputs_${{ github.ref_name }}.zip ./KiCad_Outputs
+          zip -r ./releases/KiCad_Outputs_${{ github.ref_name }}.zip ./KiCad_Outputs 
           cp OutputFiles_10M16SCU169C8G_${{ github.ref_name }}.zip/RESDMAC.pof ./releases/RESDMAC_10M16SCU169C8G_${{ github.ref_name }}.pof
+          cp OutputFiles_10M04SCU169C8G_${{ github.ref_name }}.zip/RESDMAC.pof ./releases/RESDMAC_10M04SCU169C8G_${{ github.ref_name }}.pof
+          cp OutputFiles_10M02SCU169C8G_${{ github.ref_name }}.zip/RESDMAC.pof ./releases/RESDMAC_10M02SCU169C8G_${{ github.ref_name }}.pof
           cp OutputFiles_10M16SCU169C8G_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd ./releases/RESDMAC_10M16SCU169C8G_${{ github.ref_name }}.rpd
+          cp OutputFiles_10M04SCU169C8G_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd ./releases/RESDMAC_10M04SCU169C8G_${{ github.ref_name }}.rpd
           cp OutputFiles_10M16SCU169C8G_${{ github.ref_name }}.zip/RESDMAC_pof_sha256.txt ./releases/RESDMAC_10M16SCU169C8G_${{ github.ref_name }}_pof_sha256.txt
+          cp OutputFiles_10M04SCU169C8G_${{ github.ref_name }}.zip/RESDMAC_pof_sha256.txt ./releases/RESDMAC_10M04SCU169C8G_${{ github.ref_name }}_pof_sha256.txt
+          cp OutputFiles_10M02SCU169C8G_${{ github.ref_name }}.zip/RESDMAC_pof_sha256.txt ./releases/RESDMAC_10M02SCU169C8G_${{ github.ref_name }}_pof_sha256.txt
           cp OutputFiles_10M16SCU169C8G_${{ github.ref_name }}.zip/resdmac_cfm0_auto_crc32.txt ./releases/RESDMAC_10M16SCU169C8G_${{ github.ref_name }}_rpd_crc32.txt
-
+          cp OutputFiles_10M04SCU169C8G_${{ github.ref_name }}.zip/resdmac_cfm0_auto_crc32.txt ./releases/RESDMAC_10M04SCU169C8G_${{ github.ref_name }}_rpd_crc32.txt
 
       - name: Create a new GitHub release
         uses: softprops/action-gh-release@v2
@@ -51,7 +68,10 @@ jobs:
             ./ReSDMAC_Utils_${{ github.ref_name }}.adf/ReSDMAC_Utils_${{ github.ref_name }}.adf
             ./releases/KiCad_Outputs_${{ github.ref_name }}.zip
             ./releases/RESDMAC_10M16SCU169C8G_${{ github.ref_name }}.pof
+            ./releases/RESDMAC_10M04SCU169C8G_${{ github.ref_name }}.pof
+            ./releases/RESDMAC_10M02SCU169C8G_${{ github.ref_name }}.pof
             ./releases/RESDMAC_10M16SCU169C8G_${{ github.ref_name }}_pof_sha256.txt
-            
+            ./releases/RESDMAC_10M04SCU169C8G_${{ github.ref_name }}_pof_sha256.txt
+            ./releases/RESDMAC_10M02SCU169C8G_${{ github.ref_name }}_pof_sha256.txt
 
 
