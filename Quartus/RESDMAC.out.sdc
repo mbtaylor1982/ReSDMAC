@@ -23,7 +23,7 @@
 ## DATE    "Tue Nov 26 23:45:04 2024"
 
 ##
-## DEVICE  "10M16SCU169C8G"
+## DEVICE  "10M02SCU169C8G"
 ##
 
 
