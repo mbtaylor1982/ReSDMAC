@@ -12,7 +12,7 @@ jobs:
     secrets: inherit
     uses: ./.github/workflows/build.yml
     with:
-      device: '10M16SCU169C8G'
+      device: 10M16SCU169C8G
   test:
     uses: ./.github/workflows/test.yml
     secrets: inherit

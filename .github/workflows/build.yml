@@ -4,17 +4,19 @@ on:
   workflow_dispatch:
     inputs:
       device:
-        type: string
+        type: choice
         required: true
-        description: 'FPGA device'
-        default: '10M16SCU169C8G'
+        description: FPGA device
+        options:
+          - 10M02SCU169C8G
+          - 10M04SCU169C8G
+          - 10M16SCU169C8G
   workflow_call:
     inputs:
       device:
         type: string
         required: true
-        description: 'FPGA device'
-        default: '10M16SCU169C8G'
+        description: FPGA device
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -42,7 +44,7 @@ jobs:
 
       - name: Run compilation flow ${{ inputs.device }}
         working-directory: Quartus
-        run: quartus_sh -t  RESDMAC.tcl -device ${{ inputs.device }} -version ${{ env.VERSION }}
+        run: quartus_sh -t  RESDMAC.tcl -device ${{ inputs.device }} -version $VERSION
 
       - name: calcualte file checksums
         run: |
