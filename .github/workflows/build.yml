@@ -24,7 +24,7 @@ jobs:
         username: ${{ secrets.DOCKER_HUB_USER }}
         password: ${{ secrets.DOCKER_HUB_PWD }}
     env:
-      VERSION: ${{ startsWith(github.ref_name, 'v') && github.ref_name || 'v1.0'}}
+      VERSION: ${{ startsWith(github.ref_name, 'v') && github.ref_name || 'v1.1'}}
     steps:
       - name: Install gencrc
         uses: robinraju/release-downloader@v1
