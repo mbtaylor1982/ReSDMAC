@@ -166,7 +166,7 @@ registers u_registers(
     .AS_       (AS_I_     ),
     .DS_       (DS_I_     ),
     .RW        (R_W       ),
-    .CLK       (CLK90     ),
+    .CLK       (SCLK      ),
     .MID       (MID       ),
     .STOPFLUSH (STOPFLUSH ),
     .RST_      (_RST      ),
