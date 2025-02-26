@@ -172,11 +172,11 @@ always @(posedge CLK135 or posedge DECFIFO or negedge RESET_) begin
         RDFIFO_o <= 1'b1;
 end
 
-always @(posedge CLK135 or posedge AS_) begin
+always @(posedge CLK90 or posedge AS_) begin
     if (AS_)
         nLS2CPU <= 1'b0;
-    else //if (SET_DSACK)
-        nLS2CPU <= (LS2CPU & SET_DSACK);
+    else if (SET_DSACK)
+        nLS2CPU <= 1'b1;//(LS2CPU & SET_DSACK);
 end
 
 assign LS2CPU = ~nLS2CPU;
