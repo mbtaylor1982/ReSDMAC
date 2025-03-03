@@ -283,7 +283,10 @@ always @(*) begin
         end
 
         s1: begin
-            BREQ      <= 1'b1;
+            if (nBGRANT) begin
+                BREQ      <= 1'b1;
+            end
+
             casex ({nBGRANT, CYCLEDONE, A1, LASTWORD, BOEQ3}) // wait for the bus
                 5'b0100x    : BGACK <= 1'b1;        //(BREQ BGACK); start, lword aligned
                 5'b011xx    : BGACK <= 1'b1;        //(BREQ BGACK); start, lword unaligned (only happen very first time)
@@ -446,7 +449,7 @@ always @(*) begin
         end
 
         s21: begin
-            BREQ <= 1'b1;
+            if (nBGRANT) BREQ <= 1'b1;
             if (CYCLEDONE & ~nBGRANT) BGACK <= 1'b1;
         end
 
