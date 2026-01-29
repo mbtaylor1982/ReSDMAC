@@ -1,12 +1,13 @@
  //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
 
- `ifdef __ICARUS__ 
+ `ifdef __ICARUS__
     `include "SCSI_SM.v"
     `include "fifo.v"
     `include "CPU_SM.v"
     `include "registers.v"
     `include "datapath.v"
     `include "PLL.v"
+    `include "phase_counter.v"
 `endif
 
 module RESDMAC(
@@ -93,8 +94,11 @@ wire [31:0] REG_OD;
 wire [31:0] FIFO_ID;
 wire [31:0] FIFO_OD;
 
-wire CLK45, CLK90, CLK135;
+// New 100MHz clock architecture
+wire CLK100;
 wire PLLLOCKED;
+wire [1:0] phase;
+wire phase_0, phase_90, phase_180, phase_270;
 
 wire OWN;
 wire LBYTE_;
@@ -200,9 +204,12 @@ CPU_SM u_CPU_SM(
     .DSACK0_       (DSK0_IN_    ),
     .DSACK1_       (DSK1_IN_    ),
     .CLK           (SCLK        ),
-    .CLK45         (CLK45       ),
-    .CLK90         (CLK90       ),
-    .CLK135        (CLK135      ),
+    .CLK100        (CLK100      ),
+    .phase         (phase       ),
+    .phase_0       (phase_0     ),
+    .phase_90      (phase_90    ),
+    .phase_180     (phase_180   ),
+    .phase_270     (phase_270   ),
     .DMADIR        (DMADIR      ),
     .A1            (A1          ),
     .F2CPUL        (F2CPUL      ),
@@ -242,9 +249,12 @@ SCSI_SM u_SCSI_SM(
     .RESET_    (_RST        ),
     .BOEQ3     (BOEQ3       ),
     .CLK       (SCLK        ),
-    .CLK45     (CLK45       ),
-    .CLK90     (CLK90       ),
-    .CLK135    (CLK135      ),
+    .CLK100    (CLK100      ),
+    .phase     (phase       ),
+    .phase_0   (phase_0     ),
+    .phase_90  (phase_90    ),
+    .phase_180 (phase_180   ),
+    .phase_270 (phase_270   ),
     .DREQ_     (DREQ_       ),
     .FIFOFULL  (FIFOFULL    ),
     .FIFOEMPTY (FIFOEMPTY   ),
@@ -268,8 +278,12 @@ SCSI_SM u_SCSI_SM(
 
 fifo int_fifo(
     .CLK         (SCLK      ),
-    .CLK90       (CLK90     ),
-    .CLK135      (CLK135    ),
+    .CLK100      (CLK100    ),
+    .phase       (phase     ),
+    .phase_0     (phase_0   ),
+    .phase_90    (phase_90  ),
+    .phase_180   (phase_180 ),
+    .phase_270   (phase_270 ),
     .LLWORD      (LLW       ),
     .LHWORD      (LHW       ),
     .LBYTE_      (LBYTE_    ),
@@ -292,8 +306,12 @@ fifo int_fifo(
 
 datapath u_datapath(
     .CLK       (SCLK        ),
-    .CLK90     (CLK90       ),
-    .CLK135    (CLK135      ),
+    .CLK100    (CLK100      ),
+    .phase     (phase       ),
+    .phase_0   (phase_0     ),
+    .phase_90  (phase_90    ),
+    .phase_180 (phase_180   ),
+    .phase_270 (phase_270   ),
     .DATA_I    (DATA_I      ),
     .DATA_O    (DATA_O      ),
     .PD_IN     (PDATA_I     ),
@@ -327,12 +345,20 @@ datapath u_datapath(
 );
 
 PLL u_PLL (
-    .RST        (~_RST    ),
-    .CLK        (SCLK     ),
-    .CLK45      (CLK45    ),
-    .CLK90      (CLK90    ),
-    .CLK135     (CLK135   ),
-    .LOCKED     (PLLLOCKED)
+    .RST        (~_RST     ),
+    .CLK        (SCLK      ),
+    .CLK100     (CLK100    ),
+    .LOCKED     (PLLLOCKED )
+);
+
+phase_counter u_phase_counter (
+    .CLK100     (CLK100     ),
+    .nRESET     (_RST       ),
+    .phase      (phase      ),
+    .phase_0    (phase_0    ),
+    .phase_90   (phase_90   ),
+    .phase_180  (phase_180  ),
+    .phase_270  (phase_270  )
 );
 
 
