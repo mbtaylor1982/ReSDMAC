@@ -13,7 +13,13 @@ module fifo
       parameter  WIDTH = 32)
 (
 
-    input CLK, CLK90, CLK135, //Clocks
+    input CLK,              // SCLK (kept for full/empty counter)
+    input CLK100,           // 100MHz main clock
+    input [1:0] phase,      // Phase counter value
+    input phase_0,          // Phase 0 indicator
+    input phase_90,         // Phase 1 indicator
+    input phase_180,        // Phase 2 indicator (equivalent to CLK90)
+    input phase_270,        // Phase 3 indicator (equivalent to CLK135)
 
     input LLWORD,       //Load Lower Word strobe from CPU sm
     input LHWORD,       //Load Higher Word strobe from CPU sm
@@ -79,29 +85,32 @@ u_full_empty_ctr
     .FULL      (FIFOFULL  )
 );
 
-//Next In Write Counter
+//Next In Write Counter (on phase_270, equivalent to CLK135)
 fifo_3bit_cntr #(.BITS(CNTR_BITS))
 u_next_in_cntr
 (
-    .CLK       (CLK135    ),
+    .CLK       (CLK100    ),
+    .phase     (phase_270 ),
     .RST_      (RST_FIFO_ ),
     .ClKEN     (INCNI     ),
     .COUNT     (WRITE_PTR )
 );
 
-//Next Out Read Counter
+//Next Out Read Counter (on phase_270, equivalent to CLK135)
 fifo_3bit_cntr #(.BITS(CNTR_BITS))
 u_next_out_cntr
 (
-    .CLK       (CLK135    ),
+    .CLK       (CLK100    ),
+    .phase     (phase_270 ),
     .RST_      (RST_FIFO_ ),
     .ClKEN     (INCNO     ),
     .COUNT     (READ_PTR  )
 );
 
-//BYTE POINTER
+//BYTE POINTER (on phase_180, equivalent to CLK90)
 fifo_byte_ptr u_byte_ptr(
-  .CLK       (CLK90      ),
+  .CLK       (CLK100     ),
+  .phase     (phase_180  ),
   .SyncLoad  (~RST_FIFO_ ),
   .Enable    (INCBO      ),
   .Data      ({A1, 1'b0} ),
@@ -119,13 +128,14 @@ reg [WIDTH-1:0] BUFFER [DEPTH-1:0];
 integer i;
 
 //WRITE DATA TO FIFO BUFFER
-always @(posedge CLK90) begin
+// Write on phase_180 (equivalent to posedge CLK90 timing)
+always @(posedge CLK100) begin
   if (~RST_FIFO_) begin
     for (i = 0; i < DEPTH; i = i+1) begin
       BUFFER[i] <= 32'h00000000;
     end
   end
-  else begin
+  else if (phase_180) begin
     if (UUWS)
       BUFFER[WRITE_PTR][31:24] <= FIFO_ID[31:24];
     if (UMWS)

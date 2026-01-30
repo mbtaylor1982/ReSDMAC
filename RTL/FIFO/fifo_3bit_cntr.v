@@ -5,6 +5,7 @@ module fifo_3bit_cntr
   parameter BITS = 3)
 (
     input CLK,
+    input phase,     // Phase enable signal
     input ClKEN,
     input RST_,
 
@@ -14,7 +15,7 @@ module fifo_3bit_cntr
 always @(posedge CLK) begin
     if (~RST_)
         COUNT <= 0;
-    else if(ClKEN)
+    else if(phase && ClKEN)  // Only increment on specific phase
       COUNT <= COUNT + 1'b1;
 end
 
