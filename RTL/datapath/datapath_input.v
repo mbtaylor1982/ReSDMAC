@@ -1,9 +1,10 @@
 //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
 
 module datapath_input (
-    input CLK,
+    input CLK100,           // 100MHz main clock
+    input phase_180,        // Phase 180 indicator
     input [31:0] DATA,
-    
+
     input bBRIDGEIN,
     input bDIEH,
     input bDIEL,
@@ -21,9 +22,10 @@ wire [15:0] UPPDER_OUTPUT_DATA;
 
 reg [15:0] UD_LATCH;
 
-always @(negedge CLK) begin
-    if (~DS_O_)
-        UD_LATCH <= UPPDER_INTPUT_DATA;   
+// Latch on phase_180 (was negedge CLK90)
+always @(posedge CLK100) begin
+    if (phase_180 && ~DS_O_)
+        UD_LATCH <= UPPDER_INTPUT_DATA;
 end
 
 assign LOWER_INPUT_DATA = DATA[15:0];

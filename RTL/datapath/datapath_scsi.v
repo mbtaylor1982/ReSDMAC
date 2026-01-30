@@ -6,7 +6,10 @@
 `endif
 
 module datapath_scsi (
-    input CLK, CLK90, CLK135,
+    input CLK,              // SCLK (for compatibility)
+    input CLK100,           // 100MHz main clock
+    input phase_180,        // Phase 180 indicator (equivalent to CLK90)
+    input phase_270,        // Phase 3 indicator (equivalent to CLK135)
     input [15:0] SCSI_DATA_IN,
     output [15:0] SCSI_DATA_OUT,
     
@@ -71,15 +74,21 @@ datapath_8b_MUX u_datapath_8b_MUX(
 assign SCSI_DATA_OUT = SCSI_OUT ? {SCSI_DATA__TX_LATCHED, SCSI_DATA__TX_LATCHED} : 16'h0000;
 assign SCSI_DATA_RX = SCSI_IN ? SCSI_DATA_IN[7:0] : 8'h00;
 
-always @(negedge CLK, negedge S2CPU) begin
-    if (~S2CPU)
-        SCSI_DATA__RX_LATCHED <= 8'h00;
-    else if (~LS2CPU)
-        SCSI_DATA__RX_LATCHED <= SCSI_DATA_RX;
+// RX latch - now fully synchronous (was problematic async S2CPU pattern before)
+// Sample on phase_0 (equivalent to negedge CLK timing)
+always @(posedge CLK100) begin
+    if (phase_0) begin
+        if (~S2CPU)
+            SCSI_DATA__RX_LATCHED <= 8'h00;
+        else if (~LS2CPU)
+            SCSI_DATA__RX_LATCHED <= SCSI_DATA_RX;
+    end
 end
 
-always @(negedge CLK135) begin
-    SCSI_DATA__TX_LATCHED <= SCSI_DATA_TX;
+// TX latch on phase_270 (was negedge CLK135)
+always @(posedge CLK100) begin
+    if (phase_270)
+        SCSI_DATA__TX_LATCHED <= SCSI_DATA_TX;
 end
 
 assign MOD_SCSI = {8'h00 , SCSI_DATA__RX_LATCHED, 8'h00, SCSI_DATA__RX_LATCHED};
