@@ -2,10 +2,13 @@
 
 module CPU_SM_INTERNALS(
 
-    input CLK,              // sCLK
-    input CLK45,            // sCLK phase shifted 45 degrees.
-    input CLK90,            // sCLK phase shifted 90 degrees.
-    input CLK135,           // sCLK phase shifted 135 degrees.
+    input CLK,              // sCLK (kept for compatibility)
+    input CLK100,           // 100MHz main clock
+    input [1:0] phase,      // Phase counter value
+    input phase_0,          // Phase 0 indicator (equivalent to CLK at 0°)
+    input phase_90,         // Phase 1 indicator (equivalent to CLK45)
+    input phase_180,        // Phase 2 indicator (equivalent to CLK90)
+    input phase_270,        // Phase 3 indicator (equivalent to CLK135)
     input nRESET,           // Reset
     input A1,               // DMA address bit
     input nBGRANT,          // bus grant
@@ -628,10 +631,11 @@ assign DECFIFO = (~int_INCFIFO & ~nRDFIFO) | int_DECFIFO;
 assign INCNO = int_DECFIFO;
 
 //State Machine
-always @(posedge CLK90 or negedge nRESET) begin
+// State register on CLK100 with phase_180 enable (equivalent to posedge CLK90)
+always @(posedge CLK100 or negedge nRESET) begin
     if (~nRESET)
         state <= 5'b00000;
-    else
+    else if (phase_180)
         state <= next_state;
 end
 
