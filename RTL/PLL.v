@@ -13,8 +13,24 @@ module PLL (
     reg clk_100 = 1'b0;
 	reg Slocked = 1'b0;
 
-    // Generate 100MHz from 25MHz (toggle every 5ns = 10ns period = 100MHz)
-    always #5 clk_100 = ~clk_100;
+    // Generate 100MHz synchronized to input CLK
+    // On each edge of CLK (both pos and neg), toggle CLK100 twice
+    // This creates 4 CLK100 periods for each CLK period
+    always @(posedge CLK) begin
+        if (~RST) begin
+            // Create 2 toggles during high phase of CLK
+            #5 clk_100 = ~clk_100;   // Toggle at +5ns
+            #5 clk_100 = ~clk_100;   // Toggle at +10ns
+        end
+    end
+
+    always @(negedge CLK) begin
+        if (~RST) begin
+            // Create 2 toggles during low phase of CLK
+            #5 clk_100 = ~clk_100;   // Toggle at +5ns from negedge
+            #5 clk_100 = ~clk_100;   // Toggle at +10ns from negedge
+        end
+    end
 
     always @(posedge CLK, posedge RST) begin
         if (RST == 1'b1)
