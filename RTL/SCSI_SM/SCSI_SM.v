@@ -8,13 +8,16 @@ module SCSI_SM
 
 (   input BOEQ3,            //Asserted when transfering Byte 3
     input CLK,              //CPUClk.
-    input CLK45,            //CPUClk phase shifted 45 deg.
-    input CLK90,            //CPUCLK phase shifted 90 deg.
-    input CLK135,           //CPUCLK phase shifted 135 deg
+    input CLK100,           //100MHz main clock
+    input [1:0] phase,      //Phase counter value
+    input phase_0,          //Phase 0 indicator (equivalent to CLK at 0°)
+    input phase_90,         //Phase 1 indicator (equivalent to CLK45)
+    input phase_180,        //Phase 2 indicator (equivalent to CLK90)
+    input phase_270,        //Phase 3 indicator (equivalent to CLK135)
     input CPUREQ,           //Request CPU access to SCSI registers.
     input DECFIFO,          //Decrement FIFO pointer used to ack the request
     input DMADIR,           //Control Direction Of DMA transfer.
-    input DREQ_,            //Data transfer request from SCSI IC
+    input DREQ_,            //Data transfer request from SCSI IC (async)
     input FIFOEMPTY,        //FIFOFULL flag
     input FIFOFULL,         //FIFOEMPTY flag
     input INCFIFO,          //Increment FIFO pointer used to ack the request
@@ -40,11 +43,14 @@ module SCSI_SM
 );
 
 
-//Clocked inputs
-reg CCPUREQ;    // Clocked signal to indicate a CPU cycle to read or write WD33C93 Registers.
-reg CDREQ_;     // Clocked WD33C93 DMA request.
-reg CDSACK_;    // Clocked Feedback from CPU cycle termination.
+//Clocked inputs with multi-stage synchronizers
 reg CRESET_;    // Clocked system reset.
+reg CCPUREQ;    // Clocked signal to indicate a CPU cycle to read or write WD33C93 Registers (synchronous).
+reg CDSACK_;    // Clocked Feedback from CPU cycle termination (synchronous).
+
+// Multi-stage synchronizer for async DREQ_ input (prevents metastability)
+reg dreq_sync1, dreq_sync2;
+wire CDREQ_ = dreq_sync2;  // Synchronized version used internally
 
 wire CPU2S;     // Enable CPU to SCSI datapath.
 wire DACK;      // Ack WD3C93 DMA transfer request.
@@ -73,7 +79,8 @@ reg RIFIFO_d;   // clocked request FIFO Increment from CPU FSM
     2.Standard verilog form fsm = SCSI_SM_INTERNALS
 */
 SCSI_SM_INTERNALS u_SCSI_SM_INTERNALS (
-    .CLK        (CLK90      ),  // input, (wire), CLK
+    .CLK100     (CLK100     ),  // input, (wire), CLK100
+    .phase_180  (phase_180  ),  // input, (wire), Phase 180 indicator
     .nRESET     (CRESET_    ),  // input, (wire), Active low reset
     .BOEQ3      (BOEQ3      ),  // input, (wire), Asserted when transfering Byte 3
     .CCPUREQ    (CCPUREQ    ),  // input, (wire), Request CPU access to SCSI registers.
@@ -101,29 +108,37 @@ SCSI_SM_INTERNALS u_SCSI_SM_INTERNALS (
     .SET_DSACK  (SET_DSACK  )   // output, reg,
 );
 
-//clocked reset
-always @(negedge  CLK) begin
-    CRESET_ <= RESET_;
+//clocked reset (synchronized on CLK100 phase_0, equivalent to negedge CLK timing)
+always @(posedge CLK100) begin
+    if (phase_0)
+        CRESET_ <= RESET_;
 end
 
-//clocked inputs.
-always @(negedge  CLK135 or negedge CRESET_) begin
-    if (~CRESET_)
-    begin
-        CDSACK_ <= 1'b1;
-        CCPUREQ <= 1'b0;
-        CDREQ_  <= 1'b1;
+// Multi-stage synchronizer for async DREQ_ input
+// Synchronize on phase_270 (equivalent to negedge CLK135 timing)
+always @(posedge CLK100 or negedge CRESET_) begin
+    if (~CRESET_) begin
+        // Multi-stage sync for async DREQ_
+        dreq_sync1  <= 1'b1;
+        dreq_sync2  <= 1'b1;
+        // Synchronous inputs (single stage)
+        CDSACK_     <= 1'b1;
+        CCPUREQ     <= 1'b0;
     end
-    else
-    begin
-        CCPUREQ <= CPUREQ;
-        CDREQ_  <= DREQ_;
-        CDSACK_ <= DSACK_;
+    else if (phase_270) begin
+        // First stage (may be metastable)
+        dreq_sync1  <= DREQ_;
+        // Second stage (stable output)
+        dreq_sync2  <= dreq_sync1;
+        // Synchronous inputs
+        CCPUREQ     <= CPUREQ;
+        CDSACK_     <= DSACK_;
     end
 end
 
 //Clocked outputs.
-always @(posedge CLK90 or negedge CRESET_) begin
+// Register on phase_180 (equivalent to posedge CLK90 timing)
+always @(posedge CLK100 or negedge CRESET_) begin
     if (~CRESET_)
     begin
         CPU2S_o     <= 1'b0;
@@ -140,7 +155,7 @@ always @(posedge CLK90 or negedge CRESET_) begin
         SCSI_CS_o   <= 1'b0;
         WE_o        <= 1'b0;
     end
-    else
+    else if (phase_180)
     begin
         CPU2S_o     <= CPU2S;
         DACK_o      <= DACK;
@@ -158,25 +173,32 @@ always @(posedge CLK90 or negedge CRESET_) begin
     end
 end
 
-always @(posedge CLK135 or posedge INCFIFO or negedge RESET_ ) begin
+// FIFO request handshaking on phase_270 (equivalent to posedge CLK135 timing)
+always @(posedge CLK100 or posedge INCFIFO or negedge RESET_ ) begin
     if (INCFIFO | ~RESET_) //ack the fifo inc request
         RIFIFO_o <= 1'b0;
-	else if (RIFIFO_d) //request fifo inc
+	else if (phase_270 && RIFIFO_d) //request fifo inc
         RIFIFO_o <= 1'b1;
 end
 
-always @(posedge CLK135 or posedge DECFIFO or negedge RESET_) begin
+always @(posedge CLK100 or posedge DECFIFO or negedge RESET_) begin
     if (DECFIFO | ~RESET_) //ack the fifo dec request
         RDFIFO_o <= 1'b0;
-    else if (RDFIFO_d) //request fifo dec
+    else if (phase_270 && RDFIFO_d) //request fifo dec
         RDFIFO_o <= 1'b1;
 end
 
-always @(posedge CLK90 or posedge AS_) begin
-    if (AS_)
+// LS2CPU latch - now fully synchronous (was problematic async AS_ pattern before)
+// Sample on phase_180 (equivalent to posedge CLK90 timing)
+always @(posedge CLK100 or negedge CRESET_) begin
+    if (~CRESET_)
         nLS2CPU <= 1'b0;
-    else if (SET_DSACK)
-        nLS2CPU <= 1'b1;//(LS2CPU & SET_DSACK);
+    else if (phase_180) begin
+        if (AS_)
+            nLS2CPU <= 1'b0;
+        else if (SET_DSACK)
+            nLS2CPU <= 1'b1;
+    end
 end
 
 assign LS2CPU = ~nLS2CPU;

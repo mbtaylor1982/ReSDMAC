@@ -2,7 +2,8 @@
 
 module SCSI_SM_INTERNALS(
 
-    input CLK,              //CLK
+    input CLK100,           //100MHz main clock
+    input phase_180,        //Phase 180 indicator (equivalent to CLK90)
     input nRESET,           //Active low reset
 
     input BOEQ3,            //Asserted when transfering Byte 3 (byte offset = 3)
@@ -72,12 +73,13 @@ wire START_F2S = (~CDREQ_ & ~FIFOEMPTY & ~DMADIR & ~CCPUREQ & ~RDFIFO_o);
 wire START_DMA_WR = (~DMADIR & ~CCPUREQ);
 wire START_DMA_RD = (DMADIR & ~CCPUREQ);
 
-always @(posedge CLK or negedge nRESET)
+// State machine register on CLK100 with phase_180 enable (equivalent to posedge CLK90)
+always @(posedge CLK100 or negedge nRESET)
 begin
     if (~nRESET) begin
         state_reg <= IDLE_DMA_RD;
     end
-	else begin
+	else if (phase_180) begin
         case (state_reg)
             IDLE_DMA_RD: begin
                 casex({START_S2F, CCPUREQ, START_DMA_WR})
