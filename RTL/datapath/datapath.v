@@ -1,6 +1,8 @@
 //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
 
-`ifdef __ICARUS__ 
+`include "phase_defs.vh"
+
+`ifdef __ICARUS__
     `include "datapath_scsi.v"
     `include "datapath_input.v"
     `include "datapath_output.v"
@@ -10,10 +12,6 @@ module datapath (
     input CLK,              // SCLK
     input CLK100,           // 100MHz main clock
     input [1:0] phase,      // Phase counter value
-    input phase_0,          // Phase 0 indicator
-    input phase_90,         // Phase 1 indicator
-    input phase_180,        // Phase 2 indicator (equivalent to CLK90)
-    input phase_270,        // Phase 3 indicator (equivalent to CLK135)
     input [31:0] DATA_I,
 
     input [15:0] PD_IN,
@@ -72,7 +70,6 @@ wire bDIEL;
 
 datapath_input u_datapath_input(
     .CLK100    (CLK100    ),
-    .phase_180 (phase_180 ),
     .DATA      (DATA_I    ),
     .bBRIDGEIN (bBRIDGEIN ),
     .bDIEH     (bDIEH     ),

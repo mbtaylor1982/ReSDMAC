@@ -98,7 +98,6 @@ wire [31:0] FIFO_OD;
 wire CLK100;
 wire PLLLOCKED;
 wire [1:0] phase;
-wire phase_0, phase_90, phase_180, phase_270;
 
 wire OWN;
 wire LBYTE_;
@@ -206,10 +205,6 @@ CPU_SM u_CPU_SM(
     .CLK           (SCLK        ),
     .CLK100        (CLK100      ),
     .phase         (phase       ),
-    .phase_0       (phase_0     ),
-    .phase_90      (phase_90    ),
-    .phase_180     (phase_180   ),
-    .phase_270     (phase_270   ),
     .DMADIR        (DMADIR      ),
     .A1            (A1          ),
     .F2CPUL        (F2CPUL      ),
@@ -251,10 +246,6 @@ SCSI_SM u_SCSI_SM(
     .CLK       (SCLK        ),
     .CLK100    (CLK100      ),
     .phase     (phase       ),
-    .phase_0   (phase_0     ),
-    .phase_90  (phase_90    ),
-    .phase_180 (phase_180   ),
-    .phase_270 (phase_270   ),
     .DREQ_     (DREQ_       ),
     .FIFOFULL  (FIFOFULL    ),
     .FIFOEMPTY (FIFOEMPTY   ),
@@ -277,13 +268,8 @@ SCSI_SM u_SCSI_SM(
 );
 
 fifo int_fifo(
-    .CLK         (SCLK      ),
     .CLK100      (CLK100    ),
     .phase       (phase     ),
-    .phase_0     (phase_0   ),
-    .phase_90    (phase_90  ),
-    .phase_180   (phase_180 ),
-    .phase_270   (phase_270 ),
     .LLWORD      (LLW       ),
     .LHWORD      (LHW       ),
     .LBYTE_      (LBYTE_    ),
@@ -308,10 +294,6 @@ datapath u_datapath(
     .CLK       (SCLK        ),
     .CLK100    (CLK100      ),
     .phase     (phase       ),
-    .phase_0   (phase_0     ),
-    .phase_90  (phase_90    ),
-    .phase_180 (phase_180   ),
-    .phase_270 (phase_270   ),
     .DATA_I    (DATA_I      ),
     .DATA_O    (DATA_O      ),
     .PD_IN     (PDATA_I     ),
@@ -354,11 +336,7 @@ PLL u_PLL (
 phase_counter u_phase_counter (
     .CLK100     (CLK100     ),
     .nRESET     (_RST       ),
-    .phase      (phase      ),
-    .phase_0    (phase_0    ),
-    .phase_90   (phase_90   ),
-    .phase_180  (phase_180  ),
-    .phase_270  (phase_270  )
+    .phase      (phase      )
 );
 
 

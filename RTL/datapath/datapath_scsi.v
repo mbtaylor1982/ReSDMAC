@@ -1,6 +1,8 @@
 //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
 
-`ifdef __ICARUS__ 
+`include "phase_defs.vh"
+
+`ifdef __ICARUS__
   `include "datapath_24dec.v"
   `include "datapath_8b_MUX.v"
 `endif
@@ -8,8 +10,7 @@
 module datapath_scsi (
     input CLK,              // SCLK (for compatibility)
     input CLK100,           // 100MHz main clock
-    input phase_180,        // Phase 180 indicator (equivalent to CLK90)
-    input phase_270,        // Phase 3 indicator (equivalent to CLK135)
+    input [1:0] phase,      // Phase counter value
     input [15:0] SCSI_DATA_IN,
     output [15:0] SCSI_DATA_OUT,
     
@@ -75,9 +76,9 @@ assign SCSI_DATA_OUT = SCSI_OUT ? {SCSI_DATA__TX_LATCHED, SCSI_DATA__TX_LATCHED}
 assign SCSI_DATA_RX = SCSI_IN ? SCSI_DATA_IN[7:0] : 8'h00;
 
 // RX latch - now fully synchronous (was problematic async S2CPU pattern before)
-// Sample on phase_0 (equivalent to negedge CLK timing)
+// Sample on (phase == `PHASE_0) (equivalent to negedge CLK timing)
 always @(posedge CLK100) begin
-    if (phase_0) begin
+    if ((phase == `PHASE_0)) begin
         if (~S2CPU)
             SCSI_DATA__RX_LATCHED <= 8'h00;
         else if (~LS2CPU)
@@ -85,9 +86,9 @@ always @(posedge CLK100) begin
     end
 end
 
-// TX latch on phase_270 (was negedge CLK135)
+// TX latch on (phase == `PHASE_3) (was negedge CLK135)
 always @(posedge CLK100) begin
-    if (phase_270)
+    if ((phase == `PHASE_3))
         SCSI_DATA__TX_LATCHED <= SCSI_DATA_TX;
 end
 

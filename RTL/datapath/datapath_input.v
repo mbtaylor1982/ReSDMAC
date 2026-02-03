@@ -1,8 +1,10 @@
 //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
 
+`include "phase_defs.vh"
+
 module datapath_input (
     input CLK100,           // 100MHz main clock
-    input phase_180,        // Phase 180 indicator
+    input [1:0] phase,      // Phase counter value
     input [31:0] DATA,
 
     input bBRIDGEIN,
@@ -22,9 +24,9 @@ wire [15:0] UPPDER_OUTPUT_DATA;
 
 reg [15:0] UD_LATCH;
 
-// Latch on phase_180 (was negedge CLK90)
+// Latch on (phase == `PHASE_2) (was negedge CLK90)
 always @(posedge CLK100) begin
-    if (phase_180 && ~DS_O_)
+    if ((phase == `PHASE_2) && ~DS_O_)
         UD_LATCH <= UPPDER_INTPUT_DATA;
 end
 

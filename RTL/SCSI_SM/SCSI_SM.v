@@ -1,6 +1,8 @@
 //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
 
-`ifdef __ICARUS__ 
+`include "phase_defs.vh"
+
+`ifdef __ICARUS__
     `include "SCSI_SM_INTERNALS.v"
 `endif
 
@@ -10,10 +12,6 @@ module SCSI_SM
     input CLK,              //CPUClk.
     input CLK100,           //100MHz main clock
     input [1:0] phase,      //Phase counter value
-    input phase_0,          //Phase 0 indicator (equivalent to CLK at 0°)
-    input phase_90,         //Phase 1 indicator (equivalent to CLK45)
-    input phase_180,        //Phase 2 indicator (equivalent to CLK90)
-    input phase_270,        //Phase 3 indicator (equivalent to CLK135)
     input CPUREQ,           //Request CPU access to SCSI registers.
     input DECFIFO,          //Decrement FIFO pointer used to ack the request
     input DMADIR,           //Control Direction Of DMA transfer.
@@ -80,7 +78,6 @@ reg RIFIFO_d;   // clocked request FIFO Increment from CPU FSM
 */
 SCSI_SM_INTERNALS u_SCSI_SM_INTERNALS (
     .CLK100     (CLK100     ),  // input, (wire), CLK100
-    .phase_180  (phase_180  ),  // input, (wire), Phase 180 indicator
     .nRESET     (CRESET_    ),  // input, (wire), Active low reset
     .BOEQ3      (BOEQ3      ),  // input, (wire), Asserted when transfering Byte 3
     .CCPUREQ    (CCPUREQ    ),  // input, (wire), Request CPU access to SCSI registers.

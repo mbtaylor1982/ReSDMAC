@@ -1,6 +1,8 @@
 //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
 
-`ifdef __ICARUS__ 
+`include "phase_defs.vh"
+
+`ifdef __ICARUS__
   `include "CPU_SM_INTERNALS.v"
 `endif
 
@@ -16,10 +18,6 @@ module CPU_SM(
     input CLK,
     input CLK100,            // 100MHz main clock
     input [1:0] phase,       // Phase counter value
-    input phase_0,           // Phase 0 indicator (equivalent to CLK at 0°)
-    input phase_90,          // Phase 1 indicator (equivalent to CLK45)
-    input phase_180,         // Phase 2 indicator (equivalent to CLK90)
-    input phase_270,         // Phase 3 indicator (equivalent to CLK135)
     input DMADIR,
     input DSACK0_,
     input DSACK1_,
@@ -101,10 +99,6 @@ CPU_SM_INTERNALS u_CPU_SM_INTERNALS (
     .CLK            (CLK            ),  // input, (wire), CLK (SCLK for compatibility)
     .CLK100         (CLK100         ),  // input, (wire), CLK100
     .phase          (phase          ),  // input, (wire), phase counter
-    .phase_0        (phase_0        ),  // input, (wire), phase 0 indicator
-    .phase_90       (phase_90       ),  // input, (wire), phase 90 indicator
-    .phase_180      (phase_180      ),  // input, (wire), phase 180 indicator
-    .phase_270      (phase_270      ),  // input, (wire), phase 270 indicator
     .nRESET         (CCRESET_       ),  // input, (wire), Active low reset
     .A1             (A1             ),  // input, (wire),
     .nBGRANT        (BGRANT_        ),  // input, (wire),
@@ -145,14 +139,14 @@ CPU_SM_INTERNALS u_CPU_SM_INTERNALS (
     .RST_FIFO     (RST_FIFO_d     )
 );
 
-//clocked reset (synchronized on CLK100 phase_0, equivalent to negedge CLK timing)
+//clocked reset (synchronized on CLK100 (phase == `PHASE_0), equivalent to negedge CLK timing)
 always @(posedge CLK100) begin
-    if (phase_0)
+    if ((phase == `PHASE_0))
         CCRESET_ <= aRESET_;
 end
 
 // Multi-stage synchronizers for async inputs
-// Synchronize on phase_270 (equivalent to old CLK135 timing)
+// Synchronize on (phase == `PHASE_3) (equivalent to old CLK135 timing)
 always @(posedge CLK100 or negedge CCRESET_) begin
     if (~CCRESET_) begin
         // First stage
@@ -168,7 +162,7 @@ always @(posedge CLK100 or negedge CCRESET_) begin
         // Synchronous signal
         nCYCLEDONE      <= 1'b1;
     end
-    else if (phase_270) begin
+    else if ((phase == `PHASE_3)) begin
         // First stage (may be metastable)
         bgrant_sync1    <= aBGRANT_;
         dmaena_sync1    <= aDMAENA;
@@ -185,7 +179,7 @@ always @(posedge CLK100 or negedge CCRESET_) begin
 end
 
 //clocked outputs
-// Register on phase_180 (equivalent to posedge CLK90 timing)
+// Register on (phase == `PHASE_2) (equivalent to posedge CLK90 timing)
 always @(posedge CLK100 or negedge CCRESET_) begin
     if (~CCRESET_) begin
         BGACK       <= 1'b0;
@@ -208,7 +202,7 @@ always @(posedge CLK100 or negedge CCRESET_) begin
         STOPFLUSH   <= 1'b0;
         RST_FIFO    <= 1'b0;
     end
-    else if (phase_180) begin
+    else if ((phase == `PHASE_2)) begin
         BGACK       <= BGACK_d;
         BREQ        <= BREQ_d;
         BRIDGEIN    <= BRIDGEIN_d;
@@ -232,11 +226,11 @@ always @(posedge CLK100 or negedge CCRESET_) begin
 end
 
 // DSACK latching - now fully synchronous (was problematic async pattern before)
-// Sample on phase_0 (equivalent to negedge CLK timing)
+// Sample on (phase == `PHASE_0) (equivalent to negedge CLK timing)
 always @(posedge CLK100 or negedge CCRESET_) begin
     if (~CCRESET_)
         DSACK_LATCHED_ <= 2'b11;
-    else if (phase_0) begin
+    else if ((phase == `PHASE_0)) begin
         if (AS_)
             DSACK_LATCHED_ <= 2'b11;
         else
