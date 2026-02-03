@@ -2,37 +2,40 @@
 
 // Phase Counter Module
 // Tracks position within 25MHz cycle when running at 100MHz
-// Provides phase indicators equivalent to original CLK0/45/90/135 degree clocks
+// Counter increments every 10ns, dividing the 40ns 25MHz period into 4 phases
 
 module phase_counter (
     input CLK100,           // 100MHz clock input
     input nRESET,           // Active-low reset
 
-    output reg [1:0] phase, // Current phase (0-3)
-    output phase_0,         // Phase 0 indicator (equivalent to CLK at 0°)
-    output phase_90,        // Phase 1 indicator (equivalent to CLK at 90°)
-    output phase_180,       // Phase 2 indicator (equivalent to CLK at 180°)
-    output phase_270        // Phase 3 indicator (equivalent to CLK at 270°)
+    output reg [1:0] phase  // Current phase (0-3), indicates which quarter-cycle we're in
 );
 
-// 2-bit counter that cycles 0->1->2->3->0
-// At 100MHz, this creates 4 phases per 25MHz cycle:
-// phase_0:   edges at 0ns, 40ns, 80ns...   (original CLK)
-// phase_90:  edges at 10ns, 50ns, 90ns...  (original CLK45)
-// phase_180: edges at 20ns, 60ns, 100ns... (original CLK90)
-// phase_270: edges at 30ns, 70ns, 110ns... (original CLK135)
+// 2-bit counter cycles 0→1→2→3→0 every 40ns (one 25MHz period)
+// Phase value indicates which quarter-cycle we're in:
+//   phase=0: 0-10ns (0-89°)  |  phase=1: 10-20ns (90-179°)
+//   phase=2: 20-30ns (180-269°)  |  phase=3: 30-40ns (270-359°)
+//
+// Phase transitions on posedge CLK100: 0→1@10ns, 1→2@20ns, 2→3@30ns, 3→0@40ns
+//
+// Note: "phase==N" in clocked logic sees the value BEFORE the edge.
+//       Example: at 10ns posedge, "phase==0" is true (value from 0-10ns interval)
+//
+// Original 25MHz clock mappings:
+//   posedge CLK    (0°/360°)  → posedge CLK100 when phase==3  (0ns, 40ns...)
+//   posedge CLK45  (45°)      → negedge CLK100 when phase==0  (5ns, 45ns...)
+//   posedge CLK90  (90°)      → posedge CLK100 when phase==0  (10ns, 50ns...)
+//   posedge CLK135 (135°)     → negedge CLK100 when phase==1  (15ns, 55ns...)
+//   negedge CLK    (180°)     → posedge CLK100 when phase==1  (20ns, 60ns...)
+//   negedge CLK45  (225°)     → negedge CLK100 when phase==2  (25ns, 65ns...)
+//   negedge CLK90  (270°)     → posedge CLK100 when phase==2  (30ns, 70ns...)
+//   negedge CLK135 (315°)     → negedge CLK100 when phase==3  (35ns, 75ns...)
 
 always @(posedge CLK100 or negedge nRESET) begin
     if (~nRESET)
-        phase <= 2'b00;
+        phase <= 2'b11;  // Initialize to phase 3 to align with 0° of 25MHz cycle
     else
         phase <= phase + 2'b01;  // Wraps automatically at 2'b11 + 1 = 2'b00
 end
-
-// Decode phase indicators
-assign phase_0   = (phase == 2'b00);
-assign phase_90  = (phase == 2'b01);
-assign phase_180 = (phase == 2'b10);
-assign phase_270 = (phase == 2'b11);
 
 endmodule
