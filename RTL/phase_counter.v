@@ -11,7 +11,7 @@ module phase_counter (
     output reg [1:0] phase  // Current phase (0-3), indicates which quarter-cycle we're in
 );
 
-// 2-bit counter cycles 0→1→2→3→0 every 40ns (one 25MHz period)
+// 2-bit counter cycles 3→0→1→2→3 every 40ns (one 25MHz period)
 // Phase value indicates which quarter-cycle we're in:
 //   phase=0: 0-10ns (0-89°)  |  phase=1: 10-20ns (90-179°)
 //   phase=2: 20-30ns (180-269°)  |  phase=3: 30-40ns (270-359°)

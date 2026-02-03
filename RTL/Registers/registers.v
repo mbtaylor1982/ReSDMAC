@@ -26,7 +26,7 @@ module registers(
   input AS_O,           // Address strobe from CPU FSM
   input [7:0] DSP_DATA,
 
-  output reg [31:0] REG_OD,     //DATA OUT.
+  output reg [31:0] REG_OD, //DATA OUT.
   output PRESET,            //Peripheral Reset.
   output reg FLUSHFIFO,     //Flush FIFO.
   output ACR_WR,            //input to FIFO_byte_ptr.
@@ -36,7 +36,7 @@ module registers(
   output DMADIR,            //DMA Direction
   output DMAENA,            //DMA Enabled.
   output REG_DSK_,          //Register Cycle Term.
-  output WDREGREQ          //SCSI IC Chip Select.
+  output WDREGREQ           //SCSI IC Chip Select.
 
 );
 
