@@ -172,7 +172,7 @@ registers u_registers(
     .CLK       (SCLK      ),
     .MID       (MID       ),
     .STOPFLUSH (STOPFLUSH ),
-    .RST_      (_RST      ),
+    .RST_      (S_RESET   ),
     .FIFOEMPTY (FIFOEMPTY ),
     .FIFOFULL  (FIFOFULL  ),
     .INTA_I    (INTA      ),
@@ -198,7 +198,7 @@ CPU_SM u_CPU_SM(
     .BREQ          (BREQ        ),
     .aBGRANT_      (_BG         ),
     .SIZE1         (SIZE1_CPUSM ),
-    .aRESET_       (_RST        ),
+    .RESET_        (S_RESET    ),
     .iSTERM_       (_STERM      ),
     .DSACK0_       (DSK0_IN_    ),
     .DSACK1_       (DSK1_IN_    ),
@@ -241,7 +241,7 @@ SCSI_SM u_SCSI_SM(
     .DMADIR    (DMADIR      ),
     .INCFIFO   (INCFIFO     ),
     .DECFIFO   (DECFIFO     ),
-    .RESET_    (_RST        ),
+    .RESET_    (S_RESET    ),
     .BOEQ3     (BOEQ3       ),
     .CLK       (SCLK        ),
     .CLK100    (CLK100      ),
@@ -333,12 +333,18 @@ PLL u_PLL (
     .LOCKED     (PLLLOCKED )
 );
 
-phase_counter u_phase_counter (
-    .CLK100     (CLK100     ),
-    .nRESET     (_RST       ),
-    .phase      (phase      )
+global_reset_gen u_global_reset_gen (
+    .clk            (CLK100     ),
+    .reset_n_async  (_RST       ),
+    .pll_locked     (PLLLOCKED  ),
+    .reset_n_sync   (S_RESET    )
 );
 
+phase_counter u_phase_counter (
+    .CLK100     (CLK100     ),
+    .nRESET     (S_RESET    ),
+    .phase      (phase      )
+);
 
 always @(negedge SCLK) begin
     AS_O_   <= ~PAS;
