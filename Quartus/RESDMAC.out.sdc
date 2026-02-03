@@ -135,6 +135,15 @@ set_clock_uncertainty -fall_from [get_clocks {u_PLL|attpll_inst|altpll_component
 # Set Input Delay
 #**************************************************************
 
+# External async inputs (MC68030 bus termination + arbitration).
+# MC68030EC async input setup to clock low is 2 ns; hold is 8 ns (25 MHz mode).
+# These inputs are treated as asynchronous; we constrain latest arrival to meet setup.
+set_input_delay -clock SCLK -clock_fall -max 2.000 [get_ports {_STERM _BERR _BG _BGACK_IO}]
+set_input_delay -clock SCLK -clock_fall -max 2.000 [get_ports {_DSACK_IO[*]}]
+
+# WD33C93A DMA/IRQ inputs are asynchronous to SCLK; use a conservative max arrival.
+set_input_delay -clock SCLK -clock_fall -max 2.000 [get_ports {_DREQ INTA}]
+
 
 
 #**************************************************************
