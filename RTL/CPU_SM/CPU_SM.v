@@ -12,7 +12,7 @@ module CPU_SM(
     input aDMAENA,
     input aDREQ_,
     input aFLUSHFIFO,
-    input aRESET_,
+    input RESET_,
     input BOEQ0,
     input BOEQ3,
     input CLK,
@@ -99,7 +99,7 @@ CPU_SM_INTERNALS u_CPU_SM_INTERNALS (
     .CLK            (CLK            ),  // input, (wire), CLK (SCLK for compatibility)
     .CLK100         (CLK100         ),  // input, (wire), CLK100
     .phase          (phase          ),  // input, (wire), phase counter
-    .nRESET         (CCRESET_       ),  // input, (wire), Active low reset
+    .nRESET         (RESET_         ),  // input, (wire), Active low reset
     .A1             (A1             ),  // input, (wire),
     .nBGRANT        (BGRANT_        ),  // input, (wire),
     .BOEQ3          (BOEQ3          ),  // input, (wire),
@@ -139,16 +139,11 @@ CPU_SM_INTERNALS u_CPU_SM_INTERNALS (
     .RST_FIFO     (RST_FIFO_d     )
 );
 
-//clocked reset (synchronized on CLK100 (phase == `PHASE_0), equivalent to negedge CLK timing)
-always @(posedge CLK100) begin
-    if ((phase == `PHASE_0))
-        CCRESET_ <= aRESET_;
-end
 
 // Multi-stage synchronizers for async inputs
 // Synchronize on (phase == `PHASE_3) (equivalent to old CLK135 timing)
-always @(posedge CLK100 or negedge CCRESET_) begin
-    if (~CCRESET_) begin
+always @(posedge CLK100 or negedge RESET_) begin
+    if (~RESET_) begin
         // First stage
         bgrant_sync1    <= 1'b1;
         dmaena_sync1    <= 1'b0;
@@ -180,8 +175,8 @@ end
 
 //clocked outputs
 // Register on (phase == `PHASE_2) (equivalent to posedge CLK90 timing)
-always @(posedge CLK100 or negedge CCRESET_) begin
-    if (~CCRESET_) begin
+always @(posedge CLK100 or negedge RESET_) begin
+    if (~RESET_) begin
         BGACK       <= 1'b0;
         PAS         <= 1'b0;
         PDS         <= 1'b0;
@@ -227,8 +222,8 @@ end
 
 // DSACK latching - now fully synchronous (was problematic async pattern before)
 // Sample on (phase == `PHASE_0) (equivalent to negedge CLK timing)
-always @(posedge CLK100 or negedge CCRESET_) begin
-    if (~CCRESET_)
+always @(posedge CLK100 or negedge RESET_) begin
+    if (~RESET_)
         DSACK_LATCHED_ <= 2'b11;
     else if ((phase == `PHASE_0)) begin
         if (AS_)
