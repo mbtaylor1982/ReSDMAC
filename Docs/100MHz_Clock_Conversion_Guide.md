@@ -64,10 +64,10 @@ wire DREQ_synchronized = dreq_sync2;
    ↓         ↓        ↓        ↓
  CLK(0°)  CLK45   CLK90   CLK135
    |         |        |        |
-   |         |        |        └─→ Input sampling (CLK135)
-   |         |        └──────────→ Output registration (CLK90)
-   |         └───────────────────→ (CLK45 - less used)
-   └─────────────────────────────→ State transitions (CLK/SCLK)
+   |         |        |        └─→ Input sampling (CLK135 @ 135°)
+   |         |        └──────────→ Output registration (CLK90 @ 90°)
+   |         └───────────────────→ Special operations (CLK45 @ 45°)
+   └─────────────────────────────→ State transitions (CLK/SCLK @ 0°)
 
 4 separate clock domains!
 ```
@@ -87,15 +87,14 @@ wire DREQ_synchronized = dreq_sync2;
         ↓
      CLK100 (single clock domain!)
         ↓
-  [Phase Counter]
+  [Phase Counter] → phase[1:0]
         ↓
-    ┌───┴───┬─────────┬─────────┐
-    ↓       ↓         ↓         ↓
- phase_0  phase_90  phase_180  phase_270
-  (0ns)    (10ns)    (20ns)     (30ns)
+   phase_defs.vh (defines PHASE_0/1/2/3)
+        ↓
+All logic uses: if (phase == `PHASE_N)
 
 All logic on single CLK100 clock!
-Phase signals used as ENABLES, not clocks.
+Phase comparisons used as ENABLES, not separate clocks.
 ```
 
 **Benefits:**
@@ -104,6 +103,7 @@ Phase signals used as ENABLES, not clocks.
 - Easy to implement proper 2-stage synchronizers
 - Better timing closure (tools optimize single-clock designs)
 - Same 10ns timing granularity as before
+- Cleaner code with named phase constants
 
 ---
 
@@ -129,14 +129,12 @@ module CPU_SM(
 
 #### AFTER (New):
 ```verilog
+`include "phase_defs.vh"
+
 module CPU_SM(
     input CLK,              // 25MHz SCLK (still used for SCLK-domain signals)
     input CLK100,           // 100MHz main clock
-    input [1:0] phase,      // Current phase counter value
-    input phase_0,          // Phase 0 indicator (equivalent to CLK at 0°)
-    input phase_90,         // Phase 1 indicator (equivalent to CLK45)
-    input phase_180,        // Phase 2 indicator (equivalent to CLK90)
-    input phase_270,        // Phase 3 indicator (equivalent to CLK135)
+    input [1:0] phase,      // Current phase counter value (0-3)
     input aRESET_,
     input aDREQ_,           // Async from SCSI chip
     input aBGRANT_,         // Async from CPU
@@ -144,6 +142,12 @@ module CPU_SM(
     input aFLUSHFIFO,       // Async from registers
     // ... other ports (unchanged)
 );
+
+// Phase checking done with defines from phase_defs.vh:
+// if (phase == `PHASE_0) - equivalent to posedge CLK90 (90°)
+// if (phase == `PHASE_1) - equivalent to posedge CLK (180°)
+// if (phase == `PHASE_2) - equivalent to posedge CLK90 (270°)
+// if (phase == `PHASE_3) - equivalent to posedge CLK (0°)
 ```
 
 ---
@@ -174,14 +178,16 @@ end
 
 #### AFTER (New - Proper 2-Stage Sync):
 ```verilog
+`include "phase_defs.vh"
+
 // Multi-stage synchronizers for async inputs
 reg dreq_sync1, dreq_sync2;
 reg bgrant_sync1, bgrant_sync2;
 reg dmaena_sync1, dmaena_sync2;
 reg flushfifo_sync1, flushfifo_sync2;
 
-// Synchronize on CLK100 with phase_270 enable
-// (equivalent timing to old CLK135)
+// Synchronize on CLK100 with phase check
+// (equivalent timing to old CLK135 at 135°)
 always @(posedge CLK100 or negedge CCRESET_) begin
     if (~CCRESET_) begin
         // First stage
@@ -195,7 +201,8 @@ always @(posedge CLK100 or negedge CCRESET_) begin
         dmaena_sync2    <= 1'b0;
         flushfifo_sync2 <= 1'b0;
     end
-    else if (phase_270) begin  // Sample on phase_270 (equivalent to CLK135)
+    // Sample on negedge CLK100 when phase==1 (equivalent to posedge CLK135)
+    else if (phase == `PHASE_1) begin
         // First stage (may be metastable)
         dreq_sync1      <= aDREQ_;
         bgrant_sync1    <= aBGRANT_;
@@ -220,7 +227,7 @@ reg nCYCLEDONE;
 always @(posedge CLK100 or negedge CCRESET_) begin
     if (~CCRESET_)
         nCYCLEDONE <= 1'b1;
-    else if (phase_270)
+    else if (phase == `PHASE_1)
         nCYCLEDONE <= aCYCLEDONE_;
 end
 ```
@@ -259,9 +266,10 @@ end
 
 #### AFTER (New - Registered on CLK100 with phase enable):
 ```verilog
-// Outputs registered on CLK100 at phase_180
-// (phase_180 = 20ns offset = equivalent to CLK90 at 90° = 10ns,
-//  but we want the positive edge, so 20ns in the 100MHz timeline)
+`include "phase_defs.vh"
+
+// Outputs registered on CLK100 when phase==PHASE_2
+// (PHASE_2 triggers at 20ns offset = equivalent to old posedge CLK90 at 90°)
 always @(posedge CLK100 or negedge CCRESET_) begin
     if (~CCRESET_) begin
         BGACK       <= 1'b0;
@@ -284,7 +292,7 @@ always @(posedge CLK100 or negedge CCRESET_) begin
         STOPFLUSH   <= 1'b0;
         RST_FIFO    <= 1'b0;
     end
-    else if (phase_180) begin  // Update on phase_180 (equivalent to posedge CLK90)
+    else if (phase == `PHASE_2) begin  // Update at 180° point (20ns)
         BGACK       <= BGACK_d;
         BREQ        <= BREQ_d;
         BRIDGEIN    <= BRIDGEIN_d;
@@ -333,14 +341,16 @@ end
 
 #### AFTER (New - Proper synchronous logic):
 ```verilog
+`include "phase_defs.vh"
+
 // Synchronous DSACK latching on CLK100
-// Sample on phase_0 falling edge equivalent (next phase after phase_270)
+// Sample when phase==PHASE_0 (equivalent to negedge CLK timing)
 reg [1:0] DSACK_LATCHED_;
 
 always @(posedge CLK100 or negedge CCRESET_) begin
     if (~CCRESET_)
         DSACK_LATCHED_ <= 2'b11;
-    else if (phase_0) begin  // Equivalent to negedge CLK timing
+    else if (phase == `PHASE_0) begin  // 0° point (equivalent to negedge CLK)
         if (AS_)
             DSACK_LATCHED_ <= 2'b11;
         else
@@ -359,45 +369,90 @@ end
 
 ## Timing Equivalence
 
-### Visual Timeline Comparison
+### WaveDrom Timing Diagram
 
-**OLD (Phase-Shifted Clocks):**
-```
-Time:    0ns        10ns       20ns       30ns       40ns
-         ┃          ┃          ┃          ┃          ┃
-CLK      ┃↑_________┃__________┃↑_________┃__________┃↑
-         ┃          ┃          ┃          ┃          ┃
-CLK45    ┃__________┃↑_________┃__________┃↑_________┃__
-         ┃          ┃          ┃          ┃          ┃
-CLK90    ┃__________┃__________┃↑_________┃__________┃↑_
-         ┃          ┃          ┃          ┃          ┃
-CLK135   ┃__________┃__________┃__________┃↑_________┃__
+The following diagram shows the precise timing relationships between the original phase-shifted 25MHz clocks and the new 100MHz clock with phase counter:
+
+```wavedrom
+{
+  signal: [
+    {name: 'Time (ns)', wave: 'x...', data: ['0', '5', '10', '15', '20', '25', '30', '35', '40']},
+    {},
+    ['25MHz Domain',
+      {name: 'CLK (0°)', wave: '1.0.....1.0.....1.'},
+      {name: 'CLK45 (45°)', wave: '0..1.0.....1.0.....'},
+      {name: 'CLK90 (90°)', wave: '0....1.0.....1.0...'},
+      {name: 'CLK135 (135°)', wave: '0......1.0.....1.0.'}
+    ],
+    {},
+    ['100MHz Domain',
+      {name: 'CLK100', wave: '1010101010101010101'},
+      {name: 'phase[1:0]', wave: 'x3.4.5.6.3.4.5.6.3.', data: ['0', '1', '2', '3', '0', '1', '2', '3', '0']},
+      {},
+      {name: 'phase==3', wave: '1.0..............1.', node: '.a..............b'},
+      {name: 'phase==0', wave: '0.1.0............1.', node: '..c..............'},
+      {name: 'phase==1', wave: '0....1.0...........', node: '....d...........'},
+      {name: 'phase==2', wave: '0......1.0.........', node: '......e.........'}
+    ],
+    {},
+    {name: 'Degree', wave: 'x...', data: ['0°', '45°', '90°', '135°', '180°', '225°', '270°', '315°', '360°']}
+  ],
+  edge: [
+    'a<->c 10ns (90° of 25MHz)',
+    'c<->d 10ns',
+    'd<->e 10ns',
+    'e<->b 10ns'
+  ],
+  config: {
+    hscale: 2,
+    skin: 'narrow'
+  }
+}
 ```
 
-**NEW (100MHz with Phase Tracking):**
-```
-Time:    0ns        10ns       20ns       30ns       40ns
-         ┃          ┃          ┃          ┃          ┃
-CLK100   ┃↑____┃↑____┃↑____┃↑____┃↑____┃↑____┃↑____┃↑____
-         ┃     ┃     ┃     ┃     ┃     ┃     ┃     ┃
-phase    ┃ 0   ┃ 1   ┃ 2   ┃ 3   ┃ 0   ┃ 1   ┃ 2   ┃ 3
-         ┃     ┃     ┃     ┃     ┃     ┃     ┃     ┃
-Actions: ┃     ┃     ┃     ┃     ┃     ┃     ┃     ┃
-phase_0  ┃ ACT ┃     ┃     ┃     ┃ ACT ┃     ┃     ┃
-         ┃ ↑   ┃     ┃     ┃     ┃ ↑   ┃     ┃     ┃
-phase_90 ┃     ┃ ACT ┃     ┃     ┃     ┃ ACT ┃     ┃
-         ┃     ┃ ↑   ┃     ┃     ┃     ┃ ↑   ┃     ┃
-phase_180┃     ┃     ┃ ACT ┃     ┃     ┃     ┃ ACT ┃
-         ┃     ┃     ┃ ↑   ┃     ┃     ┃     ┃ ↑   ┃
-phase_270┃     ┃     ┃     ┃ ACT ┃     ┃     ┃     ┃ ACT
-         ┃     ┃     ┃     ┃ ↑   ┃     ┃     ┃     ┃ ↑
-```
+### Phase Mapping Reference
 
-**Mapping:**
-- `posedge CLK` (0°) → `if (phase_0)` on CLK100
-- `posedge CLK45` (45°) → `if (phase_90)` on CLK100 (10ns offset)
-- `posedge CLK90` (90°) → `if (phase_180)` on CLK100 (20ns offset)
-- `posedge CLK135` (135°) → `if (phase_270)` on CLK100 (30ns offset)
+Based on phase_counter.v, the phase counter initializes to 3 and increments on each posedge CLK100:
+
+| Original Clock | Timing | 100MHz Equivalent | Usage |
+|----------------|--------|-------------------|-------|
+| **posedge CLK** | 0° (0ns, 40ns...) | `posedge CLK100 when phase == 3` | Base timing, state machines |
+| **posedge CLK45** | 45° (5ns, 45ns...) | `negedge CLK100 when phase == 0` | Special operations |
+| **posedge CLK90** | 90° (10ns, 50ns...) | `posedge CLK100 when phase == 0` | Output registration, FIFO ops |
+| **posedge CLK135** | 135° (15ns, 55ns...) | `negedge CLK100 when phase == 1` | Input sampling |
+| **negedge CLK** | 180° (20ns, 60ns...) | `posedge CLK100 when phase == 1` | State machine sampling |
+| **negedge CLK45** | 225° (25ns, 65ns...) | `negedge CLK100 when phase == 2` | (rarely used) |
+| **negedge CLK90** | 270° (30ns, 70ns...) | `posedge CLK100 when phase == 2` | (rarely used) |
+| **negedge CLK135** | 315° (35ns, 75ns...) | `negedge CLK100 when phase == 3` | (rarely used) |
+
+### Key Timing Points
+
+**Phase Counter Behavior:**
+- Reset value: `phase = 3` (aligns with 0° of 25MHz cycle)
+- Increments on each posedge CLK100: `3→0→1→2→3→0...`
+- Complete cycle every 40ns (one 25MHz period)
+- Phase value indicates which quarter-cycle interval we're in:
+  - `phase=0`: 0-10ns interval (0-89° of 25MHz)
+  - `phase=1`: 10-20ns interval (90-179° of 25MHz)
+  - `phase=2`: 20-30ns interval (180-269° of 25MHz)
+  - `phase=3`: 30-40ns interval (270-359° of 25MHz)
+
+**Important Note:**
+When checking `phase == N` in clocked logic, the value seen is from BEFORE the clock edge.
+Example: At the posedge at 10ns, checking `phase == 0` sees the value from the 0-10ns interval.
+
+**Code Pattern:**
+```verilog
+`include "phase_defs.vh"
+
+// Instead of: @(posedge CLK90)
+// Now use:
+always @(posedge CLK100) begin
+    if (phase == `PHASE_0) begin
+        // Operations that were on posedge CLK90
+    end
+end
+```
 
 **Same timing precision, cleaner implementation!**
 
@@ -449,20 +504,22 @@ phase_270┃     ┃     ┃     ┃ ACT ┃     ┃     ┃     ┃ ACT
 
 ---
 
-## Next Steps
+## Implementation Status
 
-After reviewing this conversion pattern, the full implementation will proceed as follows:
+The 100MHz clock architecture conversion has been completed:
 
-1. ✅ **PLL Modified** - Generate 100MHz clock
-2. ✅ **phase_counter Created** - Track phases
-3. ✅ **RESDMAC Updated** - Top-level infrastructure ready
-4. ⏳ **CPU_SM Conversion** - Apply pattern shown above
-5. ⏳ **SCSI_SM Conversion** - Similar pattern
-6. ⏳ **FIFO Conversion** - Simpler (mostly just clock changes)
-7. ⏳ **Datapath Conversion** - Apply pattern to data routing
-8. ⏳ **Registers Conversion** - Minimal changes needed
+1. ✅ **PLL Modified** - Reconfigured to generate single 100MHz clock
+2. ✅ **phase_counter Created** - Tracks phases 0-3, initializes to phase 3
+3. ✅ **phase_defs.vh Created** - Shared phase definitions (PHASE_0/1/2/3)
+4. ✅ **RESDMAC Updated** - Top-level infrastructure converted
+5. ✅ **CPU_SM Conversion** - Converted to phase-based enables
+6. ✅ **SCSI_SM Conversion** - Converted to phase-based enables
+7. ✅ **FIFO Conversion** - Converted with correct phase mappings
+8. ✅ **Datapath Conversion** - All submodules converted
 9. ⏳ **Testing** - Verify with cocotb test suite
 10. ⏳ **Hardware Validation** - Test on real Amiga 3000
+
+**All RTL modules successfully converted to single 100MHz clock domain!**
 
 ---
 
