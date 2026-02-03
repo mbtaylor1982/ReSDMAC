@@ -1,6 +1,8 @@
 //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
 
-`ifdef __ICARUS__ 
+`include "phase_defs.vh"
+
+`ifdef __ICARUS__
   `include "fifo_write_strobes.v"
   `include "fifo_full_empty_ctr.v"
   `include "fifo_3bit_cntr.v"
@@ -13,13 +15,8 @@ module fifo
       parameter  WIDTH = 32)
 (
 
-    input CLK,              // SCLK (kept for full/empty counter)
     input CLK100,           // 100MHz main clock
     input [1:0] phase,      // Phase counter value
-    input phase_0,          // Phase 0 indicator
-    input phase_90,         // Phase 1 indicator
-    input phase_180,        // Phase 2 indicator (equivalent to CLK90)
-    input phase_270,        // Phase 3 indicator (equivalent to CLK135)
 
     input LLWORD,       //Load Lower Word strobe from CPU sm
     input LHWORD,       //Load Higher Word strobe from CPU sm
@@ -77,42 +74,39 @@ fifo__full_empty_ctr #(
 )
 u_full_empty_ctr
 (
-    .CLK       (CLK       ),
+    .CLK       (CLK100    ),
     .RST_      (RST_FIFO_ ),
-    .INC       (INCFIFO   ),
-    .DEC       (DECFIFO   ),
+    .INC       (INCFIFO   && (phase == `PHASE_3)),
+    .DEC       (DECFIFO   && (phase == `PHASE_3)),
     .EMPTY     (FIFOEMPTY ),
     .FULL      (FIFOFULL  )
 );
 
-//Next In Write Counter (on phase_270, equivalent to CLK135)
+//Next In Write Counter (on negedge CLK100 at 15ns = 135°, equivalent to posedge CLK135)
 fifo_3bit_cntr #(.BITS(CNTR_BITS))
 u_next_in_cntr
 (
-    .CLK       (CLK100    ),
-    .phase     (phase_270 ),
+    .CLK       (~CLK100   ),
     .RST_      (RST_FIFO_ ),
-    .ClKEN     (INCNI     ),
+    .ClKEN     (INCNI && (phase == `PHASE_1)),
     .COUNT     (WRITE_PTR )
 );
 
-//Next Out Read Counter (on phase_270, equivalent to CLK135)
+//Next Out Read Counter (on negedge CLK100 at 15ns = 135°, equivalent to posedge CLK135)
 fifo_3bit_cntr #(.BITS(CNTR_BITS))
 u_next_out_cntr
 (
-    .CLK       (CLK100    ),
-    .phase     (phase_270 ),
+    .CLK       (~CLK100   ),
     .RST_      (RST_FIFO_ ),
-    .ClKEN     (INCNO     ),
+    .ClKEN     (INCNO && (phase == `PHASE_1)),
     .COUNT     (READ_PTR  )
 );
 
-//BYTE POINTER (on phase_180, equivalent to CLK90)
+//BYTE POINTER (on posedge CLK100 at 10ns = 90°, equivalent to posedge CLK90)
 fifo_byte_ptr u_byte_ptr(
   .CLK       (CLK100     ),
-  .phase     (phase_180  ),
   .SyncLoad  (~RST_FIFO_ ),
-  .Enable    (INCBO      ),
+  .Enable    (INCBO && (phase == `PHASE_0)),
   .Data      ({A1, 1'b0} ),
   .Count     (BYTE_PTR   )
 );
@@ -128,14 +122,14 @@ reg [WIDTH-1:0] BUFFER [DEPTH-1:0];
 integer i;
 
 //WRITE DATA TO FIFO BUFFER
-// Write on phase_180 (equivalent to posedge CLK90 timing)
+// Write on posedge CLK100 at 10ns = 90° (equivalent to posedge CLK90 timing)
 always @(posedge CLK100) begin
   if (~RST_FIFO_) begin
     for (i = 0; i < DEPTH; i = i+1) begin
       BUFFER[i] <= 32'h00000000;
     end
   end
-  else if (phase_180) begin
+  else if (phase == `PHASE_0) begin
     if (UUWS)
       BUFFER[WRITE_PTR][31:24] <= FIFO_ID[31:24];
     if (UMWS)
