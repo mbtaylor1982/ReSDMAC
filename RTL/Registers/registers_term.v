@@ -1,6 +1,8 @@
 //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
 
-module registers_term(
+module registers_term #(
+    parameter WAIT_CYCLES = 1
+)(
     input CLK,
     input AS_,
     input DMAC_,
@@ -11,7 +13,9 @@ module registers_term(
     output reg REG_DSK_
 );
 
-reg [1:0] TERM_COUNTER;
+localparam COUNTER_WIDTH = $clog2(WAIT_CYCLES + 1);
+
+reg [COUNTER_WIDTH-1:0] term_counter;
 
 wire CYCLE_ACTIVE;
 
@@ -23,14 +27,14 @@ wire CYCLE_ACTIVE;
 
 always @(negedge CLK or posedge AS_) begin
   if (AS_) begin
-    TERM_COUNTER <= 2'd0;
+    term_counter <= {COUNTER_WIDTH{1'b0}};
     REG_DSK_ <= 1'b1;
   end
   else if (CYCLE_ACTIVE) begin
-    if (TERM_COUNTER == 2'd1)
+    if (term_counter == WAIT_CYCLES[COUNTER_WIDTH-1:0])
       REG_DSK_ <= 1'b0;
     else
-		  TERM_COUNTER <= TERM_COUNTER + 2'b1;
+      term_counter <= term_counter + 1'b1;
   end
 end
 

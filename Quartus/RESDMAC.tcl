@@ -121,10 +121,12 @@ if {$make_assignments} {
 	set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath.v
 	set_global_assignment -name VERILOG_FILE ../RTL/PLL.v
 	set_global_assignment -name VERILOG_FILE ../RTL/RESDMAC.v
+	set_global_assignment -name VERILOG_FILE ../RTL/reset.v
+	set_global_assignment -name VERILOG_FILE ../RTL/phase_counter.v
+	set_global_assignment -name SVF_FILE ../RTL/phase_defs.vh
+	set_global_assignment -name VERILOG_FILE ../RTL/synchronizer.v
 	set_global_assignment -name QIP_FILE IP/Common/attpll.qip
 	set_global_assignment -name ENABLE_SIGNALTAP OFF
-	
-
 	set_location_assignment PIN_M9 -to DATA_IO[31]
 	set_location_assignment PIN_A5 -to DATA_IO[0]
 	set_location_assignment PIN_M3 -to DATA_IO[1]

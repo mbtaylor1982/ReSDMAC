@@ -333,7 +333,7 @@ PLL u_PLL (
     .LOCKED     (PLLLOCKED )
 );
 
-global_reset_gen u_global_reset_gen (
+global_reset_with_pll u_global_reset_gen (
     .clk            (CLK100     ),
     .reset_n_async  (_RST       ),
     .pll_locked     (PLLLOCKED  ),

@@ -1,6 +1,6 @@
 //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
 
-`include "phase_defs.vh"
+`include "../phase_defs.vh"
 
 `ifdef __ICARUS__
     `include "datapath_scsi.v"
@@ -94,10 +94,9 @@ datapath_output u_datapath_output(
 );
 
 datapath_scsi u_datapath_scsi(
-    .CLK            (CLK        ),
-    .CLK100         (CLK100     ),
-    .phase_180      (phase_180  ),
-    .phase_270      (phase_270  ),
+    .CLK            (CLK       ),
+    .CLK100         (CLK100    ),
+    .phase          (phase     ),
     .SCSI_DATA_IN   (PD_IN     ),
     .SCSI_DATA_OUT  (PD_OUT    ),
     .SCSI_OD        (SCSI_OD   ),

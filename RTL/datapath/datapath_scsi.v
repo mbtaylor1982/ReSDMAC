@@ -1,10 +1,11 @@
 //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
 
-`include "phase_defs.vh"
+
 
 `ifdef __ICARUS__
   `include "datapath_24dec.v"
   `include "datapath_8b_MUX.v"
+  `include "../phase_defs.vh"
 `endif
 
 module datapath_scsi (

@@ -1,4 +1,7 @@
-/*ReSDMAC © 2026 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/*/
+/*
+ReSDMAC © 2026 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. 
+To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
+*/
 
 module global_reset_with_pll #(
     parameter integer LOCK_SYNC_STAGES = 2,  // sync PLL locked into clk domain

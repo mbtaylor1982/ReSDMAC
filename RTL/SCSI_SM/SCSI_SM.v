@@ -1,10 +1,9 @@
 //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
 
-`ifdef __ICARUS__
-    `include "SCSI_SM_INTERNALS.v"
-    `include "phase_defs.vh"
-    `include "synchroniser.v"
-`endif
+
+`include "../phase_defs.vh"
+`include "../synchroniser.v"
+
 
 module SCSI_SM
 
@@ -134,7 +133,7 @@ always @(posedge CLK100 or negedge RESET_) begin
         SCSI_CS_o   <= 1'b0;
         WE_o        <= 1'b0;
     end
-    else if (phase == phase_0)
+    else if (phase == `PHASE_0)
     begin
         CPU2S_o     <= CPU2S;
         DACK_o      <= DACK;
@@ -156,14 +155,14 @@ end
 always @(negedge CLK100 or posedge INCFIFO or negedge RESET_ ) begin
     if (INCFIFO | ~RESET_) //ack the fifo inc request
         RIFIFO_o <= 1'b0;
-	else if ((phase == phase_1) && RIFIFO_d) //request fifo inc
+	else if ((phase == `PHASE_1) && RIFIFO_d) //request fifo inc
         RIFIFO_o <= 1'b1;
 end
 
 always @(negedge CLK100 or posedge DECFIFO or negedge RESET_) begin
     if (DECFIFO | ~RESET_) //ack the fifo dec request
         RDFIFO_o <= 1'b0;
-    else if ((phase == phase_1) && RDFIFO_d) //request fifo dec
+    else if ((phase == `PHASE_1) && RDFIFO_d) //request fifo dec
         RDFIFO_o <= 1'b1;
 end
 
@@ -172,7 +171,7 @@ end
 always @(posedge CLK100 or negedge RESET_) begin
     if (~RESET_)
         nLS2CPU <= 1'b0;
-    else if (phase == phase_0) begin
+    else if (phase == `PHASE_0) begin
         if (AS_)
             nLS2CPU <= 1'b0;
         else if (SET_DSACK)
