@@ -7,10 +7,9 @@
 
 module SCSI_SM
 
-(   input BOEQ3,            //Asserted when transfering Byte 3
-    input CLK,              //CPUClk.
-    input CLK100,           //100MHz main clock
+(   input CLK100,           //100MHz main clock
     input [1:0] phase,      //Phase counter value
+    input BOEQ3,            //Asserted when transfering Byte 3
     input CPUREQ,           //Request CPU access to SCSI registers.
     input DECFIFO,          //Decrement FIFO pointer used to ack the request
     input DMADIR,           //Control Direction Of DMA transfer.
@@ -68,6 +67,7 @@ reg RIFIFO_d;   // clocked request FIFO Increment from CPU FSM
 
 SCSI_SM_INTERNALS u_SCSI_SM_INTERNALS (
     .CLK100     (CLK100     ),  // input, (wire), CLK100
+    .phase      (phase      ),  // input, (wire), phase counter value
     .nRESET     (RESET_     ),  // input, (wire), Active low reset
     .BOEQ3      (BOEQ3      ),  // input, (wire), Asserted when transfering Byte 3
     .CCPUREQ    (CCPUREQ    ),  // input, (wire), Request CPU access to SCSI registers.

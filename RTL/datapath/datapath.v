@@ -9,7 +9,6 @@
 `endif
 
 module datapath (
-    input CLK,              // SCLK
     input CLK100,           // 100MHz main clock
     input [1:0] phase,      // Phase counter value
     input [31:0] DATA_I,
@@ -70,6 +69,7 @@ wire bDIEL;
 
 datapath_input u_datapath_input(
     .CLK100    (CLK100    ),
+    .phase     (phase     ),
     .DATA      (DATA_I    ),
     .bBRIDGEIN (bBRIDGEIN ),
     .bDIEH     (bDIEH     ),
@@ -80,7 +80,8 @@ datapath_input u_datapath_input(
 );
 
 datapath_output u_datapath_output(
-    .CLK        (CLK        ),
+    .CLK100     (CLK100     ),
+    .phase      (phase      ),
     .DATA       (DATA_O     ),
     .OD         (FIFO_OD    ),
     .MOD        (MOD_TX     ),
@@ -94,7 +95,6 @@ datapath_output u_datapath_output(
 );
 
 datapath_scsi u_datapath_scsi(
-    .CLK            (CLK       ),
     .CLK100         (CLK100    ),
     .phase          (phase     ),
     .SCSI_DATA_IN   (PD_IN     ),

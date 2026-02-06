@@ -10,13 +10,16 @@
     `define DEVICE "10M16SCU169C8G"
 `endif
 
+`include "..\phase_defs.vh"
+
 module registers(
+  input CLK100,         // 100MHz main clock
+  input [1:0] phase,    // Phase counter value
   input [7:0] ADDR,     // CPU address Bus
   input DMAC_,          // SDMAC Chip Select !SCSI from Fat Garry.
   input AS_,            // CPU Address Strobe.
   input DS_,            // CPU Data Strobe.
   input RW,             // CPU Read Write Control Line.
-  input CLK,            // CPU Clock.
   input [31:0] MID,     // DATA IN
   input STOPFLUSH,      //
   input RST_,           // System Reset
@@ -24,7 +27,7 @@ module registers(
   input FIFOFULL,       // FIFO Full Flag
   input INTA_I,         // Interupt input
   input AS_O,           // Address strobe from CPU FSM
-  input [7:0] DSP_DATA,
+  input [7:0] DSP_DATA, // Data from the DSP.
 
   output reg [31:0] REG_OD, //DATA OUT.
   output PRESET,            //Peripheral Reset.
@@ -123,7 +126,8 @@ addr_decoder u_addr_decoder(
 //Interupt Status Register
 registers_istr u_registers_istr(
     .RESET_    (RST_      ),
-    .CLK       (CLK     ),
+    .CLK100    (CLK100    ),
+    .phase     (phase     ),
     .FIFOEMPTY (FIFOEMPTY ),
     .FIFOFULL  (FIFOFULL  ),
     .CLR_INT   (CLR_INT   ),
@@ -137,7 +141,8 @@ registers_istr u_registers_istr(
 //Control Register
 registers_cntr u_registers_cntr(
     .RESET_    (RST_      ),
-    .CLK       (CLK     ),
+    .CLK100    (CLK100    ),
+    .phase     (phase     ),
     .CONTR_WR  (CONTR_WR  ),
     .ST_DMA    (ST_DMA    ),
     .SP_DMA    (SP_DMA    ),
@@ -151,7 +156,8 @@ registers_cntr u_registers_cntr(
 
 //DSACK timing.
 registers_term u_registers_term(
-    .CLK      (CLK      ),
+    .CLK100   (CLK100     ),
+    .phase    (phase      ),
     .AS_      (AS_        ),
     .DMAC_    (DMAC_      ),
     .WDREGREQ (WDREGREQ   ),
@@ -161,10 +167,11 @@ registers_term u_registers_term(
 );
 
 registers_flash u_registers_flash(
-    .CLK            (CLK          ),
-    .nRST           (RST_           ),
-    .n_DS           (DS_            ),
-    .n_AS           (AS_            ),
+    .CLK100         (CLK100     ),
+    .phase          (phase      ),
+    .nRST           (RST_       ),
+    .n_DS           (DS_        ),
+    .n_AS           (AS_        ),
     .FLASH_DATA_RD_ (FLASH_DATA_RD_ ),
     .FLASH_DATA_WR  (FLASH_DATA_WR  ),
     .FLASH_ADDR     (FLASH_ADDR     ),
@@ -175,42 +182,43 @@ registers_flash u_registers_flash(
 
 assign DMADIR = ~nDMADIR;
 
-always @(negedge CLK or negedge RST_) begin
+always @(posedge CLK100 or negedge RST_) begin
     if (~RST_)
         FLUSHFIFO <= 1'b0;
-    else if (~FLUSH_)
+    else if (~FLUSH_ && (phase == `PHASE_1))
         FLUSHFIFO <= 1'b1;
-	else if (STOPFLUSH)
+	else if (STOPFLUSH && (phase == `PHASE_1))
+        FLUSHFIFO <= 1'b0;
 		FLUSHFIFO <= 1'b0;
 end
 
 //Store value of A1 loaded into ACR
-always @(negedge CLK or negedge RST_) begin
+always @(posedge CLK100 or negedge RST_) begin
     if (~RST_)
         A1 <= 1'b1;
-    else if (ACR_WR)
+    else if (ACR_WR && (phase == `PHASE_1)) //sample A1 on the write cycle of the ACR register (equivalent to negedge CLK timing)
         A1 <= MID[25];
     else if (~AS_O)
         A1 <= 1'b0;
 end
 
 //Fake SSPBDAT register (only used for testing read and write cycles)
-always @(negedge CLK or negedge RST_) begin
+always @(posedge CLK100 or negedge RST_) begin
     if (~RST_)
         SSPBDAT <= 32'b0;
-    else if (SSPBDAT_WR)
+    else if (SSPBDAT_WR && (phase == `PHASE_1)) //sample SSPBDAT on the write cycle of the SSPBDAT register (equivalent to negedge CLK timing)
         SSPBDAT <= MID[31:0];
 end
 
 //Fake FLASH_ADDR register
-always @(negedge CLK or negedge RST_) begin
+always @(posedge CLK100 or negedge RST_) begin
     if (~RST_)
         FLASH_ADDR <= 32'b0;
-    else if (FLASH_ADDR_WR & ~DS_)
+    else if (FLASH_ADDR_WR & ~DS_ && (phase == `PHASE_1)) //sample FLASH_ADDR on the write cycle of the FLASH_ADDR register (equivalent to negedge CLK timing)
         FLASH_ADDR <= MID[23:0];
 end
 
-always @(posedge CLK) begin
+always @(posedge CLK100) begin
     if (~RST_) begin
         VERSION <= `DEF_VERSION; // This will get replaced with the release tag by github eg(v0.4).
         DEVICE_TXT <= `DEVICE;
@@ -224,10 +232,10 @@ always @(posedge CLK) begin
     end
 end
 
-always @(posedge CLK or negedge RST_) begin
+always @(posedge CLK100 or negedge RST_) begin
     if (~RST_)
         DSP <= 8'b0;
-    else if (~DSP_RD_)
+    else if (~DSP_RD_ && (phase == `PHASE_3)) //sample DSP on the read cycle of the DSP register (equivalent to posedge CLK timing)
         DSP <= DSP_DATA;
 end
 

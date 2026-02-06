@@ -169,7 +169,8 @@ registers u_registers(
     .AS_       (AS_I_     ),
     .DS_       (DS_I_     ),
     .RW        (R_W       ),
-    .CLK       (SCLK      ),
+    .CLK100    (CLK100    ),
+    .phase     (phase     ),
     .MID       (MID       ),
     .STOPFLUSH (STOPFLUSH ),
     .RST_      (S_RESET   ),
@@ -202,7 +203,6 @@ CPU_SM u_CPU_SM(
     .iSTERM_       (_STERM      ),
     .DSACK0_       (DSK0_IN_    ),
     .DSACK1_       (DSK1_IN_    ),
-    .CLK           (SCLK        ),
     .CLK100        (CLK100      ),
     .phase         (phase       ),
     .DMADIR        (DMADIR      ),
@@ -236,16 +236,15 @@ CPU_SM u_CPU_SM(
 );
 
 SCSI_SM u_SCSI_SM(
+    .CLK100    (CLK100      ),
+    .phase     (phase       ),
+    .RESET_    (S_RESET    ),
+    .BOEQ3     (BOEQ3       ),
     .CPUREQ    (WDREGREQ    ),
     .RW        (R_W         ),
     .DMADIR    (DMADIR      ),
     .INCFIFO   (INCFIFO     ),
     .DECFIFO   (DECFIFO     ),
-    .RESET_    (S_RESET    ),
-    .BOEQ3     (BOEQ3       ),
-    .CLK       (SCLK        ),
-    .CLK100    (CLK100      ),
-    .phase     (phase       ),
     .DREQ_     (DREQ_       ),
     .FIFOFULL  (FIFOFULL    ),
     .FIFOEMPTY (FIFOEMPTY   ),
@@ -291,7 +290,6 @@ fifo int_fifo(
 );
 
 datapath u_datapath(
-    .CLK       (SCLK        ),
     .CLK100    (CLK100      ),
     .phase     (phase       ),
     .DATA_I    (DATA_I      ),

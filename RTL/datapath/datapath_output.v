@@ -1,7 +1,10 @@
 //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
 
+`include "../phase_defs.vh"
+
 module datapath_output (
-    input CLK,
+    input CLK100,
+    input [1:0] phase,
     output [31:0] DATA,
 
     input [31:0] OD,
@@ -28,13 +31,13 @@ reg [15:0] LD_LATCH;
 reg [15:0] UD_LATCH;
 
 
-always @(posedge CLK) begin
-    if (LOD1_F2CPU)
+always @(posedge CLK100) begin
+    if (LOD1_F2CPU &&(phase == `PHASE_3))
         LD_LATCH <= LOWER_INPUT_DATA;
 end
 
-always @(posedge CLK) begin
-    if (LOD2_F2CPU)
+always @(posedge CLK100) begin
+    if (LOD2_F2CPU && (phase == `PHASE_3))
         UD_LATCH <= UPPER_INPUT_DATA;
 end
 

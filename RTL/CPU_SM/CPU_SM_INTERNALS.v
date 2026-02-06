@@ -4,7 +4,6 @@
 
 module CPU_SM_INTERNALS(
 
-    input CLK,              // sCLK (kept for compatibility)
     input CLK100,           // 100MHz main clock
     input [1:0] phase,      // Phase counter value
     input nRESET,           // Reset
@@ -629,11 +628,11 @@ assign DECFIFO = (~int_INCFIFO & ~nRDFIFO) | int_DECFIFO;
 assign INCNO = int_DECFIFO;
 
 //State Machine
-// State register on CLK100 with (phase == `PHASE_2) enable (equivalent to posedge CLK90)
+// State register on CLK100 with (phase == `PHASE_=0) enable (equivalent to posedge CLK90)
 always @(posedge CLK100 or negedge nRESET) begin
     if (~nRESET)
         state <= 5'b00000;
-    else if ((phase == `PHASE_2))
+    else if ((phase == `PHASE_0))
         state <= next_state;
 end
 

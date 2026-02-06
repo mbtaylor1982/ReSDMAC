@@ -1,6 +1,10 @@
 //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
+
+`include "../phase_defs.vh"
+
 module registers_flash(
-    input CLK,
+    input CLK100,
+	input [1:0] phase,
     input nRST,
 	input n_DS,
 	input n_AS,
@@ -13,7 +17,7 @@ module registers_flash(
 );
 
 `ifdef ALTERA_RESERVED_QIS
-	
+
 	localparam four_byte_transfer = 4'b1111;
 
 	reg [31:0] LATCHED_FLASH_DATA_OUT;
@@ -24,43 +28,32 @@ module registers_flash(
 	wire [31:0] data;
 	wire ack;
 
-	always @(posedge CLK or negedge nRST) begin
-	if (~nRST)
-		LATCHED_ADDR <= 32'h00000000;
-	else if(~n_AS)
-		LATCHED_ADDR <= FLASH_ADDR;
+	always @(posedge CLK100 or negedge nRST) begin
+		if (~nRST) begin
+			LATCHED_ADDR 			<= 24'h000000;
+			LATCHED_FLASH_DATA_OUT 	<= 32'h00000000;
+			LATCHED_FLASH_DATA_IN 	<= 32'h00000000;
+			Term 					<= 1'b0;
+		end
+		else if (phase == `PHASE_3) begin
+			Term <= ack;
+			if (~n_AS)
+				LATCHED_ADDR <= FLASH_ADDR;
+			if (~FLASH_DATA_RD_ && ack)
+				LATCHED_FLASH_DATA_OUT <= data;
+			if (FLASH_DATA_WR && ~n_DS)
+				LATCHED_FLASH_DATA_IN <= FLASH_DATA_IN;
+		end
 	end
 
-	always @(posedge CLK or negedge nRST) begin
-	if (~nRST)
-		LATCHED_FLASH_DATA_OUT <= 32'h00000000;
-	else if(~FLASH_DATA_RD_ & ack)
-		LATCHED_FLASH_DATA_OUT <= data;
-	end
-
-	always @(posedge CLK or negedge nRST) begin
-	if (~nRST)
-		LATCHED_FLASH_DATA_IN <= 32'h00000000;
-	else if(FLASH_DATA_WR & ~n_DS)
-		LATCHED_FLASH_DATA_IN <= FLASH_DATA_IN;
-	end
-
-	always @(posedge CLK or negedge nRST) begin
-	if (~nRST)
-		Term <= 1'b0;
-	else begin
-		Term <= ack;
-	end;
-	end
-
-	always @(negedge CLK or negedge nRST) begin
+	always @(posedge CLK100 or negedge nRST) begin
 	if (~nRST) begin
 		write 	<= 1'b0;
 		read 	<= 1'b0;
 	end
-	else begin
-		read 	<= (~FLASH_DATA_RD_ & ~n_DS);
-		write 	<= (FLASH_DATA_WR 	& ~n_DS);
+	else if (phase == `PHASE_1) begin
+		read 	<= (~FLASH_DATA_RD_ && ~n_DS);
+		write 	<= (FLASH_DATA_WR 	&& ~n_DS);
 	end
 	end
 
@@ -71,7 +64,7 @@ module registers_flash(
 			"10M02SCU169C8G" : assign data = LATCHED_FLASH_DATA_IN;
 			"10M04SCU169C8G" : begin
 				flash_interface_10M04SCU169C8G flash_interface (
-					.clk_clk                        (CLK),
+					.clk_clk                        (CLK100),
 					.reset_reset_n                  (nRST),
 					.external_interface_address     (LATCHED_ADDR),
 					.external_interface_read        (read),
@@ -84,7 +77,7 @@ module registers_flash(
 			end
 			"10M16SCU169C8G" : begin
 				flash_interface_10M16SCU169C8G flash_interface (
-					.clk_clk                        (CLK),
+					.clk_clk                        (CLK100),
 					.reset_reset_n                  (nRST),
 					.external_interface_address     (LATCHED_ADDR),
 					.external_interface_read        (read),
@@ -115,44 +108,44 @@ module registers_flash(
 	
 	assign FLASH_DATA_OUT = data_out;
 
-	always @(posedge CLK or negedge nRST) begin
+	always @(posedge CLK100 or negedge nRST) begin
 		if (~nRST) begin
 			FLASHDATA 		<= 32'h00000000;
 			FLASH_CONTROL 	<= 32'h00000000;
 			data_out		<= 32'h00000000;
 		end
-
-		if (FLASH_DATA_WR) begin
-			casex (FLASH_ADDR)
-				FLASH_DATA_REG		: FLASHDATA 	<= FLASH_DATA_IN;
-				FLASH_CONTROL_REG	: FLASH_CONTROL <= FLASH_DATA_IN;
-			endcase
+		else if (phase == `PHASE_3) begin
+			if (FLASH_DATA_WR) begin
+				casex (FLASH_ADDR)
+					FLASH_DATA_REG		: FLASHDATA 	<= FLASH_DATA_IN;
+					FLASH_CONTROL_REG	: FLASH_CONTROL <= FLASH_DATA_IN;
+				endcase
+			end
+			else if (~FLASH_DATA_RD_) begin
+				casex (FLASH_ADDR)
+					FLASH_DATA_REG		: data_out <= FLASHDATA;
+					FLASH_CONTROL_REG	: data_out <= FLASH_CONTROL;
+				endcase
+			end
 		end
-
-		if (~FLASH_DATA_RD_) begin
-			casex (FLASH_ADDR)
-				FLASH_DATA_REG		: data_out <= FLASHDATA;
-				FLASH_CONTROL_REG	: data_out <= FLASH_CONTROL;
-			endcase
-		end
-
 	end
 
-	always @(posedge CLK or negedge nRST) begin
+	always @(posedge CLK100 or negedge nRST) begin
 		if (~nRST) begin
 			TERM_COUNTER 	<= 3'b0;
 			Term 		<= 1'b0;
 		end
-
-		if (~nCYCLE_ACTIVE) begin
-			if (TERM_COUNTER == 3'd3)
-				Term <= 1'b1;
-			else
-				TERM_COUNTER <= TERM_COUNTER + 1;
-		end
-		else begin
-			Term <= 0;
-			TERM_COUNTER 	<= 3'b0;
+		else if (phase == `PHASE_3) begin
+			if (~nCYCLE_ACTIVE) begin
+				if (TERM_COUNTER == 3'd3)
+					Term <= 1'b1;
+				else
+					TERM_COUNTER <= TERM_COUNTER + 1;
+			end
+			else begin
+				Term <= 0;
+				TERM_COUNTER 	<= 3'b0;
+			end
 		end
 	end
 `endif

@@ -55,17 +55,6 @@ reg CCRESET_;
 reg [1:0] DSACK_LATCHED_;
 reg nCYCLEDONE;
 
-// Multi-stage synchronizers for async inputs (prevents metastability)
-reg bgrant_sync1, bgrant_sync2;
-reg dmaena_sync1, dmaena_sync2;
-reg dreq_sync1, dreq_sync2;
-reg flushfifo_sync1, flushfifo_sync2;
-
-// Synchronized versions used internally
-wire BGRANT_   = bgrant_sync2;
-wire DMAENA    = dmaena_sync2;
-wire DREQ_     = dreq_sync2;
-wire FLUSHFIFO = flushfifo_sync2;
 
 wire aCYCLEDONE_;
 wire BGACK_d;
@@ -96,7 +85,6 @@ wire STERM_;
 wire LASTWORD;
 
 CPU_SM_INTERNALS u_CPU_SM_INTERNALS (
-    .CLK            (CLK            ),  // input, (wire), CLK (SCLK for compatibility)
     .CLK100         (CLK100         ),  // input, (wire), CLK100
     .phase          (phase          ),  // input, (wire), phase counter
     .nRESET         (RESET_         ),  // input, (wire), Active low reset
@@ -139,42 +127,40 @@ CPU_SM_INTERNALS u_CPU_SM_INTERNALS (
     .RST_FIFO     (RST_FIFO_d     )
 );
 
+sync_2ff u_sync_BGRANT (
+    .clk        (CLK100  ),
+    .async_in   (aBGRANT_),
+    .sync_out   (BGRANT_ )
+);
 
-// Multi-stage synchronizers for async inputs
-// Synchronize on (phase == `PHASE_3) (equivalent to old CLK135 timing)
-always @(posedge CLK100 or negedge RESET_) begin
-    if (~RESET_) begin
-        // First stage
-        bgrant_sync1    <= 1'b1;
-        dmaena_sync1    <= 1'b0;
-        dreq_sync1      <= 1'b1;
-        flushfifo_sync1 <= 1'b0;
-        // Second stage
-        bgrant_sync2    <= 1'b1;
-        dmaena_sync2    <= 1'b0;
-        dreq_sync2      <= 1'b1;
-        flushfifo_sync2 <= 1'b0;
-        // Synchronous signal
+sync_2ff u_sync_DMAENA (
+    .clk        (CLK100  ),
+    .async_in   (aDMAENA ),
+    .sync_out   (DMAENA_ )
+);
+
+sync_2ff u_sync_DREQ (
+    .clk        (CLK100  ),
+    .async_in   (aDREQ_  ),
+    .sync_out   (DREQ_   )
+);
+
+sync_2ff u_sync_FLUSHFIFO (
+    .clk        (CLK100      ),
+    .async_in   (aFLUSHFIFO  ),
+    .sync_out   (FLUSHFIFO   )
+);
+
+// Synchronize on (negedge CLK100  phase == `PHASE_1) (equivalent to old CLK135 timing)
+always @(negedge CLK100 or negedge RESET_) begin
+    if (~RESET_)
         nCYCLEDONE      <= 1'b1;
-    end
-    else if ((phase == `PHASE_3)) begin
-        // First stage (may be metastable)
-        bgrant_sync1    <= aBGRANT_;
-        dmaena_sync1    <= aDMAENA;
-        dreq_sync1      <= aDREQ_;
-        flushfifo_sync1 <= aFLUSHFIFO;
-        // Second stage (stable output)
-        bgrant_sync2    <= bgrant_sync1;
-        dmaena_sync2    <= dmaena_sync1;
-        dreq_sync2      <= dreq_sync1;
-        flushfifo_sync2 <= flushfifo_sync1;
-        // Synchronous signal (only needs single stage)
+    else if ((phase == `PHASE_1))
         nCYCLEDONE      <= aCYCLEDONE_;
-    end
 end
 
 //clocked outputs
-// Register on (phase == `PHASE_2) (equivalent to posedge CLK90 timing)
+// Register on (phase == `PHASE_0) (equivalent to posedge CLK90 timing)
 always @(posedge CLK100 or negedge RESET_) begin
     if (~RESET_) begin
         BGACK       <= 1'b0;
@@ -197,7 +183,7 @@ always @(posedge CLK100 or negedge RESET_) begin
         STOPFLUSH   <= 1'b0;
         RST_FIFO    <= 1'b0;
     end
-    else if ((phase == `PHASE_2)) begin
+    else if ((phase == `PHASE_0)) begin
         BGACK       <= BGACK_d;
         BREQ        <= BREQ_d;
         BRIDGEIN    <= BRIDGEIN_d;
@@ -221,11 +207,11 @@ always @(posedge CLK100 or negedge RESET_) begin
 end
 
 // DSACK latching - now fully synchronous (was problematic async pattern before)
-// Sample on (phase == `PHASE_0) (equivalent to negedge CLK timing)
+// Sample on (phase == `PHASE_1) (equivalent to negedge CLK timing)
 always @(posedge CLK100 or negedge RESET_) begin
     if (~RESET_)
         DSACK_LATCHED_ <= 2'b11;
-    else if ((phase == `PHASE_0)) begin
+    else if ((phase == `PHASE_1)) begin
         if (AS_)
             DSACK_LATCHED_ <= 2'b11;
         else
