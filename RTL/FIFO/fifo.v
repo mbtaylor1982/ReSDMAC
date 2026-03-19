@@ -160,4 +160,11 @@ end
 
 assign o_FIFO_OD = buffer[read_ptr]; // Output data from FIFO at the current read pointer location
 
+`ifdef COCOTB_SIM
+initial begin
+  $dumpfile("fifo_dump.vcd");
+  $dumpvars(0, fifo);
+end
+`endif
+
 endmodule
