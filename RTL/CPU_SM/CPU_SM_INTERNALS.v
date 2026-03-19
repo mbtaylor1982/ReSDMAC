@@ -1,11 +1,8 @@
 //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
 
-`include "../phase_defs.vh"
-
 module CPU_SM_INTERNALS(
 
     input CLK100,           // 100MHz main clock
-    input [1:0] phase,      // Phase counter value
     input nRESET,           // Reset
     input A1,               // DMA address bit
     input nBGRANT,          // bus grant
@@ -90,6 +87,75 @@ reg [5:0] state;
 reg [5:0] next_state;
 reg int_INCFIFO;
 reg int_DECFIFO;
+reg [2:0] state_hold_ctr;
+
+// Per-state hold timing in CLK100 cycles. Set to 4 by default to emulate legacy 25MHz pacing.
+localparam [2:0]
+    WAIT_s0    = 3'd4,
+    WAIT_s1    = 3'd4,
+    WAIT_s2    = 3'd4,
+    WAIT_s3    = 3'd4,
+    WAIT_s4    = 3'd4,
+    WAIT_s6    = 3'd4,
+    WAIT_s7    = 3'd4,
+    WAIT_s8    = 3'd4,
+    WAIT_s10   = 3'd4,
+    WAIT_s11   = 3'd4,
+    WAIT_s12   = 3'd4,
+    WAIT_s15   = 3'd4,
+    WAIT_s20   = 3'd4,
+    WAIT_s21   = 3'd4,
+    WAIT_s22   = 3'd4,
+    WAIT_s23   = 3'd4,
+    WAIT_s24   = 3'd4,
+    WAIT_s26   = 3'd4,
+    WAIT_s27   = 3'd4,
+    WAIT_s28   = 3'd4,
+    WAIT_s30   = 3'd4,
+    WAIT_s31   = 3'd4,
+    WAIT_s32   = 3'd4,
+    WAIT_s33   = 3'd4,
+    WAIT_s34   = 3'd4,
+    WAIT_s35   = 3'd4,
+    WAIT_letgo = 3'd4;
+
+function [2:0] state_wait_cycles;
+    input [5:0] cur_state;
+    begin
+        case (cur_state)
+            s0:    state_wait_cycles = WAIT_s0;
+            s1:    state_wait_cycles = WAIT_s1;
+            s2:    state_wait_cycles = WAIT_s2;
+            s3:    state_wait_cycles = WAIT_s3;
+            s4:    state_wait_cycles = WAIT_s4;
+            s6:    state_wait_cycles = WAIT_s6;
+            s7:    state_wait_cycles = WAIT_s7;
+            s8:    state_wait_cycles = WAIT_s8;
+            s10:   state_wait_cycles = WAIT_s10;
+            s11:   state_wait_cycles = WAIT_s11;
+            s12:   state_wait_cycles = WAIT_s12;
+            s15:   state_wait_cycles = WAIT_s15;
+            s20:   state_wait_cycles = WAIT_s20;
+            s21:   state_wait_cycles = WAIT_s21;
+            s22:   state_wait_cycles = WAIT_s22;
+            s23:   state_wait_cycles = WAIT_s23;
+            s24:   state_wait_cycles = WAIT_s24;
+            s26:   state_wait_cycles = WAIT_s26;
+            s27:   state_wait_cycles = WAIT_s27;
+            s28:   state_wait_cycles = WAIT_s28;
+            s30:   state_wait_cycles = WAIT_s30;
+            s31:   state_wait_cycles = WAIT_s31;
+            s32:   state_wait_cycles = WAIT_s32;
+            s33:   state_wait_cycles = WAIT_s33;
+            s34:   state_wait_cycles = WAIT_s34;
+            s35:   state_wait_cycles = WAIT_s35;
+            letgo: state_wait_cycles = WAIT_letgo;
+            default: state_wait_cycles = 3'd4;
+        endcase
+    end
+endfunction
+
+wire [2:0] active_wait_cycles = state_wait_cycles(state);
 
 always @(*) begin
     case (state)
@@ -628,12 +694,17 @@ assign DECFIFO = (~int_INCFIFO & ~nRDFIFO) | int_DECFIFO;
 assign INCNO = int_DECFIFO;
 
 //State Machine
-// State register on CLK100 with (phase == `PHASE_=0) enable (equivalent to posedge CLK90)
+// State register runs on CLK100 and uses a programmable hold counter per state.
 always @(posedge CLK100 or negedge nRESET) begin
-    if (~nRESET)
+    if (~nRESET) begin
         state <= 5'b00000;
-    else if ((phase == `PHASE_0))
+        state_hold_ctr <= 3'd0;
+    end else if ((active_wait_cycles <= 3'd1) || (state_hold_ctr == (active_wait_cycles - 3'd1))) begin
         state <= next_state;
+        state_hold_ctr <= 3'd0;
+    end else begin
+        state_hold_ctr <= state_hold_ctr + 3'd1;
+    end
 end
 
 endmodule

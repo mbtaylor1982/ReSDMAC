@@ -134,9 +134,9 @@ wire BRIDGEIN;
 wire BRIDGEOUT;
 wire DIEH;
 wire DIEL;
-wire RDFIFO_o;
+wire FIFO_DEC_PEND_o;   // FIFO decrement request pending from SCSI SM
 wire DECFIFO;
-wire RIFIFO_o;
+wire FIFO_INC_PEND_o;   // FIFO increment request pending from SCSI SM
 wire INCFIFO;
 wire INCNO_CPU;
 wire INCNI_CPU;
@@ -204,7 +204,6 @@ CPU_SM u_CPU_SM(
     .DSACK0_       (DSK0_IN_    ),
     .DSACK1_       (DSK1_IN_    ),
     .CLK100        (CLK100      ),
-    .phase         (phase       ),
     .DMADIR        (DMADIR      ),
     .A1            (A1          ),
     .F2CPUL        (F2CPUL      ),
@@ -217,10 +216,10 @@ CPU_SM u_CPU_SM(
     .BOEQ3         (BOEQ3       ),
     .FIFOFULL      (FIFOFULL    ),
     .FIFOEMPTY     (FIFOEMPTY   ),
-    .RDFIFO_       (~RDFIFO_o   ),
-    .DECFIFO       (DECFIFO     ),
-    .RIFIFO_       (~RIFIFO_o   ),
-    .INCFIFO       (INCFIFO     ),
+    .RDFIFO_       (~FIFO_DEC_PEND_o),
+    .DECFIFO       (DECFIFO         ),
+    .RIFIFO_       (~FIFO_INC_PEND_o),
+    .INCFIFO       (INCFIFO         ),
     .INCNO         (INCNO_CPU   ),
     .INCNI         (INCNI_CPU   ),
     .aDREQ_        (DREQ_       ),
@@ -236,57 +235,55 @@ CPU_SM u_CPU_SM(
 );
 
 SCSI_SM u_SCSI_SM(
-    .CLK100    (CLK100      ),
-    .phase     (phase       ),
-    .RESET_    (S_RESET    ),
-    .BOEQ3     (BOEQ3       ),
-    .CPUREQ    (WDREGREQ    ),
-    .RW        (R_W         ),
-    .DMADIR    (DMADIR      ),
-    .INCFIFO   (INCFIFO     ),
-    .DECFIFO   (DECFIFO     ),
-    .DREQ_     (DREQ_       ),
-    .FIFOFULL  (FIFOFULL    ),
-    .FIFOEMPTY (FIFOEMPTY   ),
-    .AS_       (AS_I_       ),
-    .RDFIFO_o  (RDFIFO_o    ),
-    .RIFIFO_o  (RIFIFO_o    ),
-    .RE_o      (RE          ),
-    .WE_o      (WE          ),
-    .SCSI_CS_o (SCSI_CS     ),
-    .DACK_o    (DACK_o      ),
-    .INCBO_o   (INCBO       ),
-    .INCNO_o   (INCNO_SCSI  ),
-    .INCNI_o   (INCNI_SCSI  ),
-    .S2F_o     (S2F         ),
-    .F2S_o     (F2S         ),
-    .S2CPU_o   (S2CPU       ),
-    .CPU2S_o   (CPU2S       ),
-    .LS2CPU    (LS2CPU      ),
-    .LBYTE_    (LBYTE_      )
+    .i_CLK100           (CLK100          ),
+    .i_RESET_n          (S_RESET         ),
+    .i_BOEQ3            (BOEQ3           ),
+    .i_CPUREQ_async     (WDREGREQ        ),
+    .i_RW               (R_W             ),
+    .i_DMADIR           (DMADIR          ),
+    .i_INC_FIFO_ACK     (INCFIFO         ),
+    .i_DEC_FIFO_ACK     (DECFIFO         ),
+    .i_DREQ_n_async     (DREQ_           ),
+    .i_FIFOFULL         (FIFOFULL        ),
+    .i_FIFOEMPTY        (FIFOEMPTY       ),
+    .i_AS_n             (AS_I_           ),
+    .o_FIFO_DEC_PEND    (FIFO_DEC_PEND_o ),
+    .o_FIFO_INC_PEND    (FIFO_INC_PEND_o ),
+    .o_RE               (RE              ),
+    .o_WE               (WE              ),
+    .o_SCSI_CS          (SCSI_CS         ),
+    .o_DACK             (DACK_o          ),
+    .o_INCBO            (INCBO           ),
+    .o_INCNO            (INCNO_SCSI      ),
+    .o_INCNI            (INCNI_SCSI      ),
+    .o_S2F              (S2F             ),
+    .o_F2S              (F2S             ),
+    .o_S2CPU            (S2CPU           ),
+    .o_CPU2S            (CPU2S           ),
+    .o_LS2CPU           (LS2CPU          ),
+    .o_LBYTE_n          (LBYTE_          )
 );
 
 fifo int_fifo(
-    .CLK100      (CLK100    ),
-    .phase       (phase     ),
-    .LLWORD      (LLW       ),
-    .LHWORD      (LHW       ),
-    .LBYTE_      (LBYTE_    ),
-    .RST_FIFO_   (RST_FIFO  ),
-    .A1          (A1        ),
-    .FIFO_ID     (FIFO_ID   ),
-    .FIFOFULL    (FIFOFULL  ),
-    .FIFOEMPTY   (FIFOEMPTY ),
-    .INCFIFO     (INCFIFO   ),
-    .DECFIFO     (DECFIFO   ),
-    .INCBO       (INCBO     ),
-    .BOEQ0       (BOEQ0     ),
-    .BOEQ3       (BOEQ3     ),
-    .BO0         (BO0       ),
-    .BO1         (BO1       ),
-    .INCNO       (INCNO     ),
-    .INCNI       (INCNI     ),
-    .FIFO_OD     (FIFO_OD   )
+    .i_CLK100      (CLK100    ),
+    .i_LLWORD      (LLW       ),
+    .i_LHWORD      (LHW       ),
+    .i_LBYTE_n     (LBYTE_    ),
+    .i_RST_FIFO_n  (RST_FIFO  ),
+    .i_A1          (A1        ),
+    .i_FIFO_ID     (FIFO_ID   ),
+    .o_FIFOFULL    (FIFOFULL  ),
+    .o_FIFOEMPTY   (FIFOEMPTY ),
+    .i_INCFIFO     (INCFIFO   ),
+    .i_DECFIFO     (DECFIFO   ),
+    .i_INCBO       (INCBO     ),
+    .o_BOEQ0       (BOEQ0     ),
+    .o_BOEQ3       (BOEQ3     ),
+    .o_BO0         (BO0       ),
+    .o_BO1         (BO1       ),
+    .i_INCNO       (INCNO     ),
+    .i_INCNI       (INCNI     ),
+    .o_FIFO_OD     (FIFO_OD   )
 );
 
 datapath u_datapath(

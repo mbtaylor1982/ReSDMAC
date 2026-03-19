@@ -1,7 +1,5 @@
 //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
 
-`include "../phase_defs.vh"
-
 `ifdef __ICARUS__
   `include "CPU_SM_INTERNALS.v"  
 `endif
@@ -17,7 +15,6 @@ module CPU_SM(
     input BOEQ3,
     input CLK,
     input CLK100,            // 100MHz main clock
-    input [1:0] phase,       // Phase counter value
     input DMADIR,
     input DSACK0_,
     input DSACK1_,
@@ -86,7 +83,6 @@ wire LASTWORD;
 
 CPU_SM_INTERNALS u_CPU_SM_INTERNALS (
     .CLK100         (CLK100         ),  // input, (wire), CLK100
-    .phase          (phase          ),  // input, (wire), phase counter
     .nRESET         (RESET_         ),  // input, (wire), Active low reset
     .A1             (A1             ),  // input, (wire),
     .nBGRANT        (BGRANT_        ),  // input, (wire),
@@ -151,16 +147,15 @@ sync_2ff u_sync_FLUSHFIFO (
     .sync_out   (FLUSHFIFO   )
 );
 
-// Synchronize on (negedge CLK100  phase == `PHASE_1) (equivalent to old CLK135 timing)
-always @(negedge CLK100 or negedge RESET_) begin
+// Synchronize cycle-done feedback to CLK100 domain.
+always @(posedge CLK100 or negedge RESET_) begin
     if (~RESET_)
         nCYCLEDONE      <= 1'b1;
-    else if ((phase == `PHASE_1))
+    else
         nCYCLEDONE      <= aCYCLEDONE_;
 end
 
 //clocked outputs
-// Register on (phase == `PHASE_0) (equivalent to posedge CLK90 timing)
 always @(posedge CLK100 or negedge RESET_) begin
     if (~RESET_) begin
         BGACK       <= 1'b0;
@@ -182,8 +177,7 @@ always @(posedge CLK100 or negedge RESET_) begin
         SIZE1       <= 1'b0;
         STOPFLUSH   <= 1'b0;
         RST_FIFO    <= 1'b0;
-    end
-    else if ((phase == `PHASE_0)) begin
+    end else begin
         BGACK       <= BGACK_d;
         BREQ        <= BREQ_d;
         BRIDGEIN    <= BRIDGEIN_d;
@@ -206,12 +200,11 @@ always @(posedge CLK100 or negedge RESET_) begin
     end
 end
 
-// DSACK latching - now fully synchronous (was problematic async pattern before)
-// Sample on (phase == `PHASE_1) (equivalent to negedge CLK timing)
+// DSACK latching - fully synchronous on CLK100.
 always @(posedge CLK100 or negedge RESET_) begin
     if (~RESET_)
         DSACK_LATCHED_ <= 2'b11;
-    else if ((phase == `PHASE_1)) begin
+    else begin
         if (AS_)
             DSACK_LATCHED_ <= 2'b11;
         else
