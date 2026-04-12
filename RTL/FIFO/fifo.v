@@ -25,11 +25,10 @@ module fifo
 
     input i_INCBO,        //Inc Byte Pointer from SCSI SM.
 
-    output o_BOEQ0,       //True when BytePtr indicates 1st Byte
-    output o_BOEQ3,       //True when BytePtr indicates 4th Byte
+    output o_BOEQ0,           //True when BytePtr indicates 1st Byte
+    output o_BOEQ3,           //True when BytePtr indicates 4th Byte
 
-    output o_BO0,         //BytePtr Bit 0
-    output o_BO1,         //BytePtr Bit 1
+    output [1:0] o_BYTE_PTR,  //BytePtr [1:0]
 
     input i_INCNO,        //Inc Next Out (Write Pointer)
     input i_INCNI,        //Inc Next In (Read Pointer)
@@ -129,8 +128,7 @@ always @(posedge i_CLK100) begin
         byte_ptr <= byte_ptr + 1'b1;
 end
 
-assign o_BO0 = byte_ptr[0];
-assign o_BO1 = byte_ptr[1];
+assign o_BYTE_PTR = byte_ptr;
 
 assign o_BOEQ0 = (byte_ptr == 0);
 assign o_BOEQ3 = (byte_ptr == 3);

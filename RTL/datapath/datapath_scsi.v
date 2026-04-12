@@ -1,98 +1,70 @@
 //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
 
-
-
-`ifdef __ICARUS__
-  `include "datapath_24dec.v"
-  `include "datapath_8b_MUX.v"
-  `include "../phase_defs.vh"
-`endif
-
 module datapath_scsi (
-    input CLK100,           // 100MHz main clock
-    input [1:0] phase,      // Phase counter value
-    input [15:0] SCSI_DATA_IN,
-    output [15:0] SCSI_DATA_OUT,
-    
-    input [31:0] FIFO_OD,
-    input [31:0] CPU_OD,
-    input CPU2S,
-    input S2CPU,
-    input S2F,
-    input F2S,
-    input A3,
-    input BO0,
-    input BO1,
-    input LS2CPU,
+    input i_CLK100,
+    input [15:0] i_SCSI_DATA,
+    output [15:0] o_SCSI_DATA,
 
-    output [31:0] MOD_SCSI,
-    output [31:0] SCSI_OD,
-    output SCSI_OUT
+    input [31:0] i_FIFO_RD_DATA,
+    input [31:0] i_CPU_LATCH,
+    input i_CPU2S,
+    input i_S2CPU,
+    input i_S2F,
+    input i_F2S,
+    input i_A3,
+    input [1:0] i_BYTE_PTR,
+    input i_LS2CPU,
+
+    output [31:0] o_SCSI_RX_CPU,
+    output [31:0] o_SCSI_RX_FIFO,
+    output o_SCSI_OE
 );
 
-wire F2S_UUD;
-wire F2S_UMD;
-wire F2S_LMD;
-wire F2S_LLD;
+// 2->4 one-hot decoder (byte lane select for FIFO->SCSI)
+wire f2s_uud = (i_BYTE_PTR == 2'd0) & i_F2S;
+wire f2s_umd = (i_BYTE_PTR == 2'd1) & i_F2S;
+wire f2s_lmd = (i_BYTE_PTR == 2'd2) & i_F2S;
+wire f2s_lld = (i_BYTE_PTR == 2'd3) & i_F2S;
 
-//wire SCSI_OUT;
-wire SCSI_IN;
+wire [5:0] mux_sel = {(i_CPU2S & ~i_A3), (i_CPU2S & i_A3), f2s_uud, f2s_umd, f2s_lmd, f2s_lld};
 
-wire [7:0] SCSI_DATA_RX;
-wire [7:0] SCSI_DATA_TX;
-
-reg [7:0] SCSI_DATA__RX_LATCHED;
-reg [7:0] SCSI_DATA__TX_LATCHED;
-
-assign SCSI_OUT = (F2S | CPU2S);
-assign SCSI_IN  = (S2F | S2CPU);
-
-datapath_24dec u_datapath_24dec(
-    .A  (BO1     ),
-    .B  (BO0     ),
-    .En (F2S     ),
-    .D0 (F2S_UUD ),
-    .D1 (F2S_UMD ),
-    .D2 (F2S_LMD ),
-    .D3 (F2S_LLD )
-);
-
-wire [5:0] MuxSelect;
-assign MuxSelect = {(CPU2S & ~A3), (CPU2S & A3), F2S_UUD, F2S_UMD, F2S_LMD, F2S_LLD};
-
-datapath_8b_MUX u_datapath_8b_MUX(
-    //inputs
-    .A (FIFO_OD[7:0]),
-    .B (FIFO_OD[15:8]),
-    .C (FIFO_OD[23:16]),
-    .D (FIFO_OD[31:24]),
-    .E (CPU_OD[23:16]),
-    .F (CPU_OD[7:0]),
-    .S (MuxSelect),//selects
-    .Z (SCSI_DATA_TX) //output
-);
-
-assign SCSI_DATA_OUT = SCSI_OUT ? {SCSI_DATA__TX_LATCHED, SCSI_DATA__TX_LATCHED} : 16'h0000;
-assign SCSI_DATA_RX = SCSI_IN ? SCSI_DATA_IN[7:0] : 8'h00;
-
-// RX latch - now fully synchronous (was problematic async S2CPU pattern before)
-// Sample on (phase == `PHASE_1) (equivalent to negedge CLK timing)
-always @(posedge CLK100) begin
-    if ((phase == `PHASE_1)) begin
-        if (~S2CPU)
-            SCSI_DATA__RX_LATCHED <= 8'h00;
-        else if (~LS2CPU)
-            SCSI_DATA__RX_LATCHED <= SCSI_DATA_RX;
-    end
+// 6-input byte MUX (TX byte lane selection)
+reg [7:0] scsi_tx;
+always @(*) begin
+    case (mux_sel)
+        6'b000001 : scsi_tx = i_FIFO_RD_DATA[7:0];
+        6'b000010 : scsi_tx = i_FIFO_RD_DATA[15:8];
+        6'b000100 : scsi_tx = i_FIFO_RD_DATA[23:16];
+        6'b001000 : scsi_tx = i_FIFO_RD_DATA[31:24];
+        6'b010000 : scsi_tx = i_CPU_LATCH[23:16];
+        6'b100000 : scsi_tx = i_CPU_LATCH[7:0];
+        default   : scsi_tx = 8'h00;
+    endcase
 end
 
-// TX latch on (phase == `PHASE_1) (was negedge CLK135)
-always @(negedge CLK100) begin
-    if ((phase == `PHASE_1))
-        SCSI_DATA__TX_LATCHED <= SCSI_DATA_TX;
+wire scsi_in = (i_S2F | i_S2CPU);
+wire [7:0] scsi_rx = scsi_in ? i_SCSI_DATA[7:0] : 8'h00;
+
+reg [7:0] scsi_rx_latch;
+reg [7:0] scsi_tx_latch;
+
+assign o_SCSI_OE   = (i_F2S | i_CPU2S);
+assign o_SCSI_DATA = o_SCSI_OE ? {scsi_tx_latch, scsi_tx_latch} : 16'h0000;
+
+// RX latch
+always @(posedge i_CLK100) begin
+    if (~i_S2CPU)
+        scsi_rx_latch <= 8'h00;
+    else if (~i_LS2CPU)
+        scsi_rx_latch <= scsi_rx;
 end
 
-assign MOD_SCSI = {8'h00 , SCSI_DATA__RX_LATCHED, 8'h00, SCSI_DATA__RX_LATCHED};
-assign SCSI_OD = {SCSI_DATA_RX, SCSI_DATA_RX, SCSI_DATA_RX, SCSI_DATA_RX};
+// TX latch — negedge gives half-cycle setup margin to SCSI bus
+always @(negedge i_CLK100) begin
+    scsi_tx_latch <= scsi_tx;
+end
+
+assign o_SCSI_RX_CPU  = {8'h00, scsi_rx_latch, 8'h00, scsi_rx_latch};
+assign o_SCSI_RX_FIFO = {scsi_rx, scsi_rx, scsi_rx, scsi_rx};
 
 endmodule

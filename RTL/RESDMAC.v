@@ -150,8 +150,7 @@ wire F2S;
 wire S2CPU;
 wire CPU2S;
 wire BOEQ0;
-wire BO0;
-wire BO1;
+wire [1:0] BYTE_PTR;
 wire A3;
 wire DSK0_IN_;
 wire DSK1_IN_;
@@ -164,32 +163,32 @@ wire CPUSM_FIFO_RST;
 wire [7:0] DSP_DATA;
 
 registers u_registers(
-    .ADDR      ({1'b0, ADDR, 2'b00}),
-    .DMAC_     (_CS       ),
-    .AS_       (AS_I_     ),
-    .DS_       (DS_I_     ),
-    .RW        (R_W       ),
-    .CLK100    (CLK100    ),
-    .phase     (phase     ),
-    .MID       (MID       ),
-    .STOPFLUSH (STOPFLUSH ),
-    .RST_      (S_RESET   ),
-    .FIFOEMPTY (FIFOEMPTY ),
-    .FIFOFULL  (FIFOFULL  ),
-    .INTA_I    (INTA      ),
-    .REG_OD    (REG_OD    ),
-    .PRESET    (PRESET    ),
-    .FLUSHFIFO (FLUSHFIFO ),
-    .ACR_WR    (ACR_WR    ),
-    .h_0C      (H_0C      ),
-    .A1        (A1        ),
-    .INT_O_    (INT_O_    ),
-    .DMADIR    (DMADIR    ),
-    .DMAENA    (DMAENA    ),
-    .REG_DSK_  (REG_DSK_  ),
-    .WDREGREQ  (WDREGREQ  ),
-    .AS_O      (AS_O_     ),
-    .DSP_DATA  (DSP_DATA  )
+    .i_ADDR      ({1'b0, ADDR, 2'b00}),
+    .i_DMAC_n    (_CS       ),
+    .i_AS_n      (AS_I_     ),
+    .i_DS_n      (DS_I_     ),
+    .i_RW        (R_W       ),
+    .i_CLK100    (CLK100    ),
+    .i_PHASE     (phase     ),
+    .i_MID       (MID       ),
+    .i_STOPFLUSH (STOPFLUSH ),
+    .i_RST_n     (S_RESET   ),
+    .i_FIFOEMPTY (FIFOEMPTY ),
+    .i_FIFOFULL  (FIFOFULL  ),
+    .i_INTA      (INTA      ),
+    .o_REG_OD    (REG_OD    ),
+    .o_PRESET    (PRESET    ),
+    .o_FLUSHFIFO (FLUSHFIFO ),
+    .o_ACR_WR    (ACR_WR    ),
+    .o_H_0C      (H_0C      ),
+    .o_A1        (A1        ),
+    .o_INT_n     (INT_O_    ),
+    .o_DMADIR    (DMADIR    ),
+    .o_DMAENA    (DMAENA    ),
+    .o_REG_DSK_n (REG_DSK_  ),
+    .o_WDREGREQ  (WDREGREQ  ),
+    .i_AS_O      (AS_O_     ),
+    .i_DSP_DATA  (DSP_DATA  )
 );
 
 CPU_SM u_CPU_SM(
@@ -279,46 +278,38 @@ fifo int_fifo(
     .i_INCBO       (INCBO     ),
     .o_BOEQ0       (BOEQ0     ),
     .o_BOEQ3       (BOEQ3     ),
-    .o_BO0         (BO0       ),
-    .o_BO1         (BO1       ),
+    .o_BYTE_PTR    (BYTE_PTR  ),
     .i_INCNO       (INCNO     ),
     .i_INCNI       (INCNI     ),
     .o_FIFO_OD     (FIFO_OD   )
 );
 
 datapath u_datapath(
-    .CLK100    (CLK100      ),
-    .phase     (phase       ),
-    .DATA_I    (DATA_I      ),
-    .DATA_O    (DATA_O      ),
-    .PD_IN     (PDATA_I     ),
-    .PD_OUT    (PDATA_O     ),
-    .FIFO_OD   (FIFO_OD     ),
-    .REG_OD    (REG_OD      ),
-    .PAS       (PAS         ),
-    .DS_I_     (DS_I_       ),
-    .nDMAC_    (~_CS        ),
-    .RW        (R_W         ),
-    .nOWN_     (OWN         ),
-    .DMADIR    (DMADIR      ),
-    .BRIDGEIN  (BRIDGEIN    ),
-    .BRIDGEOUT (BRIDGEOUT   ),
-    .DIEH      (DIEH        ),
-    .DIEL      (DIEL        ),
-    .LS2CPU    (LS2CPU      ),
-    .S2CPU     (S2CPU       ),
-    .S2F       (S2F         ),
-    .F2S       (F2S         ),
-    .CPU2S     (CPU2S       ),
-    .BO0       (BO0         ),
-    .BO1       (BO1         ),
-    .A3        (A3          ),
-    .MID       (MID         ),
-    .FIFO_ID   (FIFO_ID     ),
-    .F2CPUL    (F2CPUL      ),
-    .F2CPUH    (F2CPUH      ),
-    .DS_O_     (DS_O_       ),
-    .PD_OE     (PD_OE       )
+    .i_CLK100       (CLK100      ),
+    .i_CPU_DATA     (DATA_I      ),
+    .o_CPU_DATA     (DATA_O      ),
+    .i_SCSI_PORT    (PDATA_I     ),
+    .o_SCSI_PORT    (PDATA_O     ),
+    .i_FIFO_RD_DATA (FIFO_OD     ),
+    .i_REG_DATA     (REG_OD      ),
+    .i_PAS          (PAS         ),
+    .i_BRIDGE_IN    (BRIDGEIN    ),
+    .i_BRIDGE_OUT   (BRIDGEOUT   ),
+    .i_DIEH         (DIEH        ),
+    .i_DIEL         (DIEL        ),
+    .i_LS2CPU       (LS2CPU      ),
+    .i_S2CPU        (S2CPU       ),
+    .i_S2F          (S2F         ),
+    .i_F2S          (F2S         ),
+    .i_CPU2S        (CPU2S       ),
+    .i_BYTE_PTR     (BYTE_PTR    ),
+    .i_A3           (A3          ),
+    .o_REG_DATA     (MID         ),
+    .o_FIFO_WR_DATA (FIFO_ID     ),
+    .i_F2CPU_LO     (F2CPUL      ),
+    .i_F2CPU_HI     (F2CPUH      ),
+    .i_DS_n         (DS_O_       ),
+    .o_SCSI_OE      (PD_OE       )
 );
 
 PLL u_PLL (

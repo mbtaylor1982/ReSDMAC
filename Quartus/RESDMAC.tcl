@@ -102,22 +102,10 @@ if {$make_assignments} {
 	set_global_assignment -name VERILOG_FILE ../RTL/CPU_SM/CPU_SM.v
 	set_global_assignment -name VERILOG_FILE ../RTL/SCSI_SM/SCSI_SM_INTERNALS.v
 	set_global_assignment -name VERILOG_FILE ../RTL/SCSI_SM/SCSI_SM.v
-	set_global_assignment -name VERILOG_FILE ../RTL/Registers/registers_term.v
-	set_global_assignment -name VERILOG_FILE ../RTL/Registers/registers_istr.v
-	set_global_assignment -name VERILOG_FILE ../RTL/Registers/registers_cntr.v
 	set_global_assignment -name VERILOG_FILE ../RTL/Registers/registers_flash.v
 	set_global_assignment -name VERILOG_FILE ../RTL/Registers/registers.v
-	set_global_assignment -name VERILOG_FILE ../RTL/Registers/addr_decoder.v
-	set_global_assignment -name VERILOG_FILE ../RTL/FIFO/fifo_write_strobes.v
-	set_global_assignment -name VERILOG_FILE ../RTL/FIFO/fifo_full_empty_ctr.v
-	set_global_assignment -name VERILOG_FILE ../RTL/FIFO/fifo_byte_ptr.v
-	set_global_assignment -name VERILOG_FILE ../RTL/FIFO/fifo_3bit_cntr.v
 	set_global_assignment -name VERILOG_FILE ../RTL/FIFO/fifo.v
 	set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath_scsi.v
-	set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath_output.v
-	set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath_input.v
-	set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath_24dec.v
-	set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath_8b_MUX.v
 	set_global_assignment -name VERILOG_FILE ../RTL/datapath/datapath.v
 	set_global_assignment -name VERILOG_FILE ../RTL/PLL.v
 	set_global_assignment -name VERILOG_FILE ../RTL/RESDMAC.v

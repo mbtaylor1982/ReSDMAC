@@ -1,127 +1,102 @@
 //ReSDMAC © 2024 by Michael Taylor is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
 
-`include "../phase_defs.vh"
-
 `ifdef __ICARUS__
     `include "datapath_scsi.v"
-    `include "datapath_input.v"
-    `include "datapath_output.v"
 `endif
 
 module datapath (
-    input CLK100,           // 100MHz main clock
-    input [1:0] phase,      // Phase counter value
-    input [31:0] DATA_I,
+    input i_CLK100,
+    input [31:0] i_CPU_DATA,
 
-    input [15:0] PD_IN,
-    output [15:0] PD_OUT,
+    input [15:0] i_SCSI_PORT,
+    output [15:0] o_SCSI_PORT,
 
+    input [31:0] i_FIFO_RD_DATA,
+    input [31:0] i_REG_DATA,
 
-    input [31:0] FIFO_OD,
-    input [31:0] REG_OD,
+    input i_PAS,
 
-    input PAS,
-    input DS_I_,
-    input nDMAC_,
-    input RW,
-    input nOWN_,
-    input DMADIR,
+    input i_BRIDGE_IN,
+    input i_BRIDGE_OUT,
 
-    input BRIDGEIN,
-    input BRIDGEOUT,
+    input i_DIEH,
+    input i_DIEL,
 
-    input DIEH,
-    input DIEL,
+    input i_LS2CPU,
+    input i_S2CPU,
 
-    input LS2CPU,
-    input S2CPU,
+    input i_S2F,
 
-    input S2F,
+    input i_F2S,
+    input i_CPU2S,
 
-    input F2S,
-    input CPU2S,
+    input [1:0] i_BYTE_PTR,
+    input i_A3,
 
-    input BO0,
-    input BO1,
-    input A3,
+    input i_F2CPU_LO,
+    input i_F2CPU_HI,
 
-    input F2CPUL,
-    input F2CPUH,
+    input i_DS_n,
 
-    input DS_O_,
-
-    output [31:0] MID,
-    output [31:0] FIFO_ID,
-    output [31:0] DATA_O,
-    output PD_OE
-);
-wire [31:0] MOD_SCSI;
-wire [31:0] MOD_TX;
-wire [31:0] CPU_OD;
-wire [31:0] SCSI_OD;
-
-
-wire DOEL_;
-wire DOEH_;
-wire bBRIDGEIN;
-wire bDIEH;
-wire bDIEL;
-
-datapath_input u_datapath_input(
-    .CLK100    (CLK100    ),
-    .phase     (phase     ),
-    .DATA      (DATA_I    ),
-    .bBRIDGEIN (bBRIDGEIN ),
-    .bDIEH     (bDIEH     ),
-    .bDIEL     (bDIEL     ),
-    .DS_O_     (DS_O_     ),
-    .MID       (MID       ),
-    .CPU_OD    (CPU_OD    )
+    output [31:0] o_REG_DATA,
+    output [31:0] o_FIFO_WR_DATA,
+    output [31:0] o_CPU_DATA,
+    output o_SCSI_OE
 );
 
-datapath_output u_datapath_output(
-    .CLK100     (CLK100     ),
-    .phase      (phase      ),
-    .DATA       (DATA_O     ),
-    .OD         (FIFO_OD    ),
-    .MOD        (MOD_TX     ),
-    .BRIDGEOUT  (BRIDGEOUT  ),
-    .DOEH_      (DOEH_      ),
-    .DOEL_      (DOEL_      ),
-    .F2CPUL     (F2CPUL     ),
-    .F2CPUH     (F2CPUH     ),
-    .S2CPU      (S2CPU      ),
-    .PAS        (PAS        )
-);
+wire [31:0] scsi_rx_cpu;
+wire [31:0] mux_data;
+wire [31:0] scsi_rx_fifo;
+
+// --- CPU bus input latching ---
+reg [15:0] cpu_hi_latch;
+
+always @(posedge i_CLK100) begin
+    if (~i_DS_n)
+        cpu_hi_latch <= i_CPU_DATA[31:16];
+end
+
+wire [15:0] latch_hi = (i_DIEH | i_CPU2S) ? i_CPU_DATA[31:16] : 16'h0000;
+wire [15:0] latch_lo = (i_DIEL | i_CPU2S) ? i_CPU_DATA[15:0]  : (i_BRIDGE_IN ? cpu_hi_latch : 16'h0000);
+
+wire [31:0] cpu_latch = {latch_hi, latch_lo};
+assign o_REG_DATA = i_CPU_DATA;
+
+// --- FIFO output latching ---
+reg [15:0] fifo_lo_latch;
+reg [15:0] fifo_hi_latch;
+
+always @(posedge i_CLK100) begin
+    if (i_PAS) begin
+        fifo_lo_latch <= i_FIFO_RD_DATA[15:0];
+        fifo_hi_latch <= i_FIFO_RD_DATA[31:16];
+    end
+end
+
+wire [15:0] out_lo = i_F2CPU_LO ? fifo_lo_latch : mux_data[15:0];
+wire [15:0] out_hi = i_F2CPU_HI ? fifo_hi_latch : (i_BRIDGE_OUT ? fifo_lo_latch : mux_data[31:16]);
+assign o_CPU_DATA = i_S2CPU ? mux_data : {out_hi, out_lo};
+
+// --- Routing ---
+assign mux_data       = i_S2CPU ? scsi_rx_cpu : i_REG_DATA;
+assign o_FIFO_WR_DATA = i_S2F   ? scsi_rx_fifo : cpu_latch;
 
 datapath_scsi u_datapath_scsi(
-    .CLK100         (CLK100    ),
-    .phase          (phase     ),
-    .SCSI_DATA_IN   (PD_IN     ),
-    .SCSI_DATA_OUT  (PD_OUT    ),
-    .SCSI_OD        (SCSI_OD   ),
-    .FIFO_OD        (FIFO_OD   ),
-    .CPU_OD         (CPU_OD    ),
-    .CPU2S          (CPU2S     ),
-    .S2CPU          (S2CPU     ),
-    .S2F            (S2F       ),
-    .F2S            (F2S       ),
-    .A3             (A3        ),
-    .BO0            (BO0       ),
-    .BO1            (BO1       ),
-    .LS2CPU         (LS2CPU    ),
-    .MOD_SCSI       (MOD_SCSI  ),
-    .SCSI_OUT       (PD_OE     )
+    .i_CLK100       (i_CLK100       ),
+    .i_SCSI_DATA    (i_SCSI_PORT    ),
+    .o_SCSI_DATA    (o_SCSI_PORT    ),
+    .o_SCSI_RX_FIFO (scsi_rx_fifo   ),
+    .i_FIFO_RD_DATA (i_FIFO_RD_DATA ),
+    .i_CPU_LATCH    (cpu_latch      ),
+    .i_CPU2S        (i_CPU2S        ),
+    .i_S2CPU        (i_S2CPU        ),
+    .i_S2F          (i_S2F          ),
+    .i_F2S          (i_F2S          ),
+    .i_A3           (i_A3           ),
+    .i_BYTE_PTR     (i_BYTE_PTR     ),
+    .i_LS2CPU       (i_LS2CPU       ),
+    .o_SCSI_RX_CPU  (scsi_rx_cpu    ),
+    .o_SCSI_OE      (o_SCSI_OE      )
 );
-
-assign DOEL_ = ~((~DS_I_ & nDMAC_ & RW) | (nOWN_ & DMADIR));
-assign DOEH_ = DOEL_;
-
-assign bBRIDGEIN = BRIDGEIN;
-assign bDIEH = (DIEH|CPU2S);
-assign bDIEL = (DIEL|CPU2S);
-
-assign MOD_TX = S2CPU ? MOD_SCSI : REG_OD;
-assign FIFO_ID = S2F ? SCSI_OD: CPU_OD;
 
 endmodule

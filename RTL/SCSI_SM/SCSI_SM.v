@@ -374,4 +374,11 @@ end
 assign dsack_n  = ~dsack;
 assign o_LS2CPU = dsack_n;
 
+`ifdef COCOTB_SIM
+initial begin
+  $dumpfile("scsi_sm_dump.vcd");
+  $dumpvars(0, SCSI_SM);
+end
+`endif
+
 endmodule
