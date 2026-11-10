@@ -1,0 +1,10 @@
+{
+  "quartus_image": "mbtaylor1982/quartus@sha256:e3cb7a145e00a8c362e4bd42a2254807f446f074a0af63aaac6ccc49d9781ab4",
+  "test_image": "mbtaylor1982/cocotb-iverilog@sha256:b62699a09a7e76ff80cf69932f222395886d661247f63b6a82285df22804cca6",
+  "amiga_tools_image": "ghcr.io/mbtaylor1982/container-amiga-gcc-amitools@sha256:e42d73fc4e48c96c81df8830e2ccc4013f87773aa6917151729f6d868ad13ca7",
+  "test_python": "3.11.2",
+  "cocotb": "1.8.0",
+  "cocotb_test": "0.2.4",
+  "pytest": "7.4.1",
+  "updater_commit": "580f7991feb3464782793fa323c86378d0a66408"
+}

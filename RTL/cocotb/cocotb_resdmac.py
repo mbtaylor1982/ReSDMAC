@@ -3,6 +3,14 @@
 import random
 import array as arr
 import json
+from pathlib import Path
+
+
+def save_timing_diagram(filename, data):
+    """Keep generated waveforms in the simulation build, not tracked docs."""
+    output = Path("timing_diagrams") / Path(filename).name
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(data, indent=4, sort_keys=False))
 
 import cocotb
 from cocotb.clock import Clock
@@ -111,8 +119,7 @@ async def read_data(dut, addr, *args, header="", footer="",filename=""):
                 result = convertDecToHex(i['data'])
                 jdata['signal'][x]['data'] = result
         if (filename != ""):
-            with open(filename, 'w') as json_file:
-                json.dump(jdata,json_file, indent=4, sort_keys=False)
+            save_timing_diagram(filename, jdata)
         dut._log.info("Read value %#x from addr %#x", data, addr)
         return data
 
@@ -168,8 +175,7 @@ async def write_data(dut, addr, data, *args, header="", footer="",filename=""):
                 result = convertDecToHex(i['data'])
                 data['signal'][x]['data'] = result
         if (filename != ""):
-            with open(filename, 'w') as json_file:
-                json.dump(data,json_file, indent=4, sort_keys=False)
+            save_timing_diagram(filename, data)
 
 async def FillFIFOFromSCSI(dut, data):
     dut._log.info("Started Filling FIFO From SCSI")
@@ -417,8 +423,7 @@ async def DMA_READ(dut, data, addr, termsig):
             if 'data' in i:
                 result = convertDecToHex(i['data'])
                 jdata['signal'][x]['data'] = result
-        with open("../Docs/TimingDiagrams/DMA_READ.json", 'w') as json_file:
-            json.dump(jdata,json_file, indent=4, sort_keys=False)
+        save_timing_diagram("DMA_READ.json", jdata)
 
 async def DMA_WRITE(dut, data, addr, termsig):
     dut._log.info("Starting DMA write to addr %#x", addr)

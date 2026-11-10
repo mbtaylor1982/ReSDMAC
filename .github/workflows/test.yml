@@ -7,18 +7,22 @@ on:
     paths:
       - 'Quartus/**'
       - 'RTL/**'
+      - 'tools/**'
+      - '.github/workflows/**'
   pull_request:
     branches:
       - main
     paths:
       - 'Quartus/**'
       - 'RTL/**'
+      - 'tools/**'
+      - '.github/workflows/**'
   workflow_call:
 jobs:
   testing:
     runs-on: ubuntu-latest
     container:
-      image: mbtaylor1982/cocotb-iverilog:latest
+      image: mbtaylor1982/cocotb-iverilog@sha256:b62699a09a7e76ff80cf69932f222395886d661247f63b6a82285df22804cca6
       credentials:
         username: ${{ secrets.DOCKER_HUB_USER }}
         password: ${{ secrets.DOCKER_HUB_PWD }}
@@ -26,23 +30,15 @@ jobs:
       # 1 - Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4     
-      # 2 - Change to cocotb test dtirectory 
-      - name: Change to cocotb test dtirectory 
-        run: cd RTL/cocotb
-      # 3 - Run cocotb tests using pytest
-      - name: run pytest -o log_cli=true
-        uses: pavelzw/pytest-action@v2
-        with:
-          emoji: true
-          verbose: true
-          job-summary: true
-          click-to-expand: true
+      - name: Run directed RTL and packaging tests
+        run: timeout 180s pytest RTL/cocotb tools -q --junitxml=sim_build/test-results.xml
       # 4 Upload VCD Files
       - name: upload vcd files
-        uses: actions/upload-artifact@v3
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
           name: vcd-files
-          path: sim_build/*.vcd
+          path: sim_build/**
           retention-days: 14
 
 

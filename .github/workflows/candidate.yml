@@ -1,0 +1,74 @@
+name: Build unpublished stable update candidate
+
+on:
+  workflow_dispatch:
+    inputs:
+      firmware_version:
+        description: Four-byte hardware version (vN.N)
+        required: true
+        default: v1.2
+      candidate_id:
+        description: Filename-safe artifact identity (separate from hardware version)
+        required: true
+        default: stable-update-rc1
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    uses: ./.github/workflows/test.yml
+    secrets: inherit
+  firmware:
+    strategy:
+      matrix:
+        device: [10M02SCU169C8G, 10M04SCU169C8G, 10M16SCU169C8G]
+    uses: ./.github/workflows/build.yml
+    with:
+      device: ${{ matrix.device }}
+      firmware_version: ${{ inputs.firmware_version }}
+      artifact_id: ${{ inputs.candidate_id }}
+    secrets: inherit
+  updater:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/mbtaylor1982/container-amiga-gcc-amitools@sha256:e42d73fc4e48c96c81df8830e2ccc4013f87773aa6917151729f6d868ad13ca7
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: mbtaylor1982/ReSDMAC_Update_Tool
+          ref: 580f7991feb3464782793fa323c86378d0a66408
+          token: ${{ secrets.RESDMAC_UPDATE_REPO }}
+      - run: make resdmac VER=0.1+580f799
+      - uses: actions/upload-artifact@v4
+        with:
+          name: candidate-updater
+          path: |
+            resdmac
+            LICENSE
+  package:
+    needs: [tests, firmware, updater]
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/mbtaylor1982/container-amiga-gcc-amitools@sha256:e42d73fc4e48c96c81df8830e2ccc4013f87773aa6917151729f6d868ad13ca7
+    env:
+      HARDWARE_VERSION: ${{ inputs.firmware_version }}
+      CANDIDATE_ID: ${{ inputs.candidate_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: downloaded
+      - name: Assemble ADF and verify every contained file
+        run: |
+          python3 tools/package_candidate.py --firmware-root downloaded \
+            --updater downloaded/candidate-updater/resdmac \
+            --updater-license downloaded/candidate-updater/LICENSE \
+            --updater-ref 580f7991feb3464782793fa323c86378d0a66408 \
+            --hardware-version "$HARDWARE_VERSION" --candidate-id "$CANDIDATE_ID" --source-commit "$GITHUB_SHA" \
+            --output release-candidate
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stable-update-candidate
+          path: release-candidate/
+          retention-days: 30

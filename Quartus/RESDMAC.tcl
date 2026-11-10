@@ -33,6 +33,13 @@ set options {
 set usage "You need to specify options and values"
 array set optshash [::cmdline::getoptions ::argv $options $usage]
 
+if {$optshash(device) ni {10M02SCU169C8G 10M04SCU169C8G 10M16SCU169C8G}} {
+    error "Unsupported FPGA device: $optshash(device)"
+}
+if {![regexp {^v[0-9]\.[0-9]$} $optshash(version)]} {
+    error "Firmware version must fit the four-byte updater format vN.N"
+}
+
 project_new -overwrite RESDMAC
 project_clean
 project_open RESDMAC

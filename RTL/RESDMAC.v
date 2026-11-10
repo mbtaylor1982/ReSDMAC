@@ -72,7 +72,10 @@ assign  R_W_IO = OWN ? ~DMADIR : 1'bz;
 wire [31:0] DATA_I;
 wire [31:0] DATA_O;
 assign DATA_I = DATA_IO;
-assign DATA_IO = ((R_W & ~H_0C & ~_CS) | OWN) ? DATA_O : 32'hzzzzzzzz;
+// Ownership controls the strobes, not the direction of the data bus. During
+// DMA reads memory drives DATA_IO; only DMA writes may enable our drivers.
+// Slave selection must not override that direction while we own the bus.
+assign DATA_IO = (OWN ? DMADIR : (R_W & ~H_0C & ~_CS)) ? DATA_O : 32'hzzzzzzzz;
 
 wire [15:0] PDATA_I;
 wire [15:0] PDATA_O;

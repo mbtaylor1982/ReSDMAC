@@ -17,43 +17,48 @@ on:
         type: string
         required: true
         description: FPGA device
+      firmware_version:
+        type: string
+        default: ''
+      artifact_id:
+        type: string
+        default: ''
 jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: mbtaylor1982/quartus:22.1
+      image: mbtaylor1982/quartus@sha256:e3cb7a145e00a8c362e4bd42a2254807f446f074a0af63aaac6ccc49d9781ab4
       credentials:
         username: ${{ secrets.DOCKER_HUB_USER }}
         password: ${{ secrets.DOCKER_HUB_PWD }}
     env:
-      VERSION: ${{ startsWith(github.ref_name, 'v') && github.ref_name || 'v9.9'}}
+      VERSION: ${{ inputs.firmware_version || (startsWith(github.ref_name, 'v') && github.ref_name || 'v9.9') }}
+      ARTIFACT_ID: ${{ inputs.artifact_id || inputs.firmware_version || (startsWith(github.ref_name, 'v') && github.ref_name || 'v9.9') }}
+      DEVICE: ${{ inputs.device }}
     steps:
-      - name: Install gencrc
-        uses: robinraju/release-downloader@v1
-        with:
-            repository: 'mbtaylor1982/gencrc'
-            latest: true
-            out-file-path: '/usr/local/bin'
-            fileName: 'gencrc'
-
-      - name: add +x permission to gencrc
-        run: chmod +x /usr/local/bin/gencrc
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Validate candidate identity
+        shell: bash
+        run: |
+          [[ "$VERSION" =~ ^v[0-9]\.[0-9]$ ]]
+          [[ "$ARTIFACT_ID" =~ ^[A-Za-z0-9][A-Za-z0-9_.-]{0,39}$ ]]
+
       - name: Run compilation flow ${{ inputs.device }}
         working-directory: Quartus
-        run: quartus_sh -t  RESDMAC.tcl -device ${{ inputs.device }} -version $VERSION
+        run: quartus_sh -t RESDMAC.tcl -device "$DEVICE" -version "$VERSION"
 
       - name: calcualte file checksums
         run: |
-          sha256sum Quartus/output_files_${{ inputs.device }}/RESDMAC.pof > Quartus/output_files_${{ inputs.device }}/RESDMAC_pof_sha256.txt
-          gencrc Quartus/output_files_${{ inputs.device }}/resdmac_cfm0_auto.rpd > Quartus/output_files_${{ inputs.device }}/resdmac_cfm0_auto_crc32.txt
+          sha256sum "Quartus/output_files_$DEVICE/RESDMAC.pof" > "Quartus/output_files_$DEVICE/RESDMAC_pof_sha256.txt"
+          if [ "$DEVICE" != 10M02SCU169C8G ]; then
+            python3 tools/write_updater_crc.py "Quartus/output_files_$DEVICE/resdmac_cfm0_auto.rpd" "Quartus/output_files_$DEVICE/resdmac_cfm0_auto_crc32.txt"
+          fi
 
       - name: Upload Firmware
         uses: actions/upload-artifact@v4
         with:
-          name: OutputFiles_${{ inputs.device }}_${{ env.VERSION }}.zip
+          name: OutputFiles_${{ inputs.device }}_${{ env.ARTIFACT_ID }}.zip
           path: Quartus/output_files_${{ inputs.device }}
           retention-days: 14

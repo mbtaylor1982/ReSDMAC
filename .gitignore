@@ -4,6 +4,9 @@
 
 /RTL/build
 /sim_build
+/release-candidate
+/artifacts
+__pycache__/
 
 /RTL/cocotb/FIFO/__pycache__
 /RTL/cocotb/Registers/__pycache__
