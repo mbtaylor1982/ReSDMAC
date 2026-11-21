@@ -124,7 +124,9 @@ addr_decoder u_addr_decoder(
 registers_istr u_registers_istr(
     .RESET_    (RST_      ),
     .CLK       (CLK     ),
-    .FIFOEMPTY (FIFOEMPTY ),
+    // Occupancy alone excludes partial entries. Keep software polling until
+    // the sequencer acknowledges completion (or discard) of the flush.
+    .FIFOEMPTY (FIFOEMPTY & ~FLUSHFIFO),
     .FIFOFULL  (FIFOFULL  ),
     .CLR_INT   (CLR_INT   ),
     .ISTR_RD_  (ISTR_RD_  ),

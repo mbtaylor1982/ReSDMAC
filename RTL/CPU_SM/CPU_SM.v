@@ -58,6 +58,10 @@ reg [1:0] DSACK_LATCHED_;
 reg FLUSHFIFO;
 reg nCYCLEDONE;
 
+// CLK90 state shared with the combinational sequencer logic.
+reg ENTRY_PARTIAL;
+wire ENTRY_PARTIAL_d;
+
 wire aCYCLEDONE_;
 wire BGACK_d;
 wire BRIDGEOUT_d;
@@ -109,6 +113,8 @@ CPU_SM_INTERNALS u_CPU_SM_INTERNALS (
     .nSTERM         (STERM_         ),  // input, (wire), 
     .nRDFIFO        (RDFIFO_        ),  // input, (wire), 
     .nRIFIFO        (RIFIFO_        ),  // input, (wire), 
+    .ENTRY_PARTIAL  (ENTRY_PARTIAL  ),
+    .NEXT_ENTRY_PARTIAL (ENTRY_PARTIAL_d),
     
     .INCNI        (INCNI_d        ),  // output, (wire), 
     .BREQ         (BREQ_d         ),  // output, (wire), 
@@ -158,6 +164,7 @@ end
 always @(posedge CLK90 or negedge CCRESET_) begin
     if (~CCRESET_) begin
         BGACK       <= 1'b0;
+        ENTRY_PARTIAL <= 1'b0;
         PAS         <= 1'b0;
         PDS         <= 1'b0;
         BREQ        <= 1'b0;
@@ -179,6 +186,7 @@ always @(posedge CLK90 or negedge CCRESET_) begin
     end
     else begin
         BGACK       <= BGACK_d;
+        ENTRY_PARTIAL <= ENTRY_PARTIAL_d;
         BREQ        <= BREQ_d;
         BRIDGEIN    <= BRIDGEIN_d;
         BRIDGEOUT   <= BRIDGEOUT_d;

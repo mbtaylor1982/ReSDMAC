@@ -1,4 +1,9 @@
-# cocotb_resdmac.py
+"""Legacy internal-signal smoke tests and timing-diagram generation.
+
+DMA payload, bus ownership and real Ramsey ACR verification live in DMA/.
+This legacy test retains its internal drives and simulation-only ACR shortcut;
+its completion alone is not evidence of correct external DMA transfers.
+"""
 
 import random
 import array as arr
@@ -289,9 +294,15 @@ async def XferFIFO2Mem(dut,TermSignal):
         if (await wait_for_bus_grant(dut)):
             dut._log.info("Started transferring FIFO to Memory")
             #result = arr.array('L')
-            while (dut.FIFOEMPTY == 0 or dut.FLUSHFIFO == 1):
+            # FLUSH remains pending until the final bus cycle completes.
+            # Observe actual bus ownership, not the private flush/count flags:
+            # after the last response there may be release without another AS.
+            while (dut._id("_BGACK_IO", extended=False).value == 0):
                 if (dut.AS_O_ == 1):
-                    await FallingEdge(dut.AS_O_)
+                    await First(FallingEdge(dut.AS_O_),
+                                RisingEdge(dut._id("_BGACK_IO", extended=False)))
+                if dut._id("_BGACK_IO", extended=False).value == 1:
+                    break
                 #result.append(dut.DATA_O.value)
                 dut._log.info("Transfering value %#x from FIFO to Memory", dut.DATA_O.value)
                 await ClockCycles(dut.SCLK, 2, True)

@@ -31,7 +31,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4     
       - name: Run directed RTL and packaging tests
-        run: timeout 180s pytest RTL/cocotb tools -q --junitxml=sim_build/test-results.xml
+        run: timeout 900s pytest RTL/cocotb tools -q --junitxml=sim_build/test-results.xml
       # 4 Upload VCD Files
       - name: upload vcd files
         if: always()

@@ -1,5 +1,11 @@
 # Stable update candidate: first implementation
 
+> **Latest DMA validation, 21 November 2026:** the working-tree
+> [DMA RTL correction](DMA_RTL_FIX_RESULTS.md) passes **354/354 DMA scenarios
+> and 12/12 existing regressions**. All three FPGA variants build with zero
+> errors. Earlier failed DMA results below are retained as baseline history.
+> Socket timing sign-off and physical OS/accelerator qualification remain open.
+
 10 November 2026. Base: `2c962083320677074d35721277241d3b500c94e1`, before the 100 MHz conversion. Branch: `stable-update-release`. Hardware version `v1.2` is provisional; artifact identity is `stable-update-rc1`. No tag or GitHub release was created.
 
 ## Changes
@@ -48,3 +54,38 @@ For local packaging, place each device's Quartus outputs in `OutputFiles_<device
 3. Physically test stock 68030, TF4060 and other promised accelerators, including CyberStorm Mk2 separately.
 4. Test updates from actual v0.9 on 10M04/10M16: device detection, old flash access, program, compare, reboot and version check. A valid ADF filesystem does not establish that the installed v0.9 flash interface can perform the upgrade reliably.
 5. Decide the supported clock/board matrix and release version after the evidence is reviewed. No hardware was flashed and no configuration is newly certified by this candidate build.
+
+## DMA verification follow-up, 21 November 2026
+
+[DMA protocol research and verification](DMA_VERIFICATION.md) records the
+68030, Super Buster, Ramsey and WD interface contracts and the new external-bus
+cocotb harness. In particular, Ramsey ACR is a 32-bit register behind an 8-bit
+port: four CPU byte-port cycles place the final address bit A1 on D25. The RTL's
+D25 snoop is correct; the new harness uses hardware ACR acknowledgement behavior
+instead of the legacy simulation shortcut.
+
+Against unchanged candidate RTL, all 12 existing regressions pass. The new
+matrix has 165 passing and 21 failing scenarios (six pytest launchers, three
+failing). All new failures expose SCSI-to-memory writes beyond the permitted
+padded payload when flushing a three-byte tail. A three-byte reproduction
+writes 36 bytes rather than four, with FIFO occupancy wrapping from zero to
+eight. This is an additional release blocker. The tests retain the failures;
+no firmware patch or GitHub issue closure is included in this follow-up.
+
+Next: correct the partial-longword flush/count handling with these scoreboards,
+review concurrent FIFO increment/decrement and pointer behavior, then rerun
+the full suite before new device builds. Passing simulated arbitration cases
+does not close the hardware timing or accelerator qualification gates above.
+
+### A3000 OS sequence extension
+
+[AmigaOS/Linux DMA sequence tests](DMA_OS_SEQUENCES.md) now exercise byte/word
+register accesses, direction-specific cleanup, immediate FIFO-empty polling,
+256–514-byte completed transfers and interrupted larger requests. Against
+unchanged RTL, the expanded matrix records **259 passes and 59 failures**.
+All 12 existing regressions and all 165 previously passing DMA cases still pass.
+The 132 added cases contribute 94 passes and 38 failures: 32 premature
+FIFO-empty observations and six destination overruns. The premature-empty
+failures include completed 258-byte DSACK16 transfers stopping after only
+256 bytes were written. The RTL fix plan must cover software-visible flush
+completion as well as partial-entry occupancy and pointer handling.
