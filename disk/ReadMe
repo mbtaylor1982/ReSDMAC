@@ -1,0 +1,39 @@
+ReSDMAC firmware update and test utilities
+
+This is a candidate build. Hardware validation has not been performed.
+See BuildInfo for firmware commit and tool release versions.
+
+Use the tools from your AmigaOS shell. This is not a complete Workbench disk.
+If your ROM cannot boot this disk, open it from your normal AmigaOS system.
+
+After booting this disk, resdmac, devtest and sdmac can all be run by name.
+All three executables are in C:. The SDMAC test tool's command is sdmac.
+Startup adds SYS:C to the command path and selects SYS: as the current directory,
+where the firmware images and their CRC sidecars are stored.
+If you change directories later, use SYS:10M04_update.rpd (or SYS:10M16_update.rpd).
+When using the disk from an already booted system, SYS: is your system disk:
+use DF0:C/resdmac -w DF0:10M04_update.rpd instead (adjust drive and FPGA model).
+
+Firmware update (10M04 and 10M16 only):
+  resdmac -w 10M04_update.rpd
+  resdmac -c 10M04_update.rpd
+Use 10M16_update.rpd for a 10M16 FPGA. Check your FPGA variant first.
+Keep each .crc32 sidecar with its image. Verify before rebooting.
+10M02 requires external programming; its POF is a separate workflow artifact.
+
+Read Docs/updater.ReadMe, Docs/sdmac.ReadMe and Docs/devtest.ReadMe.
+Run sdmac while disk activity is idle. No tools run automatically.
+
+SDMAC and WD SCSI register checks (wait for disk activity to stop first):
+  sdmac
+
+Device probe:
+  devtest -p scsi.device
+Read benchmark (replace 0 with your SCSI unit):
+  devtest scsi.device 0 -b
+Repeated read comparison:
+  devtest scsi.device 0 -i 512 -l 100
+
+devtest -d enables writes and may destroy data. Use disposable media for
+write testing, and read the upstream instructions before choosing options.
+Licences for all three tools are included in Docs.

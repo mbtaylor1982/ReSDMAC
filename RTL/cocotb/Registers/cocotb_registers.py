@@ -28,6 +28,7 @@ async def read_data(dut, addr):
     await FallingEdge(dut.CLK)
     #s1
     dut.AS_.value = 0
+    dut.DS_.value = 0
     await RisingEdge(dut.CLK)
     #s2
     await FallingEdge(dut.CLK)
@@ -39,6 +40,7 @@ async def read_data(dut, addr):
     await FallingEdge(dut.CLK)
     #s5
     dut.AS_.value = 1
+    dut.DS_.value = 1
     await RisingEdge(dut.CLK)
     #Cycle end
     dut.RW.value = 1
@@ -62,6 +64,7 @@ async def write_data(dut, addr, data):
     await RisingEdge(dut.CLK)
     #s2
     dut.MID.value = data
+    dut.DS_.value = 0
     await FallingEdge(dut.CLK)
     #s3
     #wait for cycle term signal to assert 
@@ -76,6 +79,7 @@ async def write_data(dut, addr, data):
     dut.RW.value = 1
     dut.ADDR.value = 0
     dut.MID.value = 0
+    dut.DS_.value = 1
     dut.DMAC_.value = 1
     await ClockCycles(dut.CLK, 1, True)
     
@@ -88,6 +92,7 @@ async def registers_test(dut):
     dut.DMAC_.value = 1
     dut.AS_.value = 1
     dut.RW.value = 1
+    dut.DS_.value = 1
     dut.MID.value = 0
     dut.STOPFLUSH.value = 0
     dut.RST_.value = 1

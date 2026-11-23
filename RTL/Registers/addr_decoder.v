@@ -4,6 +4,7 @@ module addr_decoder(
   input [7:0] ADDR, // CPU address Bus
   input DMAC_,      // SDMAC Chip Select !SCSI from Fat Garry.
   input AS_,        // CPU Address Strobe.
+  input DS_,        // CPU Data Strobe.
   input RW,         // CPU Read Write Control Line.
   input DMADIR,     // DMADIR from bit from Control Register.
 
@@ -83,12 +84,12 @@ assign FLASH_ADDR_RD_ = ~(h_24 & RW);
 assign FLASH_DATA_RD_ = ~(h_28 & RW);
 assign DEV_RD_        = ~(h_2C & RW);
 
-assign CONTR_WR       = (h_08 & ~RW);
-assign ACR_WR         = (h_0C & ~RW);
-assign SSPBDAT_WR     = (h_58 & ~RW);
-assign VERSION_WR     = (h_20 & ~RW);
-assign FLASH_ADDR_WR  = (h_24 & ~RW);
-assign FLASH_DATA_WR  = (h_28 & ~RW);
+assign CONTR_WR       = (h_08 & ~RW & ~DS_);
+assign ACR_WR         = (h_0C & ~RW & ~DS_);
+assign SSPBDAT_WR     = (h_58 & ~RW & ~DS_);
+assign VERSION_WR     = (h_20 & ~RW & ~DS_);
+assign FLASH_ADDR_WR  = (h_24 & ~RW & ~DS_);
+assign FLASH_DATA_WR  = (h_28 & ~RW & ~DS_);
 
 //action strobes
 assign ST_DMA   = h_10;

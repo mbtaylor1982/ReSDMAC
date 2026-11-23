@@ -24,7 +24,9 @@ module CPU_SM_INTERNALS(
     input nSTERM,           // Synchrnous cycle termination
     input nRDFIFO,          // Request to Decrement FIFO CouNTer. From the SCSI state machine.
     input nRIFIFO,          // Request to Increment FIFO CouNTer. From the SCSI state machine.
+    input ENTRY_PARTIAL,    // Registered classification of the selected FIFO entry.
 
+    output reg NEXT_ENTRY_PARTIAL,
     output reg INCNI,       // increment pointer to next longword in
     output reg BREQ,        // bus request
     output reg SIZE1,       // size1,size0=00 lword ; =10 word
@@ -37,7 +39,7 @@ module CPU_SM_INTERNALS(
     output reg PLHW,        // pre Latch High Words. DMA data being written to FIFO. Latch actually occurs on falling edge of CLK
     output INCFIFO,     // INCrement the FIFO counter.
     output DECFIFO,     // DECrement the FIFO counter.
-    output INCNO,       // increment pointer to next longword out (same output as DECFIFO)
+    output INCNO,       // advance read pointer after the normal word/longword path
     output reg STOPFLUSH,   // Turn the FLUSHFIFO bit off.
     output reg DIEH,        // Data Input Enable for High word.
     output reg DIEL,        // Data Input Enable for Low word.
@@ -90,6 +92,18 @@ reg [5:0] state;
 reg [5:0] next_state;
 reg int_INCFIFO;
 reg int_DECFIFO;
+// Complete FIFO entries contribute to occupancy; a flush tail does not.
+// Retain the classification through both halves of a 16-bit bus transfer.
+// CPU_SM clocks this next value alongside the other CLK90 registers.
+always @(*) begin
+    NEXT_ENTRY_PARTIAL = ENTRY_PARTIAL;
+    if (~DMAENA)
+        NEXT_ENTRY_PARTIAL = 1'b0;
+    else if ((state == s1 && ~nBGRANT && CYCLEDONE) ||
+             (state == s15 && ~ENTRY_PARTIAL &&
+              (next_state == s3 || next_state == s11)))
+        NEXT_ENTRY_PARTIAL = FIFOEMPTY;
+end
 
 always @(*) begin
     case (state)
@@ -113,9 +127,9 @@ always @(*) begin
                 5'b1xxxx    : next_state <= s1;     //(BREQ);
                 5'b00xxx    : next_state <= s1;     //(BREQ);
                 5'b0100x    : next_state <= s2;     //(BREQ BGACK); start, lword aligned
-                5'b01011    : next_state <= s2;     //(BREQ BGACK STOPFLUSH); start, 3 bytes left so write lword
+                5'b01011    : next_state <= s2;     // start, 3 bytes left so write lword
                 5'b011xx    : next_state <= s6;     //(BREQ BGACK); start, lword unaligned (only happen very first time)
-                5'b01010    : next_state <= s10;    //(BREQ BGACK STOPFLUSH); start, very last byte/word, so write word
+                5'b01010    : next_state <= s10;    // start, very last byte/word, so write word
                 default     : next_state <= state;
             endcase
         end
@@ -168,10 +182,13 @@ always @(*) begin
         //----- Check if there is anything left to do -----
 
         s15: begin 
+            if (ENTRY_PARTIAL)
+                next_state <= letgo;
+            else
             casex ({FIFOEMPTY, LASTWORD, BOEQ3}) // check if more to do
-                3'b10x      : next_state <= letgo;   //(BGACK STOPFLUSH);                            -- no more left
-                3'b110      : next_state <= s11;     //(BGACK PAS F2CPUH F2CPUL SIZE1 STOPFLUSH);    -- very last byte/word to do
-                3'b111      : next_state <= s3;      //(BGACK PAS F2CPUH F2CPUL STOPFLUSH);          -- very last 3 bytes left,so write LWORD
+                3'b10x      : next_state <= letgo;   // no more left; finish flush on release
+                3'b110      : next_state <= s11;     // very last byte/word to do
+                3'b111      : next_state <= s3;      // very last 3 bytes left, so write longword
                 3'b0xx      : next_state <= s3;      //(BGACK PAS F2CPUH F2CPUL);                    -- start another CPU cycle
                 default     : next_state <= state;
             endcase
@@ -283,13 +300,15 @@ always @(*) begin
         end
 
         s1: begin
-            BREQ      <= 1'b1;
+            if (nBGRANT) begin
+                BREQ      <= 1'b1;
+            end
+
             casex ({nBGRANT, CYCLEDONE, A1, LASTWORD, BOEQ3}) // wait for the bus
                 5'b0100x    : BGACK <= 1'b1;        //(BREQ BGACK); start, lword aligned
                 5'b011xx    : BGACK <= 1'b1;        //(BREQ BGACK); start, lword unaligned (only happen very first time)
-                5'b0101x    : begin                 //(BREQ BGACK STOPFLUSH);
+                5'b0101x    : begin                 // acquire bus for a partial tail
                     BGACK       <= 1'b1;
-                    STOPFLUSH   <= 1'b1;
                 end
             endcase
         end
@@ -404,25 +423,25 @@ always @(*) begin
         //----- Check if there is anything left to do -----
 
         s15: begin
+            if (ENTRY_PARTIAL) begin
+                BGACK <= 1'b1;
+            end else
             casex ({FIFOEMPTY, LASTWORD, BOEQ3}) // check if more to do
-                3'b10x      : begin //(BGACK STOPFLUSH); -- no more left
+                3'b10x      : begin // no more left
                     BGACK       <= 1'b1;
-                    STOPFLUSH   <= 1'b1;
                 end
-                3'b110      : begin //(BGACK PAS F2CPUH F2CPUL SIZE1 STOPFLUSH); -- very last byte/word to do
+                3'b110      : begin // very last byte/word to do
                     BGACK       <= 1'b1;
                     PAS         <= 1'b1;
                     F2CPUH      <= 1'b1;
                     F2CPUL      <= 1'b1;
                     SIZE1       <= 1'b1;
-                    STOPFLUSH   <= 1'b1;
                 end
-                3'b111      : begin //(BGACK PAS F2CPUH F2CPUL STOPFLUSH); -- very last 3 bytes left,so write LWORD
+                3'b111      : begin // very last 3 bytes left, so write longword
                     BGACK       <= 1'b1;
                     PAS         <= 1'b1;
                     F2CPUH      <= 1'b1;
                     F2CPUL      <= 1'b1;
-                    STOPFLUSH   <= 1'b1;
                 end
                 3'b0xx      : begin //(BGACK PAS F2CPUH F2CPUL); -- start another CPU cycle
                     BGACK   <= 1'b1;
@@ -446,7 +465,7 @@ always @(*) begin
         end
 
         s21: begin
-            BREQ <= 1'b1;
+            if (nBGRANT) BREQ <= 1'b1;
             if (CYCLEDONE & ~nBGRANT) BGACK <= 1'b1;
         end
 
@@ -612,16 +631,23 @@ always @(*) begin
             end
         end
 
-        //letgo:  no outputs for s36/letgo.
+        // The final write has terminated and its registered strobes have
+        // been released. Only now acknowledge the software flush request.
+        letgo: begin
+            if (DMADIR && FLUSHFIFO)
+                STOPFLUSH <= 1'b1;
+        end
     endcase
 
 end
 
 //Keeps the 2 state machines from inc'ing & dec'ing the counter at the same time.
 assign INCFIFO = (~int_DECFIFO & ~nRIFIFO) | int_INCFIFO;
-assign DECFIFO = (~int_INCFIFO & ~nRDFIFO) | int_DECFIFO;
+assign DECFIFO = (~int_INCFIFO & ~nRDFIFO) | (int_DECFIFO & ~ENTRY_PARTIAL);
 
-// 9/12/90 Remove INCNO output because it is the same as DECFIFO
+// Retain the existing read-pointer advancement for these completion paths.
+// A partial entry can advance the pointer without decrementing occupancy;
+// the separate one/two-byte tail path leaves both untouched until STOP reset.
 assign INCNO = int_DECFIFO;
 
 //State Machine

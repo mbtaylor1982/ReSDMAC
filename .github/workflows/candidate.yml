@@ -1,0 +1,47 @@
+name: Build unpublished stable update candidate
+
+on:
+  workflow_dispatch:
+    inputs:
+      firmware_version:
+        description: Four-byte hardware version (vN.N)
+        required: true
+        default: v1.2
+      candidate_id:
+        description: Filename-safe artifact identity (separate from hardware version)
+        required: true
+        default: stable-update-rc1
+  workflow_call:
+    inputs:
+      firmware_version:
+        type: string
+        required: true
+      candidate_id:
+        type: string
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    uses: ./.github/workflows/test.yml
+    secrets: inherit
+  firmware:
+    strategy:
+      fail-fast: false
+      matrix:
+        device: [10M02SCU169C8G, 10M04SCU169C8G, 10M16SCU169C8G]
+    uses: ./.github/workflows/build.yml
+    with:
+      device: ${{ matrix.device }}
+      firmware_version: ${{ inputs.firmware_version }}
+      artifact_id: ${{ inputs.candidate_id }}
+    secrets: inherit
+  adf:
+    needs: [tests, firmware]
+    uses: ./.github/workflows/make_adf.yml
+    with:
+      hardware_version: ${{ inputs.firmware_version }}
+      artifact_id: ${{ inputs.candidate_id }}
+    secrets: inherit

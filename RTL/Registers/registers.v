@@ -16,7 +16,7 @@ module registers(
   input AS_,            // CPU Address Strobe.
   input DS_,            // CPU Data Strobe.
   input RW,             // CPU Read Write Control Line.
-  input CLK,            // Clock 90 degrees phase shifted
+  input CLK,            // CPU Clock.
   input [31:0] MID,     // DATA IN
   input STOPFLUSH,      //
   input RST_,           // System Reset
@@ -93,6 +93,7 @@ addr_decoder u_addr_decoder(
     .ADDR           (ADDR       ),
     .DMAC_          (DMAC_      ),
     .AS_            (AS_        ),
+    .DS_            (DS_        ),
     .RW             (RW         ),
     .DMADIR         (nDMADIR    ),
     .h_0C           (h_0C       ),
@@ -122,8 +123,10 @@ addr_decoder u_addr_decoder(
 //Interupt Status Register
 registers_istr u_registers_istr(
     .RESET_    (RST_      ),
-    .CLK       (CLK       ),
-    .FIFOEMPTY (FIFOEMPTY ),
+    .CLK       (CLK     ),
+    // Occupancy alone excludes partial entries. Keep software polling until
+    // the sequencer acknowledges completion (or discard) of the flush.
+    .FIFOEMPTY (FIFOEMPTY & ~FLUSHFIFO),
     .FIFOFULL  (FIFOFULL  ),
     .CLR_INT   (CLR_INT   ),
     .ISTR_RD_  (ISTR_RD_  ),
@@ -136,7 +139,7 @@ registers_istr u_registers_istr(
 //Control Register
 registers_cntr u_registers_cntr(
     .RESET_    (RST_      ),
-    .CLK       (CLK       ),
+    .CLK       (CLK     ),
     .CONTR_WR  (CONTR_WR  ),
     .ST_DMA    (ST_DMA    ),
     .SP_DMA    (SP_DMA    ),
@@ -150,7 +153,7 @@ registers_cntr u_registers_cntr(
 
 //DSACK timing.
 registers_term u_registers_term(
-    .CLK      (CLK        ),
+    .CLK      (CLK      ),
     .AS_      (AS_        ),
     .DMAC_    (DMAC_      ),
     .WDREGREQ (WDREGREQ   ),
@@ -160,7 +163,7 @@ registers_term u_registers_term(
 );
 
 registers_flash u_registers_flash(
-    .CLK            (CLK            ),
+    .CLK            (CLK          ),
     .nRST           (RST_           ),
     .n_DS           (DS_            ),
     .n_AS           (AS_            ),

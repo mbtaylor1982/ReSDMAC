@@ -1,8 +1,21 @@
-# cocotb_resdmac.py
+"""Legacy internal-signal smoke tests and timing-diagram generation.
+
+DMA payload, bus ownership and real Ramsey ACR verification live in DMA/.
+This legacy test retains its internal drives and simulation-only ACR shortcut;
+its completion alone is not evidence of correct external DMA transfers.
+"""
 
 import random
 import array as arr
 import json
+from pathlib import Path
+
+
+def save_timing_diagram(filename, data):
+    """Keep generated waveforms in the simulation build, not tracked docs."""
+    output = Path("timing_diagrams") / Path(filename).name
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(data, indent=4, sort_keys=False))
 
 import cocotb
 from cocotb.clock import Clock
@@ -111,8 +124,7 @@ async def read_data(dut, addr, *args, header="", footer="",filename=""):
                 result = convertDecToHex(i['data'])
                 jdata['signal'][x]['data'] = result
         if (filename != ""):
-            with open(filename, 'w') as json_file:
-                json.dump(jdata,json_file, indent=4, sort_keys=False)
+            save_timing_diagram(filename, jdata)
         dut._log.info("Read value %#x from addr %#x", data, addr)
         return data
 
@@ -168,8 +180,7 @@ async def write_data(dut, addr, data, *args, header="", footer="",filename=""):
                 result = convertDecToHex(i['data'])
                 data['signal'][x]['data'] = result
         if (filename != ""):
-            with open(filename, 'w') as json_file:
-                json.dump(data,json_file, indent=4, sort_keys=False)
+            save_timing_diagram(filename, data)
 
 async def FillFIFOFromSCSI(dut, data):
     dut._log.info("Started Filling FIFO From SCSI")
@@ -283,9 +294,15 @@ async def XferFIFO2Mem(dut,TermSignal):
         if (await wait_for_bus_grant(dut)):
             dut._log.info("Started transferring FIFO to Memory")
             #result = arr.array('L')
-            while (dut.FIFOEMPTY == 0 or dut.FLUSHFIFO == 1):
+            # FLUSH remains pending until the final bus cycle completes.
+            # Observe actual bus ownership, not the private flush/count flags:
+            # after the last response there may be release without another AS.
+            while (dut._id("_BGACK_IO", extended=False).value == 0):
                 if (dut.AS_O_ == 1):
-                    await FallingEdge(dut.AS_O_)
+                    await First(FallingEdge(dut.AS_O_),
+                                RisingEdge(dut._id("_BGACK_IO", extended=False)))
+                if dut._id("_BGACK_IO", extended=False).value == 1:
+                    break
                 #result.append(dut.DATA_O.value)
                 dut._log.info("Transfering value %#x from FIFO to Memory", dut.DATA_O.value)
                 await ClockCycles(dut.SCLK, 2, True)
@@ -417,8 +434,7 @@ async def DMA_READ(dut, data, addr, termsig):
             if 'data' in i:
                 result = convertDecToHex(i['data'])
                 jdata['signal'][x]['data'] = result
-        with open("../Docs/TimingDiagrams/DMA_READ.json", 'w') as json_file:
-            json.dump(jdata,json_file, indent=4, sort_keys=False)
+        save_timing_diagram("DMA_READ.json", jdata)
 
 async def DMA_WRITE(dut, data, addr, termsig):
     dut._log.info("Starting DMA write to addr %#x", addr)

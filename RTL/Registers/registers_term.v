@@ -11,7 +11,7 @@ module registers_term(
     output reg REG_DSK_
 );
 
-reg [2:0] TERM_COUNTER;
+reg [1:0] TERM_COUNTER;
 
 wire CYCLE_ACTIVE;
 
@@ -21,16 +21,16 @@ wire CYCLE_ACTIVE;
   assign CYCLE_ACTIVE = ~(AS_| DMAC_ | WDREGREQ | h_0C | h_28 );
 `endif
 
-always @(posedge CLK or posedge AS_) begin
+always @(negedge CLK or posedge AS_) begin
   if (AS_) begin
-    TERM_COUNTER <= 3'd0;
+    TERM_COUNTER <= 2'd0;
     REG_DSK_ <= 1'b1;
   end
   else if (CYCLE_ACTIVE) begin
-    if (TERM_COUNTER == 3'd3)
+    if (TERM_COUNTER == 2'd1)
       REG_DSK_ <= 1'b0;
     else
-		  TERM_COUNTER <= TERM_COUNTER + 3'b1;
+		  TERM_COUNTER <= TERM_COUNTER + 2'b1;
   end
 end
 

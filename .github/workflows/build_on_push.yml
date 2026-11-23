@@ -4,21 +4,35 @@ on:
     push:
       branches:
         - main
-      paths:
-        - 'Quartus/**'
-        - 'RTL/**'
+        - stable-update-release
+        - stable-release
+permissions:
+  contents: read
+concurrency:
+  group: firmware-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
+  stable_candidate:
+    if: github.ref_name != 'main'
+    uses: ./.github/workflows/candidate.yml
+    secrets: inherit
+    with:
+      firmware_version: v1.2
+      candidate_id: stable-${{ github.run_id }}-${{ github.run_attempt }}
   build_firmware_10M02:
+    if: github.ref_name == 'main'
     secrets: inherit
     uses: ./.github/workflows/build.yml
     with:
       device: 10M02SCU169C8G
   build_firmware_10M04:
+    if: github.ref_name == 'main'
     secrets: inherit
     uses: ./.github/workflows/build.yml
     with:
       device: 10M04SCU169C8G
   build_firmware_10M16:
+    if: github.ref_name == 'main'
     secrets: inherit
     uses: ./.github/workflows/build.yml
     with:

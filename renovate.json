@@ -1,0 +1,68 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "baseBranchPatterns": [
+    "stable-update-release"
+  ],
+  "enabledManagers": [
+    "github-actions",
+    "custom.regex"
+  ],
+  "automerge": false,
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^\\.github/workflows/make_adf\\.yml$/"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>github-releases) depName=(?<depName>[^\\s]+)\\s+[A-Z_]+: (?<currentValue>(?:release_|v)[0-9.]+)"
+      ],
+      "versioningTemplate": "regex:^(?:release_|v)(?<major>\\d+)\\.(?<minor>\\d+)(?:\\.(?<patch>\\d+))?$"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^tools/toolchain\\.json$/"
+      ],
+      "matchStrings": [
+        "\"(?:quartus|test|amiga_tools)_image\":\\s*\"(?<depName>[^\"\\s]+?):(?<currentValue>[^@\"\\s]+)@(?<currentDigest>sha256:[a-f0-9]{64})\""
+      ],
+      "datasourceTemplate": "docker"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchDatasources": [
+        "github-releases"
+      ],
+      "matchDepNames": [
+        "mbtaylor1982/ReSDMAC_Update_Tool",
+        "cdhooper/amiga_devtest",
+        "cdhooper/amiga_sdmac_test"
+      ],
+      "groupName": "Amiga utility releases",
+      "automerge": false
+    },
+    {
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchDatasources": [
+        "github-tags",
+        "github-digest"
+      ],
+      "groupName": "GitHub Actions dependencies",
+      "pinDigests": true
+    },
+    {
+      "matchDatasources": [
+        "docker"
+      ],
+      "groupName": "Workflow container images",
+      "pinDigests": true
+    }
+  ]
+}
