@@ -1,0 +1,22 @@
+name: Verify utility dependency updates
+
+on:
+  pull_request:
+    branches: [main, stable-update-release, stable-release]
+    paths:
+      - tools/**
+      - disk/**
+      - .github/workflows/**
+      - renovate.json
+
+permissions:
+  contents: read
+
+jobs:
+  utilities:
+    uses: ./.github/workflows/make_adf.yml
+    with:
+      hardware_version: v9.9
+      artifact_id: packaging-test
+      validation_only: true
+    secrets: inherit

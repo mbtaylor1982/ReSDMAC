@@ -2,10 +2,22 @@
 ; Copyright � 2024 Mike Taylor
 
 Path SYS:C ADD
+CD SYS:
 
 echo "Welcome to the ReSDMAC update utility disk"
 echo ""
-echo "To update firmware, type:"
-echo "    resdmac -w 10Mxx_update.rpd"
-echo "    xx = 04 for 10M04 and 16 for 10M16 devices"
+echo "The updater is on the command path; firmware files are in this directory."
+echo "For a 10M04 FPGA, type: resdmac -w 10M04_update.rpd"
+echo "For a 10M16 FPGA, type: resdmac -w 10M16_update.rpd"
+echo ""
+echo "Verify afterwards with resdmac -c and the same firmware filename."
+echo ""
+echo "All tools are in C: and can be run by name:"
+echo "  sdmac                         - SDMAC/WDC register checks (disk idle)"
+echo "  devtest -p scsi.device         - find SCSI devices and unit numbers"
+echo "  devtest scsi.device 0 -b       - read benchmark"
+echo "  devtest scsi.device 0 -i 512 -l 100 - repeated read comparison"
+echo "Replace 0 with your SCSI unit. devtest -d enables destructive writes."
+echo "Full instructions: ReadMe, Docs/sdmac.ReadMe and Docs/devtest.ReadMe."
+echo "No firmware updates or disk tests run automatically."
 

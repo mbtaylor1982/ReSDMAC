@@ -1,70 +1,164 @@
 name: make_adf
 
 on:
-    workflow_call:
+  workflow_call:
+    inputs:
+      hardware_version:
+        type: string
+        required: true
+      artifact_id:
+        type: string
+        required: true
+      validation_only:
+        description: Exercise packaging with synthetic firmware; do not upload a disk
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
 jobs:
-    make_update_adf:
-        runs-on: ubuntu-latest
-        container: walkero/amitoolsondocker:latest
-        env:
-          ADF_LABEL: ReSDMAC_Utils_${{ github.ref_name }}
-          ADF_FILE: ReSDMAC_Utils_${{ github.ref_name }}.adf
-        steps:
-          - name: Checkout repository
-            uses: actions/checkout@v4
-
-          - name: download artifacts
-            uses: actions/download-artifact@v4
-
-          - name: download_resdmac_update_release
-            uses: robinraju/release-downloader@v1
-            with:
-                repository: 'mbtaylor1982/ReSDMAC_Update_Tool'
-                latest: true
-                extract: true
-                out-file-path: 'ReSDMAC_Update_Tool'
-                fileName: 'ReSDMAC.zip'
-                token: ${{ secrets.RESDMAC_UPDATE_REPO}}
-
-          #- name: download_sdmac_release
-          #  uses: robinraju/release-downloader@v1
-          #  with:
-          #      repository: 'cdhooper/amiga_sdmac_test'
-          #      latest: true
-          #      extract: true
-          #      out-file-path: 'release-downloads'
-          #      fileName: 'sdmac*.zip'
-
-          #- name: download_devtest_release
-          #  uses: robinraju/release-downloader@v1
-          #  with:
-          #      repository: 'cdhooper/amiga_devtest'
-          #      latest: true
-          #      out-file-path: 'release-downloads'
-          #      fileName: 'devtest*.lha' #change to zip file later
-
-          - name: Display structure of files
-            run: ls -R
-
-          - name: make_adf
-            run: |
-              mkdir -p ADF
-              xdftool ./ADF/${{ env.ADF_FILE }} format "${{ env.ADF_LABEL }}"
-              xdftool ./ADF/${{ env.ADF_FILE }} makedir C
-              xdftool ./ADF/${{ env.ADF_FILE }} makedir S
-              xdftool ./ADF/${{ env.ADF_FILE }} makedir Devs
-              xdftool ./ADF/${{ env.ADF_FILE }} write ./ReSDMAC_Update_Tool/resdmac C/resdmac
-              xdftool ./ADF/${{ env.ADF_FILE }} write ./OutputFiles_10M16SCU169C8G_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd 10M16_update.rpd
-              xdftool ./ADF/${{ env.ADF_FILE }} write ./OutputFiles_10M04SCU169C8G_${{ github.ref_name }}.zip/resdmac_cfm0_auto.rpd 10M04_update.rpd
-              xdftool ./ADF/${{ env.ADF_FILE }} write ./OutputFiles_10M16SCU169C8G_${{ github.ref_name }}.zip/resdmac_cfm0_auto_crc32.txt 10M16_update.rpd.crc32
-              xdftool ./ADF/${{ env.ADF_FILE }} write ./OutputFiles_10M04SCU169C8G_${{ github.ref_name }}.zip/resdmac_cfm0_auto_crc32.txt 10M04_update.rpd.crc32
-              xdftool ./ADF/${{ env.ADF_FILE }} write ./disk/Startup-Sequence S/Startup-Sequence
-              xdftool ./ADF/${{ env.ADF_FILE }} write ./disk/system-configuration Devs/system-configuration
-              xdftool ./ADF/${{ env.ADF_FILE }} write ./disk/Disk.info
-              xdftool ./ADF/${{ env.ADF_FILE }} boot install
-          - name: Upload ADF file
-            uses: actions/upload-artifact@v4
-            with:
-              name: ${{ env.ADF_FILE }}
-              path: ./ADF/${{ env.ADF_FILE }}
-              retention-days: 14
+  make_update_adf:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/mbtaylor1982/container-amiga-gcc-amitools:latest@sha256:e42d73fc4e48c96c81df8830e2ccc4013f87773aa6917151729f6d868ad13ca7
+    defaults:
+      run:
+        shell: bash
+    env:
+      # renovate: datasource=github-releases depName=mbtaylor1982/ReSDMAC_Update_Tool
+      UPDATER_TAG: release_0.3
+      # renovate: datasource=github-releases depName=cdhooper/amiga_devtest
+      DEVTEST_TAG: v2.0
+      # renovate: datasource=github-releases depName=cdhooper/amiga_sdmac_test
+      SDMAC_TAG: release_1.1
+      ARTIFACT_ID: ${{ inputs.artifact_id }}
+      HARDWARE_VERSION: ${{ inputs.hardware_version }}
+      ADF_FILE: ReSDMAC_Utils_${{ inputs.artifact_id }}.adf
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate disk identity
+        run: |
+          [[ "$ARTIFACT_ID" =~ ^[A-Za-z0-9][A-Za-z0-9_.-]{0,39}$ ]]
+          [[ "$HARDWARE_VERSION" =~ ^v[0-9]\.[0-9]$ ]]
+      - name: Download this run's firmware
+        if: ${{ !inputs.validation_only }}
+        uses: actions/download-artifact@v4
+        with:
+          pattern: OutputFiles_*_${{ inputs.artifact_id }}.zip
+          path: firmware
+      - name: Create packaging-test fixtures
+        if: ${{ inputs.validation_only }}
+        # These bytes are only capacity/readback fixtures, never published firmware.
+        run: |
+          for device in 10M04SCU169C8G 10M16SCU169C8G; do
+            dir="firmware/OutputFiles_${device}_${ARTIFACT_ID}.zip"
+            mkdir -p "$dir"
+            size=143360
+            if [[ "$device" == 10M16SCU169C8G ]]; then size=270336; fi
+            head -c "$size" /dev/zero > "$dir/resdmac_cfm0_auto.rpd"
+            printf '00000000\n' > "$dir/resdmac_cfm0_auto_crc32.txt"
+          done
+      - name: Download pinned updater
+        uses: robinraju/release-downloader@v1
+        with:
+          repository: mbtaylor1982/ReSDMAC_Update_Tool
+          tag: ${{ env.UPDATER_TAG }}
+          fileName: ReSDMAC.zip
+          extract: true
+          out-file-path: downloads/updater
+          token: ${{ secrets.RESDMAC_UPDATE_REPO }}
+      - name: Download pinned SDMAC test
+        uses: robinraju/release-downloader@v1
+        with:
+          repository: cdhooper/amiga_sdmac_test
+          tag: ${{ env.SDMAC_TAG }}
+          fileName: sdmac
+          out-file-path: downloads/sdmac
+      - name: Download pinned device test
+        uses: robinraju/release-downloader@v1
+        with:
+          repository: cdhooper/amiga_devtest
+          tag: ${{ env.DEVTEST_TAG }}
+          fileName: devtest*.lha
+          out-file-path: downloads/devtest
+      # These releases do not both ship licences/docs alongside their binaries.
+      - name: Get SDMAC documentation at the same release
+        uses: actions/checkout@v4
+        with:
+          repository: cdhooper/amiga_sdmac_test
+          ref: ${{ env.SDMAC_TAG }}
+          path: sources/sdmac
+          persist-credentials: false
+      - name: Get devtest documentation at the same release
+        uses: actions/checkout@v4
+        with:
+          repository: cdhooper/amiga_devtest
+          ref: ${{ env.DEVTEST_TAG }}
+          path: sources/devtest
+          persist-credentials: false
+      - name: Extract devtest and stage disk contents
+        run: |
+          mkdir -p extracted/devtest stage/{C,S,Devs,Docs} ADF readback
+          archives=(downloads/devtest/devtest*.lha)
+          [[ ${#archives[@]} == 1 && -f "${archives[0]}" ]]
+          archive="$(realpath "${archives[0]}")"
+          (cd extracted/devtest && lha x "$archive")
+          mapfile -t binaries < <(find extracted/devtest -type f -name devtest)
+          [[ ${#binaries[@]} == 1 ]]
+          cp "${binaries[0]}" stage/C/devtest
+          cp downloads/updater/resdmac stage/C/resdmac
+          cp downloads/updater/LICENSE stage/Docs/updater.LICENSE
+          cp downloads/updater/README.md stage/Docs/updater.ReadMe
+          cp downloads/sdmac/sdmac stage/C/sdmac
+          for tool in sdmac devtest; do
+            cp "sources/$tool/LICENSE" "stage/Docs/$tool.LICENSE"
+            cp "sources/$tool/README.md" "stage/Docs/$tool.ReadMe"
+          done
+          for tool in resdmac sdmac devtest; do
+            [[ "$(od -An -tx1 -N4 "stage/C/$tool" | tr -d ' \n')" == 000003f3 ]]
+          done
+          cp disk/Startup-Sequence stage/S/
+          cp disk/system-configuration stage/Devs/
+          cp disk/Disk.info stage/
+          cp disk/ReadMe stage/ReadMe
+          for device in 10M04SCU169C8G 10M16SCU169C8G; do
+            dir="firmware/OutputFiles_${device}_${ARTIFACT_ID}.zip"
+            size=143360
+            if [[ "$device" == 10M16SCU169C8G ]]; then size=270336; fi
+            [[ "$(stat -c %s "$dir/resdmac_cfm0_auto.rpd")" == "$size" ]]
+            cp "$dir/resdmac_cfm0_auto.rpd" "stage/${device:0:5}_update.rpd"
+            cp "$dir/resdmac_cfm0_auto_crc32.txt" "stage/${device:0:5}_update.rpd.crc32"
+            # Reuse the existing updater-compatible CRC implementation.
+            python3 tools/write_updater_crc.py "$dir/resdmac_cfm0_auto.rpd" readback/expected.crc32
+            cmp readback/expected.crc32 "stage/${device:0:5}_update.rpd.crc32"
+          done
+          printf 'Firmware commit: %s\nHardware version: %s\nUpdater: %s\nDevtest: %s\nSDMAC: %s\nHardware validation: NOT PERFORMED\n' \
+            "$GITHUB_SHA" "$HARDWARE_VERSION" "$UPDATER_TAG" "$DEVTEST_TAG" "$SDMAC_TAG" > stage/BuildInfo
+          (cd stage && find . -type f -print0 | sort -z | xargs -0 sha256sum) > ADF/contents.sha256
+      - name: Make ADF and verify every file
+        run: |
+          adf="ADF/$ADF_FILE"
+          xdftool "$adf" format "ReSDMAC_${ARTIFACT_ID:0:22}"
+          for dir in C S Devs Docs; do xdftool "$adf" makedir "$dir"; done
+          while IFS= read -r -d '' file; do
+            name="${file#stage/}"
+            xdftool "$adf" write "$file" "$name"
+          done < <(find stage -type f -print0 | sort -z)
+          xdftool "$adf" boot install
+          while IFS= read -r -d '' file; do
+            name="${file#stage/}"
+            xdftool "$adf" read "$name" readback/file
+            cmp "$file" readback/file
+            rm readback/file
+          done < <(find stage -type f -print0 | sort -z)
+          [[ "$(stat -c %s "$adf")" == 901120 ]]
+          (cd ADF && sha256sum "$ADF_FILE") > ADF/SHA256SUMS
+      - name: Upload verified utility disk
+        if: ${{ !inputs.validation_only }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ADF_FILE }}
+          path: ADF/
+          if-no-files-found: error
+          retention-days: 30

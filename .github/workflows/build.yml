@@ -27,7 +27,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: mbtaylor1982/quartus@sha256:e3cb7a145e00a8c362e4bd42a2254807f446f074a0af63aaac6ccc49d9781ab4
+      image: mbtaylor1982/quartus:latest@sha256:e3cb7a145e00a8c362e4bd42a2254807f446f074a0af63aaac6ccc49d9781ab4
       credentials:
         username: ${{ secrets.DOCKER_HUB_USER }}
         password: ${{ secrets.DOCKER_HUB_PWD }}

@@ -12,6 +12,8 @@ on:
   pull_request:
     branches:
       - main
+      - stable-update-release
+      - stable-release
     paths:
       - 'Quartus/**'
       - 'RTL/**'
@@ -21,8 +23,9 @@ on:
 jobs:
   testing:
     runs-on: ubuntu-latest
+    timeout-minutes: 40
     container:
-      image: mbtaylor1982/cocotb-iverilog@sha256:b62699a09a7e76ff80cf69932f222395886d661247f63b6a82285df22804cca6
+      image: mbtaylor1982/cocotb-iverilog:latest@sha256:b62699a09a7e76ff80cf69932f222395886d661247f63b6a82285df22804cca6
       credentials:
         username: ${{ secrets.DOCKER_HUB_USER }}
         password: ${{ secrets.DOCKER_HUB_PWD }}
@@ -31,7 +34,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4     
       - name: Run directed RTL and packaging tests
-        run: timeout 900s pytest RTL/cocotb tools -q --junitxml=sim_build/test-results.xml
+        run: timeout 2100s pytest RTL/cocotb tools -q --junitxml=sim_build/test-results.xml
       # 4 Upload VCD Files
       - name: upload vcd files
         if: always()

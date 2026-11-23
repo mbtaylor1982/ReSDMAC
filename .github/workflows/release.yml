@@ -27,8 +27,11 @@ jobs:
     uses: ./.github/workflows/test.yml
     secrets: inherit
   ADF:
-    needs: [build_firmware_10M02, build_firmware_10M04, build_firmware_10M16]
+    needs: [build_firmware_10M02, build_firmware_10M04, build_firmware_10M16, test]
     uses: ./.github/workflows/make_adf.yml
+    with:
+      hardware_version: ${{ github.ref_name }}
+      artifact_id: ${{ github.ref_name }}
     secrets: inherit
   create_release:
     needs: [kicad_outputs, build_firmware_10M02, build_firmware_10M04, build_firmware_10M16, test, ADF]
